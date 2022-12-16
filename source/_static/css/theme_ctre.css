@@ -1,0 +1,19 @@
+/* Hide the brand title */
+.sidebar-brand-text {
+    display: none;
+}
+
+/* Fix light theme */
+.sidebar-logo {
+    background-color: #1A1C1E;
+    border-radius: 10px;
+}
+
+/* Make code blocks orange */
+span.pre {
+    color: orange;
+}
+
+.content {
+    width: 53em;
+}
