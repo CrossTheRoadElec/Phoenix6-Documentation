@@ -2,7 +2,7 @@
 
 Phoenix is the software framework used for all CTR-Electronics devices. Phoenix Pro changes from Phoenix 5 by offering new control requests, improved units support, device time sync and more.
 
-Documentation for Phoenix Pro is available: INSERT LINK HERE
+Documentation for Phoenix Pro is available: https://pro.docs.ctr-electronics.com
 
 ## Contribution to Phoenix Pro
 
