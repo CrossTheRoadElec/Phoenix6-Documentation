@@ -46,6 +46,7 @@ extensions = [
     "sphinxext.rediraffe",
     "sphinx.ext.autosectionlabel",
     "sphinx_design",
+    "sphinx_copybutton",
 ]
 
 images_config = {
