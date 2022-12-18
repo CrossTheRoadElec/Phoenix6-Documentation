@@ -35,9 +35,11 @@ LEDs are red - now what?
 ------------------------
 
 We need to rule out same-ID versus bad-bus-wiring.
-There are two approaches.
-Approach 1 will help troubleshoot bad wiring and common IDs.
-Approach 2 will only be effective in troubleshooting common IDs, but this method is noteworthy because it is simple/quick (no wiring changes, just pull breakers).
+
+There are two approaches:
+
+- Approach 1 will help troubleshoot bad wiring and common IDs.
+- Approach 2 will only be effective in troubleshooting common IDs, but this method is noteworthy because it is simple/quick (no wiring changes, just pull breakers).
 
 The specific instructions for changing device ID are in the next section. Review this if needed.
 
@@ -47,7 +49,7 @@ Approach 1 (best)
 - **Physically connect CAN bus from roboRIO to one device only.  Circumvent your wiring if need be.**
 - Power boot robot/bench setup.
 - Open Phoenix Tuner X and wait for connection (roboRIO may take ~30 seconds to boot)
-- Open the Devices page
+- Open the :guilabel:`Devices`` page
 - Confirm that CAN device appears
 - Use Tuner X to change the device ID
 - Label the new ID on the physical device
@@ -55,7 +57,7 @@ Approach 1 (best)
 
 If you find a particular device where communication is not possible, scrutinize device's power and CAN connection to the system. Make the test setup so simple that the only failure mode possible is within the device itself.
 
-.. note:: Typically, there must be two 120-:math:`\Omega` termination resistors at each end of the bus. CTRE integrates termination resistors into the PDP and the CANivore. The roboRIO also has an integrated termination resistor. During bring-up, if you keep your harness short (such as the CAN pigtail leads from a single TalonFX) then a single resistor is adequate for testing purposes.
+.. note:: Typically, there must be two 120-:math:`\Omega` termination resistors at each end of the bus. CTR-Electronics integrates termination resistors into the PDP and the CANivore. The roboRIO also has an integrated termination resistor. During bring-up, if you keep your harness short (such as the CAN pigtail leads from a single TalonFX) then a single resistor is adequate for testing purposes.
 
 Approach 2 (easier)
 ^^^^^^^^^^^^^^^^^^^
@@ -73,8 +75,7 @@ Approach 2 (easier)
 - Label the new ID on the physical device
 - Repeat this procedure for every device
 
-If you find a particular device or section of devices where communication is not possible, then the CAN bus wiring needs to be re-inspected.  Remember to “flick” / “shake” / “jostle” the CAN wiring in various sections to attempt to reproduce red LED blips.  This is a sure sign of loose contact points.
-
+If you find a particular device or section of devices where communication is not possible, then the CAN bus wiring needs to be re-inspected.  Remember to "flick" / "shake" / "jostle" the CAN wiring in various sections to attempt to reproduce red LED blips.  This is a sure sign of loose contact points.
 
 If you are able to detect and change device ID on your devices individually, begin piecing your CAN bus together. Start with either roboRIO <----> device <---> PDP, or CANivore <----> device <---> 120 :math:`\Omega` resistor, to ensure termination exists at both ends.  Then introduce the remaining devices until a failure is observed or until all devices are in-circuit.
 
