@@ -37,7 +37,8 @@ Phoenix Pro currently offers the following features and will further expand:
 
    For news and updates about your CTR-Electronics device, please see the `blog <https://store.ctr-electronics.com/blog/>`__
 
-.. grid:: 3
+.. grid:: 1 2 3 3
+   :gutter: 3
 
    .. grid-item-card:: :octicon:`paintbrush` Installation
       :link: docs/installation/pro-installation
@@ -57,7 +58,8 @@ Phoenix Pro currently offers the following features and will further expand:
 
       Documentation for device specific configuration, troubleshooting and setup instructions.
 
-.. grid:: 3
+.. grid:: 1 2 3 3
+   :gutter: 3
 
    .. grid-item-card:: :octicon:`rocket` API Reference
       :link: docs/api-reference/index
