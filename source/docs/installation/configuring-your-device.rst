@@ -3,7 +3,8 @@ Configuring your Device
 
 All CTR-Electronics devices have an ID that distinguishes multiple devices of the same type on the same CAN bus. This should be configured to the user's preference. Firmware upgrading is also generally **required** for each new release of Phoenix Pro API. Please visit the relevant Tuner pages on how to complete these steps.
 
-.. grid:: 2
+.. grid:: 1 1 2 2
+   :gutter: 3
 
    .. grid-item-card:: Firmware Updating
 

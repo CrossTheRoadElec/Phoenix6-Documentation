@@ -10,7 +10,7 @@ This section serves to provide basic API usage for the Phoenix Pro API. For full
 
 There are three major components to the Phoenix Pro API:
 
-.. grid:: 3
+.. grid:: 1 2 3 3
 
    .. grid-item-card:: Configs
 
