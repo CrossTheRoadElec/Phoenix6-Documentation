@@ -58,9 +58,6 @@ Phoenix Pro currently offers the following features and will further expand:
 
       Documentation for device specific configuration, troubleshooting and setup instructions.
 
-.. grid:: 1 2 3 3
-   :gutter: 3
-
    .. grid-item-card:: :octicon:`rocket` API Reference
       :link: docs/api-reference/index
       :link-type: doc
