@@ -7,3 +7,4 @@ This section intends to explain device specific config groups and how they are u
    :maxdepth: 1
 
    cancoder-configs
+   pigeon-configs
