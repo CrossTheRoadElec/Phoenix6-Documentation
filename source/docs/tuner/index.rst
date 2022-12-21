@@ -23,3 +23,4 @@ Phoenix Tuner X supports Android 8.0+ and Windows 10 (1903+) and Windows 11.
    configs
    self-test
    plotting
+   pigeon-cal
