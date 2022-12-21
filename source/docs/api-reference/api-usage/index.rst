@@ -29,6 +29,7 @@ There are three major components to the Phoenix Pro API:
 
    api-overview
    configuration
+   device-specific-configs/index
    control-requests
    status-signals
    faults
