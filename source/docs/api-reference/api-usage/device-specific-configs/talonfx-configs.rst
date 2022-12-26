@@ -34,4 +34,8 @@ This config group contains the :guilabel:`Inverted` toggle, which can be used to
 Voltage
 -------
 
-This config group contains the :guilabel:`Supply Voltage Lowpass Time Constant` config. This config is used for configuring the low-pass voltage filter time window for the **supply voltage**. A high value will increase the size of the filter window (range of data). This has the affect of greater smoothing of voltage at the cost of precision. A lower value will increase precision but result in less smooth voltage data (and increase error). The time constant is in units of milliseconds.
+.. note:: Voltage supply filter is not typically necessary for typical FRC robot usage and is configured to 0 by default. It's only recommended to configure this if voltage supply is noisy.
+
+This config group contains the :guilabel:`Supply Voltage Lowpass Time Constant` config. This config is used for configuring the `time constant <https://en.wikipedia.org/wiki/Time_constant>`__ of the low-pass supply filter. The time constant is in units of seconds.
+
+.. warning:: An overly aggressive voltage filter can produce output oscillations in duty cycle voltage control modes.
