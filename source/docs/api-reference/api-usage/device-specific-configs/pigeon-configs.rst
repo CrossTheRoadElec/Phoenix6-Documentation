@@ -62,7 +62,7 @@ The below table can be used to determine if sensitivity error is likely:
 | **Step 6:** Error is high | Inconclusive              | Inconclusive               |
 +---------------------------+---------------------------+----------------------------+
 
-In the situation that the IMU reports that the reported Yaw travelled from ``0`` deg to ``-3602`` deg but the gyro mechanically traveled `-3600` deg, there is an overshoot by 2 degrees. The user would set the :guilabel:`Yaw Error About Z` to ``0.2`` (deg per rotation). Always retest to ensure accuracy has improved.
+In the situation that the IMU reports that the reported Yaw traveled from ``0`` deg to ``-3602`` deg but the gyro mechanically traveled `-3600` deg, there is an overshoot by 2 degrees. The user would set the :guilabel:`Yaw Error About Z` to ``0.2`` (deg per rotation). Always retest to ensure accuracy has improved.
 
 The following configs are exposed:
 
