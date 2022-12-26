@@ -34,4 +34,4 @@ This config group contains the :guilabel:`Inverted` toggle, which can be used to
 Voltage
 -------
 
-This config group contains the :guilabel:`Supply Voltage Lowpass Time Constant`.
+This config group contains the :guilabel:`Supply Voltage Lowpass Time Constant` config. This config is used for configuring the low-pass voltage filter time window for the **supply voltage**. A high value will increase the size of the filter window (range of data). This has the affect of greater smoothing of voltage at the cost of precision. A lower value will increase precision but result in less smooth voltage data (and increase error). The time constant is in units of milliseconds.
