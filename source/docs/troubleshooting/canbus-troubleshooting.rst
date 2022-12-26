@@ -49,7 +49,7 @@ Approach 1 (best)
 - **Physically connect CAN bus from roboRIO to one device only.  Circumvent your wiring if need be.**
 - Power boot robot/bench setup.
 - Open Phoenix Tuner X and wait for connection (roboRIO may take ~30 seconds to boot)
-- Open the :guilabel:`Devices`` page
+- Open the :guilabel:`Devices` page
 - Confirm that CAN device appears
 - Use Tuner X to change the device ID
 - Label the new ID on the physical device

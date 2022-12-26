@@ -3,7 +3,7 @@
 API Reference
 =============
 
-This section highlights the functionality that is exposed as part of the Phoenix Pro API. This includes the base API, simulation and detailed example projects.
+This section highlights the functionality that is exposed as part of the Phoenix Pro API. This includes the base API, simulation, and detailed example projects.
 
 .. grid:: 1 2 3 3
    :gutter: 3
