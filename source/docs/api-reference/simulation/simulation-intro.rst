@@ -49,10 +49,10 @@ This orientation represents the **mechanical** linkage between the device and th
          var rightTalonFXSim = m_rightTalonFX.getSimState();
 
          // left drivetrain motors are typically CCW+
-         leftTalonFXSim.orientation = ChassisReference.CounterClockwise_Positive;
+         leftTalonFXSim.Orientation = ChassisReference.CounterClockwise_Positive;
 
          // right drivetrain motors are typically CW+
-         rightTalonFXSim.orientation = ChassisReference.Clockwise_Positive;
+         rightTalonFXSim.Orientation = ChassisReference.Clockwise_Positive;
 
    .. tab-item:: C++
       :sync: C++
@@ -63,10 +63,10 @@ This orientation represents the **mechanical** linkage between the device and th
          auto& rightTalonFXSim = m_rightTalonFX.GetSimState();
 
          // left drivetrain motors are typically CCW+
-         leftTalonFXSim.orientation = sim::ChassisReference::CounterClockwise_Positive;
+         leftTalonFXSim.Orientation = sim::ChassisReference::CounterClockwise_Positive;
 
          // right drivetrain motors are typically CW+
-         rightTalonFXSim.orientation = sim::ChassisReference::Clockwise_Positive;
+         rightTalonFXSim.Orientation = sim::ChassisReference::Clockwise_Positive;
 
 Inputs and Outputs
 ^^^^^^^^^^^^^^^^^^
