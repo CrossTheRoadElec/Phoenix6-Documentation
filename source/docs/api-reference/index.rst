@@ -3,9 +3,9 @@
 API Reference
 =============
 
-This section highlights the functionality that is exposed as part of the Phoenix Pro API. This includes the base API, simulation, and detailed example projects.
+This section highlights the functionality that is exposed as part of the Phoenix Pro API.
 
-.. grid:: 1 2 3 3
+.. grid:: 1 2 2 2
    :gutter: 3
 
    .. grid-item-card:: API Usage
@@ -20,6 +20,12 @@ This section highlights the functionality that is exposed as part of the Phoenix
 
       Details on utilizing the extensive Phoenix Pro simulation support.
 
+   .. grid-item-card:: WPILib Integration
+      :link-type: doc
+      :link: wpilib-integration/index
+
+      Documentation on the WPILib features supported by Phoenix Pro.
+
    .. grid-item-card:: Examples
       :link-type: doc
       :link: examples/index
@@ -31,4 +37,5 @@ This section highlights the functionality that is exposed as part of the Phoenix
 
    api-usage/index
    simulation/index
+   wpilib-integration/index
    examples/index
