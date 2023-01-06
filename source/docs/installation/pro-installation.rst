@@ -43,24 +43,27 @@ Online
 
 .. tab-set::
 
-   .. tab-item:: FRC
+   .. tab-item:: FRC (Pro Only)
+
+      .. important:: This vendordep is for robot projects that are **only** using Phoenix Pro licensed devices.
 
       Paste the following URL in `WPILib VS Code <https://docs.wpilib.org/en/stable/docs/software/vscode-overview/3rd-party-libraries.html#libraries>`__ :guilabel:`Install New Libraries (Online)`
 
       - ``https://maven.ctr-electronics.com/release/com/ctre/phoenixpro/PhoenixPro-frc2023-latest.json``
 
+   .. tab-item:: FRC (Pro & Phoenix 5)
+
+      .. important:: This vendordep is for robot projects that are using **both** Phoenix Pro licensed devices & Phoenix 5 devices.
+
+      Paste the following URL in `WPILib VS Code <https://docs.wpilib.org/en/stable/docs/software/vscode-overview/3rd-party-libraries.html#libraries>`__ :guilabel:`Install New Libraries (Online)`
+
+      - ``https://maven.ctr-electronics.com/release/com/ctre/phoenixpro/PhoenixProAnd5-frc2023-latest.json``
+
+      .. important:: Devices on Phoenix Pro firmware **must** use the Phoenix Pro API. Device on Phoenix 5 firmware **must** use the Phoenix 5 API.
+
    .. tab-item:: non-FRC
 
       Coming soon
-
-Phoenix 5 & Phoenix Pro Compatibility
--------------------------------------
-
-Phoenix Pro activated devices and Phoenix 5 devices can be used in the same robot program, however, they must utilize a different vendordep. The URL for this vendordep is
-
-- ``https://maven.ctr-electronics.com/release/com/ctre/phoenixpro/PhoenixProAnd5-frc2023-latest.json``
-
-.. important:: Devices on Phoenix Pro firmware **must** use the Phoenix Pro API. Device on Phoenix 5 firmware **must** use the Phoenix 5 API.
 
 Tuner X Installation
 --------------------

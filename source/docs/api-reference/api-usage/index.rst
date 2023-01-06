@@ -13,14 +13,20 @@ There are three major components to the Phoenix Pro API:
 .. grid:: 1 2 3 3
 
    .. grid-item-card:: Configs
+      :link-type: doc
+      :link: configuration
 
       Configs represent a **persistent configuration** for a device. For example, closed-loop gains.
 
    .. grid-item-card:: Control Requests
+      :link-type: doc
+      :link: control-requests
 
       Control Requests represent the **output** of a device, typically a motor controller.
 
    .. grid-item-card:: Signals
+      :link-type: doc
+      :link: status-signals
 
       Signals represent **data retrieved** from a device. This can be velocity, position, yaw, pitch, roll, temperature, etc.
 
