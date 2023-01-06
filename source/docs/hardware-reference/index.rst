@@ -9,3 +9,4 @@ Hardware Reference
    talonfx/index
    pigeon2/index
    cancoder/index
+   actuator-limits
