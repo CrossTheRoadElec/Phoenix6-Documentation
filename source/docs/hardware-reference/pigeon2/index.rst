@@ -49,7 +49,7 @@ Status Light Reference
 Mount Calibration
 -----------------
 
-It's recommended to perform a mount calibration when placement of the Pigeon 2.0 has been finalized. This can be done via the :guilabel:`Calibration` page in Tuner X.
+It's recommended to perform a mount calibration when placement of the Pigeon 2.0 has been finalized. This can be done via the :doc:`Calibration page </docs/tuner/pigeon-cal>` in Tuner X.
 
 .. image:: images/mount-calibration.png
    :width: 70%
