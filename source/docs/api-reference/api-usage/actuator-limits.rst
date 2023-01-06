@@ -30,6 +30,6 @@ The state of the forward or reverse limit switch can be retrieved from the API v
 
          auto& forwardLimit = m_motor.GetForwardLimit();
 
-         if (forwardLimit.GetValue() == ForwardLimitValue.ClosedToGround) {
+         if (forwardLimit.GetValue() == signals::ForwardLimitValue::ClosedToGround) {
             // do action when forward limit is closed
          }
