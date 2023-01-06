@@ -22,7 +22,7 @@ Actuator Limits
 
 CTR-Electronics actuators, such as the TalonFX, support various kinds of hardware and software limits.
 
-Documentation on retrieving and configuring limits can be found :ref:`here <docs/api-reference/api-usage/actuator-limits:actuator limits>`.
+Documentation on retrieving and configuring limits can be found :doc:`here </docs/api-reference/api-usage/actuator-limits>`.
 
 Limit Switches
 ^^^^^^^^^^^^^^

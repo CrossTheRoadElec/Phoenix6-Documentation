@@ -46,10 +46,10 @@ There are three major components to the Phoenix Pro API:
    - Documents how faults are used to indicate device hardware status.
 
 - :doc:`enabling-actuators`
-   - Information on the FRC Lock safety feature and how to feed devices.
+   - Information on the FRC Lock safety feature and enabling actuators.
 
 - :doc:`actuator-limits`
-   - Documents how to use stator/supply current limits and limit switches.
+   - Documents how to retrieve and configure software and hardware actuator limits.
 
 - :doc:`talonfx-control-requests/index`
    - Describes the different TalonFX control requests and how they are used.
