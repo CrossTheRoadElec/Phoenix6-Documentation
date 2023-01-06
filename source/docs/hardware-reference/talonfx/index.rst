@@ -20,7 +20,7 @@ The Falcon 500 powered by Talon FX is a brushless motor with an integrated motor
 Actuator Limits
 ---------------
 
-Actuators, such as the CTR-Electronics TalonFX, support various kinds of hardware and software limits. These include limit switches (wired and soft) and supply/stator current limits.
+CTR-Electronics actuators, such as the TalonFX, support various kinds of hardware and software limits.
 
 Documentation on retrieving and configuring limits can be found :ref:`here <docs/api-reference/api-usage/actuator-limits:actuator limits>`.
 
