@@ -112,6 +112,7 @@ Phoenix Pro currently offers the following features and will further expand:
 
    docs/api-reference/api-usage/index
    docs/api-reference/simulation/index
+   docs/api-reference/wpilib-integration/index
    docs/api-reference/examples/index
 
 .. toctree::
