@@ -45,14 +45,14 @@ There are three major components to the Phoenix Pro API:
 - :doc:`faults`
    - Documents how faults are used to indicate device hardware status.
 
-- :doc:`talonfx-control-requests/index`
-   - Describes the different TalonFX control requests and how they are used.
-
 - :doc:`enabling-actuators`
    - Information on the FRC Lock safety feature and how to feed devices.
 
 - :doc:`actuator-limits`
    - Documents how to use stator/supply current limits and limit switches.
+
+- :doc:`talonfx-control-requests/index`
+   - Describes the different TalonFX control requests and how they are used.
 
 - :doc:`migration-guide`
    - A "cheat sheet" on migrating from Phoenix 5 to Phoenix Pro.
@@ -66,7 +66,7 @@ There are three major components to the Phoenix Pro API:
    control-requests
    status-signals
    faults
-   talonfx-control-requests/index
    enabling-actuators
    actuator-limits
+   talonfx-control-requests/index
    migration-guide
