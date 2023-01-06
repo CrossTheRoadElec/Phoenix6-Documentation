@@ -22,7 +22,7 @@ caniv - CANivore CLI
 
 .. note:: Unlike the CANivores page in Phoenix Tuner X, ``caniv`` does **not** require a running Phoenix Diagnostic Server.
 
-On Linux systems (including the roboRIO), ``caniv`` can be found at /usr/local/bin. On Windows systems, the program is in the Phoenix Tuner X application cache directory, which can be opened by opening the Diagnostics Log page and clicking the left folder icon in the top right:
+On Linux systems (including the roboRIO), ``caniv`` can be found at ``/usr/local/bin``. On Windows systems, the program is in the Phoenix Tuner X application cache directory, which can be opened by opening the :guilabel:`Diagnostic Log` page and clicking the left folder icon in the top right:
 
 .. image:: images/canivore-application-cache-folder.png
    :width: 70%

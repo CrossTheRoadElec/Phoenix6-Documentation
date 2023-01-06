@@ -34,7 +34,7 @@ Each supported device has a device-specific ``SimState`` object that can be used
 Orientation
 ^^^^^^^^^^^
 
-The ``SimState`` API ignores typical device invert settings, as the user may change invert for any reason (such as flipping which direction is forward for a drivebase). As a result, for some devices, the ``SimState`` object supports specifying the orientation of the device relative to the robot chassis (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/sim/TalonFXSimState.html#orientation>`__, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/classctre_1_1phoenixpro_1_1sim_1_1_talon_f_x_sim_state.html#a9f91118d94dc4fb67246c3ea63be2a84>`__).
+The ``SimState`` API ignores typical device invert settings, as the user may change invert for any reason (such as flipping which direction is forward for a drivebase). As a result, for some devices, the ``SimState`` object supports specifying the orientation of the device relative to the robot chassis (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/sim/TalonFXSimState.html#Orientation>`__, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/classctre_1_1phoenixpro_1_1sim_1_1_talon_f_x_sim_state.html#accd9e74b59931e43563f26ce44c68890>`__).
 
 This orientation represents the **mechanical** linkage between the device and the robot chassis. It **should not be changed with runtime invert**, as runtime invert specifies the *logical* orientation of the device. Rather, the orientation should **only be modified when the mechanical linkage itself changes**, such as when switching between two gearboxes inverted from each other.
 
@@ -49,10 +49,10 @@ This orientation represents the **mechanical** linkage between the device and th
          var rightTalonFXSim = m_rightTalonFX.getSimState();
 
          // left drivetrain motors are typically CCW+
-         leftTalonFXSim.orientation = ChassisReference.CounterClockwise_Positive;
+         leftTalonFXSim.Orientation = ChassisReference.CounterClockwise_Positive;
 
          // right drivetrain motors are typically CW+
-         rightTalonFXSim.orientation = ChassisReference.Clockwise_Positive;
+         rightTalonFXSim.Orientation = ChassisReference.Clockwise_Positive;
 
    .. tab-item:: C++
       :sync: C++
@@ -63,10 +63,10 @@ This orientation represents the **mechanical** linkage between the device and th
          auto& rightTalonFXSim = m_rightTalonFX.GetSimState();
 
          // left drivetrain motors are typically CCW+
-         leftTalonFXSim.orientation = sim::ChassisReference::CounterClockwise_Positive;
+         leftTalonFXSim.Orientation = sim::ChassisReference::CounterClockwise_Positive;
 
          // right drivetrain motors are typically CW+
-         rightTalonFXSim.orientation = sim::ChassisReference::Clockwise_Positive;
+         rightTalonFXSim.Orientation = sim::ChassisReference::Clockwise_Positive;
 
 Inputs and Outputs
 ^^^^^^^^^^^^^^^^^^
