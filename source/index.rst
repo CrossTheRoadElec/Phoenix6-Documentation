@@ -7,8 +7,6 @@ The Phoenix Pro software framework allows you to control and configure your `CTR
 
 .. note:: A changelog containing API, Tuner and Firmware changes is available `here <https://api.ctr-electronics.com/changelog>`__ and a migration guide is available :doc:`here </docs/api-reference/api-usage/migration-guide>`.
 
-.. important:: Phoenix Pro is currently in early beta. Certain major features are currently unavailable but planned (limit switches, remote sensors, etc.).
-
 Why Phoenix Pro?
 ----------------
 
