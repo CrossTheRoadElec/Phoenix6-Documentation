@@ -26,3 +26,5 @@ The state of the forward or reverse limit switch can be retrieved from the API v
          if (forwardLimit.GetValue() == ForwardLimitValue.Closed) {
             // do action when forward limit is closed
          }
+
+Documentation on other kinds of actuator limits can be found :ref:`here <docs/hardware-reference/actuator-limits:actuator limits>`.
