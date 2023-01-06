@@ -17,6 +17,22 @@ The Falcon 500 powered by Talon FX is a brushless motor with an integrated motor
 
       Wiring and mount instructions in PDF format.
 
+Actuator Limits
+---------------
+
+CTR-Electronics actuators, such as the TalonFX, support various kinds of hardware and software limits.
+
+Documentation on retrieving and configuring limits can be found :doc:`here </docs/api-reference/api-usage/actuator-limits>`.
+
+Limit Switches
+^^^^^^^^^^^^^^
+
+CTR-Electronics supported actuators have limit features that will automatically neutral the actuator output (set voltage to 0) if a limit switch is activated. By default, limits are set to "normally open". This means that the switch needs to be explicitly closed (or grounded) for the actuator output to be set to neutral.
+
+When the limit switch is closed (connected to ground), the actuator will disable and the pattern will move toward the forward/reverse limit pin (red blink pattern will move toward the forward limit pin when the forward limit is closed, and vice-versa).
+
+.. tip:: For more information on limit switch wiring, consult the `TalonFX User's Guide <https://store.ctr-electronics.com/content/user-manual/Falcon%20500%20User%20Guide.pdf>`__.
+
 Status Light Reference
 ----------------------
 
