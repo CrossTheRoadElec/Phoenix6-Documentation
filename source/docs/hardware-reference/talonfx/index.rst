@@ -33,7 +33,6 @@ When the limit switch is closed (connected to ground), the actuator will disable
 
 .. tip:: For more information on limit switch wiring, consult the `TalonFX User's Guide <https://store.ctr-electronics.com/content/user-manual/Falcon%20500%20User%20Guide.pdf>`__.
 
-
 Status Light Reference
 ----------------------
 
