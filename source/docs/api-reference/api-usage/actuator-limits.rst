@@ -1,5 +1,12 @@
+Actuator Limits
+===============
+
+Actuators, such as the CTR-Electronics TalonFX, support various kinds of hardware and software limits. These include limit switches (wired and soft) and supply/stator current limits.
+
+Documentation on wiring limit switches can be found :ref:`here <docs/hardware-reference/talonfx/index:actuator limits>`.
+
 Retrieving Limit Switch State
-=============================
+-----------------------------
 
 The state of the forward or reverse limit switch can be retrieved from the API via ``getForwardLimit()`` and ``getReverseLimit()``.
 
@@ -26,5 +33,3 @@ The state of the forward or reverse limit switch can be retrieved from the API v
          if (forwardLimit.GetValue() == ForwardLimitValue.Closed) {
             // do action when forward limit is closed
          }
-
-Documentation on other kinds of actuator limits can be found :ref:`here <docs/hardware-reference/actuator-limits:actuator limits>`.
