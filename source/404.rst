@@ -1,0 +1,10 @@
+:orphan:
+
+Page not found
+==============
+
+Unfortunately, the page you were looking for is not available, this may be caused by a page rename or an invalid URL. If you believe this is a mistake, please contact :doc:`support <docs/support>`. Otherwise, please try searching for the requested page in the lefthand search bar.
+
+**Why did the chicken cross the road?**
+
+- To go to the sidebar to find it's topic! 🥁
