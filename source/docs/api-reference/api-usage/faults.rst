@@ -23,7 +23,7 @@ Faults can also be retrieved in API using the ``*getFault_*()`` (regular) or ``g
 
       .. code-block:: java
 
-         var faulted = cancoder.getFault_BadMagnet().getValue();
+         var faulted = m_cancoder.getFault_BadMagnet().getValue();
 
          if (faulted) {
             // do action when bad magnet fault is set
@@ -34,7 +34,7 @@ Faults can also be retrieved in API using the ``*getFault_*()`` (regular) or ``g
 
       .. code-block:: cpp
 
-         auto faulted = cancoder.GetFault_BadMagnet().GetValue();
+         auto faulted = m_cancoder.GetFault_BadMagnet().GetValue();
 
          if (faulted) {
             // do action when bad magnet fault is set
