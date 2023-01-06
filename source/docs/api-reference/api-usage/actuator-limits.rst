@@ -1,7 +1,7 @@
 Actuator Limits
 ===============
 
-Actuators, such as the CTR-Electronics TalonFX, support various kinds of hardware and software limits. These include limit switches (wired and soft) and supply/stator current limits.
+CTR-Electronics actuators, such as the TalonFX, support various kinds of hardware and software limits.
 
 Documentation on wiring limit switches can be found :ref:`here <docs/hardware-reference/talonfx/index:actuator limits>`.
 
@@ -19,7 +19,7 @@ The state of the forward or reverse limit switch can be retrieved from the API v
 
          var forwardLimit = m_motor.getForwardLimit();
 
-         if (forwardLimit.getValue() == ForwardLimitValue.Closed) {
+         if (forwardLimit.getValue() == ForwardLimitValue.ClosedToGround) {
             // do action when forward limit is closed
          }
 
@@ -30,6 +30,6 @@ The state of the forward or reverse limit switch can be retrieved from the API v
 
          auto& forwardLimit = m_motor.GetForwardLimit();
 
-         if (forwardLimit.GetValue() == ForwardLimitValue.Closed) {
+         if (forwardLimit.GetValue() == ForwardLimitValue.ClosedToGround) {
             // do action when forward limit is closed
          }
