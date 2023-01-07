@@ -169,44 +169,104 @@ Once the gains are configured, the Position closed loop control request can be s
          // set position to 10 rotations
          m_talonFX.SetControl(request.WithPosition(10_tr));
 
-.. Motion Magic
-.. ------------
+Motion Magic
+------------
 
-.. Motion Magic is a control mode that provides the benefit of Motion Profiling without needing to generate motion profile trajectory points. When using Motion Magic, the motor will move to a target position using a motion profile, while honoring the user specified acceleration, maximum velocity (cruise velocity), and optional S-Curve smoothing.
+Motion Magic is a control mode that provides the benefit of Motion Profiling without needing to generate motion profile trajectory points. When using Motion Magic, the motor will move to a target position using a motion profile, while honoring the user specified acceleration, maximum velocity (cruise velocity), and optional S-Curve smoothing.
 
-.. The benefits of this control mode over "simple" PID position closed-looping are:
+The benefits of this control mode over "simple" PID position closed-looping are:
 
-.. - Control of the mechanism throughout the entire motion (as opposed to racing to the end target position)
-.. - Control of the mechanism's inertia to ensure smooth transitions between set points
-.. - Improved repeatability despite changes in battery load
-.. - Improved repeatability despite changes in motor load
+- Control of the mechanism throughout the entire motion (as opposed to racing to the end target position)
+- Control of the mechanism's inertia to ensure smooth transitions between set points
+- Improved repeatability despite changes in battery load
+- Improved repeatability despite changes in motor load
 
-.. After gain/settings are determined, the robot controller only needs to periodically set the target position.
+After gain/settings are determined, the robot controller only needs to periodically set the target position.
 
-.. There is no general requirement to "wait for the profile to finish". However, the robot application can poll the sensor position and determine when the motion is finished if need be.
+There is no general requirement to "wait for the profile to finish". However, the robot application can poll the sensor position and determine when the motion is finished if need be.
 
-.. Motion Magic functions be generating a trapezoidal/S-Curve velocity profile that does not exceed the specified acceleration or cruise velocity. This is done automatically by the motor controller.
+Motion Magic functions be generating a trapezoidal/S-Curve velocity profile that does not exceed the specified acceleration or cruise velocity. This is done automatically by the motor controller.
 
-.. .. note:: If the remaining sensor distance to travel is small, the velocity may not reach cruise velocity as this would overshoot the target position. This is often referred to as a "triangle profile".
+.. note:: If the remaining sensor distance to travel is small, the velocity may not reach cruise velocity as this would overshoot the target position. This is often referred to as a "triangle profile".
 
-.. .. image:: images/trapezoidal-profile.png
-..    :alt: Trapezoidal graph that showcases target cruise velocity and current velocity
+.. image:: images/trapezoidal-profile.png
+   :alt: Trapezoidal graph that showcases target cruise velocity and current velocity
 
-.. If the S-Curve strength [0, 8] is set to a nonzero value, the generated velocity profile is no longer trapezoidal, but instead is continuous (corner points are smoothed).
+If the S-Curve strength [0, 8] is set to a nonzero value, the generated velocity profile is no longer trapezoidal, but instead is continuous (corner points are smoothed).
 
-.. An S-Curve profile has the following advantaged over a trapezoidal profile:
+An S-Curve profile has the following advantaged over a trapezoidal profile:
 
-.. - Control over the Jerk of the mechanism.
-.. - Reducing oscillation of the mechanism.
-.. - Maneuver is more deliberate and reproducible.
+- Control over the Jerk of the mechanism.
+- Reducing oscillation of the mechanism.
+- Maneuver is more deliberate and reproducible.
 
-.. .. note:: The S-Curve feature, by its nature, will increase the amount of time a movement requires. This can be compensated for by decreasing the configured acceleration value.
+.. note:: The S-Curve feature, by its nature, will increase the amount of time a movement requires. This can be compensated for by decreasing the configured acceleration value.
 
-.. .. image:: images/s-curve-graph.png
-..    :alt: Graph showing velocity and position using s-curve profile
+.. image:: images/s-curve-graph.png
+   :alt: Graph showing velocity and position using s-curve profile
 
-.. The following parameters must be set when controlling using Motion Magic
+The following parameters must be set when controlling using Motion Magic
 
-.. - Acceleration (controls acceleration and decelleration rates during the beginning and end of trapezoidal motion)
-.. - Cruise Velocity (peak/cruising velocity of the motion)
-.. - Acceleration Smoothing (manipulates the curve of the velocity, a larger smoothing value will result in greater dampening of the acceleration)
+- Acceleration (controls acceleration and decelleration rates during the beginning and end of trapezoidal motion)
+- Cruise Velocity (peak/cruising velocity of the motion)
+- Acceleration Smoothing (manipulates the curve of the velocity, a larger smoothing value will result in greater dampening of the acceleration)
+
+Example API usage is shown below
+
+.. tab-set::
+
+   .. tab-item:: Java
+
+      .. code-block:: java
+
+         // create motor object
+         TalonFX m_motor = new TalonFX(0, "canivore");
+
+         // create control request and joystick object
+         MotionMagicVoltage m_motionMagicReq = new MotionMagicVoltage(0);
+         XboxController m_joystick = new XboxController(0);
+
+         @Override
+         public void robotInit() {
+            TalonFXConfiguration cfg = new TalonFXConfiguration();
+            MotionMagicConfigs mmCfg = new MotionMagicConfigs();
+
+            mmCfg.MotionMagicCruiseVelocity = 2; // 2 rotations per second cruise
+            mmCfg.MotionMagicAcceleration = 1; // 1 rotation per second
+
+            // 100 rotation per second per second per second, slightly smooth out acceleration
+            mmCfg.MotionMagicJerk = 100;
+
+            cfg.MotionMagic = mmCfg;
+
+            Slot0Configs slot0 = new Slot0Configs();
+            slot0.kP = 24;
+            slot0.kD = 0.1;
+            slot0.kV = 0.12;
+
+            cfg.Slot0 = slot0;
+
+            StatusCode status = StatusCode.StatusCodeNotInitialized;
+
+            // attempt to apply configs to device, up to 5 times
+            for (int i = 0; i < 5; ++i) {
+               status = m_motor.getConfigurator().apply(cfg);
+               if (status.isOK()) break;
+            }
+            
+            // config failed to apply, report error to driverstation
+            if (!status.isOK()) {
+               DriverStation.reportError("Could not configure device. Error: " + status.toString());
+            }
+
+            @Override
+            public void teleopPeriodic() {
+               m_motor.setControl(m_motionMagicReq.withPosition(m_joystick.getLeftY() * 10).withSlot(0));
+            }
+         }
+
+   .. tab-item:: C++
+
+      .. code-block:: cpp
+
+         todo
