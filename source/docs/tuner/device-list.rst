@@ -76,7 +76,11 @@ Once the upgrade dialog is opened, information detailing the device name, model,
 
 .. note:: The :guilabel:`Pro` column has no effect if you're using the update offline button.
 
-The user can begin the upgrade progress by selecting :guilabel:`Upgrade Online (latest)` or :guilabel:`Upgrade Offline (file)`. The first option will upgrade all listed devices to their latest available firmware (Pro or Phoenix v5 depending on the toggle state), downloading firmware if they do not already exist in cache. The latter option will prompt for each firmware file.
+The user can begin the upgrade progress by selecting :guilabel:`Upgrade to latest` or :guilabel:`Select firmware...`. The first option will upgrade all listed devices to their latest available firmware (Pro or Phoenix v5 depending on the toggle state). The latter option will open a popup allowing you to select a specific version or firmware per model.
+
+.. image:: images/batch-upgrade-firmware-selection.png
+   :width: 70%
+   :alt: Batch upgrade firmware selection screen
 
 .. tip:: Generally, users should use the update online method to update their devices. If offline updates are important, the firmware files are available for download on our `GitHub Repo <https://github.com/CrossTheRoadElec/Phoenix-Releases>`__.
 
