@@ -1,9 +1,9 @@
 Closed-Loop Control
 ===================
 
-Closed-loop control typically refers to control of a motor that relies on sensor data to adjust based on error. Systems/mechanisms that rely on maintaining a certain position or velocity achieve this state using closed-loop control. This is achieved by `feedback <https://docs.wpilib.org/en/stable/docs/software/advanced-controls/introduction/control-system-basics.html>`__ (PID controllers) and `feedforward <https://docs.wpilib.org/en/stable/docs/software/advanced-controls/controllers/feedforward.html>`__ control. Closed-loop control can be performed on the robot controller or on the individual motor controllers. The benefit of onboard closed-loop control is that there is no sensor latency and 1 kHz update frequency. This can result in a more responsive output compared to running the closed-loop on the robot controller.
+Closed-loop control typically refers to control of a motor that relies on sensor data to adjust based on error. Systems/mechanisms that rely on maintaining a certain position or velocity achieve this state using closed-loop control. This is achieved by `feedback <https://docs.wpilib.org/en/stable/docs/software/advanced-controls/introduction/introduction-to-pid.html>`__ (PID) and `feedforward <https://docs.wpilib.org/en/stable/docs/software/advanced-controls/introduction/introduction-to-feedforward.html>`__ control. Closed-loop control can be performed on the robot controller or on the individual motor controllers. The benefit of onboard closed-loop control is that there is no sensor latency and 1 kHz update frequency. This can result in a more responsive output compared to running the closed-loop on the robot controller.
 
-Since closed-loop control changes based on the dynamics of the system (velocity, mass, CoG, etc.), closed-loop relies on PID and feedforward parameters. These parameters are configured either via :doc:`/docs/tuner/configs` or in :doc:`code </docs/api-reference/api-usage/configuration>`. The parameters can be determined using System Identification (such as with `WPILib SysID <https://docs.wpilib.org/en/stable/docs/software/pathplanning/system-identification/introduction.html>`__) or through `manual tuning <https://docs.wpilib.org/en/stable/docs/software/advanced-controls/introduction/tuning-pid-controller.html>`__.
+Since closed-loop control changes based on the dynamics of the system (velocity, mass, CoG, etc.), closed-loop relies on PID and feedforward parameters. These parameters are configured either via :doc:`/docs/tuner/configs` or in :doc:`code </docs/api-reference/api-usage/configuration>`. The parameters can be determined using System Identification (such as with `WPILib SysID <https://docs.wpilib.org/en/stable/docs/software/pathplanning/system-identification/introduction.html>`__) or through `manual tuning <https://docs.wpilib.org/en/stable/docs/software/advanced-controls/introduction/tutorial-intro.html>`__.
 
 Manual tuning typically follows this process:
 
@@ -27,6 +27,7 @@ Velocity closed loop is currently supported for all base :ref:`control output ty
 
 In a Velocity closed loop, the gains should be configured as follows:
 
+- :math:`K_s` - output to overcome static friction (output)
 - :math:`K_v` - output per unit of requested velocity (output/rps)
 - :math:`K_p` - output per unit of error in velocity (output/rps)
 - :math:`K_i` - output per unit of integrated error in velocity (output/rotation)
@@ -41,6 +42,7 @@ In a Velocity closed loop, the gains should be configured as follows:
 
          // in init function, set slot 0 gains
          var slot0Configs = new Slot0Configs();
+         slot0Configs.kS = 0.05; // Add 0.05 V output to overcome static friction
          slot0Configs.kV = 0.12; // A velocity target of 1 rps results in 0.12 V output
          slot0Configs.kP = 0.11; // An error of 1 rps results in 0.11 V output
          slot0Configs.kI = 0.5; // An error of 1 rps increases output by 0.5 V each second
@@ -55,6 +57,7 @@ In a Velocity closed loop, the gains should be configured as follows:
 
          // in init function, set slot 0 gains
          configs::Slot0Configs slot0Configs{};
+         slot0Configs.kS = 0.05; // Add 0.05 V output to overcome static friction
          slot0Configs.kV = 0.12; // A velocity target of 1 rps results in 0.12 V output
          slot0Configs.kP = 0.11; // An error of 1 rps results in 0.11 V output
          slot0Configs.kI = 0.5; // An error of 1 rps increases output by 0.5 V each second
@@ -62,7 +65,7 @@ In a Velocity closed loop, the gains should be configured as follows:
 
          m_talonFX.GetConfigurator().Apply(slot0Configs);
 
-Once the gains are configured, the Velocity closed loop control request can be sent to the TalonFX. The control request object has an optional feedforward term that can be used to add an arbitrary value to the output, which can be useful to account for the effects of gravity or friction.
+Once the gains are configured, the Velocity closed loop control request can be sent to the TalonFX. The control request object has an optional feedforward term that can be used to add an arbitrary value to the output, which can be useful to account for the effects of gravity.
 
 .. tab-set::
 
@@ -74,8 +77,8 @@ Once the gains are configured, the Velocity closed loop control request can be s
          // create a velocity closed-loop request, voltage output, slot 0 configs
          var request = new VelocityVoltage(0).withSlot(0);
 
-         // set velocity to 8 rps, add 0.05 V to overcome static friction
-         m_talonFX.setControl(request.withVelocity(8).withFeedForward(0.05));
+         // set velocity to 8 rps, add 0.5 V to overcome gravity
+         m_talonFX.setControl(request.withVelocity(8).withFeedForward(0.5));
 
    .. tab-item:: C++
       :sync: C++
@@ -85,8 +88,8 @@ Once the gains are configured, the Velocity closed loop control request can be s
          // create a velocity closed-loop request, voltage output, slot 0 configs
          auto request = controls::VelocityVoltage{0_tps}.WithSlot(0);
 
-         // set velocity to 8 rps, add 0.05 V to overcome static friction
-         m_talonFX.SetControl(request.WithVelocity(8_tps).WithFeedForward(0.05_V));
+         // set velocity to 8 rps, add 0.5 V to overcome gravity
+         m_talonFX.SetControl(request.WithVelocity(8_tps).WithFeedForward(0.5_V));
 
 Converting from Meters
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -110,6 +113,7 @@ Position closed loop is currently supported for all base :ref:`control output ty
 
 In a Position closed loop, the gains should be configured as follows:
 
+- :math:`K_s` - unused, as there is no target velocity
 - :math:`K_v` - unused, as there is no target velocity
 - :math:`K_p` - output per unit of error in position (output/rotation)
 - :math:`K_i` - output per unit of integrated error in position (output/(rotation*s))
