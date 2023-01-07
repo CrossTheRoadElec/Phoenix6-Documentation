@@ -39,6 +39,11 @@ A list of purchased (but unattached) license seats are shown here. Click on the 
 
 Once the activation is complete, the license will be downloaded to the device. In the event that Tuner X disconnects from the internet or from the robot before this completes, the license is still activated and available for download the next time Tuner X is connected to the internet/robot.
 
+Activating a License without a Robot
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Assuming that the user has connected Tuner X to the robot, the device will be visible in the :guilabel:`Device History` page for licensing while disconnected. For information on this process, visit the relevant :ref:`licensing from device history <docs/tuner/device-history:licensing from device history>` section.
+
 Verifying Activation State
 --------------------------
 

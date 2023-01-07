@@ -19,6 +19,7 @@ Phoenix Tuner X supports Android 8.0+ and Windows 10 (1903+) and Windows 11.
 
    connecting
    device-list
+   device-history
    device-details-page
    configs
    self-test
