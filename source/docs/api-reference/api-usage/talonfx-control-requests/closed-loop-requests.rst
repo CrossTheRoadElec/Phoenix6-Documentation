@@ -173,44 +173,132 @@ Once the gains are configured, the Position closed loop control request can be s
          // set position to 10 rotations
          m_talonFX.SetControl(request.WithPosition(10_tr));
 
-.. Motion Magic
-.. ------------
+Motion Magic
+------------
 
-.. Motion Magic is a control mode that provides the benefit of Motion Profiling without needing to generate motion profile trajectory points. When using Motion Magic, the motor will move to a target position using a motion profile, while honoring the user specified acceleration, maximum velocity (cruise velocity), and optional S-Curve smoothing.
+Motion Magic is a control mode that provides the benefit of Motion Profiling without needing to generate motion profile trajectory points. When using Motion Magic, the motor will move to a target position using a motion profile, while honoring the user specified acceleration, maximum velocity (cruise velocity), and optional jerk.
 
-.. The benefits of this control mode over "simple" PID position closed-looping are:
+The benefits of this control mode over "simple" PID position closed-looping are:
 
-.. - Control of the mechanism throughout the entire motion (as opposed to racing to the end target position)
-.. - Control of the mechanism's inertia to ensure smooth transitions between set points
-.. - Improved repeatability despite changes in battery load
-.. - Improved repeatability despite changes in motor load
+- Control of the mechanism throughout the entire motion (as opposed to racing to the end target position)
+- Control of the mechanism's inertia to ensure smooth transitions between set points
+- Improved repeatability despite changes in battery load
+- Improved repeatability despite changes in motor load
 
-.. After gain/settings are determined, the robot controller only needs to periodically set the target position.
+After gain/settings are determined, the robot controller only needs to periodically set the target position.
 
-.. There is no general requirement to "wait for the profile to finish". However, the robot application can poll the sensor position and determine when the motion is finished if need be.
+There is no general requirement to "wait for the profile to finish". However, the robot application can poll the sensor position and determine when the motion is finished if need be.
 
-.. Motion Magic functions be generating a trapezoidal/S-Curve velocity profile that does not exceed the specified acceleration or cruise velocity. This is done automatically by the motor controller.
+Motion Magic functions be generating a trapezoidal/S-Curve velocity profile that does not exceed the specified cruise velocity, acceleration, or jerk. This is done automatically by the motor controller.
 
-.. .. note:: If the remaining sensor distance to travel is small, the velocity may not reach cruise velocity as this would overshoot the target position. This is often referred to as a "triangle profile".
+.. note:: If the remaining sensor distance to travel is small, the velocity may not reach cruise velocity as this would overshoot the target position. This is often referred to as a "triangle profile".
 
-.. .. image:: images/trapezoidal-profile.png
-..    :alt: Trapezoidal graph that showcases target cruise velocity and current velocity
+.. image:: images/trapezoidal-profile.png
+   :alt: Trapezoidal graph that showcases target cruise velocity and current velocity
 
-.. If the S-Curve strength [0, 8] is set to a nonzero value, the generated velocity profile is no longer trapezoidal, but instead is continuous (corner points are smoothed).
+If the Motion Magic jerk is set to a nonzero value, the generated velocity profile is no longer trapezoidal, but instead is a continuous S-Curve (corner points are smoothed).
 
-.. An S-Curve profile has the following advantaged over a trapezoidal profile:
+An S-Curve profile has the following advantaged over a trapezoidal profile:
 
-.. - Control over the Jerk of the mechanism.
-.. - Reducing oscillation of the mechanism.
-.. - Maneuver is more deliberate and reproducible.
+- Reducing oscillation of the mechanism.
+- Maneuver is more deliberate and reproducible.
 
-.. .. note:: The S-Curve feature, by its nature, will increase the amount of time a movement requires. This can be compensated for by decreasing the configured acceleration value.
+.. note:: The jerk control feature, by its nature, will increase the amount of time a movement requires. This can be compensated for by increasing the configured acceleration value.
 
-.. .. image:: images/s-curve-graph.png
-..    :alt: Graph showing velocity and position using s-curve profile
+.. image:: images/s-curve-graph.png
+   :alt: Graph showing velocity and position using s-curve profile
 
-.. The following parameters must be set when controlling using Motion Magic
+The following parameters must be set when controlling using Motion Magic
 
-.. - Acceleration (controls acceleration and decelleration rates during the beginning and end of trapezoidal motion)
-.. - Cruise Velocity (peak/cruising velocity of the motion)
-.. - Acceleration Smoothing (manipulates the curve of the velocity, a larger smoothing value will result in greater dampening of the acceleration)
+- Cruise Velocity - peak/cruising velocity of the motion
+- Acceleration - controls acceleration and deceleration rates during the beginning and end of motion
+- Jerk - controls jerk, which is the derivative of acceleration
+
+Using Motion Magic in API
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Motion Magic is currently supported for all base :ref:`control output types <docs/api-reference/api-usage/talonfx-control-requests/talonfx-control-intro:control output types>`. The units of the output is determined by the control output type.
+
+In Motion Magic, the gains should be configured as follows:
+
+- :math:`K_s` - output to overcome static friction (output)
+- :math:`K_v` - output per unit of target velocity (output/rps)
+- :math:`K_p` - output per unit of error in position (output/rotation)
+- :math:`K_i` - output per unit of integrated error in position (output/(rotation*s))
+- :math:`K_d` - output per unit of error in velocity (output/rps)
+
+.. tab-set::
+
+   .. tab-item:: Java
+      :sync: Java
+
+      .. code-block:: java
+
+         // in init function
+         var talonFXConfigs = new TalonFXConfiguration();
+
+         // set slot 0 gains
+         var slot0Configs = talonFXConfigs.Slot0Configs;
+         slot0Configs.kS = 0.05; // Add 0.05 V output to overcome static friction
+         slot0Configs.kV = 0.12; // A velocity target of 1 rps results in 0.12 V output
+         slot0Configs.kP = 24; // An error of 0.5 rotations results in 12 V output
+         slot0Configs.kI = 0; // no output for integrated error
+         slot0Configs.kD = 0.1; // A velocity of 1 rps results in 0.1 V output
+
+         // set Motion Magic settings
+         var motionMagicConfigs = talonFXConfigs.MotionMagicConfigs;
+         motionMagicConfigs.MotionMagicCruiseVelocity = 8; // Target cruise velocity of 8 rps
+         motionMagicConfigs.MotionMagicAcceleration = 40; // Target acceleration of 40 rps/s
+         motionMagicConfigs.MotionMagicJerk = 800; // Target jerk of 800 rps/s/s
+
+         m_talonFX.getConfigurator().apply(talonFXConfigs);
+
+   .. tab-item:: C++
+      :sync: C++
+
+      .. code-block:: cpp
+
+         // in init function
+         configs::TalonFXConfiguration talonFXConfigs{};
+
+         // set slot 0 gains
+         auto& slot0Configs = talonFXConfigs.Slot0Configs;
+         slot0Configs.kS = 0.05; // Add 0.05 V output to overcome static friction
+         slot0Configs.kV = 0.12; // A velocity target of 1 rps results in 0.12 V output
+         slot0Configs.kP = 24; // An error of 0.5 rotations results in 12 V output
+         slot0Configs.kI = 0; // no output for integrated error
+         slot0Configs.kD = 0.1; // A velocity of 1 rps results in 0.1 V output
+
+         // set Motion Magic settings
+         auto& motionMagicConfigs = talonFXConfigs.MotionMagicConfigs;
+         motionMagicConfigs.MotionMagicCruiseVelocity = 8; // Target cruise velocity of 8 rps
+         motionMagicConfigs.MotionMagicAcceleration = 40; // Target acceleration of 40 rps/s
+         motionMagicConfigs.MotionMagicJerk = 800; // Target jerk of 800 rps/s/s
+
+         m_talonFX.GetConfigurator().Apply(talonFXConfigs);
+
+Once the gains are configured, the Motion Magic request can be sent to the TalonFX. The control request object has an optional feedforward term that can be used to add an arbitrary value to the output, which can be useful to account for the effects of gravity or friction.
+
+.. tab-set::
+
+   .. tab-item:: Java
+      :sync: Java
+
+      .. code-block:: java
+
+         // create a Motion Magic request, voltage output, slot 0 configs
+         var request = new MotionMagicVoltage(0).withSlot(0);
+
+         // set position to 10 rotations
+         m_talonFX.setControl(request.withPosition(10));
+
+   .. tab-item:: C++
+      :sync: C++
+
+      .. code-block:: cpp
+
+         // create a Motion Magic request, voltage output, slot 0 configs
+         auto request = controls::MotionMagicVoltage{0_tr}.WithSlot(0);
+
+         // set position to 10 rotations
+         m_talonFX.SetControl(request.WithPosition(10_tr));
