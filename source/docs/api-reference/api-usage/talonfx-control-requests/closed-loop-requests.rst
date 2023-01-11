@@ -243,9 +243,9 @@ In Motion Magic, the gains should be configured as follows:
          var slot0Configs = talonFXConfigs.Slot0Configs;
          slot0Configs.kS = 0.05; // Add 0.05 V output to overcome static friction
          slot0Configs.kV = 0.12; // A velocity target of 1 rps results in 0.12 V output
-         slot0Configs.kP = 24; // An error of 0.5 rotations results in 12 V output
+         slot0Configs.kP = 24; // A position error of 0.5 rotations results in 12 V output
          slot0Configs.kI = 0; // no output for integrated error
-         slot0Configs.kD = 0.1; // A velocity of 1 rps results in 0.1 V output
+         slot0Configs.kD = 0.1; // A velocity error of 1 rps results in 0.1 V output
 
          // set Motion Magic settings
          var motionMagicConfigs = talonFXConfigs.MotionMagicConfigs;
@@ -267,9 +267,9 @@ In Motion Magic, the gains should be configured as follows:
          auto& slot0Configs = talonFXConfigs.Slot0Configs;
          slot0Configs.kS = 0.05; // Add 0.05 V output to overcome static friction
          slot0Configs.kV = 0.12; // A velocity target of 1 rps results in 0.12 V output
-         slot0Configs.kP = 24; // An error of 0.5 rotations results in 12 V output
+         slot0Configs.kP = 24; // A position error of 0.5 rotations results in 12 V output
          slot0Configs.kI = 0; // no output for integrated error
-         slot0Configs.kD = 0.1; // A velocity of 1 rps results in 0.1 V output
+         slot0Configs.kD = 0.1; // A velocity error of 1 rps results in 0.1 V output
 
          // set Motion Magic settings
          auto& motionMagicConfigs = talonFXConfigs.MotionMagicConfigs;
