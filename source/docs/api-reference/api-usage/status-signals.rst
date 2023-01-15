@@ -134,13 +134,14 @@ Timestamps
 ^^^^^^^^^^
 
 The timestamps of a ``StatusSignalValue`` can be retrieved by calling ``getAllTimestamps()``, which returns a collection of ``Timestamp`` (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/Timestamp.html>`__, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/classctre_1_1phoenixpro_1_1_timestamp.html>`__) objects.
+
 The ``Timestamp`` objects can be used to perform latency compensation math.
 
 CANivore Timesync
 -----------------
 
-When using `CANivore <https://store.ctr-electronics.com/canivore/>`__, the attached CAN devices will automatically synchronize their time bases.
-This allows devices to publish their signals in a synchronized manner.
+When using `CANivore <https://store.ctr-electronics.com/canivore/>`__, the attached CAN devices will automatically synchronize their time bases. This allows devices to publish their signals in a synchronized manner.
+
 Users can synchronously wait for these signals to update using ``BaseStatusSignalValue.waitForAll()`` (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/BaseStatusSignalValue.html#waitForAll(double,com.ctre.phoenixpro.BaseStatusSignalValue...)>`__, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/classctre_1_1phoenixpro_1_1_base_status_signal_value.html#a4a550332ec838b82947a7374ecd4234f>`__).
 
 Because the devices are synchronized, time-critical signals are published on the same schedule. This combined with the ``waitForAll()`` routine means applications can considerably reduce the latency of the timesync signals. This is particularly useful for multi-device mechanisms, such as swerve odometry.
@@ -181,6 +182,30 @@ The following signals are time-synchronized:
 ---------------------
 
 All ``StatusSignalValue`` objects have a ``getDataCopy()`` method that returns a new ``SignalMeasurement`` (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/StatusSignalValue.SignalMeasurement.html>`__, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/structctre_1_1phoenixpro_1_1_signal_measurement.html>`__) object.
+
 ``SignalMeasurement`` is a `Passive Data Structure <https://en.wikipedia.org/wiki/Passive_data_structure>`__ that provides all the information about a signal at the time of the ``getDataCopy()`` call, which can be useful for data logging.
 
 .. warning:: ``getDataCopy()`` returns a **new** ``SignalMeasurement`` object every call. **Java** users should **avoid** using this API in RAM-constrained applications.
+
+Latency Compensation
+--------------------
+
+Phoenix Pro provides built-in support for latency compensation via a static function ``getLatencyCompensation()`` (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/BaseStatusSignalValue.html#getLatencyCompensatedValue(com.ctre.phoenixpro.StatusSignalValue,com.ctre.phoenixpro.StatusSignalValue)>`__, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/classctre_1_1phoenixpro_1_1_base_status_signal_value.html#a22f020db5abbf556ac7605024309bb26>`__). This function takes two arguments: **signal** and **signalSlope**. **signal** represents the signal to be compensated and **signalSlope** is the rate of change of the signal.
+
+.. important:: The user must ensure that they call ``refresh()`` or ``waitForUpdate()`` on the ``signal`` and ``signalSlope`` parameters before retrieving a compensated value.
+
+.. tab-set::
+
+   .. tab-item:: Java
+      :sync: Java
+
+      .. code-block:: java
+
+         double compensatedTurns = BaseStatusSignalValue.getLatencyCompensatedValue(m_motor.getPosition(), m_motor.getVelocity());
+
+   .. tab-item:: C++
+      :sync: C++
+
+      .. code-block:: cpp
+
+         auto compensatedTurns = BaseStatusSignalValue::GetLatencyCompensatedValue(m_motor.GetPosition(), m_motor.GetVelocity());
