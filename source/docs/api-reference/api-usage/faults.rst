@@ -14,7 +14,7 @@ Sticky Faults can be cleared by clicking the :guilabel:`Blink/Clear Faults` butt
 Using API to Retrieve Faults
 ----------------------------
 
-Faults can also be retrieved in API using the ``*getFault_*()`` (regular) or ``getStickyFault_*()`` (sticky) methods on the device object. This can be useful for diagnostics or error handling.
+Faults can also be retrieved in API using the ``getFault_*()`` (regular) or ``getStickyFault_*()`` (sticky) methods on the device object. This can be useful for diagnostics or error handling.
 
 .. tab-set::
 
