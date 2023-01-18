@@ -179,7 +179,7 @@ The following signals are time-synchronized:
 Latency Compensation
 --------------------
 
-Users can perform latency compensation using ``BaseStatusSignalValue.getLatencyCompensation()`` (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/BaseStatusSignalValue.html#getLatencyCompensatedValue(com.ctre.phoenixpro.StatusSignalValue,com.ctre.phoenixpro.StatusSignalValue)>`__, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/classctre_1_1phoenixpro_1_1_base_status_signal_value.html#a22f020db5abbf556ac7605024309bb26>`__).
+Users can perform latency compensation using ``BaseStatusSignalValue.getLatencyCompensatedValue()`` (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/BaseStatusSignalValue.html#getLatencyCompensatedValue(com.ctre.phoenixpro.StatusSignalValue,com.ctre.phoenixpro.StatusSignalValue)>`__, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/classctre_1_1phoenixpro_1_1_base_status_signal_value.html#a22f020db5abbf556ac7605024309bb26>`__).
 
 .. important:: ``getLatencyCompensatedValue()`` does not automatically refresh the signals. As a result, the user must ensure the ``signal`` and ``signalSlope`` parameters are refreshed before retrieving a compensated value.
 
