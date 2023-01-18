@@ -176,13 +176,6 @@ The following signals are time-synchronized:
 
 .. note:: The signals passed into ``waitForAll()`` must have the same update frequency. This can be done by calling ``setUpdateFrequency()`` or by referring to the API documentation.
 
-``SignalMeasurement``
----------------------
-
-All ``StatusSignalValue`` objects have a ``getDataCopy()`` method that returns a new ``SignalMeasurement`` (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/StatusSignalValue.SignalMeasurement.html>`__, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/structctre_1_1phoenixpro_1_1_signal_measurement.html>`__) object. ``SignalMeasurement`` is a `Passive Data Structure <https://en.wikipedia.org/wiki/Passive_data_structure>`__ that provides all the information about a signal at the time of the ``getDataCopy()`` call, which can be useful for data logging.
-
-.. warning:: ``getDataCopy()`` returns a **new** ``SignalMeasurement`` object every call. **Java** users should **avoid** using this API in RAM-constrained applications.
-
 Latency Compensation
 --------------------
 
@@ -205,3 +198,10 @@ Users can perform latency compensation using ``BaseStatusSignalValue.getLatencyC
       .. code-block:: cpp
 
          auto compensatedTurns = BaseStatusSignalValue::GetLatencyCompensatedValue(m_motor.GetPosition(), m_motor.GetVelocity());
+
+``SignalMeasurement``
+---------------------
+
+All ``StatusSignalValue`` objects have a ``getDataCopy()`` method that returns a new ``SignalMeasurement`` (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/StatusSignalValue.SignalMeasurement.html>`__, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/structctre_1_1phoenixpro_1_1_signal_measurement.html>`__) object. ``SignalMeasurement`` is a `Passive Data Structure <https://en.wikipedia.org/wiki/Passive_data_structure>`__ that provides all the information about a signal at the time of the ``getDataCopy()`` call, which can be useful for data logging.
+
+.. warning:: ``getDataCopy()`` returns a **new** ``SignalMeasurement`` object every call. **Java** users should **avoid** using this API in RAM-constrained applications.
