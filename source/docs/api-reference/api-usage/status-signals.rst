@@ -133,9 +133,7 @@ All signals can have their update frequency configured via the ``setUpdateFreque
 Timestamps
 ^^^^^^^^^^
 
-The timestamps of a ``StatusSignalValue`` can be retrieved by calling ``getAllTimestamps()``, which returns a collection of ``Timestamp`` (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/Timestamp.html>`__, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/classctre_1_1phoenixpro_1_1_timestamp.html>`__) objects.
-
-The ``Timestamp`` objects can be used to perform latency compensation math.
+The timestamps of a ``StatusSignalValue`` can be retrieved by calling ``getAllTimestamps()``, which returns a collection of ``Timestamp`` (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/Timestamp.html>`__, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/classctre_1_1phoenixpro_1_1_timestamp.html>`__) objects. The ``Timestamp`` objects can be used to perform latency compensation math.
 
 CANivore Timesync
 -----------------
@@ -181,18 +179,16 @@ The following signals are time-synchronized:
 ``SignalMeasurement``
 ---------------------
 
-All ``StatusSignalValue`` objects have a ``getDataCopy()`` method that returns a new ``SignalMeasurement`` (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/StatusSignalValue.SignalMeasurement.html>`__, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/structctre_1_1phoenixpro_1_1_signal_measurement.html>`__) object.
-
-``SignalMeasurement`` is a `Passive Data Structure <https://en.wikipedia.org/wiki/Passive_data_structure>`__ that provides all the information about a signal at the time of the ``getDataCopy()`` call, which can be useful for data logging.
+All ``StatusSignalValue`` objects have a ``getDataCopy()`` method that returns a new ``SignalMeasurement`` (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/StatusSignalValue.SignalMeasurement.html>`__, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/structctre_1_1phoenixpro_1_1_signal_measurement.html>`__) object. ``SignalMeasurement`` is a `Passive Data Structure <https://en.wikipedia.org/wiki/Passive_data_structure>`__ that provides all the information about a signal at the time of the ``getDataCopy()`` call, which can be useful for data logging.
 
 .. warning:: ``getDataCopy()`` returns a **new** ``SignalMeasurement`` object every call. **Java** users should **avoid** using this API in RAM-constrained applications.
 
 Latency Compensation
 --------------------
 
-Phoenix Pro provides built-in support for latency compensation via a static function ``getLatencyCompensation()`` (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/BaseStatusSignalValue.html#getLatencyCompensatedValue(com.ctre.phoenixpro.StatusSignalValue,com.ctre.phoenixpro.StatusSignalValue)>`__, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/classctre_1_1phoenixpro_1_1_base_status_signal_value.html#a22f020db5abbf556ac7605024309bb26>`__). This function takes two arguments: **signal** and **signalSlope**. **signal** represents the signal to be compensated and **signalSlope** is the rate of change of the signal.
+Phoenix Pro provides built-in support for latency compensation via a static function ``getLatencyCompensation()`` (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/BaseStatusSignalValue.html#getLatencyCompensatedValue(com.ctre.phoenixpro.StatusSignalValue,com.ctre.phoenixpro.StatusSignalValue)>`__, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/classctre_1_1phoenixpro_1_1_base_status_signal_value.html#a22f020db5abbf556ac7605024309bb26>`__).
 
-.. important:: The user must ensure that they call ``refresh()`` or ``waitForUpdate()`` on the ``signal`` and ``signalSlope`` parameters before retrieving a compensated value.
+.. important:: ``getLatencyCompensatedValue()`` does not automatically refresh the signals. As a result, the user must ensure the ``signal`` and ``signalSlope`` parameters are refreshed before retrieving a compensated value.
 
 .. tab-set::
 
