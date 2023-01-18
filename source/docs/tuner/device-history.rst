@@ -1,7 +1,7 @@
 Device History
 ==============
 
-Users can access a list of past devices connected to Tuner X and license them via the :guilabel:`Device History` page. This is accessible from the left-hand sidebar. This list is not automatically refreshed, but users can refresh it by refreshing the page with the refresh icon in the top-right of the page.
+Users can access a list of past devices connected to Tuner X and license them via the :guilabel:`Device History` page. This is accessible from the left-hand sidebar. This list is not automatically refreshed, but users can refresh it by pressing the refersh icon in the top-right of the page.
 
 .. image:: images/device-history-root.png
    :width: 600
@@ -16,7 +16,7 @@ Users can activate a license for a disconnected device by clicking on the device
    :width: 600
    :alt:
 
-Then, the user can activate a license for the device like normal. Once the device license has been activated, the user still needs to connect Tuner X to the robot to transfer the activated license to the device.
+From there, the user can activate a license for the device like normal. Once the device license has been activated, the user still needs to connect Tuner X to the robot to transfer the activated license to the device.
 
 The "PRO" icon may be replaced with a greyed "LIC" icon in the following situations:
 
