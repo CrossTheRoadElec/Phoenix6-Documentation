@@ -42,7 +42,7 @@ Once the activation is complete, the license will be downloaded to the device. I
 Activating a License without a Robot
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Assuming that the user has connected Tuner X to the robot, the device will be available in the :guilabel:`Device History` page for :ref:`licensing while disconnected <docs/tuner/device-history:licensing from device history>`.
+Devices that have been seen by Tuner X at least once will be available in :ref:`Device History <docs/tuner/device-history:licensing from device history>`. This can be useful for licensing a device when disconnected from the robot.
 
 Verifying Activation State
 --------------------------
