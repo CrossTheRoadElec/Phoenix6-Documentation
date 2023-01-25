@@ -9,6 +9,9 @@ The Phoenix Pro API resides in the ``com.ctre.phoenixpro`` package in Java and t
 - ``signals`` - enumeration types for device :doc:`signals </docs/api-reference/api-usage/status-signals>`
 - ``sim`` - classes related to device :doc:`simulation </docs/api-reference/simulation/simulation-intro>`
 
+C++ IntelliSense
+^^^^^^^^^^^^^^^^
+
 In C++, this namespace structure has the advantage of cleaning up IntelliSense when searching for classes:
 
 .. code-block:: cpp
