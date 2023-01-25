@@ -68,13 +68,11 @@ Step 1 in the above image selects all devices of the same model (or all devices 
 
 Step 2 in the above image opens the field-upgrade dialog.
 
-Once the upgrade dialog is opened, information detailing the device name, model, ID, and firmware version is presented. There is a :guilabel:`Pro` column that has a toggle. This toggle represents whether or not to upgrade to the latest available `Pro` firmware or not. If this toggle is disabled (as evident from being greyed out), then there is no available **Pro** firmware for that device (TalonSRX, legacy devices).
+Once the upgrade dialog is opened, information detailing the device name, model, ID, and firmware version is presented. There is a :guilabel:`Pro` column that has a toggle. This toggle represents whether to upgrade to **Pro** or **v5** firmware. If this toggle is disabled (as evident from being greyed out), then there is no available **Pro** firmware for that device (TalonSRX, legacy devices).
 
 .. image:: images/tunerx-batch-upgrade-screen.png
    :width: 70%
    :alt: Batch selection screen
-
-.. note:: The :guilabel:`Pro` column has no effect if you're using the "Select firmware..." button.
 
 The user can begin the upgrade progress by selecting :guilabel:`Update to latest` or :guilabel:`Select firmware...`. The first option will upgrade all listed devices to their latest available firmware (Pro or Phoenix v5 depending on the toggle state). The second option will open a popup allowing you to select a specific version or firmware file per model.
 
