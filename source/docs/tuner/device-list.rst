@@ -82,6 +82,6 @@ The user can begin the upgrade progress by selecting :guilabel:`Update to latest
    :width: 70%
    :alt: Batch upgrade firmware selection screen
 
-.. tip:: Generally, users should use the update latest method to update their devices. If manually selecting a CRF is important, the firmware files are available for download on our `GitHub Repo <https://github.com/CrossTheRoadElec/Phoenix-Releases>`__.
+.. tip:: Generally, users should update their devices to the latest available firmware version. If manually selecting a CRF is important, the firmware files are available for download on our `GitHub Repo <https://github.com/CrossTheRoadElec/Phoenix-Releases>`__.
 
 .. important:: While the user can cancel firmware upgrading using the "X" button in the top-right, this will **not** cancel the current device in progress. It will finish upgrading the current device and will not upgrade subsequent devices. Typical Tuner X behavior will resume once the current device finishes flashing.
