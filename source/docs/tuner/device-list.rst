@@ -74,7 +74,7 @@ Once the upgrade dialog is opened, information detailing the device name, model,
    :width: 70%
    :alt: Batch selection screen
 
-.. note:: The :guilabel:`Pro` column has no effect if you're using the update offline button.
+.. note:: The :guilabel:`Pro` column has no effect if you're using the "Select firmware..." button.
 
 The user can begin the upgrade progress by selecting :guilabel:`Update to latest` or :guilabel:`Select firmware...`. The first option will upgrade all listed devices to their latest available firmware (Pro or Phoenix v5 depending on the toggle state). The second option will open a popup allowing you to select a specific version or firmware file per model.
 
