@@ -14,6 +14,7 @@
 #
 import os
 import sys
+from sphinx.builders import html
 
 sys.path.insert(0, os.path.abspath("."))
 
@@ -159,6 +160,14 @@ latex_elements = {
     "fncychap": r"\usepackage[Bjornstrup]{fncychap}",
     "printindex": r"\footnotesize\raggedright\printindex",
 }
+
+# Reorder html supported image types to prioritize GIF when available
+html.StandaloneHTMLBuilder.supported_image_types = [
+    'image/svg+xml',
+    'image/gif',
+    'image/png',
+    'image/jpeg'
+]
 
 # -- Options for manual page output ------------------------------------------
 

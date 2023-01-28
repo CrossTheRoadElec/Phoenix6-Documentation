@@ -3,7 +3,9 @@ Hardware-attached Simulation
 
 CANivore supports hardware attached simulation when used in an `FRC robot program <https://docs.wpilib.org/en/stable/>`__; this allows a CANivore to be used with real devices on supported host operating systems. The below video showcases controlling a **real** `Falcon 500 <https://store.ctr-electronics.com/falcon-500-powered-by-talon-fx/>`__ in a robot program using hardware-attached simulation.
 
-.. image:: images/robot-control-sim.gif
+..
+   Use full path since Sphinx does not resolve relative path when using wildcard inclusion
+.. image:: /docs/canivore/images/robot-control-sim.*
    :alt: Showcasing robot control in simulation
 
 To utilize hardware-attached simulation, ensure the CANivore is connected directly via USB to the machine running the simulation. All devices on the CANivore CAN Bus should be independently powered, as the CANivore does not provide power. In the robot program, the CANivore name or ``*`` must be specified in the device constructor.
