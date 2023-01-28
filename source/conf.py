@@ -163,10 +163,10 @@ latex_elements = {
 
 # Reorder html supported image types to prioritize GIF when available
 html.StandaloneHTMLBuilder.supported_image_types = [
-    'image/svg+xml',
-    'image/gif',
-    'image/png',
-    'image/jpeg'
+    "image/svg+xml",
+    "image/gif",
+    "image/png",
+    "image/jpeg",
 ]
 
 # -- Options for manual page output ------------------------------------------
