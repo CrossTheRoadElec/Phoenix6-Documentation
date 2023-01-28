@@ -122,6 +122,7 @@ Phoenix Pro currently offers the following features and will further expand:
 
    docs/canivore/canivore-intro
    docs/canivore/canivore-setup
+   docs/canivore/canivore-hardware-attached
    docs/canivore/canivore-config
 
 .. toctree::
