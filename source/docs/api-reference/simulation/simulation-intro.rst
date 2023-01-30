@@ -128,3 +128,30 @@ Some device ``SimState`` objects also contain outputs that can be used in simula
          // apply the new rotor position and velocity to the TalonFX
          m_talonFXSim.SetRawRotorPosition(m_motorSimModel.GetPosition());
          m_talonFXSim.SetRotorVelocity(m_motorSimModel.GetVelocity());
+
+Simulated CAN Delay
+-------------------
+
+All CAN devices will have their CAN delay simulated at the default frame update rate. While the CAN delay cannot be disabled, the update rate can be modified for simulation by wrapping the signal's ``setUpdateFrequency()`` (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/StatusSignalValue.html#setUpdateFrequency(double)>`__, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/classctre_1_1phoenixpro_1_1_status_signal_value.html#ae2ebaf79ab2cd3b34e9b6486c0424471>`__) with the WPILib ``isSimulation()`` function.
+
+The below example will set the ``m_velocitySignal`` (of type ``StatusSignalValue``) update frequency to 1000Hz in simulation.
+
+.. tab-set::
+
+   .. tab-item:: Java
+      :sync: Java
+
+      .. code-block:: java
+
+         if (RobotBase.isSimulation()) {
+            m_velocitySignal.setUpdateFrequency(1000); // set update rate to 1ms
+         }
+
+   .. tab-item:: C++
+      :sync: C++
+
+      .. code-block:: cpp
+
+         if (RobotBase::IsSimulation()) {
+            m_velocitySignal.SetUpdateFrequency(1000_Hz); // set update rate to 1ms
+         }
