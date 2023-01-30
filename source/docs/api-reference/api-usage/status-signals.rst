@@ -172,7 +172,7 @@ The following signals are time-synchronized:
          auto& cancoderPositionSignal = m_cancoder.GetPosition();
          auto& pigeon2YawSignal = m_pigeon2.GetYaw();
 
-         BaseStatusSignalValue::WaitForAll(20_ms, {talonFXPositionSignal, cancoderPositionSignal, pigeon2YawSignal});
+         BaseStatusSignalValue::WaitForAll(20_ms, {&talonFXPositionSignal, &cancoderPositionSignal, &pigeon2YawSignal});
 
 .. note:: The signals passed into ``waitForAll()`` must have the same update frequency. This can be done by calling ``setUpdateFrequency()`` or by referring to the API documentation.
 
