@@ -129,12 +129,12 @@ Some device ``SimState`` objects also contain outputs that can be used in simula
          m_talonFXSim.SetRawRotorPosition(m_motorSimModel.GetPosition());
          m_talonFXSim.SetRotorVelocity(m_motorSimModel.GetVelocity());
 
-Simulated CAN Delay
--------------------
+High Fidelity CAN Bus Simulation
+--------------------------------
 
-All CAN devices will have their CAN delay simulated at the default frame update rate. While the CAN delay cannot be disabled, the update rate can be modified for simulation by wrapping the signal's ``setUpdateFrequency()`` (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/StatusSignalValue.html#setUpdateFrequency(double)>`__, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/classctre_1_1phoenixpro_1_1_status_signal_value.html#ae2ebaf79ab2cd3b34e9b6486c0424471>`__) with the WPILib ``isSimulation()`` function.
+All CTR-Electronics CAN devices support a high fidelity CAN bus, where the frames are simulated at a level similar to what the user sees on a real robot. This means that frames coming from a control frame will be sent at intervals corresponding to the control frame period, and frames from a device will be sent at the appropriate status frame period. In simulation, this may appear as a delay between setting a signal and getting its real value, or settings its real value and getting it in API.
 
-The below example will set the ``m_velocitySignal`` (of type ``StatusSignalValue``) update frequency to 1000Hz in simulation.
+The update rate can be modified for simulation by wrapping the :ref:`signal's frequency <docs/api-reference/api-usage/status-signals:changing update frequency>` in a ``RobotBase.isSimulation()`` (`Java <https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/RobotBase.html#isSimulation()>`__, `C++ <https://github.wpilib.org/allwpilib/docs/release/cpp/classfrc_1_1_robot_base.html#a307a770aa58d89e1f1cc8e7970cceb84>`__) condition.
 
 .. tab-set::
 
