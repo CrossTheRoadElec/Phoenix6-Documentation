@@ -20,8 +20,8 @@ sys.path.insert(0, os.path.abspath("."))
 # -- Project information -----------------------------------------------------
 
 project = "Phoenix Pro"
-copyright = "2023, CTR-Electronics"
-author = "CTR-Electronics"
+copyright = "2023, CTR Electronics"
+author = "CTR Electronics"
 
 # The short X.Y version
 version = ""

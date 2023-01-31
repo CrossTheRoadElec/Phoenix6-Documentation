@@ -57,7 +57,7 @@ Phoenix Pro motor controller classes such as ``TalonFX`` (`Java <https://api.ctr
 Motor Safety
 ------------
 
-CTR-Electronics supported actuators implement WPILib `Motor Safety <https://docs.wpilib.org/en/stable/docs/software/hardware-apis/motors/wpi-drive-classes.html#motor-safety>`__. In additional to the normal :doc:`enable signal </docs/api-reference/api-usage/enabling-actuators>` of CTR-Electronics actuators, Motor Safety will automatically disable the device according to the WPILib Motor Safety implementation.
+CTR Electronics supported actuators implement WPILib `Motor Safety <https://docs.wpilib.org/en/stable/docs/software/hardware-apis/motors/wpi-drive-classes.html#motor-safety>`__. In additional to the normal :doc:`enable signal </docs/api-reference/api-usage/enabling-actuators>` of CTR Electronics actuators, Motor Safety will automatically disable the device according to the WPILib Motor Safety implementation.
 
 Simulation
 ----------

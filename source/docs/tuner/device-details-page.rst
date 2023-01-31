@@ -18,7 +18,7 @@ The **Device Details** page can be accessed by clicking on the device card (or d
 Blinking
 --------
 
-All CTR-Electronics devices can be blinked (rapidly flash the LEDs). This can be useful for handling whenever you have duplicate devices using the same ID on the CAN bus.
+All CTR Electronics devices can be blinked (rapidly flash the LEDs). This can be useful for handling whenever you have duplicate devices using the same ID on the CAN bus.
 
 .. image:: images/blinking-device-deviceview.png
    :width: 70%

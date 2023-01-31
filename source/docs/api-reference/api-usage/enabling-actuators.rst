@@ -1,7 +1,7 @@
 Enabling Actuators
 ==================
 
-CTR-Electronics supported actuators have a safety feature where they will automatically disable output if they have not recently received an enable signal.
+CTR Electronics supported actuators have a safety feature where they will automatically disable output if they have not recently received an enable signal.
 
 FRC Applications
 ----------------

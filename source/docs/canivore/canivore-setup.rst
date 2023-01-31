@@ -119,7 +119,7 @@ If no CAN bus string is passed into the constructor, or the CAN bus string is em
 CANivore Status Prints
 ----------------------
 
-When working with CANivore CAN buses in a robot program, Phoenix prints some messages to report the state of the CANivore connection. These messages can be useful to debug connection issues (bad USB vs bad CAN) or report bugs to CTR-Electronics.
+When working with CANivore CAN buses in a robot program, Phoenix prints some messages to report the state of the CANivore connection. These messages can be useful to debug connection issues (bad USB vs bad CAN) or report bugs to CTR Electronics.
 
 
 .. list-table:: Connection Messages

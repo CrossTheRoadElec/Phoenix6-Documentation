@@ -3,7 +3,7 @@ Phoenix Pro Documentation
 
 Welcome to the Phoenix Pro documentation. Individuals looking for the `Phoenix 5` documentation may locate them `here <https://docs.ctre-phoenix.com/en/stable/>`__.
 
-The Phoenix Pro software framework allows you to control and configure your `CTR-Electronics <https://store.ctr-electronics.com/>`__ Phoenix Pro Devices. Phoenix Pro represents a complete rewrite of the software framework over the existing Phoenix 5 framework. With Phoenix Pro, users have access to many new features that expand the control the user has over their device.
+The Phoenix Pro software framework allows you to control and configure your `CTR Electronics <https://store.ctr-electronics.com/>`__ Phoenix Pro Devices. Phoenix Pro represents a complete rewrite of the software framework over the existing Phoenix 5 framework. With Phoenix Pro, users have access to many new features that expand the control the user has over their device.
 
 .. note:: A changelog containing API, Tuner and Firmware changes is available `here <https://api.ctr-electronics.com/changelog>`__ and a migration guide is available :doc:`here </docs/api-reference/api-usage/migration-guide>`.
 
@@ -30,10 +30,10 @@ Phoenix Pro currently offers the following features and will further expand:
   - New control modes such as FOC (`velocity-based <https://en.wikipedia.org/wiki/Vector_control_(motor)>`__ control) to take advantage of ~15% increased peak power.
   - Kalman based algorithms for velocity smoothing
 
-.. card:: CTR-Electronics Blog
+.. card:: CTR Electronics Blog
    :link: https://store.ctr-electronics.com/blog/
 
-   For news and updates about your CTR-Electronics device, please see the `blog <https://store.ctr-electronics.com/blog/>`__
+   For news and updates about your CTR Electronics device, please see the `blog <https://store.ctr-electronics.com/blog/>`__
 
 .. grid:: 1 2 3 3
    :gutter: 3
@@ -48,7 +48,7 @@ Phoenix Pro currently offers the following features and will further expand:
       :link: docs/tuner/index
       :link-type: doc
 
-      Documentation that introduces the companion application to manage your CTR-Electronics devices.
+      Documentation that introduces the companion application to manage your CTR Electronics devices.
 
    .. grid-item-card:: :octicon:`rocket` Hardware Reference
       :link: docs/hardware-reference/index
@@ -60,7 +60,7 @@ Phoenix Pro currently offers the following features and will further expand:
       :link: docs/api-reference/index
       :link-type: doc
 
-      Documentation and details on using the CTR-Electronics device API. This includes usage of signals, configs, control requests, etc.
+      Documentation and details on using the CTR Electronics device API. This includes usage of signals, configs, control requests, etc.
 
    .. grid-item-card:: :octicon:`git-pull-request` Examples
       :link: docs/api-reference/examples/index
