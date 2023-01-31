@@ -57,7 +57,7 @@ Approach 1 (best)
 
 If you find a particular device where communication is not possible, scrutinize device's power and CAN connection to the system. Make the test setup so simple that the only failure mode possible is within the device itself.
 
-.. note:: Typically, there must be two 120-:math:`\Omega` termination resistors at each end of the bus. CTR-Electronics integrates termination resistors into the PDP and the CANivore. The roboRIO also has an integrated termination resistor. During bring-up, if you keep your harness short (such as the CAN pigtail leads from a single TalonFX) then a single resistor is adequate for testing purposes.
+.. note:: Typically, there must be two 120-:math:`\Omega` termination resistors at each end of the bus. CTR Electronics integrates termination resistors into the PDP and the CANivore. The roboRIO also has an integrated termination resistor. During bring-up, if you keep your harness short (such as the CAN pigtail leads from a single TalonFX) then a single resistor is adequate for testing purposes.
 
 Approach 2 (easier)
 ^^^^^^^^^^^^^^^^^^^

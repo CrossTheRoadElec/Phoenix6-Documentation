@@ -14,7 +14,7 @@ Additionally, CANivore is supported for licensing. When a CANivore is licensed, 
 Purchasing a License
 --------------------
 
-Licenses can be purchased in the licensing section on the CTR-Electronics store. Click `here <https://store.ctr-electronics.com/licenses>`__ to purchase a license.
+Licenses can be purchased in the licensing section on the CTR Electronics store. Click `here <https://store.ctr-electronics.com/licenses>`__ to purchase a license.
 
 Once a license has been purchased, you will receive an email confirmation confirming your purchase. Once this email is received, the license should be visible in the list of licenses in Tuner X.
 

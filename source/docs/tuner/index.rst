@@ -10,7 +10,7 @@ Phoenix Tuner is the companion application allowing you to configure, analyze, u
 
 Phoenix Tuner X supports Android 8.0+ and Windows 10 (1903+) and Windows 11.
 
-.. important:: While CTR-Electronics supports both Phoenix Tuner v1 and Phoenix Tuner X, certain features such as device licensing and improved batch upgrading are only available in Phoenix Tuner X.
+.. important:: While CTR Electronics supports both Phoenix Tuner v1 and Phoenix Tuner X, certain features such as device licensing and improved batch upgrading are only available in Phoenix Tuner X.
 
 .. tip:: Many UI elements contain hover tooltips. That means the user can hover over them with their mouse for a text explanation of what they do.
 
