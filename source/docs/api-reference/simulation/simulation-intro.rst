@@ -132,7 +132,7 @@ Some device ``SimState`` objects also contain outputs that can be used in simula
 High Fidelity CAN Bus Simulation
 --------------------------------
 
-All CTR Electronics CAN devices support a high fidelity CAN bus, where the frames are simulated at a level similar to what the user sees on a real robot. This means that frames coming from a control frame will be sent at intervals corresponding to the control frame period, and frames from a device will be sent at the appropriate status frame period. In simulation, this may appear as a delay between setting a signal and getting its real value, or settings its real value and getting it in API.
+All CTR Electronics CAN devices support a high fidelity CAN bus simulation, where the frames are simulated at a level similar to what happens on a real robot. This means that frames coming from a control frame will be sent at intervals corresponding to the control frame period and frames from a device will be sent at the appropriate status frame period. In simulation this may appear as a delay between setting a signal and getting its real value or settings its real value and getting it in API.
 
 The update rate can be modified for simulation by wrapping the :ref:`signal's frequency <docs/api-reference/api-usage/status-signals:changing update frequency>` in a ``RobotBase.isSimulation()`` (`Java <https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/RobotBase.html#isSimulation()>`__, `C++ <https://github.wpilib.org/allwpilib/docs/release/cpp/classfrc_1_1_robot_base.html#a307a770aa58d89e1f1cc8e7970cceb84>`__) condition.
 
