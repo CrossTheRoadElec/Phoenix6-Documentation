@@ -26,7 +26,7 @@ To utilize hardware-attached simulation, ensure the CANivore is connected direct
 
       .. code-block:: cpp
 
-         TalonFX m_motor{0, "mycanivore"};
+         hardware::TalonFX m_motor{0, "mycanivore"};
 
 In VS Code, select the 3 dots in the top-right, then select :guilabel:`Hardware Sim Robot Code`
 
