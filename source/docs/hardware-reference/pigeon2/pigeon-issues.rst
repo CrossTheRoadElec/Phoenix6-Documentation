@@ -20,4 +20,4 @@ Once the workaround has been applied, the device will show up in the :guilabel:`
 Option 2: Connect to the roboRIO Bus
 ------------------------------------
 
-Connect the Pigeon 2 to the roboRIO CAN Bus and :ref:`field-upgrade <docs/tuner/device-details-page:field-upgrade firmware version>` the firwmare version.
+Connect the Pigeon 2 to the roboRIO CAN Bus and :ref:`field-upgrade <docs/tuner/device-details-page:field-upgrade firmware version>` the firmware version.
