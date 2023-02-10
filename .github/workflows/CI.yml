@@ -134,6 +134,6 @@ jobs:
     - uses: actions/setup-python@v2
       with:
         python-version: 3.9
-    - uses: psf/black@22.3.0
+    - uses: psf/black@23.1.0
       with:
         black_args: ". --check"
