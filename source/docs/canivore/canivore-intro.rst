@@ -10,3 +10,13 @@ The `CANivore <https://store.ctr-electronics.com/canivore/>`__ is a multipurpose
 - Allows the control of CTR-Electronics devices on non-roboRIO platforms.
 
 .. important:: Details on licensing your CANivore is available on the :doc:`licensing </docs/licensing/licensing>` page.
+
+Supported Platforms
+-------------------
+
+CANivore is supported on:
+
+* Windows 10, Windows 11.
+* Linux amd64 (Ubuntu 20.04 or higher)
+* Linux ARM 32-bit & 64-bit (Pi 3B+, Pi 4B, Jetson Nano)
+* NI roboRIO
