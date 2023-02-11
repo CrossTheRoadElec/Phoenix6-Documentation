@@ -3,7 +3,7 @@ Pigeon 2 Troubleshooting
 
 A functional limitation was discovered in Pigeon 2s manufactured in September of 2022. When used on a CANivore (CAN FD) Bus, the Pigeon 2 may not transmit CAN FD frames correctly. As a result, you may find that all CAN device LEDs go red when the Pigeon 2 is in-circuit and powered.
 
-A firmware fix has been published, to update the firmware of an offending Pigeon 2, one of the below options can be used.
+A firmware fix has been published, to update the firmware of an affected Pigeon 2, one of the below options can be used.
 
 Option 1: Workaround with Tuner X
 ---------------------------------
