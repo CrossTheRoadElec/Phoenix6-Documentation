@@ -11,8 +11,8 @@ The `CANivore <https://store.ctr-electronics.com/canivore/>`__ is a multipurpose
 
 .. important:: Details on licensing your CANivore is available on the :doc:`licensing </docs/licensing/licensing>` page.
 
-Supported Devices
------------------
+Supported Platforms
+-------------------
 
 CANivore is supported on:
 
