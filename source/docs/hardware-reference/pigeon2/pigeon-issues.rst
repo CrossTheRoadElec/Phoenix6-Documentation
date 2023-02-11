@@ -10,7 +10,7 @@ Option 1: Workaround with Tuner X
 
 .. note:: If you do not see the below option, then Tuner X is likely older than version **2023.1.5.0**.
 
-.. warning:: Tuner version **2023.1.5.0** was just uploaded to Windows and Google Play store.  It may take some processing time before they become available for download.
+.. warning:: Tuner version **2023.1.5.0** was just uploaded to Windows and Google Play store (2/10/2023).  It may take some processing time before they become available for download.
 
 A new section in Tuner X :guilabel:`Settings` labeled **Pigeon 2 Workaround** has been added. When the :guilabel:`Execute Pigeon 2 workaround` button is pressed, all CANivores will enter a special mode that allows them to see the offending Pigeon 2s. This mode is reverted when the CANivore is power cycled.
 
