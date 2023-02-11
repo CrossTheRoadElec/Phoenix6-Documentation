@@ -7,7 +7,7 @@ Self Test Snapshot is a diagnostic feature of all supported devices that will sh
    :width: 70%
    :alt: Tuner X Self Test
 
-Self Test also includes 3 buttons: :guilabel:`Refresh`, :guilabel:`Blink/Clear Faults` and :guilabel:`Share to Support`. :guilabel:`Refresh` will refresh the Self Test information, :guilabel:`Blink/Clear faults`` will blink the device and clear any faults on the device. :guilabel:`Share to Support` will open the default email client with an email to CTR-Electronics support.
+Self Test also includes 3 buttons: :guilabel:`Refresh`, :guilabel:`Blink/Clear Faults` and :guilabel:`Share to Support`. :guilabel:`Refresh` will refresh the Self Test information, :guilabel:`Blink/Clear faults`` will blink the device and clear any faults on the device. :guilabel:`Share to Support` will open the default email client with an email to CTR Electronics support.
 
 Viewing Status LEDs
 -------------------

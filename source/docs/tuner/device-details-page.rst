@@ -18,7 +18,7 @@ The **Device Details** page can be accessed by clicking on the device card (or d
 Blinking
 --------
 
-All CTR-Electronics devices can be blinked (rapidly flash the LEDs). This can be useful for handling whenever you have duplicate devices using the same ID on the CAN bus.
+All CTR Electronics devices can be blinked (rapidly flash the LEDs). This can be useful for handling whenever you have duplicate devices using the same ID on the CAN bus.
 
 .. image:: images/blinking-device-deviceview.png
    :width: 70%
@@ -55,7 +55,7 @@ Tuner X has improved firmware upgrading functionality by **automatically downloa
    :width: 70%
    :alt: Firmware version picker
 
-Users can switch between "Phoenix Pro" and "Phoenix 5" by clicking on the toggle above the :guilabel:`ID` field.
+Users can switch between "Phoenix Pro" and "Phoenix 5" by clicking on the toggle above the firmware dropdown.
 
 .. note:: The toggle between Phoenix Pro and Phoenix 5 firmware only affects online field-upgrades.
 

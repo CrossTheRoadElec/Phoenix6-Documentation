@@ -5,6 +5,11 @@ Pigeon 2.0 is the next evolution in the family of Pigeon IMUs.
 
 With no on-boot calibration or temperature calibration required and dramatic improvement to drift, the Pigeon is the easiest IMU to use yet.
 
+.. toctree::
+   :maxdepth: 1
+
+   pigeon-issues
+
 .. grid:: 2
 
    .. grid-item-card:: Store Page

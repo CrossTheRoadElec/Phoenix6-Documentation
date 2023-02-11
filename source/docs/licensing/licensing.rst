@@ -14,7 +14,7 @@ Additionally, CANivore is supported for licensing. When a CANivore is licensed, 
 Purchasing a License
 --------------------
 
-Licenses can be purchased in the licensing section on the CTR-Electronics store. Click `here <https://store.ctr-electronics.com/licenses>`__ to purchase a license.
+Licenses can be purchased in the licensing section on the CTR Electronics store. Click `here <https://store.ctr-electronics.com/licenses>`__ to purchase a license.
 
 Once a license has been purchased, you will receive an email confirmation confirming your purchase. Once this email is received, the license should be visible in the list of licenses in Tuner X.
 
@@ -38,6 +38,11 @@ A list of purchased (but unattached) license seats are shown here. Click on the 
 .. warning:: Users should be aware that license activation is permanent and irreversible
 
 Once the activation is complete, the license will be downloaded to the device. In the event that Tuner X disconnects from the internet or from the robot before this completes, the license is still activated and available for download the next time Tuner X is connected to the internet/robot.
+
+Activating a License without a Robot
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Devices that have been seen by Tuner X at least once will be available in :ref:`Device History <docs/tuner/device-history:licensing from device history>`. This can be useful for licensing a device when disconnected from the robot.
 
 Verifying Activation State
 --------------------------

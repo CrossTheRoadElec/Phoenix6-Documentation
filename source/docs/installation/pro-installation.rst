@@ -27,7 +27,7 @@ The following targets are supported:
 Offline
 ^^^^^^^
 
-.. important:: Users using their CTR-Electronics device outside of `FRC <https://www.firstinspires.org/robotics/frc>`__ should skip to the **Online** section of this article.
+.. important:: Users using their CTR Electronics device outside of `FRC <https://www.firstinspires.org/robotics/frc>`__ should skip to the **Online** section of this article.
 
 1. Download the `Phoenix Pro Installer <https://github.com/CrossTheRoadElec/Phoenix-Releases/releases>`__
 2. Navigate through the installer, ensuring applicable options are selected

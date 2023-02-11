@@ -1,7 +1,7 @@
 Actuator Limits
 ===============
 
-CTR-Electronics actuators, such as the TalonFX, support various kinds of hardware and software limits.
+CTR Electronics actuators, such as the TalonFX, support various kinds of hardware and software limits.
 
 Documentation on wiring limit switches can be found :ref:`here <docs/hardware-reference/talonfx/index:actuator limits>`.
 
