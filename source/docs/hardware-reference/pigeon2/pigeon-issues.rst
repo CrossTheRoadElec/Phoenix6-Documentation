@@ -21,3 +21,5 @@ Option 2: Connect to the roboRIO Bus
 ------------------------------------
 
 Connect the Pigeon 2 to the roboRIO CAN Bus and :ref:`field-upgrade <docs/tuner/device-details-page:field-upgrade firmware version>` the firmware version.
+
+.. note:: We recommend power cycling Pigeon after moving CAN bus leads from CANivore to roboRIO CAN bus to ensure a clean transition.
