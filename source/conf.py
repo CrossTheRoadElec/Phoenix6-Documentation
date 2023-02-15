@@ -112,6 +112,7 @@ html_theme_options = {
 html_static_path = ["_static"]
 html_logo = "images/ctre.png"
 
+
 # Theme tweaks on top of RTD
 def setup(app):
     app.add_css_file("css/theme_ctre.css")
