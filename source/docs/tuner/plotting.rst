@@ -3,7 +3,7 @@ Plotting
 
 Supported devices can have certain signals/sensor data plotted in real-time without any additional configuration. To get started, click on the :guilabel:`Plot` button in the top right navigation bar.
 
-.. note:: Plotting currently only works with Phoenix 5 devices.
+.. tip:: Plotting is supported in both Phoenix 5 and Phoenix Pro.
 
 .. image:: images/plot-page-button-location.png
    :width: 50%
