@@ -45,6 +45,7 @@ extensions = [
     "sphinxext.mimictoc",
     "sphinxext.opengraph",
     "sphinxext.rediraffe",
+    "sphinxext.remoteliteralinclude",
     "sphinx.ext.autosectionlabel",
     "sphinx_design",
     "sphinx_copybutton",
