@@ -1,5 +1,5 @@
-TalonFX Control
-===============
+TalonFX
+=======
 
 .. toctree::
    :maxdepth: 1
@@ -7,3 +7,4 @@ TalonFX Control
    talonfx-control-intro
    open-loop-requests
    closed-loop-requests
+   remote-sensors

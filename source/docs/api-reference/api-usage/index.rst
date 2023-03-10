@@ -51,8 +51,8 @@ There are three major components to the Phoenix Pro API:
 - :doc:`actuator-limits`
    - Documents how to retrieve and configure software and hardware actuator limits.
 
-- :doc:`talonfx-control-requests/index`
-   - Describes the different TalonFX control requests and how they are used.
+- :doc:`device-specific/index`
+   - Describes some device specific functionality, such as the different TalonFX control requests and how they are used.
 
 - :doc:`migration-guide`
    - A "cheat sheet" on migrating from Phoenix 5 to Phoenix Pro.
@@ -68,5 +68,5 @@ There are three major components to the Phoenix Pro API:
    faults
    enabling-actuators
    actuator-limits
-   talonfx-control-requests/index
+   device-specific/index
    migration-guide
