@@ -254,7 +254,7 @@ Closed Loop Gains
 
 These tables are for translating Phoenix v5 gains to Phoenix Pro DutyCycle gains.
 
-.. note:: There are other :ref:`control output types <docs/api-reference/api-usage/talonfx-control-requests/talonfx-control-intro:control output types>` in Phoenix Pro that will change the magnitude of the gains.
+.. note:: There are other :ref:`control output types <docs/api-reference/api-usage/device-specific/talonfx/talonfx-control-intro:control output types>` in Phoenix Pro that will change the magnitude of the gains.
 
 Position (DutyCycle)
 ^^^^^^^^^^^^^^^^^^^^

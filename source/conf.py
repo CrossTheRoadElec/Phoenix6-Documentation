@@ -45,6 +45,7 @@ extensions = [
     "sphinxext.mimictoc",
     "sphinxext.opengraph",
     "sphinxext.rediraffe",
+    "sphinxext.remoteliteralinclude",
     "sphinx.ext.autosectionlabel",
     "sphinx_design",
     "sphinx_copybutton",
@@ -111,6 +112,7 @@ html_theme_options = {
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ["_static"]
 html_logo = "images/ctre.png"
+
 
 # Theme tweaks on top of RTD
 def setup(app):
