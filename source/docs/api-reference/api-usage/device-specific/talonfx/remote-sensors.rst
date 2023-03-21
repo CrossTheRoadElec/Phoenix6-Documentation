@@ -39,7 +39,7 @@ Supported motor controllers will update its position and velocity whenever the C
 ``FusedCANcoder``
 -----------------
 
-New in Phoenix Pro is a supported feedback sensor type called ``FusedCANcoder``. ``FusedCANcoder`` will fuse another CANcoder's information with the internal rotor, which provides the best possible position and velocity for accuracy and bandwidth. This is useful in applications such as a swerve azimuth.
+New in Phoenix Pro is a supported feedback sensor type called ``FusedCANcoder``. ``FusedCANcoder`` will fuse another CANcoder's information with the internal rotor, which provides the best possible position and velocity for accuracy and bandwidth. This is useful in applications such as swerve azimuth.
 
 ``FusedCANcoder`` requires that various ``Feedback`` config group items be configured. See the below example for reference.
 
