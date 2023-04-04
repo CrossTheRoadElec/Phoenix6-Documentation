@@ -139,6 +139,50 @@ Phoenix Pro
          // main robot code, command 12 V output
          m_motor.SetControl(m_request.WithOutput(12_V));
 
+Control Types
+^^^^^^^^^^^^^
+
+In Phoenix Pro, voltage compensation has been replaced with the ability to directly specify the :ref:`control output type <docs/api-reference/api-usage/device-specific/talonfx/talonfx-control-intro:control output types>`.
+
+All control output types are supported in open-loop and closed-loop control requests.
+
+.. list-table:: Open-loop Control Requests
+   :header-rows: 1
+
+   * - Phoenix v5
+     - Phoenix Pro
+
+   * - PercentOutput
+     - DutyCycleOut
+
+   * - PercentOutput + Voltage Compensation
+     - VoltageOut
+   
+   * - Current (closed-loop)
+     - TorqueCurrentFOC (open-loop)
+
+
+.. list-table:: Closed-loop Control Requests
+   :header-rows: 1
+
+   * - Phoenix v5
+     - Phoenix Pro
+
+   * - Position
+     - PositionDutyCycle
+
+   * - Velocity
+     - VelocityDutyCycle
+
+   * - MotionMagic
+     - MotionMagicDutyCycle
+
+   * - Closed-loop + Voltage Compensation
+     - {ClosedLoop}Voltage
+
+   * - External Closed-loop + Current closed-loop
+     - {ClosedLoop}TorqueCurrentFOC
+
 Applying Configs
 ----------------
 
@@ -280,7 +324,7 @@ Phoenix v5
 
       .. code-block:: Java
 
-         // robotInit, set slot 0 gains
+         // robot init, set slot 0 gains
          m_motor.config_kF(0, 0.05, 50);
          m_motor.config_kP(0, 0.046, 50);
          m_motor.config_kI(0, 0.0002, 50);
@@ -300,7 +344,7 @@ Phoenix v5
 
       .. code-block:: cpp
 
-         // RobotInit, set slot 0 gains
+         // robot init, set slot 0 gains
          m_motor.Config_kF(0, 0.05, 50);
          m_motor.Config_kP(0, 0.046, 50);
          m_motor.Config_kI(0, 0.0002, 50);
@@ -327,7 +371,7 @@ Phoenix Pro
          // class member variable
          VelocityVoltage m_velocity = new VelocityVoltage(0);
 
-         // robotInit, set slot 0 gains
+         // robot init, set slot 0 gains
          var slot0Configs = new Slot0Configs();
          slot0Configs.kV = 0.12;
          slot0Configs.kP = 0.11;
@@ -348,7 +392,7 @@ Phoenix Pro
          // class member variable
          controls::VelocityVoltage m_velocity{0};
 
-         // RobotInit, set slot 0 gains
+         // robot init, set slot 0 gains
          configs::Slot0Configs slot0Configs{};
          slot0Configs.kV = 0.12;
          slot0Configs.kP = 0.11;
@@ -373,11 +417,6 @@ Motion Magic S-Curve
 ^^^^^^^^^^^^^^^^^^^^
 
 The Motion Magic S-Curve Strength has been replaced with the ability to set the target jerk (acceleration derivative) of the profile (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/configs/MotionMagicConfigs.html#MotionMagicJerk>`_, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/classctre_1_1phoenixpro_1_1configs_1_1_motion_magic_configs.html#a5b7a8aa5146588639168506802abd61a>`_).
-
-Voltage Compensation
-^^^^^^^^^^^^^^^^^^^^
-
-In Phoenix Pro, voltage compensation has been replaced with the ability to directly specify the :ref:`control output type <docs/api-reference/api-usage/device-specific/talonfx/talonfx-control-intro:control output types>`.
 
 Nominal Output
 ^^^^^^^^^^^^^^
