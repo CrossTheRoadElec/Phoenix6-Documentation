@@ -267,3 +267,140 @@ Velocity (DutyCycle)
 
 .. image:: images/velocity-gains-conversion.png
    :alt: Velocity gain conversion table from Phoenix 5 to Phoenix Pro
+
+Closed Loop Control
+-------------------
+
+Phoenix v5
+
+.. tab-set::
+
+   .. tab-item:: Java
+      :sync: Java
+
+      .. code-block:: Java
+
+         // robotInit, set slot 0 gains
+         m_motor.config_kF(0, 0.05, 50);
+         m_motor.config_kP(0, 0.046, 50);
+         m_motor.config_kI(0, 0.0002, 50);
+         m_motor.config_kD(0, 0.42, 50);
+
+         // enable voltage compensation
+         m_motor.configVoltageComSaturation(12);
+         m_motor.enableVoltageCompensation(true);
+
+         // periodic, run velocity control with slot 0 configs,
+         // target velocity of 50 rps (10240 ticks/100ms)
+         m_motor.selectProfileSlot(0, 0);
+         m_motor.set(ControlMode.Velocity, 10240);
+
+   .. tab-item:: C++
+      :sync: C++
+
+      .. code-block:: cpp
+
+         // RobotInit, set slot 0 gains
+         m_motor.Config_kF(0, 0.05, 50);
+         m_motor.Config_kP(0, 0.046, 50);
+         m_motor.Config_kI(0, 0.0002, 50);
+         m_motor.Config_kD(0, 0.42, 50);
+
+         // enable voltage compensation
+         m_motor.ConfigVoltageComSaturation(12);
+         m_motor.EnableVoltageCompensation(true);
+
+         // periodic, run velocity control with slot 0 configs,
+         // target velocity of 50 rps (10240 ticks/100ms)
+         m_motor.SelectProfileSlot(0, 0);
+         m_motor.Set(ControlMode::Velocity, 10240);
+
+Phoenix Pro
+
+.. tab-set::
+
+   .. tab-item:: Java
+      :sync: Java
+
+      .. code-block:: java
+
+         // class member variable
+         VelocityVoltage m_velocity = new VelocityVoltage(0);
+
+         // robotInit, set slot 0 gains
+         var slot0Configs = new Slot0Configs();
+         slot0Configs.kV = 0.12;
+         slot0Configs.kP = 0.11;
+         slot0Configs.kI = 0.5;
+         slot0Configs.kD = 0.001;
+         m_talonFX.getConfigurator().apply(slot0Configs, 0.050);
+
+         // periodic, run velocity control with slot 0 configs,
+         // target velocity of 50 rps
+         m_velocity.Slot = 0;
+         m_motor.setControl(m_velocity.withVelocity(50));
+
+   .. tab-item:: C++
+      :sync: C++
+
+      .. code-block:: cpp
+
+         // class member variable
+         controls::VelocityVoltage m_velocity{0};
+
+         // RobotInit, set slot 0 gains
+         configs::Slot0Configs slot0Configs{};
+         slot0Configs.kV = 0.12;
+         slot0Configs.kP = 0.11;
+         slot0Configs.kI = 0.5;
+         slot0Configs.kD = 0.001;
+         m_talonFX.GetConfigurator().Apply(slot0Configs, 50_ms);
+
+         // periodic, run velocity control with slot 0 configs,
+         // target velocity of 50 rps
+         m_velocity.Slot = 0;
+         m_motor.SetControl(m_velocity.WithVelocity(50_tps));
+
+Motion Profiling
+----------------
+
+The Motion Profile Executor is not supported in the current release of Phoenix Pro. Users can use :ref:`Motion Magic <docs/api-reference/api-usage/device-specific/talonfx/closed-loop-requests:motion magic>` or run a motion profile on the robot controller.
+
+Feature Replacements
+--------------------
+
+Motion Magic S-Curve
+^^^^^^^^^^^^^^^^^^^^
+
+The Motion Magic S-Curve Strength has been replaced with the ability to set the target jerk (acceleration derivative) of the profile (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/configs/MotionMagicConfigs.html#MotionMagicJerk>`_, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/classctre_1_1phoenixpro_1_1configs_1_1_motion_magic_configs.html#a5b7a8aa5146588639168506802abd61a>`_).
+
+Voltage Compensation
+^^^^^^^^^^^^^^^^^^^^
+
+In Phoenix Pro, voltage compensation has been replaced with the ability to directly specify the :ref:`control output type <docs/api-reference/api-usage/device-specific/talonfx/talonfx-control-intro:control output types>`.
+
+Nominal Output
+^^^^^^^^^^^^^^
+
+The Talon FX forward and reverse Nominal Output configs have been removed in Phoenix Pro.
+
+The typical use case of the nominal output configs is to overcome friction in closed-loop control modes, which can now be achieved using the ``kS`` feedforward parameter (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/configs/Slot0Configs.html#kS>`_, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/classctre_1_1phoenixpro_1_1configs_1_1_slot0_configs.html#adfb56621e174939d621c93de80d433b7>`_).
+
+Sensor Phase
+^^^^^^^^^^^^
+
+The Talon FX ``setSensorPhase()`` method has been removed in Phoenix Pro.
+
+- The Talon FX integrated sensor is always in phase, so the method does nothing in Phoenix 5.
+
+- When using a remote sensor, you can invert the remote sensor to bring it in phase with the Talon FX.
+
+Sensor Initialization Strategy
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The Talon FX and CANcoder sensors are always initialized to the absolute position in Phoenix Pro.
+
+Velocity Measurement Period/Window
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+In Phoenix Pro, the Talon FX and CANcoder both use a Kalman filter to produce velocity measurements, resulting in a less noisy signal with a minimal impact on latency. As a result, the velocity measurement period/window configs are no longer necessary in Phoenix Pro and have been removed.
