@@ -19,22 +19,22 @@ Supported motor controllers will update its position and velocity whenever the C
 
       .. code-block:: java
 
-         TalonFXConfiguration m_talonConfig = new TalonFXConfiguration();
-         m_talonConfig.FeedbackRemoteSensorID = m_cancoder.getDeviceID();
-         m_talonConfig.Feedback.FeedbackSensorSource = FeedbackSensorSourceValue.FusedCANcoder;
+         var fx_cfg = new TalonFXConfiguration();
+         fx_cfg.Feedback.FeedbackRemoteSensorID = m_cancoder.getDeviceID();
+         fx_cfg.Feedback.FeedbackSensorSource = FeedbackSensorSourceValue.FusedCANcoder;
 
-         m_talonFX.getConfigurator().apply(m_talonConfig);
+         m_talonFX.getConfigurator().apply(fx_cfg);
 
    .. tab-item:: C++
       :sync: C++
 
       .. code-block:: cpp
 
-         TalonFXConfiguration m_talonConfig{};
-         m_talonConfig.FeedbackRemoteSensorID = m_cancoder.GetDeviceID();
-         m_talonConfig.Feedback.FeedbackSensorSource = FeedbackSensorSourceValue.FusedCANcoder;
+         configs::TalonFXConfiguration fx_cfg{};
+         fx_cfg.Feedback.FeedbackRemoteSensorID = m_cancoder.GetDeviceID();
+         fx_cfg.Feedback.FeedbackSensorSource = signals::FeedbackSensorSourceValue::FusedCANcoder;
 
-         m_talonFX.GetConfigurator().Apply(m_talonConfig);
+         m_talonFX.GetConfigurator().Apply(fx_cfg);
 
 ``FusedCANcoder``
 -----------------
@@ -77,8 +77,8 @@ Usage is the same as any :ref:`status signal <docs/api-reference/api-usage/statu
          fx_pos.refresh();
          cc_pos.refresh();
 
-         System.out.println("FX Position: " + fx_pos.getValue());
-         System.out.println("CANcoder Position: " + cc_pos.getValue());
+         System.out.println("FX Position: " + fx_pos.toString());
+         System.out.println("CANcoder Position: " + cc_pos.toString());
 
    .. tab-item:: C++
       :sync: C++
