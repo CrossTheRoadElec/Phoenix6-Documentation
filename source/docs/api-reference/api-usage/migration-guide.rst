@@ -82,6 +82,51 @@ Phoenix Pro
          // synchronously wait 20 ms for new data
          rotorPosSignal.WaitForUpdate(20_ms);
 
+Changing Update Frequency
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Phoenix v5
+
+.. tab-set::
+
+   .. tab-item:: Java
+      :sync: Java
+
+      .. code-block:: java
+
+         // slow down the Status 2 frame (selected sensor data) to 5 Hz (200ms)
+         m_talonFX.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 200);
+
+   .. tab-item:: C++
+      :sync: C++
+
+      .. code-block:: cpp
+
+         // slow down the Status 2 frame (selected sensor data) to 5 Hz (200ms)
+         m_talonFX.SetStatusFramePeriod(StatusFrameEnhanced::Status_2_Feedback0, 200);
+
+Phoenix Pro
+
+.. tab-set::
+
+   .. tab-item:: Java
+      :sync: Java
+
+      .. code-block:: java
+
+         // slow down the position signal to 5 Hz
+         m_talonFX.getPosition().setUpdateFrequency(5);
+
+   .. tab-item:: C++
+      :sync: C++
+
+      .. code-block:: cpp
+
+         // slow down the position signal to 5 Hz
+         m_talonFX.GetPosition().SetUpdateFrequency(5_Hz);
+
+.. important:: Currently in Phoenix Pro, when different status frame frequencies are specified for signals that share a status frame, the last specified frequency is applied to the status frame. As a result, users should apply the slowest status frame frequencies first and the fastest frequencies last.
+
 Control Requests
 ----------------
 
