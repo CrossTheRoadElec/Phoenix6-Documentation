@@ -1,7 +1,7 @@
 Migration Guide
 ===============
 
-This document serves as a "cheat sheet" of commonly accessed functions in Phoenix 5 and its equivalent in Phoenix Pro.
+This document serves as a "cheat sheet" of commonly accessed functions in Phoenix 5 and their equivalents in Phoenix Pro.
 
 Status Signals
 --------------
@@ -157,7 +157,7 @@ All control output types are supported in open-loop and closed-loop control requ
 
    * - PercentOutput + Voltage Compensation
      - VoltageOut
-   
+
    * - Current (closed-loop)
      - TorqueCurrentFOC (open-loop)
 
@@ -416,14 +416,14 @@ Feature Replacements
 Motion Magic S-Curve
 ^^^^^^^^^^^^^^^^^^^^
 
-The Motion Magic S-Curve Strength has been replaced with the ability to set the target jerk (acceleration derivative) of the profile (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/configs/MotionMagicConfigs.html#MotionMagicJerk>`_, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/classctre_1_1phoenixpro_1_1configs_1_1_motion_magic_configs.html#a5b7a8aa5146588639168506802abd61a>`_).
+The Motion Magic S-Curve Strength has been replaced with the ability to set the target jerk (acceleration derivative) of the profile (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/configs/MotionMagicConfigs.html#MotionMagicJerk>`__, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/classctre_1_1phoenixpro_1_1configs_1_1_motion_magic_configs.html#a5b7a8aa5146588639168506802abd61a>`__).
 
 Nominal Output
 ^^^^^^^^^^^^^^
 
 The Talon FX forward and reverse Nominal Output configs have been removed in Phoenix Pro.
 
-The typical use case of the nominal output configs is to overcome friction in closed-loop control modes, which can now be achieved using the ``kS`` feedforward parameter (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/configs/Slot0Configs.html#kS>`_, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/classctre_1_1phoenixpro_1_1configs_1_1_slot0_configs.html#adfb56621e174939d621c93de80d433b7>`_).
+The typical use case of the nominal output configs is to overcome friction in closed-loop control modes, which can now be achieved using the ``kS`` feedforward parameter (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/configs/Slot0Configs.html#kS>`__, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/classctre_1_1phoenixpro_1_1configs_1_1_slot0_configs.html#adfb56621e174939d621c93de80d433b7>`__).
 
 Sensor Phase
 ^^^^^^^^^^^^
