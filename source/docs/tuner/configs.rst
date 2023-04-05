@@ -9,8 +9,8 @@ Configs can be accessed, modified, backed-up, restored and factory-reset via the
    :width: 80%
    :alt: Tuner X configs page
 
-To apply a modified config, press the :guilabel:`Set to Device` button on the bottom button bar.
+To apply a modified config, press the :guilabel:`Apply Configs` button on the bottom button bar.
 
 .. image:: images/setting-configs.png
    :width: 80%
-   :alt: Setting config to the device
+   :alt: Applying configs to the device
