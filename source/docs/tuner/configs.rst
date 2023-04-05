@@ -1,9 +1,9 @@
 Tuner Configs
 =============
 
-.. tip:: Configuration groups can also be :ref:`configured in code <docs/api-reference/api-usage/configuration:configuration>`.
+.. tip:: Devices can also be :ref:`configured in code <docs/api-reference/api-usage/configuration:configuration>`.
 
-Configs can be accessed, modified, backed-up, restored and factory-reset via the :guilabel:`Configs` tab in Phoenix Tuner X.
+Configs can be viewed, modified, backed-up, restored, and factory-reset via the :guilabel:`Configs` tab in Phoenix Tuner X.
 
 .. image:: images/tunerx-configs.png
    :width: 80%
