@@ -125,7 +125,7 @@ Phoenix Pro
          // slow down the position signal to 5 Hz
          m_talonFX.GetPosition().SetUpdateFrequency(5_Hz);
 
-.. important:: Currently in Phoenix Pro, when different status frame frequencies are specified for signals that share a status frame, the last specified frequency is applied to the status frame. As a result, users should apply the slowest status frame frequencies first and the fastest frequencies last.
+.. important:: Currently in Phoenix Pro, when different status signal frequencies are specified for signals that share a status frame, the last specified frequency is applied to the status frame. As a result, users should apply the slowest status frame frequencies first and the fastest frequencies last.
 
 Control Requests
 ----------------
@@ -203,9 +203,14 @@ All control output types are supported in open-loop and closed-loop control requ
    * - PercentOutput + Voltage Compensation
      - VoltageOut
 
-   * - Current (closed-loop)
-     - TorqueCurrentFOC (open-loop)
+   * - Phoenix v5 does not support torque control
+     - TorqueCurrentFOC
 
+   * - Current closed-loop
+     - This has been removed in Phoenix Pro.
+
+       - Users looking to control torque should use TorqueCurrentFOC
+       - Users looking to limit current should use supply and stator current limits
 
 .. list-table:: Closed-loop Control Requests
    :header-rows: 1
@@ -225,7 +230,7 @@ All control output types are supported in open-loop and closed-loop control requ
    * - Closed-loop + Voltage Compensation
      - {ClosedLoop}Voltage
 
-   * - External Closed-loop + Current closed-loop
+   * - External Closed-loop + Torque control (not supported in Phoenix v5)
      - {ClosedLoop}TorqueCurrentFOC
 
 Applying Configs
@@ -462,6 +467,16 @@ Motion Magic S-Curve
 ^^^^^^^^^^^^^^^^^^^^
 
 The Motion Magic S-Curve Strength has been replaced with the ability to set the target jerk (acceleration derivative) of the profile (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/configs/MotionMagicConfigs.html#MotionMagicJerk>`__, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/classctre_1_1phoenixpro_1_1configs_1_1_motion_magic_configs.html#a5b7a8aa5146588639168506802abd61a>`__).
+
+Motor Invert
+^^^^^^^^^^^^
+
+In Phoenix Pro, motor invert is now a persistent config (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/configs/MotorOutputConfigs.html#Inverted>`__, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/classctre_1_1phoenixpro_1_1configs_1_1_motor_output_configs.html#a2816a895ab62ec5c4411dc2a1606e3de>`__) instead of a control parameter.
+
+Neutral Mode
+^^^^^^^^^^^^
+
+In Phoenix Pro, Neutral mode is now available as a config (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/configs/MotorOutputConfigs.html#NeutralMode>`__, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/classctre_1_1phoenixpro_1_1configs_1_1_motor_output_configs.html#af908bb8c312a55149f054ec95405c3e0>`__). Many control requests also have the ability to override the neutral mode to either force braking (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/controls/DutyCycleOut.html#OverrideBrakeDurNeutral>`__, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/classctre_1_1phoenixpro_1_1controls_1_1_duty_cycle_out.html#a7aee78ef5456c909c6ada62f7378c90b>`__) or force coasting (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/controls/TorqueCurrentFOC.html#OverrideCoastDurNeutral>`__, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/classctre_1_1phoenixpro_1_1controls_1_1_torque_current_f_o_c.html>`__).
 
 Nominal Output
 ^^^^^^^^^^^^^^
