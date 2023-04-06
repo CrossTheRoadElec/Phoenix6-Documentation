@@ -75,13 +75,19 @@ Follower Motors
          // robot init, set m_follower to follow m_leader
          m_follower.follow(m_leader);
          // m_follower should NOT oppose m_leader
-         m_follower.setInverted(InvertType.FollowMaster);
+         m_follower.setInverted(TalonFXInvertType.FollowMaster);
+         // set m_strictFollower to follow m_leader
+         m_strictFollower.follow(m_leader);
+         // set m_strictFollower to ignore m_leader invert and use its own
+         m_strictFollower.setInverted(TalonFXInvertType.CounterClockwise);
 
          // main robot code, command 100% output for m_leader
          m_leader.set(ControlMode.PercentOutput, 1.0);
-         // m_follower will also run at 100% output
-         // NOTE: if set(), neutralOutput(), or disable() is ever called on m_follower,
-         //       it will stop following
+         // - m_follower and m_strictFollower will also run at 100% output
+         // - m_follower will follow m_leader's invert, while m_strictFollower
+         //   ignores it and uses its own
+         // NOTE: if set(), neutralOutput(), or disable() is ever called on
+         //       the followers, they will stop following
 
    .. tab-item:: C++
       :sync: C++
@@ -91,13 +97,19 @@ Follower Motors
          // robot init, set m_follower to follow m_leader
          m_follower.Follow(m_leader);
          // m_follower should NOT oppose m_leader
-         m_follower.SetInverted(InvertType::FollowMaster);
+         m_follower.SetInverted(TalonFXInvertType::FollowMaster);
+         // set m_strictFollower to follow m_leader
+         m_strictFollower.Follow(m_leader);
+         // set m_strictFollower to ignore m_leader invert and use its own
+         m_strictFollower.SetInverted(TalonFXInvertType::CounterClockwise);
 
          // main robot code, command 100% output for m_leader
          m_leader.Set(ControlMode::PercentOutput, 1.0);
-         // m_follower will also run at 100% output
-         // NOTE: if Set(), NeutralOutput(), or Disable() is ever called on m_follower,
-         //       it will stop following
+         // - m_follower and m_strictFollower will also run at 100% output
+         // - m_follower will follow m_leader's invert, while m_strictFollower
+         //   ignores it and uses its own
+         // NOTE: if Set(), NeutralOutput(), or Disable() is ever called on
+         //       the followers, they will stop following
 
 **Phoenix Pro**
 
@@ -168,7 +180,7 @@ All control output types are supported in open-loop and closed-loop control requ
      - TorqueCurrentFOC
 
    * - Current closed-loop
-     - This has been removed in Phoenix Pro.
+     - This has been deprecated in Phoenix Pro.
 
        - Users looking to control torque should use TorqueCurrentFOC
        - Users looking to limit current should use supply and stator current limits
