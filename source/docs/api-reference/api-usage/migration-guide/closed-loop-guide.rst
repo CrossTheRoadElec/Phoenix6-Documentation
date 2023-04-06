@@ -22,8 +22,8 @@ Velocity (DutyCycle)
 .. image:: images/velocity-gains-conversion.png
    :alt: Velocity gain conversion table from Phoenix 5 to Phoenix Pro
 
-Closed Loop Control
--------------------
+Using Closed-Loop Control
+-------------------------
 
 **Phoenix 5**
 
