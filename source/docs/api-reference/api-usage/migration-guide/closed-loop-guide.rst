@@ -178,6 +178,8 @@ Motion Magic
 
 **Phoenix Pro**
 
+.. note:: The Motion Magic S-Curve Strength has been replaced with jerk control in Phoenix Pro.
+
 .. tab-set::
 
    .. tab-item:: Java

@@ -1,12 +1,7 @@
 Feature Replacements
 ====================
 
-Several Phoenix 5 features have been replaced or improved upon in Phoenix Pro.
-
-Motion Magic S-Curve
---------------------
-
-The Motion Magic S-Curve Strength has been replaced with the ability to set the target jerk (acceleration derivative) of the profile (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/configs/MotionMagicConfigs.html#MotionMagicJerk>`__, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/classctre_1_1phoenixpro_1_1configs_1_1_motion_magic_configs.html#a5b7a8aa5146588639168506802abd61a>`__).
+In addition to the changes shown in the other sections, several other Phoenix 5 features have been replaced or improved upon in Phoenix Pro.
 
 Motor Invert
 ------------
