@@ -60,6 +60,91 @@ Using Control Requests
          // main robot code, command 12 V output
          m_motor.SetControl(m_request.WithOutput(12_V));
 
+Follower Motors
+^^^^^^^^^^^^^^^
+
+**Phoenix 5**
+
+.. tab-set::
+
+   .. tab-item:: Java
+      :sync: Java
+
+      .. code-block:: java
+
+         // robot init, set m_follower to follow m_leader
+         m_follower.follow(m_leader);
+         // m_follower should NOT oppose m_leader
+         m_follower.setInverted(InvertType.FollowMaster);
+
+         // main robot code, command 100% output for m_leader
+         m_leader.set(ControlMode.PercentOutput, 1.0);
+         // m_follower will also run at 100% output
+         // NOTE: if set(), neutralOutput(), or disable() is ever called on m_follower,
+         //       it will stop following
+
+   .. tab-item:: C++
+      :sync: C++
+
+      .. code-block:: cpp
+
+         // robot init, set m_follower to follow m_leader
+         m_follower.Follow(m_leader);
+         // m_follower should NOT oppose m_leader
+         m_follower.SetInverted(InvertType::FollowMaster);
+
+         // main robot code, command 100% output for m_leader
+         m_leader.Set(ControlMode::PercentOutput, 1.0);
+         // m_follower will also run at 100% output
+         // NOTE: if Set(), NeutralOutput(), or Disable() is ever called on m_follower,
+         //       it will stop following
+
+**Phoenix Pro**
+
+.. tab-set::
+
+   .. tab-item:: Java
+      :sync: Java
+
+      .. code-block:: java
+
+         // class member variables
+         DutyCycle m_request = new DutyCycle(0);
+
+         // robot init, set m_follower to follow m_leader
+         // m_follower should NOT oppose leader
+         m_follower.setControl(new Follower(m_leader.getDeviceID(), false));
+         // set m_strictFollower to strict-follow m_leader
+         // strict followers ignore the leader's invert and use their own
+         m_strictFollower.setControl(new StrictFollower(m_leader.getDeviceID()));
+
+         // main robot code, command 100% output for m_leader
+         m_motor.setControl(m_request.withOutput(1.0));
+         // - m_follower and m_strictFollower will also run at 100% output
+         // - m_follower will follow m_leader's invert, while m_strictFollower
+         //   ignores it and uses its own
+
+   .. tab-item:: C++
+      :sync: C++
+
+      .. code-block:: cpp
+
+         // class member variables
+         controls::DutyCycle m_request{0};
+
+         // robot init, set m_follower to follow m_leader
+         // m_follower should NOT oppose leader
+         m_follower.SetControl(controls::Follower{m_leader.GetDeviceID(), false});
+         // set m_strictFollower to strict-follow m_leader
+         // strict followers ignore the leader's invert and use their own
+         m_strictFollower.SetControl(controls::StrictFollower{m_leader.GetDeviceID()});
+
+         // main robot code, command 100% output for m_leader
+         m_motor.SetControl(m_request.WithOutput(1.0));
+         // - m_follower and m_strictFollower will also run at 100% output
+         // - m_follower will follow m_leader's invert, while m_strictFollower
+         //   ignores it and uses its own
+
 Control Types
 -------------
 

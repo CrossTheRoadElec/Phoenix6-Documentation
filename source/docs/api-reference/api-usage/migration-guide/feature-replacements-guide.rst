@@ -6,7 +6,7 @@ In addition to the changes shown in the other sections, several other Phoenix 5 
 Motor Invert
 ------------
 
-In Phoenix Pro, motor invert is now a persistent config (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/configs/MotorOutputConfigs.html#Inverted>`__, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/classctre_1_1phoenixpro_1_1configs_1_1_motor_output_configs.html#a2816a895ab62ec5c4411dc2a1606e3de>`__) instead of a control parameter.
+In Phoenix Pro, motor invert is now a persistent config (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/configs/MotorOutputConfigs.html#Inverted>`__, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/classctre_1_1phoenixpro_1_1configs_1_1_motor_output_configs.html#a2816a895ab62ec5c4411dc2a1606e3de>`__) instead of a control signal.
 
 Neutral Mode
 ------------

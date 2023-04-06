@@ -100,7 +100,7 @@ Using Closed-Loop Control
       .. code-block:: cpp
 
          // class member variable
-         controls::VelocityVoltage m_velocity{0};
+         controls::VelocityVoltage m_velocity{0_tps};
 
          // robot init, set slot 0 gains
          configs::Slot0Configs slot0Configs{};
@@ -221,7 +221,7 @@ Motion Magic
       .. code-block:: cpp
 
          // class member variable
-         controls::MotionMagicVoltage m_motmag{0};
+         controls::MotionMagicVoltage m_motmag{0_tr};
 
          // robot init
          configs::TalonFXConfiguration talonFXConfigs{};
