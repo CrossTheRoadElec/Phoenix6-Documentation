@@ -49,7 +49,7 @@ Field-Upgrade Firmware Version
 
 Tuner X has improved firmware upgrading functionality by **automatically downloading and caching** firmware. Upon initial Tuner X launch, the latest firmware for all devices will automatically be downloaded in the background (takes <10s on most internet connections). The individual device page allows you to select specific firmware versions for your device via the firmware dropdown. Batch firmware can also be completed via the :ref:`batch field upgrade pop-up<docs/tuner/device-list:batch field upgrade>`.
 
-.. important:: Users should ensure they select Phoenix Pro firmware when using Phoenix Pro API, and Phoenix v5 firmware when using Phoenix v5 API. A single robot project may use both APIs simultaneously.
+.. important:: Users should ensure they select Phoenix Pro firmware when using Phoenix Pro API, and Phoenix 5 firmware when using Phoenix 5 API. A single robot project may use both APIs simultaneously.
 
 .. image:: images/selecting-firmware-version.png
    :width: 70%
