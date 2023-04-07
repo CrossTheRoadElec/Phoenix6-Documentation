@@ -46,7 +46,7 @@ In a Velocity closed loop, the gains should be configured as follows:
          slot0Configs.kV = 0.12; // A velocity target of 1 rps results in 0.12 V output
          slot0Configs.kP = 0.11; // An error of 1 rps results in 0.11 V output
          slot0Configs.kI = 0.5; // An error of 1 rps increases output by 0.5 V each second
-         slot0Configs.kD = 0.001; // An acceleration of 1 rps/s results in 0.001 V output
+         slot0Configs.kD = 0.01; // An acceleration of 1 rps/s results in 0.01 V output
 
          m_talonFX.getConfigurator().apply(slot0Configs);
 
@@ -61,7 +61,7 @@ In a Velocity closed loop, the gains should be configured as follows:
          slot0Configs.kV = 0.12; // A velocity target of 1 rps results in 0.12 V output
          slot0Configs.kP = 0.11; // An error of 1 rps results in 0.11 V output
          slot0Configs.kI = 0.5; // An error of 1 rps increases output by 0.5 V each second
-         slot0Configs.kD = 0.001; // An acceleration of 1 rps/s results in 0.001 V output
+         slot0Configs.kD = 0.01; // An acceleration of 1 rps/s results in 0.01 V output
 
          m_talonFX.GetConfigurator().Apply(slot0Configs);
 

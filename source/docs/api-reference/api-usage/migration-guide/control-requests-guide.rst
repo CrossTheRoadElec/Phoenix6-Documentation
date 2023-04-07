@@ -203,5 +203,5 @@ All control output types are supported in open-loop and closed-loop control requ
    * - Closed-loop + Voltage Compensation
      - {ClosedLoop}Voltage
 
-   * - External Closed-loop + Torque control (not supported in Phoenix 5)
+   * - Closed-loop + Torque Control (not supported in Phoenix 5)
      - {ClosedLoop}TorqueCurrentFOC

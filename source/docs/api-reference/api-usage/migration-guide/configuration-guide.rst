@@ -1,7 +1,7 @@
 Configuration
 =============
 
-Phoenix Pro simplifies the configuration process through the use of device-specific ``Configuration`` classes as well as configuration groups.
+Phoenix Pro simplifies the configuration process through the use of device-specific ``Configuration`` classes, as well as configuration groups.
 
 Applying Configs
 ----------------

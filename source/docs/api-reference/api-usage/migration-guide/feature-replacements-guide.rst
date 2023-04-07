@@ -32,9 +32,9 @@ The Talon FX ``setSensorPhase()`` method has been removed in Phoenix Pro.
 Sensor Initialization Strategy
 ------------------------------
 
-The Talon FX and CANcoder sensors are always initialized to the absolute position in Phoenix Pro.
+The Talon FX and CANcoder sensors are always initialized to their absolute position in Phoenix Pro.
 
 Velocity Measurement Period/Window
 ----------------------------------
 
-In Phoenix Pro, the velocity rolling average window in Talon FX and CANcoder has been replaced with a Kalman filter to produce velocity measurements, resulting in a less noisy signal with a minimal impact on latency. As a result, the velocity measurement period/window configs are no longer necessary in Phoenix Pro and have been removed.
+In Phoenix Pro, the velocity rolling average window in Talon FX and CANcoder has been replaced with a Kalman filter, resulting in a less noisy velocity signal with a minimal impact on latency. As a result, the velocity measurement period/window configs are no longer necessary in Phoenix Pro and have been removed.

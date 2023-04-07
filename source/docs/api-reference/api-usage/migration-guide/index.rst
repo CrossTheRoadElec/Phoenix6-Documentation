@@ -1,7 +1,7 @@
 Migration Guide
 ===============
 
-This sections serves as a "cheat sheet" of commonly-used functions in Phoenix 5 and their equivalents in Phoenix Pro.
+This section serves as a "cheat sheet" of commonly-used functions in Phoenix 5 and their equivalents in Phoenix Pro.
 
 - :doc:`configuration-guide`
    - Configuring device configs in robot code

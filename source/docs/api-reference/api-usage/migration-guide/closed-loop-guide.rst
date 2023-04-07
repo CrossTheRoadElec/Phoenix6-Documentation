@@ -38,7 +38,7 @@ Using Closed-Loop Control
          m_motor.config_kF(0, 0.05, 50);
          m_motor.config_kP(0, 0.046, 50);
          m_motor.config_kI(0, 0.0002, 50);
-         m_motor.config_kD(0, 0.42, 50);
+         m_motor.config_kD(0, 4.2, 50);
 
          // enable voltage compensation
          m_motor.configVoltageComSaturation(12);
@@ -58,7 +58,7 @@ Using Closed-Loop Control
          m_motor.Config_kF(0, 0.05, 50);
          m_motor.Config_kP(0, 0.046, 50);
          m_motor.Config_kI(0, 0.0002, 50);
-         m_motor.Config_kD(0, 0.42, 50);
+         m_motor.Config_kD(0, 4.2, 50);
 
          // enable voltage compensation
          m_motor.ConfigVoltageComSaturation(12);
@@ -86,7 +86,7 @@ Using Closed-Loop Control
          slot0Configs.kV = 0.12;
          slot0Configs.kP = 0.11;
          slot0Configs.kI = 0.5;
-         slot0Configs.kD = 0.001;
+         slot0Configs.kD = 0.01;
          m_talonFX.getConfigurator().apply(slot0Configs, 0.050);
 
          // periodic, run velocity control with slot 0 configs,
@@ -107,7 +107,7 @@ Using Closed-Loop Control
          slot0Configs.kV = 0.12;
          slot0Configs.kP = 0.11;
          slot0Configs.kI = 0.5;
-         slot0Configs.kD = 0.001;
+         slot0Configs.kD = 0.01;
          m_talonFX.GetConfigurator().Apply(slot0Configs, 50_ms);
 
          // periodic, run velocity control with slot 0 configs,
