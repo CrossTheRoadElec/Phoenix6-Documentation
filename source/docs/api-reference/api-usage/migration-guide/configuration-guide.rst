@@ -7,11 +7,10 @@ Applying Configs
 ----------------
 
 .. list-table::
-   :stub-columns: 1
    :width: 100%
    :widths: 1 99
 
-   * - v5
+   * - .. centered:: v5
      - .. tab-set::
 
          .. tab-item:: Java
@@ -38,7 +37,7 @@ Applying Configs
                m_motor.Config_kI(0, 0.0002, 50);
                m_motor.Config_kD(0, 0.42, 50);
 
-   * - Pro
+   * - .. centered:: Pro
      - .. tab-set::
 
          .. tab-item:: Java
@@ -75,11 +74,10 @@ Factory Defaulting Configs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. list-table::
-   :stub-columns: 1
    :width: 100%
    :widths: 1 99
 
-   * - v5
+   * - .. centered:: v5
      - .. tab-set::
 
          .. tab-item:: Java
@@ -98,7 +96,7 @@ Factory Defaulting Configs
                // user must remember to factory default if they configure devices in code
                m_motor.ConfigFactoryDefault();
 
-   * - Pro
+   * - .. centered:: Pro
      - .. tab-set::
 
          .. tab-item:: Java
@@ -123,11 +121,10 @@ Retrieving Configs
 ------------------
 
 .. list-table::
-   :stub-columns: 1
    :width: 100%
    :widths: 1 99
 
-   * - v5
+   * - .. centered:: v5
      - .. tab-set::
 
          .. tab-item:: Java
@@ -150,7 +147,7 @@ Retrieving Configs
                SupplyCurrentLimitConfiguration supplyCurLim{};
                m_motor.ConfigGetSupplyCurrentLimit(supplyCurLim);
 
-   * - Pro
+   * - .. centered:: Pro
      - .. tab-set::
 
          .. tab-item:: Java

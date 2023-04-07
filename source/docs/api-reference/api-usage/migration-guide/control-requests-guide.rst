@@ -7,11 +7,10 @@ Using Control Requests
 ----------------------
 
 .. list-table::
-   :stub-columns: 1
    :width: 100%
    :widths: 1 99
 
-   * - v5
+   * - .. centered:: v5
      - .. tab-set::
 
          .. tab-item:: Java
@@ -38,7 +37,7 @@ Using Control Requests
                // main robot code, command 12 V output
                m_motor.Set(ControlMode::PercentOutput, 1.0);
 
-   * - Pro
+   * - .. centered:: Pro
      - .. tab-set::
 
          .. tab-item:: Java
@@ -67,11 +66,10 @@ Follower Motors
 ^^^^^^^^^^^^^^^
 
 .. list-table::
-   :stub-columns: 1
    :width: 100%
    :widths: 1 99
 
-   * - v5
+   * - .. centered:: v5
      - .. tab-set::
 
          .. tab-item:: Java
@@ -118,7 +116,7 @@ Follower Motors
                // NOTE: if Set(), NeutralOutput(), or Disable() is ever called on
                //       the followers, they will stop following
 
-   * - Pro
+   * - .. centered:: Pro
      - .. tab-set::
 
          .. tab-item:: Java
