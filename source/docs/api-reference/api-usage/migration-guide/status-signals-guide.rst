@@ -82,8 +82,8 @@ Using Status Signals
          // synchronously wait 20 ms for new data
          rotorPosSignal.WaitForUpdate(20_ms);
 
-Changing Update Frequency
-^^^^^^^^^^^^^^^^^^^^^^^^^
+Changing Update Frequency (Status Frame Period)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 **Phoenix 5**
 
