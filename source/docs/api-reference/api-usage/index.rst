@@ -54,7 +54,7 @@ There are three major components to the Phoenix Pro API:
 - :doc:`device-specific/index`
    - Describes some device specific functionality, such as the different TalonFX control requests and how they are used.
 
-- :doc:`migration-guide`
+- :doc:`migration-guide/index`
    - A "cheat sheet" on migrating from Phoenix 5 to Phoenix Pro.
 
 .. toctree::
@@ -69,4 +69,4 @@ There are three major components to the Phoenix Pro API:
    enabling-actuators
    actuator-limits
    device-specific/index
-   migration-guide
+   migration-guide/index

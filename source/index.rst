@@ -3,9 +3,9 @@ Phoenix Pro Documentation
 
 Welcome to the Phoenix Pro documentation. Individuals looking for the `Phoenix 5` documentation may locate them `here <https://docs.ctre-phoenix.com/en/stable/>`__.
 
-The Phoenix Pro software framework allows you to control and configure your `CTR Electronics <https://store.ctr-electronics.com/>`__ Phoenix Pro Devices. Phoenix Pro represents a complete rewrite of the software framework over the existing Phoenix 5 framework. With Phoenix Pro, users have access to many new features that expand the control the user has over their device.
+The Phoenix Pro software framework allows you to control and configure your `CTR Electronics <https://store.ctr-electronics.com/>`__ Phoenix Pro Devices. Phoenix Pro represents a complete rewrite of the software framework over the existing Phoenix 5 framework. With Phoenix Pro, users have access to many new features that expand the control the user has over their devices.
 
-.. note:: A changelog containing API, Tuner and Firmware changes is available `here <https://api.ctr-electronics.com/changelog>`__ and a migration guide is available :doc:`here </docs/api-reference/api-usage/migration-guide>`.
+.. note:: A changelog containing API, Tuner and Firmware changes is available `here <https://api.ctr-electronics.com/changelog>`__, and a Phoenix 5 migration guide is available :doc:`here </docs/api-reference/api-usage/migration-guide/index>`.
 
 Why Phoenix Pro?
 ----------------

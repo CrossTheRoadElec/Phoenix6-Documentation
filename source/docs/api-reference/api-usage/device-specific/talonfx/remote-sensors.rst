@@ -1,16 +1,16 @@
 TalonFX Remote Sensors
 ======================
 
-The TalonFX supports various remote sensor types. Remote sensors allow onboard closed-loop functionality at rates faster than a traditional robot processor (~1Khz) by reading the remote sensor directly from the CAN bus. This allows supported motor controllers to execute closed-loop modes with sensor values sourced by supported sensors.
+The TalonFX supports various remote sensors. Remote sensors allow onboard closed-loop functionality at rates faster than a traditional robot processor (~1Khz) by reading the remote sensor directly from the CAN bus. This allows supported motor controllers to execute closed-loop modes with sensor values sourced by supported sensors.
 
-A list of supported remote sensors can be found in the `API docs <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/signals/FeedbackSensorSourceValue.html#RotorSensor>`__. The link provided is for Java, but is applicable to C++ as well.
+A list of supported remote sensors can be found in the API docs (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/signals/FeedbackSensorSourceValue.html#RotorSensor>`__, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/classctre_1_1phoenixpro_1_1signals_1_1_feedback_sensor_source_value.html#a979a876fbd8ed78729c94dd799327be4>`__).
 
-Remote sensors can be configured in :ref:`Tuner configs <docs/tuner/configs:tuner configs>` or via code. This document highlights how to configure a remote sensor via a robot program.
+Remote sensors can be configured using :ref:`Tuner X <docs/tuner/configs:tuner configs>` or via code. This document highlights how to configure a remote sensor in a robot program.
 
 ``RemoteCANcoder``
 ------------------
 
-Supported motor controllers will update its position and velocity whenever the CANcoder publishes its information on the CAN bus.
+A supported motor controller will update its position and velocity whenever the CANcoder publishes its information on the CAN bus.
 
 .. tab-set::
 
@@ -39,9 +39,9 @@ Supported motor controllers will update its position and velocity whenever the C
 ``FusedCANcoder``
 -----------------
 
-New in Phoenix Pro is a supported feedback sensor type called ``FusedCANcoder``. ``FusedCANcoder`` will fuse another CANcoder's information with the internal rotor, which provides the best possible position and velocity for accuracy and bandwidth. This is useful in applications such as swerve azimuth.
+New in Phoenix Pro is a feedback sensor type called ``FusedCANcoder``. ``FusedCANcoder`` will fuse another CANcoder's information with the motor's internal rotor, which provides the best possible position and velocity for accuracy and bandwidth. This is useful in applications such as swerve azimuth.
 
-``FusedCANcoder`` requires that various ``Feedback`` config group items be configured. See the below example for reference.
+``FusedCANcoder`` requires the configuration of several ``Feedback`` config group items, shown below.
 
 Full example: `Java <https://github.com/CrossTheRoadElec/PhoenixPro-Examples/blob/main/java/FusedCANcoder/src/main/java/frc/robot/Robot.java>`__, `C++ <https://github.com/CrossTheRoadElec/PhoenixPro-Examples/blob/main/cpp/FusedCANcoder/src/main/cpp/Robot.cpp>`__
 
