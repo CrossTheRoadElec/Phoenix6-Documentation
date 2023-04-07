@@ -26,11 +26,10 @@ Using Closed-Loop Control
 -------------------------
 
 .. list-table::
-   :stub-columns: 1
    :width: 100%
    :widths: 1 99
 
-   * - v5
+   * - .. centered:: v5
      - .. tab-set::
 
          .. tab-item:: Java
@@ -73,7 +72,7 @@ Using Closed-Loop Control
                m_motor.SelectProfileSlot(0, 0);
                m_motor.Set(ControlMode::Velocity, 10240);
 
-   * - Pro
+   * - .. centered:: Pro
      - .. tab-set::
 
          .. tab-item:: Java
@@ -122,11 +121,10 @@ Motion Magic
 ^^^^^^^^^^^^
 
 .. list-table::
-   :stub-columns: 1
    :width: 100%
    :widths: 1 99
 
-   * - v5
+   * - .. centered:: v5
      - .. tab-set::
 
          .. tab-item:: Java
@@ -183,7 +181,7 @@ Motion Magic
                // add 0.02 (2%) arbitrary feedforward to overcome friction
                m_motor.Set(ControlMode::MotionMagic, 409600, DemandType::ArbitraryFeedforward, 0.02);
 
-   * - Pro
+   * - .. centered:: Pro
      - .. compound::
 
          .. note:: The Motion Magic S-Curve Strength has been replaced with jerk control in Phoenix Pro.
