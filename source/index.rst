@@ -1,7 +1,7 @@
 Phoenix Pro Documentation
 =========================
 
-Welcome to the Phoenix Pro documentation. Individuals looking for the `Phoenix 5` documentation may locate them `here <https://docs.ctre-phoenix.com/en/stable/>`__.
+Welcome to the Phoenix Pro documentation. Individuals looking for `Phoenix 5` documentation may locate it `here <https://docs.ctre-phoenix.com/en/stable/>`__.
 
 The Phoenix Pro software framework allows you to control and configure your `CTR Electronics <https://store.ctr-electronics.com/>`__ Phoenix Pro Devices. Phoenix Pro represents a complete rewrite of the software framework over the existing Phoenix 5 framework. With Phoenix Pro, users have access to many new features that expand the control the user has over their devices.
 
@@ -14,22 +14,33 @@ Phoenix Pro currently offers the following features and will further expand:
 
 * :doc:`Comprehensive API </docs/api-reference/api-usage/index>`
 
-  - Device signal getters return a :doc:`StatusSignalValue </docs/api-reference/api-usage/status-signals>` object that contains methods to refresh, wait for new data, and get the value and timestamp of the signal.
+  - Device signal getters return a :doc:`StatusSignalValue </docs/api-reference/api-usage/status-signals>` object, expanding the functionality of status signals.
   - Control devices with an extensive list of flexible, strongly-typed :doc:`control request objects </docs/api-reference/api-usage/control-requests>`.
 
 * Canonical Units
 
   - Uses the popular `Units <https://github.com/nholthaus/units>`__ library for C++ and standardizes on SI units.
 
-* :ref:`Time Synchronization <docs/api-reference/api-usage/status-signals:canivore timesync>`
+* Time Base Synchronization
 
-  - Using time synchronization (when using CANivore), users can accurately determine when a signal was measured and react synchronously.
+  - Using :ref:`CANivore Timesync <docs/api-reference/api-usage/status-signals:canivore timesync>`, signals from multiple devices can be collected at the same time for synchronicity of data measurement.
+
+* `Field Oriented Control (FOC) <https://en.wikipedia.org/wiki/Vector_control_(motor)>`__
+
+  - ~15% increase in peak power.
+  - Increased torque output; faster acceleration and a higher max speed under load.
+  - Greater efficiency; the motor draws less current for the same output power, increasing battery life.
+  - Support for direct :ref:`torque control <docs/api-reference/api-usage/device-specific/talonfx/talonfx-control-intro:torquecurrentfoc>`.
 
 * Improved Device Control
 
-  - New :doc:`control modes </docs/api-reference/api-usage/device-specific/talonfx/talonfx-control-intro>` using `FOC <https://en.wikipedia.org/wiki/Vector_control_(motor)>`__ to take advantage of ~15% increased peak power.
-  - Kalman-based algorithms for velocity smoothing.
+  - New and improved :doc:`control output types </docs/api-reference/api-usage/device-specific/talonfx/talonfx-control-intro>` and :doc:`closed-loop </docs/api-reference/api-usage/device-specific/talonfx/closed-loop-requests>` configuration.
+  - Kalman-based algorithms to reduce latency while maintaining smooth data.
   - :ref:`Fuse a CANcoder <fusedcancoder>` with the motor's internal rotor, getting absolute data all the time while using the fast internal sensor for closed looping.
+
+* Free :doc:`High-Fidelity Simulation </docs/api-reference/simulation/simulation-intro>`
+
+  - Try Phoenix Pro before you buy!
 
 .. card:: CTR Electronics Blog
    :link: https://store.ctr-electronics.com/blog/
