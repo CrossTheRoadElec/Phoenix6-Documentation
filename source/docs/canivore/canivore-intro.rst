@@ -5,9 +5,9 @@ The `CANivore <https://store.ctr-electronics.com/canivore/>`__ is a multipurpose
 
 - Adds a secondary CAN FD bus to the roboRIO
 
-  - CAN FD improves upon CAN via increased device bandwidth and transfer speed. A detailed write-up is available `here <https://store.ctr-electronics.com/can-fd/>`__.
+  - `CAN FD <https://store.ctr-electronics.com/can-fd/>`__ improves upon CAN with increased device bandwidth and transfer speed.
 
-- Allows the control of CTR Electronics devices on non-roboRIO platforms.
+- Allows the control of CTR Electronics devices on :ref:`non-roboRIO platforms <docs/canivore/canivore-setup:supported systems>`.
 
 .. important:: Details on licensing your CANivore is available on the :doc:`licensing </docs/licensing/licensing>` page.
 
