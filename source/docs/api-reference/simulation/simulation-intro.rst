@@ -6,7 +6,7 @@ Supported Devices
 
 Currently, all Phoenix Pro devices are supported in simulation.
 
-.. warning:: **Multiple** CAN buses using the :ref:`CANivore API <docs/canivore/canivore-setup:canivore api>` is not supported at this time. All CAN devices will **appear on the same CAN bus**. If you wish to run your robot code in simulation, ensure devices have **unique IDs across CAN buses**.
+.. warning:: **Multiple** CAN buses using the :doc:`CANivore API </docs/canivore/canivore-api>` is not supported at this time. All CAN devices will **appear on the same CAN bus**. If you wish to run your robot code in simulation, ensure devices have **unique IDs across CAN buses**.
 
 Simulation API
 --------------
