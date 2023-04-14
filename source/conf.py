@@ -98,12 +98,12 @@ html_theme = "furo"
 #
 html_theme_options = {
     "light_css_variables": {
-        "color-brand-primary": "#84b332",
-        "color-brand-content": "#84b332",
+        "color-brand-primary": "#72a300",
+        "color-brand-content": "#72a300",
     },
     "dark_css_variables": {
-        "color-brand-primary": "#96c93d",
-        "color-brand-content": "#96c93d",
+        "color-brand-primary": "#97D700",
+        "color-brand-content": "#97D700",
     },
 }
 
