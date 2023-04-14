@@ -6,7 +6,7 @@ Installation of Phoenix Pro is comprised of a few steps
 * :ref:`Installing API <docs/installation/pro-installation:API Installation>`
 * :ref:`Installing Tuner <docs/installation/pro-installation:Tuner X Installation>`
 * :doc:`Updating Device Firmware </docs/installation/configuring-your-device>`
-* Device Licensing
+* :doc:`Device Licensing </docs/licensing/licensing>`
 
 API Installation
 ----------------
