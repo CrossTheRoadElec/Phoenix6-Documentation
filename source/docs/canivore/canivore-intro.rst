@@ -11,12 +11,29 @@ The `CANivore <https://store.ctr-electronics.com/canivore/>`__ is a multipurpose
 
 .. important:: Details on licensing your CANivore is available on the :doc:`licensing </docs/licensing/licensing>` page.
 
-Supported Platforms
--------------------
+.. grid:: 1 2 2 2
+   :gutter: 3
 
-CANivore is supported on:
+   .. grid-item-card:: Initial Setup
+      :link-type: doc
+      :link: canivore-setup
 
-* Windows 10, Windows 11.
-* Linux amd64 (Ubuntu 20.04 or higher)
-* Linux ARM 32-bit & 64-bit (Pi 3B+, Pi 4B, Jetson Nano)
-* NI roboRIO
+      Setting up a CANivore for robot projects and desktop development.
+
+   .. grid-item-card:: API Usage
+      :link-type: doc
+      :link: canivore-api
+
+      Using the CANivore with devices in API.
+
+   .. grid-item-card:: Hardware-Attached Simulation
+      :link-type: doc
+      :link: canivore-hardware-attached
+
+      Using a CANivore with hardware devices in a desktop environment.
+
+   .. grid-item-card:: Advanced Configuration
+      :link-type: doc
+      :link: canivore-config
+
+      Advanced configuration options for the CANivore.
