@@ -36,6 +36,8 @@ A supported motor controller will update its position and velocity whenever the 
 
          m_talonFX.GetConfigurator().Apply(fx_cfg);
 
+.. _fusedcancoder:
+
 ``FusedCANcoder``
 -----------------
 

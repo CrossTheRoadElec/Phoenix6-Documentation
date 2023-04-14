@@ -12,23 +12,24 @@ Why Phoenix Pro?
 
 Phoenix Pro currently offers the following features and will further expand:
 
-* :ref:`Time Synchronization <docs/api-reference/api-usage/status-signals:canivore timesync>`
+* :doc:`Comprehensive API </docs/api-reference/api-usage/index>`
 
-  - Using time synchronization (when using CANivore), users can accurately determine when a signal was measured and react synchronously.
+  - Device signal getters return a :doc:`StatusSignalValue </docs/api-reference/api-usage/status-signals>` object that contains methods to refresh, wait for new data, and get the value and timestamp of the signal.
+  - Control devices with an extensive list of flexible, strongly-typed :doc:`control request objects </docs/api-reference/api-usage/control-requests>`.
 
 * Canonical Units
 
   - Uses the popular `Units <https://github.com/nholthaus/units>`__ library for C++ and standardizes on SI units.
 
-* :doc:`Comprehensive API </docs/api-reference/api-usage/index>`
+* :ref:`Time Synchronization <docs/api-reference/api-usage/status-signals:canivore timesync>`
 
-  - Get API calls return a StatusSignalValue object that contain methods to refresh, wait for new data, and get the timestamp of the signal.
-  - Control API is performed with request-specific control objects to reduce the parameter count while maintaining clarity on what the request does.
+  - Using time synchronization (when using CANivore), users can accurately determine when a signal was measured and react synchronously.
 
-* Improved device control
+* Improved Device Control
 
-  - New control modes such as FOC (`velocity-based <https://en.wikipedia.org/wiki/Vector_control_(motor)>`__ control) to take advantage of ~15% increased peak power.
-  - Kalman based algorithms for velocity smoothing
+  - New :doc:`control modes </docs/api-reference/api-usage/device-specific/talonfx/talonfx-control-intro>` using `FOC <https://en.wikipedia.org/wiki/Vector_control_(motor)>`__ to take advantage of ~15% increased peak power.
+  - Kalman-based algorithms for velocity smoothing.
+  - :ref:`Fuse a CANcoder <fusedcancoder>` with the motor's internal rotor, getting absolute data all the time while using the fast internal sensor for closed looping.
 
 .. card:: CTR Electronics Blog
    :link: https://store.ctr-electronics.com/blog/
