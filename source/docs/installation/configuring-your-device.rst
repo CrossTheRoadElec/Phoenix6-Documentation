@@ -6,7 +6,7 @@ All CTR Electronics devices have an ID that distinguishes multiple devices of th
 .. grid:: 1 1 2 2
    :gutter: 3
 
-   .. grid-item-card:: Firmware Updating
+   .. grid-item-card:: Updating Firmware
 
       :ref:`Click here to visit the section on updating your device firmware <docs/tuner/device-details-page:field-upgrade firmware version>`
 
