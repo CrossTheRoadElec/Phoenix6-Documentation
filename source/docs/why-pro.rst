@@ -19,7 +19,7 @@ Time Base Synchronization
 -------------------------
 
 - Using :ref:`CANivore Timesync <docs/api-reference/api-usage/status-signals:canivore timesync>`, signals from all devices are sampled and published to the CAN bus at the same time.
-- API can synchronously wait for data from multiple devices to arrive.
+- API can synchronously wait for data from multiple devices on a CANivore to arrive.
 
 `Field Oriented Control (FOC) <https://en.wikipedia.org/wiki/Vector_control_(motor)>`__
 ---------------------------------------------------------------------------------------
@@ -33,10 +33,24 @@ Improved Device Control
 -----------------------
 
 - New and improved :doc:`control output types </docs/api-reference/api-usage/device-specific/talonfx/talonfx-control-intro>` and :doc:`closed-loop </docs/api-reference/api-usage/device-specific/talonfx/closed-loop-requests>` configuration.
+- Improved :ref:`Motion Magic <docs/api-reference/api-usage/device-specific/talonfx/closed-loop-requests:motion magic>` with jerk control and support for modifying the profile on the fly.
 - Kalman-based algorithms to reduce latency while maintaining smooth data.
 - :ref:`Fuse a CANcoder <fusedcancoder>` with the motor's internal rotor, getting absolute data all the time while using the fast internal sensor for closed looping.
+
+Enhanced Support for `CAN FD <https://store.ctr-electronics.com/can-fd/>`__
+---------------------------------------------------------------------------
+
+- Improved CAN FD framing further reduces any CAN bus utilization issues.
+- Larger CAN frames allow for the addition of more advanced features.
+
+New :doc:`Tuner X Self Tests </docs/tuner/self-test>`
+-----------------------------------------------------
+
+- Detailed and resolute self tests to improve debugging.
 
 Free :doc:`High-Fidelity Simulation </docs/api-reference/simulation/simulation-intro>`
 --------------------------------------------------------------------------------------
 
-- Try Phoenix Pro before you buy!
+- Simulation closely follows the behavior of real hardware.
+- Write unit-tests for your robot code, and make sure the robot works before deploying.
+- *Try Phoenix Pro before you buy!*
