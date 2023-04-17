@@ -140,7 +140,7 @@ CANivore Timesync
 
 When using `CANivore <https://store.ctr-electronics.com/canivore/>`__, the attached CAN devices will automatically synchronize their time bases. This allows devices to sample and publish their signals in a synchronized manner.
 
-Users can synchronously wait for these signals to update using ``BaseStatusSignalValue.waitForAll()`` (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/BaseStatusSignalValue.html#waitForAll(double,com.ctre.phoenixpro.BaseStatusSignalValue...)>`__, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/classctre_1_1phoenixpro_1_1_base_status_signal_value.html#a4a550332ec838b82947a7374ecd4234f>`__).
+Users can synchronously wait for these signals to update using ``BaseStatusSignalValue.waitForAll()`` (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/BaseStatusSignalValue.html#waitForAll(double,com.ctre.phoenixpro.BaseStatusSignalValue...)>`__, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/classctre_1_1phoenixpro_1_1_base_status_signal_value.html#ae9772b2fe2934d261d6daf242b9ab1de>`__).
 
 .. tip:: ``waitForAll()`` can be used with a timeout of zero to perform a non-blocking refresh on all signals passed in.
 
