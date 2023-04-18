@@ -32,7 +32,7 @@ No additional steps are required. The roboRIO comes with the ``canivore-usb`` ke
 Linux (non-FRC)
 ^^^^^^^^^^^^^^^
 
-On non-FRC Linux systems, the ``canivore-usb`` kernel module must be installed to add SocketCAN support for the CANivore. The kernel module is distributed through our APT repository. Begin with adding this repository to your APT sources.
+On non-FRC Linux systems, the ``canivore-usb`` kernel module must be installed to add SocketCAN support for the CANivore. The kernel module is distributed through our APT repository. Begin with adding the repository to your APT sources.
 
 .. code-block:: bash
 

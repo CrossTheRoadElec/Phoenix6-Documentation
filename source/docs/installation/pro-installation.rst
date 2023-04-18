@@ -27,7 +27,7 @@ The following targets are supported:
 Offline
 ^^^^^^^
 
-.. important:: Users using their CTR Electronics device outside of `FRC <https://www.firstinspires.org/robotics/frc>`__ should skip to the **Online** section of this article.
+.. important:: Users on non-Windows devices should skip to the :ref:`Online <docs/installation/pro-installation:online>` installation instructions.
 
 1. Download the `Phoenix Pro Installer <https://github.com/CrossTheRoadElec/Phoenix-Releases/releases>`__
 2. Navigate through the installer, ensuring applicable options are selected
@@ -61,9 +61,23 @@ Online
 
       .. important:: Devices on Phoenix Pro firmware **must** use the Phoenix Pro API. Device on Phoenix 5 firmware **must** use the Phoenix 5 API.
 
-   .. tab-item:: non-FRC
+   .. tab-item:: non-FRC (Linux)
 
-      Coming soon
+      Phoenix Pro is distributed through our APT repository. Begin with adding the repository to your APT sources.
+
+      .. code-block:: bash
+
+         sudo curl -s --compressed -o /usr/share/keyrings/ctr-pubkey.gpg "https://deb.ctr-electronics.com/ctr-pubkey.gpg"
+         sudo curl -s --compressed -o /etc/apt/sources.list.d/ctr<year>.list "https://deb.ctr-electronics.com/ctr<year>.list"
+
+      .. note:: ``<year>`` should be replaced with the year of Phoenix Pro software for which you have purchased licenses.
+
+      After adding the sources, Phoenix Pro can be installed and updated using the following:
+
+      .. code-block:: bash
+
+         sudo apt update
+         sudo apt install phoenix-pro
 
 Tuner X Installation
 --------------------
