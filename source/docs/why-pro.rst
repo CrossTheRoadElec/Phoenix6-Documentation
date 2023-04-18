@@ -25,7 +25,7 @@ Time Base Synchronization
 ---------------------------------------------------------------------------------------
 
 - ~15% increase in peak power.
-- Increased torque output; faster acceleration and a higher max speed under load.
+- Increased torque output; faster acceleration and higher speeds under load.
 - Greater efficiency; the motor draws less current for the same output power, increasing battery life.
 - Support for direct :ref:`torque control <docs/api-reference/api-usage/device-specific/talonfx/talonfx-control-intro:torquecurrentfoc>`.
 
