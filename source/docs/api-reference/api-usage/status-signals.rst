@@ -138,13 +138,13 @@ The timestamps of a ``StatusSignalValue`` can be retrieved by calling ``getAllTi
 CANivore Timesync
 -----------------
 
-When using `CANivore <https://store.ctr-electronics.com/canivore/>`__, the attached CAN devices will automatically synchronize their time bases. This allows devices to publish their signals in a synchronized manner.
+When using `CANivore <https://store.ctr-electronics.com/canivore/>`__, the attached CAN devices will automatically synchronize their time bases. This allows devices to sample and publish their signals in a synchronized manner.
 
-Users can synchronously wait for these signals to update using ``BaseStatusSignalValue.waitForAll()`` (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/BaseStatusSignalValue.html#waitForAll(double,com.ctre.phoenixpro.BaseStatusSignalValue...)>`__, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/classctre_1_1phoenixpro_1_1_base_status_signal_value.html#a4a550332ec838b82947a7374ecd4234f>`__).
+Users can synchronously wait for these signals to update using ``BaseStatusSignalValue.waitForAll()`` (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/BaseStatusSignalValue.html#waitForAll(double,com.ctre.phoenixpro.BaseStatusSignalValue...)>`__, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/classctre_1_1phoenixpro_1_1_base_status_signal_value.html#ae9772b2fe2934d261d6daf242b9ab1de>`__).
 
 .. tip:: ``waitForAll()`` can be used with a timeout of zero to perform a non-blocking refresh on all signals passed in.
 
-Because the devices are synchronized, time-critical signals are published on the same schedule. This combined with the ``waitForAll()`` routine means applications can considerably reduce the latency of the timesync signals. This is particularly useful for multi-device mechanisms, such as swerve odometry.
+Because the devices are synchronized, time-critical signals are sampled and published on the same schedule. This combined with the ``waitForAll()`` routine means applications can considerably reduce the latency of the timesync signals. This is particularly useful for multi-device mechanisms, such as swerve odometry.
 
 .. note:: When using a non-zero timeout, the signals passed into ``waitForAll()`` should have the same update frequency for synchronous data acquisition. This can be done by calling ``setUpdateFrequency()`` or by referring to the API documentation.
 

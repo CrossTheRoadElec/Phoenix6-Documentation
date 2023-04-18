@@ -173,10 +173,10 @@ Once the gains are configured, the Position closed loop control request can be s
          // set position to 10 rotations
          m_talonFX.SetControl(request.WithPosition(10_tr));
 
-Motion Magic
-------------
+Motion Magic®
+-------------
 
-Motion Magic is a control mode that provides the benefit of Motion Profiling without needing to generate motion profile trajectory points. When using Motion Magic, the motor will move to a target position using a motion profile, while honoring the user specified acceleration, maximum velocity (cruise velocity), and optional jerk.
+Motion Magic® is a control mode that provides the benefit of Motion Profiling without needing to generate motion profile trajectory points. When using Motion Magic®, the motor will move to a target position using a motion profile, while honoring the user specified acceleration, maximum velocity (cruise velocity), and optional jerk.
 
 The benefits of this control mode over "simple" PID position closed-looping are:
 
@@ -189,14 +189,14 @@ After gain/settings are determined, the robot controller only needs to periodica
 
 There is no general requirement to "wait for the profile to finish". However, the robot application can poll the sensor position and determine when the motion is finished if need be.
 
-Motion Magic functions be generating a trapezoidal/S-Curve velocity profile that does not exceed the specified cruise velocity, acceleration, or jerk. This is done automatically by the motor controller.
+Motion Magic® functions by generating a trapezoidal/S-Curve velocity profile that does not exceed the specified cruise velocity, acceleration, or jerk. This is done automatically by the motor controller.
 
 .. note:: If the remaining sensor distance to travel is small, the velocity may not reach cruise velocity as this would overshoot the target position. This is often referred to as a "triangle profile".
 
 .. image:: images/trapezoidal-profile.png
    :alt: Trapezoidal graph that showcases target cruise velocity and current velocity
 
-If the Motion Magic jerk is set to a nonzero value, the generated velocity profile is no longer trapezoidal, but instead is a continuous S-Curve (corner points are smoothed).
+If the Motion Magic® jerk is set to a nonzero value, the generated velocity profile is no longer trapezoidal, but instead is a continuous S-Curve (corner points are smoothed).
 
 An S-Curve profile has the following advantaged over a trapezoidal profile:
 
@@ -208,20 +208,20 @@ An S-Curve profile has the following advantaged over a trapezoidal profile:
 .. image:: images/s-curve-graph.png
    :alt: Graph showing velocity and position using s-curve profile
 
-The following parameters must be set when controlling using Motion Magic
+The following parameters must be set when controlling using Motion Magic®
 
 - Cruise Velocity - peak/cruising velocity of the motion
 - Acceleration - controls acceleration and deceleration rates during the beginning and end of motion
 - Jerk - controls jerk, which is the derivative of acceleration
 
-Using Motion Magic in API
-^^^^^^^^^^^^^^^^^^^^^^^^^
+Using Motion Magic® in API
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Motion Magic is currently supported for all base :ref:`control output types <docs/api-reference/api-usage/device-specific/talonfx/talonfx-control-intro:control output types>`. The units of the output is determined by the control output type.
+Motion Magic® is currently supported for all base :ref:`control output types <docs/api-reference/api-usage/device-specific/talonfx/talonfx-control-intro:control output types>`. The units of the output is determined by the control output type.
 
-The Motion Magic jerk, acceleration, and cruise velocity can be :doc:`configured in code </docs/api-reference/api-usage/configuration>` using a ``MotionMagicConfigs`` (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/configs/MotionMagicConfigs.html>`__, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/classctre_1_1phoenixpro_1_1configs_1_1_motion_magic_configs.html>`__) object.
+The Motion Magic® jerk, acceleration, and cruise velocity can be :doc:`configured in code </docs/api-reference/api-usage/configuration>` using a ``MotionMagicConfigs`` (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/configs/MotionMagicConfigs.html>`__, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/classctre_1_1phoenixpro_1_1configs_1_1_motion_magic_configs.html>`__) object.
 
-In Motion Magic, the gains should be configured as follows:
+In Motion Magic®, the gains should be configured as follows:
 
 - :math:`K_s` - output to overcome static friction (output)
 - :math:`K_v` - output per unit of target velocity (output/rps)
@@ -279,7 +279,9 @@ In Motion Magic, the gains should be configured as follows:
 
          m_talonFX.GetConfigurator().Apply(talonFXConfigs);
 
-Once the gains are configured, the Motion Magic request can be sent to the TalonFX. The control request object has an optional feedforward term that can be used to add an arbitrary value to the output, which can be useful to account for the effects of gravity or friction.
+.. tip:: Motion Magic® supports modifying jerk and acceleration on the fly (requires firmware version 23.6.10.1 or newer).
+
+Once the gains are configured, the Motion Magic® request can be sent to the TalonFX. The control request object has an optional feedforward term that can be used to add an arbitrary value to the output, which can be useful to account for the effects of gravity.
 
 .. tab-set::
 
