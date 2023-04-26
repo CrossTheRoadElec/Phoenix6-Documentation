@@ -6,19 +6,21 @@ Supported Systems
 
 Currently, the following systems are supported for CANivore development:
 
-- roboRIO
+- NI roboRIO
 
-- Windows 10, Windows 11 (x86-64)
+- Windows 10/11 x86-64
 
-- Linux desktop (x86-64)
+- Linux x86-64 (desktop)
+
+  - Ubuntu 22.04 or newer
+
+  - Debian Bullseye or newer
+
+- Linux ARM32 and ARM64 (Raspberry Pi, NVIDIA Jetson)
 
   - Ubuntu 20.04 or newer
 
-  - Debian Buster or newer
-
-- Raspberry Pi (Linux ARM 32-bit and 64-bit)
-
-- NVIDIA Jetson
+  - Debian Bullseye or newer
 
 .. note:: **Custom bit rates and CAN 2.0 are not supported at this time.** The parameters passed into SocketCAN are not applied by the firmware.
 

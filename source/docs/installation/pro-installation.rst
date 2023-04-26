@@ -18,11 +18,23 @@ System Requirements
 
 The following targets are supported:
 
-* Windows 10/11 x86-64
-* Linux x86-64 (Ubuntu 20.04 or higher)
-* Linux ARM 32-bit & 64-bit (Pi 3B+, Pi 4B, Jetson Nano)
-* macOS (regular simulation **only**)
 * NI roboRIO
+
+* Windows 10/11 x86-64
+
+* Linux x86-64 (desktop)
+
+  * Ubuntu 22.04 or newer
+
+  * Debian Bullseye or newer
+
+* Linux ARM32 and ARM64 (Raspberry Pi, NVIDIA Jetson)
+
+  * Ubuntu 20.04 or newer
+
+  * Debian Bullseye or newer
+
+* macOS (regular simulation **only**)
 
 Offline
 ^^^^^^^
