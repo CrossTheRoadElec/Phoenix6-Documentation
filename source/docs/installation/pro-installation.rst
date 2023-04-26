@@ -91,6 +91,8 @@ Online
          sudo apt update
          sudo apt install phoenix-pro
 
+      .. tip:: To get a robot application up and running quickly, check out our `non-FRC Linux example <https://github.com/CrossTheRoadElec/PhoenixPro-Linux-Example>`__.
+
 Tuner X Installation
 --------------------
 

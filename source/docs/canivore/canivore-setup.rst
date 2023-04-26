@@ -50,7 +50,7 @@ After adding the sources, the kernel module can be installed and updated using t
    sudo apt update
    sudo apt install canivore-usb
 
-.. tip:: To get a robot application up and running quickly, check out our `SocketCAN example <https://github.com/CrossTheRoadElec/Phoenix-Linux-SocketCAN-Example/blob/master/example.cpp>`__.
+.. tip:: To get a robot application up and running quickly, check out our `non-FRC Linux example <https://github.com/CrossTheRoadElec/PhoenixPro-Linux-Example>`__.
 
 Viewing Attached CANivores
 --------------------------
