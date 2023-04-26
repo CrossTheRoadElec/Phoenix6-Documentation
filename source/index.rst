@@ -1,34 +1,11 @@
 Phoenix Pro Documentation
 =========================
 
-Welcome to the Phoenix Pro documentation. Individuals looking for the `Phoenix 5` documentation may locate them `here <https://docs.ctre-phoenix.com/en/stable/>`__.
+Welcome to the Phoenix Pro documentation. Individuals looking for `Phoenix 5` documentation may locate it `here <https://docs.ctre-phoenix.com/en/stable/>`__.
 
 The Phoenix Pro software framework allows you to control and configure your `CTR Electronics <https://store.ctr-electronics.com/>`__ Phoenix Pro Devices. Phoenix Pro represents a complete rewrite of the software framework over the existing Phoenix 5 framework. With Phoenix Pro, users have access to many new features that expand the control the user has over their devices.
 
 .. note:: A changelog containing API, Tuner and Firmware changes is available `here <https://api.ctr-electronics.com/changelog>`__, and a Phoenix 5 migration guide is available :doc:`here </docs/api-reference/api-usage/migration-guide/index>`.
-
-Why Phoenix Pro?
-----------------
-
-Phoenix Pro currently offers the following features and will further expand:
-
-* :ref:`Time Synchronization <docs/api-reference/api-usage/status-signals:canivore timesync>`
-
-  - Using time synchronization (when using CANivore), users can accurately determine when a signal was measured and react synchronously.
-
-* Canonical Units
-
-  - Uses the popular `Units <https://github.com/nholthaus/units>`__ library for C++ and standardizes on SI units.
-
-* :doc:`Comprehensive API </docs/api-reference/api-usage/index>`
-
-  - Get API calls return a StatusSignalValue object that contain methods to refresh, wait for new data, and get the timestamp of the signal.
-  - Control API is performed with request-specific control objects to reduce the parameter count while maintaining clarity on what the request does.
-
-* Improved device control
-
-  - New control modes such as FOC (`velocity-based <https://en.wikipedia.org/wiki/Vector_control_(motor)>`__ control) to take advantage of ~15% increased peak power.
-  - Kalman based algorithms for velocity smoothing
 
 .. card:: CTR Electronics Blog
    :link: https://store.ctr-electronics.com/blog/
@@ -73,6 +50,14 @@ Phoenix Pro currently offers the following features and will further expand:
       :link-type: doc
 
       Common troubleshooting for hardware or software problems.
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Intro
+   :hidden:
+
+   self
+   docs/why-pro
 
 .. toctree::
    :maxdepth: 1

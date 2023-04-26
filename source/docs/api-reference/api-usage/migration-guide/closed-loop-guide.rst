@@ -117,8 +117,8 @@ Using Closed-Loop Control
                m_velocity.Slot = 0;
                m_motor.SetControl(m_velocity.WithVelocity(50_tps));
 
-Motion Magic
-^^^^^^^^^^^^
+Motion Magic®
+^^^^^^^^^^^^^
 
 .. list-table::
    :width: 100%
@@ -184,7 +184,7 @@ Motion Magic
    * - .. centered:: Pro
      - .. compound::
 
-         .. note:: The Motion Magic S-Curve Strength has been replaced with jerk control in Phoenix Pro.
+         .. note:: The Motion Magic® S-Curve Strength has been replaced with jerk control in Phoenix Pro.
 
          .. tab-set::
 
@@ -257,4 +257,4 @@ Motion Magic
 Motion Profiling
 ^^^^^^^^^^^^^^^^
 
-The Motion Profile Executor is not supported in the current release of Phoenix Pro. Users can use :ref:`Motion Magic <docs/api-reference/api-usage/device-specific/talonfx/closed-loop-requests:motion magic>` or run a motion profile on the robot controller.
+The Motion Profile Executor is not supported in the current release of Phoenix Pro. Users can use :ref:`Motion Magic® <docs/api-reference/api-usage/device-specific/talonfx/closed-loop-requests:motion magic®>` or run a motion profile on the robot controller.

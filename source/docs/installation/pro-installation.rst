@@ -18,8 +18,8 @@ System Requirements
 
 The following targets are supported:
 
-* Windows 10, Windows 11.
-* Linux amd64 (Ubuntu 20.04 or higher)
+* Windows 10/11 x86-64
+* Linux x86-64 (Ubuntu 20.04 or higher)
 * Linux ARM 32-bit & 64-bit (Pi 3B+, Pi 4B, Jetson Nano)
 * macOS (regular simulation **only**)
 * NI roboRIO
@@ -29,7 +29,7 @@ Offline
 
 .. important:: Users on non-Windows devices should skip to the :ref:`Online <docs/installation/pro-installation:online>` installation instructions.
 
-1. Download the `Phoenix Pro Installer <https://github.com/CrossTheRoadElec/Phoenix-Releases/releases>`__
+1. Download the `Phoenix Framework Installer <https://github.com/CrossTheRoadElec/Phoenix-Releases/releases>`__
 2. Navigate through the installer, ensuring applicable options are selected
 
 .. image:: images/framework-installer.png
@@ -84,7 +84,7 @@ Tuner X Installation
 
 Phoenix Tuner X is a modern version of the legacy Phoenix Tuner v1 application that is used to configure CTRE Phoenix CAN devices.
 
-Phoenix Tuner X is supported on both Android and Windows 10 (build 1903+) and Windows 11. Installation is available from the respective OS stores.
+Phoenix Tuner X is supported on Android, Windows 10 (build 1903+), and Windows 11. Installation is available from the respective OS stores.
 
 - Windows: https://apps.microsoft.com/store/detail/phoenix-tuner/9NVV4PWDW27Z
 - Android: https://play.google.com/store/apps/details?id=com.ctre.phoenix_tuner
