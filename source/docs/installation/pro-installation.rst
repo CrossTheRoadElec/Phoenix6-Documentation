@@ -18,16 +18,28 @@ System Requirements
 
 The following targets are supported:
 
-* Windows 10/11 x86-64
-* Linux x86-64 (Ubuntu 20.04 or higher)
-* Linux ARM 32-bit & 64-bit (Pi 3B+, Pi 4B, Jetson Nano)
-* macOS (regular simulation **only**)
 * NI roboRIO
+
+* Windows 10/11 x86-64
+
+* Linux x86-64 (desktop)
+
+  * Ubuntu 22.04 or newer
+
+  * Debian Bullseye or newer
+
+* Linux ARM32 and ARM64 (Raspberry Pi, NVIDIA Jetson)
+
+  * Ubuntu 20.04 or newer
+
+  * Debian Bullseye or newer
+
+* macOS (regular simulation **only**)
 
 Offline
 ^^^^^^^
 
-.. important:: Users using their CTR Electronics device outside of `FRC <https://www.firstinspires.org/robotics/frc>`__ should skip to the **Online** section of this article.
+.. important:: Users on non-Windows devices should skip to the :ref:`Online <docs/installation/pro-installation:online>` installation instructions.
 
 1. Download the `Phoenix Framework Installer <https://github.com/CrossTheRoadElec/Phoenix-Releases/releases>`__
 2. Navigate through the installer, ensuring applicable options are selected
@@ -61,9 +73,25 @@ Online
 
       .. important:: Devices on Phoenix Pro firmware **must** use the Phoenix Pro API. Device on Phoenix 5 firmware **must** use the Phoenix 5 API.
 
-   .. tab-item:: non-FRC
+   .. tab-item:: non-FRC (Linux)
 
-      Coming soon
+      Phoenix Pro is distributed through our APT repository. Begin with adding the repository to your APT sources.
+
+      .. code-block:: bash
+
+         sudo curl -s --compressed -o /usr/share/keyrings/ctr-pubkey.gpg "https://deb.ctr-electronics.com/ctr-pubkey.gpg"
+         sudo curl -s --compressed -o /etc/apt/sources.list.d/ctr<year>.list "https://deb.ctr-electronics.com/ctr<year>.list"
+
+      .. note:: ``<year>`` should be replaced with the year of Phoenix Pro software for which you have purchased licenses.
+
+      After adding the sources, Phoenix Pro can be installed and updated using the following:
+
+      .. code-block:: bash
+
+         sudo apt update
+         sudo apt install phoenix-pro
+
+      .. tip:: To get a robot application up and running quickly, check out our `non-FRC Linux example <https://github.com/CrossTheRoadElec/PhoenixPro-Linux-Example>`__.
 
 Tuner X Installation
 --------------------

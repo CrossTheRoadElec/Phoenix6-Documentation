@@ -5,12 +5,24 @@ Welcome to the Phoenix Pro documentation. Individuals looking for `Phoenix 5` do
 
 The Phoenix Pro software framework allows you to control and configure your `CTR Electronics <https://store.ctr-electronics.com/>`__ Phoenix Pro Devices. Phoenix Pro represents a complete rewrite of the software framework over the existing Phoenix 5 framework. With Phoenix Pro, users have access to many new features that expand the control the user has over their devices.
 
-.. note:: A changelog containing API, Tuner and Firmware changes is available `here <https://api.ctr-electronics.com/changelog>`__, and a Phoenix 5 migration guide is available :doc:`here </docs/api-reference/api-usage/migration-guide/index>`.
-
 .. card:: CTR Electronics Blog
    :link: https://store.ctr-electronics.com/blog/
 
-   For news and updates about your CTR Electronics device, please see the `blog <https://store.ctr-electronics.com/blog/>`__
+   For news and updates about your CTR Electronics device, please check out our `blog <https://store.ctr-electronics.com/blog/>`__.
+
+.. grid:: 1 2 2 2
+   :gutter: 3
+
+   .. grid-item-card:: Changelog
+      :link: https://api.ctr-electronics.com/changelog
+
+      A changelog containing API, Tuner and Firmware changes is available `here <https://api.ctr-electronics.com/changelog>`__.
+
+   .. grid-item-card:: Migration Guide
+      :link: docs/api-reference/api-usage/migration-guide/index
+      :link-type: doc
+
+      A Phoenix 5 migration guide is available :doc:`here </docs/api-reference/api-usage/migration-guide/index>`.
 
 .. grid:: 1 2 3 3
    :gutter: 3
