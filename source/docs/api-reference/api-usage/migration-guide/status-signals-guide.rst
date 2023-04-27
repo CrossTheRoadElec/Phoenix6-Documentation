@@ -134,7 +134,7 @@ Changing Update Frequency (Status Frame Period)
 Common Signals
 --------------
 
-Several signals have changed name or form in Phoenix Pro.
+Several status signals have changed name or form in Phoenix Pro.
 
 General Signals
 ^^^^^^^^^^^^^^^
@@ -172,13 +172,13 @@ Talon FX Signals
      - | ``StatorCurrent`` (motoring +, braking -)
        | ``TorqueCurrent`` (forward +, reverse -)
 
-   * - ``Inverted`` (true/false)
-     - ``AppliedRotorPolarity`` (CCW+/CW+)
+   * - ``Inverted`` (true/false, matches ``setInverted``)
+     - ``AppliedRotorPolarity`` (CCW+/CW+, typically matches ``Inverted`` config, affected by follower features)
 
    * - ``SelectedSensorPosition`` / ``SelectedSensorVelocity``
      - ``Position`` / ``Velocity``
 
-   * - ``IntegratedSensorPosition`` / ``IntegratedSensorVelocity`` (in SensorCollection)
+   * - ``IntegratedSensorPosition`` / ``IntegratedSensorVelocity`` (in ``SensorCollection``)
      - ``RotorPosition`` / ``RotorVelocity``
 
    * - ``ActiveTrajectory*`` (only Motion Magic® and the Motion Profile Executor)
