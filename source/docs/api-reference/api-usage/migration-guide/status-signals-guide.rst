@@ -175,8 +175,8 @@ Talon FX Signals
    * - ``Inverted`` (true/false; matches ``setInverted``)
      - ``AppliedRotorPolarity`` (CCW+/CW+; typically matches ``Inverted`` config, affected by follower features)
 
-   * - ``SelectedSensorPosition`` / ``SelectedSensorVelocity``
-     - ``Position`` / ``Velocity``
+   * - ``SelectedSensorPosition`` |~| / ``SelectedSensorVelocity``
+     - ``Position`` |~| / ``Velocity``
 
    * - ``IntegratedSensor*`` (in ``SensorCollection``)
      - ``Rotor*``
@@ -184,8 +184,8 @@ Talon FX Signals
    * - ``ActiveTrajectory*`` (only Motion Magic® and the Motion Profile Executor)
      - ``ClosedLoopReference*`` (all closed-loop control requests)
 
-   * - ``IsFwdLimitSwitchClosed`` / ``IsRevLimitSwitchClosed`` (true/false)
-     - ``GetForwardLimit`` / ``GetReverseLimit`` (Open/Closed)
+   * - ``IsFwdLimitSwitchClosed`` |~| / ``IsRevLimitSwitchClosed`` (true/false)
+     - ``GetForwardLimit`` |~| / ``GetReverseLimit`` (Open/Closed)
 
 CANcoder Signals
 ^^^^^^^^^^^^^^^^
@@ -226,3 +226,7 @@ Pigeon 2 Signals
 
    * - ``RawMagnetometer``
      - ``RawMagneticField*``
+
+.. This is a non-breaking space; ~ comes from LaTeX syntax
+.. |~| unicode:: 0xA0 
+   :trim:
