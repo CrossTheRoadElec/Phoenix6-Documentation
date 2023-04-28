@@ -172,8 +172,8 @@ Talon FX Signals
      - | ``StatorCurrent`` (motoring +, braking -)
        | ``TorqueCurrent`` (forward +, reverse -)
 
-   * - ``Inverted`` (true/false, matches ``setInverted``)
-     - ``AppliedRotorPolarity`` (CCW+/CW+, typically matches ``Inverted`` config, affected by follower features)
+   * - ``Inverted`` (true/false; matches ``setInverted``)
+     - ``AppliedRotorPolarity`` (CCW+/CW+; typically matches ``Inverted`` config, affected by follower features)
 
    * - ``SelectedSensorPosition`` / ``SelectedSensorVelocity``
      - ``Position`` / ``Velocity``
@@ -203,7 +203,7 @@ CANcoder Signals
 Pigeon 2 Signals
 ^^^^^^^^^^^^^^^^
 
-.. note:: Many Pigeon 2 signal getters in Phoenix 5 fill a double array, such as ``YawPitchRoll``. In Phoenix Pro, these signals have been broken up into their individual components, such as ``Yaw``, ``Pitch``, and ``Roll``.
+.. note:: Many Pigeon 2 signal getters in Phoenix 5 fill an array, such as ``YawPitchRoll``. In Phoenix Pro, these signals have been broken up into their individual components, such as ``Yaw``, ``Pitch``, and ``Roll``.
 
 .. list-table::
    :header-rows: 1
