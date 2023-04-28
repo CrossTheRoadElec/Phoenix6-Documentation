@@ -6,19 +6,21 @@ Supported Systems
 
 Currently, the following systems are supported for CANivore development:
 
-- roboRIO
+- NI roboRIO
 
-- Windows 10, Windows 11 (x86-64)
+- Windows 10/11 x86-64
 
-- Linux desktop (x86-64)
+- Linux x86-64 (desktop)
+
+  - Ubuntu 22.04 or newer
+
+  - Debian Bullseye or newer
+
+- Linux ARM32 and ARM64 (Raspberry Pi, NVIDIA Jetson)
 
   - Ubuntu 20.04 or newer
 
-  - Debian Buster or newer
-
-- Raspberry Pi (Linux ARM 32-bit and 64-bit)
-
-- NVIDIA Jetson
+  - Debian Bullseye or newer
 
 .. note:: **Custom bit rates and CAN 2.0 are not supported at this time.** The parameters passed into SocketCAN are not applied by the firmware.
 
@@ -32,7 +34,7 @@ No additional steps are required. The roboRIO comes with the ``canivore-usb`` ke
 Linux (non-FRC)
 ^^^^^^^^^^^^^^^
 
-On non-FRC Linux systems, the ``canivore-usb`` kernel module must be installed to add SocketCAN support for the CANivore. The kernel module is distributed through our APT repository. Begin with adding this repository to your APT sources.
+On non-FRC Linux systems, the ``canivore-usb`` kernel module must be installed to add SocketCAN support for the CANivore. The kernel module is distributed through our APT repository. Begin with adding the repository to your APT sources.
 
 .. code-block:: bash
 
@@ -48,7 +50,7 @@ After adding the sources, the kernel module can be installed and updated using t
    sudo apt update
    sudo apt install canivore-usb
 
-.. tip:: To get a robot application up and running quickly, check out our `SocketCAN example <https://github.com/CrossTheRoadElec/Phoenix-Linux-SocketCAN-Example/blob/master/example.cpp>`__.
+.. tip:: To get a robot application up and running quickly, check out our `non-FRC Linux example <https://github.com/CrossTheRoadElec/PhoenixPro-Linux-Example>`__.
 
 Viewing Attached CANivores
 --------------------------
