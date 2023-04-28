@@ -169,7 +169,7 @@ Talon FX Signals
      - ``DutyCycle``
 
    * - ``StatorCurrent``
-     - | ``StatorCurrent`` (motoring +, braking -)
+     - | ``StatorCurrent`` (motoring +, braking -),
        | ``TorqueCurrent`` (forward +, reverse -)
 
    * - ``Inverted`` (true/false; matches ``setInverted``)
@@ -178,8 +178,8 @@ Talon FX Signals
    * - ``SelectedSensorPosition`` / ``SelectedSensorVelocity``
      - ``Position`` / ``Velocity``
 
-   * - ``IntegratedSensorPosition`` / ``IntegratedSensorVelocity`` (in ``SensorCollection``)
-     - ``RotorPosition`` / ``RotorVelocity``
+   * - ``IntegratedSensor*`` (in ``SensorCollection``)
+     - ``Rotor*``
 
    * - ``ActiveTrajectory*`` (only Motion Magic® and the Motion Profile Executor)
      - ``ClosedLoopReference*`` (all closed-loop control requests)
@@ -213,16 +213,16 @@ Pigeon 2 Signals
      - Phoenix Pro
 
    * - ``RawGyro``
-     - ``AngularVelocityX`` / ``AngularVelocityY`` / ``AngularVelocityZ``
+     - ``AngularVelocity*``
 
    * - ``6dQuaternion``
-     - ``QuatW`` / ``QuatX`` / ``QuatY`` / ``QuatZ``
+     - ``Quat*``
 
    * - ``BiasedAccelerometer``
-     - ``AccelerationX`` / ``AccelerationY`` / ``AccelerationZ``
+     - ``Acceleration*``
 
    * - ``BiasedMagnetometer``
-     - ``MagneticFieldX`` / ``MagneticFieldY`` / ``MagneticFieldZ``
+     - ``MagneticField*``
 
    * - ``RawMagnetometer``
-     - ``RawMagneticFieldX`` / ``RawMagneticFieldY`` / ``RawMagneticFieldZ``
+     - ``RawMagneticField*``
