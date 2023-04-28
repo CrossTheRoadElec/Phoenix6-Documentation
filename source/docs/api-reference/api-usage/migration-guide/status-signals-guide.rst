@@ -149,8 +149,8 @@ General Signals
    * - ``BusVoltage``
      - ``SupplyVoltage``
 
-   * - ``Faults`` / ``StickyFaults`` (fills an object)
-     - ``Fault_*`` / ``StickyFault_*`` (individual faults)
+   * - ``Faults`` |~| / ``StickyFaults`` (fills an object)
+     - ``Fault_*`` |~| / ``StickyFault_*`` (individual faults)
 
    * - ``FirmwareVersion``
      - ``Version``
@@ -169,8 +169,8 @@ Talon FX Signals
      - ``DutyCycle``
 
    * - ``StatorCurrent``
-     - | ``StatorCurrent`` (motoring +, braking -),
-       | ``TorqueCurrent`` (forward +, reverse -)
+     - | ``StatorCurrent`` (motoring |~| +, braking |~| -),
+       | ``TorqueCurrent`` (forward |~| +, reverse |~| -)
 
    * - ``Inverted`` (true/false; matches ``setInverted``)
      - ``AppliedRotorPolarity`` (CCW+/CW+; typically matches ``Inverted`` config, affected by follower features)
@@ -178,7 +178,7 @@ Talon FX Signals
    * - ``SelectedSensorPosition`` |~| / ``SelectedSensorVelocity``
      - ``Position`` |~| / ``Velocity``
 
-   * - ``IntegratedSensor*`` (in ``SensorCollection``)
+   * - ``IntegratedSensor*`` (in |~| ``SensorCollection``)
      - ``Rotor*``
 
    * - ``ActiveTrajectory*`` (only Motion Magic® and the Motion Profile Executor)
@@ -228,5 +228,5 @@ Pigeon 2 Signals
      - ``RawMagneticField*``
 
 .. This is a non-breaking space; ~ comes from LaTeX syntax
-.. |~| unicode:: 0xA0 
+.. |~| unicode:: 0xA0
    :trim:
