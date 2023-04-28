@@ -38,3 +38,8 @@ Velocity Measurement Period/Window
 ----------------------------------
 
 In Phoenix Pro, the velocity rolling average window in Talon FX and CANcoder has been replaced with a Kalman filter, resulting in a less noisy velocity signal with a minimal impact on latency. As a result, the velocity measurement period/window configs are no longer necessary in Phoenix Pro and have been removed.
+
+Integral Zone
+-------------
+
+Phoenix Pro automatically prevents integral windup in closed-loop controls. As a result, the Integral Zone config is no longer necessary and has been removed.
