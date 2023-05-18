@@ -78,6 +78,7 @@ The Phoenix 6 software framework allows you to control and configure your `CTR E
 
    docs/migration/new-to-phoenix
    docs/migration/migration-guide/index
+   docs/migration/canbus-utilization
 
 .. toctree::
    :maxdepth: 1
