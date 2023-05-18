@@ -1,7 +1,7 @@
 Status Signals
 ==============
 
-Phoenix Pro expands the functionality of status signals with the introduction of the ``StatusSignalValue`` (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/StatusSignalValue.html>`__, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/classctre_1_1phoenixpro_1_1_status_signal_value.html>`__).
+Phoenix 6 expands the functionality of status signals with the introduction of the ``SignalValue`` (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/SignalValue.html>`__, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/classctre_1_1phoenixpro_1_1_status_signal_value.html>`__).
 
 Using Status Signals
 --------------------

@@ -3,7 +3,7 @@ Control Requests
 
 Control Requests represent the **output** of a device. A list of control requests can be found in the API docs (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/controls/package-summary.html>`__, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/namespacectre_1_1phoenixpro_1_1controls.html>`__).
 
-.. note:: Phoenix Pro utilizes the `C++ units library <https://docs.wpilib.org/en/stable/docs/software/basic-programming/cpp-units.html>`__ when applicable.
+.. note:: Phoenix 6 utilizes the `C++ units library <https://docs.wpilib.org/en/stable/docs/software/basic-programming/cpp-units.html>`__ when applicable.
 
 Applying a Control Request
 --------------------------

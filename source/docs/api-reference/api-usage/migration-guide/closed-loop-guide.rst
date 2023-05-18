@@ -1,14 +1,14 @@
 Closed-Loop Control
 ===================
 
-Phoenix Pro enhances the experience of using onboard closed-loop control through the use of standardized units and a variety of control output types.
+Phoenix 6 enhances the experience of using onboard closed-loop control through the use of standardized units and a variety of control output types.
 
 Closed Loop Gains
 -----------------
 
-These tables are for translating Phoenix 5 gains to Phoenix Pro DutyCycle gains.
+These tables are for translating Phoenix 5 gains to Phoenix 6 DutyCycle gains.
 
-.. note:: There are other :ref:`control output types <docs/api-reference/api-usage/device-specific/talonfx/talonfx-control-intro:control output types>` in Phoenix Pro that will change the magnitude of the gains.
+.. note:: There are other :ref:`control output types <docs/api-reference/api-usage/device-specific/talonfx/talonfx-control-intro:control output types>` in Phoenix 6 that will change the magnitude of the gains.
 
 Position (DutyCycle)
 ^^^^^^^^^^^^^^^^^^^^

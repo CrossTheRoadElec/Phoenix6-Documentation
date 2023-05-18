@@ -1,7 +1,7 @@
 Control Requests
 ================
 
-Phoenix Pro provides an extensive list of flexible control modes through the use of strongly-typed control requests.
+Phoenix 6 provides an extensive list of flexible control modes through the use of strongly-typed control requests.
 
 Using Control Requests
 ----------------------

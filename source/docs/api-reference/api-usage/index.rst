@@ -3,12 +3,12 @@
 API Usage
 =========
 
-This section serves to provide basic API usage for the Phoenix Pro API. For full details, please visit the API docs (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/>`__, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/>`__).
+This section serves to provide basic API usage for the Phoenix 6 API. For full details, please visit the API docs (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/>`__, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/>`__).
 
-.. important:: While Phoenix Pro and Phoenix 5 devices may exist on the same CAN bus and same robot project, each robot project **must** use the API tied to the device firmware version.
-   This means Phoenix 5 devices **must** use the Phoenix 5 API, and Phoenix Pro devices **must** use the Phoenix Pro API.
+.. important:: While Phoenix 6 and Phoenix 5 devices may exist on the same CAN bus and same robot project, each robot project **must** use the API tied to the device firmware version.
+   This means Phoenix 5 devices **must** use the Phoenix 5 API, and Phoenix 6 devices **must** use the Phoenix 6 API.
 
-There are three major components to the Phoenix Pro API:
+There are three major components to the Phoenix 6 API:
 
 .. grid:: 1 2 3 3
 
@@ -31,7 +31,7 @@ There are three major components to the Phoenix Pro API:
       Signals represent **data retrieved** from a device. This can be velocity, position, yaw, pitch, roll, temperature, etc.
 
 - :doc:`api-overview`
-   - Details a high level overview of what makes up the Phoenix Pro API.
+   - Details a high level overview of what makes up the Phoenix 6 API.
 
 - :doc:`configuration`
    - Describes configuring device configs via code.

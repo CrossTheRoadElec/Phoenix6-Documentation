@@ -1,12 +1,12 @@
-Why Phoenix Pro?
-================
+Why Phoenix 6?
+==============
 
-Phoenix Pro currently offers the following features and will further expand.
+Phoenix 6 currently offers the following features and will further expand.
 
 :doc:`Comprehensive API </docs/api-reference/api-usage/index>`
 --------------------------------------------------------------
 
-- Device signal getters return a :doc:`StatusSignalValue </docs/api-reference/api-usage/status-signals>` object, expanding the functionality of status signals.
+- Device signal getters return a :doc:`SignalValue </docs/api-reference/api-usage/status-signals>` object, expanding the functionality of status signals.
 - Control devices with an extensive list of flexible, strongly-typed :doc:`control request objects </docs/api-reference/api-usage/control-requests>`.
 
 Canonical Units
@@ -18,11 +18,15 @@ Canonical Units
 Time Base Synchronization
 -------------------------
 
+.. note:: This feature requires the device to be :doc:`Pro licenses </docs/licensing/licensing>`
+
 - Using :ref:`CANivore Timesync <docs/api-reference/api-usage/status-signals:canivore timesync>`, signals from all devices are sampled and published to the CAN bus at the same time.
 - API can synchronously wait for data from multiple devices on a CANivore to arrive.
 
 `Field Oriented Control (FOC) <https://en.wikipedia.org/wiki/Vector_control_(motor)>`__
 ---------------------------------------------------------------------------------------
+
+.. note:: This feature requires the device to be :doc:`Pro licenses </docs/licensing/licensing>`
 
 - ~15% increase in peak power.
 - Increased torque output; faster acceleration and higher speeds under load.
@@ -35,7 +39,7 @@ Improved Device Control
 - New and improved :doc:`control output types </docs/api-reference/api-usage/device-specific/talonfx/talonfx-control-intro>` and :doc:`closed-loop </docs/api-reference/api-usage/device-specific/talonfx/closed-loop-requests>` configuration.
 - Improved :ref:`Motion Magic® <docs/api-reference/api-usage/device-specific/talonfx/closed-loop-requests:motion magic®>` with jerk control and support for modifying the profile on the fly.
 - Kalman-based algorithms to reduce latency while maintaining smooth data.
-- :ref:`Fuse a CANcoder <fusedcancoder>` with the motor's internal rotor, getting absolute data all the time while using the fast internal sensor for closed looping.
+- :ref:`Fuse a CANcoder <fusedcancoder>` (requires Pro) with the motor's internal rotor, getting absolute data all the time while using the fast internal sensor for closed looping.
 
 Enhanced Support for `CAN FD <https://store.ctr-electronics.com/can-fd/>`__
 ---------------------------------------------------------------------------
@@ -53,4 +57,3 @@ Free :doc:`High-Fidelity Simulation </docs/api-reference/simulation/simulation-i
 
 - Simulation closely follows the behavior of real hardware.
 - Write unit-tests for your robot code, and make sure the robot works before deploying.
-- *Try Phoenix Pro before you buy!*

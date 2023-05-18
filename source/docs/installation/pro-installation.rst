@@ -1,7 +1,7 @@
 Installing Phoenix Pro
 ======================
 
-Installation of Phoenix Pro is comprised of a few steps
+Installation of Phoenix 6 is comprised of a few steps
 
 * :ref:`Installing API <docs/installation/pro-installation:API Installation>`
 * :ref:`Installing Tuner <docs/installation/pro-installation:Tuner X Installation>`
@@ -11,7 +11,7 @@ Installation of Phoenix Pro is comprised of a few steps
 API Installation
 ----------------
 
-Phoenix Pro currently supports Java and C++ for development.
+Phoenix 6 currently supports Java and C++ for development.
 
 System Requirements
 ^^^^^^^^^^^^^^^^^^^
@@ -55,36 +55,36 @@ Online
 
 .. tab-set::
 
-   .. tab-item:: FRC (Pro Only)
+   .. tab-item:: FRC (v6 Only)
 
-      .. important:: This vendordep is for robot projects that are **only** using Phoenix Pro licensed devices.
-
-      Paste the following URL in `WPILib VS Code <https://docs.wpilib.org/en/stable/docs/software/vscode-overview/3rd-party-libraries.html#libraries>`__ :guilabel:`Install New Libraries (Online)`
-
-      - ``https://maven.ctr-electronics.com/release/com/ctre/phoenixpro/PhoenixPro-frc2023-latest.json``
-
-   .. tab-item:: FRC (Pro & Phoenix 5)
-
-      .. important:: This vendordep is for robot projects that are using **both** Phoenix Pro licensed devices & Phoenix 5 devices.
+      .. important:: This vendordep is for robot projects that are **only** using devices with Phoenix 6 firmware.
 
       Paste the following URL in `WPILib VS Code <https://docs.wpilib.org/en/stable/docs/software/vscode-overview/3rd-party-libraries.html#libraries>`__ :guilabel:`Install New Libraries (Online)`
 
-      - ``https://maven.ctr-electronics.com/release/com/ctre/phoenixpro/PhoenixProAnd5-frc2023-latest.json``
+      - ``https://maven.ctr-electronics.com/release/com/ctre/phoenix6/Phoenix6-frc2023-latest.json``
 
-      .. important:: Devices on Phoenix Pro firmware **must** use the Phoenix Pro API. Device on Phoenix 5 firmware **must** use the Phoenix 5 API.
+   .. tab-item:: FRC (v6 & Phoenix 5)
+
+      .. important:: This vendordep is for robot projects that are using **both** Phoenix 6 devices & Phoenix 5 devices.
+
+      Paste the following URL in `WPILib VS Code <https://docs.wpilib.org/en/stable/docs/software/vscode-overview/3rd-party-libraries.html#libraries>`__ :guilabel:`Install New Libraries (Online)`
+
+      - ``https://maven.ctr-electronics.com/release/com/ctre/phoenix6/Phoenix6And5-frc2023-latest.json``
+
+      .. important:: Devices on Phoenix 6 firmware **must** use the Phoenix 6 API. Device on Phoenix 5 firmware **must** use the Phoenix 5 API.
 
    .. tab-item:: non-FRC (Linux)
 
-      Phoenix Pro is distributed through our APT repository. Begin with adding the repository to your APT sources.
+      Phoenix 6 is distributed through our APT repository. Begin with adding the repository to your APT sources.
 
       .. code-block:: bash
 
          sudo curl -s --compressed -o /usr/share/keyrings/ctr-pubkey.gpg "https://deb.ctr-electronics.com/ctr-pubkey.gpg"
          sudo curl -s --compressed -o /etc/apt/sources.list.d/ctr<year>.list "https://deb.ctr-electronics.com/ctr<year>.list"
 
-      .. note:: ``<year>`` should be replaced with the year of Phoenix Pro software for which you have purchased licenses.
+      .. note:: ``<year>`` should be replaced with the year of Phoenix 6 software for which you have purchased licenses.
 
-      After adding the sources, Phoenix Pro can be installed and updated using the following:
+      After adding the sources, Phoenix 6 can be installed and updated using the following:
 
       .. code-block:: bash
 

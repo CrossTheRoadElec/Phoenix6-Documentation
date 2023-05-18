@@ -11,6 +11,29 @@ Additionally, CANivore is supported for licensing. When a CANivore is licensed, 
 
 .. important:: All license activation and verification features are only available in **Phoenix Tuner X**. Phoenix Tuner v1 does not support licensing actions.
 
+Pro Exclusive Features
+----------------------
+
+Some features in Phoenix 6 require the device to be Pro licensed. A breakdown of features that require licensing is available below.
+
++-------------------------------+-----------+-------------+
+| Feature                       | Phoenix 6 | Phoenix Pro |
++===============================+===========+=============+
+| Canonical Units               | x         |             |
+| Improved Bus Utilization      | x         |             |
+| CANcoder Always Absolutely    | x         |             |
+| Kalman-based Velocity         | x         |             |
+| Synchronous Wait for Data     | x         |             |
+| System + CANivore Timestamps  | x         |             |
+| Explicit Control Requests     | x         |             |
+| Improved Self-Test Snapshot   | x         |             |
+| Tuner X Improved Plotting     | x         |             |
+| Time-Synced Signal Publishing |           | x           |
+| Field Oriented Control (FOC)  |           | x           |
+| CAN Device Timestamps         |           | x           |
+| Fused CANcoder + TalonFX      |           | x           |
++-------------------------------+-----------+-------------+
+
 Purchasing a License
 --------------------
 

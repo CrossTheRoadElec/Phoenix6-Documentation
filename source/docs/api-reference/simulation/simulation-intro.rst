@@ -4,7 +4,7 @@ Introduction to Simulation
 Supported Devices
 -----------------
 
-Currently, all Phoenix Pro devices are supported in simulation.
+Currently, all Phoenix 6 devices are supported in simulation.
 
 .. warning:: **Multiple** CAN buses using the :doc:`CANivore API </docs/canivore/canivore-api>` is not supported at this time. All CAN devices will **appear on the same CAN bus**. If you wish to run your robot code in simulation, ensure devices have **unique IDs across CAN buses**.
 
@@ -29,7 +29,7 @@ Each supported device has a device-specific ``SimState`` object that can be used
 
          auto& talonFXSim = m_talonFX.GetSimState();
 
-.. note:: Phoenix Pro utilizes the `C++ units library <https://docs.wpilib.org/en/stable/docs/software/basic-programming/cpp-units.html>`__ when applicable.
+.. note:: Phoenix 6 utilizes the `C++ units library <https://docs.wpilib.org/en/stable/docs/software/basic-programming/cpp-units.html>`__ when applicable.
 
 Orientation
 ^^^^^^^^^^^

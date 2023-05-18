@@ -1,9 +1,11 @@
-Phoenix Pro Documentation
+Phoenix 6 Documentation
 =========================
 
-Welcome to the Phoenix Pro documentation. Individuals looking for `Phoenix 5` documentation may locate it `here <https://docs.ctre-phoenix.com/en/stable/>`__.
+Welcome to the Phoenix 6 documentation. Individuals looking for `Phoenix 5` documentation may locate it `here <https://docs.ctre-phoenix.com/en/stable/>`__.
 
-The Phoenix Pro software framework allows you to control and configure your `CTR Electronics <https://store.ctr-electronics.com/>`__ Phoenix Pro Devices. Phoenix Pro represents a complete rewrite of the software framework over the existing Phoenix 5 framework. With Phoenix Pro, users have access to many new features that expand the control the user has over their devices.
+The Phoenix 6 software framework allows you to control and configure your `CTR Electronics <https://store.ctr-electronics.com/>`__ Phoenix 6 Devices. Phoenix 6 represents a complete rewrite of the software framework over the existing Phoenix 5 framework. With Phoenix 6, users have access to many new features that expand the control the user has over their devices.
+
+.. tip:: User's looking for a detailed breakdown of what features require licensing can find that information in the :ref:`licensing article <docs/licensing/licensing:Pro Exclusive Features>`.
 
 .. card:: CTR Electronics Blog
    :link: https://store.ctr-electronics.com/blog/
@@ -69,7 +71,7 @@ The Phoenix Pro software framework allows you to control and configure your `CTR
    :hidden:
 
    self
-   docs/why-pro
+   docs/why-phoenix
 
 .. toctree::
    :maxdepth: 1

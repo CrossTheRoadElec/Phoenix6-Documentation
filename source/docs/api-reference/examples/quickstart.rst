@@ -35,10 +35,10 @@ The ``TalonFX`` motor controller constructor (`Java <https://api.ctr-electronics
          private:
             static constexpr char const *kCANBus{"canivore"};
 
-            ctre::phoenixpro::hardware::TalonFX m_leftLeader{0, kCANBus};
-            ctre::phoenixpro::hardware::TalonFX m_rightLeader{1, kCANBus};
-            ctre::phoenixpro::hardware::TalonFX m_leftFollower{2, kCANBus};
-            ctre::phoenixpro::hardware::TalonFX m_rightFollower{3, kCANBus};
+            ctre::phoenix6::hardware::TalonFX m_leftLeader{0, kCANBus};
+            ctre::phoenix6::hardware::TalonFX m_rightLeader{1, kCANBus};
+            ctre::phoenix6::hardware::TalonFX m_leftFollower{2, kCANBus};
+            ctre::phoenix6::hardware::TalonFX m_rightFollower{3, kCANBus};
          }
 
 Configure Followers & Inverts
@@ -82,7 +82,7 @@ In a traditional robot drivetrain, there are two motors attached to each horizon
 
          #include "Robot.h"
 
-         using namespace ctre::phoenixpro;
+         using namespace ctre::phoenix6;
 
          void Robot::RobotInit() {
             // start with factory-default configs
@@ -165,7 +165,7 @@ Full Example
 
          #include "Robot.h"
 
-         using namespace ctre::phoenixpro;
+         using namespace ctre::phoenix6;
 
          void Robot::RobotInit() {
             // start with factory-default configs
@@ -206,12 +206,12 @@ Full Example
          private:
             static constexpr char const *kCANBus{"canivore"};
 
-            ctre::phoenixpro::hardware::TalonFX m_leftLeader{0, kCANBus};
-            ctre::phoenixpro::hardware::TalonFX m_rightLeader{1, kCANBus};
-            ctre::phoenixpro::hardware::TalonFX m_leftFollower{2, kCANBus};
-            ctre::phoenixpro::hardware::TalonFX m_rightFollower{3, kCANBus};
+            ctre::phoenix6::hardware::TalonFX m_leftLeader{0, kCANBus};
+            ctre::phoenix6::hardware::TalonFX m_rightLeader{1, kCANBus};
+            ctre::phoenix6::hardware::TalonFX m_leftFollower{2, kCANBus};
+            ctre::phoenix6::hardware::TalonFX m_rightFollower{3, kCANBus};
 
-            ctre::phoenixpro::controls::DutyCycleOut m_leftOut{0};
-            ctre::phoenixpro::controls::DutyCycleOut m_rightOut{0};
+            ctre::phoenix6::controls::DutyCycleOut m_leftOut{0};
+            ctre::phoenix6::controls::DutyCycleOut m_rightOut{0};
 
             frc::XboxController m_driverJoy{0};

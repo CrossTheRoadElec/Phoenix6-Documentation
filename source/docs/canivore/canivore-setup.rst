@@ -41,7 +41,7 @@ On non-FRC Linux systems, the ``canivore-usb`` kernel module must be installed t
    sudo curl -s --compressed -o /usr/share/keyrings/ctr-pubkey.gpg "https://deb.ctr-electronics.com/ctr-pubkey.gpg"
    sudo curl -s --compressed -o /etc/apt/sources.list.d/ctr<year>.list "https://deb.ctr-electronics.com/ctr<year>.list"
 
-.. note:: ``<year>`` should be replaced with the year of Phoenix Pro software for which you have purchased licenses.
+.. note:: ``<year>`` should be replaced with the year of Phoenix 6 software for which you have purchased licenses.
 
 After adding the sources, the kernel module can be installed and updated using the following:
 
