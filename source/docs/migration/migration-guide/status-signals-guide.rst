@@ -1,7 +1,7 @@
 Status Signals
 ==============
 
-Phoenix 6 expands the functionality of status signals with the introduction of the ``SignalValue`` (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/SignalValue.html>`__, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/classctre_1_1phoenixpro_1_1_status_signal_value.html>`__).
+Phoenix 6 expands the functionality of status signals with the introduction of the ``StatusSignal`` (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/StatusSignal.html>`__, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/classctre_1_1phoenixpro_1_1_status_signal_value.html>`__).
 
 Using Status Signals
 --------------------
@@ -129,12 +129,12 @@ Changing Update Frequency (Status Frame Period)
                // slow down the position signal to 5 Hz
                m_talonFX.GetPosition().SetUpdateFrequency(5_Hz);
 
-.. important:: Currently in Phoenix Pro, when different status signal frequencies are specified for signals that share a status frame, the last specified frequency is applied to the status frame. As a result, users should apply the slowest status frame frequencies first and the fastest frequencies last.
+.. important:: Currently in Phoenix 6, when different status signal frequencies are specified for signals that share a status frame, the last specified frequency is applied to the status frame. As a result, users should apply the slowest status frame frequencies first and the fastest frequencies last.
 
 Common Signals
 --------------
 
-Several status signals have changed name or form in Phoenix Pro.
+Several status signals have changed name or form in Phoenix 6.
 
 General Signals
 ^^^^^^^^^^^^^^^
@@ -144,7 +144,7 @@ General Signals
    :width: 100%
 
    * - Phoenix 5
-     - Phoenix Pro
+     - Phoenix 6
 
    * - ``BusVoltage``
      - ``SupplyVoltage``
@@ -163,7 +163,7 @@ Talon FX Signals
    :width: 100%
 
    * - Phoenix 5
-     - Phoenix Pro
+     - Phoenix 6
 
    * - ``MotorOutputPercent``
      - ``DutyCycle``
@@ -195,7 +195,7 @@ CANcoder Signals
    :width: 100%
 
    * - Phoenix 5
-     - Phoenix Pro
+     - Phoenix 6
 
    * - ``MagnetFieldStrength``
      - ``MagnetHealth``
@@ -203,14 +203,14 @@ CANcoder Signals
 Pigeon 2 Signals
 ^^^^^^^^^^^^^^^^
 
-.. note:: Many Pigeon 2 signal getters in Phoenix 5 fill an array, such as ``YawPitchRoll``. In Phoenix Pro, these signals have been broken up into their individual components, such as ``Yaw``, ``Pitch``, and ``Roll``.
+.. note:: Many Pigeon 2 signal getters in Phoenix 5 fill an array, such as ``YawPitchRoll``. In Phoenix 6, these signals have been broken up into their individual components, such as ``Yaw``, ``Pitch``, and ``Roll``.
 
 .. list-table::
    :header-rows: 1
    :width: 100%
 
    * - Phoenix 5
-     - Phoenix Pro
+     - Phoenix 6
 
    * - ``RawGyro``
      - ``AngularVelocity*``

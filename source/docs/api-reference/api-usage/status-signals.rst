@@ -5,14 +5,14 @@ Signals represent live data reported by a device; these can be yaw, position, et
 To make use of the live data, users need to know the value, timestamp, latency, units, and error condition of the data.
 Additionally, users may need to synchronize with fresh data to minimize latency.
 
-``SignalValue``
+``StatusSignal``
 ---------------------
 
-The ``SignalValue`` (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/SignalValue.html>`__, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/classctre_1_1phoenixpro_1_1_status_signal_value.html>`__) is a signal object that provides APIs to address all of the requirements listed above.
+The ``StatusSignal`` (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/StatusSignal.html>`__, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/classctre_1_1phoenixpro_1_1_status_signal_value.html>`__) is a signal object that provides APIs to address all of the requirements listed above.
 
-The device object provides getters for all available signals. Each getter returns a ``SignalValue`` that is typed appropriately for the signal.
+The device object provides getters for all available signals. Each getter returns a ``StatusSignal`` that is typed appropriately for the signal.
 
-.. note:: The device getters return a cached ``SignalValue``. As a result, frequently calling the getter does not influence RAM performance.
+.. note:: The device getters return a cached ``StatusSignal``. As a result, frequently calling the getter does not influence RAM performance.
 
 .. tab-set::
 
@@ -30,7 +30,7 @@ The device object provides getters for all available signals. Each getter return
 
          auto& supplyVoltageSignal = m_device.GetSupplyVoltage();
 
-The value of the signal can be retrieved from the ``SignalValue`` by calling ``getValue()``.
+The value of the signal can be retrieved from the ``StatusSignal`` by calling ``getValue()``.
 
 .. tab-set::
 
@@ -58,7 +58,7 @@ This can be used to determine if the device is not present on the CAN bus.
 Refreshing the Signal Value
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The device ``SignalValue`` getters implicitly refresh the cached signal values. However, if the user application caches the ``SignalValue`` object, the ``refresh()`` method must be called to fetch fresh data.
+The device ``StatusSignal`` getters implicitly refresh the cached signal values. However, if the user application caches the ``StatusSignal`` object, the ``refresh()`` method must be called to fetch fresh data.
 
 .. tip:: The ``refresh()`` method can be method-chained. As a result, you can call ``refresh()`` and ``getValue()`` on one line.
 
@@ -81,7 +81,7 @@ The device ``SignalValue`` getters implicitly refresh the cached signal values. 
 Waiting for Signal Updates
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Instead of using the latest value, the user can instead opt to synchronously wait for a signal update. ``SignalValue`` provides a ``waitForUpdate(timeoutSec)`` method that will block the current robot loop until the signal is retrieved or the timeout has been exceeded. This replaces the need to call ``refresh()`` on cached ``SignalValue`` objects.
+Instead of using the latest value, the user can instead opt to synchronously wait for a signal update. ``StatusSignal`` provides a ``waitForUpdate(timeoutSec)`` method that will block the current robot loop until the signal is retrieved or the timeout has been exceeded. This replaces the need to call ``refresh()`` on cached ``StatusSignal`` objects.
 
 .. tip:: If you want to zero your sensors, you can use this API to ensure the set operation has completed before continuing program flow.
 
@@ -133,14 +133,14 @@ All signals can have their update frequency configured via the ``setUpdateFreque
 Timestamps
 ^^^^^^^^^^
 
-The timestamps of a ``SignalValue`` can be retrieved by calling ``getAllTimestamps()``, which returns a collection of ``Timestamp`` (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/Timestamp.html>`__, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/classctre_1_1phoenixpro_1_1_timestamp.html>`__) objects. The ``Timestamp`` objects can be used to perform latency compensation math.
+The timestamps of a ``StatusSignal`` can be retrieved by calling ``getAllTimestamps()``, which returns a collection of ``Timestamp`` (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/Timestamp.html>`__, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/classctre_1_1phoenixpro_1_1_timestamp.html>`__) objects. The ``Timestamp`` objects can be used to perform latency compensation math.
 
 CANivore Timesync
 -----------------
 
 When using `CANivore <https://store.ctr-electronics.com/canivore/>`__, the attached CAN devices will automatically synchronize their time bases. This allows devices to sample and publish their signals in a synchronized manner.
 
-Users can synchronously wait for these signals to update using ``BaseSignalValue.waitForAll()`` (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/BaseSignalValue.html#waitForAll(double,com.ctre.phoenixpro.BaseSignalValue...)>`__, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/classctre_1_1phoenixpro_1_1_base_status_signal_value.html#ae9772b2fe2934d261d6daf242b9ab1de>`__).
+Users can synchronously wait for these signals to update using ``BaseStatusSignal.waitForAll()`` (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/BaseStatusSignal.html#waitForAll(double,com.ctre.phoenixpro.BaseStatusSignal...)>`__, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/classctre_1_1phoenixpro_1_1_base_status_signal_value.html#ae9772b2fe2934d261d6daf242b9ab1de>`__).
 
 .. tip:: ``waitForAll()`` can be used with a timeout of zero to perform a non-blocking refresh on all signals passed in.
 
@@ -179,7 +179,7 @@ The following signals are time-synchronized:
          var cancoderPositionSignal = m_cancoder.getPosition();
          var pigeon2YawSignal = m_pigeon2.getYaw();
 
-         BaseSignalValue.waitForAll(0.020, talonFXPositionSignal, cancoderPositionSignal, pigeon2YawSignal);
+         BaseStatusSignal.waitForAll(0.020, talonFXPositionSignal, cancoderPositionSignal, pigeon2YawSignal);
 
    .. tab-item:: C++
       :sync: C++
@@ -190,12 +190,12 @@ The following signals are time-synchronized:
          auto& cancoderPositionSignal = m_cancoder.GetPosition();
          auto& pigeon2YawSignal = m_pigeon2.GetYaw();
 
-         BaseSignalValue::WaitForAll(20_ms, {&talonFXPositionSignal, &cancoderPositionSignal, &pigeon2YawSignal});
+         BaseStatusSignal::WaitForAll(20_ms, {&talonFXPositionSignal, &cancoderPositionSignal, &pigeon2YawSignal});
 
 Latency Compensation
 --------------------
 
-Users can perform latency compensation using ``BaseSignalValue.getLatencyCompensatedValue()`` (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/BaseSignalValue.html#getLatencyCompensatedValue(com.ctre.phoenixpro.SignalValue,com.ctre.phoenixpro.SignalValue)>`__, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/classctre_1_1phoenixpro_1_1_base_status_signal_value.html#a22f020db5abbf556ac7605024309bb26>`__).
+Users can perform latency compensation using ``BaseStatusSignal.getLatencyCompensatedValue()`` (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/BaseStatusSignal.html#getLatencyCompensatedValue(com.ctre.phoenixpro.StatusSignal,com.ctre.phoenixpro.StatusSignal)>`__, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/classctre_1_1phoenixpro_1_1_base_status_signal_value.html#a22f020db5abbf556ac7605024309bb26>`__).
 
 .. important:: ``getLatencyCompensatedValue()`` does not automatically refresh the signals. As a result, the user must ensure the ``signal`` and ``signalSlope`` parameters are refreshed before retrieving a compensated value.
 
@@ -206,18 +206,18 @@ Users can perform latency compensation using ``BaseSignalValue.getLatencyCompens
 
       .. code-block:: java
 
-         double compensatedTurns = BaseSignalValue.getLatencyCompensatedValue(m_motor.getPosition(), m_motor.getVelocity());
+         double compensatedTurns = BaseStatusSignal.getLatencyCompensatedValue(m_motor.getPosition(), m_motor.getVelocity());
 
    .. tab-item:: C++
       :sync: C++
 
       .. code-block:: cpp
 
-         auto compensatedTurns = BaseSignalValue::GetLatencyCompensatedValue(m_motor.GetPosition(), m_motor.GetVelocity());
+         auto compensatedTurns = BaseStatusSignal::GetLatencyCompensatedValue(m_motor.GetPosition(), m_motor.GetVelocity());
 
 ``SignalMeasurement``
 ---------------------
 
-All ``SignalValue`` objects have a ``getDataCopy()`` method that returns a new ``SignalMeasurement`` (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/SignalValue.SignalMeasurement.html>`__, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/structctre_1_1phoenixpro_1_1_signal_measurement.html>`__) object. ``SignalMeasurement`` is a `Passive Data Structure <https://en.wikipedia.org/wiki/Passive_data_structure>`__ that provides all the information about a signal at the time of the ``getDataCopy()`` call, which can be useful for data logging.
+All ``StatusSignal`` objects have a ``getDataCopy()`` method that returns a new ``SignalMeasurement`` (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/StatusSignal.SignalMeasurement.html>`__, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/structctre_1_1phoenixpro_1_1_signal_measurement.html>`__) object. ``SignalMeasurement`` is a `Passive Data Structure <https://en.wikipedia.org/wiki/Passive_data_structure>`__ that provides all the information about a signal at the time of the ``getDataCopy()`` call, which can be useful for data logging.
 
 .. warning:: ``getDataCopy()`` returns a **new** ``SignalMeasurement`` object every call. **Java** users should **avoid** using this API in RAM-constrained applications.

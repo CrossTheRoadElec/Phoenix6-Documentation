@@ -164,7 +164,7 @@ Follower Motors
 Control Types
 -------------
 
-In Phoenix Pro, voltage compensation has been replaced with the ability to directly specify the :ref:`control output type <docs/api-reference/api-usage/device-specific/talonfx/talonfx-control-intro:control output types>`.
+In Phoenix 6, voltage compensation has been replaced with the ability to directly specify the :ref:`control output type <docs/api-reference/device-specific/talonfx/talonfx-control-intro:control output types>`.
 
 All control output types are supported in open-loop and closed-loop control requests.
 
@@ -172,7 +172,7 @@ All control output types are supported in open-loop and closed-loop control requ
    :header-rows: 1
 
    * - Phoenix 5
-     - Phoenix Pro
+     - Phoenix 6
 
    * - PercentOutput
      - DutyCycleOut
@@ -184,7 +184,7 @@ All control output types are supported in open-loop and closed-loop control requ
      - TorqueCurrentFOC
 
    * - Current closed-loop
-     - This has been deprecated in Phoenix Pro.
+     - This has been deprecated in Phoenix 6.
 
        - Users looking to control torque should use TorqueCurrentFOC
        - Users looking to limit current should use supply and stator current limits
@@ -193,7 +193,7 @@ All control output types are supported in open-loop and closed-loop control requ
    :header-rows: 1
 
    * - Phoenix 5
-     - Phoenix Pro
+     - Phoenix 6
 
    * - Position
      - PositionDutyCycle

@@ -51,12 +51,6 @@ There are three major components to the Phoenix 6 API:
 - :doc:`actuator-limits`
    - Documents how to retrieve and configure software and hardware actuator limits.
 
-- :doc:`device-specific/index`
-   - Describes some device specific functionality, such as the different TalonFX control requests and how they are used.
-
-- :doc:`migration-guide/index`
-   - A "cheat sheet" on migrating from Phoenix 5 to Phoenix Pro.
-
 .. toctree::
    :maxdepth: 1
    :hidden:
@@ -68,5 +62,3 @@ There are three major components to the Phoenix 6 API:
    faults
    enabling-actuators
    actuator-limits
-   device-specific/index
-   migration-guide/index

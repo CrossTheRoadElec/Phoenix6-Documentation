@@ -55,7 +55,7 @@ Tuner X has improved firmware upgrading functionality by **automatically downloa
    :width: 70%
    :alt: Firmware version picker
 
-Users can switch between "Phoenix Pro" and "Phoenix 5" by clicking on the toggle above the firmware dropdown.
+Users can switch between "Phoenix 6" and "Phoenix 5" by clicking on the toggle above the firmware dropdown.
 
 .. note:: The toggle between Phoenix 6 and Phoenix 5 firmware only affects online field-upgrades.
 

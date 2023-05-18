@@ -14,6 +14,12 @@ This section highlights the functionality that is exposed as part of the Phoenix
 
       Documentation on using the Phoenix 6 API.
 
+   .. grid-item-card:: Device Specific
+      :link-type: doc
+      :link: device-specific/index
+
+      Device specific API information for devices.
+
    .. grid-item-card:: Simulation
       :link-type: doc
       :link: simulation/index
@@ -36,6 +42,7 @@ This section highlights the functionality that is exposed as part of the Phoenix
    :maxdepth: 1
 
    api-usage/index
+   device-specific/index
    simulation/index
    wpilib-integration/index
    examples/index

@@ -1,5 +1,5 @@
-Installing Phoenix Pro
-======================
+Installing Phoenix 6
+====================
 
 Installation of Phoenix 6 is comprised of a few steps
 

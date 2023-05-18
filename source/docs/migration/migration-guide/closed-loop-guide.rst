@@ -8,19 +8,19 @@ Closed Loop Gains
 
 These tables are for translating Phoenix 5 gains to Phoenix 6 DutyCycle gains.
 
-.. note:: There are other :ref:`control output types <docs/api-reference/api-usage/device-specific/talonfx/talonfx-control-intro:control output types>` in Phoenix 6 that will change the magnitude of the gains.
+.. note:: There are other :ref:`control output types <docs/api-reference/device-specific/talonfx/talonfx-control-intro:control output types>` in Phoenix 6 that will change the magnitude of the gains.
 
 Position (DutyCycle)
 ^^^^^^^^^^^^^^^^^^^^
 
 .. image:: images/position-gains-conversion.png
-   :alt: Position gain conversion table from Phoenix 5 to Phoenix Pro
+   :alt: Position gain conversion table from Phoenix 5 to Phoenix 6
 
 Velocity (DutyCycle)
 ^^^^^^^^^^^^^^^^^^^^
 
 .. image:: images/velocity-gains-conversion.png
-   :alt: Velocity gain conversion table from Phoenix 5 to Phoenix Pro
+   :alt: Velocity gain conversion table from Phoenix 5 to Phoenix 6
 
 Using Closed-Loop Control
 -------------------------
@@ -184,7 +184,7 @@ Motion Magic®
    * - .. centered:: Pro
      - .. compound::
 
-         .. note:: The Motion Magic® S-Curve Strength has been replaced with jerk control in Phoenix Pro.
+         .. note:: The Motion Magic® S-Curve Strength has been replaced with jerk control in Phoenix 6.
 
          .. tab-set::
 
@@ -257,4 +257,4 @@ Motion Magic®
 Motion Profiling
 ^^^^^^^^^^^^^^^^
 
-The Motion Profile Executor is not supported in the current release of Phoenix Pro. Users can use :ref:`Motion Magic® <docs/api-reference/api-usage/device-specific/talonfx/closed-loop-requests:motion magic®>` or run a motion profile on the robot controller.
+The Motion Profile Executor is not supported in the current release of Phoenix 6. Users can use :ref:`Motion Magic® <docs/api-reference/device-specific/talonfx/closed-loop-requests:motion magic®>` or run a motion profile on the robot controller.

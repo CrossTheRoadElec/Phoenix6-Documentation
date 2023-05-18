@@ -5,8 +5,6 @@ Welcome to the Phoenix 6 documentation. Individuals looking for `Phoenix 5` docu
 
 The Phoenix 6 software framework allows you to control and configure your `CTR Electronics <https://store.ctr-electronics.com/>`__ Phoenix 6 Devices. Phoenix 6 represents a complete rewrite of the software framework over the existing Phoenix 5 framework. With Phoenix 6, users have access to many new features that expand the control the user has over their devices.
 
-.. tip:: User's looking for a detailed breakdown of what features require licensing can find that information in the :ref:`licensing article <docs/licensing/licensing:Pro Exclusive Features>`.
-
 .. card:: CTR Electronics Blog
    :link: https://store.ctr-electronics.com/blog/
 
@@ -21,10 +19,10 @@ The Phoenix 6 software framework allows you to control and configure your `CTR E
       A changelog containing API, Tuner and Firmware changes is available `here <https://api.ctr-electronics.com/changelog>`__.
 
    .. grid-item-card:: Migration Guide
-      :link: docs/api-reference/api-usage/migration-guide/index
+      :link: docs/migration/migration-guide/index
       :link-type: doc
 
-      A Phoenix 5 migration guide is available :doc:`here </docs/api-reference/api-usage/migration-guide/index>`.
+      A Phoenix 5 migration guide is available :doc:`here </docs/migration/migration-guide/index>`.
 
 .. grid:: 1 2 3 3
    :gutter: 3
@@ -67,19 +65,19 @@ The Phoenix 6 software framework allows you to control and configure your `CTR E
 
 .. toctree::
    :maxdepth: 1
-   :caption: Intro
-   :hidden:
-
-   self
-   docs/why-phoenix
-
-.. toctree::
-   :maxdepth: 1
    :caption: Getting Started
    :hidden:
 
    docs/installation/pro-installation
    docs/installation/configuring-your-device
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Migration
+   :hidden:
+
+   docs/migration/new-to-phoenix
+   docs/migration/migration-guide/index
 
 .. toctree::
    :maxdepth: 1
@@ -110,6 +108,7 @@ The Phoenix 6 software framework allows you to control and configure your `CTR E
    :caption: API Reference
 
    docs/api-reference/api-usage/index
+   docs/api-reference/device-specific/index
    docs/api-reference/simulation/index
    docs/api-reference/wpilib-integration/index
    docs/api-reference/examples/index
