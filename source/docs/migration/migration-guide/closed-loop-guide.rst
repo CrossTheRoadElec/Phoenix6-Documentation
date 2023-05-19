@@ -3,9 +3,6 @@ Closed-Loop Control
 
 Phoenix 6 enhances the experience of using onboard closed-loop control through the use of standardized units and a variety of control output types.
 
-Closed Loop Gains
------------------
-
 .. raw:: html
 
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
@@ -41,12 +38,13 @@ Closed Loop Gains
 
     </style>
 
-These tables are for translating Phoenix 5 gains to Phoenix Pro DutyCycle gains. For the best experience, please visit this page on a desktop device.
+Closed-Loop Gains
+-----------------
 
-.. note:: There are other :ref:`control output types <docs/api-reference/device-specific/talonfx/talonfx-control-intro:control output types>` in Phoenix 6 that will change the magnitude of the gains.
+Position without Voltage Comp
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Position (DutyCycle)
-^^^^^^^^^^^^^^^^^^^^
+Phoenix 5 ``ControlMode.Position`` with voltage compensation disabled maps to the Phoenix 6 ``PositionDutyCycle`` control request.
 
 .. raw:: html
 
@@ -104,6 +102,14 @@ Position (DutyCycle)
         </table>
     </div>
     <br />
+
+Position with Voltage Comp
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Phoenix 5 ``ControlMode.Position``` with voltage compensation enabled maps to the Phoenix 6 ``PositionVoltage`` control request.
+
+.. raw:: html
+
     <div class="tableOverflow">
         <table class="center">
             <tr>
@@ -162,11 +168,11 @@ Position (DutyCycle)
     </div>
     <br />
 
-.. image:: images/position-gains-conversion.png
-   :alt: Position gain conversion table from Phoenix 5 to Phoenix 6
+Velocity without Voltage Comp
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Velocity (DutyCycle)
-^^^^^^^^^^^^^^^^^^^^
+Phoenix 5 ``ControlMode.Velocity`` with voltage compensation disabled maps to the Phoenix 6 ``VelocityDutyCycle`` control request.
+
 .. raw:: html
 
     <div class="tableOverflow">
@@ -238,6 +244,13 @@ Velocity (DutyCycle)
 
     <br />
 
+Velocity with Voltage Comp
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Phoenix 5 ``ControlMode.Velocity`` with voltage compensation enabled maps to the Phoenix 6 ``VelocityVoltage`` control request.
+
+.. raw:: html
+
     <div class="tableOverflow">
         <table class="center">
             <tr>
@@ -308,9 +321,6 @@ Velocity (DutyCycle)
         </table>
     </div>
     <br />
-
-.. image:: images/velocity-gains-conversion.png
-   :alt: Velocity gain conversion table from Phoenix 5 to Phoenix 6
 
 .. raw:: html
 
