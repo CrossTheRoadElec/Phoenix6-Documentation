@@ -1,5 +1,5 @@
-Migration Guide
-===============
+API Migration
+=============
 
 This section serves as a "cheat sheet" of commonly-used functions in Phoenix 5 and their equivalents in Phoenix 6.
 
