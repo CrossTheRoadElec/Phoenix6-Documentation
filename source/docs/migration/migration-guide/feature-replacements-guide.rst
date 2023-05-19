@@ -6,19 +6,19 @@ In addition to the changes shown in the other sections, several other Phoenix 5 
 Motor Invert
 ------------
 
-In Phoenix 6, motor invert is now a persistent config (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/configs/MotorOutputConfigs.html#Inverted>`__, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/classctre_1_1phoenixpro_1_1configs_1_1_motor_output_configs.html#a2816a895ab62ec5c4411dc2a1606e3de>`__) instead of a control signal.
+In Phoenix 6, motor invert is now a persistent config (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/configs/MotorOutputConfigs.html#Inverted>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1configs_1_1_motor_output_configs.html#a951ba4e8badf1e0a49a99f0d6f753f0c>`__) instead of a control signal.
 
 Neutral Mode
 ------------
 
-In Phoenix 6, Neutral mode is now available in API as a config (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/configs/MotorOutputConfigs.html#NeutralMode>`__, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/classctre_1_1phoenixpro_1_1configs_1_1_motor_output_configs.html#af908bb8c312a55149f054ec95405c3e0>`__). Many control requests also have the ability to override the neutral mode to either force braking (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/controls/DutyCycleOut.html#OverrideBrakeDurNeutral>`__, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/classctre_1_1phoenixpro_1_1controls_1_1_duty_cycle_out.html#a7aee78ef5456c909c6ada62f7378c90b>`__) or force coasting (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/controls/TorqueCurrentFOC.html#OverrideCoastDurNeutral>`__, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/classctre_1_1phoenixpro_1_1controls_1_1_torque_current_f_o_c.html>`__).
+In Phoenix 6, Neutral mode is now available in API as a config (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/configs/MotorOutputConfigs.html#NeutralMode>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1configs_1_1_motor_output_configs.html#a3beb831d87012f7876b96ddc96653aa3>`__). Many control requests also have the ability to override the neutral mode to either force braking (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/controls/DutyCycleOut.html#OverrideBrakeDurNeutral>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1controls_1_1_duty_cycle_out.html#a30794c201047ddb51d448e0d8da65293>`__) or force coasting (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/controls/TorqueCurrentFOC.html#OverrideCoastDurNeutral>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1controls_1_1_torque_current_f_o_c.html#a5ce85ec2c717b66273ccb51db30ab0b7>`__).
 
 Nominal Output
 --------------
 
 The Talon FX forward and reverse Nominal Output configs have been removed in Phoenix 6.
 
-The typical use case of the nominal output configs is to overcome friction in closed-loop control modes, which can now be achieved using the ``kS`` feedforward parameter (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/configs/Slot0Configs.html#kS>`__, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/classctre_1_1phoenixpro_1_1configs_1_1_slot0_configs.html#adfb56621e174939d621c93de80d433b7>`__).
+The typical use case of the nominal output configs is to overcome friction in closed-loop control modes, which can now be achieved using the ``kS`` feedforward parameter (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/configs/Slot0Configs.html#kS>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1configs_1_1_slot0_configs.html#af9aff78b5fafed0bf20c096b11718d80>`__).
 
 Sensor Phase
 ------------

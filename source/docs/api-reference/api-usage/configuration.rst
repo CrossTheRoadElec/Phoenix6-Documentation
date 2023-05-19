@@ -12,7 +12,7 @@ There are device-specific ``Configuration`` classes that group configuration dat
 These classes are `Passive Data Structures <https://en.wikipedia.org/wiki/Passive_data_structure>`__.
 One example is ``TalonFXConfiguration``, which has subgroups of configs such as ``MotorOutputConfigs``.
 The configs can be modified through public member variables of the ``Configuration`` object.
-The complete list of configuration objects can be found in the API documentation (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/configs/package-summary.html>`__, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/namespacectre_1_1phoenixpro_1_1configs.html>`__).
+The complete list of configuration objects can be found in the API documentation (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/configs/package-summary.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/namespacectre_1_1phoenix6_1_1configs.html>`__).
 
 .. tab-set::
 
@@ -33,7 +33,7 @@ The complete list of configuration objects can be found in the API documentation
 Future Proofing Configs
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-There is a corner case with configs where the device may have firmware with newer configs that didn't exist when the version of the API was built. To account for this problem, device ``Configuration`` objects have a ``FutureProofConfigs`` (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/configs/TalonFXConfiguration.html#FutureProofConfigs>`__, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/classctre_1_1phoenixpro_1_1configs_1_1_talon_f_x_configuration.html#af3d5b8b06c520c7d316573aac974546f>`__) field.
+There is a corner case with configs where the device may have firmware with newer configs that didn't exist when the version of the API was built. To account for this problem, device ``Configuration`` objects have a ``FutureProofConfigs`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/configs/TalonFXConfiguration.html#FutureProofConfigs>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1configs_1_1_talon_f_x_configuration.html#a36c4797bc533994122b779405622934d>`__) field.
 
 Configurator API
 ----------------
@@ -65,7 +65,7 @@ As a result, the caller can pass the entire device ``Configuration`` object or j
 Reading Configs
 ^^^^^^^^^^^^^^^
 
-To read configs stored in a device, use the ``refresh()`` method to update a ``Configuration`` object. The example below demonstrates retrieving a full ``TalonFXConfiguration`` (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/configs/TalonFXConfiguration.html>`__, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/classctre_1_1phoenixpro_1_1configs_1_1_talon_f_x_configuration.html>`__) object from a ``TalonFX`` device.
+To read configs stored in a device, use the ``refresh()`` method to update a ``Configuration`` object. The example below demonstrates retrieving a full ``TalonFXConfiguration`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/configs/TalonFXConfiguration.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1configs_1_1_talon_f_x_configuration.html>`__) object from a ``TalonFX`` device.
 
 .. tab-set::
 

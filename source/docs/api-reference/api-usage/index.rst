@@ -3,7 +3,7 @@
 API Usage
 =========
 
-This section serves to provide basic API usage for the Phoenix 6 API. For full details, please visit the API docs (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/>`__, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/>`__).
+This section serves to provide basic API usage for the Phoenix 6 API. For full details, please visit the API docs (`Java <https://api.ctr-electronics.com/phoenix6/release/java/>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/>`__).
 
 .. important:: While Phoenix 6 and Phoenix 5 devices may exist on the same CAN bus and same robot project, each robot project **must** use the API tied to the device firmware version.
    This means Phoenix 5 devices **must** use the Phoenix 5 API, and Phoenix 6 devices **must** use the Phoenix 6 API.

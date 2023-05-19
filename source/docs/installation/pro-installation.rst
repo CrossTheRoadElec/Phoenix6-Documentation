@@ -61,7 +61,7 @@ Online
 
       Paste the following URL in `WPILib VS Code <https://docs.wpilib.org/en/stable/docs/software/vscode-overview/3rd-party-libraries.html#libraries>`__ :guilabel:`Install New Libraries (Online)`
 
-      - ``https://maven.ctr-electronics.com/release/com/ctre/phoenix6/Phoenix6-frc2023-latest.json``
+      - ``https://maven.ctr-electronics.com/release/com/ctre/phoenix6/latest/Phoenix6-frc2023-latest.json``
 
    .. tab-item:: FRC (v6 & Phoenix 5)
 
@@ -69,7 +69,7 @@ Online
 
       Paste the following URL in `WPILib VS Code <https://docs.wpilib.org/en/stable/docs/software/vscode-overview/3rd-party-libraries.html#libraries>`__ :guilabel:`Install New Libraries (Online)`
 
-      - ``https://maven.ctr-electronics.com/release/com/ctre/phoenix6/Phoenix6And5-frc2023-latest.json``
+      - ``https://maven.ctr-electronics.com/release/com/ctre/phoenix6/latest/Phoenix6And5-frc2023-latest.json``
 
       .. important:: Devices on Phoenix 6 firmware **must** use the Phoenix 6 API. Device on Phoenix 5 firmware **must** use the Phoenix 5 API.
 

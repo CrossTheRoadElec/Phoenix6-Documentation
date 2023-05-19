@@ -26,4 +26,4 @@ A TorqueCurrentFOC control request uses Field Oriented Control to directly contr
 Field Oriented Control
 ----------------------
 
-Field Oriented Control (FOC) is a commutation mode that increases peak power by ~15%. All control modes that optionally support FOC have an ``EnableFOC`` field (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/controls/DutyCycleOut.html#EnableFOC>`__, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/classctre_1_1phoenixpro_1_1controls_1_1_duty_cycle_out.html#abfe71dea214ab5a262bc116d6292dd76>`__). There are also control types that require FOC, such as TorqueCurrentFOC.
+Field Oriented Control (FOC) is a commutation mode that increases peak power by ~15%. All control modes that optionally support FOC have an ``EnableFOC`` field (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/controls/DutyCycleOut.html#EnableFOC>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1controls_1_1_duty_cycle_out.html#aeef226602dc68cf690681c98001a5f94>`__). There are also control types that require FOC, such as TorqueCurrentFOC.

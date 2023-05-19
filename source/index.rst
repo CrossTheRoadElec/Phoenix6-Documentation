@@ -130,8 +130,8 @@ The Phoenix 6 software framework allows you to control and configure your `CTR E
    :caption: API docs
    :hidden:
 
-   Java API Docs <https://api.ctr-electronics.com/phoenixpro/release/java/>
-   C++ API Docs <https://api.ctr-electronics.com/phoenixpro/release/cpp/>
+   Java API Docs <https://api.ctr-electronics.com/phoenix6/release/java/>
+   C++ API Docs <https://api.ctr-electronics.com/phoenix6/release/cpp/>
 
 .. toctree::
    :maxdepth: 1
