@@ -6,21 +6,401 @@ Phoenix 6 enhances the experience of using onboard closed-loop control through t
 Closed Loop Gains
 -----------------
 
-These tables are for translating Phoenix 5 gains to Phoenix 6 DutyCycle gains.
+.. raw:: html
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        table.center, table.center th, table.center td {
+            border: 1px solid white;
+            border-collapse: collapse;
+            padding: 5px;
+            text-align: center;
+        }
+    </style>
+
+These tables are for translating Phoenix 5 gains to Phoenix Pro DutyCycle gains. For the best experience, please visit this page on a desktop device.
 
 .. note:: There are other :ref:`control output types <docs/api-reference/device-specific/talonfx/talonfx-control-intro:control output types>` in Phoenix 6 that will change the magnitude of the gains.
 
 Position (DutyCycle)
 ^^^^^^^^^^^^^^^^^^^^
 
+.. raw:: html
+    <div class="converterTable">
+        <table class="center">
+            <tr>
+                <th colspan="5">Position without Voltage Compensation</th>
+            </tr>
+            <tr>
+                <th></th>
+                <th>Name</th>
+                <th>Value</th>
+                <th>Units</th>
+                <th>Formula</th>
+            </tr>
+            <tr>
+                <th rowspan="2">kP</th>
+                <td>Original</td>
+                <td><input type="number" id="kP_entry" min="0" max="1024" placeholder="0"></td>
+                <td>\(\frac{\mathrm{raw\_output}}{\mathrm{unit}}\)</td>
+                <td class="overflow">\(kP_{\mathrm{old}}\)</td>
+            </tr>
+            <tr>
+                <td>New</td>
+                <td><input type="number" readonly="readonly" id="new_kP" min="0" max="1024" placeholder="0"></input></td>
+                <td>\(\frac{\mathrm{duty\_cycle}}{\mathrm{rot}}\)</td>
+                <td class="overflow">\(kP_{\mathrm{new}}=kP_{\mathrm{old}} \cdot 2048 \frac{\mathrm{unit}}{\mathrm{rot}} \cdot \frac{1}{1023} \frac{\mathrm{duty\_cycle}}{\mathrm{raw\_output}}\)</td>
+            </tr>
+            <tr>
+                <th rowspan="2">kI</th>
+                <td>Original</td>
+                <td><input type="number" id="kI_entry" min="0" max="1024" placeholder="0"></td>
+                <td>\(\frac{\mathrm{raw\_output}}{\mathrm{unit} \cdot \mathrm{millisecond}}\)</td>
+                <td class="overflow">\(kI_{\mathrm{old}}\)</td>
+            </tr>
+            <tr>
+                <td>New</td>
+                <td><input type="number" readonly="readonly" id="new_kI" min="0" max="1024" placeholder="0"></input></td>
+                <td>\(\frac{\mathrm{duty\_cycle}}{\mathrm{rot} \cdot \mathrm{second}}\)</td>
+                <td class="overflow">\(kI_{\mathrm{new}}=kI_{\mathrm{old}} \cdot 2048 \frac{\mathrm{unit}}{\mathrm{rot}} \cdot \frac{1}{1023} \frac{\mathrm{duty\_cycle}}{\mathrm{raw\_output}} \cdot 1000 \frac{\mathrm{millisecond}}{\mathrm{second}}\)</td>
+            </tr>
+            <tr>
+                <th rowspan="2">kD</th>
+                <td>Original</td>
+                <td><input type="number" id="kD_entry" min="0" max="1024" placeholder="0"></td>
+                <td>\(\frac{\mathrm{raw\_output}}{\mathrm{unit} / \mathrm{millisecond}}\)</td>
+                <td class="overflow">\(kD_{\mathrm{old}}\)</td>
+            </tr>
+            <tr>
+                <td>New</td>
+                <td><input type="number" readonly="readonly" id="new_kD" min="0" max="1024" placeholder="0"></input></td>
+                <td>\(\frac{\mathrm{duty\_cycle}}{\mathrm{rot} / \mathrm{second}}\)</td>
+                <td class="overflow">\(kD_{\mathrm{new}}=kD_{\mathrm{old}} \cdot 2048 \frac{\mathrm{unit}}{\mathrm{rot}} \cdot \frac{1}{1023} \frac{\mathrm{duty\_cycle}}{\mathrm{raw\_output}} \cdot \frac{1}{1000} \frac{\mathrm{second}}{\mathrm{millisecond}}\)</td>
+            </tr>
+        </table>
+    </div>
+
+    <br />
+
+    <div class="converterTable">
+        <table class="center">
+            <tr>
+                <th colspan="5">Position with Voltage Compensation</th>
+            </tr>
+            <tr>
+                <th colspan="5"><label for="voltage_comp_value">Voltage Compensation Value: </label><input type="number" id="volt_comp_value" min="0" max="36" placeholder="12"></th>
+            </tr>
+            <tr>
+                <th></th>
+                <th>Name</th>
+                <th>Value</th>
+                <th>Units</th>
+                <th>Formula</th>
+            </tr>
+            <tr>
+                <th rowspan="2">kP</th>
+                <td>Original</td>
+                <td><input type="number" id="kP_pos_volt_entry" min="0" max="1024" placeholder="0"></td>
+                <td>\(\frac{\mathrm{\mathrm{V\_comp}}}{\mathrm{unit}}\)</td>
+                <td class="overflow">\(kP_{\mathrm{old}}\)</td>
+            </tr>
+            <tr>
+                <td>New</td>
+                <td><input type="number" readonly="readonly" id="new_kP_pos_volt" min="0" max="1024" placeholder="0"></input></td>
+                <td>\(\frac{\mathrm{V}}{\mathrm{rot}}\)</td>
+                <td class="overflow">\(kP_{\mathrm{new}}=kP_{\mathrm{old}} \cdot 2048 \frac{\mathrm{unit}}{\mathrm{rot}} \cdot \frac{1}{1023} \frac{\mathrm{duty\_cycle}}{\mathrm{raw\_output}} \cdot \mathrm{V\_comp} \frac{\mathrm{V}}{\mathrm{duty\_cycle}}\)</td>
+            </tr>
+            <tr>
+                <th rowspan="2">kI</th>
+                <td>Original</td>
+                <td><input type="number" id="kI_pos_volt_entry" min="0" max="1024" placeholder="0"></td>
+                <td>\(\frac{\mathrm{\mathrm{V\_comp}}}{\mathrm{unit} \cdot \mathrm{millisecond}}\)</td>
+                <td class="overflow">\(kI_{\mathrm{old}}\)</td>
+            </tr>
+            <tr>
+                <td>New</td>
+                <td><input type="number" readonly="readonly" id="new_kI_pos_volt" min="0" max="1024" placeholder="0"></input></td>
+                <td>\(\frac{\mathrm{V}}{\mathrm{rot} \cdot \mathrm{second}}\)</td>
+                <td class="overflow">\(kI_{\mathrm{new}}=kI_{\mathrm{old}} \cdot 2048 \frac{\mathrm{unit}}{\mathrm{rot}} \cdot \frac{1}{1023} \frac{\mathrm{duty\_cycle}}{\mathrm{raw\_output}} \cdot 1000 \frac{\mathrm{millisecond}}{\mathrm{second}} \cdot \mathrm{V\_comp} \frac{\mathrm{V}}{\mathrm{duty\_cycle}}\)</td>
+            </tr>
+            <tr>
+                <th rowspan="2">kD</th>
+                <td>Original</td>
+                <td><input type="number" id="kD_pos_volt_entry" min="0" max="1024" placeholder="0"></td>
+                <td>\(\frac{\mathrm{\mathrm{V\_comp}}}{\mathrm{unit} / \mathrm{millisecond}}\)</td>
+                <td class="overflow">\(kD_{\mathrm{old}}\)</td>
+            </tr>
+            <tr>
+                <td>New</td>
+                <td><input type="number" readonly="readonly" id="new_kD_pos_volt" min="0" max="1024" placeholder="0"></input></td>
+                <td>\(\frac{\mathrm{V}}{\mathrm{rot} / \mathrm{second}}\)</td>
+                <td class="overflow">\(kD_{\mathrm{new}}=kD_{\mathrm{old}} \cdot 2048 \frac{\mathrm{unit}}{\mathrm{rot}} \cdot \frac{1}{1023} \frac{\mathrm{duty\_cycle}}{\mathrm{raw\_output}} \cdot \frac{1}{1000} \frac{\mathrm{second}}{\mathrm{millisecond}} \cdot \mathrm{V\_comp} \frac{\mathrm{V}}{\mathrm{duty\_cycle}}\)</td>
+            </tr>
+        </table>
+    </div>
+    <br />
+
 .. image:: images/position-gains-conversion.png
    :alt: Position gain conversion table from Phoenix 5 to Phoenix 6
 
 Velocity (DutyCycle)
 ^^^^^^^^^^^^^^^^^^^^
+.. raw:: html
+
+    <div class="converterTable">
+        <table class="center">
+            <tr>
+                <th colspan="5">Velocity without Voltage Compensation</th>
+            </tr>
+            <tr>
+                <th></th>
+                <th>Name</th>
+                <th>Value</th>
+                <th>Units</th>
+                <th>Formula</th>
+            </tr>
+            <tr>
+                <th rowspan="2">kP</th>
+                <td>Original</td>
+                <td><input type="number" id="kP_vel_entry" min="0" max="1024" placeholder="0"></td>
+                <td>\(\frac{\mathrm{raw\_output}}{\mathrm{unit} / \mathrm{100ms}}\)</td>
+                <td class="overflow">\(kP_{\mathrm{old}}\)</td>
+            </tr>
+            <tr>
+                <td>New</td>
+                <td><input type="number" readonly="readonly" id="new_kP_vel" min="0" max="1024" placeholder="0"></input></td>
+                <td>\(\frac{\mathrm{duty\_cycle}}{\mathrm{rot} / \mathrm{sec}}\)</td>
+                <td class="overflow">\(kP_{\mathrm{new}}=kP_{\mathrm{old}} \cdot 2048 \frac{\mathrm{unit}}{\mathrm{rot}} \cdot \frac{1}{1023} \frac{\mathrm{duty\_cycle}}{\mathrm{raw\_output}} \cdot \frac{1}{10} \frac{\mathrm{sec}}{\mathrm{100ms}}\)</td>
+            </tr>
+            <tr>
+                <th rowspan="2">kI</th>
+                <td>Original</td>
+                <td><input type="number" id="kI_vel_entry" min="0" max="1024" placeholder="0"></td>
+                <td>\(\frac{\mathrm{raw\_output}}{(\mathrm{unit} / \mathrm{100ms}) \cdot \mathrm{millisecond}}\)</td>
+                <td class="overflow">\(kI_{\mathrm{old}}\)</td>
+            </tr>
+            <tr>
+                <td>New</td>
+                <td><input type="number" readonly="readonly" id="new_kI_vel" min="0" max="1024" placeholder="0"></input></td>
+                <td>\(\frac{\mathrm{duty\_cycle}}{\mathrm{rot}}\)</td>
+                <td class="overflow">\(kI_{\mathrm{new}}=kI_{\mathrm{old}} \cdot 2048 \frac{\mathrm{unit}}{\mathrm{rot}} \cdot \frac{1}{1023} \frac{\mathrm{duty\_cycle}}{\mathrm{raw\_output}} \cdot 1000 \frac{\mathrm{millisecond}}{\mathrm{second}} \cdot \frac{1}{10} \frac{\mathrm{sec}}{\mathrm{100ms}}\)</td>
+            </tr>
+            <tr>
+                <th rowspan="2">kD</th>
+                <td>Original</td>
+                <td><input type="number" id="kD_vel_entry" min="0" max="1024" placeholder="0"></td>
+                <td>\(\frac{\mathrm{raw\_output}}{(\mathrm{unit} / \mathrm{100ms}) / \mathrm{millisecond}}\)</td>
+                <td class="overflow">\(kD_{\mathrm{old}}\)</td>
+            </tr>
+            <tr>
+                <td>New</td>
+                <td><input type="number" readonly="readonly" id="new_kD_vel" min="0" max="1024" placeholder="0"></input></td>
+                <td>\(\frac{\mathrm{duty\_cycle}}{\mathrm{rot} / \mathrm{second}^{2}}\)</td>
+                <td class="overflow">\(kD_{\mathrm{new}}=kD_{\mathrm{old}} \cdot 2048 \frac{\mathrm{unit}}{\mathrm{rot}} \cdot \frac{1}{1023} \frac{\mathrm{duty\_cycle}}{\mathrm{raw\_output}} \cdot \frac{1}{1000} \frac{\mathrm{second}}{\mathrm{millisecond}} \cdot \frac{1}{10} \frac{\mathrm{sec}}{\mathrm{100ms}}\)</td>
+            </tr>
+            <tr>
+                <th rowspan="2">kF</th>
+                <td>Original</td>
+                <td><input type="number" id="kF_vel_entry" min="0" max="1024" placeholder="0"></td>
+                <td>\(\frac{\mathrm{raw\_output}}{\mathrm{unit} / \mathrm{100millisecond}}\)</td>
+                <td class="overflow">\(kF_{\mathrm{old}}\)</td>
+            </tr>
+            <tr>
+                <td>New</td>
+                <td><input type="number" readonly="readonly" id="new_kF_vel" min="0" max="1024" placeholder="0"></input></td>
+                <td>\(\frac{\mathrm{duty\_cycle}}{\mathrm{rot} / \mathrm{second}}\)</td>
+                <td class="overflow">\(kF_{\mathrm{new}}=kF_{\mathrm{old}} \cdot 2048 \frac{\mathrm{unit}}{\mathrm{rot}} \cdot \frac{1}{1023} \frac{\mathrm{duty\_cycle}}{\mathrm{raw\_output}} \cdot \frac{1}{10} \frac{\mathrm{second}}{\mathrm{100ms}}\)</td>
+            </tr>
+        </table>
+    </div>
+
+    <br />
+
+    <div class="converterTable">
+        <table class="center">
+            <tr>
+                <th colspan="5">Position with Voltage Compensation</th>
+            </tr>
+            <tr>
+                <th colspan="5"><label for="voltage_comp_value">Voltage Compensation Value: </label><input type="number" id="volt_comp_value_velocity" min="0" max="36" placeholder="12"></th>
+            </tr>
+            <tr>
+                <th></th>
+                <th>Name</th>
+                <th>Value</th>
+                <th>Units</th>
+                <th>Formula</th>
+            </tr>
+            <tr>
+                <th rowspan="2">kP</th>
+                <td>Original</td>
+                <td><input type="number" id="kP_vel_volt_entry" min="0" max="1024" placeholder="0"></td>
+                <td>\(\frac{\mathrm{\mathrm{V\_comp}}}{\mathrm{unit} / \mathrm{100ms}}\)</td>
+                <td class="overflow">\(kP_{\mathrm{old}}\)</td>
+            </tr>
+            <tr>
+                <td>New</td>
+                <td><input type="number" readonly="readonly" id="new_kP_vel_volt" min="0" max="1024" placeholder="0"></input></td>
+                <td>\(\frac{\mathrm{V}}{\mathrm{rot} / \mathrm{sec}}\)</td>
+                <td class="overflow">\(kP_{\mathrm{new}}=kP_{\mathrm{old}} \cdot 2048 \frac{\mathrm{unit}}{\mathrm{rot}} \cdot \frac{1}{1023} \frac{\mathrm{duty\_cycle}}{\mathrm{raw\_output}} \cdot \frac{1}{10} \frac{\mathrm{second}}{\mathrm{100ms}} \cdot \mathrm{V\_comp} \frac{\mathrm{V}}{\mathrm{duty\_cycle}}\)</td>
+            </tr>
+            <tr>
+                <th rowspan="2">kI</th>
+                <td>Original</td>
+                <td><input type="number" id="kI_vel_volt_entry" min="0" max="1024" placeholder="0"></td>
+                <td>\(\frac{\mathrm{\mathrm{V\_comp}}}{(\mathrm{unit} / \mathrm{100ms}) \cdot \mathrm{millisecond}}\)</td>
+                <td class="overflow">\(kI_{\mathrm{old}}\)</td>
+            </tr>
+            <tr>
+                <td>New</td>
+                <td><input type="number" readonly="readonly" id="new_kI_vel_volt" min="0" max="1024" placeholder="0"></input></td>
+                <td>\(\frac{\mathrm{V}}{\mathrm{rot}}\)</td>
+                <td class="overflow">\(kI_{\mathrm{new}}=kI_{\mathrm{old}} \cdot 2048 \frac{\mathrm{unit}}{\mathrm{rot}} \cdot \frac{1}{1023} \frac{\mathrm{duty\_cycle}}{\mathrm{raw\_output}} \cdot 1000 \frac{\mathrm{millisecond}}{\mathrm{second}} \cdot \frac{1}{10} \frac{\mathrm{second}}{\mathrm{100ms}} \cdot \mathrm{V\_comp} \frac{\mathrm{V}}{\mathrm{duty\_cycle}}\)</td>
+            </tr>
+            <tr>
+                <th rowspan="2">kD</th>
+                <td>Original</td>
+                <td><input type="number" id="kD_vel_volt_entry" min="0" max="1024" placeholder="0"></td>
+                <td>\(\frac{\mathrm{\mathrm{V\_comp}}}{(\mathrm{unit} / \mathrm{100ms}) / \mathrm{millisecond}}\)</td>
+                <td class="overflow">\(kD_{\mathrm{old}}\)</td>
+            </tr>
+            <tr>
+                <td>New</td>
+                <td><input type="number" readonly="readonly" id="new_kD_vel_volt" min="0" max="1024" placeholder="0"></input></td>
+                <td>\(\frac{\mathrm{V}}{\mathrm{rot} / \mathrm{second}^{2}}\)</td>
+                <td class="overflow">\(kD_{\mathrm{new}}=kD_{\mathrm{old}} \cdot 2048 \frac{\mathrm{unit}}{\mathrm{rot}} \cdot \frac{1}{1023} \frac{\mathrm{duty\_cycle}}{\mathrm{raw\_output}} \cdot \frac{1}{1000} \frac{\mathrm{second}}{\mathrm{millisecond}} \cdot \frac{1}{10} \frac{\mathrm{second}}{\mathrm{100ms}} \cdot \mathrm{V\_comp} \frac{\mathrm{V}}{\mathrm{duty\_cycle}}\)</td>
+            </tr>
+            <tr>
+                <th rowspan="2">kF</th>
+                <td>Original</td>
+                <td><input type="number" id="kF_vel_volt_entry" min="0" max="1024" placeholder="0"></td>
+                <td>\(\frac{\mathrm{\mathrm{V\_comp}}}{\mathrm{unit} / \mathrm{100ms}}\)</td>
+                <td class="overflow">\(kF_{\mathrm{old}}\)</td>
+            </tr>
+            <tr>
+                <td>New</td>
+                <td><input type="number" readonly="readonly" id="new_kF_vel_volt" min="0" max="1024" placeholder="0"></input></td>
+                <td>\(\frac{\mathrm{V}}{\mathrm{rot} / \mathrm{second}}\)</td>
+                <td class="overflow">\(kF_{\mathrm{new}}=kF_{\mathrm{old}} \cdot 2048 \frac{\mathrm{unit}}{\mathrm{rot}} \cdot \frac{1}{1023} \frac{\mathrm{duty\_cycle}}{\mathrm{raw\_output}} \cdot \frac{1}{10} \frac{\mathrm{second}}{\mathrm{100ms}} \cdot \mathrm{V\_comp} \frac{\mathrm{V}}{\mathrm{duty\_cycle}}\)</td>
+            </tr>
+        </table>
+    </div>
+    <br />
 
 .. image:: images/velocity-gains-conversion.png
    :alt: Velocity gain conversion table from Phoenix 5 to Phoenix 6
+
+.. raw:: html
+
+    <script>
+        /* Position calculator */
+        kp_entry = document.getElementById("kP_entry");
+        new_kp = document.getElementById("new_kP");
+        kp_entry.addEventListener("input", (event) => {
+            new_kp.value = event.target.value * 2048 / 1023;
+        });
+
+        ki_entry = document.getElementById("kI_entry");
+        new_ki = document.getElementById("new_kI");
+        ki_entry.addEventListener("input", (event) => {
+            new_ki.value = event.target.value * 2048 / 1023 * 1000;
+        });
+
+        kd_entry = document.getElementById("kD_entry");
+        new_kd = document.getElementById("new_kD");
+        kd_entry.addEventListener("input", (event) => {
+            new_kd.value = event.target.value * 2048 / 1023 / 1000;
+        });
+
+        /* Position with voltage compensation calculator */
+        volt_comp_entry = document.getElementById("volt_comp_value");
+        voltage_compensation_value = volt_comp_entry.placeholder;
+        volt_comp_entry.addEventListener("input", (event) => {
+            voltage_compensation_value = event.target.value;
+            new_kp_pos_volt.value = new_kp_pos_volt.value * voltage_compensation_value * 2048 / 1023;
+            new_ki_pos_volt.value = new_ki_pos_volt.value * voltage_compensation_value * 2048 / 1023 * 1000;
+            new_kd_pos_volt.value = new_kd_pos_volt.value * voltage_compensation_value * 2048 / 1023 / 1000;
+        });
+        kp_pos_volt_entry = document.getElementById("kP_pos_volt_entry");
+        new_kp_pos_volt = document.getElementById("new_kP_pos_volt");
+        kp_pos_volt_entry.addEventListener("input", (event) => {
+            new_kp_pos_volt.value = event.target.value * voltage_compensation_value * 2048 / 1023;
+        });
+
+        ki_pos_volt_entry = document.getElementById("kI_pos_volt_entry");
+        new_ki_pos_volt = document.getElementById("new_kI_pos_volt");
+        ki_pos_volt_entry.addEventListener("input", (event) => {
+            new_ki_pos_volt.value = event.target.value * voltage_compensation_value * 2048 / 1023 * 1000;
+        });
+
+        kd_pos_volt_entry = document.getElementById("kD_pos_volt_entry");
+        new_kd_pos_volt = document.getElementById("new_kD_pos_volt");
+        kd_pos_volt_entry.addEventListener("input", (event) => {
+            new_kd_pos_volt.value = event.target.value * voltage_compensation_value * 2048 / 1023 / 1000;
+        });
+
+
+        /* Velocity calculator */
+        kp_vel_entry = document.getElementById("kP_vel_entry");
+        new_kp_vel = document.getElementById("new_kP_vel");
+        kp_vel_entry.addEventListener("input", (event) => {
+            new_kp_vel.value = event.target.value * 2048 / 1023 / 10;
+        });
+
+        ki_vel_entry = document.getElementById("kI_vel_entry");
+        new_ki_vel = document.getElementById("new_kI_vel");
+        ki_vel_entry.addEventListener("input", (event) => {
+            new_ki_vel.value = event.target.value * 2048 / 1023 * 1000 / 10;
+        });
+
+        kd_vel_entry = document.getElementById("kD_vel_entry");
+        new_kd_vel = document.getElementById("new_kD_vel");
+        kd_vel_entry.addEventListener("input", (event) => {
+            new_kd_vel.value = event.target.value * 2048 / 1023 / 1000 / 10;
+        });
+
+        kf_vel_entry = document.getElementById("kF_vel_entry");
+        new_kf_vel = document.getElementById("new_kF_vel");
+        kf_vel_entry.addEventListener("input", (event) => {
+            new_kf_vel.value = event.target.value * 2048 / 1023 / 10;
+        });
+
+
+        /* Velocity with voltage compensation calculator */
+        volt_comp_entry = document.getElementById("volt_comp_value_velocity");
+        voltage_compensation_value = volt_comp_entry.placeholder;
+        volt_comp_entry.addEventListener("input", (event) => {
+            voltage_compensation_value = event.target.value;
+            new_kp_vel_volt.value = new_kp_vel_volt.value * voltage_compensation_value * 2048 / 1023 / 10;
+            new_ki_vel_volt.value = new_ki_vel_volt.value * voltage_compensation_value * 2048 / 1023 * 1000 / 10;
+            new_kd_vel_volt.value = new_kd_vel_volt.value * voltage_compensation_value * 2048 / 1023 / 1000 / 10;
+        });
+        kp_vel_volt_entry = document.getElementById("kP_vel_volt_entry");
+        new_kp_vel_volt = document.getElementById("new_kP_vel_volt");
+        kp_vel_volt_entry.addEventListener("input", (event) => {
+            new_kp_vel_volt.value = event.target.value * voltage_compensation_value * 2048 / 1023 / 10;
+        });
+
+        ki_vel_volt_entry = document.getElementById("kI_vel_volt_entry");
+        new_ki_vel_volt = document.getElementById("new_kI_vel_volt");
+        ki_vel_volt_entry.addEventListener("input", (event) => {
+            new_ki_vel_volt.value = event.target.value * voltage_compensation_value * 2048 / 1023 * 1000 / 10;
+        });
+
+        kd_vel_volt_entry = document.getElementById("kD_vel_volt_entry");
+        new_kd_vel_volt = document.getElementById("new_kD_vel_volt");
+        kd_vel_volt_entry.addEventListener("input", (event) => {
+            new_kd_vel_volt.value = event.target.value * voltage_compensation_value * 2048 / 1023 / 1000 / 10;
+        });
+
+        kf_vel_volt_entry = document.getElementById("kF_vel_volt_entry");
+        new_kf_vel_volt = document.getElementById("new_kF_vel_volt");
+        kf_vel_volt_entry.addEventListener("input", (event) => {
+            new_kf_vel_volt.value = event.target.value * voltage_compensation_value * 2048 / 1023 / 10 / 10;
+        });
+    </script>
 
 Using Closed-Loop Control
 -------------------------
