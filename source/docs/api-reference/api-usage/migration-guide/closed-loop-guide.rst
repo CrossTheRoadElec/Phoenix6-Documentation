@@ -88,7 +88,7 @@ Position (DutyCycle)
             <th colspan="5">Position with Voltage Compensation</th>
         </tr>
         <tr>
-            <th colspan="5"><label for="voltage_comp_value">Voltage Compensation Value: </label><input type="number" id="volt_comp_value" min="0" max="36" placeholder="12"></th>
+            <th colspan="5"><label for="volt_comp_value">Voltage Compensation Value: </label><input type="number" id="volt_comp_value" min="0" max="36" placeholder="12"></th>
         </tr>
         <tr>
             <th></th>
@@ -218,7 +218,7 @@ Velocity (DutyCycle)
             <th colspan="5">Position with Voltage Compensation</th>
         </tr>
         <tr>
-            <th colspan="5"><label for="voltage_comp_value">Voltage Compensation Value: </label><input type="number" id="volt_comp_value_velocity" min="0" max="36" placeholder="12"></th>
+            <th colspan="5"><label for="volt_comp_value_velocity">Voltage Compensation Value: </label><input type="number" id="volt_comp_value_velocity" min="0" max="36" placeholder="12"></th>
         </tr>
         <tr>
             <th></th>
@@ -312,9 +312,9 @@ Velocity (DutyCycle)
         voltage_compensation_value = volt_comp_entry.placeholder;
         volt_comp_entry.addEventListener("input", (event) => {
             voltage_compensation_value = event.target.value;
-            new_kp_pos_volt.value = new_kp_pos_volt.value * voltage_compensation_value * 2048 / 1023;
-            new_ki_pos_volt.value = new_ki_pos_volt.value * voltage_compensation_value * 2048 / 1023 * 1000;
-            new_kd_pos_volt.value = new_kd_pos_volt.value * voltage_compensation_value * 2048 / 1023 / 1000;
+            new_kp_pos_volt.value = kp_pos_volt_entry.value * voltage_compensation_value * 2048 / 1023;
+            new_ki_pos_volt.value = ki_pos_volt_entry.value * voltage_compensation_value * 2048 / 1023 * 1000;
+            new_kd_pos_volt.value = kd_pos_volt_entry.value * voltage_compensation_value * 2048 / 1023 / 1000;
         });
         kp_pos_volt_entry = document.getElementById("kP_pos_volt_entry");
         new_kp_pos_volt = document.getElementById("new_kP_pos_volt");
@@ -362,36 +362,37 @@ Velocity (DutyCycle)
 
 
         /* Velocity with voltage compensation calculator */
-        volt_comp_entry = document.getElementById("volt_comp_value_velocity");
-        voltage_compensation_value = volt_comp_entry.placeholder;
-        volt_comp_entry.addEventListener("input", (event) => {
-            voltage_compensation_value = event.target.value;
-            new_kp_vel_volt.value = new_kp_vel_volt.value * voltage_compensation_value * 2048 / 1023 / 10;
-            new_ki_vel_volt.value = new_ki_vel_volt.value * voltage_compensation_value * 2048 / 1023 * 1000 / 10;
-            new_kd_vel_volt.value = new_kd_vel_volt.value * voltage_compensation_value * 2048 / 1023 / 1000 / 10;
+        volt_comp_vel_entry = document.getElementById("volt_comp_value_velocity");
+        voltage_compensation_velocity_value = volt_comp_vel_entry.placeholder;
+        volt_comp_vel_entry.addEventListener("input", (event) => {
+            voltage_compensation_velocity_value = event.target.value;
+            new_kp_vel_volt.value = kp_vel_volt_entry.value * voltage_compensation_velocity_value * 2048 / 1023 / 10;
+            new_ki_vel_volt.value = ki_vel_volt_entry.value * voltage_compensation_velocity_value * 2048 / 1023 * 1000 / 10;
+            new_kd_vel_volt.value = kd_vel_volt_entry.value * voltage_compensation_velocity_value * 2048 / 1023 / 1000 / 10;
+            new_kf_vel_volt.value = kf_vel_volt_entry.value * voltage_compensation_velocity_value * 2048 / 1023 / 10 / 10;
         });
         kp_vel_volt_entry = document.getElementById("kP_vel_volt_entry");
         new_kp_vel_volt = document.getElementById("new_kP_vel_volt");
         kp_vel_volt_entry.addEventListener("input", (event) => {
-            new_kp_vel_volt.value = event.target.value * voltage_compensation_value * 2048 / 1023 / 10;
+            new_kp_vel_volt.value = event.target.value * voltage_compensation_velocity_value * 2048 / 1023 / 10;
         });
 
         ki_vel_volt_entry = document.getElementById("kI_vel_volt_entry");
         new_ki_vel_volt = document.getElementById("new_kI_vel_volt");
         ki_vel_volt_entry.addEventListener("input", (event) => {
-            new_ki_vel_volt.value = event.target.value * voltage_compensation_value * 2048 / 1023 * 1000 / 10;
+            new_ki_vel_volt.value = event.target.value * voltage_compensation_velocity_value * 2048 / 1023 * 1000 / 10;
         });
 
         kd_vel_volt_entry = document.getElementById("kD_vel_volt_entry");
         new_kd_vel_volt = document.getElementById("new_kD_vel_volt");
         kd_vel_volt_entry.addEventListener("input", (event) => {
-            new_kd_vel_volt.value = event.target.value * voltage_compensation_value * 2048 / 1023 / 1000 / 10;
+            new_kd_vel_volt.value = event.target.value * voltage_compensation_velocity_value * 2048 / 1023 / 1000 / 10;
         });
 
         kf_vel_volt_entry = document.getElementById("kF_vel_volt_entry");
         new_kf_vel_volt = document.getElementById("new_kF_vel_volt");
         kf_vel_volt_entry.addEventListener("input", (event) => {
-            new_kf_vel_volt.value = event.target.value * voltage_compensation_value * 2048 / 1023 / 10 / 10;
+            new_kf_vel_volt.value = event.target.value * voltage_compensation_velocity_value * 2048 / 1023 / 10;
         });
     </script>
 
