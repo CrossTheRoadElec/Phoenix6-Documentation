@@ -3,7 +3,7 @@ TalonFX Remote Sensors
 
 The TalonFX supports various remote sensors. Remote sensors allow onboard closed-loop functionality at rates faster than a traditional robot processor (~1Khz) by reading the remote sensor directly from the CAN bus. This allows supported motor controllers to execute closed-loop modes with sensor values sourced by supported sensors.
 
-A list of supported remote sensors can be found in the API docs (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/signals/FeedbackSensorSourceValue.html#RotorSensor>`__, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/classctre_1_1phoenixpro_1_1signals_1_1_feedback_sensor_source_value.html#a979a876fbd8ed78729c94dd799327be4>`__).
+A list of supported remote sensors can be found in the API docs (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/signals/FeedbackSensorSourceValue.html#RotorSensor>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1signals_1_1_feedback_sensor_source_value.html#aa2fa5f6f6c182238413716b7e520df8b>`__).
 
 Remote sensors can be configured using :ref:`Tuner X <docs/tuner/configs:tuner configs>` or via code. This document highlights how to configure a remote sensor in a robot program.
 
@@ -41,7 +41,9 @@ A supported motor controller will update its position and velocity whenever the 
 ``FusedCANcoder``
 -----------------
 
-New in Phoenix Pro is a feedback sensor type called ``FusedCANcoder``. ``FusedCANcoder`` will fuse another CANcoder's information with the motor's internal rotor, which provides the best possible position and velocity for accuracy and bandwidth. This is useful in applications such as swerve azimuth.
+.. important:: This feature requires the device to be :doc:`Pro licensed </docs/licensing/licensing>`.
+
+New in Phoenix 6 is a feedback sensor type called ``FusedCANcoder``. ``FusedCANcoder`` will fuse another CANcoder's information with the motor's internal rotor, which provides the best possible position and velocity for accuracy and bandwidth. This is useful in applications such as swerve azimuth.
 
 ``FusedCANcoder`` requires the configuration of several ``Feedback`` config group items, shown below.
 

@@ -1,7 +1,7 @@
-Migration Guide
-===============
+API Migration
+=============
 
-This section serves as a "cheat sheet" of commonly-used functions in Phoenix 5 and their equivalents in Phoenix Pro.
+This section serves as a "cheat sheet" of commonly-used functions in Phoenix 5 and their equivalents in Phoenix 6.
 
 - :doc:`configuration-guide`
    - Configuring device configs in robot code
@@ -16,7 +16,7 @@ This section serves as a "cheat sheet" of commonly-used functions in Phoenix 5 a
    - Configuring and using closed-loop control requests
 
 - :doc:`feature-replacements-guide`
-   - Other features replaced or improved upon in Phoenix Pro
+   - Other features replaced or improved upon in Phoenix 6
 
 .. toctree::
    :maxdepth: 1

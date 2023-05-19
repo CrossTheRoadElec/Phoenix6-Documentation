@@ -3,7 +3,7 @@
 API Reference
 =============
 
-This section highlights the functionality that is exposed as part of the Phoenix Pro API.
+This section highlights the functionality that is exposed as part of the Phoenix 6 API.
 
 .. grid:: 1 2 2 2
    :gutter: 3
@@ -12,30 +12,37 @@ This section highlights the functionality that is exposed as part of the Phoenix
       :link-type: doc
       :link: api-usage/index
 
-      Documentation on using the Phoenix Pro API.
+      Documentation on using the Phoenix 6 API.
+
+   .. grid-item-card:: Device Specific
+      :link-type: doc
+      :link: device-specific/index
+
+      Device specific API information for devices.
 
    .. grid-item-card:: Simulation
       :link-type: doc
       :link: simulation/index
 
-      Details on utilizing the extensive Phoenix Pro simulation support.
+      Details on utilizing the extensive Phoenix 6 simulation support.
 
    .. grid-item-card:: WPILib Integration
       :link-type: doc
       :link: wpilib-integration/index
 
-      Documentation on the WPILib features supported by Phoenix Pro.
+      Documentation on the WPILib features supported by Phoenix 6.
 
    .. grid-item-card:: Examples
       :link-type: doc
       :link: examples/index
 
-      Detailed examples and projects that utilize Phoenix Pro.
+      Detailed examples and projects that utilize Phoenix 6.
 
 .. mimictoc::
    :maxdepth: 1
 
    api-usage/index
+   device-specific/index
    simulation/index
    wpilib-integration/index
    examples/index

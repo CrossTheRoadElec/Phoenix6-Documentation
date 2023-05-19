@@ -1,9 +1,9 @@
-Phoenix Pro Documentation
+Phoenix 6 Documentation
 =========================
 
-Welcome to the Phoenix Pro documentation. Individuals looking for `Phoenix 5` documentation may locate it `here <https://docs.ctre-phoenix.com/en/stable/>`__.
+Welcome to the Phoenix 6 documentation. Individuals looking for `Phoenix 5` documentation may locate it `here <https://docs.ctre-phoenix.com/en/stable/>`__.
 
-The Phoenix Pro software framework allows you to control and configure your `CTR Electronics <https://store.ctr-electronics.com/>`__ Phoenix Pro Devices. Phoenix Pro represents a complete rewrite of the software framework over the existing Phoenix 5 framework. With Phoenix Pro, users have access to many new features that expand the control the user has over their devices.
+The Phoenix 6 software framework allows you to control and configure your `CTR Electronics <https://store.ctr-electronics.com/>`__ Phoenix 6 Devices. Phoenix 6 represents a complete rewrite of the software framework over the existing Phoenix 5 framework. With Phoenix 6, users have access to many new features that expand the control the user has over their devices.
 
 .. card:: CTR Electronics Blog
    :link: https://store.ctr-electronics.com/blog/
@@ -19,10 +19,10 @@ The Phoenix Pro software framework allows you to control and configure your `CTR
       A changelog containing API, Tuner and Firmware changes is available `here <https://api.ctr-electronics.com/changelog>`__.
 
    .. grid-item-card:: Migration Guide
-      :link: docs/api-reference/api-usage/migration-guide/index
+      :link: docs/migration/migration-guide/index
       :link-type: doc
 
-      A Phoenix 5 migration guide is available :doc:`here </docs/api-reference/api-usage/migration-guide/index>`.
+      A Phoenix 5 migration guide is available :doc:`here </docs/migration/migration-guide/index>`.
 
 .. grid:: 1 2 3 3
    :gutter: 3
@@ -65,19 +65,20 @@ The Phoenix Pro software framework allows you to control and configure your `CTR
 
 .. toctree::
    :maxdepth: 1
-   :caption: Intro
-   :hidden:
-
-   self
-   docs/why-pro
-
-.. toctree::
-   :maxdepth: 1
    :caption: Getting Started
    :hidden:
 
    docs/installation/pro-installation
    docs/installation/configuring-your-device
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Migration
+   :hidden:
+
+   docs/migration/new-to-phoenix
+   docs/migration/migration-guide/index
+   docs/migration/canbus-utilization
 
 .. toctree::
    :maxdepth: 1
@@ -108,6 +109,7 @@ The Phoenix Pro software framework allows you to control and configure your `CTR
    :caption: API Reference
 
    docs/api-reference/api-usage/index
+   docs/api-reference/device-specific/index
    docs/api-reference/simulation/index
    docs/api-reference/wpilib-integration/index
    docs/api-reference/examples/index
@@ -128,8 +130,8 @@ The Phoenix Pro software framework allows you to control and configure your `CTR
    :caption: API docs
    :hidden:
 
-   Java API Docs <https://api.ctr-electronics.com/phoenixpro/release/java/>
-   C++ API Docs <https://api.ctr-electronics.com/phoenixpro/release/cpp/>
+   Java API Docs <https://api.ctr-electronics.com/phoenix6/release/java/>
+   C++ API Docs <https://api.ctr-electronics.com/phoenix6/release/cpp/>
 
 .. toctree::
    :maxdepth: 1

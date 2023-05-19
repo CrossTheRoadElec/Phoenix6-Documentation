@@ -74,7 +74,7 @@ Once the upgrade dialog is opened, information detailing the device name, model,
    :width: 70%
    :alt: Batch selection screen
 
-The user can begin the upgrade progress by selecting :guilabel:`Update to latest` or :guilabel:`Select firmware...`. The first option will upgrade all listed devices to their latest available firmware (Pro or v5 depending on the toggle state). The second option will open a popup allowing you to select a specific version or firmware file per model.
+The user can begin the upgrade progress by selecting :guilabel:`Update to latest` or :guilabel:`Select firmware...`. The first option will upgrade all listed devices to their latest available firmware (v6 or v5 depending on the toggle state). The second option will open a popup allowing you to select a specific version or firmware file per model.
 
 .. image:: images/batch-upgrade-firmware-selection.png
    :width: 70%

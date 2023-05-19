@@ -1,7 +1,7 @@
 Self Test Snapshot
 ==================
 
-Self Test Snapshot is a diagnostic feature of all supported devices that will show the immediate state of the device. This is extremely useful for troubleshooting and ensuring the device is working properly. Phoenix Pro with Phoenix Tuner X improves upon Self Test by showing the information in clean tables, animations and detailed units.
+Self Test Snapshot is a diagnostic feature of all supported devices that will show the immediate state of the device. This is extremely useful for troubleshooting and ensuring the device is working properly. Phoenix 6 with Phoenix Tuner X improves upon Self Test by showing the information in clean tables, animations and detailed units.
 
 .. image:: images/tunerx-selftest.png
    :width: 70%
@@ -12,7 +12,7 @@ Self Test also includes 3 buttons: :guilabel:`Refresh`, :guilabel:`Blink/Clear F
 Viewing Status LEDs
 -------------------
 
-Phoenix Pro devices report status LEDs as an animated GIF in Phoenix Tuner X. This can be useful for diagnosing a device when it's buried in a robot.
+Phoenix 6 devices report status LEDs as an animated GIF in Phoenix Tuner X. This can be useful for diagnosing a device when it's buried in a robot.
 
 .. image:: images/highlight-leds-self-test.png
    :width: 70%

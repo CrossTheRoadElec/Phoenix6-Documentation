@@ -24,8 +24,8 @@ jobs:
     - name: Archive PDF
       uses: actions/upload-artifact@v3
       with:
-        name: phoenixpro-docs-pdf
-        path: build/latex/phoenixpro.pdf
+        name: phoenix6-docs-pdf
+        path: build/latex/phoenix6.pdf
         if-no-files-found: error
         
   build-html:

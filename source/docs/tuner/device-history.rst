@@ -20,7 +20,7 @@ From there, the user can activate a license for the device like normal. Once the
 
 The "PRO" icon may be replaced with a greyed "LIC" icon in the following situations:
 
-- The device is on Phoenix 5 firmware AND actively connected to Tuner X
-- The device is not a Pro compatible device
+- The device is on Phoenix 5 firmware and actively connected to Tuner X
+- The device is not a Phoenix 6 compatible device
 
-Users who license an eligible Pro device running Phoenix 5 firmware must :ref:`update the device firmware <docs/tuner/device-details-page:field-upgrade firmware version>` to Pro compatible firmware to utilize Pro features.
+Users who license an eligible Phoenix 6 device running Phoenix 5 firmware must :ref:`update the device firmware <docs/tuner/device-details-page:field-upgrade firmware version>` to v6 compatible firmware to utilize licensed features.
