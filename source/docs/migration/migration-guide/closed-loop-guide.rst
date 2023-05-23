@@ -44,7 +44,7 @@ Closed-Loop Gains
 Position without Voltage Comp
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Phoenix 5 ``ControlMode.Position`` with voltage compensation disabled maps to the Phoenix 6 ``PositionDutyCycle`` control request.
+Phoenix 5 ``ControlMode.Position`` with voltage compensation **disabled** maps to the Phoenix 6 ``PositionDutyCycle`` control request.
 
 .. raw:: html
 
@@ -106,7 +106,7 @@ Phoenix 5 ``ControlMode.Position`` with voltage compensation disabled maps to th
 Position with Voltage Comp
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Phoenix 5 ``ControlMode.Position``` with voltage compensation enabled maps to the Phoenix 6 ``PositionVoltage`` control request.
+Phoenix 5 ``ControlMode.Position`` with voltage compensation **enabled** has been replaced with the Phoenix 6 ``PositionVoltage`` control request, which directly controls voltage.
 
 .. raw:: html
 
@@ -171,7 +171,9 @@ Phoenix 5 ``ControlMode.Position``` with voltage compensation enabled maps to th
 Velocity without Voltage Comp
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Phoenix 5 ``ControlMode.Velocity`` with voltage compensation disabled maps to the Phoenix 6 ``VelocityDutyCycle`` control request.
+Phoenix 5 ``ControlMode.Velocity`` with voltage compensation **disabled** maps to the Phoenix 6 ``VelocityDutyCycle`` control request.
+
+Additionally, kF from Phoenix 5 has been replaced with kV in Phoenix 6.
 
 .. raw:: html
 
@@ -227,7 +229,7 @@ Phoenix 5 ``ControlMode.Velocity`` with voltage compensation disabled maps to th
                 <td class="overflow">\(kD_{\mathrm{new}}=kD_{\mathrm{old}} \cdot 2048 \frac{\mathrm{unit}}{\mathrm{rot}} \cdot \frac{1}{1023} \frac{\mathrm{duty\_cycle}}{\mathrm{raw\_output}} \cdot \frac{1}{1000} \frac{\mathrm{second}}{\mathrm{millisecond}} \cdot \frac{1}{10} \frac{\mathrm{sec}}{\mathrm{100ms}}\)</td>
             </tr>
             <tr>
-                <th rowspan="2">kF</th>
+                <th rowspan="2">kF<hr style="width:50%">kV</th>
                 <td>Original</td>
                 <td><input type="number" id="kF_vel_entry" min="0" max="1024" placeholder="0"></td>
                 <td>\(\frac{\mathrm{raw\_output}}{\mathrm{unit} / \mathrm{100millisecond}}\)</td>
@@ -237,7 +239,7 @@ Phoenix 5 ``ControlMode.Velocity`` with voltage compensation disabled maps to th
                 <td>New</td>
                 <td><input type="number" readonly="readonly" id="new_kF_vel" min="0" max="1024" placeholder="0"></input></td>
                 <td>\(\frac{\mathrm{duty\_cycle}}{\mathrm{rot} / \mathrm{second}}\)</td>
-                <td class="overflow">\(kF_{\mathrm{new}}=kF_{\mathrm{old}} \cdot 2048 \frac{\mathrm{unit}}{\mathrm{rot}} \cdot \frac{1}{1023} \frac{\mathrm{duty\_cycle}}{\mathrm{raw\_output}} \cdot \frac{1}{10} \frac{\mathrm{second}}{\mathrm{100ms}}\)</td>
+                <td class="overflow">\(kV_{\mathrm{new}}=kF_{\mathrm{old}} \cdot 2048 \frac{\mathrm{unit}}{\mathrm{rot}} \cdot \frac{1}{1023} \frac{\mathrm{duty\_cycle}}{\mathrm{raw\_output}} \cdot \frac{1}{10} \frac{\mathrm{second}}{\mathrm{100ms}}\)</td>
             </tr>
         </table>
     </div>
@@ -247,7 +249,9 @@ Phoenix 5 ``ControlMode.Velocity`` with voltage compensation disabled maps to th
 Velocity with Voltage Comp
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Phoenix 5 ``ControlMode.Velocity`` with voltage compensation enabled maps to the Phoenix 6 ``VelocityVoltage`` control request.
+Phoenix 5 ``ControlMode.Velocity`` with voltage compensation **enabled** has been replaced with the Phoenix 6 ``VelocityVoltage`` control request, which directly controls voltage.
+
+Additionally, kF from Phoenix 5 has been replaced with kV in Phoenix 6.
 
 .. raw:: html
 
@@ -306,7 +310,7 @@ Phoenix 5 ``ControlMode.Velocity`` with voltage compensation enabled maps to the
                 <td class="overflow">\(kD_{\mathrm{new}}=kD_{\mathrm{old}} \cdot 2048 \frac{\mathrm{unit}}{\mathrm{rot}} \cdot \frac{1}{1023} \frac{\mathrm{duty\_cycle}}{\mathrm{raw\_output}} \cdot \frac{1}{1000} \frac{\mathrm{second}}{\mathrm{millisecond}} \cdot \frac{1}{10} \frac{\mathrm{second}}{\mathrm{100ms}} \cdot \mathrm{V\_comp} \frac{\mathrm{V}}{\mathrm{duty\_cycle}}\)</td>
             </tr>
             <tr>
-                <th rowspan="2">kF</th>
+                <th rowspan="2">kF<hr style="width:50%">kV</th>
                 <td>Original</td>
                 <td><input type="number" id="kF_vel_volt_entry" min="0" max="1024" placeholder="0"></td>
                 <td>\(\frac{\mathrm{\mathrm{raw\_output}}}{\mathrm{unit} / \mathrm{100ms}}\)</td>
@@ -316,7 +320,7 @@ Phoenix 5 ``ControlMode.Velocity`` with voltage compensation enabled maps to the
                 <td>New</td>
                 <td><input type="number" readonly="readonly" id="new_kF_vel_volt" min="0" max="1024" placeholder="0"></input></td>
                 <td>\(\frac{\mathrm{V}}{\mathrm{rot} / \mathrm{second}}\)</td>
-                <td class="overflow">\(kF_{\mathrm{new}}=kF_{\mathrm{old}} \cdot 2048 \frac{\mathrm{unit}}{\mathrm{rot}} \cdot \frac{1}{1023} \frac{\mathrm{duty\_cycle}}{\mathrm{raw\_output}} \cdot \frac{1}{10} \frac{\mathrm{second}}{\mathrm{100ms}} \cdot \mathrm{V\_comp} \frac{\mathrm{V}}{\mathrm{duty\_cycle}}\)</td>
+                <td class="overflow">\(kV_{\mathrm{new}}=kF_{\mathrm{old}} \cdot 2048 \frac{\mathrm{unit}}{\mathrm{rot}} \cdot \frac{1}{1023} \frac{\mathrm{duty\_cycle}}{\mathrm{raw\_output}} \cdot \frac{1}{10} \frac{\mathrm{second}}{\mathrm{100ms}} \cdot \mathrm{V\_comp} \frac{\mathrm{V}}{\mathrm{duty\_cycle}}\)</td>
             </tr>
         </table>
     </div>
