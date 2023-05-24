@@ -487,7 +487,7 @@ Using Closed-Loop Control
                m_motor.SelectProfileSlot(0, 0);
                m_motor.Set(ControlMode::Velocity, 10240);
 
-   * - .. centered:: Pro
+   * - .. centered:: v6
      - .. tab-set::
 
          .. tab-item:: Java
@@ -502,7 +502,7 @@ Using Closed-Loop Control
                var slot0Configs = new Slot0Configs();
                slot0Configs.kV = 0.12;
                slot0Configs.kP = 0.11;
-               slot0Configs.kI = 0.5;
+               slot0Configs.kI = 0.48;
                slot0Configs.kD = 0.01;
                m_talonFX.getConfigurator().apply(slot0Configs, 0.050);
 
@@ -523,7 +523,7 @@ Using Closed-Loop Control
                configs::Slot0Configs slot0Configs{};
                slot0Configs.kV = 0.12;
                slot0Configs.kP = 0.11;
-               slot0Configs.kI = 0.5;
+               slot0Configs.kI = 0.48;
                slot0Configs.kD = 0.01;
                m_talonFX.GetConfigurator().Apply(slot0Configs, 50_ms);
 
@@ -596,7 +596,7 @@ Motion Magic®
                // add 0.02 (2%) arbitrary feedforward to overcome friction
                m_motor.Set(ControlMode::MotionMagic, 409600, DemandType::ArbitraryFeedforward, 0.02);
 
-   * - .. centered:: Pro
+   * - .. centered:: v6
      - .. compound::
 
          .. note:: The Motion Magic® S-Curve Strength has been replaced with jerk control in Phoenix 6.

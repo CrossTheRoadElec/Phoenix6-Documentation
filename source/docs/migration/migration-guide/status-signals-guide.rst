@@ -37,7 +37,7 @@ Using Status Signals
                // latency is unknown
                // cannot synchronously wait for new data
 
-   * - .. centered:: Pro
+   * - .. centered:: v6
      - .. tab-set::
 
          .. tab-item:: Java
@@ -110,7 +110,7 @@ Changing Update Frequency (Status Frame Period)
                // slow down the Status 2 frame (selected sensor data) to 5 Hz (200ms)
                m_talonFX.SetStatusFramePeriod(StatusFrameEnhanced::Status_2_Feedback0, 200);
 
-   * - .. centered:: Pro
+   * - .. centered:: v6
      - .. tab-set::
 
          .. tab-item:: Java

@@ -30,7 +30,7 @@ Improved Device Control
 Enhanced Support for `CAN FD <https://store.ctr-electronics.com/can-fd/>`__
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-- Improved CAN FD framing further reduces any CAN bus utilization issues.
+- Improved CAN FD framing further reduces any :doc:`CAN bus utilization </docs/migration/canbus-utilization>` issues.
 - Larger CAN frames allow for the addition of more advanced features.
 
 New :doc:`Tuner X Self Tests </docs/tuner/self-test>`
@@ -66,7 +66,7 @@ Time Base Synchronization
 Fused CANcoder
 ^^^^^^^^^^^^^^
 
-- :ref:`Fuse a CANcoder <fusedcancoder>` (requires Pro) with the motor's internal rotor, getting absolute data all the time while using the fast internal sensor for closed looping.
+- :ref:`Fuse a CANcoder <fusedcancoder>` with the motor's internal rotor, getting absolute data all the time while using the fast internal sensor for closed looping.
 
 Feature Breakdown
 ------------------
