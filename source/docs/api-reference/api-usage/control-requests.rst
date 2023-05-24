@@ -112,3 +112,5 @@ Control requests are automatically transmitted at a fixed update frequency. This
          controls::DutyCycleOut motorRequest{0};
          // reduce the update frequency to 50 Hz
          motorRequest.UpdateFreqHz = 50;
+
+.. tip:: ``UpdateFreqHz`` can be set to 0 Hz to synchronously one-shot the control request. In this case, users must ensure the control request is sent periodically in their robot code. Therefore, we recommend users call ``setControl`` no slower than 20 Hz (50 ms) when the control is one-shot.

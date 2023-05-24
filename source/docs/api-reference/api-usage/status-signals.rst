@@ -130,6 +130,8 @@ All signals can have their update frequency configured via the ``setUpdateFreque
          // slow down supply voltage reporting to 10 Hz
          supplyVoltageSignal.SetUpdateFrequency(10_Hz);
 
+.. important:: Currently in Phoenix 6, when different status signal frequencies are specified for signals that share a status frame, the last specified frequency is applied to the status frame. As a result, users should apply the slowest status frame frequencies first and the fastest frequencies last.
+
 Timestamps
 ^^^^^^^^^^
 
