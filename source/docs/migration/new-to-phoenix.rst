@@ -30,7 +30,7 @@ Improved Device Control
 Enhanced Support for `CAN FD <https://store.ctr-electronics.com/can-fd/>`__
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-- Improved CAN FD framing further reduces any CAN bus utilization issues.
+- Improved CAN FD framing further reduces any :doc:`CAN bus utilization </docs/migration/canbus-utilization>` issues.
 - Larger CAN frames allow for the addition of more advanced features.
 
 New :doc:`Tuner X Self Tests </docs/tuner/self-test>`

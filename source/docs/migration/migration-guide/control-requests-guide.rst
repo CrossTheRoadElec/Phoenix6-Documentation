@@ -181,12 +181,12 @@ All control output types are supported in open-loop and closed-loop control requ
      - VoltageOut
 
    * - Phoenix 5 does not support torque control
-     - TorqueCurrentFOC
+     - TorqueCurrentFOC (requires Pro)
 
    * - Current closed-loop
      - This has been deprecated in Phoenix 6.
 
-       - Users looking to control torque should use TorqueCurrentFOC
+       - Users looking to control torque should use TorqueCurrentFOC (requires Pro)
        - Users looking to limit current should use supply and stator current limits
 
 .. list-table:: Closed-loop Control Requests
@@ -208,4 +208,4 @@ All control output types are supported in open-loop and closed-loop control requ
      - {ClosedLoop}Voltage
 
    * - Closed-loop + Torque Control (not supported in Phoenix 5)
-     - {ClosedLoop}TorqueCurrentFOC
+     - {ClosedLoop}TorqueCurrentFOC (requires Pro)
