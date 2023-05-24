@@ -3,6 +3,8 @@ Control Requests
 
 Phoenix 6 provides an extensive list of flexible control modes through the use of strongly-typed control requests.
 
+.. note:: For more information about control requests in Phoenix 6, see :doc:`/docs/api-reference/api-usage/control-requests`.
+
 Using Control Requests
 ----------------------
 
@@ -160,6 +162,59 @@ Follower Motors
                // - m_follower and m_strictFollower will also run at 100% output
                // - m_follower will follow m_leader's invert, while m_strictFollower
                //   ignores it and uses its own
+
+Changing Update Frequency (Control Frame Period)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. list-table::
+   :width: 100%
+   :widths: 1 99
+
+   * - .. centered:: v5
+     - .. tab-set::
+
+         .. tab-item:: Java
+            :sync: Java
+
+            .. code-block:: java
+
+               // slow down the Control 3 frame (general control) to 50 Hz (20ms)
+               m_talonFX.setControlFramePeriod(ControlFrame.Control_3_General, 20);
+
+         .. tab-item:: C++
+            :sync: C++
+
+            .. code-block:: cpp
+
+               // slow down the Control 3 frame (general control) to 50 Hz (20ms)
+               m_talonFX.SetControlFramePeriod(ControlFrame::Control_3_General, 20);
+
+   * - .. centered:: v6
+     - .. tab-set::
+
+         .. tab-item:: Java
+            :sync: Java
+
+            .. code-block:: java
+
+               // class member variables
+               DutyCycle m_request = new DutyCycle(0);
+
+               // slow down the control request to 50 Hz
+               m_request.UpdateFreqHz = 50;
+
+         .. tab-item:: C++
+            :sync: C++
+
+            .. code-block:: cpp
+
+               // class member variables
+               controls::DutyCycle m_request{0};
+
+               // slow down the control request to 50 Hz
+               m_request.UpdateFreqHz = 50_Hz;
+
+.. tip:: ``UpdateFreqHz`` can be set to 0 Hz to synchronously one-shot the control request. In this case, users must ensure the control request is sent periodically in their robot code. Therefore, we recommend users call ``setControl`` no slower than 20 Hz (50 ms) when the control is one-shot.
 
 Control Types
 -------------

@@ -3,6 +3,8 @@ Configuration
 
 Phoenix 6 simplifies the configuration process through the use of device-specific ``Configuration`` classes, as well as configuration groups.
 
+.. note:: For more information about configuration in Phoenix 6, see :doc:`/docs/api-reference/api-usage/configuration`.
+
 Applying Configs
 ----------------
 

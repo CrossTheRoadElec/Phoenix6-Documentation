@@ -3,6 +3,8 @@ Closed-Loop Control
 
 Phoenix 6 enhances the experience of using onboard closed-loop control through the use of standardized units and a variety of control output types.
 
+.. note:: For more information about closed-loop control in Phoenix 6, see :doc:`/docs/api-reference/device-specific/talonfx/closed-loop-requests`.
+
 .. raw:: html
 
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
