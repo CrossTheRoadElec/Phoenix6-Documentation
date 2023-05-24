@@ -37,7 +37,7 @@ Applying Configs
                m_motor.Config_kI(0, 0.0002, 50);
                m_motor.Config_kD(0, 0.42, 50);
 
-   * - .. centered:: Pro
+   * - .. centered:: v6
      - .. tab-set::
 
          .. tab-item:: Java
@@ -96,7 +96,7 @@ Factory Defaulting Configs
                // user must remember to factory default if they configure devices in code
                m_motor.ConfigFactoryDefault();
 
-   * - .. centered:: Pro
+   * - .. centered:: v6
      - .. tab-set::
 
          .. tab-item:: Java
@@ -147,7 +147,7 @@ Retrieving Configs
                SupplyCurrentLimitConfiguration supplyCurLim{};
                m_motor.ConfigGetSupplyCurrentLimit(supplyCurLim);
 
-   * - .. centered:: Pro
+   * - .. centered:: v6
      - .. tab-set::
 
          .. tab-item:: Java

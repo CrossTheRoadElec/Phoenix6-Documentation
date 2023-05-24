@@ -66,7 +66,7 @@ Time Base Synchronization
 Fused CANcoder
 ^^^^^^^^^^^^^^
 
-- :ref:`Fuse a CANcoder <fusedcancoder>` (requires Pro) with the motor's internal rotor, getting absolute data all the time while using the fast internal sensor for closed looping.
+- :ref:`Fuse a CANcoder <fusedcancoder>` with the motor's internal rotor, getting absolute data all the time while using the fast internal sensor for closed looping.
 
 Feature Breakdown
 ------------------

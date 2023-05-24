@@ -37,7 +37,7 @@ Using Control Requests
                // main robot code, command 12 V output
                m_motor.Set(ControlMode::PercentOutput, 1.0);
 
-   * - .. centered:: Pro
+   * - .. centered:: v6
      - .. tab-set::
 
          .. tab-item:: Java
@@ -116,7 +116,7 @@ Follower Motors
                // NOTE: if Set(), NeutralOutput(), or Disable() is ever called on
                //       the followers, they will stop following
 
-   * - .. centered:: Pro
+   * - .. centered:: v6
      - .. tab-set::
 
          .. tab-item:: Java
