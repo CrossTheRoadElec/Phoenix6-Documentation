@@ -40,6 +40,67 @@ Phoenix 6 enhances the experience of using onboard closed-loop control through t
 
     </style>
 
+Closed-Loop Setpoints
+---------------------
+
+Phoenix 6 uses canonical units for closed-loop setpoints.
+
+.. raw:: html
+
+    <div class="tableOverflow">
+        <table class="center">
+            <tr>
+                <th colspan="5">Setpoint Conversion</th>
+            </tr>
+            <tr>
+                <th></th>
+                <th>Name</th>
+                <th>Value</th>
+                <th>Units</th>
+                <th>Formula</th>
+            </tr>
+            <tr>
+                <th rowspan="2">Position</th>
+                <td>Original</td>
+                <td><input type="number" id="pos_entry" min="-99999999" max="99999999" placeholder="0"></td>
+                <td>\(\mathrm{raw\_units}\)</td>
+                <td class="overflow">\(x_{\mathrm{old}}\)</td>
+            </tr>
+            <tr>
+                <td>New</td>
+                <td><input type="number" readonly="readonly" id="new_pos" min="-99999999" max="99999999" placeholder="0"></input></td>
+                <td>\(\mathrm{rotations}\)</td>
+                <td class="overflow">\(x_{\mathrm{new}}=x_{\mathrm{old}} \cdot \frac{1}{2048} \frac{\mathrm{rot}}{\mathrm{raw\_unit}}\)</td>
+            </tr>
+            <tr>
+                <th rowspan="2">Velocity</th>
+                <td>Original</td>
+                <td><input type="number" id="vel_entry"  min="-99999999" max="99999999" placeholder="0"></td>
+                <td>\(\frac{\mathrm{raw\_units}}{\mathrm{100ms}}\)</td>
+                <td class="overflow">\(v_{\mathrm{old}}\)</td>
+            </tr>
+            <tr>
+                <td>New</td>
+                <td><input type="number" readonly="readonly" id="new_vel"  min="-99999999" max="99999999" placeholder="0"></input></td>
+                <td>\(\frac{\mathrm{rot}}{\mathrm{second}}\)</td>
+                <td class="overflow">\(v_{\mathrm{new}}=v_{\mathrm{old}} \cdot \frac{1}{2048} \frac{\mathrm{rot}}{\mathrm{raw\_unit}} \cdot 10 \frac{\mathrm{100ms}}{\mathrm{second}} \)</td>
+            </tr>
+            <tr>
+                <th rowspan="2">Acceleration</th>
+                <td>Original</td>
+                <td><input type="number" id="accel_entry"  min="-99999999" max="99999999" placeholder="0"></td>
+                <td>\(\frac{\mathrm{raw\_units}}{\mathrm{100ms} \cdot \mathrm{second}}\)</td>
+                <td class="overflow">\(a_{\mathrm{old}}\)</td>
+            </tr>
+            <tr>
+                <td>New</td>
+                <td><input type="number" readonly="readonly" id="new_accel"  min="-99999999" max="99999999" placeholder="0"></input></td>
+                <td>\(\frac{\mathrm{rot}}{\mathrm{second}^2}\)</td>
+                <td class="overflow">\(a_{\mathrm{new}}=a_{\mathrm{old}} \cdot \frac{1}{2048} \frac{\mathrm{rot}}{\mathrm{raw\_unit}} \cdot 10 \frac{\mathrm{100ms}}{\mathrm{second}} \)</td>
+            </tr>
+        </table>
+    </div>
+
 Closed-Loop Gains
 -----------------
 
@@ -245,7 +306,6 @@ Additionally, kF from Phoenix 5 has been replaced with kV in Phoenix 6.
             </tr>
         </table>
     </div>
-
     <br />
 
 Velocity with Voltage Comp
@@ -436,6 +496,24 @@ Additionally, kF from Phoenix 5 has been replaced with kV in Phoenix 6.
         new_kf_vel_volt = document.getElementById("new_kF_vel_volt");
         kf_vel_volt_entry.addEventListener("input", (event) => {
             new_kf_vel_volt.value = event.target.value * voltage_compensation_velocity_value * 2048 / 1023 / 10;
+        });
+
+        pos_entry = document.getElementById("pos_entry");
+        new_pos = document.getElementById("new_pos");
+        pos_entry.addEventListener("input", (event) => {
+            new_pos.value = event.target.value / 2048;
+        });
+
+        vel_entry = document.getElementById("vel_entry");
+        new_vel = document.getElementById("new_vel");
+        vel_entry.addEventListener("input", (event) => {
+            new_vel.value = event.target.value / 2048 * 10;
+        });
+
+        accel_entry = document.getElementById("accel_entry");
+        new_accel = document.getElementById("new_accel");
+        accel_entry.addEventListener("input", (event) => {
+            new_accel.value = event.target.value / 2048 * 10;
         });
     </script>
 
