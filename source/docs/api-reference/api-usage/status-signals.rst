@@ -152,6 +152,11 @@ Because the devices are synchronized, time-critical signals are sampled and publ
 
 .. note:: When using a non-zero timeout, the signals passed into ``waitForAll()`` should have the same update frequency for synchronous data acquisition. This can be done by calling ``setUpdateFrequency()`` or by referring to the API documentation.
 
+The diagram below demonstrates the benefits of using timesync to synchronously acquire signals from multiple devices.
+
+.. image:: images/timesync-diagram.png
+   :alt: Diagram of timesync operation
+
 The following signals are time-synchronized:
 
 - TalonFX
