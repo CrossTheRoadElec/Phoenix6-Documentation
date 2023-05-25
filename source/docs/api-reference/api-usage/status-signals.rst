@@ -144,9 +144,6 @@ CANivore Timesync
 
 When using `CANivore <https://store.ctr-electronics.com/canivore/>`__, the attached CAN devices will automatically synchronize their time bases. This allows devices to sample and publish their signals in a synchronized manner.
 
-.. image:: images/timesync-diagram.png
-   :alt: Diagram of timesync operation
-
 Users can synchronously wait for these signals to update using ``BaseStatusSignal.waitForAll()`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/BaseStatusSignal.html#waitForAll(double,com.ctre.phoenixpro.BaseStatusSignal...)>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1_base_status_signal.html#abcc070556164f88c966e17bf61741699>`__).
 
 .. tip:: ``waitForAll()`` can be used with a timeout of zero to perform a non-blocking refresh on all signals passed in.
@@ -154,6 +151,11 @@ Users can synchronously wait for these signals to update using ``BaseStatusSigna
 Because the devices are synchronized, time-critical signals are sampled and published on the same schedule. This combined with the ``waitForAll()`` routine means applications can considerably reduce the latency of the timesync signals. This is particularly useful for multi-device mechanisms, such as swerve odometry.
 
 .. note:: When using a non-zero timeout, the signals passed into ``waitForAll()`` should have the same update frequency for synchronous data acquisition. This can be done by calling ``setUpdateFrequency()`` or by referring to the API documentation.
+
+The diagram below demonstrates the benefits of using timesync to synchronously acquire signals from multiple devices.
+
+.. image:: images/timesync-diagram.png
+   :alt: Diagram of timesync operation
 
 The following signals are time-synchronized:
 
