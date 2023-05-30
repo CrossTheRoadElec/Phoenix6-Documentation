@@ -44,6 +44,12 @@ Free :doc:`High-Fidelity Simulation </docs/api-reference/simulation/simulation-i
 - Simulation closely follows the behavior of real hardware.
 - Write unit-tests for your robot code, and make sure the robot works before deploying.
 
+:ref:`Continuous Wrap Mode <continuous_wrap_label>`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- Takes the shortest path for continuous mechanisms.
+- Ideal for mechanisms such as Swerve Drive Steer.
+
 Phoenix Pro
 -----------
 
