@@ -44,6 +44,12 @@ Free :doc:`High-Fidelity Simulation </docs/api-reference/simulation/simulation-i
 - Simulation closely follows the behavior of real hardware.
 - Write unit-tests for your robot code, and make sure the robot works before deploying.
 
+:ref:`Continuous Wrap Mode <docs/api-reference/device-specific/talonfx/closed-loop-requests:continuous mechanism wrap>`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- Takes the shortest path for continuous mechanisms.
+- Ideal for mechanisms such as Swerve Drive Steer.
+
 Phoenix Pro
 -----------
 
@@ -89,6 +95,8 @@ A full comparison of features between the free Phoenix 6 API and Phoenix Pro is 
 | System + CANivore Timestamps  | .. centered:: x | .. centered:: x |
 +-------------------------------+-----------------+-----------------+
 | Explicit Control Requests     | .. centered:: x | .. centered:: x |
++-------------------------------+-----------------+-----------------+
+| Continuous Wrap Mode          | .. centered:: x | .. centered:: x |
 +-------------------------------+-----------------+-----------------+
 | Improved Self-Test Snapshot   | .. centered:: x | .. centered:: x |
 +-------------------------------+-----------------+-----------------+
