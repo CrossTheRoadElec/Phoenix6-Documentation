@@ -307,8 +307,6 @@ Once the gains are configured, the Motion Magic® request can be sent to the Tal
          // set position to 10 rotations
          m_talonFX.SetControl(request.WithPosition(10_tr));
 
-.. _continuous_wrap_label:
-
 Continuous Mechanism Wrap
 -------------------------
 A continuous mechanism is a mechanism with unlimited travel in any direction, and whose rotational position can be represented with multiple unique position values. Some examples of continuous mechanisms are swerve drive steer mechanisms or turrets (without cable management).
