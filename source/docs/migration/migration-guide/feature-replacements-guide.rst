@@ -8,6 +8,8 @@ Motor Invert
 
 In Phoenix 6, motor invert is now a persistent config (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/configs/MotorOutputConfigs.html#Inverted>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1configs_1_1_motor_output_configs.html#a951ba4e8badf1e0a49a99f0d6f753f0c>`__) instead of a control signal.
 
+.. warning:: Since invert is a persistent config, getting and setting motor inverts are now blocking API calls. We recommend that users only set the invert once at program startup.
+
 Neutral Mode
 ------------
 

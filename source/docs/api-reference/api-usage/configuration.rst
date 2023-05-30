@@ -67,7 +67,7 @@ Reading Configs
 
 To read configs stored in a device, use the ``refresh()`` method to update a ``Configuration`` object. The example below demonstrates retrieving a full ``TalonFXConfiguration`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/configs/TalonFXConfiguration.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1configs_1_1_talon_f_x_configuration.html>`__) object from a ``TalonFX`` device.
 
-.. warning:: ``refresh()`` is a blocking API call that waits on the device to respond. Calling ``refresh()`` periodically may slow down the execution time of the periodic function, as it will always wait up to ``defaultTimeoutSeconds`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/configs/ParentConfigurator.html#defaultTimeoutSeconds>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1configs_1_1_parent_configurator.html#a166da706f551536b66314687866afc10>`__) for the response.
+.. warning:: ``refresh()`` is a blocking API call that waits on the device to respond. Calling ``refresh()`` periodically may slow down the execution time of the periodic function, as it will always wait up to ``defaultTimeoutSeconds`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/configs/ParentConfigurator.html#defaultTimeoutSeconds>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1configs_1_1_parent_configurator.html#a166da706f551536b66314687866afc10>`__) for the response when no timeout parameter is specified.
 
 .. tab-set::
 
@@ -98,7 +98,7 @@ Applying Configs
 
 Configs can be applied to a device by calling ``apply()`` on the ``Configurator`` with a ``Configuration`` object.
 
-.. warning:: ``apply()`` is a blocking API call that waits on the device to respond. Calling ``apply()`` periodically may slow down the execution time of the periodic function, as it will always wait up to ``defaultTimeoutSeconds`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/configs/ParentConfigurator.html#defaultTimeoutSeconds>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1configs_1_1_parent_configurator.html#a166da706f551536b66314687866afc10>`__) for the response.
+.. warning:: ``apply()`` is a blocking API call that waits on the device to respond. Calling ``apply()`` periodically may slow down the execution time of the periodic function, as it will always wait up to ``defaultTimeoutSeconds`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/configs/ParentConfigurator.html#defaultTimeoutSeconds>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1configs_1_1_parent_configurator.html#a166da706f551536b66314687866afc10>`__) for the response when no timeout parameter is specified.
 
 .. tab-set::
 
