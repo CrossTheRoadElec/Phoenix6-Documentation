@@ -319,4 +319,5 @@ For example, if a Talon is currently at 2.1 rotations, it knows this is equivale
 In order to use this feature, the ``FeedbackConfigs`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/configs/FeedbackConfigs.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1configs_1_1_feedback_configs.html>`__) ratio configs must be configured so that the mechanism is properly described. An example is provided below, where there is a continuous mechanism with a 12.8:1 speed reduction between the rotor and mechanism.
 
 .. image:: images/feedback-configuration.png
+   :width: 70%
    :alt: Diagram describing how the feedback ratio configs are used
