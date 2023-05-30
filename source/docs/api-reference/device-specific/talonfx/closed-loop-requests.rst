@@ -309,6 +309,7 @@ Once the gains are configured, the Motion Magic® request can be sent to the Tal
 
 Continuous Mechanism Wrap
 -------------------------
+
 A continuous mechanism is a mechanism with unlimited travel in any direction, and whose rotational position can be represented with multiple unique position values. Some examples of continuous mechanisms are swerve drive steer mechanisms or turrets (without cable management).
 
 ``ContinuousWrap`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/configs/ClosedLoopGeneralConfigs.html#ContinuousWrap>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1configs_1_1_closed_loop_general_configs.html#a10ee9d992c59de7cb649c2001f2c4c8f>`__) is a mode of closed loop operation that enables the Talon to take the "shortest path" to a target position for a continuous mechanism. It does this by assuming that the mechanism is continuous within 1 rotation.
