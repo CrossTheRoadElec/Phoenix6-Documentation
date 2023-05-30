@@ -100,6 +100,8 @@ A full comparison of features between the free Phoenix 6 API and Phoenix Pro is 
 +-------------------------------+-----------------+-----------------+
 | Tuner X Improved Plotting     | .. centered:: x | .. centered:: x |
 +-------------------------------+-----------------+-----------------+
+| Continuous Wrap Mode          | .. centered:: x | .. centered:: x |
++-------------------------------+-----------------+-----------------+
 | Time-Synced Signal Publishing |                 | .. centered:: x |
 +-------------------------------+-----------------+-----------------+
 | Field Oriented Control (FOC)  |                 | .. centered:: x |
