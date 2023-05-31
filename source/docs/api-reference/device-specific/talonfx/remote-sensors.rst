@@ -21,7 +21,7 @@ A supported motor controller will update its position and velocity whenever the 
 
          var fx_cfg = new TalonFXConfiguration();
          fx_cfg.Feedback.FeedbackRemoteSensorID = m_cancoder.getDeviceID();
-         fx_cfg.Feedback.FeedbackSensorSource = FeedbackSensorSourceValue.FusedCANcoder;
+         fx_cfg.Feedback.FeedbackSensorSource = FeedbackSensorSourceValue.RemoteCANcoder;
 
          m_talonFX.getConfigurator().apply(fx_cfg);
 
@@ -32,7 +32,7 @@ A supported motor controller will update its position and velocity whenever the 
 
          configs::TalonFXConfiguration fx_cfg{};
          fx_cfg.Feedback.FeedbackRemoteSensorID = m_cancoder.GetDeviceID();
-         fx_cfg.Feedback.FeedbackSensorSource = signals::FeedbackSensorSourceValue::FusedCANcoder;
+         fx_cfg.Feedback.FeedbackSensorSource = signals::FeedbackSensorSourceValue::RemoteCANcoder;
 
          m_talonFX.GetConfigurator().Apply(fx_cfg);
 
