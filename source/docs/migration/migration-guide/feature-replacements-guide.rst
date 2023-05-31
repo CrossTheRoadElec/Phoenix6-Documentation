@@ -36,12 +36,53 @@ Sensor Initialization Strategy
 
 The Talon FX and CANcoder sensors are always initialized to their absolute position in Phoenix 6.
 
+Clear Position on Limit
+-----------------------
+
+In Phoenix 5, users could configure the TalonFX to clear its sensor position (i.e. set to 0) when a limit switch is triggered. In Phoenix 6, this feature has been improved to allow users to specify the applied sensor position when a limit switch is triggered. This can be configured using the ``*LimitAutosetPositionValue`` configs (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/configs/HardwareLimitSwitchConfigs.html#ForwardLimitAutosetPositionValue>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1configs_1_1_hardware_limit_switch_configs.html#aba2bf53336c0ebd9988fc9b3154efeef>`__).
+
 Velocity Measurement Period/Window
 ----------------------------------
 
 In Phoenix 6, the velocity rolling average window in Talon FX and CANcoder has been replaced with a Kalman filter, resulting in a less noisy velocity signal with a minimal impact on latency. As a result, the velocity measurement period/window configs are no longer necessary in Phoenix 6 and have been removed.
 
-Integral Zone
--------------
+Integral Zone and Max Integral Accumulator
+------------------------------------------
 
-Phoenix 6 automatically prevents integral windup in closed-loop controls. As a result, the Integral Zone config is no longer necessary and has been removed.
+Phoenix 6 automatically prevents integral windup in closed-loop controls. As a result, the Integral Zone and Max Integral Accumulator configs are no longer necessary and have been removed.
+
+Features to Be Implemented
+--------------------------
+
+The following Phoenix 5 features are not implemented in the current release of Phoenix 6 but are planned to be implemented in the future.
+
+.. list-table::
+   :header-rows: 1
+
+   * - Feature
+     - Status
+
+   * - Remote sensors and limits
+     - High priority
+
+   * - Auxiliary PID
+     - High priority
+
+   * - Orchestra
+     - Normal priority
+
+   * - Talon FX PWM Input
+     - Normal priority
+
+Features Omitted
+----------------
+
+The following Phoenix 5 features have been omitted from Phoenix 6. While there are no plans for these features to be added, if there is customer demand for these features, they may be considered for addition in the future.
+
+Feedback is welcome at feedback@ctr-electronics.com.
+
+- Motion Profile Executor
+
+  - Control requests are planned to be improved to cover many of the use cases of the Motion Profile Executor.
+
+- Allowable Closed-Loop Error
