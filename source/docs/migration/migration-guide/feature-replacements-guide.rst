@@ -73,6 +73,9 @@ The following Phoenix 5 features are not implemented in the current release of P
 
    * - Talon FX PWM Input
      - Normal priority
+     
+   * - CANdle Support
+     - Normal priority
 
 Features Omitted
 ----------------
