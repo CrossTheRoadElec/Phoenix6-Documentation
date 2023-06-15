@@ -16,7 +16,7 @@ Phoenix Diagnostics will automatically run assuming you have instantiated a CTR 
 
       .. code-block:: java
 
-         private TalonFX m_motor = new TalonFX(0, "*");
+         private TalonFX m_motor = new TalonFX(0);
 
    .. tab-item:: C++
 
