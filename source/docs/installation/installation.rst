@@ -62,7 +62,7 @@ To begin, open WPILib VS Code and click on the WPILib icon in the top right.
    :width: 250
    :alt: WPILib icon is located in the top right of VS Code
 
-Then type :guilabel:`Manage vendor libraries` and click on the menu option that appears. Click :guilabel:`Install new libraries (online)` and a textbox should appear. Follow the remaining instructions below on pasting the correct link into the textbox.
+Then type :guilabel:`Manage Vendor Libraries` and click on the menu option that appears. Click :guilabel:`Install new libraries (online)` and a textbox should appear. Follow the remaining instructions below on pasting the correct link into the textbox.
 
 .. tab-set::
 
@@ -70,7 +70,7 @@ Then type :guilabel:`Manage vendor libraries` and click on the menu option that 
 
       .. important:: This vendordep is for robot projects that are **only** using devices with Phoenix 6 firmware.
 
-      Paste the following URL in WPILib VS Code :guilabel:`Install New Libraries (Online)`:
+      Paste the following URL in WPILib VS Code :guilabel:`Install new libraries (online)`:
 
       - ``https://maven.ctr-electronics.com/release/com/ctre/phoenix6/latest/Phoenix6-frc2023-latest.json``
 
@@ -78,7 +78,7 @@ Then type :guilabel:`Manage vendor libraries` and click on the menu option that 
 
       .. important:: This vendordep is for robot projects that are using **both** Phoenix 6 devices & Phoenix 5 devices.
 
-      Paste the following URL in WPILib VS Code :guilabel:`Install New Libraries (Online)`:
+      Paste the following URL in WPILib VS Code :guilabel:`Install new libraries (online)`:
 
       - ``https://maven.ctr-electronics.com/release/com/ctre/phoenix6/latest/Phoenix6And5-frc2023-latest.json``
 
