@@ -3,8 +3,8 @@ Installing Phoenix 6
 
 Installation of Phoenix 6 is comprised of a few steps
 
-* :ref:`Installing API <docs/installation/pro-installation:API Installation>`
-* :ref:`Installing Tuner <docs/installation/pro-installation:Tuner X Installation>`
+* :ref:`Installing API <docs/installation/installation:API Installation>`
+* :ref:`Installing Tuner <docs/installation/installation:Tuner X Installation>`
 * :doc:`Updating Device Firmware </docs/installation/configuring-your-device>`
 * :doc:`Device Licensing </docs/licensing/licensing>`
 
@@ -39,7 +39,7 @@ The following targets are supported:
 Offline
 ^^^^^^^
 
-.. important:: Users on non-Windows devices should skip to the :ref:`Online <docs/installation/pro-installation:online>` installation instructions.
+.. important:: Users on non-Windows devices should skip to the :ref:`Online <docs/installation/installation:online>` installation instructions.
 
 1. Download the `Phoenix Framework Installer <https://github.com/CrossTheRoadElec/Phoenix-Releases/releases>`__
 2. Navigate through the installer, ensuring applicable options are selected
@@ -52,6 +52,16 @@ Offline
 
 Online
 ^^^^^^
+
+Users in FRC can install Phoenix without an installer using WPILib's `Install New Libraries <https://docs.wpilib.org/en/stable/docs/software/vscode-overview/3rd-party-libraries.html#libraries>`__ functionality. This requires the user to have an installation of WPILib on their machine.
+
+To begin, open WPILib VS Code and click on the WPILib icon in the top right. 
+
+.. image:: images/wpilib-icon-location.png
+   :width: 250
+   :alt: WPILib icon is located in the top right of VS Code
+
+Then type :guilabel:`Manage vendor libraries` and click on the menu option that appears. Click :guilabel:`Install new libraries (online)` and a textbox should appear. Follow the remaining instructions below on pasting the correct link into the textbox.
 
 .. tab-set::
 
