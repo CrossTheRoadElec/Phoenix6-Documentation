@@ -5,7 +5,7 @@ Installation of Phoenix 6 is comprised of a few steps
 
 * :ref:`Installing API <docs/installation/installation:API Installation>`
 * :ref:`Installing Tuner <docs/installation/installation:Tuner X Installation>`
-* :doc:`Deploying the Diagnostic Server </docs/installation/running-diagnostics>`
+* :doc:`Running the Diagnostic Server </docs/installation/running-diagnostics>`
 * :doc:`Updating Device Firmware </docs/installation/configuring-your-device>`
 * :doc:`Device Licensing </docs/licensing/licensing>`
 

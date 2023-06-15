@@ -1,14 +1,14 @@
-Deploying the Diagnostic Server
--------------------------------
+Running the Diagnostic Server
+-----------------------------
 
-Phoenix Tuner utilizes an on-device HTTP server called Phoenix Diagnostic Server to communicate with the device. The user can install the diagnostic server through one of two ways.
+Phoenix Tuner utilizes an on-device HTTP server called Phoenix Diagnostic Server to communicate with the device. The user can run the diagnostic server through one of two ways.
 
 1: Deploying a Robot Program
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Phoenix Diagnostics will automatically run assuming you have instantiated a CTR-Electronics device in your robot program. This can be as simple as having a motor declared somewhere in your program.
+Phoenix Diagnostics will automatically run assuming you have instantiated a CTR Electronics device in your robot program. This can be as simple as having a motor declared somewhere in your program.
 
-.. note:: The motor IDs do not have to be valid, just creating the object alone will start diagnostics. C++ users can simply include any ``phoenix6`` header and it will accomplish the same behavior.
+.. note:: The ID of the device does not need to be valid to run diagnostics.
 
 .. tab-set::
 
@@ -24,7 +24,7 @@ Phoenix Diagnostics will automatically run assuming you have instantiated a CTR-
 
          hardware::TalonFX m_talonFX{0};
 
-When the program runs, it'll print text to the console similar to the below
+When the program runs, it will print text to the console similar to the below
 
 .. note:: WPILib users will see this text in the `Driver Station <https://docs.wpilib.org/en/stable/docs/software/driverstation/driver-station.html#messages-tab>`__ or `RioLog <https://docs.wpilib.org/en/stable/docs/software/vscode-overview/viewing-console-output.html>`__
 
@@ -36,4 +36,4 @@ When the program runs, it'll print text to the console similar to the below
 2: Running Temporary Diagnostic Server
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Alternatively, users can :ref:`run a temporary diagnostic <docs/tuner/connecting:temporary diagnostics (frc)>` server in Tuner X. The temporary diagnostic server will only run until the next reboot of the target system.
+Alternatively, users can :ref:`run a temporary diagnostic server <docs/tuner/connecting:temporary diagnostics (frc)>` in Tuner X. The temporary diagnostic server will only run until the next reboot of the target system.
