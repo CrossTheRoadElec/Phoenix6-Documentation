@@ -55,7 +55,7 @@ Online
 
 Users in FRC can install Phoenix without an installer using WPILib's `Install New Libraries <https://docs.wpilib.org/en/stable/docs/software/vscode-overview/3rd-party-libraries.html#libraries>`__ functionality. This requires the user to have an installation of WPILib on their machine.
 
-To begin, open WPILib VS Code and click on the WPILib icon in the top right. 
+To begin, open WPILib VS Code and click on the WPILib icon in the top right.
 
 .. image:: images/wpilib-icon-location.png
    :width: 250
