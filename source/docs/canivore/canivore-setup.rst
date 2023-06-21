@@ -55,7 +55,7 @@ After adding the sources, the kernel module can be installed and updated using t
 Raspberry Pi 4 Errata
 ~~~~~~~~~~~~~~~~~~~~~
 
-On a Raspberry Pi 4 or newer, the latest 32-bit Raspberry Pi OS image will default to using the 64-bit kernel while still using 32-bit apt packages. As a result, our canivore-usb kernel module will fail to install.
+On a Raspberry Pi 4 or newer, the latest 32-bit Raspberry Pi OS image will default to using the 64-bit kernel while still using 32-bit APT packages. As a result, our canivore-usb kernel module will fail to install.
 
 There are two options to work around this issue:
 
