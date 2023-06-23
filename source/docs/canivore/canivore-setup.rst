@@ -38,8 +38,9 @@ On non-FRC Linux systems, the ``canivore-usb`` kernel module must be installed t
 
 .. code-block:: bash
 
+   YEAR=<year>
    sudo curl -s --compressed -o /usr/share/keyrings/ctr-pubkey.gpg "https://deb.ctr-electronics.com/ctr-pubkey.gpg"
-   sudo curl -s --compressed -o /etc/apt/sources.list.d/ctr<year>.list "https://deb.ctr-electronics.com/ctr<year>.list"
+   sudo curl -s --compressed -o /etc/apt/sources.list.d/ctr${YEAR}.list "https://deb.ctr-electronics.com/ctr${YEAR}.list"
 
 .. note:: ``<year>`` should be replaced with the year of Phoenix 6 software for which you have purchased licenses.
 
@@ -51,6 +52,18 @@ After adding the sources, the kernel module can be installed and updated using t
    sudo apt install canivore-usb
 
 .. tip:: To get a robot application up and running quickly, check out our `non-FRC Linux example <https://github.com/CrossTheRoadElec/PhoenixPro-Linux-Example>`__.
+
+Raspberry Pi 4 Errata
+~~~~~~~~~~~~~~~~~~~~~
+
+On a Raspberry Pi 4 or newer, the latest 32-bit Raspberry Pi OS image will default to using the 64-bit kernel while still using 32-bit APT packages. As a result, our canivore-usb kernel module will fail to install.
+
+There are two options to work around this issue:
+
+1. (Recommended) Use the 64-bit Raspberry Pi OS. This allows programs to use all available RAM and improves overall system performance and stability.
+2. Add ``arm_64bit=0`` to /boot/config.txt and reboot. This forces the Raspberry Pi to use the 32-bit kernel. Note that programs will be limited to using 3 GB of RAM, and system performance may be impacted.
+
+.. warning:: Do not add ``arm_64bit=0`` to /boot/config.txt when using the 64-bit Raspberry Pi OS. Attempting to do so may cause the Pi to be unable to boot.
 
 Viewing Attached CANivores
 --------------------------
