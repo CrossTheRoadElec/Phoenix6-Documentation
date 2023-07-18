@@ -2,7 +2,7 @@ Latency and Frequency
 =====================
 *Authored by Cory*
 
-A common discussion with CAN-based sensors and actuators is how the latency and update frequency affects robot performance. This devblog is meant to expand what these aspects are and how users can mitigate or eliminate them with Phoenix 6/Pro.
+A common discussion with CAN-based sensors and actuators is how latency and update frequency affect robot performance. This devblog is meant to expand what these aspects are and how users can mitigate or eliminate them with Phoenix 6/Pro.
 
 Frequency
 ---------
@@ -11,7 +11,7 @@ Signal frequency largely affects two aspects for robots:
 1. Closed loop control
 2. Odometry
 
-Closed loop control is pretty clear cut, the slower the frequency, the greater the time gaps and the more you have to dampen a closed loop controller to keep it smooth. This becomes more important the less inertia your system has, such as with a swerve drive azimuth. At the inertia of a full robot, this becomes less important, as the robot can't change its own heading fast enough for the lower frequency to have much of an impact.
+Closed loop control is pretty clear, the slower the frequency, the greater the time gaps and the more you have to dampen a closed loop controller to keep it smooth. This becomes more important the less inertia your system has, such as with a swerve drive azimuth. At the inertia of a full robot, this becomes less important, as the robot can't change its own heading fast enough for the lower frequency to have much of an impact.
 
 Odometry is a little less clear, but the gist is that odometry itself is generally an integration problem. If your data is coming in at a lower frequency, the integration isn't as accurate, and so you accrue drift and error. This gets worse over time, which is why absolute odometry solutions such as april tag pose are so important at the high level to correct for it.
 
