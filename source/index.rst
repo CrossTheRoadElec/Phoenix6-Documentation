@@ -136,6 +136,13 @@ The Phoenix 6 software framework allows you to control and configure your `CTR E
 
 .. toctree::
    :maxdepth: 1
+   :caption: Application Notes
+   :hidden:
+
+   docs/application-notes/devblog
+
+.. toctree::
+   :maxdepth: 1
    :caption: Support
    :hidden:
 
