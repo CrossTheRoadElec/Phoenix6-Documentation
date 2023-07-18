@@ -1,8 +1,9 @@
-Devblog Resources
-=================
+Development Blog
+================
 
-This is a list of devblog resources that are meant to be used for particular applications.
-Note that this list may move in the future.
+Welcome to the development blog. Here, we will highlight various features of CTR Electronics devices and how they can be utilized in specific applications.
+
+.. note:: This list may move in the future.
 
 - :doc:`canbus-latency-and-frequency`
 
