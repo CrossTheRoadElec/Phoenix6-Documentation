@@ -46,7 +46,7 @@ On non-FRC Linux systems, the ``canivore-usb`` kernel module must be installed t
 
 After adding the sources, the kernel module can be installed and updated using the following:
 
-.. important:: User's on a Raspberry Pi OS based platform must install the kernel headers before running the below install script. Headers can be installed by running ``sudo apt install raspberrypi-kernel-headers``.
+.. important:: Users on a Raspberry Pi OS based platform must install the kernel headers before running the below install script. Headers can be installed by running ``sudo apt install raspberrypi-kernel-headers``.
 
 .. code-block:: bash
 
