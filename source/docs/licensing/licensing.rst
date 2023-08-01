@@ -77,6 +77,8 @@ The below table can be used to determine your device license state for troublesh
 | Supported            |                                                                     | device licensing.                                                           |
 +----------------------+---------------------------------------------------------------------+-----------------------------------------------------------------------------+
 
+Additionally, users can perform a :ref:`Self Test <docs/tuner/self-test:self test snapshot>` to verify that the device has a valid license.
+
 Troubleshooting
 ---------------
 
