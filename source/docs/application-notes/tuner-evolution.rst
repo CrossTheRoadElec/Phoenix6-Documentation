@@ -14,7 +14,7 @@ With Tuner, and by extension diagnostics, we have several primary objectives:
 - Seamless setup experience.
 - Support and integrate our extension feature-set.
 
-Tuner v1 was and is great, but we wanted to do more. In 2023, we introduced Tuner X.
+Tuner v1 was and is great, but we wanted to do more. In the 2023 season, we introduced Tuner X.
 
 Introducing Tuner X
 -------------------
@@ -22,9 +22,9 @@ Introducing Tuner X
 .. image:: images/tuner-evolution/tuner-x-2023.png
    :alt: Card overview page in Tuner X 2023
 
-The goal we had with Tuner X development was to refine and enhance the existing Tuner X feature set. We introduced `Android support <https://play.google.com/store/apps/details?id=com.ctre.phoenix_tuner>`__, improved batch upgrading, improved highlighting of duplicate devices, automatic firmware downloads (no more downloading CRFs!), improved self test and licensing support.
+The goal we had with Tuner X development was to refine and enhance the existing Tuner v1 feature set. We introduced `Android support <https://play.google.com/store/apps/details?id=com.ctre.phoenix_tuner>`__, improved batch upgrading, improved highlighting of duplicate devices, automatic firmware downloads (no more downloading CRFs!), improved self test and licensing support.
 
-With Tuner X, user's can:
+With Tuner X, users can:
 
 * Configure their device's name & ID
 * Blink a device, which is useful for identifying where the device is on the robot.
