@@ -40,14 +40,14 @@ For a full list of features, check out the `v6 documentation <https://pro.docs.c
 Introducing a new iteration of Tuner X
 --------------------------------------
 
-Some of you may have noticed that your version of Tuner X has changed quite drastically. We've been working on several key improvements to the application that should dramatically improve the user experience.  While this blog will highlight some of those, it's best to just try out the new Tuner yourself.
+Some of you may have noticed that your version of Tuner X has changed recently. We've been working on several key improvements to the application that should dramatically improve the user experience.  While this blog will highlight some of those, it's best to just try out the new Tuner yourself.
 
-.. note:: Feedback is welcome can be provided by emailing `feedback@ctr-electronics.com <mailto:feedback@ctr-electronics.com>`__.
+.. note:: Feedback is welcome and can be provided by emailing `feedback@ctr-electronics.com <mailto:feedback@ctr-electronics.com>`__.
 
 Improved connection diagnostics
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Tuner requires a locally installed `diagnostic server <https://pro.docs.ctr-electronics.com/en/latest/docs/installation/running-diagnostics.html>`__ to work. Typically, this is installed through a robot program utilizing one of our devices. Alternatively, this program is temporarily run using a button in `Settings <https://pro.docs.ctr-electronics.com/en/latest/docs/tuner/connecting.html?highlight=settings#temporary-diagnostics-frc>`__. We've improved the disconnection status card to contain information about the ping of the target and diagnostic state of the device.
+Tuner requires a running `diagnostic server <https://pro.docs.ctr-electronics.com/en/latest/docs/installation/running-diagnostics.html>`__ to work. Typically, this is installed through a robot program utilizing one of our devices. Alternatively, this program is temporarily run using a button in `Settings <https://pro.docs.ctr-electronics.com/en/latest/docs/tuner/connecting.html?highlight=settings#temporary-diagnostics-frc>`__. We've improved the disconnection status card to contain information about the ping of the target and diagnostic state of the device.
 
 .. image:: images/tuner-evolution/tuner-x-2024.png
    :alt: Disconnection card in Tuner X 2024
