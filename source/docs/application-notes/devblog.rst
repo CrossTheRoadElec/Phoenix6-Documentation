@@ -6,6 +6,7 @@ Welcome to the development blog. Here, we will highlight various features of CTR
 .. note:: This list may move in the future.
 
 - :doc:`canbus-latency-and-frequency`
+- :doc:`tuner-evolution`
 
 .. toctree::
    :maxdepth: 1
