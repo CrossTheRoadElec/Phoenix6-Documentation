@@ -1,0 +1,66 @@
+Swerve Overview
+===============
+
+New in 2024 is a high performance swerve framework. This framework simplifies the boilerplate necessary for swerve and maximizes performance.
+
+.. important:: This section focuses on utilizing the Swerve API and configuring it correctly. Tuner X supports a swerve project creator that greatly simplifies this process and removes common error cases.
+
+- Small API surface, easily debuggable
+  
+  * Build robot characteristics using ``SwerveModuleConstants`` (Java) and ``SwerveDrivetrainConstants``.
+  * Integrates cleanly into WPILib `commandbased <https://docs.wpilib.org/en/stable/docs/software/commandbased/index.html>`__ framework via ``CommandSwerveDrivetrain`` (Java).
+  * Telemetrize directly in the odometry loop using the ``registerTelemetry()`` (Java) lambda.
+  * Supports handling the swerve state via ``SwerveRequest`` (Java).
+    
+    * Supports robot-centric, field-centric and field-centric facing angle.
+    * Supports common scenarios such as X module (point all modules toward the center of the robot).
+
+- Simulation
+
+  * Swerve simulation focuses on usability, and as such isn't perfectly accurate to a real robot.
+  * Simply call ``updateSimState`` (Java) in ``simulationPeriodic()`` (`Java <https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/IterativeRobotBase.html#simulationPeriodic()>`__). 
+
+- Performance
+
+  * Odometry is updated synchronous with the motor controllers.
+  * Odometry is received as fast as possible via a separate thread.
+  * Combine with `PRO <https://store.ctr-electronics.com/phoenix-pro/>`__ (optional) and `CANFD <https://store.ctr-electronics.com/canivore/>`__ to utilize :ref:`timesync <docs/api-reference/api-usage/status-signals:canivore timesync>`.
+
+Hardware Requirements
+---------------------
+
+Utilizing the swerve API requires that the robot drivetrain is composed of supported Phoenix 6 devices. At a minimum, these requirements are:
+
+- 8 TalonFX motor controllers (4 steer, 4 drive)
+- 4 CANcoders
+- 1 Pigeon 2.0
+
+Overview on the API
+-------------------
+
+Simple usage of the API is comprised of 4 core classes:
+
+- ``SwerveDrivetrainConstants`` (Java)
+  
+  * This class handles characteristics of the robot that are not module specific. e.g. CAN bus, Pigeon 2 ID, whether FD is enabled or not.
+
+- ``SwerveModuleConstantsFactory`` (Java)
+
+  * Factory class that is used to instantiate ``SwerveModuleConstants`` for each module on the robot.
+
+- ``SwerveModuleConstants`` (Java)
+
+  * Represents the characteristics for a given module.
+
+- ``SwerveDrivetrain`` (Java) or ``CommandSwerveDrivetrain`` (Java)
+
+  * Created via ``SwerveDrivetrainConstants`` and a variable number of ``SwerveModuleConstants``, this is used to control the swerve drivetrain.
+
+Usage of these classes is available in the following articles in this section.
+
+.. toctree::
+   :maxdepth: 1
+
+   swerve-builder-api
+   creating-swerve-modules
+   swerve-requests

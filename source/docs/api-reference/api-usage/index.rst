@@ -51,6 +51,9 @@ There are three major components to the Phoenix 6 API:
 - :doc:`actuator-limits`
    - Documents how to retrieve and configure software and hardware actuator limits.
 
+- :doc:`swerve/swerve-overview`
+   - Documentation on the swerve API.
+
 .. toctree::
    :maxdepth: 1
    :hidden:
@@ -62,3 +65,4 @@ There are three major components to the Phoenix 6 API:
    faults
    enabling-actuators
    actuator-limits
+   swerve/swerve-overview
