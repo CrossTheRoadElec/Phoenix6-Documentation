@@ -79,17 +79,10 @@ Information on configuring the logger and extracting the logs are available in t
 .. image:: images/tuner-x-log-extractor.png
    :alt: Log extractor page in Tuner X
 
-Differential Controls
-^^^^^^^^^^^^^^^^^^^^^
-
-.. important:: This feature requires devices to be :doc:`licensed </docs/licensing/licensing>`.
-
-A list of available differential control requests is available in the ``controls.compound`` namespace.
-
 Differential Mechanisms
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-.. important:: This feature requires devices to be :doc:`licensed </docs/licensing/licensing>`.
+.. important:: Both ``DifferentialMechanism`` (Pro only) and ``SimpleDifferentialMechanism`` require `CANFD <https://store.ctr-electronics.com/canivore/>`__.
 
 ``DifferentialMechanism`` (Java, C++, Python) provides an easy way to control two-axis differential mechanisms such as two motor elevators (motor on the left and right side of the elevator but is not mechanically linked). Information on this is available here.
 
