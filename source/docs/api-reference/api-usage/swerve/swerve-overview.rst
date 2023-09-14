@@ -6,19 +6,19 @@ New in 2024 is a high performance swerve framework. This framework simplifies th
 .. important:: This section focuses on utilizing the Swerve API and configuring it correctly. Tuner X supports a swerve project creator that greatly simplifies this process and removes common error cases.
 
 - Small API surface, easily debuggable
-  
+
   * Build robot characteristics using ``SwerveModuleConstants`` (Java) and ``SwerveDrivetrainConstants``.
   * Integrates cleanly into WPILib `commandbased <https://docs.wpilib.org/en/stable/docs/software/commandbased/index.html>`__ framework via ``CommandSwerveDrivetrain`` (Java).
   * Telemetrize directly in the odometry loop using the ``registerTelemetry()`` (Java) lambda.
   * Supports handling the swerve state via ``SwerveRequest`` (Java).
-    
+
     * Supports robot-centric, field-centric and field-centric facing angle.
     * Supports common scenarios such as X module (point all modules toward the center of the robot).
 
 - Simulation
 
   * Swerve simulation focuses on usability, and as such isn't perfectly accurate to a real robot.
-  * Simply call ``updateSimState`` (Java) in ``simulationPeriodic()`` (`Java <https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/IterativeRobotBase.html#simulationPeriodic()>`__). 
+  * Simply call ``updateSimState`` (Java) in ``simulationPeriodic()`` (`Java <https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/IterativeRobotBase.html#simulationPeriodic()>`__).
 
 - Performance
 
@@ -41,7 +41,7 @@ Overview on the API
 Simple usage of the API is comprised of 4 core classes:
 
 - ``SwerveDrivetrainConstants`` (Java)
-  
+
   * This class handles characteristics of the robot that are not module specific. e.g. CAN bus, Pigeon 2 ID, whether FD is enabled or not.
 
 - ``SwerveModuleConstantsFactory`` (Java)
@@ -62,5 +62,4 @@ Usage of these classes is available in the following articles in this section.
    :maxdepth: 1
 
    swerve-builder-api
-   creating-swerve-modules
    swerve-requests
