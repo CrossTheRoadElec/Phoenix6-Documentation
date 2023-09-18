@@ -106,7 +106,7 @@ Differential Mechanisms
 
 .. important:: ``DifferentialMechanism`` requires both Pro and CANFD. ``SimpleDifferentialMechanism`` is a lower performance alternative that requires neither.
 
-``DifferentialMechanism`` (Java, C++, Python) provides an easy way to control two-axis differential mechanisms such as two motor elevators (motor on the left and right side of the elevator but is not mechanically linked). Information on this is available here.
+``DifferentialMechanism`` provides an easy way to control two-axis differential mechanisms such as two motor elevators (motor on the left and right side of the elevator but is not mechanically linked). Information on this is available here.
 
 New Configs
 ^^^^^^^^^^^
