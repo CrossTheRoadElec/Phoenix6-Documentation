@@ -17,10 +17,10 @@ Phoenix 6 now supports the following languages.
 
 - Java
 - C++
-- Python
+- `Python <https://pypi.org/project/phoenix6/>`__
 - `C# <https://www.nuget.org/packages/Phoenix6/>`__ (non-FRC only)
 
-Feedback for the new language targets is welcome at our support email (`support@ctr-electronics.com <mailto:support@ctr-electronics.com>`__).
+Feedback for the new language targets is welcome at our support email (`feedback@ctr-electronics.com <mailto:feedback@ctr-electronics.com>`__).
 
 Swerve API
 ^^^^^^^^^^
@@ -79,10 +79,25 @@ Information on configuring the logger and extracting the logs are available in t
 .. image:: images/tuner-x-log-extractor.png
    :alt: Log extractor page in Tuner X
 
+Signal API Improvements
+^^^^^^^^^^^^^^^^^^^^^^^
+
+Users can now disable signals by setting their update rate to 0Hz. To reduce boilerplate when disabling signals, we have added an ``optimizeBusUtilization`` function that takes a list of signals as a parameter. This would automatically disable all signals that are not used.
+
+Additionally, the following new functions have been added.
+
+* ``refreshAll`` - refreshes all passed in signals)
+* ``getAppliedUpdateFrequency`` - retrieves the actual update frequency of a given signal)
+
+New Motion Magic Controls
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+For a full list of new motion magic controls, see the controls API documentation (Java, C++, Python).
+
 Differential Mechanisms
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-.. important:: Both ``DifferentialMechanism`` (Pro only) and ``SimpleDifferentialMechanism`` require `CANFD <https://store.ctr-electronics.com/canivore/>`__.
+.. important:: ``DifferentialMechanism`` requires both Pro and CANFD. ``SimpleDifferentialMechanism`` is a lower performance alternative that requires neither.
 
 ``DifferentialMechanism`` (Java, C++, Python) provides an easy way to control two-axis differential mechanisms such as two motor elevators (motor on the left and right side of the elevator but is not mechanically linked). Information on this is available here.
 
@@ -90,6 +105,19 @@ New Configs
 ^^^^^^^^^^^
 
 We've added several new configs. A full list of available configs is available in the ``configs`` (Java, C++, Python) namespace.
+
+Miscellaneous Improvements
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+* Orchestra have been re-added.
+
+  * Now supports multiple devices playing a single track.
+
+* Remote limits have been re-added.
+* More feedforwards in various controls.
+* Support for roboRIO motion profiles using Velocity/Acceleration setpoints in Position/Velocity controls.
+* Improved support for unit tests.
+* New helper methods for working with multiple signals (single or multi device).
 
 Tuner
 -----
