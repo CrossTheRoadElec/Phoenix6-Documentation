@@ -151,6 +151,11 @@ Additional support has been added for various feedforward terms (kS, kG, kV and 
    m_positionControl.Velocity = setpoint.velocity;
    m_talonFX.setControl(m_positionControl);
 
+New ``SyncCANcoder`` Remote Sensor
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Added support for ``SyncCANcoder`` feedback. This allows users to synchronize the TalonFX's internal rotor sensor against the remote CANcoder, but continue to use the rotor sensor for all closed loop control. TalonFX will continue to monitor the remote CANcoder and report if its internal position differs significantly from the reported position, or if the remote CANcoder disappears from the bus. Users may want this instead of FusedCANcoder if there is risk that the sensor can fail in a way that the sensor is still reporting "good" data, but the data does not match the mechanism, such as if the entire sensor mount assembly breaks off. Users using this over FusedCANcoder will not have the backlash compensation, as the CANcoder position is not continually fused in.
+
 Miscellaneous Improvements
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -158,11 +163,11 @@ Miscellaneous Improvements
 
   * Now supports multiple devices playing a single track.
   * Now works when the robot is disabled.
+  * A new control mode ``MusicTone`` has been added and can be used for playing a specific frequency.
 
 * Remote limits have been ported from v5.
 * Support for roboRIO motion profiles using Velocity/Acceleration setpoints in Position/Velocity controls.
 * Improved support for unit tests.
-* New helper methods when working with multiple signals (single or multi device).
 
 Tuner
 -----
