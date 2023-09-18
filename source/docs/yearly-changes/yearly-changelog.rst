@@ -116,15 +116,15 @@ We've added several new configs. A full list of available configs is available i
 Miscellaneous Improvements
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-* Orchestra have been re-added.
+* Orchestra has been ported from v5.
 
   * Now supports multiple devices playing a single track.
 
-* Remote limits have been re-added.
-* More feedforwards in various controls.
+* Remote limits have been ported from v5.
+* Additional feedforwards in various controls.
 * Support for roboRIO motion profiles using Velocity/Acceleration setpoints in Position/Velocity controls.
 * Improved support for unit tests.
-* New helper methods for working with multiple signals (single or multi device).
+* New helper methods when working with multiple signals (single or multi device).
 
 Tuner
 -----
