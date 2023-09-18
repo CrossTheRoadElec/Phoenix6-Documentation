@@ -1,5 +1,5 @@
 Phoenix 6 Documentation
-=========================
+=======================
 
 Welcome to the Phoenix 6 documentation. Individuals looking for `Phoenix 5` documentation may locate it `here <https://docs.ctre-phoenix.com/en/stable/>`__.
 
@@ -13,10 +13,11 @@ The Phoenix 6 software framework allows you to control and configure your `CTR E
 .. grid:: 1 2 2 2
    :gutter: 3
 
-   .. grid-item-card:: Changelog
-      :link: https://api.ctr-electronics.com/changelog
+   .. grid-item-card:: New for 2024
+      :link: docs/yearly-changes/yearly-changelog
+      :link-type: doc
 
-      A changelog containing API, Tuner and Firmware changes is available `here <https://api.ctr-electronics.com/changelog>`__.
+      What's new in Phoenix 6 for 2024. A full changelog with bug fixes is available `here <https://api.ctr-electronics.com/changelog>`__.
 
    .. grid-item-card:: Migration Guide
       :link: docs/migration/migration-guide/index
