@@ -28,3 +28,5 @@ Requests are instantiated and then mutated via various ``withX`` functions. In t
                   .withVelocityY(-joystick.getLeftX())
                   .withRotationalRate(-joystick.getRightX())
             );
+
+.. note:: Users can optionally make their own ``SwerveRequests`` by implementing the ``SwerveRequest`` interface.

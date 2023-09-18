@@ -13,7 +13,7 @@ New in 2024 is a high performance swerve framework. This framework simplifies th
   * Supports handling the swerve state via ``SwerveRequest`` (Java).
 
     * Supports robot-centric, field-centric and field-centric facing angle.
-    * Supports common scenarios such as X module (point all modules toward the center of the robot).
+    * Supports common scenarios such as X mode (point all modules toward the center of the robot).
 
 - Simulation
 
@@ -24,7 +24,9 @@ New in 2024 is a high performance swerve framework. This framework simplifies th
 
   * Odometry is updated synchronous with the motor controllers.
   * Odometry is received as fast as possible via a separate thread.
-  * Combine with `PRO <https://store.ctr-electronics.com/phoenix-pro/>`__ (optional) and `CANFD <https://store.ctr-electronics.com/canivore/>`__ to utilize :ref:`timesync <docs/api-reference/api-usage/status-signals:canivore timesync>`.
+  * Combine with `Phoenix Pro <https://store.ctr-electronics.com/phoenix-pro/>`__ (optional) and a `CANivore <https://store.ctr-electronics.com/canivore/>`__ (optional) with :ref:`timesync <docs/api-reference/api-usage/status-signals:canivore timesync>` for even more performance.
+
+.. note:: Simulation boilerplate is automatically handled when generating a robot project using Tuner X.
 
 Hardware Requirements
 ---------------------
@@ -52,7 +54,7 @@ Simple usage of the API is comprised of 4 core classes:
 
   * Represents the characteristics for a given module.
 
-- ``SwerveDrivetrain`` (Java) or ``CommandSwerveDrivetrain`` (Java)
+- ``SwerveDrivetrain`` (Java)
 
   * Created via ``SwerveDrivetrainConstants`` and a variable number of ``SwerveModuleConstants``, this is used to control the swerve drivetrain.
 

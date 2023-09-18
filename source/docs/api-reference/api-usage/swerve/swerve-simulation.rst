@@ -18,6 +18,8 @@ To update the simulated swerve robot state, ensure ``m_drivetrain.updateSimState
             updateSimState(0.02, 12);
          }
 
+.. note:: When utilizing ``CommandSwerveDrivetrain`` (via example, or Tuner X), this is handled in the subsystem ``simulationPeriodic`` instead.
+
 Simulation FAQ
 --------------
 
