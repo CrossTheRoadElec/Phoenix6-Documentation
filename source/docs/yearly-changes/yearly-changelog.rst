@@ -84,10 +84,17 @@ Signal API Improvements
 
 Users can now disable signals by setting their update rate to 0Hz. To reduce boilerplate when disabling signals, we have added an ``optimizeBusUtilization`` function that takes a list of signals as a parameter. This would automatically disable all signals that are not used.
 
+Setting a given signal's frequency behavior has been improved by keeping track of the signal with the highest frequency in a frame. The highest frequency's signal is used for the frame instead of the most recent signal.
+
 Additionally, the following new functions have been added.
 
-* ``refreshAll`` - refreshes all passed in signals)
-* ``getAppliedUpdateFrequency`` - retrieves the actual update frequency of a given signal)
+* ``refreshAll``
+
+  * refreshes all passed in signals
+
+* ``getAppliedUpdateFrequency``
+
+  * retrieves the actual update frequency of a given signal
 
 New Motion Magic Controls
 ^^^^^^^^^^^^^^^^^^^^^^^^^
