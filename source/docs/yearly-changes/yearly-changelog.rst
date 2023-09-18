@@ -69,7 +69,7 @@ Swerve drive code is as easy as the following.
       drivetrain.registerTelemetry(logger::telemeterize);
    }
 
-.. image:: images/swerve-simulation-video.gif
+.. figure:: images/swerve-simulation-video.*
    :alt: GIF showing swerve simulation support
 
 .. important:: Swerve API requires all necessary swerve devices to be v6 devices. e.g. 4 drive TalonFX, 4 steer TalonFX, 1 Pigeon 2.0, 4 CANcoders.
