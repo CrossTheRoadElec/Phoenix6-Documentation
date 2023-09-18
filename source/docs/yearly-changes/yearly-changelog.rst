@@ -82,7 +82,7 @@ Information on configuring the logger and extracting the logs are available in t
 Signal API Improvements
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-Users can now disable signals by setting their update rate to 0Hz. To reduce boilerplate when disabling signals, we have added an ``optimizeBusUtilization()`` function on a given device object that takes a list of signals as a parameter. This would automatically disable all signals that are not used. There is also an ``ParentDevice.optimizeBusUtilizationForAll()`` static function that takes a list of devices to optimize.
+Users can now disable signals by setting their update rate to 0Hz. To reduce boilerplate when disabling signals, we have added an ``optimizeBusUtilization()`` function on a given device object. This will automatically disable all signals that are not used. There is also an ``ParentDevice.optimizeBusUtilizationForAll()`` static function that takes a list of devices to optimize.
 
 Setting a given signal's frequency behavior has been improved by keeping track of the signal with the highest frequency in a frame. The highest frequency's signal is used for the frame instead of the most recent signal.
 
