@@ -7,6 +7,13 @@ The CTR Electronics development team has been hard at work expanding the Phoenix
 
 .. note:: This changelog is intended to highlight the major additions to the Phoenix 6 API. For a detailed list of changes and bug fixes, visit the `API changelog <https://api.ctr-electronics.com/changelog>`__.
 
+Pro
+---
+
+Introduced earlier this year is the new season pass licensing model. Season pass improves licensing flexibility when utilizing multiple robots and the roboRIO CAN bus. Additional information on this can be found in the `blog post <https://store.ctr-electronics.com/blog/phoenix-pro-licensing-announcing-season-pass/>`__.
+
+A variety of new Pro features have been added and are described in the API section below.
+
 API
 ---
 
@@ -74,10 +81,23 @@ Signal Logging
 
 We've added a comprehensive signal logger API (Java, C++, Python) that represents a real-time capture of signals for supported devices. Signal logging can be useful for analysis of signals over a period of time. In applications, they can be useful for tuning PID gains, characterization of systems, analyzing latency on a system and much more.
 
-Information on configuring the logger and extracting the logs are available in the API Reference and Tuner sections.
+.. note:: Documentation on configuring and extracting logs will be available soon.
 
-.. image:: images/tuner-x-log-extractor.png
-   :alt: Log extractor page in Tuner X
+.. grid:: 2
+
+   .. grid-item-card:: Log Extractor
+
+      Logs can be extracted and converted to compatible formats directly in Tuner X.
+
+      .. image:: images/tuner-x-log-extractor.png
+         :alt: Log extractor page in Tuner X
+
+   .. grid-item-card:: Foxglove Log Analysis
+
+      Logs can then be analyzed in Foxglove to identify hardware failures, tuning gains, etc.
+
+      .. image:: images/foxglove-example.png
+         :alt: Picture of foxglove analyzing data
 
 Signal API Improvements
 ^^^^^^^^^^^^^^^^^^^^^^^
@@ -117,15 +137,31 @@ New Configs
 
 We've added several new configs. A full list of available configs is available in the ``configs`` (Java, C++, Python) namespace.
 
+Improved Support for roboRIO Motion Profiles
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Additional support has been added for various feedforward terms (kS, kG, kV and KA). There is now improved integration with roboRIO motion profiling using velocity or acceleration setpoints in various closed loop controls.
+
+.. code-block:: java
+
+   var constraints = new TrapezoidProfile.Constraints(80, 160); // 80 rps, 160 rps/s
+   var goal = new TrapezoidProfile.State(200, 0); // 200 rot, 0 rps
+   var profile = new TrapezoidProfile(constraints, goal);
+
+   var setpoint = profile.calculate(0.020);
+   m_positionControl.Position = setpoint.position;
+   m_positionControl.Velocity = setpoint.velocity;
+   m_talonFX.setControl(m_positionControl);
+
 Miscellaneous Improvements
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 * Orchestra has been ported from v5.
 
   * Now supports multiple devices playing a single track.
+  * Now works when the robot is disabled.
 
 * Remote limits have been ported from v5.
-* Additional feedforwards in various controls.
 * Support for roboRIO motion profiles using Velocity/Acceleration setpoints in Position/Velocity controls.
 * Improved support for unit tests.
 * New helper methods when working with multiple signals (single or multi device).
