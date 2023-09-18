@@ -9,7 +9,7 @@ python = "^3.11"
 doc8 = "==1.1.1"
 docutils = "==0.20.1"
 fonttools = {version = "==4.42.1", extras = ["woff"]}
-furo = "==2023.8.19"
+furo = "==2023.09.10"
 latex = "==0.7.0"
 packaging = "==23.1"
 sphinx = "==7.2.5"
