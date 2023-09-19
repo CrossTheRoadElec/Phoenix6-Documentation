@@ -92,7 +92,7 @@ A full comparison of features between the free Phoenix 6 API and Phoenix Pro is 
 +-------------------------------+-----------------+-----------------------+----------------------+----------------------------+
 | Synchronous Wait for Data     | .. centered:: x | .. centered:: x       | .. centered:: x      | .. centered:: x            |
 +-------------------------------+-----------------+-----------------------+----------------------+----------------------------+
-| System + CANivore Timestamps  | .. centered:: x | .. centered:: x       | .. centered:: x      | .. centered:: x            |
+| System Timestamps             | .. centered:: x | .. centered:: x       | .. centered:: x      | .. centered:: x            |
 +-------------------------------+-----------------+-----------------------+----------------------+----------------------------+
 | Explicit Control Requests     | .. centered:: x | .. centered:: x       | .. centered:: x      | .. centered:: x            |
 +-------------------------------+-----------------+-----------------------+----------------------+----------------------------+
@@ -101,6 +101,8 @@ A full comparison of features between the free Phoenix 6 API and Phoenix Pro is 
 | Improved Self-Test Snapshot   | .. centered:: x | .. centered:: x       | .. centered:: x      | .. centered:: x            |
 +-------------------------------+-----------------+-----------------------+----------------------+----------------------------+
 | Tuner X Improved Plotting     | .. centered:: x | .. centered:: x       | .. centered:: x      | .. centered:: x            |
++-------------------------------+-----------------+-----------------------+----------------------+----------------------------+
+| CANivore Timestamps           |                 |                       | .. centered:: x      | .. centered:: x            |
 +-------------------------------+-----------------+-----------------------+----------------------+----------------------------+
 | CAN FD                        |                 |                       | .. centered:: x      | .. centered:: x            |
 +-------------------------------+-----------------+-----------------------+----------------------+----------------------------+
