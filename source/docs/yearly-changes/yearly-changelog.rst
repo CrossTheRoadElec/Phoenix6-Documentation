@@ -5,12 +5,14 @@ The CTR Electronics development team has been hard at work expanding the Phoenix
 
 .. note:: This changelog is intended to highlight the major additions to the Phoenix 6 API. For a detailed list of changes and bug fixes, visit the `Phoenix changelog <https://api.ctr-electronics.com/changelog>`__.
 
-Pro
----
+Phoenix Pro Licensing
+---------------------
 
 Introduced earlier this year is the new season pass licensing model. Season pass improves licensing flexibility when utilizing multiple robots and the roboRIO CAN bus. Additional information on this can be found in the `blog post <https://store.ctr-electronics.com/blog/phoenix-pro-licensing-announcing-season-pass/>`__.
 
-A variety of new Pro features have been added and are described in the API section below.
+Also a reminder that many of the features available in Phoenix 6 do **not** require Pro to use. A full breakdown of what is and isn't supported is available under :ref:`the feature table <docs/migration/new-to-phoenix:feature breakdown>`.
+
+A variety of new (Pro and Non-Pro) features have been added and are described in the API section below.
 
 API
 ---
@@ -77,9 +79,9 @@ Swerve drive code is as easy as the following.
 Signal Logging
 ^^^^^^^^^^^^^^
 
-We've added a comprehensive signal logger API (Java, C++, Python) that represents a real-time capture of signals for supported devices. Signal logging can be useful for analysis of signals over a period of time. In applications, they can be useful for tuning PID gains, characterization of systems, analyzing latency on a system and much more.
+We've added a comprehensive signal logger (Java, C++, Python) that represents a real-time capture of signals for supported devices. Signal logging can be useful for analysis of signals over a period of time. In applications, they can be useful for tuning PID gains, characterization of systems, analyzing latency on a system and much more. Did something unexpected happen in a match? Go back and check your logs to inspect positions, velocities, voltages, currents, temperatures, etc. Logging is automatic, and does not require choosing which signals you need captured ahead of time.
 
-.. important:: Signal Logging Export requires Pro
+.. important:: MCAP Export requires Pro Licensing
 
 .. note:: Documentation on configuring and extracting logs will be available soon.
 

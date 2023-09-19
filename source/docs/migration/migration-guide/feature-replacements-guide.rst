@@ -62,18 +62,6 @@ The following Phoenix 5 features are not implemented in the current release of P
    * - Feature
      - Status
 
-   * - Remote sensors and limits
-     - High priority
-
-   * - Auxiliary PID
-     - High priority
-
-   * - Orchestra
-     - Normal priority
-
-   * - Talon FX PWM Input
-     - Normal priority
-
    * - CANdle Support
      - Normal priority
 
