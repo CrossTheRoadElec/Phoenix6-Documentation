@@ -143,6 +143,8 @@ htmlhelp_basename = "Phoenixdoc"
 
 latex_engine = "xelatex"
 
+supported_image_types = ["image/svg+xml", "image/gif", "image/png", "image/jpeg"]
+
 # Disable xindy support
 # See: https://github.com/readthedocs/readthedocs.org/issues/5476
 latex_use_xindy = False
