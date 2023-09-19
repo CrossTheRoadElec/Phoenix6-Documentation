@@ -142,7 +142,7 @@ We've added several new configs. A full list of available configs is available i
 Improved Support for roboRIO Motion Profiles
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Additional support has been added for various feedforward terms (kS, kG, kV and KA). There is now improved integration with roboRIO motion profiling using velocity setpoints in position control modes, along with acceleration setpoints in velocity control modes.
+Additional support has been added for various feedforward terms (kS, kG, kV and kA). There is now improved integration with roboRIO motion profiling using velocity setpoints in position control modes, along with acceleration setpoints in velocity control modes.  Additionally, kG can also calculate feedforward based on cosine of position for mechanisms such as a rotating arm.
 
 .. code-block:: java
 
@@ -170,7 +170,7 @@ Miscellaneous Improvements
   * A new control mode ``MusicTone`` has been added and can be used for playing a specific frequency.
 
 * Remote limits have been ported from v5.
-* Improved support for unit tests.
+* Improved support for :doc:`unit tests </docs/api-reference/wpilib-integration/unit-testing>`.
 
 Tuner
 -----
