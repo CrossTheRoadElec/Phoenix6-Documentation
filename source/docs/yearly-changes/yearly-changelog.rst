@@ -12,7 +12,7 @@ Introduced earlier this year is the new season pass licensing model. Season pass
 
 Also a reminder that many of the features available in Phoenix 6 do **not** require Pro to use. A full breakdown of what is and isn't supported is available under `the feature table <docs/migration/new-to-phoenix:feature breakdown>`__.
 
-A variety of new Pro features have been added and are described in the API section below.
+A variety of new (Pro and Non-Pro) features have been added and are described in the API section below.
 
 API
 ---
