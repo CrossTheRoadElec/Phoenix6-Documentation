@@ -168,7 +168,7 @@ Miscellaneous Improvements
   * A new control mode ``MusicTone`` has been added and can be used for playing a specific frequency.
 
 * Remote limits have been ported from v5.
-* Improved support for unit tests.
+* Improved support for :doc:`unit tests </docs/api-reference/wpilib-integration/unit-testing>`.
 
 Tuner
 -----
