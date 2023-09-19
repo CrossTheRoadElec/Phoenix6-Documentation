@@ -127,7 +127,7 @@ Miscellaneous Improvements
 * Remote limits have been ported from v5.
 * Additional feedforwards in various controls.
 * Support for roboRIO motion profiles using Velocity/Acceleration setpoints in Position/Velocity controls.
-* Improved support for unit tests.
+* Improved support for :doc:`unit tests </docs/api-reference/wpilib-integration/unit-testing>`.
 * New helper methods when working with multiple signals (single or multi device).
 
 Tuner
