@@ -1,11 +1,16 @@
-:orphan:
-
 New for 2024
 ============
 
 The CTR Electronics development team has been hard at work expanding the Phoenix 6 API based on user feedback. We are proud to announce several exciting new features with this release!
 
 .. note:: This changelog is intended to highlight the major additions to the Phoenix 6 API. For a detailed list of changes and bug fixes, visit the `API changelog <https://api.ctr-electronics.com/changelog>`__.
+
+Pro
+---
+
+Introduced earlier this year is the new season pass licensing model. Season pass improves licensing flexibility when utilizing multiple robots and the roboRIO CAN bus. Additional information on this can be found in the `blog post <https://store.ctr-electronics.com/blog/phoenix-pro-licensing-announcing-season-pass/>`__.
+
+A variety of new Pro features have been added and are described in the API section below.
 
 API
 ---
@@ -64,7 +69,7 @@ Swerve drive code is as easy as the following.
       drivetrain.registerTelemetry(logger::telemeterize);
    }
 
-.. image:: images/swerve-simulation-video.gif
+.. figure:: images/swerve-simulation-video.*
    :alt: GIF showing swerve simulation support
 
 .. important:: Swerve API requires all necessary swerve devices to be v6 devices. e.g. 4 drive TalonFX, 4 steer TalonFX, 1 Pigeon 2.0, 4 CANcoders.
@@ -74,15 +79,28 @@ Signal Logging
 
 We've added a comprehensive signal logger API (Java, C++, Python) that represents a real-time capture of signals for supported devices. Signal logging can be useful for analysis of signals over a period of time. In applications, they can be useful for tuning PID gains, characterization of systems, analyzing latency on a system and much more.
 
-Information on configuring the logger and extracting the logs are available in the API Reference and Tuner sections.
+.. note:: Documentation on configuring and extracting logs will be available soon.
 
-.. image:: images/tuner-x-log-extractor.png
-   :alt: Log extractor page in Tuner X
+.. grid:: 2
+
+   .. grid-item-card:: Log Extractor
+
+      Logs can be extracted and converted to compatible formats directly in Tuner X.
+
+      .. image:: images/tuner-x-log-extractor.png
+         :alt: Log extractor page in Tuner X
+
+   .. grid-item-card:: Foxglove Log Analysis
+
+      Logs can then be analyzed in Foxglove to identify hardware failures, tuning gains, etc.
+
+      .. image:: images/foxglove-example.png
+         :alt: Picture of foxglove analyzing data
 
 Signal API Improvements
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-Users can now disable signals by setting their update rate to 0Hz. To reduce boilerplate when disabling signals, we have added an ``optimizeBusUtilization()`` function on a given device object that takes a list of signals as a parameter. This would automatically disable all signals that are not used. There is also an ``ParentDevice.optimizeBusUtilizationForAll()`` static function that takes a list of devices to optimize.
+Users can now disable signals by setting their update rate to 0Hz. To reduce boilerplate when disabling signals, we have added an ``optimizeBusUtilization()`` function on a given device object. This will automatically disable all signals that are not used. There is also an ``ParentDevice.optimizeBusUtilizationForAll()`` static function that takes a list of devices to optimize. Frequencies are also automatically reapplied when devices reset.
 
 Setting a given signal's frequency behavior has been improved by keeping track of the signal with the highest frequency in a frame. The highest frequency's signal is used for the frame instead of the most recent signal.
 
@@ -117,18 +135,38 @@ New Configs
 
 We've added several new configs. A full list of available configs is available in the ``configs`` (Java, C++, Python) namespace.
 
+Improved Support for roboRIO Motion Profiles
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Additional support has been added for various feedforward terms (kS, kG, kV and KA). There is now improved integration with roboRIO motion profiling using velocity setpoints in position control modes, along with acceleration setpoints in velocity control modes.
+
+.. code-block:: java
+
+   var constraints = new TrapezoidProfile.Constraints(80, 160); // 80 rps, 160 rps/s
+   var goal = new TrapezoidProfile.State(200, 0); // 200 rot, 0 rps
+   var profile = new TrapezoidProfile(constraints, goal);
+
+   var setpoint = profile.calculate(0.020);
+   m_positionControl.Position = setpoint.position;
+   m_positionControl.Velocity = setpoint.velocity;
+   m_talonFX.setControl(m_positionControl);
+
+New ``SyncCANcoder`` Remote Sensor
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Added support for ``SyncCANcoder`` feedback. This allows users to synchronize the TalonFX's internal rotor sensor against the remote CANcoder, but continue to use the rotor sensor for all closed loop control. TalonFX will continue to monitor the remote CANcoder and report if its internal position differs significantly from the reported position, or if the remote CANcoder disappears from the bus. Users may want this instead of FusedCANcoder if there is risk that the sensor can fail in a way that the sensor is still reporting "good" data, but the data does not match the mechanism, such as if the entire sensor mount assembly breaks off. Users using this over FusedCANcoder will not have the backlash compensation, as the CANcoder position is not continually fused in.
+
 Miscellaneous Improvements
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 * Orchestra has been ported from v5.
 
   * Now supports multiple devices playing a single track.
+  * Now works when the robot is disabled.
+  * A new control mode ``MusicTone`` has been added and can be used for playing a specific frequency.
 
 * Remote limits have been ported from v5.
-* Additional feedforwards in various controls.
-* Support for roboRIO motion profiles using Velocity/Acceleration setpoints in Position/Velocity controls.
 * Improved support for :doc:`unit tests </docs/api-reference/wpilib-integration/unit-testing>`.
-* New helper methods when working with multiple signals (single or multi device).
 
 Tuner
 -----
