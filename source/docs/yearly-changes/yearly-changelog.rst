@@ -138,7 +138,7 @@ We've added several new configs. A full list of available configs is available i
 Improved Support for roboRIO Motion Profiles
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Additional support has been added for various feedforward terms (kS, kG, kV and KA). There is now improved integration with roboRIO motion profiling using velocity or acceleration setpoints in various closed loop controls.
+Additional support has been added for various feedforward terms (kS, kG, kV and KA). There is now improved integration with roboRIO motion profiling using velocity setpoints in position control modes, along with acceleration setpoints in velocity control modes.
 
 .. code-block:: java
 
@@ -166,7 +166,6 @@ Miscellaneous Improvements
   * A new control mode ``MusicTone`` has been added and can be used for playing a specific frequency.
 
 * Remote limits have been ported from v5.
-* Support for roboRIO motion profiles using Velocity/Acceleration setpoints in Position/Velocity controls.
 * Improved support for unit tests.
 
 Tuner
