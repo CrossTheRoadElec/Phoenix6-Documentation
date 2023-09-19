@@ -132,7 +132,7 @@ Differential Mechanisms
 
 .. important:: ``DifferentialMechanism`` requires both Pro and CANFD. ``SimpleDifferentialMechanism`` is a lower performance alternative that requires neither.
 
-``DifferentialMechanism`` provides an easy way to control two-axis differential mechanisms such as two motor elevators (motor on the left and right side of the elevator but is not mechanically linked). Information on this is available here.
+``DifferentialMechanism`` provides an easy way to control two-axis differential mechanisms such as two motor elevators (motor on the left and right side of the elevator but is not mechanically linked).
 
 New Configs
 ^^^^^^^^^^^
@@ -184,6 +184,8 @@ Swerve has many common pitfalls (inverts, encoder offsets, gearing, etc). Utiliz
 
 .. image:: images/tuner-swerve-page.png
    :alt: Picture of the swerve configuration page in Tuner X
+
+.. note:: The Swerve Project Generator is only supported in FRC Java.
 
 .. add docs page adding information on the swerve API
 
