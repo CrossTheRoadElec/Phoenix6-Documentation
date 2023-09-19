@@ -140,7 +140,7 @@ We've added several new configs. A full list of available configs is available i
 Improved Support for roboRIO Motion Profiles
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Additional support has been added for various feedforward terms (kS, kG, kV and KA). There is now improved integration with roboRIO motion profiling using velocity setpoints in position control modes, along with acceleration setpoints in velocity control modes.
+Additional support has been added for various feedforward terms (kS, kG, kV and kA). There is now improved integration with roboRIO motion profiling using velocity setpoints in position control modes, along with acceleration setpoints in velocity control modes.
 
 .. code-block:: java
 
