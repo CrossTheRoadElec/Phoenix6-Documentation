@@ -116,7 +116,7 @@ Additionally, the following new functions have been added.
 
 * ``BaseStatusSignal.setUpdateFrequencyForAll()``
 
-  * sets a given frequency update frequency for all passed in signals
+  * sets a given frequency update frequency for all signals that are passed in
 
 * ``getAppliedUpdateFrequency()``
 
