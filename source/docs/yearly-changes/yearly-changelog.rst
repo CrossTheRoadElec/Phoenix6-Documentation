@@ -10,7 +10,7 @@ Phoenix Pro Licensing
 
 Introduced earlier this year is the new season pass licensing model. Season pass improves licensing flexibility when utilizing multiple robots and the roboRIO CAN bus. Additional information on this can be found in the `blog post <https://store.ctr-electronics.com/blog/phoenix-pro-licensing-announcing-season-pass/>`__.
 
-Also a reminder that many of the features available in Phoenix 6 do **not** require Pro to use. A full breakdown of what is and isn't supported is available under `the feature table <docs/migration/new-to-phoenix:feature breakdown>`__.
+Also a reminder that many of the features available in Phoenix 6 do **not** require Pro to use. A full breakdown of what is and isn't supported is available under :ref:`the feature table <docs/migration/new-to-phoenix:feature breakdown>`.
 
 A variety of new (Pro and Non-Pro) features have been added and are described in the API section below.
 
