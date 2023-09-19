@@ -118,7 +118,7 @@ A full comparison of features between the free Phoenix 6 API and Phoenix Pro is 
 +-------------------------------+-----------------+-------------------+----------------------+------------------------+
 | Differential Control          |                 |                   |                      | .. centered:: x        |
 +-------------------------------+-----------------+-------------------+----------------------+------------------------+
-| Java Swerve API               | .. centered:: x | .. centered:: +   | .. centered:: +      | .. centered:: ++       |
+| Java Swerve API               | .. centered:: + | .. centered:: ++  | .. centered:: ++     | .. centered:: +++      |
 +-------------------------------+-----------------+-------------------+----------------------+------------------------+
 
 .. note:: The Java Swerve API is freely available, however performance improves when used on a CANivore bus and further improves when used with Pro devices.
