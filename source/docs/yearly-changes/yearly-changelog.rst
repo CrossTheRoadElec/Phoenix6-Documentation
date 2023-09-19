@@ -3,7 +3,7 @@ New for 2024
 
 The CTR Electronics development team has been hard at work expanding the Phoenix 6 API based on user feedback. We are proud to announce several exciting new features with this release!
 
-.. note:: This changelog is intended to highlight the major additions to the Phoenix 6 API. For a detailed list of changes and bug fixes, visit the `API changelog <https://api.ctr-electronics.com/changelog>`__.
+.. note:: This changelog is intended to highlight the major additions to the Phoenix 6 API. For a detailed list of changes and bug fixes, visit the `Phoenix changelog <https://api.ctr-electronics.com/changelog>`__.
 
 Pro
 ---
@@ -78,6 +78,8 @@ Signal Logging
 ^^^^^^^^^^^^^^
 
 We've added a comprehensive signal logger API (Java, C++, Python) that represents a real-time capture of signals for supported devices. Signal logging can be useful for analysis of signals over a period of time. In applications, they can be useful for tuning PID gains, characterization of systems, analyzing latency on a system and much more.
+
+.. important:: Signal Logging Export requires Pro
 
 .. note:: Documentation on configuring and extracting logs will be available soon.
 
