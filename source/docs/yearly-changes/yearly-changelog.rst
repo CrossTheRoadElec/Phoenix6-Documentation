@@ -5,10 +5,12 @@ The CTR Electronics development team has been hard at work expanding the Phoenix
 
 .. note:: This changelog is intended to highlight the major additions to the Phoenix 6 API. For a detailed list of changes and bug fixes, visit the `Phoenix changelog <https://api.ctr-electronics.com/changelog>`__.
 
-Pro
----
+Phoenix Pro Licensing
+---------------------
 
 Introduced earlier this year is the new season pass licensing model. Season pass improves licensing flexibility when utilizing multiple robots and the roboRIO CAN bus. Additional information on this can be found in the `blog post <https://store.ctr-electronics.com/blog/phoenix-pro-licensing-announcing-season-pass/>`__.
+
+Also a reminder that many of the features available in Phoenix 6 do **not** require Pro to use. A full breakdown of what is and isn't supported is available under `the feature table <docs/migration/new-to-phoenix:feature breakdown>`
 
 A variety of new Pro features have been added and are described in the API section below.
 
