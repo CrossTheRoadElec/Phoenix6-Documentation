@@ -108,7 +108,7 @@ Instead of using the latest value, the user can instead opt to synchronously wai
 Changing Update Frequency
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-All signals can have their update frequency configured via the ``setUpdateFrequency()`` method.
+All signals can have their update frequency configured via the ``setUpdateFrequency()`` method. Additionally, the update frequency of multiple signals can be specified at once using ``BaseStatusSignal.setUpdateFrequencyForAll()`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/BaseStatusSignal.html#setUpdateFrequencyForAll(double,com.ctre.phoenix6.BaseStatusSignal...)>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1_base_status_signal.html#a30db5fe5fbf36e7271eb9d11c9e402d9>`__).
 
 .. warning:: Increasing signal frequency will also increase CAN bus utilization, which can cause indeterminate behavior at high utilization rates (>90%). This is less of a concern when using CANivore, which uses the higher-bandwidth `CAN FD <https://store.ctr-electronics.com/can-fd/>`__ bus.
 
@@ -121,6 +121,8 @@ All signals can have their update frequency configured via the ``setUpdateFreque
 
          // slow down supply voltage reporting to 10 Hz
          supplyVoltageSignal.setUpdateFrequency(10);
+         // speed up position and velocity reporting to 200 Hz
+         BaseStatusSignal.setUpdateFrequencyForAll(200, positionSignal, velocitySignal);
 
    .. tab-item:: C++
       :sync: C++
@@ -129,8 +131,10 @@ All signals can have their update frequency configured via the ``setUpdateFreque
 
          // slow down supply voltage reporting to 10 Hz
          supplyVoltageSignal.SetUpdateFrequency(10_Hz);
+         // speed up position and velocity reporting to 200 Hz
+         BaseStatusSignal::SetUpdateFrequencyForAll(200_Hz, positionSignal, velocitySignal);
 
-.. important:: Currently in Phoenix 6, when different status signal frequencies are specified for signals that share a status frame, the last specified frequency is applied to the status frame. As a result, users should apply the slowest status frame frequencies first and the fastest frequencies last.
+When different update frequencies are specified for signals that share a status frame, the highest update frequency of all the relevant signals will be applied to the entire frame. Users can get a signal's applied update frequency using the ``getAppliedUpdateFrequency()`` method.
 
 Timestamps
 ^^^^^^^^^^
@@ -144,7 +148,7 @@ CANivore Timesync
 
 When using `CANivore <https://store.ctr-electronics.com/canivore/>`__, the attached CAN devices will automatically synchronize their time bases. This allows devices to sample and publish their signals in a synchronized manner.
 
-Users can synchronously wait for these signals to update using ``BaseStatusSignal.waitForAll()`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/BaseStatusSignal.html#waitForAll(double,com.ctre.phoenixpro.BaseStatusSignal...)>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1_base_status_signal.html#abcc070556164f88c966e17bf61741699>`__).
+Users can synchronously wait for these signals to update using ``BaseStatusSignal.waitForAll()`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/BaseStatusSignal.html#waitForAll(double,com.ctre.phoenix6.BaseStatusSignal...)>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1_base_status_signal.html#a8cf8f0d56648b459e891df2cbbbaa3a0>`__).
 
 .. tip:: ``waitForAll()`` can be used with a timeout of zero to perform a non-blocking refresh on all signals passed in.
 
@@ -199,12 +203,12 @@ The following signals are time-synchronized:
          auto& cancoderPositionSignal = m_cancoder.GetPosition();
          auto& pigeon2YawSignal = m_pigeon2.GetYaw();
 
-         BaseStatusSignal::WaitForAll(20_ms, {&talonFXPositionSignal, &cancoderPositionSignal, &pigeon2YawSignal});
+         BaseStatusSignal::WaitForAll(20_ms, talonFXPositionSignal, cancoderPositionSignal, pigeon2YawSignal);
 
 Latency Compensation
 --------------------
 
-Users can perform latency compensation using ``BaseStatusSignal.getLatencyCompensatedValue()`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/BaseStatusSignal.html#getLatencyCompensatedValue(com.ctre.phoenixpro.StatusSignal,com.ctre.phoenixpro.StatusSignal)>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1_base_status_signal.html#a96a39be023f05d7c72de85fc30e5dcaa>`__).
+Users can perform latency compensation using ``BaseStatusSignal.getLatencyCompensatedValue()`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/BaseStatusSignal.html#getLatencyCompensatedValue(com.ctre.phoenix6.StatusSignal,com.ctre.phoenix6.StatusSignal)>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1_base_status_signal.html#a96a39be023f05d7c72de85fc30e5dcaa>`__).
 
 .. important:: ``getLatencyCompensatedValue()`` does not automatically refresh the signals. As a result, the user must ensure the ``signal`` and ``signalSlope`` parameters are refreshed before retrieving a compensated value.
 
