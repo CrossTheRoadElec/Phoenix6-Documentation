@@ -58,7 +58,7 @@ This can be used to determine if the device is not present on the CAN bus.
 Refreshing the Signal Value
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The device ``StatusSignal`` getters implicitly refresh the cached signal values. However, if the user application caches the ``StatusSignal`` object, the ``refresh()`` method must be called to fetch fresh data.
+The device ``StatusSignal`` getters implicitly refresh the cached signal values. However, if the user application caches the ``StatusSignal`` object, the ``refresh()`` method must be called to fetch fresh data. Multiple signals can be refreshed in one call using ``BaseStatusSignal.refreshAll()`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/BaseStatusSignal.html#refreshAll(com.ctre.phoenix6.BaseStatusSignal...)>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1_base_status_signal.html#a3fda545562d4d373238c21f674133bba>`__).
 
 .. tip:: The ``refresh()`` method can be method-chained. As a result, you can call ``refresh()`` and ``getValue()`` on one line.
 
@@ -69,14 +69,20 @@ The device ``StatusSignal`` getters implicitly refresh the cached signal values.
 
       .. code-block:: java
 
+         // refresh the supply voltage signal
          supplyVoltageSignal.refresh();
+         // refresh the position and velocity signals
+         BaseStatusSignal.refreshAll(positionSignal, velocitySignal);
 
    .. tab-item:: C++
       :sync: C++
 
       .. code-block:: cpp
 
+         // refresh the supply voltage signal
          supplyVoltageSignal.Refresh();
+         // refresh the position and velocity signals
+         BaseStatusSignal::RefreshAll(positionSignal, velocitySignal);
 
 Waiting for Signal Updates
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -150,7 +156,7 @@ When using `CANivore <https://store.ctr-electronics.com/canivore/>`__, the attac
 
 Users can synchronously wait for these signals to update using ``BaseStatusSignal.waitForAll()`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/BaseStatusSignal.html#waitForAll(double,com.ctre.phoenix6.BaseStatusSignal...)>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1_base_status_signal.html#a8cf8f0d56648b459e891df2cbbbaa3a0>`__).
 
-.. tip:: ``waitForAll()`` can be used with a timeout of zero to perform a non-blocking refresh on all signals passed in.
+.. tip:: ``waitForAll()`` with a timeout of zero matches the behavior of ``refreshAll()``, performing a non-blocking refresh on all signals passed in.
 
 Because the devices are synchronized, time-critical signals are sampled and published on the same schedule. This combined with the ``waitForAll()`` routine means applications can considerably reduce the latency of the timesync signals. This is particularly useful for multi-device mechanisms, such as swerve odometry.
 
