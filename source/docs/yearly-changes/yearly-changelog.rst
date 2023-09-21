@@ -3,6 +3,12 @@ New for 2024
 
 The CTR Electronics development team has been hard at work expanding the Phoenix 6 API based on user feedback. We are proud to announce several exciting new features with this release!
 
+Firmware for the alpha can be found by selecting "2024" instead of "2023" in the firmware selection menu.
+
+The API vendordep for the 2024 alpha is available under ``https://maven.ctr-electronics.com/release/com/ctre/phoenix6/latest/Phoenix6-frc2024-alpha-latest.json``.
+
+Users will need to update both firmware and API to make use of these features.
+
 .. note:: This changelog is intended to highlight the major additions to the Phoenix 6 API. For a detailed list of changes and bug fixes, visit the `Phoenix changelog <https://api.ctr-electronics.com/changelog>`__.
 
 Phoenix Pro Licensing
