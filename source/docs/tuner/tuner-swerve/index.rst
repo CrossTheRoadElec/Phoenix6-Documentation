@@ -8,6 +8,7 @@ Under the :guilabel:`Mechanisms` page in Tuner is the Swerve Project Generator. 
 .. toctree::
    :maxdepth: 1
 
+   swerve-system-requirements
    creating-your-project
    configuring-your-modules
    validating-drivetrain
