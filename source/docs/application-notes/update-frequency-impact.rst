@@ -59,10 +59,10 @@ The "real" robot pose is the odometry-driven pose, and the ghost is the Limeligh
 It can be assumed the limelight pose is the "true" pose while the robot is at rest.
 
 The same maneuver was teleop-driven under the following circumstances, with the results below:
- - RIO CAN bus at 50 Hz (lower right)
- - RIO CAN bus at 250 Hz (lower left)
- - CANivore CAN bus at 50 Hz (upper right)
- - CANivore CAN bus at 250 Hz (upper left)
+ - CANivore CAN bus at 250 Hz (top left)
+ - CANivore CAN bus at 50 Hz (top right)
+ - RIO CAN bus at 250 Hz (bottom left)
+ - RIO CAN bus at 50 Hz (bottom right)
 
 ..
    Use full path since Sphinx does not resolve relative path when using wildcard inclusion
