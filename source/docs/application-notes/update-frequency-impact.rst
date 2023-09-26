@@ -5,6 +5,8 @@ Factors that Impact Odometry
 Often we've been asked what the impact higher frequencies, time synchronization, and synchronous API have on critical robot features, such as drivetrain odometry.
 This devblog will go into detail on the theoretical and practical impact they have.
 
+.. note:: This doesn't cover **all** the factors that impact odometry, but it includes some of the major ones that contribute significantly to odometry error.
+
 Update Frequencies
 ------------------
 
