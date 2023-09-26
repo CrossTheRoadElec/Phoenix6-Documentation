@@ -13,6 +13,13 @@ The less frequent the odometry is called, the more time error can accrue before 
 This can be seen graphically, the desmos session below shows the error in position, and how the error decreases as the update frequency increases.
 https://www.desmos.com/calculator/vdgebi9s4t
 
++----------------------------------------------------------------------------------+----------------------------------------------------------------------------------+
+|  .. figure:: /docs/application-notes/images/frequency-impact/Error-50hz.png      |  .. figure:: /docs/application-notes/images/frequency-impact/Error-250hz.png     |
+|     :width: 90%                                                                  |     :width: 90%                                                                  |
+|                                                                                  |                                                                                  |
+|     Discretization error at 50 Hz                                                |     Discretization error at 250 Hz                                               |
++----------------------------------------------------------------------------------+----------------------------------------------------------------------------------+
+
 Synchronous API and Time Synchronization
 ----------------------------------------
 
@@ -24,6 +31,14 @@ Latency reduces the accuracy of the data being used in the odometry, and with lo
 
 We can add this into our desmos session, including the effect of latency and variable latency to our error calculation.
 https://www.desmos.com/calculator/rytssjj158
+
++----------------------------------------------------------------------------------+----------------------------------------------------------------------------------+
+|  .. figure:: /docs/application-notes/images/frequency-impact/LateError-50hz.png  |  .. figure:: /docs/application-notes/images/frequency-impact/LateError-250hz.png |
+|     :width: 90%                                                                  |     :width: 90%                                                                  |
+|                                                                                  |                                                                                  |
+|     Discretization error at 50 Hz with latency                                   |     Discretization error at 250 Hz with latency                                  |
++----------------------------------------------------------------------------------+----------------------------------------------------------------------------------+
+
 
 Practical Results
 -----------------
