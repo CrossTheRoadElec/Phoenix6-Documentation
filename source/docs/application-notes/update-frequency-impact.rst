@@ -26,7 +26,7 @@ Synchronous API and Time Synchronization
 ----------------------------------------
 
 Synchronous API and Time Synchronization will further improve the performance of odometry.
-The two do this by reducing both the overall latency of the signals and reducing the random distribution of latency involved in each signal.
+The two do this by reducing the overall latency of the signals and reducing the random distribution of latency involved in each signal.
 Further explanation of this is available in the :ref:`Time Synchronization <docs/api-reference/api-usage/status-signals:canivore timesync>`.
 
 Latency reduces the accuracy of the data being used in the odometry, and with lower accuracy going into the odometry, the result will be less accurate as well (`garbage in, garbage out <https://en.wikipedia.org/wiki/Garbage_in,_garbage_out>`_ concept).
