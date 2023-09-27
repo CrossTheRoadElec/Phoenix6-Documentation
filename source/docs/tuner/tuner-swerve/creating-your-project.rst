@@ -39,3 +39,18 @@ Creating your Project
 Users should configure the settings applicable for their robot and click :guilabel:`New Project` once they are done.
 
 .. tip:: Throughout the application is various tooltips, that when you hover on them, provide instructions. If you are unsure on what something means, try hovering on it!
+
+Wizard Options
+--------------
+
+Once a project is open, a couple of options are exposed at the top-right.
+
+.. image:: images/swerve-wizard-options.png
+   :alt: Picture of the factory default, config, exit project, and save project options.
+
+In order from left to right:
+
+* Factory default all devices
+* Open the swerve config menu
+* Exit project
+* Save project
