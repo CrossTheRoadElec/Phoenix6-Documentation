@@ -3,7 +3,10 @@ Status Signals
 
 Signals represent live data reported by a device; these can be yaw, position, etc.
 To make use of the live data, users need to know the value, timestamp, latency, units, and error condition of the data.
+
 Additionally, users may need to synchronize with fresh data to minimize latency.
+
+.. note:: A :doc:`/docs/api-reference/api-usage/signal-logging` API is available for logging received signals. This can be incredibly useful for any form of post analysis.
 
 ``StatusSignal``
 ---------------------

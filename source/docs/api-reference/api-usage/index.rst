@@ -51,6 +51,9 @@ There are three major components to the Phoenix 6 API:
 - :doc:`actuator-limits`
    - Documents how to retrieve and configure software and hardware actuator limits.
 
+- :doc:`signal-logging`
+   - Information on the signal logging API used for capturing signal traffic on the bus.
+
 - :doc:`swerve/swerve-overview`
    - Documentation on the swerve API.
 
