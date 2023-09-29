@@ -50,10 +50,10 @@ The Limelight is configured for a high resolution capture to reduce the error of
 As we performed the maneuvers, we logged the pose of the robot as reported by the odometry and the Limelight for use in playback. The "real" robot pose is the odometry-driven pose, and the ghost is the Limelight reported pose. It can be assumed the limelight pose is the "true" pose while the robot is at rest.
 
 The same maneuver was teleop-driven under the following circumstances, with the results below:
- - CANivore CAN bus at 250 Hz (top left)
- - CANivore CAN bus at 50 Hz (top right)
- - RIO CAN bus at 250 Hz (bottom left)
- - RIO CAN bus at 50 Hz (bottom right)
+ - CANivore CAN bus at 250 Hz (top left, measured at 45% bus utilization)
+ - CANivore CAN bus at 50 Hz (top right, measured at 16% bus utilization)
+ - RIO CAN bus at 250 Hz (bottom left, measured at 88% bus utilization)
+ - RIO CAN bus at 50 Hz (bottom right, measured at 45% bus utilization)
 
 ..
    Use full path since Sphinx does not resolve relative path when using wildcard inclusion
