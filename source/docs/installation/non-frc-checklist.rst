@@ -1,6 +1,8 @@
 Using Phoenix outside of FRC
 ============================
 
+.. important:: Users in FRC can skip this article.
+
 Phoenix 6 is fully supported outside of `FRC <https://en.wikipedia.org/wiki/FIRST_Robotics_Competition>`__ on :ref:`supported <docs/installation/installation:system requirements>` linux systems with a USB to CAN adapter.
 
 .. note:: `CANivore <https://store.ctr-electronics.com/canivore/>`__ is the recommended USB to CAN adapter with support for `CAN FD <https://store.ctr-electronics.com/can-fd/>`__, name specification, Windows (as host).
