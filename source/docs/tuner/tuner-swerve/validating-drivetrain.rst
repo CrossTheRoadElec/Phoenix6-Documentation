@@ -5,11 +5,21 @@ Tuner performs several validation procedures to confirm inverts, offsets and mec
 
 This test consists of two steps:
 
-* Verify Drive
 * Verify Steer
+* Verify Drive
 
 .. image:: images/swerve-verification-page.png
    :alt: Picture of the verification page in Tuner
+
+Verify Steer
+------------
+
+.. image:: images/swerve-verify-steer.png
+   :alt: Picture of the steer verification page in Tuner
+
+The **Verify Steer** test is used to confirm that the module azimuth (or steer) can rotate freely and what direction they rotate in.
+
+This test simply rotates all of the modules and confirms with the user if they rotated clockwise or counter-clockwise. The modules should rotate **counter-clockwise**.
 
 Verify Drive
 ------------
@@ -29,16 +39,6 @@ Without placing the robot on the ground, forward can be determined with the foll
 2. Observe the wheels rotating. If the wheels rotate **clockwise**, this is forward (for the right side of the robot!).
 
 Repeat for the left side of the robot, but instead of clockwise, forward is **counter-clockwise**.
-
-Verify Steer
-------------
-
-.. image:: images/swerve-verify-steer.png
-   :alt: Picture of the steer verification page in Tuner
-
-The **Verify Steer** test is used to confirm that the module azimuth (or steer) can rotate freely and what direction they rotate in.
-
-This test simply rotates all of the modules and confirms with the user if they rotated clockwise or counter-clockwise. The modules should rotate **counter-clockwise**.
 
 Troubleshooting
 ---------------

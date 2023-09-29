@@ -1,7 +1,7 @@
 Swerve Requirements
 ===================
 
-The swerve project creator and :doc:`swerve API </docs/tuner/tuner-swerve/index>` have several limitations. These limitations are in-place to improve maintainability and debugging.
+The swerve project creator and :doc:`swerve API </docs/tuner/tuner-swerve/index>` have several limitations. These limitations are in-place to maximize performance and improve maintainability.
 
 * Only Phoenix 6 supported hardware (e.g. TalonFX, CANcoder, Pigeon 2.0).
 
@@ -63,11 +63,7 @@ Users can utilize the below checklist to ensure their robot is ready for project
      - .. raw:: html
 
           <input type="checkbox"/>
-
-   * - **RECOMMENDED:** Have devices been renamed?
-
-       (e.g. "TalonFX ID 1 -> FL Steer Motor")
-
+   * - **RECOMMENDED:** Have the devices been licensed
      - .. raw:: html
 
           <input type="checkbox"/>
