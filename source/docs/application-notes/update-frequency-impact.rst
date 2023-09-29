@@ -50,10 +50,10 @@ The Limelight is configured for a high resolution capture to reduce the error of
 As we performed the maneuvers, we logged the pose of the robot as reported by the odometry and the Limelight for use in playback. The "real" robot pose is the odometry-driven pose, and the ghost is the Limelight reported pose. It can be assumed the limelight pose is the "true" pose while the robot is at rest.
 
 The same maneuver was teleop-driven under the following circumstances, with the results below:
- - CANivore CAN bus at 250 Hz (top left, measured at 45% bus utilization)
- - CANivore CAN bus at 50 Hz (top right, measured at 16% bus utilization)
- - RIO CAN bus at 250 Hz (bottom left, measured at 88% bus utilization)
- - RIO CAN bus at 50 Hz (bottom right, measured at 45% bus utilization)
+ - CANivore CAN bus at 250 Hz (top left, measured at 45% CAN bus utilization)
+ - CANivore CAN bus at 50 Hz (top right, measured at 16% CAN bus utilization)
+ - RIO CAN bus at 250 Hz (bottom left, measured at 88% CAN bus utilization)
+ - RIO CAN bus at 50 Hz (bottom right, measured at 45% CAN bus utilization)
 
 ..
    Use full path since Sphinx does not resolve relative path when using wildcard inclusion
@@ -77,4 +77,4 @@ Final States
 
 As can be seen, going from the RIO bus to the CANivore bus, or from 50 Hz to 250 Hz improves the accuracy of the odometry, and by a noticeable amount. Based on this, utilizing faster update frequencies and time synchronization from the CANivore should result in more accurate odometry, even for the "short" movements as shown in the gif.
 
-Data on the pose location is available for download :download:`here </docs/application-notes/data/frequency-impact/OdometryData.xlsx>`.
+Data on the pose location is available for download: :download:`OdometryData.xlsx </docs/application-notes/data/frequency-impact/OdometryData.xlsx>`.
