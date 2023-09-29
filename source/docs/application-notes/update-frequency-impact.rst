@@ -77,4 +77,4 @@ Final States
 
 As can be seen, going from the RIO bus to the CANivore bus, or from 50 Hz to 250 Hz improves the accuracy of the odometry, and by a noticeable amount. Based on this, utilizing faster update frequencies and time synchronization from the CANivore should result in more accurate odometry, even for the "short" movements as shown in the gif.
 
-Data on the pose location is available for download :download:`here </docs/application-notes/data/frequency-impact/OdometryData.zip>`.
+Data on the pose location is available for download :download:`here </docs/application-notes/data/frequency-impact/OdometryData.xlsx>`.
