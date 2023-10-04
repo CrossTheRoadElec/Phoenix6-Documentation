@@ -1,6 +1,8 @@
 Device Licensing
 ================
 
+.. note:: Users utilizing season pass must attach a team number before continuing. See :ref:`docs/licensing/team-licensing:attaching a team number to season pass` for more information.
+
 The following devices are eligible for single-device licensing:
 
 - TalonFX (Falcon 500)

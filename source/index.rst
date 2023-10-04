@@ -89,6 +89,7 @@ The Phoenix 6 software framework allows you to control and configure your `CTR E
    :hidden:
 
    docs/licensing/licensing
+   docs/licensing/team-licensing
 
 .. toctree::
    :maxdepth: 1
