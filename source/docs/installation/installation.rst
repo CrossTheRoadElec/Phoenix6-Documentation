@@ -109,6 +109,8 @@ Then type :guilabel:`Manage Vendor Libraries` and click on the menu option that 
          sudo apt update
          sudo apt install phoenix-pro
 
+      Additional information for non-FRC users is available in :doc:`/docs/installation/non-frc-checklist`.
+      
       .. tip:: To get a robot application up and running quickly, check out our `non-FRC Linux example <https://github.com/CrossTheRoadElec/PhoenixPro-Linux-Example>`__.
 
 Installing Additional Languages

@@ -1,3 +1,5 @@
+:orphan:
+
 Using Phoenix outside of FRC
 ============================
 
@@ -67,10 +69,19 @@ When utilizing the TalonFX motor controller, the user must continuously feed an 
          // if the user loop is 10ms, we use 20ms to account for jitter
          UnmanagedNative.FeedEnable(0.02);
 
-Example Code
-------------
+Examples
+--------
 
-A C++ example is available `here <https://github.com/CrossTheRoadElec/PhoenixPro-Linux-Example>`__.
+The same Phoenix 6 examples can be used as a reference outside of FRC. The function calls are identical, although the framework that's used to call them may be different and specialized for FRC.
+
+Non FRC Projects
+----------------
+
+We recommend that users use the standard language projects to use our library outside of FRC. For example, a typical Python project will have a ``main.py`` that utilizes the ``phoenix6`` library that's installed with ``pip``.
+
+A typical C# project is a `Visual Studio <https://visualstudio.microsoft.com/>`__ project that includes our libraries via nuget.
+
+For C++, an example utilizing CMake is provided `here <https://github.com/CrossTheRoadElec/PhoenixPro-Linux-Example>`__.
 
 Alternative Support
 -------------------

@@ -111,7 +111,6 @@ The Phoenix 6 software framework allows you to control and configure your `CTR E
    :hidden:
    :caption: API Reference
 
-   docs/installation/non-frc-checklist
    docs/api-reference/api-usage/index
    docs/api-reference/device-specific/index
    docs/api-reference/simulation/index
