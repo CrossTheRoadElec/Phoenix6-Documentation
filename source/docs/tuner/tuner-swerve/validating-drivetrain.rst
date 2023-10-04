@@ -19,7 +19,7 @@ Verify Steer
 
 The **Verify Steer** test is used to confirm that the module azimuth (or steer) can rotate freely and what direction they rotate in.
 
-This test simply rotates all of the modules and confirms with the user if they rotated clockwise or counter-clockwise. The modules should rotate **counter-clockwise**.
+This test simply rotates all of the modules and confirms with the user if they rotated clockwise or counter-clockwise. The modules should rotate **counter-clockwise** (looking down at the module).
 
 Verify Drive
 ------------
