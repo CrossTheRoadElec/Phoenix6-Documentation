@@ -132,7 +132,7 @@ Installation is available through `PyPI <https://pypi.org/project/phoenix6/>`__.
 C# (non-FRC only)
 ^^^^^^^^^^^^^^^^^
 
-Installation is available through `Nuget <https://pypi.org/project/phoenix6/>`__.  An example on adding nuget packages to a Visual Studio project is available in the `Microsoft Quickstart <https://learn.microsoft.com/en-us/nuget/quickstart/install-and-use-a-package-in-visual-studio>`__.
+Installation is available through `Nuget <https://www.nuget.org/packages/Phoenix6/>`__.  An example on adding nuget packages to a Visual Studio project is available in the `Microsoft Quickstart <https://learn.microsoft.com/en-us/nuget/quickstart/install-and-use-a-package-in-visual-studio>`__.
 
 Tuner X Installation
 --------------------
