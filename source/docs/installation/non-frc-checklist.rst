@@ -86,6 +86,6 @@ For C++, an example utilizing CMake is provided `here <https://github.com/CrossT
 Alternative Support
 -------------------
 
-In the event that the v6 API does not fit the user's needs (e.g. utilizing devices such as a `TalonSRX <https://store.ctr-electronics.com/talon-srx/>`__). Users can utilizing the `v5 API <https://v5.docs.ctr-electronics.com/>`__.
+In the event that the v6 API does not fit the user's needs (e.g. utilizing devices such as a `TalonSRX <https://store.ctr-electronics.com/talon-srx/>`__). Users can utilize the `v5 API <https://v5.docs.ctr-electronics.com/>`__.
 
 We also provide a hardware robot controller called the `HERO development board <https://store.ctr-electronics.com/hero-development-board/>`__. The HERO can be programmed in C# to utilize `compatible <https://v5.docs.ctr-electronics.com/en/stable/ch04_DoINeedThis.html#do-i-need-to-install-any-of-this>`__ **v5** devices.
