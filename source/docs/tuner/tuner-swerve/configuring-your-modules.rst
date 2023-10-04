@@ -28,7 +28,7 @@ Once a module's devices have been selected, an :guilabel:`Encoder Calibration` b
 .. image:: images/swerve-encoder-calibration-loc.png
    :alt: Red bounding box around the swerve calibration button in Tuner X
 
-Once calibration has been completed, the module will be removed from the **Incomplete Modules** lift on the left.
+Once calibration has been completed, the module will be removed from the **Incomplete Modules** list on the left.
 
 Switching between Modules
 -------------------------
