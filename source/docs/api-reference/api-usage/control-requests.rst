@@ -8,7 +8,7 @@ Control Requests represent the **output** of a device. A list of control request
 Applying a Control Request
 --------------------------
 
-Control requests can be applied by calling ``setControl()`` on the motor object. ``setControl()`` returns a ``StatusCode`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/StatusCode.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/_status_codes_8h.html>`__) enum that represents success state. A successful request will return ``StatusCode.OK``.
+Control requests can be applied by calling ``setControl()`` on the device object. ``setControl()`` returns a ``StatusCode`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/StatusCode.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/_status_codes_8h.html>`__) enum that represents success state. A successful request will return ``StatusCode.OK``.
 
 .. tab-set::
 

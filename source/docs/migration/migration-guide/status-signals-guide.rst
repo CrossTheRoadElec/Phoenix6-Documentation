@@ -131,7 +131,7 @@ Changing Update Frequency (Status Frame Period)
                // slow down the position signal to 5 Hz
                m_talonFX.GetPosition().SetUpdateFrequency(5_Hz);
 
-.. important:: Currently in Phoenix 6, when different status signal frequencies are specified for signals that share a status frame, the last specified frequency is applied to the status frame. As a result, users should apply the slowest status frame frequencies first and the fastest frequencies last.
+.. note:: When different update frequencies are specified for signals that share a status frame, the highest update frequency of all the relevant signals will be applied to the entire frame. Users can get a signal's applied update frequency using the ``getAppliedUpdateFrequency()`` method.
 
 Common Signals
 --------------
