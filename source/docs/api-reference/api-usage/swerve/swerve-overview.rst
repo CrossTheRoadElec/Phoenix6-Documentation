@@ -1,9 +1,11 @@
 Swerve Overview
 ===============
 
+.. important:: Swerve functionality is only available for FRC users.
+
 New in 2024 is a high performance swerve framework. This framework simplifies the boilerplate necessary for swerve and maximizes performance.
 
-.. important:: This section focuses on utilizing the Swerve API and configuring it correctly. Tuner X supports a swerve project creator that greatly simplifies this process and removes common error cases.
+This section focuses on utilizing the Swerve API and configuring it correctly. Tuner X supports a :doc:`swerve project creator </docs/tuner/tuner-swerve/index>` that greatly simplifies this process and removes common error cases.
 
 - Small API surface, easily debuggable
 
