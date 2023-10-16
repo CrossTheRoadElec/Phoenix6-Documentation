@@ -83,8 +83,8 @@ Data on the pose location is available for download: :download:`OdometryData.xls
 
 After-Test Data
 ---------------
-Roughly 2 weeks after this initial data was collected and the blog post written, we went back and re-verified the data for the CANivore 250 Hz and RIO 250 Hz cases to further test the impact of time synchronization.
-These tests were ran in autonomous a total of 20 times (10 for CANivore, 10 for RIO), measuring the error of the odometry against the Limelight data.
+Roughly 2 weeks after this initial data was collected and the blog post written, we went back and re-verified the data for the CANivore 250 Hz and RIO 250 Hz cases to further test the impact of time synchronization. These tests were ran in autonomous a total of 20 times (10 for CANivore, 10 for RIO), measuring the error of the odometry against the Limelight data.
+
 The results are below:
 
 +-------+----------+
