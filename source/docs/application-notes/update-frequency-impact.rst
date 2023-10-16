@@ -13,6 +13,8 @@ Update frequency has a direct impact on the accuracy of your localization throug
 
 https://www.desmos.com/calculator/vdgebi9s4t
 
+.. note:: This desmos graph shows a Forward Euler discretization of a simple odometry case. Odometry solution provided by WPILib are discretized using the Pose Exponential, which is more accurate than Forward Euler.
+
 +----------------------------------------------------------------------------------+----------------------------------------------------------------------------------+
 |  .. figure:: /docs/application-notes/images/frequency-impact/Error-50hz.png      |  .. figure:: /docs/application-notes/images/frequency-impact/Error-250hz.png     |
 |     :width: 90%                                                                  |     :width: 90%                                                                  |
@@ -78,3 +80,43 @@ Final States
 As can be seen, going from the RIO bus to the CANivore bus, or from 50 Hz to 250 Hz improves the accuracy of the odometry, and by a noticeable amount. Based on this, utilizing faster update frequencies and time synchronization from the CANivore should result in more accurate odometry, even for the "short" movements as shown in the gif.
 
 Data on the pose location is available for download: :download:`OdometryData.xlsx </docs/application-notes/data/frequency-impact/OdometryData.xlsx>`.
+
+After-Test Data
+---------------
+Roughly 2 weeks after this initial data was collected and the blog post written, we went back and re-verified the data for the CANivore 250 Hz and RIO 250 Hz cases to further test the impact of time synchronization.
+These tests were ran in autonomous a total of 20 times (10 for CANivore, 10 for RIO), measuring the error of the odometry against the Limelight data.
+The results are below:
+
++-------+----------+
+|  RIO  | CANivore |
++-------+----------+
+| 0.52  |   0.14   |
++-------+----------+
+| 0.33  |   0.28   |
++-------+----------+
+| 0.47  |   0.56   |
++-------+----------+
+| 0.23  |   0.22   |
++-------+----------+
+| 0.51  |   0.32   |
++-------+----------+
+| 0.23  |   0.18   |
++-------+----------+
+| 0.22  |   0.30   |
++-------+----------+
+| 0.59  |   0.26   |
++-------+----------+
+| 0.15  |   0.33   |
++-------+----------+
+| 0.11  |   0.25   |
++-------+----------+
+
+This resulted in the following average and standard deviation of error:
++-----------+-------+----------+
+|           |  RIO  | CANivore |
++-----------+-------+----------+
+| Average   | 0.336 |  0.284   |
++-----------+-------+----------+
+| Standard  | 0.173 |  0.114   |
+| Deviation |       |          |
++-----------+-------+----------+
