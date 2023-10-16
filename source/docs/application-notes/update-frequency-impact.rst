@@ -13,7 +13,7 @@ Update frequency has a direct impact on the accuracy of your localization throug
 
 https://www.desmos.com/calculator/vdgebi9s4t
 
-.. note:: This desmos graph shows a Forward Euler discretization of a simple odometry case. Odometry solution provided by WPILib are discretized using the Pose Exponential, which is more accurate than Forward Euler.
+.. note:: This desmos graph shows a Forward Euler discretization of a simple odometry case. The odometry solution provided by WPILib are discretized using the Pose Exponential, which is more accurate than Forward Euler.
 
 +----------------------------------------------------------------------------------+----------------------------------------------------------------------------------+
 |  .. figure:: /docs/application-notes/images/frequency-impact/Error-50hz.png      |  .. figure:: /docs/application-notes/images/frequency-impact/Error-250hz.png     |
