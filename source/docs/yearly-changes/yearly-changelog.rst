@@ -9,7 +9,7 @@ The API vendordep for the 2024 beta is available under ``https://maven.ctr-elect
 
 Users will need to update both firmware and API to make use of these features.
 
-.. important:: The 2024 Beta of Phoenix v6 requires 2024 Beta FRC Software.  Find more information about the beta [here](https://github.com/wpilibsuite/2024Beta).
+.. important:: The 2024 Beta of Phoenix v6 requires 2024 Beta FRC Software.  Find more information about the beta `here <https://github.com/wpilibsuite/2024Beta>`__.
 
 .. note:: This changelog is intended to highlight the major additions to the Phoenix 6 API. For a detailed list of changes and bug fixes, visit the `Phoenix changelog <https://api.ctr-electronics.com/changelog>`__.
 
