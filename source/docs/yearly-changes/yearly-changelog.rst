@@ -150,17 +150,21 @@ We've added several new configs. A full list of available configs is available i
 Improved Support for roboRIO Motion Profiles
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Additional support has been added for various feedforward terms (kS, kG, kV and kA). There is now improved integration with roboRIO motion profiling using velocity setpoints in position control modes, along with acceleration setpoints in velocity control modes.  Additionally, kG can also calculate feedforward based on cosine of position for mechanisms such as a rotating arm.
+In addition to the kS and kV feedforward terms supported in 2023, Phoenix 6 now supports kG and kA. kG can be constant for use with an elevator, or it can calculate feedforward based on the cosine of position for mechanisms such as a rotating arm. Additionally, there is now improved integration with roboRIO motion profiling using velocity setpoints in position control modes, along with acceleration setpoints in velocity control modes.
 
 .. code-block:: java
 
-   var constraints = new TrapezoidProfile.Constraints(80, 160); // 80 rps, 160 rps/s
-   var goal = new TrapezoidProfile.State(200, 0); // 200 rot, 0 rps
-   var profile = new TrapezoidProfile(constraints, goal);
+   // Trapezoid profile with max velocity 80 rps, max accel 160 rps/s
+   final TrapezoidProfile m_profile = new TrapezoidProfile(
+      new TrapezoidProfile.Constraints(80, 160)
+   );
+   // Final target of 200 rot, 0 rps
+   TrapezoidProfile.State m_goal = new TrapezoidProfile.State(200, 0);
+   TrapezoidProfile.State m_setpoint = new TrapezoidProfile.State();
 
-   var setpoint = profile.calculate(0.020);
-   m_positionControl.Position = setpoint.position;
-   m_positionControl.Velocity = setpoint.velocity;
+   m_setpoint = m_profile.calculate(0.020, m_goal, m_setpoint);
+   m_positionControl.Position = m_setpoint.position;
+   m_positionControl.Velocity = m_setpoint.velocity;
    m_talonFX.setControl(m_positionControl);
 
 New ``SyncCANcoder`` Remote Sensor
