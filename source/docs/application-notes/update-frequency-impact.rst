@@ -112,6 +112,7 @@ The results are below:
 +-------+----------+
 
 This resulted in the following average and standard deviation of error:
+
 +-----------+-------+----------+
 |           |  RIO  | CANivore |
 +-----------+-------+----------+
