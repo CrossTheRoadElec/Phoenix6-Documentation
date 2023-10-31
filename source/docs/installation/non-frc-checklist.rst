@@ -3,9 +3,9 @@ Using Phoenix outside of FRC
 
 .. important:: Users in FRC can skip this article.
 
-Phoenix 6 is fully supported outside of `FRC <https://en.wikipedia.org/wiki/FIRST_Robotics_Competition>`__ on :ref:`supported <docs/installation/installation:system requirements>` linux systems with a USB to CAN adapter.
+Phoenix 6 is fully supported outside of `FRC <https://en.wikipedia.org/wiki/FIRST_Robotics_Competition>`__ on :ref:`supported <docs/installation/installation:system requirements>` Linux systems with a USB to CAN adapter.
 
-.. note:: `CANivore <https://store.ctr-electronics.com/canivore/>`__ is the recommended USB to CAN adapter with support for `CAN FD <https://store.ctr-electronics.com/can-fd/>`__, name specification, Windows (as host).
+.. note:: `CANivore <https://store.ctr-electronics.com/canivore/>`__ is the recommended USB to CAN adapter with support for `CAN FD <https://store.ctr-electronics.com/can-fd/>`__, name specification, and Windows (as host).
 
 Installation
 ------------
@@ -18,14 +18,14 @@ Installation instructions can be found in :doc:`/docs/installation/installation`
 Firmware Installation
 ^^^^^^^^^^^^^^^^^^^^^
 
-Device firmware upgrading is handled via the :doc:`/docs/tuner/index` configuration client.
+Device firmware upgrading is handled by the :doc:`/docs/tuner/index` configuration client.
 
 Enabling Devices
 ----------------
 
-When utilizing the TalonFX motor controller, the user must continuously feed an enable to the device. The device will disable if the enable has not been received within the specified timeout period.
+When utilizing the TalonFX motor controller, the user must continuously feed an enable signal to the device. The device will disable if the enable signal has not been fed within the specified timeout period.
 
-.. note:: It's recommended for ``feedEnable()`` to be called synchronously with your motor update loop. The timeout should be larger than than the update loop rate. e.g. if the update loop updates at 10ms, the timeout should be 20ms to account for jitter.
+.. note:: It's recommended for ``feedEnable()`` to be called synchronously with your motor update loop. The timeout should be larger than than the update loop rate.
 
 .. tab-set::
 
@@ -34,18 +34,16 @@ When utilizing the TalonFX motor controller, the user must continuously feed an 
 
       .. code-block:: java
 
-         // disable the motor controller if not received within 20ms
-         // if the user loop is 10ms, we use 20ms to account for jitter
-         Unmanaged.feedEnable(20);
+         // enable the motor controller for the next 100ms
+         Unmanaged.feedEnable(100);
 
    .. tab-item:: C++
       :sync: cpp
 
       .. code-block:: cpp
 
-         // disable the motor controller if not received within 20ms
-         // if the user loop is 10ms, we use 20ms to account for jitter
-         ctre::phoenix::unmanaged::FeedEnable(20);
+         // enable the motor controller for the next 100ms
+         ctre::phoenix::unmanaged::FeedEnable(100);
 
    .. tab-item:: Python
       :sync: python3
@@ -54,23 +52,21 @@ When utilizing the TalonFX motor controller, the user must continuously feed an 
 
          from phoenix6 import unmanaged
 
-         // disable the motor controller if not received within 20ms
-         // if the user loop is 10ms, we use 20ms to account for jitter
-         unmanaged.feed_enable(20)
+         // enable the motor controller for the next 100ms
+         unmanaged.feed_enable(100)
 
    .. tab-item:: C#
       :sync: csharp
 
       .. code-block:: csharp
 
-         // disable the motor controller if not received within 20ms
-         // if the user loop is 10ms, we use 20ms to account for jitter
-         UnmanagedNative.FeedEnable(0.02);
+         // enable the motor controller for the next 100ms
+         UnmanagedNative.FeedEnable(0.100);
 
 Examples
 --------
 
-The same Phoenix 6 examples can be used as a reference outside of FRC. The function calls are identical, although the framework that's used to call them may be different and specialized for FRC.
+The same Phoenix 6 examples can be used as a reference outside of FRC. The function calls are identical, although the framework that is used to call them may be different and specialized for FRC.
 
 Non FRC Projects
 ----------------
@@ -84,6 +80,6 @@ For C++, an example utilizing CMake is provided `here <https://github.com/CrossT
 Alternative Support
 -------------------
 
-In the event that the v6 API does not fit the user's needs (e.g. utilizing devices such as a `TalonSRX <https://store.ctr-electronics.com/talon-srx/>`__). Users can utilize the `v5 API <https://v5.docs.ctr-electronics.com/>`__.
+In the event that the Phoenix 6 API does not fit the user's needs (e.g. utilizing devices such as a `TalonSRX <https://store.ctr-electronics.com/talon-srx/>`__). Users can utilize the `Phoenix 5 API <https://v5.docs.ctr-electronics.com/>`__.
 
 We also provide a hardware robot controller called the `HERO development board <https://store.ctr-electronics.com/hero-development-board/>`__. The HERO can be programmed in C# to utilize `compatible <https://v5.docs.ctr-electronics.com/en/stable/ch04_DoINeedThis.html#do-i-need-to-install-any-of-this>`__ **v5** devices.
