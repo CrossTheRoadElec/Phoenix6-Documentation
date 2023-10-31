@@ -1,5 +1,3 @@
-:orphan:
-
 Using Phoenix outside of FRC
 ============================
 
