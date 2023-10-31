@@ -12,7 +12,12 @@ Installation of Phoenix 6 is comprised of a few steps
 API Installation
 ----------------
 
-Phoenix 6 currently supports Java and C++ for development.
+Phoenix 6 currently supports the following languages for development.
+
+- Java
+- C++
+- Python
+- C# (non-FRC only)
 
 System Requirements
 ^^^^^^^^^^^^^^^^^^^
@@ -50,6 +55,8 @@ Offline
    :alt: Showing the installation screen root
 
 3. Apply the vendordep via WPILib VS Code `Adding Offline Libraries <https://docs.wpilib.org/en/stable/docs/software/vscode-overview/3rd-party-libraries.html#installing-libraries>`__
+
+.. note:: The Python and C# APIs can only be installed online. See :ref:`docs/installation/installation:installing additional languages` for more information.
 
 Online
 ^^^^^^
@@ -102,7 +109,30 @@ Then type :guilabel:`Manage Vendor Libraries` and click on the menu option that 
          sudo apt update
          sudo apt install phoenix-pro
 
+      Additional information for non-FRC users is available in :doc:`/docs/installation/non-frc-checklist`.
+
       .. tip:: To get a robot application up and running quickly, check out our `non-FRC Linux example <https://github.com/CrossTheRoadElec/PhoenixPro-Linux-Example>`__.
+
+Installing Additional Languages
+-------------------------------
+
+Python and C# require additional installation steps.
+
+.. note:: Installation for Python and C# are only required if the user wants to use those languages. Otherwise, the below steps can be skipped.
+
+Python
+^^^^^^
+
+Installation is available through `PyPI <https://pypi.org/project/phoenix6/>`__.
+
+.. code-block:: bash
+
+   python3 -m pip install phoenix-6
+
+C# (non-FRC only)
+^^^^^^^^^^^^^^^^^
+
+Installation is available through `Nuget <https://www.nuget.org/packages/Phoenix6/>`__.  An example on adding nuget packages to a Visual Studio project is available in the `Microsoft Quickstart <https://learn.microsoft.com/en-us/nuget/quickstart/install-and-use-a-package-in-visual-studio>`__.
 
 Tuner X Installation
 --------------------
@@ -113,3 +143,9 @@ Phoenix Tuner X is supported on Android, Windows 10 (build 1903+), and Windows 1
 
 - Windows: https://apps.microsoft.com/store/detail/phoenix-tuner/9NVV4PWDW27Z
 - Android: https://play.google.com/store/apps/details?id=com.ctre.phoenix_tuner
+
+.. toctree::
+   :maxdepth: 1
+   :hidden:
+
+   non-frc-checklist
