@@ -109,12 +109,7 @@ Then type :guilabel:`Manage Vendor Libraries` and click on the menu option that 
          sudo apt update
          sudo apt install phoenix-pro
 
-      Additional information for non-FRC users is available at
-
-      .. toctree::
-        :maxdepth: 1
-
-        non-frc-checklist
+      Additional information for non-FRC users is available in :doc:`/docs/installation/non-frc-checklist`.
 
       .. tip:: To get a robot application up and running quickly, check out our `non-FRC Linux example <https://github.com/CrossTheRoadElec/PhoenixPro-Linux-Example>`__.
 
@@ -148,3 +143,9 @@ Phoenix Tuner X is supported on Android, Windows 10 (build 1903+), and Windows 1
 
 - Windows: https://apps.microsoft.com/store/detail/phoenix-tuner/9NVV4PWDW27Z
 - Android: https://play.google.com/store/apps/details?id=com.ctre.phoenix_tuner
+
+.. toctree::
+   :maxdepth: 1
+   :hidden:
+
+   non-frc-checklist
