@@ -74,6 +74,6 @@ Feedback is welcome at feedback@ctr-electronics.com.
 
 - Motion Profile Executor
 
-  - Control requests are planned to be improved to cover many of the use cases of the Motion Profile Executor.
+  - Control requests have been improved to cover many of the use cases of the Motion Profile Executor.
 
 - Allowable Closed-Loop Error
