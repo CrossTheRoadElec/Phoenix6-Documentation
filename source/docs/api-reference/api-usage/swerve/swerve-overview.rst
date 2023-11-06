@@ -10,7 +10,7 @@ This section focuses on utilizing the Swerve API and configuring it correctly. T
 - Small API surface, easily debuggable
 
   * Build robot characteristics using ``SwerveModuleConstants`` (Java) and ``SwerveDrivetrainConstants``.
-  * Integrates cleanly into WPILib `commandbased <https://docs.wpilib.org/en/stable/docs/software/commandbased/index.html>`__ framework via ``CommandSwerveDrivetrain`` (Java).
+  * Integrates cleanly into WPILib `command-based <https://docs.wpilib.org/en/stable/docs/software/commandbased/index.html>`__ framework via ``CommandSwerveDrivetrain`` (Java).
   * Telemetrize directly in the odometry loop using the ``registerTelemetry()`` (Java) lambda.
   * Supports handling the swerve state via ``SwerveRequest`` (Java).
 
