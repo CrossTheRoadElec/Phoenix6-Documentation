@@ -27,6 +27,15 @@ Improved Device Control
 - Improved :ref:`Motion Magic® <docs/api-reference/device-specific/talonfx/closed-loop-requests:motion magic®>` with jerk control and support for modifying the profile on the fly.
 - Kalman-based algorithms to reduce latency while maintaining smooth data.
 
+:doc:`Swerve API </docs/api-reference/api-usage/swerve/swerve-overview>`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- High-performance Swerve API using synchronous, latency-compensated odometry.
+- Eliminate the boilerplate from copying swerve template code.
+- Improved :doc:`odometry performance </docs/application-notes/update-frequency-impact>` with CANivore and Phoenix Pro.
+- Tuner X :doc:`Swerve Project Generator </docs/tuner/tuner-swerve/index>` gets swerve drive up and running quickly.
+- Built-in high-fidelity :doc:`simulation </docs/api-reference/api-usage/swerve/swerve-simulation>` support.
+
 Enhanced Support for `CAN FD <https://store.ctr-electronics.com/can-fd/>`__
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
