@@ -44,4 +44,4 @@ Alternatively, a module can be selected by clicking on one of the yellow squares
 
 Once all modules have been configured, click on the :guilabel:`Configuration Completed!` button that appears.
 
-.. danger:: To ensure the drive and steer tests are accurate, the devices are factory defaulted. It's recommended that the user makes a :ref:`backup <docs/tuner/configs:tuner configs>` of their configs if they are not applied in their robot program.
+.. warning:: To ensure the drive and steer tests are accurate, the devices are factory defaulted. It's recommended that the user makes a :ref:`backup <docs/tuner/configs:tuner configs>` of their configs if they are not applied in their robot program.
