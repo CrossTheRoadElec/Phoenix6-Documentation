@@ -1,7 +1,7 @@
 Device Details
 ==============
 
-The **Device Details** page can be accessed by clicking on the device card (or double clicking on the device row when in grid view). This view allows you to access detailed device actions such as:
+The **Device Details** page can be accessed by clicking on the device card (or clicking on :guilabel:`View more details...` when in grid view). This view allows you to access detailed device actions such as:
 
 - Device Details (Name, ID, Firmware Version, Model, Serial No, etc.)
 - Blinking LEDs
@@ -12,8 +12,6 @@ The **Device Details** page can be accessed by clicking on the device card (or d
 - Self Tests
 - Plotting
 - Pigeon 2 Mount Calibration
-
-.. note:: Plotting currently only works with Phoenix 5 devices.
 
 Blinking
 --------
@@ -38,7 +36,7 @@ This screen highlights information such as (1) Device Name, (2) Device Model, (3
 Configuring Name & IDs
 ----------------------
 
-All devices can have their Name (1) and ID (2) configured via their respective textbox. IDs are limited to the range of 0 to 62 (inclusive). After inputting the ID or name, press the :guilabel:`Set` button to save the changes to the device.
+All devices can have their Name and ID configured via their respective textbox. IDs are limited to the range of 0 to 62 (inclusive). After inputting the ID or name, press the :guilabel:`Set` button to save the changes to the device.
 
 .. image:: images/device-id-name-highlight.png
    :width: 70%
@@ -55,9 +53,9 @@ Tuner X has improved firmware upgrading functionality by **automatically downloa
    :width: 70%
    :alt: Firmware version picker
 
-Users can switch between "Phoenix 6" and "Phoenix 5" by clicking on the toggle above the firmware dropdown.
+Users can switch between firmware release years by selecting from the dropdown above the firmware selection.
 
-.. note:: The toggle between Phoenix 6 and Phoenix 5 firmware only affects online field-upgrades.
+.. note:: The toggle between firmware years only affects online field-upgrades.
 
 .. image:: images/swapping-pro-phoenix5.png
    :width: 70%

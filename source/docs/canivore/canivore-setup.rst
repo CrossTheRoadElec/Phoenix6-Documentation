@@ -85,13 +85,7 @@ Field Upgrading CANivores
 
 A CANivore can be field updated using :doc:`Phoenix Tuner X </docs/tuner/index>`.
 
-Click or tap on the listed CANivore card:
-
-.. image:: images/canivore-cards.png
-   :width: 70%
-   :alt: CANivore root page
-
-The CANivore can then be field upgraded via the dropdown or by manually selected a file:
+Click or tap on the listed CANivore card to open the device details page. The CANivore can then be field upgraded via the dropdown or by manually selected a file:
 
 .. image:: images/canivore-field-upgrade.png
    :width: 70%
