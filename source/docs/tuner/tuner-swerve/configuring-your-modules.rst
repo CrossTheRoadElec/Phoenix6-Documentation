@@ -13,7 +13,7 @@ Selecting Module Devices
 
 The first step is to select the encoder and motor controllers for the selected swerve module. In the screenshot below, **Talon FX (Device ID 0)** and **Talon FX (Device ID 1)** are selected as the steer and drive motor controllers.
 
-.. tip:: If a warning icon shows where the :guilabel:`Blink` icon is, this typically means this device has already been assigned to module.
+.. tip:: If a warning icon shows where the :guilabel:`Blink` icon is, this typically means this device has already been assigned to a module.
 
 .. image:: images/swerve-selecting-devices.png
    :alt: Highlighting device selection of swerve modules picture
