@@ -23,7 +23,7 @@ Some of these requirements are inforced via a mechanism called "precheck". You c
 .. image:: images/swerve-precheck.png
    :alt: Box surrounding the pre-check section of the swerve creation wizard
 
-.. note:: While the Swerve API and project generator can be utilized without Pro or FD, both of these enhance robot control. When utilizing Pro & FD, sensor data is acquired synchronously. :ref:`FusedCANcoder <docs/migration/new-to-phoenix:fused cancoder>` improves the accuracy of module positions.
+.. note:: While the Swerve API and project generator can be utilized without Pro or FD, both of these enhance robot control. When utilizing Pro and CAN FD, sensor data is acquired synchronously. :ref:`FusedCANcoder <docs/migration/new-to-phoenix:fused cancoder>` improves the accuracy of module positions.
 
 Requirement Checklist
 ---------------------
@@ -44,26 +44,36 @@ Users can utilize the below checklist to ensure their robot is ready for project
      - .. raw:: html
 
            <input type="checkbox"/>
-   * - **REQUIRED:** Do all devices appear in Tuner?
+
+   * - **REQUIRED:** Do all devices appear in Tuner X?
      - .. raw:: html
 
           <input type="checkbox"/>
+
    * - **REQUIRED:** Is all firmware up-to-date? (24.X)
      - .. raw:: html
 
           <input type="checkbox"/>
+
    * - **REQUIRED:** Is 2024 (or newer) diagnostics running?
      - .. raw:: html
 
           <input type="checkbox"/>
-   * - **RECOMMENDED:** Have devices been renamed?
 
-       (e.g. "TalonFX ID 1 -> FL Steer Motor")
+   * - **Recommended:** Have devices been renamed?
+
+       (e.g. "TalonFX (Device ID 1)" -> "FL Steer Motor")
 
      - .. raw:: html
 
           <input type="checkbox"/>
-   * - **RECOMMENDED:** Have the devices been licensed
+
+   * - **Recommended:** Are the devices on a CANivore?
+     - .. raw:: html
+
+          <input type="checkbox"/>
+
+   * - **Recommended:** Are the devices Pro-licensed?
      - .. raw:: html
 
           <input type="checkbox"/>

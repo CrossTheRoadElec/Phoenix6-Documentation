@@ -26,7 +26,7 @@ Creating your Project
 
 * Steer Ratio (Custom)
 
-  * This is the gearing ratio between the output shaft of the steering motor and the azimuth gear. For the :guilabel:`Custom` module type, users must calculate this based on their gearing themselves, or consult their manufacture.
+  * This is the gearing ratio between the output shaft of the steering motor and the azimuth gear. For the :guilabel:`Custom` module type, users must calculate this based on their gearing themselves, or consult their manufacturer.
 
 6. Import Project
 
