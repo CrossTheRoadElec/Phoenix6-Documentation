@@ -1,5 +1,5 @@
-New to Phoenix
-==============
+Phoenix 6 Features
+==================
 
 Phoenix 6 currently offers the following features and will further expand.
 
