@@ -4,7 +4,7 @@ Introduction to Simulation
 Supported Devices
 -----------------
 
-Currently, all Phoenix Pro devices are supported in simulation.
+Currently, all Phoenix 6 devices are supported in simulation.
 
 .. warning:: **Multiple** CAN buses using the :doc:`CANivore API </docs/canivore/canivore-api>` is not supported at this time. All CAN devices will **appear on the same CAN bus**. If you wish to run your robot code in simulation, ensure devices have **unique IDs across CAN buses**.
 
@@ -29,12 +29,12 @@ Each supported device has a device-specific ``SimState`` object that can be used
 
          auto& talonFXSim = m_talonFX.GetSimState();
 
-.. note:: Phoenix Pro utilizes the `C++ units library <https://docs.wpilib.org/en/stable/docs/software/basic-programming/cpp-units.html>`__ when applicable.
+.. note:: Phoenix 6 utilizes the `C++ units library <https://docs.wpilib.org/en/stable/docs/software/basic-programming/cpp-units.html>`__ when applicable.
 
 Orientation
 ^^^^^^^^^^^
 
-The ``SimState`` API ignores typical device invert settings, as the user may change invert for any reason (such as flipping which direction is forward for a drivebase). As a result, for some devices, the ``SimState`` object supports specifying the orientation of the device relative to the robot chassis (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/sim/TalonFXSimState.html#Orientation>`__, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/classctre_1_1phoenixpro_1_1sim_1_1_talon_f_x_sim_state.html#accd9e74b59931e43563f26ce44c68890>`__).
+The ``SimState`` API ignores typical device invert settings, as the user may change invert for any reason (such as flipping which direction is forward for a drivebase). As a result, for some devices, the ``SimState`` object supports specifying the orientation of the device relative to the robot chassis (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/sim/TalonFXSimState.html#Orientation>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1sim_1_1_talon_f_x_sim_state.html#ac3cce344719d64c98216286399936d6e>`__).
 
 This orientation represents the **mechanical** linkage between the device and the robot chassis. It **should not be changed with runtime invert**, as runtime invert specifies the *logical* orientation of the device. Rather, the orientation should **only be modified when the mechanical linkage itself changes**, such as when switching between two gearboxes inverted from each other.
 
@@ -73,7 +73,7 @@ Inputs and Outputs
 
 All ``SimState`` objects contain multiple inputs to manipulate the state of the device based on simulation physics calculations. For example, all device ``SimState`` objects have a supply voltage input:
 
-.. important::  Non-FRC platforms are required to set supply voltage, as it affects simulation calculations. It's recommended that FRC users set supply voltage to ``getBatteryVoltage()`` (`Java <https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/RobotController.html#getBatteryVoltage()>`__, `C++ <https://github.wpilib.org/allwpilib/docs/release/cpp/classfrc_1_1_robot_controller.html#a4b1e42e825583c82664a4ecc5d81b83f>`__) to take advantage of WPILib's ``BatterySim`` (`Java <https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/simulation/BatterySim.html>`__, `C++ <https://github.wpilib.org/allwpilib/docs/release/cpp/classfrc_1_1sim_1_1_battery_sim.html>`__) API.
+.. important::  Non-FRC platforms are required to set supply voltage, as it affects simulation calculations. It's recommended that FRC users set supply voltage to ``RobotController.getBatteryVoltage()`` (`Java <https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/RobotController.html#getBatteryVoltage()>`__, `C++ <https://github.wpilib.org/allwpilib/docs/release/cpp/classfrc_1_1_robot_controller.html#a4b1e42e825583c82664a4ecc5d81b83f>`__) to take advantage of WPILib's ``BatterySim`` (`Java <https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/simulation/BatterySim.html>`__, `C++ <https://github.wpilib.org/allwpilib/docs/release/cpp/classfrc_1_1sim_1_1_battery_sim.html>`__) API.
 
 .. tab-set::
 
@@ -93,7 +93,7 @@ All ``SimState`` objects contain multiple inputs to manipulate the state of the 
          // set the supply voltage of the TalonFX to 12 V
          m_talonFXSim.SetSupplyVoltage(12_V);
 
-Some device ``SimState`` objects also contain outputs that can be used in simulation physics calculations. For example, the ``TalonFXSimState`` (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/sim/TalonFXSimState.html>`__, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/classctre_1_1phoenixpro_1_1sim_1_1_talon_f_x_sim_state.html>`__) object has a motor voltage output that can be used to calculate position and velocity:
+Some device ``SimState`` objects also contain outputs that can be used in simulation physics calculations. For example, the ``TalonFXSimState`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/sim/TalonFXSimState.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1sim_1_1_talon_f_x_sim_state.html>`__) object has a motor voltage output that can be used to calculate position and velocity:
 
 .. tab-set::
 
@@ -134,7 +134,7 @@ High Fidelity CAN Bus Simulation
 
 Many popular CTR Electronics CAN devices support high-fidelity simulation, where the influence of the CAN bus is simulated at a level similar to what happens on a real robot. This means that the timing behavior of control and status signals in simulation will align to the same framing intervals seen on a real CAN bus. In simulation, this may appear as a delay between setting a signal and getting its real value, or between setting its real value and getting it in API.
 
-The update rate can be modified for simulation by wrapping the :ref:`signal's frequency <docs/api-reference/api-usage/status-signals:changing update frequency>` in a ``RobotBase.isSimulation()`` (`Java <https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/RobotBase.html#isSimulation()>`__, `C++ <https://github.wpilib.org/allwpilib/docs/release/cpp/classfrc_1_1_robot_base.html#a307a770aa58d89e1f1cc8e7970cceb84>`__) condition.
+The update rate can be modified for simulation by wrapping the :ref:`signal update frequency <docs/api-reference/api-usage/status-signals:changing update frequency>` in a ``Utils.isSimulation()`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/Utils.html#isSimulation()>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/namespacectre_1_1phoenix6.html#ab4754e75285682ed3f46dac92e35985b>`__) condition.
 
 .. tab-set::
 
@@ -143,7 +143,7 @@ The update rate can be modified for simulation by wrapping the :ref:`signal's fr
 
       .. code-block:: java
 
-         if (RobotBase.isSimulation()) {
+         if (Utils.isSimulation()) {
             m_velocitySignal.setUpdateFrequency(1000); // set update rate to 1ms
          }
 
@@ -152,6 +152,6 @@ The update rate can be modified for simulation by wrapping the :ref:`signal's fr
 
       .. code-block:: cpp
 
-         if (RobotBase::IsSimulation()) {
+         if (IsSimulation()) {
             m_velocitySignal.SetUpdateFrequency(1000_Hz); // set update rate to 1ms
          }

@@ -20,7 +20,7 @@ sys.path.insert(0, os.path.abspath("."))
 
 # -- Project information -----------------------------------------------------
 
-project = "Phoenix Pro"
+project = "Phoenix 6"
 copyright = "2023, CTR Electronics"
 author = "CTR Electronics"
 
@@ -143,6 +143,8 @@ htmlhelp_basename = "Phoenixdoc"
 
 latex_engine = "xelatex"
 
+supported_image_types = ["image/svg+xml", "image/gif", "image/png", "image/jpeg"]
+
 # Disable xindy support
 # See: https://github.com/readthedocs/readthedocs.org/issues/5476
 latex_use_xindy = False
@@ -175,7 +177,7 @@ html.StandaloneHTMLBuilder.supported_image_types = [
 
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
-man_pages = [(master_doc, "phoenix", "Phoenix Pro Documentation", [author], 1)]
+man_pages = [(master_doc, "phoenix", "Phoenix 6 Documentation", [author], 1)]
 
 # -- Options for Texinfo output ----------------------------------------------
 
@@ -186,10 +188,10 @@ texinfo_documents = [
     (
         master_doc,
         "Phoenix",
-        "Phoenix Pro Documentation",
+        "Phoenix 6 Documentation",
         author,
         "Phoenix",
-        "Documentation for Phoenix Pro eligible devices",
+        "Documentation for Phoenix 6 eligible devices",
         "Miscellaneous",
     ),
 ]

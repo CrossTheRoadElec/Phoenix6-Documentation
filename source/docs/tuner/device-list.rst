@@ -27,7 +27,7 @@ The color of the device cards is helpful as a visual indicator of device state. 
 +========+==================================================+
 | Green  | Device has latest firmware.                      |
 +--------+--------------------------------------------------+
-| Purple | Device has unexpected firmware version.          |
+| Purple | Device has an unexpected/beta firmware version.  |
 +--------+--------------------------------------------------+
 | Yellow | A new firmware version is available. Check the   |
 |        | changelog to determine if the new version        |
@@ -68,13 +68,13 @@ Step 1 in the above image selects all devices of the same model (or all devices 
 
 Step 2 in the above image opens the field-upgrade dialog.
 
-Once the upgrade dialog is opened, information detailing the device name, model, ID, and firmware version is presented. There is a :guilabel:`Pro` column that has a toggle. This toggle represents whether to upgrade to **Pro** or **v5** firmware. If this toggle is disabled (as evident from being greyed out), then there is no available **Pro** firmware for that device (TalonSRX, legacy devices).
+Once the dialog is opened, information detailing the device name, model, ID, and firmware version is presented. There is a year selector in the top-left corner to select the firmware version year.
 
 .. image:: images/tunerx-batch-upgrade-screen.png
    :width: 70%
    :alt: Batch selection screen
 
-The user can begin the upgrade progress by selecting :guilabel:`Update to latest` or :guilabel:`Select firmware...`. The first option will upgrade all listed devices to their latest available firmware (Pro or v5 depending on the toggle state). The second option will open a popup allowing you to select a specific version or firmware file per model.
+Once the correct firmware year is selected user can begin the upgrade progress by selecting :guilabel:`Update to latest`. If the user does not want to use the latest firmware version, the :guilabel:`Custom` year selection allows for the selection of a specific firmware version for each device model.
 
 .. image:: images/batch-upgrade-firmware-selection.png
    :width: 70%

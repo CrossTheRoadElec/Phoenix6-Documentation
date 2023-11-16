@@ -13,6 +13,7 @@ Option 1: Workaround with Tuner X
 A new section in Tuner X :guilabel:`Settings` labeled **Pigeon 2 Workaround** has been added. When the :guilabel:`Execute Pigeon 2 workaround` button is pressed, all CANivores will enter a special mode that allows them to see the offending Pigeon 2s. This mode is reverted when the CANivore is power cycled.
 
 .. image:: images/pigeon2-workaround.png
+   :width: 70%
    :alt: Pigeon 2 workaround
 
 Once the workaround has been applied, the device will show up in the :guilabel:`Devices` menu and the LED should be alternating green/orange. :ref:`Field-upgrade <docs/tuner/device-details-page:field-upgrade firmware version>` the firmware version and power cycle the CANivore.

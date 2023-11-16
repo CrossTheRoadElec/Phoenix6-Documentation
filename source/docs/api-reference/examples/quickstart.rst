@@ -6,7 +6,7 @@ The below example showcases controlling a four-motor drivetrain.
 Declaring Motor Controllers
 ---------------------------
 
-The ``TalonFX`` motor controller constructor (`Java <https://api.ctr-electronics.com/phoenixpro/release/java/com/ctre/phoenixpro/hardware/TalonFX.html>`__, `C++ <https://api.ctr-electronics.com/phoenixpro/release/cpp/classctre_1_1phoenixpro_1_1hardware_1_1_talon_f_x.html>`__) requires a **device ID** (int) and an optional **CAN bus** (string).
+The ``TalonFX`` motor controller constructor (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/hardware/TalonFX.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1hardware_1_1_talon_f_x.html>`__) requires a **device ID** (int) and an optional **CAN bus** (string).
 
 .. note:: The name of the native roboRIO CAN bus is ``rio``. This is also the default CAN bus on the roboRIO when none is specified.
 
@@ -35,10 +35,10 @@ The ``TalonFX`` motor controller constructor (`Java <https://api.ctr-electronics
          private:
             static constexpr char const *kCANBus{"canivore"};
 
-            ctre::phoenixpro::hardware::TalonFX m_leftLeader{0, kCANBus};
-            ctre::phoenixpro::hardware::TalonFX m_rightLeader{1, kCANBus};
-            ctre::phoenixpro::hardware::TalonFX m_leftFollower{2, kCANBus};
-            ctre::phoenixpro::hardware::TalonFX m_rightFollower{3, kCANBus};
+            ctre::phoenix6::hardware::TalonFX m_leftLeader{0, kCANBus};
+            ctre::phoenix6::hardware::TalonFX m_rightLeader{1, kCANBus};
+            ctre::phoenix6::hardware::TalonFX m_leftFollower{2, kCANBus};
+            ctre::phoenix6::hardware::TalonFX m_rightFollower{3, kCANBus};
          }
 
 Configure Followers & Inverts
@@ -82,7 +82,7 @@ In a traditional robot drivetrain, there are two motors attached to each horizon
 
          #include "Robot.h"
 
-         using namespace ctre::phoenixpro;
+         using namespace ctre::phoenix6;
 
          void Robot::RobotInit() {
             // start with factory-default configs
@@ -165,7 +165,7 @@ Full Example
 
          #include "Robot.h"
 
-         using namespace ctre::phoenixpro;
+         using namespace ctre::phoenix6;
 
          void Robot::RobotInit() {
             // start with factory-default configs
@@ -206,12 +206,12 @@ Full Example
          private:
             static constexpr char const *kCANBus{"canivore"};
 
-            ctre::phoenixpro::hardware::TalonFX m_leftLeader{0, kCANBus};
-            ctre::phoenixpro::hardware::TalonFX m_rightLeader{1, kCANBus};
-            ctre::phoenixpro::hardware::TalonFX m_leftFollower{2, kCANBus};
-            ctre::phoenixpro::hardware::TalonFX m_rightFollower{3, kCANBus};
+            ctre::phoenix6::hardware::TalonFX m_leftLeader{0, kCANBus};
+            ctre::phoenix6::hardware::TalonFX m_rightLeader{1, kCANBus};
+            ctre::phoenix6::hardware::TalonFX m_leftFollower{2, kCANBus};
+            ctre::phoenix6::hardware::TalonFX m_rightFollower{3, kCANBus};
 
-            ctre::phoenixpro::controls::DutyCycleOut m_leftOut{0};
-            ctre::phoenixpro::controls::DutyCycleOut m_rightOut{0};
+            ctre::phoenix6::controls::DutyCycleOut m_leftOut{0};
+            ctre::phoenix6::controls::DutyCycleOut m_rightOut{0};
 
             frc::XboxController m_driverJoy{0};

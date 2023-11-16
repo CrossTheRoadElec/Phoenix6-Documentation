@@ -1,6 +1,8 @@
 Device Licensing
 ================
 
+.. note:: Users utilizing season pass must attach a team number before continuing. See :ref:`docs/licensing/team-licensing:attaching a team number to season pass` for more information.
+
 The following devices are eligible for single-device licensing:
 
 - TalonFX (Falcon 500)
@@ -58,7 +60,7 @@ The below table can be used to determine your device license state for troublesh
 +----------------------+---------------------------------------------------------------------+-----------------------------------------------------------------------------+
 | State                | Image                                                               | Description                                                                 |
 +======================+=====================================================================+=============================================================================+
-| Licensed             | .. image:: images/license_states/pro_licensed_logo_small.png        | Device is licensed for the current version of Phoenix Pro API.              |
+| Licensed             | .. image:: images/license_states/pro_licensed_logo_small.png        | Device is licensed for the current version of the Phoenix 6 API.            |
 |                      |    :width: 40%                                                      |                                                                             |
 +----------------------+---------------------------------------------------------------------+-----------------------------------------------------------------------------+
 | CANivore contains    | .. image:: images/license_states/license_logo_small_black.png       | CANivore contains at least one bus license, which it will use to            |
@@ -70,12 +72,14 @@ The below table can be used to determine your device license state for troublesh
 | Licensing Error      | .. image:: images/license_states/license_logo_small_error.png       | Device is not licensed and there was an error communicating license state.  |
 |                      |    :width: 40%                                                      |                                                                             |
 +----------------------+---------------------------------------------------------------------+-----------------------------------------------------------------------------+
-| Not Licensed         | .. image:: images/license_states/license_logo_small.png             | Device is not licensed for this version of Phoenix Pro API.                 |
+| Not Licensed         | .. image:: images/license_states/license_logo_small.png             | Device is not licensed for this version of the Phoenix 6 API.               |
 |                      |    :width: 40%                                                      |                                                                             |
 +----------------------+---------------------------------------------------------------------+-----------------------------------------------------------------------------+
 | Licensing Not        |  Icon not present                                                   | Device does not support licensing or is using an incompatible firmware for  |
 | Supported            |                                                                     | device licensing.                                                           |
 +----------------------+---------------------------------------------------------------------+-----------------------------------------------------------------------------+
+
+Additionally, users can perform a :ref:`Self Test <docs/tuner/self-test:self test snapshot>` to verify that the device has a valid license.
 
 Troubleshooting
 ---------------

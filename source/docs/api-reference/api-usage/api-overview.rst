@@ -1,7 +1,7 @@
 API Overview
 ============
 
-The Phoenix Pro API resides in the ``com.ctre.phoenixpro`` package in Java and the ``ctre::phoenixpro`` namespace in C++. The API is then further organized into smaller packages and namespaces that group together similar types of classes and functions:
+The Phoenix 6 API resides in the ``com.ctre.phoenix6`` package in Java and the ``ctre::phoenix6`` namespace in C++. The API is then further organized into smaller packages and namespaces that group together similar types of classes and functions:
 
 - ``configs`` - classes related to device :doc:`configuration </docs/api-reference/api-usage/configuration>`
 - ``controls`` - classes related to device :doc:`control </docs/api-reference/api-usage/control-requests>`
@@ -16,8 +16,8 @@ In C++, this namespace structure has the advantage of cleaning up IntelliSense w
 
 .. code-block:: cpp
 
-   // first use the ctre::phoenixpro namespace
-   using namespace ctre::phoenixpro;
+   // first use the ctre::phoenix6 namespace
+   using namespace ctre::phoenix6;
 
    // now types are organized cleanly by namespace
    hardware::TalonFX m_talonFX{0};
@@ -28,4 +28,4 @@ In C++, this namespace structure has the advantage of cleaning up IntelliSense w
 
    controls::DutyCycleOut m_talonFXOut{0};
 
-All C++ code examples in this documentation will assume the presence of ``using namespace ctre::phoenixpro;``.
+All C++ code examples in this documentation will assume the presence of ``using namespace ctre::phoenix6;``.
