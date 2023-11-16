@@ -1,12 +1,12 @@
 Swerve Requests
 ===============
 
-Controlling the drivetrain is done via ``setControl(SwerveRequest request)`` (Java) which takes a given ``SwerveRequest`` (Java). ``SwerveRequest`` can either be defined by the user (only recommended in advanced scenarios!) or utilizing the existing requests.
+Controlling the drivetrain is done using ``setControl(SwerveRequest request)`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/mechanisms/swerve/SwerveDrivetrain.html#setControl(com.ctre.phoenix6.mechanisms.swerve.SwerveRequest)>`__) which takes a given ``SwerveRequest`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/mechanisms/swerve/SwerveRequest.html>`__). There are multiple pre-defined ``SwerveRequest`` implementations, or users can define their own (only recommended for advanced scenarios).
 
 Applying a Request
 ------------------
 
-Requests are instantiated and then mutated via various ``withX`` functions. In the below example, a ``FieldCentric`` (Java) request is created and passed in joystick values.
+Requests are instantiated once and then mutated using various ``withX`` functions. In the below example, a ``FieldCentric`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/mechanisms/swerve/SwerveRequest.FieldCentric.html>`__) request is created and given values from a joystick.
 
 .. tab-set::
 
@@ -29,4 +29,4 @@ Requests are instantiated and then mutated via various ``withX`` functions. In t
                   .withRotationalRate(-joystick.getRightX())
             );
 
-.. note:: Users can optionally make their own ``SwerveRequests`` by implementing the ``SwerveRequest`` interface.
+.. tip:: Users can optionally make their own ``SwerveRequests`` by implementing the ``SwerveRequest`` interface.

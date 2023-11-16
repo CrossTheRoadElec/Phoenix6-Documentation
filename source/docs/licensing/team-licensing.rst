@@ -13,7 +13,7 @@ Season Pass is a single, cost-effective purchase that allows **FRC teams** to li
 Attaching a Team Number to Season Pass
 --------------------------------------
 
-.. danger:: Attaching a team number to a season pass is permanent.
+.. warning:: Attaching a team number to a season pass is permanent.
 
 1. Click on the license to attach a team for.
 

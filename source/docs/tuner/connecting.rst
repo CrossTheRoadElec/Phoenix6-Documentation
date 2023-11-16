@@ -43,17 +43,8 @@ Changing Diagnostics Server Port (non-FRC)
 
 The target server port can be changed in the Tuner X :guilabel:`Settings` page, which is accessed from the flyout menu.
 
-.. important:: The default port for diagnostic server is 1250. FRC users must not change this under any circumstance.
+.. important:: The default port for diagnostic server is 1250. FRC users should not change this.
 
 .. image:: images/highlighting-port-field.png
    :width: 70%
    :alt: Port textbox is the second textbox available to the user.
-
-Localhost Troubleshooting
--------------------------
-
-When Tuner X is first started after installation, it may request admin privileges to access the localhost network. If the user disallows admin access, diagnostic servers hosted on the local machine (simulation and hardware-attached CANivore) may not be visible in Tuner X. Users can manually grant this permission afterward by clicking the :guilabel:`Grant Localhost Permissions` in :guilabel:`Settings`.
-
-.. image:: images/localhost-troubleshooting.png
-   :width: 70%
-   :alt: Localhost troubleshooting button is the 7th button in settings

@@ -60,7 +60,7 @@ The below table can be used to determine your device license state for troublesh
 +----------------------+---------------------------------------------------------------------+-----------------------------------------------------------------------------+
 | State                | Image                                                               | Description                                                                 |
 +======================+=====================================================================+=============================================================================+
-| Licensed             | .. image:: images/license_states/pro_licensed_logo_small.png        | Device is licensed for the current version of Phoenix Pro API.              |
+| Licensed             | .. image:: images/license_states/pro_licensed_logo_small.png        | Device is licensed for the current version of the Phoenix 6 API.            |
 |                      |    :width: 40%                                                      |                                                                             |
 +----------------------+---------------------------------------------------------------------+-----------------------------------------------------------------------------+
 | CANivore contains    | .. image:: images/license_states/license_logo_small_black.png       | CANivore contains at least one bus license, which it will use to            |
@@ -72,7 +72,7 @@ The below table can be used to determine your device license state for troublesh
 | Licensing Error      | .. image:: images/license_states/license_logo_small_error.png       | Device is not licensed and there was an error communicating license state.  |
 |                      |    :width: 40%                                                      |                                                                             |
 +----------------------+---------------------------------------------------------------------+-----------------------------------------------------------------------------+
-| Not Licensed         | .. image:: images/license_states/license_logo_small.png             | Device is not licensed for this version of Phoenix Pro API.                 |
+| Not Licensed         | .. image:: images/license_states/license_logo_small.png             | Device is not licensed for this version of the Phoenix 6 API.               |
 |                      |    :width: 40%                                                      |                                                                             |
 +----------------------+---------------------------------------------------------------------+-----------------------------------------------------------------------------+
 | Licensing Not        |  Icon not present                                                   | Device does not support licensing or is using an incompatible firmware for  |

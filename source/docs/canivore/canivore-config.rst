@@ -6,7 +6,7 @@ The CANivore provides additional configuration options for advanced users.
 CAN Bus Termination
 -------------------
 
-The CANivore has a 120 :math:`\Omega` programmable resister for terminating the CAN bus. The resistor can be configured using the CAN Bus Termination toggle in the CANivore device card in Phoenix Tuner X.
+The CANivore has a 120 :math:`\Omega` programmable resister for terminating the CAN bus. The resistor can be configured using the :guilabel:`CAN Bus Termination` toggle in the CANivore device card in Phoenix Tuner X.
 
 .. warning:: A CAN bus requires two termination resistors, one at each extreme end. If only one is present, communication over CAN may fail.
 

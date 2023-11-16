@@ -13,7 +13,7 @@ Selecting Module Devices
 
 The first step is to select the encoder and motor controllers for the selected swerve module. In the screenshot below, **Talon FX (Device ID 0)** and **Talon FX (Device ID 1)** are selected as the steer and drive motor controllers.
 
-.. tip:: If a warning icon shows where the :guilabel:`Blink` icon is, this typically means this device has already been assigned to module.
+.. tip:: If a warning icon shows where the :guilabel:`Blink` icon is, this typically means this device has already been assigned to a module.
 
 .. image:: images/swerve-selecting-devices.png
    :alt: Highlighting device selection of swerve modules picture
@@ -44,4 +44,4 @@ Alternatively, a module can be selected by clicking on one of the yellow squares
 
 Once all modules have been configured, click on the :guilabel:`Configuration Completed!` button that appears.
 
-.. danger:: To ensure the drive and steer tests are accurate, the devices are factory defaulted. It's recommended that the user makes a :ref:`backup <docs/tuner/configs:tuner configs>` of their configs if they are not applied in their robot program.
+.. warning:: To ensure the drive and steer tests are accurate, the devices are factory defaulted. It's recommended that the user makes a :ref:`backup <docs/tuner/configs:tuner configs>` of their configs if they are not applied in their robot program.
