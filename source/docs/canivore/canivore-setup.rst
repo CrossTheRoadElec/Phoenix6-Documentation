@@ -20,7 +20,9 @@ Currently, the following systems are supported for CANivore development:
 
   - Ubuntu 20.04 or newer
 
-  - Debian Bullseye or newer
+  - Debian Bullseye
+
+.. warning:: On ARM64 devices, Debian Bookworm is not supported at this time. Raspberry Pi users should select a "legacy" OS version that runs on Debian Bullseye.
 
 .. note:: **Custom bit rates and CAN 2.0 are not supported at this time.** The parameters passed into SocketCAN are not applied by the firmware.
 
