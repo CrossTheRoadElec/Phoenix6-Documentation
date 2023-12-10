@@ -12,6 +12,10 @@ There are open-loop control requests for all TalonFX control output types. With 
 
       .. code-block:: java
 
+         // initialize devices
+         var m_leftLeader = new TalonFX(0, "rio");
+         var m_rightLeader = new TalonFX(1, "rio");
+
          // users should reuse control requests when possible
          var leftRequest = new DutyCycleOut(0.0);
          var rightRequest = new DutyCycleOut(0.0);
@@ -34,6 +38,10 @@ There are open-loop control requests for all TalonFX control output types. With 
 
       .. code-block:: cpp
 
+         // initialize devices
+         hardware::TalonFX m_leftLeader{0, "rio"};
+         hardware::TalonFX m_rightLeader{1, "rio"};
+
          // users should reuse control requests when possible
          controls::DutyCycleOut leftRequest{0.0};
          controls::DutyCycleOut rightRequest{0.0};
@@ -50,3 +58,29 @@ There are open-loop control requests for all TalonFX control output types. With 
          // set request to motor controller
          m_leftLeader.SetControl(leftRequest.WithOutput(leftOut));
          m_rightLeader.SetControl(rightRequest.WithOutput(rightOut));
+
+   .. tab-item:: Python
+      :sync: python
+
+      .. code-block:: python
+
+         # initialize devices
+         m_leftLeader = phoenix6.TalonFX(0, "rio")
+         m_rightLeader = phoenix6.TalonFX(1, "rio")
+
+         # users should reuse control requests when possible
+         leftRequest = phoenix6.DutyCycleOut(0.0)
+         rightRequest = phoenix6.DutyCycleOut(0.0)
+
+         # retrieve joystick inputs
+         forward = -m_driverJoy.getLeftY()
+         turn = m_driverJoy.getRightX()
+
+         # calculate motor outputs, utilizes a "arcade" style of driving
+         # where left Y controls forward and right X controls rotation/turn
+         leftOut = forward + turn
+         rightOut = forward - turn
+
+         # set request to motor controllers
+         m_leftLeader.set_control(leftRequest.with_output(leftOut))
+         m_rightLeader.set_control(rightRequest.with_output(rightOut))
