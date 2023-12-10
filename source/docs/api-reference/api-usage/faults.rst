@@ -40,4 +40,14 @@ Faults can also be retrieved in API using the ``getFault_*()`` (regular) or ``ge
             // do action when bad magnet fault is set
          }
 
+   .. tab-item:: Python
+      :sync: python
+
+      .. code-block:: python
+
+         faulted = m_cancoder.get_fault_bad_magnet().value
+
+         if (faulted):
+            # do action when bad magnet fault is set
+
 A list of possible faults can be found in the API documentation for each device.
