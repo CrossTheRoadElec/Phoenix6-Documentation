@@ -57,6 +57,19 @@ Control requests are mutable, so they can be saved in a member variable and reus
          motorRequest.Output = 1.0;
          m_motor.SetControl(motorRequest);
 
+Behavior with FOC Requests
+--------------------------
+
+Certain control requests, such as ``DutyCycleOut`` and ``PositionVoltage``, include an ``EnableFOC`` field. When this field is enabled, it will perform the control requests utilizing field-oriented control.
+
+If the device is not licensed, the device will:
+
+- Fallback to non-FOC control
+- :ref:`Set a fault <docs/api-reference/api-usage/faults:device faults>`
+- :ref:`Blink unlicensed <docs/hardware-reference/talonfx/index:status light reference>`
+
+If the given control request is Pro only (such as any control with ``FOC`` in the name), then the device won't actuate. It will also set a fault and blink unlicensed.
+
 Method Chaining API
 ^^^^^^^^^^^^^^^^^^^
 
