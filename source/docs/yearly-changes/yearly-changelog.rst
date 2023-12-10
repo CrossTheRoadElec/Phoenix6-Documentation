@@ -25,6 +25,11 @@ A variety of new (Pro and non-Pro) features have been added and are described in
 API
 ---
 
+New Vendordep Procedures
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Installing Phoenix 6 and Phoenix 5 has changed slightly. See :ref:`docs/installation/installation-frc:installing phoenix 6 (frc)` for more details.
+
 New Language Support
 ^^^^^^^^^^^^^^^^^^^^
 

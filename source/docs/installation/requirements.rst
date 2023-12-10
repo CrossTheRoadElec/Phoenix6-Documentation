@@ -1,5 +1,5 @@
-Hardware & System Requirements
-==============================
+Requirements
+============
 
 This document details what Phoenix 6 supports.
 
