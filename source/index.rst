@@ -69,11 +69,8 @@ The Phoenix 6 software framework allows you to control and configure your `CTR E
    :caption: Getting Started
    :hidden:
 
-   docs/installation/index
+   docs/installation/requirements
    docs/installation/installation
-   docs/installation/running-diagnostics
-   docs/installation/configuring-your-device
-   docs/yearly-changes/yearly-changelog
 
 .. toctree::
    :maxdepth: 1

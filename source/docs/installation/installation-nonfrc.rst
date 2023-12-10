@@ -1,5 +1,7 @@
-Using Phoenix outside of FRC
-============================
+:orphan:
+
+Installing Phoenix 6 (non-FRC)
+==============================
 
 .. important:: Users in FRC can skip this article.
 
@@ -13,7 +15,25 @@ Installation
 API Installation
 ^^^^^^^^^^^^^^^^
 
-Installation instructions can be found in :doc:`/docs/installation/installation`. The instructions on this site can be utilized for both FRC and non-FRC.
+Phoenix 6 is distributed through our APT repository. Begin with adding the repository to your APT sources.
+
+.. code-block:: bash
+
+   sudo curl -s --compressed -o /usr/share/keyrings/ctr-pubkey.gpg "https://deb.ctr-electronics.com/ctr-pubkey.gpg"
+   sudo curl -s --compressed -o /etc/apt/sources.list.d/ctr<year>.list "https://deb.ctr-electronics.com/ctr<year>.list"
+
+.. note:: ``<year>`` should be replaced with the year of Phoenix 6 software for which you have purchased licenses.
+
+After adding the sources, Phoenix 6 can be installed and updated using the following:
+
+.. code-block:: bash
+
+   sudo apt update
+   sudo apt install phoenix-pro
+
+Additional information for non-FRC users is available in :doc:`/docs/installation/non-frc-checklist`.
+
+.. tip:: To get a robot application up and running quickly, check out our `non-FRC Linux example <https://github.com/CrossTheRoadElec/PhoenixPro-Linux-Example>`__.
 
 Firmware Installation
 ^^^^^^^^^^^^^^^^^^^^^
