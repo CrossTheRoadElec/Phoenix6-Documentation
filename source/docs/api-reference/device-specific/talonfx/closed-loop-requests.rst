@@ -65,6 +65,22 @@ In a Velocity closed loop, the gains should be configured as follows:
 
          m_talonFX.GetConfigurator().Apply(slot0Configs);
 
+   .. tab-item:: Python
+      :sync: python
+
+      .. code-block:: python
+
+         import phoenix6.configs.config_groups as configs
+
+         slot0Configs = configs.Slot0Configs()
+         slot0Configs.k_s = 0.05 # Add 0.05V output to overcome static friction
+         slot0Configs.k_v = 0.12 # A velocity target of 1 rps results in 0.12 V output
+         slot0Configs.k_p = 0.11 # An error of 1 rps results in 0.11 V output
+         slot0Configs.k_i = 0.5 # An error of 1 rps increases output by 0.5 V each second
+         slot0Configs.k_d = 0.01 # An acceleration of 1 rps/s results in 0.01 V output
+
+         m_talonFX.configurator.apply(slot0Configs)
+
 Once the gains are configured, the Velocity closed loop control request can be sent to the TalonFX. The control request object has an optional feedforward term that can be used to add an arbitrary value to the output, which can be useful to account for the effects of gravity.
 
 .. tab-set::
@@ -90,6 +106,17 @@ Once the gains are configured, the Velocity closed loop control request can be s
 
          // set velocity to 8 rps, add 0.5 V to overcome gravity
          m_talonFX.SetControl(request.WithVelocity(8_tps).WithFeedForward(0.5_V));
+
+   .. tab-item:: Python
+      :sync: python
+
+      .. code-block:: python
+
+         # create a velocity closed-loop request, voltage output, slot 0 configs
+         request = phoenix6.VelocityVoltage(0).with_slot(0)
+
+         # set velocity to 8 rps, add 0.5 V to overcome gravity
+         m_talonFX.set_control(request.with_velocity(8).with_feed_forward(0.5))
 
 Converting from Meters
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -147,6 +174,21 @@ In a Position closed loop, the gains should be configured as follows:
 
          m_talonFX.GetConfigurator().Apply(slot0Configs);
 
+   .. tab-item:: Python
+      :sync: python
+
+      .. code-block:: python
+
+         import phoenix6.configs.config_groups as configs
+
+         # in init function, set slot 0 gains
+         slot0Configs = configs.Slot0Configs()
+         slot0Configs.k_p = 24 # An error of 0.5 rotations results in 12 V output
+         slot0Configs.k_i = 0 # no output for integrated error
+         slot0Configs.k_d = 0.1 # A velocity of 1 rps results in 0.1 V output
+
+         m_talonFX.configurator.apply(slot0Configs)
+
 Once the gains are configured, the Position closed loop control request can be sent to the TalonFX. The control request object has an optional feedforward term that can be used to add an arbitrary value to the output, which can be useful to account for the effects of gravity or friction.
 
 .. tab-set::
@@ -172,6 +214,17 @@ Once the gains are configured, the Position closed loop control request can be s
 
          // set position to 10 rotations
          m_talonFX.SetControl(request.WithPosition(10_tr));
+
+   .. tab-item:: Python
+      :sync: Python
+
+      .. code-block:: python
+
+         # create a position closed-loop request, voltage output, slot 0 configs
+         request = phoenix6.PositionVoltage(0).with_slot(0)
+
+         # set position to 10 rotations
+         m_talonFX.set_control(request.with_position(10))
 
 Motion Magic®
 -------------
@@ -279,6 +332,33 @@ In Motion Magic®, the gains should be configured as follows:
 
          m_talonFX.GetConfigurator().Apply(talonFXConfigs);
 
+   .. tab-item:: Python
+      :sync: python
+
+      .. code-block:: python
+
+         import phoenix6.configs.config_groups as configs
+
+         # in init function
+         talonFXConfigs = phoenix6.TalonFXConfiguration()
+
+         # set slot 0 gains
+         slot0Configs = configs.Slot0Configs()
+         slot0Configs.k_s = 0.25 # Add 0.25 V output to overcome static friction
+         slot0Configs.k_v = 0.12 # A velocity target of 1 rps results in 0.12 V output
+         slot0Configs.k_p = 4.8 # A position error of 2.5 rotations results in 12 V output
+         slot0Configs.k_i = 0 # no output for integrated error
+         slot0Configs.k_d = 0.1 # A velocity error of 1 rps results in 0.1 V output
+
+         # set Motion Magic settings
+         motionMagicConfigs = configs.MotionMagicConfigs()
+         motionMagicConfigs.motion_magic_cruise_velocity = 80 # Target cruise velocity of 80 rps
+         motionMagicConfigs.motion_magic_acceleration = 160 # Target acceleration of 160 rps/s (0.5 seconds)
+         motionMagicConfigs.motion_magic_jerk = 1600 # Target jerk of 1600 rps/s/s (0.1 seconds)
+
+         m_talonFX.configurator.apply(talonFXConfigs)
+
+
 .. tip:: Motion Magic® supports modifying jerk and acceleration on the fly (requires firmware version 23.6.10.1 or newer).
 
 Once the gains are configured, the Motion Magic® request can be sent to the TalonFX. The control request object has an optional feedforward term that can be used to add an arbitrary value to the output, which can be useful to account for the effects of gravity.
@@ -306,6 +386,17 @@ Once the gains are configured, the Motion Magic® request can be sent to the Tal
 
          // set position to 10 rotations
          m_talonFX.SetControl(request.WithPosition(10_tr));
+
+   .. tab-item:: Python
+      :sync: python
+
+      .. code-block:: python
+
+         # create a Motion Magic request, voltage output, slot 0 configs
+         request = phoenix6.MotionMagicVoltage(0).with_slot(0)
+
+         # set position to 10 rotations
+         m_talonFX.set_control(request.with_position(10))
 
 Continuous Mechanism Wrap
 -------------------------
