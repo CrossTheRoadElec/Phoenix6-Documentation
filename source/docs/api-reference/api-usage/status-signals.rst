@@ -101,9 +101,9 @@ The device ``StatusSignal`` getters implicitly refresh the cached signal values.
    .. tab-item:: Python
       :sync: Python
 
-         // refresh the supply voltage signal
+         # refresh the supply voltage signal
          supplyVoltageSignal.refresh()
-         // refresh the position and velocity signals
+         # refresh the position and velocity signals
          phoenix6.BaseStatusSignal.refresh_all(positionSignal, velocitySignal)
 
 Waiting for Signal Updates
@@ -138,7 +138,7 @@ Instead of using the latest value, the user can instead opt to synchronously wai
 
       .. code-block:: python
 
-         // wait up to 1 robot loop iteration (20ms) for fresh data
+         # wait up to 1 robot loop iteration (20ms) for fresh data
          supplyVoltageSignal.wait_for_update(0.020)
 
 Changing Update Frequency
@@ -175,9 +175,9 @@ All signals can have their update frequency configured via the ``setUpdateFreque
 
       .. code-block:: python
 
-         // disable supply voltage reporting (0 Hz)
+         # disable supply voltage reporting (0 Hz)
          supplyVoltageSignal.set_update_frequency(0);
-         // speed up position and velocity reporting to 200 Hz
+         # speed up position and velocity reporting to 200 Hz
          phoenix6.BaseStatusSignal.set_update_frequency_for_all(200, positionSignal, velocitySignal)
 
 When different update frequencies are specified for signals that share a status frame, the highest update frequency of all the relevant signals will be applied to the entire frame. Users can get a signal's applied update frequency using the ``getAppliedUpdateFrequency()`` method.

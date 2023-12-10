@@ -33,7 +33,7 @@ Control requests can be applied by calling ``setControl()`` on the device object
 
       .. code-block:: python
 
-         // Command m_motor to 100% of duty cycle
+         # Command m_motor to 100% of duty cycle
          m_motor.set_control(phoenix6.DutyCycleOut(1.0))
 
 Modifying a Control Request
@@ -109,10 +109,10 @@ Control requests also supports modification using method chaining. This can be u
 
       .. code-block:: python
 
-         // initialize torque current FOC request with 0 amps
+         # initialize torque current FOC request with 0 amps
          motorRequest = phoenix6.TorqueCurrentFOC(0)
 
-         // mutate request with output of 10 amps and max duty cycle 0.5
+         # mutate request with output of 10 amps and max duty cycle 0.5
          m_motor.set_control(motorRequest.with_output_amps(10).with_max_abs_duty_cycle(0.5))
 
 Changing Update Frequency
@@ -147,9 +147,9 @@ Control requests are automatically transmitted at a fixed update frequency. This
 
       .. code-block:: python
 
-         // create a duty cycle request
+         # create a duty cycle request
          motorRequest = phoenix6.DutyCycleOut(0)
-         // reduce the update frequency to 50 Hz
+         # reduce the update frequency to 50 Hz
          motorRequest.update_freq_hz = 50
 
 .. tip:: ``UpdateFreqHz`` can be set to 0 Hz to synchronously one-shot the control request. In this case, users must ensure the control request is sent periodically in their robot code. Therefore, we recommend users call ``setControl`` no slower than 20 Hz (50 ms) when the control is one-shot.

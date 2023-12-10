@@ -29,3 +29,12 @@ In C++, this namespace structure has the advantage of cleaning up IntelliSense w
    controls::DutyCycleOut m_talonFXOut{0};
 
 All C++ code examples in this documentation will assume the presence of ``using namespace ctre::phoenix6;``.
+
+Python Imports
+^^^^^^^^^^^^^^
+
+For easier module identification, some snippets may import a specific module under another name.
+
+.. code-block:: python
+
+   import phoenix6.signals.spn_enums as enums

@@ -114,7 +114,7 @@ To read configs stored in a device, use the ``refresh()`` method to update a ``C
 
          talonFXConfigurator = m_talonFX.configurator
 
-         // optional timeout (in seconds) as a second optional parameter
+         # optional timeout (in seconds) as a second optional parameter
          talonFXConfigurator.refresh(talonFXConfigs)
 
 Applying Configs
@@ -161,7 +161,7 @@ Configs can be applied to a device by calling ``apply()`` on the ``Configurator`
          talonFXConfigurator = m_talonFX.configurator
          motorConfigs = configs.MotorOutputConfigs()
 
-         // set invert to CW+ and apply config change
+         # set invert to CW+ and apply config change
          motorConfigs.inverted = enums.InvertValue.CLOCKWISE_POSITIVE
          talonFXConfigurator.apply(motorConfigs)
 
