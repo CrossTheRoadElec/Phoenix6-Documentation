@@ -43,7 +43,7 @@ For functional simulation, the following additional parameters **must** be defin
 * ``withSteerInertia()``
 * ``withDriveInertia()``
 
-For a full reference of the available functions, see the API documentation of ``SwerveModuelConstantsFactory``.
+For a full reference of the available functions, see the API documentation of ``SwerveModuleConstantsFactory`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/mechanisms/swerve/SwerveModuleConstantsFactory.html>`__).
 
 ``SwerveModuleConstantsFactory`` Example
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -68,6 +68,19 @@ For a full reference of the available functions, see the API documentation of ``
             .withFeedbackSource(SwerveModuleSteerFeedbackType.FusedCANcoder)
             .withCouplingGearRatio(kCoupleRatio)
             .withSteerMotorInverted(kSteerMotorReversed);
+
+Additional Constants
+^^^^^^^^^^^^^^^^^^^^
+
+In the previous section, several optional constants are defined. These constants are not mandatory for usable swerve, but they can greatly increase swerve controllability and accuracy.
+
+``CouplingGearRatio``
+  The ratio at which the output wheel rotates when the azimuth spins. In a traditional swerve module, this is the 1st stage of the drive motor.
+
+``SlipCurrent``
+  This is the amount of stator current the drive motors can apply without slippage. This can be found by placing the robot against a solid wall and slowly increase the output voltage. As the output voltage increases, :ref:`plot <docs/tuner/plotting:plotting>` the drive wheel velocity and stator current. Observe when the drive wheel velocity starts the rise (wheel is slipping) and at what stator current this begins.
+
+.. note:: It's recommended to continuously localize your robot based on the field provided AprilTags.
 
 Building the Swerve Module Constants
 ------------------------------------
