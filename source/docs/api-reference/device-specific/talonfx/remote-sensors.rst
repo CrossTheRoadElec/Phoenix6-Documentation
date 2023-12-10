@@ -3,7 +3,7 @@ TalonFX Remote Sensors
 
 The TalonFX supports various remote sensors. Remote sensors allow onboard closed-loop functionality at rates faster than a traditional robot processor (~1Khz) by reading the remote sensor directly from the CAN bus. This allows supported motor controllers to execute closed-loop modes with sensor values sourced by supported sensors.
 
-A list of supported remote sensors can be found in the API docs (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/signals/FeedbackSensorSourceValue.html#RotorSensor>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1signals_1_1_feedback_sensor_source_value.html#aa2fa5f6f6c182238413716b7e520df8b>`__).
+A list of supported remote sensors can be found in the API docs (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/signals/FeedbackSensorSourceValue.html#RotorSensor>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1signals_1_1_feedback_sensor_source_value.html#aa2fa5f6f6c182238413716b7e520df8b>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/configs/config_groups/index.html#phoenix6.configs.config_groups.FeedbackConfigs.feedback_sensor_source>`__).
 
 Remote sensors can be configured using :ref:`Tuner X <docs/tuner/configs:tuner configs>` or via code. This document highlights how to configure a remote sensor in a robot program.
 
@@ -35,6 +35,20 @@ A supported motor controller will update its position and velocity whenever the 
          fx_cfg.Feedback.FeedbackSensorSource = signals::FeedbackSensorSourceValue::RemoteCANcoder;
 
          m_talonFX.GetConfigurator().Apply(fx_cfg);
+
+   .. tab-item:: Python
+      :sync: python
+
+      .. code-block:: python
+
+         import phoenix6.configs.config_groups as configs
+         import phoenix6.signals.spn_enums as enums
+
+         fx_cfg = phoenix6.TalonFXConfiguration()
+         fx_cfg.feedback.feedback_remote_sensor_id = m_cancoder.device_id
+         fx_cfg.feedback.feedback_sensor_source = enums.FeedbackSensorSourceValue.REMOTE_CANCODER
+
+         m_talonFX.configurator.apply(fx_cfg)
 
 .. _fusedcancoder:
 
@@ -69,6 +83,28 @@ Full example: `Java <https://github.com/CrossTheRoadElec/PhoenixPro-Examples/blo
          :linenos:
          :lineno-start: 11
 
+   .. tab-item:: Python
+      :sync: Python
+
+      .. code-block:: python
+
+         import phoenix6.configs.config_groups as configs
+         import phoenix6.signals.spn_enums as enums
+
+         cc_cfg = phoenix6.CANcoderConfiguration()
+         cc_cfg.magnet_sensor.absolute_sensor_range = enums.AbsoluteSensorRangeValue.SIGNED_PLUS_MINUS_HALF
+         cc_cfg.magnet_sensor.sensor_direction = enums.SensorDirectionValue.COUNTER_CLOCKWISE_POSITIVE
+         cc_cfg.magnet_sensor.magnet_offset = 0.4
+         m_cc.configurator.apply(cc_cfg)
+
+         fx_cfg = phoenix6.TalonFXConfiguration()
+         fx_cfg.feedback.feedback_remote_sensor_id = m_cc.device_id
+         fx_cfg.feedback.feedback_sensor_source = enums.FeedbackSensorSourceValue.FUSED_CANCODER
+         fx_cfg.feedback.sensor_to_mechanism_ratio = 1.0
+         fx_cfg.feedback.rotor_to_sensor_ratio = 12.8
+
+         m_fx.configurator.apply(fx_cfg)
+
 Usage is the same as any :ref:`status signal <docs/api-reference/api-usage/status-signals:refreshing the signal value>`:
 
 .. tab-set::
@@ -94,3 +130,14 @@ Usage is the same as any :ref:`status signal <docs/api-reference/api-usage/statu
 
          std::cout << "FX Position: " << fx_pos << std::endl;
          std::cout << "CANcoder Position: " << cc_pos << std::endl;
+
+   .. tab-item:: Python
+      :sync: python
+
+      .. code-block:: python
+
+         fx_pos.refresh()
+         cc_pos.refresh()
+
+         print("FX Position: " + fx_pos.value)
+         print("CANcoder Position: " + cc_pos.value)
