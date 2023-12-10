@@ -17,7 +17,7 @@ Identifying Duplicate IDs
 
 .. tip:: Label the devices appropriately so there is no guessing which device ID is what. Don't have a label maker? Use tape and/or Sharpie (sharpie marks can be removed with alcohol).
 
-Phoenix Tuner X will report when there are multiple devices of the same model with the same ID. This is shown when the device card is RED and there is a message in the middle of the device card. Users seeing this should iteratively :ref:`reassign IDs <docs/installation/configuring-your-device:configuring your device>` on the device(s).
+Phoenix Tuner X will report when there are multiple devices of the same model with the same ID. This is shown when the device card is RED and there is a message in the middle of the device card. Users seeing this should iteratively :ref:`configure IDs<docs/tuner/device-details-page:configuring name & ids>` on the device(s).
 
 Check your wiring
 -----------------

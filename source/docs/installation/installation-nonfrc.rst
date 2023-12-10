@@ -5,7 +5,7 @@ Installing Phoenix 6 (non-FRC)
 
 .. important:: Users in FRC can skip this article.
 
-Phoenix 6 is fully supported outside of `FRC <https://en.wikipedia.org/wiki/FIRST_Robotics_Competition>`__ on :ref:`supported <docs/installation/installation:system requirements>` Linux systems with a USB to CAN adapter.
+Phoenix 6 is fully supported outside of `FRC <https://en.wikipedia.org/wiki/FIRST_Robotics_Competition>`__ on :ref:`supported <docs/installation/requirements:system requirements>` Linux systems with a USB to CAN adapter.
 
 .. note:: `CANivore <https://store.ctr-electronics.com/canivore/>`__ is the recommended USB to CAN adapter with support for `CAN FD <https://store.ctr-electronics.com/can-fd/>`__, name specification, and Windows (as host).
 
@@ -31,9 +31,12 @@ After adding the sources, Phoenix 6 can be installed and updated using the follo
    sudo apt update
    sudo apt install phoenix-pro
 
-Additional information for non-FRC users is available in :doc:`/docs/installation/non-frc-checklist`.
-
 .. tip:: To get a robot application up and running quickly, check out our `non-FRC Linux example <https://github.com/CrossTheRoadElec/PhoenixPro-Linux-Example>`__.
+
+C# (non-FRC only)
+^^^^^^^^^^^^^^^^^
+
+Installation is available through `Nuget <https://www.nuget.org/packages/Phoenix6/>`__.  An example on adding nuget packages to a Visual Studio project is available in the `Microsoft Quickstart <https://learn.microsoft.com/en-us/nuget/quickstart/install-and-use-a-package-in-visual-studio>`__.
 
 Firmware Installation
 ^^^^^^^^^^^^^^^^^^^^^
