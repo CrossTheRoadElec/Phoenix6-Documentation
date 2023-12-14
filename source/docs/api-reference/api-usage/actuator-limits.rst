@@ -72,7 +72,8 @@ For example, when utilizing a CANcoder as a remote sensor, the limit will trigge
 
       .. code-block:: python
 
-         from phoenix6 import HardwareLimitSwitchConfigs, TalonFX, ForwardLimitSourceValue
+         from phoenix6 import HardwareLimitSwitchConfigs, TalonFX
+         from phoenix6 import signals.ForwardLimitSourceValue
 
          limit_configs = HardwareLimitSwitchConfigs()
          limit_configs.forward_limit_source = ForwardLimitSourceValue.REMOTE_CANCODER
