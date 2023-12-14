@@ -7,7 +7,7 @@ Getting Started
    :link: /docs/installation/requirements
    :link-type: doc
 
-   Get started by reading up on the Phoenix requirements. These requirements highlight what devices are supported, what targets our API supports, and what SocketCAN adapters are supported.
+   Get started with the requirements to use Phoenix. These requirements highlight the supported devices, API targets, and SocketCAN adapters.
 
 .. grid:: 1 2 3 3
    :gutter: 3
@@ -16,24 +16,24 @@ Getting Started
       :link: /docs/installation/installation
       :link-type: doc
 
-      Click on this card to learn about installing the Phoenix 6 library for FRC. This details including the Phoenix vendordep into your robot project.
+      Click here to learn about installing the Phoenix 6 library for FRC. This explains adding the Phoenix vendordep into your robot project.
 
    .. grid-item-card:: Installing Phoenix 6 (non-FRC)
       :link: /docs/installation/installation
       :link-type: doc
 
-      Click on this card to learn about installing the Phoenix 6 library outside of FRC. This details including our apt-get repository and applicable binaries.
+      Click here to learn about installing the Phoenix 6 library outside of FRC. This explains including our apt-get repository and applicable binaries.
 
    .. grid-item-card:: Installing Tuner X
       :link: /docs/tuner/index
       :link-type: doc
 
-      Tuner X is how you update, configure, license and manage your devices. Tuner X supports Windows & Android.
+      Tuner X is how you update, configure, license and manage your devices. Tuner X supports Windows 10/11 and Android.
 
 Looking for what's next?
 ------------------------
 
-These articles may be useful if the above steps have already been completed.
+These articles may be useful after completing installation.
 
 Setup
 ^^^^^
