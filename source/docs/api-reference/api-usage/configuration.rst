@@ -78,7 +78,7 @@ As a result, the caller can pass the entire device ``Configuration`` object or j
 
          from phoenix6 import TalonFX
 
-         talonfx_configurator = self.talonFX.configurator
+         talonfx_configurator = self.talonfx.configurator
 
 Reading Configs
 ^^^^^^^^^^^^^^^
@@ -118,7 +118,7 @@ To read configs stored in a device, use the ``refresh()`` method to update a ``C
 
          from phoenix6 import TalonFX
 
-         talon_fx_configurator = self.talonFX.configurator
+         talon_fx_configurator = self.talonfx.configurator
 
          # optional timeout (in seconds) as a second optional parameter
          talonfx_configurator.refresh(talonFXConfigs)
@@ -163,7 +163,7 @@ Configs can be applied to a device by calling ``apply()`` on the ``Configurator`
 
          from phoenix6 import TalonFX, MotorOutputConfigs, InvertValue
 
-         talonfx_configurator = self.talonFX.configurator
+         talonfx_configurator = self.talonfx.configurator
          motor_configs = MotorOutputConfigs()
 
          # set invert to CW+ and apply config change

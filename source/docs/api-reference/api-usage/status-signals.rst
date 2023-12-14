@@ -299,7 +299,7 @@ The following signals are time-synchronized:
 
          from phoenix6 import TalonFX, Pigeon2, CANcoder, BaseStatusSignal
 
-         talonfx_position_signal = self.talonFX.get_position()
+         talonfx_position_signal = self.talonfx.get_position()
          cancoder_position_signal = self.cancoder.get_position()
          pigeon2_yaw_signal = self.pigeon2.get_yaw()
 

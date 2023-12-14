@@ -116,7 +116,7 @@ Once the gains are configured, the Velocity closed loop control request can be s
          request = phoenix6.VelocityVoltage(0).with_slot(0)
 
          # set velocity to 8 rps, add 0.5 V to overcome gravity
-         self.talonFX.set_control(request.with_velocity(8).with_feed_forward(0.5))
+         self.talonfx.set_control(request.with_velocity(8).with_feed_forward(0.5))
 
 Converting from Meters
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -224,7 +224,7 @@ Once the gains are configured, the Position closed loop control request can be s
          request = phoenix6.PositionVoltage(0).with_slot(0)
 
          # set position to 10 rotations
-         self.talonFX.set_control(request.with_position(10))
+         self.talonfx.set_control(request.with_position(10))
 
 Motion Magic®
 -------------
