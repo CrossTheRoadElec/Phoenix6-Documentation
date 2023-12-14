@@ -5,7 +5,7 @@ Open-Loop control typically refers to directly controlling device output.
 
 There are open-loop control requests for all TalonFX control output types. With the exception of FOC-only control requests, all open-loop control requests follow the naming pattern ``{ControlOutputType}Out``. For example, the open-loop Voltage control request is called ``VoltageOut``. FOC-only control requests follow the naming pattern ``{ControlOutputType}``.
 
-In the below example, note that devices are initialized with two arguments. These arguments correspond to :ref:`the device ID <docs/tuner/device-details-page:configuring name & ids>` and CAN bus name. For CANivore, this is the name of the CANivore as configured in :doc:`/docs/tuner/index`. non-FRC users utilizing SocketCAN can use ``*`` to get any connected CAN bus.
+In the below example, note that devices are initialized with two arguments. These arguments correspond to :ref:`the device ID <docs/tuner/device-details-page:configuring name & ids>` and CAN bus name. For CANivore, this is the name of the CANivore as configured in :doc:`/docs/tuner/index`. For more information, see the :doc:`CANivore API </docs/canivore/canivore-api>` documentation.
 
 .. tab-set::
 
