@@ -5,6 +5,8 @@ Open-Loop control typically refers to directly controlling device output.
 
 There are open-loop control requests for all TalonFX control output types. With the exception of FOC-only control requests, all open-loop control requests follow the naming pattern ``{ControlOutputType}Out``. For example, the open-loop Voltage control request is called ``VoltageOut``. FOC-only control requests follow the naming pattern ``{ControlOutputType}``.
 
+In the below example, note that devices are initialized with two arguments. These arguments correspond to :ref:`the device ID <docs/tuner/device-details-page:configuring name & ids>` and CAN bus name. For CANivore, this is the name of the CANivore as configured in :doc:`/docs/tuner/index`. non-FRC users utilizing SocketCAN can use ``*`` to get any connected CAN bus.
+
 .. tab-set::
 
    .. tab-item:: Java
@@ -12,7 +14,7 @@ There are open-loop control requests for all TalonFX control output types. With 
 
       .. code-block:: java
 
-         // initialize devices
+         // initialize devices on the rio can bus
          var m_leftLeader = new TalonFX(0, "rio");
          var m_rightLeader = new TalonFX(1, "rio");
 
@@ -38,7 +40,7 @@ There are open-loop control requests for all TalonFX control output types. With 
 
       .. code-block:: cpp
 
-         // initialize devices
+         // initialize devices on the rio can bus
          hardware::TalonFX m_leftLeader{0, "rio"};
          hardware::TalonFX m_rightLeader{1, "rio"};
 
@@ -66,7 +68,7 @@ There are open-loop control requests for all TalonFX control output types. With 
 
          from phoenix6 import TalonFX, DutyCycleOut
 
-         # initialize devices
+         # initialize devices on the rio can bus
          self.m_leftLeader = TalonFX(0, "rio")
          self.m_rightLeader = TalonFX(1, "rio")
 
