@@ -8,10 +8,10 @@ Installing Phoenix 6
       :link: /docs/installation/installation
       :link-type: doc
 
-      Click on this card to learn about installing the Phoenix 6 library for FRC. This details including the Phoenix vendordep into your robot project.
+      Click here to learn about installing the Phoenix 6 library for FRC. This explains adding the Phoenix vendordep into your robot project.
 
    .. grid-item-card:: Installing Phoenix 6 (non-FRC)
       :link: /docs/installation/installation
       :link-type: doc
 
-      Click on this card to learn about installing the Phoenix 6 library outside of FRC. This details including our apt-get repository and applicable binaries.
+      Click here to learn about installing the Phoenix 6 library outside of FRC. This explains including our apt-get repository and applicable binaries.
