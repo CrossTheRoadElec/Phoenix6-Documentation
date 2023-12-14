@@ -70,9 +70,7 @@ In a Velocity closed loop, the gains should be configured as follows:
 
       .. code-block:: python
 
-         from phoenix6 import Slot0Configs
-
-         slot0_configs = Slot0Configs()
+         slot0_configs = configs.Slot0Configs()
          slot0_configs.k_s = 0.05 # Add 0.05V output to overcome static friction
          slot0_configs.k_v = 0.12 # A velocity target of 1 rps results in 0.12 V output
          slot0_configs.k_p = 0.11 # An error of 1 rps results in 0.11 V output
@@ -113,7 +111,7 @@ Once the gains are configured, the Velocity closed loop control request can be s
       .. code-block:: python
 
          # create a velocity closed-loop request, voltage output, slot 0 configs
-         request = phoenix6.VelocityVoltage(0).with_slot(0)
+         request = controls.VelocityVoltage(0).with_slot(0)
 
          # set velocity to 8 rps, add 0.5 V to overcome gravity
          self.talonfx.set_control(request.with_velocity(8).with_feed_forward(0.5))
@@ -179,8 +177,6 @@ In a Position closed loop, the gains should be configured as follows:
 
       .. code-block:: python
 
-         import phoenix6.configs.config_groups as configs
-
          # in init function, set slot 0 gains
          slot0_configs = configs.Slot0Configs()
          slot0_configs.k_p = 24 # An error of 0.5 rotations results in 12 V output
@@ -221,7 +217,7 @@ Once the gains are configured, the Position closed loop control request can be s
       .. code-block:: python
 
          # create a position closed-loop request, voltage output, slot 0 configs
-         request = phoenix6.PositionVoltage(0).with_slot(0)
+         request = controls.PositionVoltage(0).with_slot(0)
 
          # set position to 10 rotations
          self.talonfx.set_control(request.with_position(10))
@@ -293,7 +289,7 @@ In Motion Magic®, the gains should be configured as follows:
          var talonFXConfigs = new TalonFXConfiguration();
 
          // set slot 0 gains
-         var slot0Configs = talonFXConfigs.Slot0Configs;
+         var slot0Configs = talonFXConfigs.Slot0;
          slot0Configs.kS = 0.25; // Add 0.25 V output to overcome static friction
          slot0Configs.kV = 0.12; // A velocity target of 1 rps results in 0.12 V output
          slot0Configs.kP = 4.8; // A position error of 2.5 rotations results in 12 V output
@@ -301,7 +297,7 @@ In Motion Magic®, the gains should be configured as follows:
          slot0Configs.kD = 0.1; // A velocity error of 1 rps results in 0.1 V output
 
          // set Motion Magic settings
-         var motionMagicConfigs = talonFXConfigs.MotionMagicConfigs;
+         var motionMagicConfigs = talonFXConfigs.MotionMagic;
          motionMagicConfigs.MotionMagicCruiseVelocity = 80; // Target cruise velocity of 80 rps
          motionMagicConfigs.MotionMagicAcceleration = 160; // Target acceleration of 160 rps/s (0.5 seconds)
          motionMagicConfigs.MotionMagicJerk = 1600; // Target jerk of 1600 rps/s/s (0.1 seconds)
@@ -317,7 +313,7 @@ In Motion Magic®, the gains should be configured as follows:
          configs::TalonFXConfiguration talonFXConfigs{};
 
          // set slot 0 gains
-         auto& slot0Configs = talonFXConfigs.Slot0Configs;
+         auto& slot0Configs = talonFXConfigs.Slot0;
          slot0Configs.kS = 0.25; // Add 0.25 V output to overcome static friction
          slot0Configs.kV = 0.12; // A velocity target of 1 rps results in 0.12 V output
          slot0Configs.kP = 4.8; // A position error of 2.5 rotations results in 12 V output
@@ -325,7 +321,7 @@ In Motion Magic®, the gains should be configured as follows:
          slot0Configs.kD = 0.1; // A velocity error of 1 rps results in 0.1 V output
 
          // set Motion Magic settings
-         auto& motionMagicConfigs = talonFXConfigs.MotionMagicConfigs;
+         auto& motionMagicConfigs = talonFXConfigs.MotionMagic;
          motionMagicConfigs.MotionMagicCruiseVelocity = 80; // Target cruise velocity of 80 rps
          motionMagicConfigs.MotionMagicAcceleration = 160; // Target acceleration of 160 rps/s (0.5 seconds)
          motionMagicConfigs.MotionMagicJerk = 1600; // Target jerk of 1600 rps/s/s (0.1 seconds)
@@ -337,13 +333,11 @@ In Motion Magic®, the gains should be configured as follows:
 
       .. code-block:: python
 
-         from phoenix6 import TalonFXConfiguration, Slot0Configs, MotionMagicConfigs
-
          # in init function
-         talonfx_configs = phoenix6.TalonFXConfiguration()
+         talonfx_configs = configs.TalonFXConfiguration()
 
          # set slot 0 gains
-         slot0_configs = Slot0Configs()
+         slot0_configs = talonfx_configs.slot0
          slot0_configs.k_s = 0.25 # Add 0.25 V output to overcome static friction
          slot0_configs.k_v = 0.12 # A velocity target of 1 rps results in 0.12 V output
          slot0_configs.k_p = 4.8 # A position error of 2.5 rotations results in 12 V output
@@ -393,10 +387,10 @@ Once the gains are configured, the Motion Magic® request can be sent to the Tal
       .. code-block:: python
 
          # create a Motion Magic request, voltage output, slot 0 configs
-         request = phoenix6.MotionMagicVoltage(0).with_slot(0)
+         self.request = controls.MotionMagicVoltage(0).with_slot(0)
 
          # set position to 10 rotations
-         self.talonfx.set_control(request.with_position(10))
+         self.talonfx.set_control(self.request.with_position(10))
 
 Continuous Mechanism Wrap
 -------------------------

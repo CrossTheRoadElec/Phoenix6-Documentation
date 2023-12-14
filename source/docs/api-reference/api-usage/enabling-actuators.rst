@@ -41,7 +41,7 @@ In non-FRC applications, ``Unmanaged.feedEnable()`` **must be called periodicall
       .. code-block:: python
 
          # feed the enable signal, timeout after 100ms
-         phoenix6.unmanaged.feed_enable(100)
+         phoenix6.unmanaged.feed_enable(0.100)
 
 This must also be called to control devices in Phoenix Tuner X.
 

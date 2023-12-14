@@ -41,13 +41,11 @@ A supported motor controller will update its position and velocity whenever the 
 
       .. code-block:: python
 
-         from phoenix6 import TalonFX, TalonFXConfiguration
+         fx_cfg = configs.TalonFXConfiguration()
+         fx_cfg.feedback.feedback_remote_sensor_id = self.cancoder.device_id
+         fx_cfg.feedback.feedback_sensor_source = signals.FeedbackSensorSourceValue.REMOTE_CANCODER
 
-         fx_cfg = TalonFXConfiguration()
-         fx_cfg.feedback.feedback_remote_sensor_id = m_cancoder.device_id
-         fx_cfg.feedback.feedback_sensor_source = enums.FeedbackSensorSourceValue.REMOTE_CANCODER
-
-         m_talonFX.configurator.apply(fx_cfg)
+         self.talonfx.configurator.apply(fx_cfg)
 
 .. _fusedcancoder:
 
@@ -87,21 +85,19 @@ Full example: `Java <https://github.com/CrossTheRoadElec/PhoenixPro-Examples/blo
 
       .. code-block:: python
 
-         from phoenix6 import CANcoderConfiguration, AbsoluteSensorRangeValue, SensorDirectionValue, FeedbackSensorSourceValue, TalonFXConfiguration
-
-         cc_cfg = CANcoderConfiguration()
-         cc_cfg.magnet_sensor.absolute_sensor_range = AbsoluteSensorRangeValue.SIGNED_PLUS_MINUS_HALF
-         cc_cfg.magnet_sensor.sensor_direction = SensorDirectionValue.COUNTER_CLOCKWISE_POSITIVE
+         cc_cfg = configs.CANcoderConfiguration()
+         cc_cfg.magnet_sensor.absolute_sensor_range = signals.AbsoluteSensorRangeValue.SIGNED_PLUS_MINUS_HALF
+         cc_cfg.magnet_sensor.sensor_direction = signals.SensorDirectionValue.COUNTER_CLOCKWISE_POSITIVE
          cc_cfg.magnet_sensor.magnet_offset = 0.4
-         m_cc.configurator.apply(cc_cfg)
+         self.cc.configurator.apply(cc_cfg)
 
-         fx_cfg = TalonFXConfiguration()
-         fx_cfg.feedback.feedback_remote_sensor_id = m_cc.device_id
-         fx_cfg.feedback.feedback_sensor_source = FeedbackSensorSourceValue.FUSED_CANCODER
+         fx_cfg = configs.TalonFXConfiguration()
+         fx_cfg.feedback.feedback_remote_sensor_id = self.cc.device_id
+         fx_cfg.feedback.feedback_sensor_source = signals.FeedbackSensorSourceValue.FUSED_CANCODER
          fx_cfg.feedback.sensor_to_mechanism_ratio = 1.0
          fx_cfg.feedback.rotor_to_sensor_ratio = 12.8
 
-         m_fx.configurator.apply(fx_cfg)
+         self.fx.configurator.apply(fx_cfg)
 
 Usage is the same as any :ref:`status signal <docs/api-reference/api-usage/status-signals:refreshing the signal value>`:
 

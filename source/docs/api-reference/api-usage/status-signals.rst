@@ -60,7 +60,7 @@ The value of the signal can be retrieved from the ``StatusSignal`` by calling ``
 
       .. code-block:: python
 
-         supply_voltage = supplyVoltageSignal.value
+         supply_voltage = supply_voltage_signal.value
 
 .. note:: Phoenix 6 utilizes the `C++ units library <https://docs.wpilib.org/en/stable/docs/software/basic-programming/cpp-units.html>`__ when applicable.
 
@@ -100,8 +100,6 @@ The device ``StatusSignal`` getters implicitly refresh the cached signal values.
 
    .. tab-item:: Python
       :sync: Python
-
-         from phoenix6 import BaseStatusSignal
 
          # refresh the supply voltage signal
          supply_voltage_signal.refresh()
@@ -177,10 +175,8 @@ All signals can have their update frequency configured via the ``setUpdateFreque
 
       .. code-block:: python
 
-         from phoenix6 import BaseStatusSignal
-
          # disable supply voltage reporting (0 Hz)
-         supply_voltage_signal.set_update_frequency(0);
+         supply_voltage_signal.set_update_frequency(0)
          # speed up position and velocity reporting to 200 Hz
          BaseStatusSignal.set_update_frequency_for_all(200, position_signal, velocity_signal)
 
@@ -218,10 +214,8 @@ When optimizing the bus utilization for devices, all status signals that have no
 
       .. code-block:: python
 
-         from phoenix6 import TalonFX, Pigeon2, CANcoder, ParentDevice
-
          self.pigeon.optimize_bus_utilization()
-         ParentDevice.optimize_bus_utilization_for_all(self.left_motor, self.right_motor, self.cancoder)
+         hardware.ParentDevice.optimize_bus_utilization_for_all(self.left_motor, self.right_motor, self.cancoder)
 
 Timestamps
 ----------
@@ -297,13 +291,11 @@ The following signals are time-synchronized:
 
       .. code-block:: python
 
-         from phoenix6 import TalonFX, Pigeon2, CANcoder, BaseStatusSignal
-
          talonfx_position_signal = self.talonfx.get_position()
          cancoder_position_signal = self.cancoder.get_position()
          pigeon2_yaw_signal = self.pigeon2.get_yaw()
 
-         BaseStatusSignal.wait_for_all(20, talonfx_position_signal, cancoder_position_signal, pigeon2_yaw_signal)
+         BaseStatusSignal.wait_for_all(0.020, talonfx_position_signal, cancoder_position_signal, pigeon2_yaw_signal)
 
 Latency Compensation
 --------------------
@@ -332,8 +324,6 @@ Users can perform latency compensation using ``BaseStatusSignal.getLatencyCompen
       :sync: python
 
       .. code-block:: python
-
-         from phoenix6 import TalonFX, BaseStatusSignal
 
          compensated_turns = BaseStatusSignal.get_latency_compensated_value(self.motor.get_position(), self.motor.get_velocity())
 

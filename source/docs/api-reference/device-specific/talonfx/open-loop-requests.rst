@@ -66,15 +66,13 @@ In the below example, note that devices are initialized with two arguments. Thes
 
       .. code-block:: python
 
-         from phoenix6 import TalonFX, DutyCycleOut
-
          # initialize devices on the rio can bus
-         self.left_leader = TalonFX(0, "rio")
-         self.right_leader = TalonFX(1, "rio")
+         self.left_leader = hardware.TalonFX(0, "rio")
+         self.right_leader = hardware.TalonFX(1, "rio")
 
          # users should reuse control requests when possible
-         left_request = DutyCycleOut(0.0)
-         right_request = DutyCycleOut(0.0)
+         self.left_request = controls.DutyCycleOut(0.0)
+         self.right_request = controls.DutyCycleOut(0.0)
 
          # retrieve joystick inputs
          forward = -self.driver_joy.getLeftY()
@@ -86,5 +84,5 @@ In the below example, note that devices are initialized with two arguments. Thes
          right_out = forward - turn
 
          # set request to motor controllers
-         self.left_leader.set_control(left_request.with_output(left_out))
-         self.right_leader.set_control(right_request.with_output(right_out))
+         self.left_leader.set_control(self.left_request.with_output(left_out))
+         self.right_leader.set_control(self.right_request.with_output(right_out))
