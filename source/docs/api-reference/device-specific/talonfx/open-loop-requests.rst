@@ -69,22 +69,22 @@ In the below example, note that devices are initialized with two arguments. Thes
          from phoenix6 import TalonFX, DutyCycleOut
 
          # initialize devices on the rio can bus
-         self.m_leftLeader = TalonFX(0, "rio")
-         self.m_rightLeader = TalonFX(1, "rio")
+         self.left_leader = TalonFX(0, "rio")
+         self.right_leader = TalonFX(1, "rio")
 
          # users should reuse control requests when possible
-         leftRequest = DutyCycleOut(0.0)
-         rightRequest = DutyCycleOut(0.0)
+         left_request = DutyCycleOut(0.0)
+         right_request = DutyCycleOut(0.0)
 
          # retrieve joystick inputs
-         forward = -m_driverJoy.getLeftY()
-         turn = m_driverJoy.getRightX()
+         forward = -self.driver_joy.getLeftY()
+         turn = self.driver_joy.getRightX()
 
          # calculate motor outputs, utilizes a "arcade" style of driving
          # where left Y controls forward and right X controls rotation/turn
-         leftOut = forward + turn
-         rightOut = forward - turn
+         left_out = forward + turn
+         right_out = forward - turn
 
          # set request to motor controllers
-         self.m_leftLeader.set_control(leftRequest.with_output(leftOut))
-         self.m_rightLeader.set_control(rightRequest.with_output(rightOut))
+         self.left_leader.set_control(left_request.with_output(left_out))
+         self.right_leader.set_control(right_request.with_output(right_out))

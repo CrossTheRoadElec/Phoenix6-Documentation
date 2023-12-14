@@ -36,7 +36,7 @@ Control requests can be applied by calling ``setControl()`` on the device object
          from phoenix6 import TalonFX, DutyCycleOut
 
          # Command m_motor to 100% of duty cycle
-         self.m_motor.set_control(DutyCycleOut(1.0))
+         self.motor.set_control(DutyCycleOut(1.0))
 
 Modifying a Control Request
 ---------------------------
@@ -73,10 +73,10 @@ Control requests are mutable, so they can be saved in a member variable and reus
       .. code-block:: python
 
          from phoenix6 import TalonFX, DutyCycleOut
-         self.motorRequest = DutyCycleOut(0.0)
+         self.motor_request = DutyCycleOut(0.0)
 
-         self.motorRequest.output = 1.0
-         self.m_motor.set_control(self.motorRequest)
+         self.motor_request.output = 1.0
+         self.motor.set_control(self.motor_request)
 
 Method Chaining API
 ^^^^^^^^^^^^^^^^^^^
@@ -115,10 +115,10 @@ Control requests also supports modification using method chaining. This can be u
          from phoenix6 import TalonFX, TorqueCurrentFOC
 
          # initialize torque current FOC request with 0 amps
-         self.motorRequest = TorqueCurrentFOC(0)
+         self.motor_request = TorqueCurrentFOC(0)
 
          # mutate request with output of 10 amps and max duty cycle 0.5
-         self.m_motor.set_control(motorRequest.with_output_amps(10).with_max_abs_duty_cycle(0.5))
+         self.motor.set_control(motor_request.with_output_amps(10).with_max_abs_duty_cycle(0.5))
 
 Changing Update Frequency
 -------------------------
@@ -155,8 +155,8 @@ Control requests are automatically transmitted at a fixed update frequency. This
          from phoenix6 import DutyCycleOut
 
          # create a duty cycle request
-         self.motorRequest = DutyCycleOut(0)
+         self.motor_request = DutyCycleOut(0)
          # reduce the update frequency to 50 Hz
-         self.motorRequest.update_freq_hz = 50
+         self.motor_request.update_freq_hz = 50
 
 .. tip:: ``UpdateFreqHz`` can be set to 0 Hz to synchronously one-shot the control request. In this case, users must ensure the control request is sent periodically in their robot code. Therefore, we recommend users call ``setControl`` no slower than 20 Hz (50 ms) when the control is one-shot.

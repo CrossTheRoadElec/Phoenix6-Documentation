@@ -35,7 +35,7 @@ The device object provides getters for all available signals. Each getter return
 
       .. code-block:: python
 
-         supplyVoltageSignal = m_device.get_supply_voltage()
+         supply_voltage_signal = self.device.get_supply_voltage()
 
 The value of the signal can be retrieved from the ``StatusSignal`` by calling ``getValue()``.
 
@@ -60,7 +60,7 @@ The value of the signal can be retrieved from the ``StatusSignal`` by calling ``
 
       .. code-block:: python
 
-         supplyVoltage = supplyVoltageSignal.value
+         supply_voltage = supplyVoltageSignal.value
 
 .. note:: Phoenix 6 utilizes the `C++ units library <https://docs.wpilib.org/en/stable/docs/software/basic-programming/cpp-units.html>`__ when applicable.
 
@@ -104,9 +104,9 @@ The device ``StatusSignal`` getters implicitly refresh the cached signal values.
          from phoenix6 import BaseStatusSignal
 
          # refresh the supply voltage signal
-         supplyVoltageSignal.refresh()
+         supply_voltage_signal.refresh()
          # refresh the position and velocity signals
-         BaseStatusSignal.refresh_all(positionSignal, velocitySignal)
+         BaseStatusSignal.refresh_all(position_signal, velocity_signal)
 
 Waiting for Signal Updates
 --------------------------
@@ -141,7 +141,7 @@ Instead of using the latest value, the user can instead opt to synchronously wai
       .. code-block:: python
 
          # wait up to 1 robot loop iteration (20ms) for fresh data
-         supplyVoltageSignal.wait_for_update(0.020)
+         supply_voltage_signal.wait_for_update(0.020)
 
 Changing Update Frequency
 -------------------------
@@ -180,9 +180,9 @@ All signals can have their update frequency configured via the ``setUpdateFreque
          from phoenix6 import BaseStatusSignal
 
          # disable supply voltage reporting (0 Hz)
-         supplyVoltageSignal.set_update_frequency(0);
+         supply_voltage_signal.set_update_frequency(0);
          # speed up position and velocity reporting to 200 Hz
-         BaseStatusSignal.set_update_frequency_for_all(200, positionSignal, velocitySignal)
+         BaseStatusSignal.set_update_frequency_for_all(200, position_signal, velocity_signal)
 
 When different update frequencies are specified for signals that share a status frame, the highest update frequency of all the relevant signals will be applied to the entire frame. Users can get a signal's applied update frequency using the ``getAppliedUpdateFrequency()`` method.
 
@@ -220,8 +220,8 @@ When optimizing the bus utilization for devices, all status signals that have no
 
          from phoenix6 import TalonFX, Pigeon2, CANcoder, ParentDevice
 
-         self.m_pigeon.optimize_bus_utilization()
-         ParentDevice.optimize_bus_utilization_for_all(self.m_leftMotor, self.m_rightMotor, self.m_cancoder)
+         self.pigeon.optimize_bus_utilization()
+         ParentDevice.optimize_bus_utilization_for_all(self.left_motor, self.right_motor, self.cancoder)
 
 Timestamps
 ----------
@@ -299,11 +299,11 @@ The following signals are time-synchronized:
 
          from phoenix6 import TalonFX, Pigeon2, CANcoder, BaseStatusSignal
 
-         talonFXPositionSignal = self.m_talonFX.get_position()
-         cancoderPositionSignal = self.m_cancoder.get_position()
-         pigeon2YawSignal = self.m_pigeon2.get_yaw()
+         talonfx_position_signal = self.talonFX.get_position()
+         cancoder_position_signal = self.cancoder.get_position()
+         pigeon2_yaw_signal = self.pigeon2.get_yaw()
 
-         BaseStatusSignal.wait_for_all(20, talonFXPositionSignal, cancoderPositionSignal, pigeon2YawSignal)
+         BaseStatusSignal.wait_for_all(20, talonfx_position_signal, cancoder_position_signal, pigeon2_yaw_signal)
 
 Latency Compensation
 --------------------
@@ -335,7 +335,7 @@ Users can perform latency compensation using ``BaseStatusSignal.getLatencyCompen
 
          from phoenix6 import TalonFX, BaseStatusSignal
 
-         compensatedTurns = BaseStatusSignal.get_latency_compensated_value(self.m_motor.get_position(), self.m_motor.get_velocity())
+         compensated_turns = BaseStatusSignal.get_latency_compensated_value(self.motor.get_position(), self.motor.get_velocity())
 
 ``SignalMeasurement``
 ---------------------
