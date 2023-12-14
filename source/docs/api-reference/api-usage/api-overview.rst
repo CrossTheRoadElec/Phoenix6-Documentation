@@ -38,7 +38,7 @@ Python also takes advantage of the module structure to improve IntelliSense:
 .. code-block:: python
 
    # first import the relevant submodules and types
-   from phoenix6 import controls, configs, signals, sim
+   from phoenix6 import controls, configs, hardware, signals
 
    # now types are organized cleanly by module
    self.talonfx = hardware.TalonFX(0)
