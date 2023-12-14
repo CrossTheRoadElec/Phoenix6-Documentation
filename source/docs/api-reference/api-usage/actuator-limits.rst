@@ -39,9 +39,9 @@ The state of the forward or reverse limit switch can be retrieved from the API v
 Remote Limit Switches
 ---------------------
 
-Supported devices (TalonFX, CANcoder, CANifier) can be utilized as a remote limit switch, disabling actuator outputs when triggers. Simply configure the ``Limit Source``, ``Limit ID`` and ``Limit Auto Set Pos`` configs.
+Supported devices (TalonFX, CANcoder, CANifier) can be utilized as a remote limit switch, disabling actuator outputs when triggers. When utilizing a CANcoder as a remote sensor, the limit will trigger when the magnet strength changes from BAD (red) to GOOD (orange) or PERFECT (green).
 
-For example, when utilizing a CANcoder as a remote sensor, the limit will trigger when the magnet strength changes from BAD (red) to GOOD (orange) or PERFECT (green).
+The remote limit switch can be selected using the ``LimitSource`` and ``LimitRemoteSensorID`` configs.
 
 .. tab-set::
 
@@ -50,7 +50,7 @@ For example, when utilizing a CANcoder as a remote sensor, the limit will trigge
 
       .. code-block:: java
 
-         HardwareLimitSwitchConfigs limitConfigs = new HardwareLimitSwitchConfigs();
+         var limitConfigs = new HardwareLimitSwitchConfigs();
          limitConfigs.ForwardLimitSource = ForwardLimitSourceValue.RemoteCANcoder;
          limitConfigs.ForwardLimitRemoteSensorID = m_cancoder.getDeviceID();
 
@@ -72,10 +72,8 @@ For example, when utilizing a CANcoder as a remote sensor, the limit will trigge
 
       .. code-block:: python
 
-         from phoenix6 import HardwareLimitSwitchConfigs, TalonFX
-         from phoenix6 import signals.ForwardLimitSourceValue
+         limit_configs = configs.HardwareLimitSwitchConfigs()
+         limit_configs.forward_limit_source = signals.ForwardLimitSourceValue.REMOTE_CANCODER
+         limit_configs.forward_limit_remote_sensor_id = self.cancoder.device_id
 
-         limit_configs = HardwareLimitSwitchConfigs()
-         limit_configs.forward_limit_source = ForwardLimitSourceValue.REMOTE_CANCODER
-
-         m_motor.configurator.apply(limit_configs)
+         self.motor.configurator.apply(limit_configs)
