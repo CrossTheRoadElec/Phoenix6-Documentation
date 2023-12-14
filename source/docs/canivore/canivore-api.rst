@@ -68,7 +68,7 @@ The ``CANBus`` API can be used to retrieve information about any given CAN bus, 
 
       .. code-block:: cpp
 
-         // retrieve for CAN bus named drivetrain
+         // retrieve bus utilization for the CANivore named drivetrain
          CANBus::CANBusStatus canInfo = CANBus::GetStatus("drivetrain");
          float busUtil = canInfo.BusUtilization;
 
@@ -81,7 +81,7 @@ The ``CANBus`` API can be used to retrieve information about any given CAN bus, 
 
       .. code-block:: python
 
-         # retrieve for CAN bus named drivetrain
+         # retrieve bus utilization for the CANivore named drivetrain
          can_info = CANBus.get_status("drivetrain")
          bus_util = can_info.bus_utilization
 
