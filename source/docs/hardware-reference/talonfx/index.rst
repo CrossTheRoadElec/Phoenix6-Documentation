@@ -1,26 +1,50 @@
 TalonFX
 =======
 
-The Falcon 500 powered by Talon FX is a brushless motor with an integrated motor controller and high-resolution encoder, custom designed specifically for the FIRST Robotics Competition, through a collaboration between Cross the Road Electronics and `VEX Robotics <https://www.vexrobotics.com/217-6515.html>`__.
+.. tab-set::
 
-.. grid:: 2
+   .. tab-item:: Kraken x60
 
-   .. grid-item-card:: Store Page
-      :link: https://store.ctr-electronics.com/falcon-500-powered-by-talon-fx/
-      :link-type: url
+      The Kraken X60, powered by Talon FX uses the latest BLDC motor control technology from CTR Electronics. The integrated Talon FX unlocks the full performance of the Kraken X60 BLDC motor while providing best-in-class motion control.
 
-      CAD, Firmware and purchase instructions.
+      .. grid:: 2
 
-   .. grid-item-card:: Hardware User Manual
-      :link: https://store.ctr-electronics.com/content/user-manual/Falcon%20500%20User%20Guide.pdf
-      :link-type: url
+         .. grid-item-card:: Store Page
+            :link: https://store.ctr-electronics.com/kraken-x60/
+            :link-type: url
 
-      Wiring and mount instructions in PDF format.
+            CAD, Firmware and purchase instructions.
+
+         .. grid-item-card:: Hardware User Manual
+            :link: https://docs.wcproducts.com/kraken-x60/kraken-x60-motor/overview-and-features
+            :link-type: url
+
+            Wiring and mount instructions available on the WestCoast Products documentation site.
+
+   .. tab-item:: Falcon 500
+
+      The Falcon 500 powered by Talon FX is a brushless motor with an integrated motor controller and high-resolution encoder, custom designed specifically for the FIRST Robotics Competition, through a collaboration between Cross the Road Electronics and `VEX Robotics <https://www.vexrobotics.com/217-6515.html>`__.
+
+      .. grid:: 2
+
+         .. grid-item-card:: Store Page
+            :link: https://store.ctr-electronics.com/falcon-500-powered-by-talon-fx/
+            :link-type: url
+
+            CAD, Firmware and purchase instructions.
+
+         .. grid-item-card:: Hardware User Manual
+            :link: https://store.ctr-electronics.com/content/user-manual/Falcon%20500%20User%20Guide.pdf
+            :link-type: url
+
+            Wiring and mount instructions in PDF format.
 
 Actuator Limits
 ---------------
 
 CTR Electronics actuators, such as the TalonFX, support various kinds of hardware and software limits.
+
+.. note:: The TalonFX + Kraken x60 does not support hardware limit switches. Instead, a CANcoder can be used a remote limit switch.
 
 Documentation on retrieving and configuring limits can be found :doc:`here </docs/api-reference/api-usage/actuator-limits>`.
 
@@ -31,7 +55,7 @@ CTR Electronics supported actuators have limit features that will automatically 
 
 When the limit switch is closed (connected to ground), the actuator will disable and the pattern will move toward the forward/reverse limit pin (red blink pattern will move toward the forward limit pin when the forward limit is closed, and vice-versa).
 
-.. tip:: For more information on limit switch wiring, consult the `TalonFX User's Guide <https://store.ctr-electronics.com/content/user-manual/Falcon%20500%20User%20Guide.pdf>`__.
+.. tip:: For more information on limit switch wiring in the Falcon 500, consult the `Falcon 500 User's Guide <https://store.ctr-electronics.com/content/user-manual/Falcon%20500%20User%20Guide.pdf>`__.
 
 Status Light Reference
 ----------------------
