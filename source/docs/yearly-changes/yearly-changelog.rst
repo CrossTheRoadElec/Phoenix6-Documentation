@@ -28,7 +28,7 @@ API
 New Vendordep Procedures
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Installing Phoenix 6 and Phoenix 5 has changed slightly. See :ref:`docs/installation/installation-frc:installing phoenix 6 (frc)` for more details.
+Installing Phoenix 6 and Phoenix 5 has changed to make installation easier for teams using both Phoenix 5 and Phoenix 6 devices. See :ref:`docs/installation/installation-frc:installing phoenix 6 (frc)` for more details.
 
 New Language Support
 ^^^^^^^^^^^^^^^^^^^^
