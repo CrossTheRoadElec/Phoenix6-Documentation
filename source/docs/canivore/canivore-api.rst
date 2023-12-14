@@ -33,10 +33,10 @@ If no CAN bus string is passed into the constructor, or the CAN bus string is em
          hardware::TalonFX fx_drivebase{0, "Drivebase"}; // This constructs a TalonFX on the CANivore bus named "Drivebase"
          hardware::CANcoder cc_elevator{0, "Elevator"}; // This constructs a CANcoder on the CANivore bus named "Elevator"
 
-CAN bus API
+CAN Bus API
 -----------
 
-Users utilizing a CANivore or compatible SocketCAN adapter can utilize the ``CANBus`` API for retrieving information about a given CAN Bus.
+The ``CANBus`` API can be used to retrieve information about any given CAN bus, such as the bus utilization.
 
 .. tab-set::
 
@@ -45,12 +45,12 @@ Users utilizing a CANivore or compatible SocketCAN adapter can utilize the ``CAN
 
       .. code-block:: java
 
-         // retrieve for CAN bus named uno
-         CANBusStatus canInfo = CANBus.getStatus("uno");
-         float canUtil = canInfo.BusUtilPercent;
+         // retrieve bus utilization for the CANivore named drivetrain
+         CANBusStatus canInfo = CANBus.getStatus("drivetrain");
+         float busUtil = canInfo.BusUtilization;
 
-         if (canUtil > 0.8) {
-            System.out.println("CAN utilization is greater than 80%!");
+         if (busUtil > 0.8) {
+            System.out.println("CAN bus utilization is greater than 80%!");
          }
 
    .. tab-item:: C++
@@ -58,16 +58,12 @@ Users utilizing a CANivore or compatible SocketCAN adapter can utilize the ``CAN
 
       .. code-block:: cpp
 
-         #include <iostream>
-         #include "ctre/phoenix6/CANBus.hpp"
-         #include "ctre/phoenix/StatusCodes.h"
+         // retrieve for CAN bus named drivetrain
+         CANBus::CANBusStatus canInfo = CANBus::GetStatus("drivetrain");
+         float busUtil = canInfo.BusUtilization;
 
-         // retrieve for CAN bus named uno
-         CANBus::CANBusStatus canInfo = CANBus::GetStatus("uno");
-         float canUtil = canInfo.BusUtilPercent;
-
-         if (canUtil > 0.8) {
-            std::cout << "CAN utilization is greater than 80%" << std::endl;
+         if (busUtil > 0.8) {
+            std::cout << "CAN bus utilization is greater than 80%!" << std::endl;
          }
 
    .. tab-item:: Python
@@ -75,14 +71,12 @@ Users utilizing a CANivore or compatible SocketCAN adapter can utilize the ``CAN
 
       .. code-block:: python
 
-         from phoenix6 import CANBus
+         # retrieve for CAN bus named drivetrain
+         can_info = CANBus.get_status("drivetrain")
+         bus_util = can_info.bus_utilization
 
-         # retrieve for CAN bus named uno
-         can_info = CANBus.get_status("uno")
-         can_util = canInfo.bus_util_percent
-
-         if (can_util > 0.8):
-            print("CAN utilization is greater than 80%!")
+         if bus_util > 0.8:
+            print("CAN bus utilization is greater than 80%!")
 
 CANivore Status Prints
 ----------------------
