@@ -33,8 +33,8 @@ All C++ code examples in this documentation will assume the presence of ``using 
 Python Imports
 ^^^^^^^^^^^^^^
 
-For easier module identification, some snippets may import a specific module under another name.
+Some snippets may include certain classes directly, to improve verbosity.
 
 .. code-block:: python
 
-   import phoenix6.signals.spn_enums as enums
+   from phoenix6 import TalonFX, Follower, DutyCycleOut

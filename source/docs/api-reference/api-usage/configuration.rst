@@ -35,7 +35,9 @@ The complete list of configuration objects can be found in the API documentation
 
       .. code-block:: python
 
-         talonFXConfigs = phoenix6.TalonFXConfiguration()
+         from phoenix6 import TalonFXConfiguration
+
+         talonFXConfigs = TalonFXConfiguration()
 
 Future Proofing Configs
 ^^^^^^^^^^^^^^^^^^^^^^^
@@ -74,7 +76,9 @@ As a result, the caller can pass the entire device ``Configuration`` object or j
 
       .. code-block:: python
 
-         talonFXConfigurator = m_talonFX.configurator
+         from phoenix6 import TalonFX
+
+         talonFXConfigurator = self.m_talonFX.configurator
 
 Reading Configs
 ^^^^^^^^^^^^^^^
@@ -112,7 +116,9 @@ To read configs stored in a device, use the ``refresh()`` method to update a ``C
 
       .. code-block:: python
 
-         talonFXConfigurator = m_talonFX.configurator
+         from phoenix6 import TalonFX
+
+         talonFXConfigurator = self.m_talonFX.configurator
 
          # optional timeout (in seconds) as a second optional parameter
          talonFXConfigurator.refresh(talonFXConfigs)
@@ -155,14 +161,13 @@ Configs can be applied to a device by calling ``apply()`` on the ``Configurator`
 
       .. code-block:: python
 
-         import phoenix6.signals.spn_enums as enums
-         import phoenix6.configs.config_groups as configs
+         from phoenix6 import TalonFX, MotorOutputConfigs, InvertValue
 
-         talonFXConfigurator = m_talonFX.configurator
-         motorConfigs = configs.MotorOutputConfigs()
+         talonFXConfigurator = self.m_talonFX.configurator
+         motorConfigs = MotorOutputConfigs()
 
          # set invert to CW+ and apply config change
-         motorConfigs.inverted = enums.InvertValue.CLOCKWISE_POSITIVE
+         motorConfigs.inverted = InvertValue.CLOCKWISE_POSITIVE
          talonFXConfigurator.apply(motorConfigs)
 
 .. tip:: To modify a single configuration value without affecting the other configs, users can call ``refresh()`` after constructing the config object, or users can cache the config object and reuse it for future calls to ``apply()``.
@@ -194,4 +199,6 @@ Passing this newly-created ``Configuration`` object to the device ``Configurator
 
       .. code-block:: Python
 
-         m_talonFX.configurator.apply(phoenix6.TalonFXConfiguration())
+         from phoenix6 import TalonFX, MotorOutputConfigs
+
+         self.m_talonFX.configurator.apply(TalonFXConfiguration())

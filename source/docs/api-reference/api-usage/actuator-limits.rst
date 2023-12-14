@@ -39,9 +39,9 @@ The state of the forward or reverse limit switch can be retrieved from the API v
 
       .. code-block:: python
 
-         import phoenix6.signals.spn_enums as enums
+         import phoenix6
 
-         forwardLimit = m_motor.get_forward_limit()
+         forwardLimit = self.m_motor.get_forward_limit()
 
-         if (forwardLimit.value is enums.ForwardLimitValue.CLOSED_TO_GROUND):
+         if (forwardLimit.value is phoenix6.CLOSED_TO_GROUND):
             # do action when forward limit is closed

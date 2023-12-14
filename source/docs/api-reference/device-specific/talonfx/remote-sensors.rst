@@ -41,10 +41,9 @@ A supported motor controller will update its position and velocity whenever the 
 
       .. code-block:: python
 
-         import phoenix6.configs.config_groups as configs
-         import phoenix6.signals.spn_enums as enums
+         from phoenix6 import TalonFX, TalonFXConfiguration
 
-         fx_cfg = phoenix6.TalonFXConfiguration()
+         fx_cfg = TalonFXConfiguration()
          fx_cfg.feedback.feedback_remote_sensor_id = m_cancoder.device_id
          fx_cfg.feedback.feedback_sensor_source = enums.FeedbackSensorSourceValue.REMOTE_CANCODER
 
@@ -88,18 +87,17 @@ Full example: `Java <https://github.com/CrossTheRoadElec/PhoenixPro-Examples/blo
 
       .. code-block:: python
 
-         import phoenix6.configs.config_groups as configs
-         import phoenix6.signals.spn_enums as enums
+         from phoenix6 import CANcoderConfiguration, AbsoluteSensorRangeValue, SensorDirectionValue, FeedbackSensorSourceValue, TalonFXConfiguration
 
-         cc_cfg = phoenix6.CANcoderConfiguration()
-         cc_cfg.magnet_sensor.absolute_sensor_range = enums.AbsoluteSensorRangeValue.SIGNED_PLUS_MINUS_HALF
-         cc_cfg.magnet_sensor.sensor_direction = enums.SensorDirectionValue.COUNTER_CLOCKWISE_POSITIVE
+         cc_cfg = CANcoderConfiguration()
+         cc_cfg.magnet_sensor.absolute_sensor_range = AbsoluteSensorRangeValue.SIGNED_PLUS_MINUS_HALF
+         cc_cfg.magnet_sensor.sensor_direction = SensorDirectionValue.COUNTER_CLOCKWISE_POSITIVE
          cc_cfg.magnet_sensor.magnet_offset = 0.4
          m_cc.configurator.apply(cc_cfg)
 
-         fx_cfg = phoenix6.TalonFXConfiguration()
+         fx_cfg = TalonFXConfiguration()
          fx_cfg.feedback.feedback_remote_sensor_id = m_cc.device_id
-         fx_cfg.feedback.feedback_sensor_source = enums.FeedbackSensorSourceValue.FUSED_CANCODER
+         fx_cfg.feedback.feedback_sensor_source = FeedbackSensorSourceValue.FUSED_CANCODER
          fx_cfg.feedback.sensor_to_mechanism_ratio = 1.0
          fx_cfg.feedback.rotor_to_sensor_ratio = 12.8
 

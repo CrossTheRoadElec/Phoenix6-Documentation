@@ -45,7 +45,9 @@ Faults can also be retrieved in API using the ``getFault_*()`` (regular) or ``ge
 
       .. code-block:: python
 
-         faulted = m_cancoder.get_fault_bad_magnet().value
+         from phoenix6 import CANcoder
+
+         faulted = self.m_cancoder.get_fault_bad_magnet().value
 
          if (faulted):
             # do action when bad magnet fault is set

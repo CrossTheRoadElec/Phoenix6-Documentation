@@ -33,8 +33,10 @@ Control requests can be applied by calling ``setControl()`` on the device object
 
       .. code-block:: python
 
+         from phoenix6 import TalonFX, DutyCycleOut
+
          # Command m_motor to 100% of duty cycle
-         m_motor.set_control(phoenix6.DutyCycleOut(1.0))
+         self.m_motor.set_control(DutyCycleOut(1.0))
 
 Modifying a Control Request
 ---------------------------
@@ -70,10 +72,11 @@ Control requests are mutable, so they can be saved in a member variable and reus
 
       .. code-block:: python
 
-         motorRequest = phoenix6.DutyCycleOut(0.0)
+         from phoenix6 import TalonFX, DutyCycleOut
+         motorRequest = DutyCycleOut(0.0)
 
          motorRequest.output = 1.0
-         m_motor.set_control(motorRequest)
+         self.m_motor.set_control(motorRequest)
 
 Method Chaining API
 ^^^^^^^^^^^^^^^^^^^
@@ -109,11 +112,13 @@ Control requests also supports modification using method chaining. This can be u
 
       .. code-block:: python
 
+         from phoenix6 import TalonFX
+
          # initialize torque current FOC request with 0 amps
          motorRequest = phoenix6.TorqueCurrentFOC(0)
 
          # mutate request with output of 10 amps and max duty cycle 0.5
-         m_motor.set_control(motorRequest.with_output_amps(10).with_max_abs_duty_cycle(0.5))
+         self.m_motor.set_control(motorRequest.with_output_amps(10).with_max_abs_duty_cycle(0.5))
 
 Changing Update Frequency
 -------------------------
@@ -147,8 +152,10 @@ Control requests are automatically transmitted at a fixed update frequency. This
 
       .. code-block:: python
 
+         from phoenix6 import DutyCycleOut
+
          # create a duty cycle request
-         motorRequest = phoenix6.DutyCycleOut(0)
+         motorRequest = DutyCycleOut(0)
          # reduce the update frequency to 50 Hz
          motorRequest.update_freq_hz = 50
 

@@ -64,13 +64,15 @@ There are open-loop control requests for all TalonFX control output types. With 
 
       .. code-block:: python
 
+         from phoenix6 import TalonFX, DutyCycleOut
+
          # initialize devices
-         m_leftLeader = phoenix6.TalonFX(0, "rio")
-         m_rightLeader = phoenix6.TalonFX(1, "rio")
+         self.m_leftLeader = TalonFX(0, "rio")
+         self.m_rightLeader = TalonFX(1, "rio")
 
          # users should reuse control requests when possible
-         leftRequest = phoenix6.DutyCycleOut(0.0)
-         rightRequest = phoenix6.DutyCycleOut(0.0)
+         leftRequest = DutyCycleOut(0.0)
+         rightRequest = DutyCycleOut(0.0)
 
          # retrieve joystick inputs
          forward = -m_driverJoy.getLeftY()
@@ -82,5 +84,5 @@ There are open-loop control requests for all TalonFX control output types. With 
          rightOut = forward - turn
 
          # set request to motor controllers
-         m_leftLeader.set_control(leftRequest.with_output(leftOut))
-         m_rightLeader.set_control(rightRequest.with_output(rightOut))
+         self.m_leftLeader.set_control(leftRequest.with_output(leftOut))
+         self.m_rightLeader.set_control(rightRequest.with_output(rightOut))
