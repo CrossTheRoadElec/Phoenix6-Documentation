@@ -39,7 +39,7 @@ The state of the forward or reverse limit switch can be retrieved from the API v
 Remote Limit Switches
 ---------------------
 
-Supported devices (TalonFX, CANcoder, CANifier) can be utilized as a remote limit switch, disabling actuator outputs when triggers. When utilizing a CANcoder as a remote sensor, the limit will trigger when the magnet strength changes from BAD (red) to GOOD (orange) or PERFECT (green).
+Supported devices (TalonFX, CANcoder, CANifier) can be utilized as a remote limit switch, disabling actuator outputs when triggers. When utilizing a CANcoder as a remote sensor, the limit will trigger when the magnet strength changes from BAD (red) to ADEQUATE (orange) or GOOD (green).
 
 The remote limit switch can be selected using the ``LimitSource`` and ``LimitRemoteSensorID`` configs.
 
