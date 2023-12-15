@@ -1,7 +1,7 @@
 Controlling Devices
 ===================
 
-Motors can be controlled without any robot program running through Tuner X. When combined with :ref:`docs/tuner/plotting:plotting`, it can be an excellent tool for calculating closed loop gains or isolating mechanical issues.
+Tuner X can be used to directly control devices outside a robot program. When combined with :ref:`docs/tuner/plotting:plotting`, it can be an excellent tool for calculating closed loop gains or isolating mechanical issues.
 
 .. image:: images/highlighting-tuner-controls.png
    :alt: Indicating the control section in Tuner
@@ -9,7 +9,7 @@ Motors can be controlled without any robot program running through Tuner X. When
 
 Devices can be controlled by clicking on the red "DISABLED" button, switching it to "ENABLED".
 
-During this time, the output can be adjusted user the sliders or the text entries below it.
+During this time, the output can be adjusted using the sliders or the text entries below it.
 
 .. image:: images/highlighting-control-sliders.png
    :alt: Control sliders in the middle of the controls pane
