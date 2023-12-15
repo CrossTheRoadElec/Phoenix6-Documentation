@@ -5,7 +5,7 @@ Tuner X can be used to directly control devices outside a robot program. When co
 
 .. image:: images/highlighting-tuner-controls.png
    :alt: Indicating the control section in Tuner
-   :width: 600
+   :width: 70%
 
 Devices can be controlled by clicking on the red "DISABLED" button, switching it to "ENABLED".
 
@@ -13,13 +13,13 @@ During this time, the output can be adjusted using the sliders or the text entri
 
 .. image:: images/highlighting-control-sliders.png
    :alt: Control sliders in the middle of the controls pane
-   :width: 600
+   :width: 70%
 
 Control modes can be changed utilizing the dropdown below the disable/enable button.
 
 .. image:: images/control-dropdown.png
    :alt: The control dropdown below the enable/disable button
-   :width: 300
+   :width: 40%
 
 FRC Locked
 ----------
@@ -28,4 +28,4 @@ The "lock" icon next to the "DISABLED" button indicates that this device is FRC 
 
 .. image:: images/highlighting-frc-lock.png
    :alt: Highlighting the FRC lock icon next to DISABLED
-   :width: 400
+   :width: 50%
