@@ -105,7 +105,7 @@ Control requests also supports modification using method chaining. This can be u
          m_motor.SetControl(motorRequest.WithOutputAmps(10_A).WithMaxAbsDutyCycle(0.5));
 
    .. tab-item:: Python
-      :sync: Python
+      :sync: python
 
       .. code-block:: python
 
