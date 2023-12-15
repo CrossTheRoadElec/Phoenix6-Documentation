@@ -95,7 +95,7 @@ A full comparison of features between the free Phoenix 6 API and Phoenix Pro is 
 +-------------------------------+-----------------+-----------------------+----------------------+----------------------------+
 | Improved Bus Utilization      | .. centered:: x | .. centered:: x       | .. centered:: x      | .. centered:: x            |
 +-------------------------------+-----------------+-----------------------+----------------------+----------------------------+
-| CANcoder Always Absolutely    | .. centered:: x | .. centered:: x       | .. centered:: x      | .. centered:: x            |
+| CANcoder Always Absolute      | .. centered:: x | .. centered:: x       | .. centered:: x      | .. centered:: x            |
 +-------------------------------+-----------------+-----------------------+----------------------+----------------------------+
 | Kalman-based Velocity         | .. centered:: x | .. centered:: x       | .. centered:: x      | .. centered:: x            |
 +-------------------------------+-----------------+-----------------------+----------------------+----------------------------+
