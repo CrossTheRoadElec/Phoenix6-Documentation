@@ -167,7 +167,7 @@ Additionally, there is now improved integration with roboRIO motion profiling us
    TrapezoidProfile.State m_setpoint = new TrapezoidProfile.State();
 
    // robot loop
-   m_setpoint = m_profile.calculate(0.020, m_goal, m_setpoint);
+   m_setpoint = m_profile.calculate(0.020, m_setpoint, m_goal);
    m_positionControl.Position = m_setpoint.position;
    m_positionControl.Velocity = m_setpoint.velocity;
    m_talonFX.setControl(m_positionControl);

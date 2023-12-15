@@ -781,7 +781,7 @@ Closed-loop control requests have been expanded to support motion profiles gener
          m_talonFX.getConfigurator().apply(Slot0Configs, 0.050);
 
          // periodic, update the profile setpoint for 20 ms loop time
-         m_setpoint = m_profile.calculate(0.020, m_goal, m_setpoint);
+         m_setpoint = m_profile.calculate(0.020, m_setpoint, m_goal);
          // apply the setpoint to the control request
          m_position.Position = m_setpoint.position;
          m_position.Velocity = m_setpoint.velocity;
@@ -810,7 +810,7 @@ Closed-loop control requests have been expanded to support motion profiles gener
          m_talonFX.GetConfigurator().Apply(slot0Configs, 50_ms);
 
          // periodic, update the profile setpoint for 20 ms loop time
-         m_setpoint = m_profile.Calculate(20_ms, m_goal, m_setpoint);
+         m_setpoint = m_profile.Calculate(20_ms, m_setpoint, m_goal);
          // apply the setpoint to the control request
          m_position.Position = m_setpoint.position;
          m_position.Velocity = m_setpoint.velocity;
