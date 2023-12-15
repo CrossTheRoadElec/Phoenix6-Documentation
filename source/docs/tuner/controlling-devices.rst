@@ -19,7 +19,7 @@ Control modes can be changed utilizing the dropdown below the disable/enable but
 
 .. image:: images/control-dropdown.png
    :alt: The control dropdown below the enable/disable button
-   :width: 40%
+   :width: 50%
 
 FRC Locked
 ----------
