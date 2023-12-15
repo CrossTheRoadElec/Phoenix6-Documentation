@@ -101,6 +101,8 @@ The device ``StatusSignal`` getters implicitly refresh the cached signal values.
    .. tab-item:: Python
       :sync: Python
 
+      .. code-block:: python
+
          # refresh the supply voltage signal
          supply_voltage_signal.refresh()
          # refresh the position and velocity signals
