@@ -37,8 +37,8 @@ Behavior While Unlicensed
 
 When controlling an unlicensed device, the device will automatically fall back to non-FOC commutation for control requests that support the ``EnableFOC`` field.
 
-For FOC-only control requests, such as ``TorqueCurrentFOC``, the unlicensed device will:
+For control requests that require FOC, such as ``TorqueCurrentFOC``, the unlicensed device will:
 
 - Disable control output
-- :ref:`Set a fault <docs/api-reference/api-usage/faults:device faults>`
+- :doc:`Set the UnlicensedFeatureInUse fault </docs/api-reference/api-usage/faults>`
 - :ref:`Blink unlicensed <docs/hardware-reference/talonfx/index:status light reference>`
