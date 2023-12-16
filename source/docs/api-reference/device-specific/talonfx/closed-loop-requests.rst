@@ -217,7 +217,7 @@ Once the gains are configured, the Position closed loop control request can be s
          m_talonFX.SetControl(request.WithPosition(10_tr));
 
    .. tab-item:: Python
-      :sync: Python
+      :sync: python
 
       .. code-block:: python
 
