@@ -31,3 +31,14 @@ Field Oriented Control
 .. important:: This feature requires the device to be :doc:`Pro licensed </docs/licensing/licensing>`.
 
 Field Oriented Control (FOC) is a commutation mode that increases peak power by ~15%. All control modes that optionally support FOC have an ``EnableFOC`` field (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/controls/DutyCycleOut.html#EnableFOC>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1controls_1_1_duty_cycle_out.html#aeef226602dc68cf690681c98001a5f94>`__). There are also control types that require FOC, such as TorqueCurrentFOC.
+
+Behavior While Unlicensed
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+When controlling an unlicensed device, the device will automatically fall back to non-FOC commutation for control requests that support the ``EnableFOC`` field.
+
+For FOC-only control requests, such as ``TorqueCurrentFOC``, the unlicensed device will:
+
+- Disable control output
+- :ref:`Set a fault <docs/api-reference/api-usage/faults:device faults>`
+- :ref:`Blink unlicensed <docs/hardware-reference/talonfx/index:status light reference>`
