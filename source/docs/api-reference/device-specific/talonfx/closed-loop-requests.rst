@@ -449,7 +449,7 @@ In Motion Magic® Expo, the gains should be configured as follows:
          var talonFXConfigs = new TalonFXConfiguration();
 
          // set slot 0 gains
-         var slot0Configs = talonFXConfigs.Slot0Configs;
+         var slot0Configs = talonFXConfigs.Slot0;
          slot0Configs.kS = 0.25; // Add 0.25 V output to overcome static friction
          slot0Configs.kV = 0.12; // A velocity target of 1 rps results in 0.12 V output
          slot0Configs.kA = 0.01; // An acceleration of 1 rps/s requires 0.01 V output
@@ -458,7 +458,7 @@ In Motion Magic® Expo, the gains should be configured as follows:
          slot0Configs.kD = 0.1; // A velocity error of 1 rps results in 0.1 V output
 
          // set Motion Magic Expo settings
-         var motionMagicConfigs = talonFXConfigs.MotionMagicConfigs;
+         var motionMagicConfigs = talonFXConfigs.MotionMagic;
          motionMagicConfigs.MotionMagicCruiseVelocity = 0; // Unlimited cruise velocity
          motionMagicConfigs.MotionMagicExpo_kV = 0.12; // kV is around 0.12 V/rps
          motionMagicConfigs.MotionMagicExpo_kA = 0.1; // Use a slower kA of 0.1 V/rps
@@ -474,7 +474,7 @@ In Motion Magic® Expo, the gains should be configured as follows:
          configs::TalonFXConfiguration talonFXConfigs{};
 
          // set slot 0 gains
-         auto& slot0Configs = talonFXConfigs.Slot0Configs;
+         auto& slot0Configs = talonFXConfigs.Slot0;
          slot0Configs.kS = 0.25; // Add 0.25 V output to overcome static friction
          slot0Configs.kV = 0.12; // A velocity target of 1 rps results in 0.12 V output
          slot0Configs.kA = 0.01; // An acceleration of 1 rps/s requires 0.01 V output
@@ -483,7 +483,7 @@ In Motion Magic® Expo, the gains should be configured as follows:
          slot0Configs.kD = 0.1; // A velocity error of 1 rps results in 0.1 V output
 
          // set Motion Magic Expo settings
-         auto& motionMagicConfigs = talonFXConfigs.MotionMagicConfigs;
+         auto& motionMagicConfigs = talonFXConfigs.MotionMagic;
          motionMagicConfigs.MotionMagicCruiseVelocity = 0; // Unlimited cruise velocity
          motionMagicConfigs.MotionMagicExpo_kV = 0.12; // kV is around 0.12 V/rps
          motionMagicConfigs.MotionMagicExpo_kA = 0.1; // Use a slower kA of 0.1 V/rps
