@@ -322,11 +322,11 @@ Whereas traditional Motion Magic® uses a trapezoidal profile or an S-Curve, Mot
 .. image:: images/exponential-profile.png
    :alt: Graph that showcases the exponential profile position and velocity setpoints.
 
-Motion Magic® Expo uses the kV and kA characteristics of the system, and optionally a cruise velocity. The Motion Magic® Expo kV and kA configs are separate from the slot gain configs, as they may use different units and have different behaviors.
+Motion Magic® Expo uses the kV and kA characteristics of the system, as well as an optional cruise velocity. The Motion Magic® Expo kV and kA configs are separate from the slot gain configs, as they may use different units and have different behaviors.
 
-The Motion Magic® Expo kV represents the voltage required to maintain a given velocity and is in units of Volts/rps. Dividing the supply voltage by kV results in the maximum velocity of the profile. As a result, when supply voltage is fixed, a **higher kV** results in a **lower profile velocity**. Unlike with slot gains, it is generally safer to use a higher kV than what is ideal.
+The Motion Magic® Expo kV represents the voltage required to maintain a given velocity and is in units of Volts/rps. Dividing the supply voltage by kV results in the maximum velocity of the profile. As a result, when supply voltage is fixed, a **higher kV** results in a **lower profile velocity**. Unlike with slot gains, it is safer to start from a higher kV than what is ideal.
 
-The Motion Magic® Expo kA represents the voltage required to apply a given acceleration and is in units of Volts/(rps/s). Dividing the supply voltage by kA results in the maximum acceleration of the profile from 0. As a result, when supply voltage is fixed, a **higher kA** results in a **lower profile acceleration**. Unlike with slot gains, it is generally safer to use a higher kA than what is ideal.
+The Motion Magic® Expo kA represents the voltage required to apply a given acceleration and is in units of Volts/(rps/s). Dividing the supply voltage by kA results in the maximum acceleration of the profile from 0. As a result, when supply voltage is fixed, a **higher kA** results in a **lower profile acceleration**. Unlike with slot gains, it is safer to start from a higher kA than what is ideal.
 
 If the Motion Magic® cruise velocity is set to a non-zero value, the profile will only accelerate up to the cruise velocity. Otherwise, the profile will accelerate towards the maximum possible velocity based on the profile kV.
 
