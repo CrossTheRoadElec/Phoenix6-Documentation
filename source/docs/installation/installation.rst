@@ -127,7 +127,7 @@ Installation is available through `PyPI <https://pypi.org/project/phoenix6/>`__.
 
 .. code-block:: bash
 
-   python3 -m pip install phoenix-6
+   python3 -m pip install phoenix6
 
 C# (non-FRC only)
 ^^^^^^^^^^^^^^^^^
