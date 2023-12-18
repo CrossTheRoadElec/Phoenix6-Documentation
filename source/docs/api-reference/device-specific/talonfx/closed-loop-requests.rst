@@ -410,9 +410,9 @@ Whereas traditional Motion Magic® uses a trapezoidal profile or an S-Curve, Mot
 
 Motion Magic® Expo uses the kV and kA characteristics of the system, as well as an optional cruise velocity. The Motion Magic® Expo kV and kA configs are separate from the slot gain configs, as they may use different units and have different behaviors.
 
-The Motion Magic® Expo kV represents the voltage required to maintain a given velocity and is in units of Volts/rps. Dividing the supply voltage by kV results in the maximum velocity of the profile. As a result, when supply voltage is fixed, a **higher kV** results in a **lower profile velocity**. Unlike with slot gains, it is safer to start from a higher kV than what is ideal.
+The Motion Magic® Expo kV represents the voltage required to maintain a given velocity and is in units of Volts/rps. Dividing the supply voltage by kV results in the maximum velocity of the profile. As a result, when supply voltage is fixed, a **higher profile kV** results in a **lower profile velocity**. Unlike with slot gains, it is safer to start from a higher kV than what is ideal.
 
-The Motion Magic® Expo kA represents the voltage required to apply a given acceleration and is in units of Volts/(rps/s). Dividing the supply voltage by kA results in the maximum acceleration of the profile from 0. As a result, when supply voltage is fixed, a **higher kA** results in a **lower profile acceleration**. Unlike with slot gains, it is safer to start from a higher kA than what is ideal.
+The Motion Magic® Expo kA represents the voltage required to apply a given acceleration and is in units of Volts/(rps/s). Dividing the supply voltage by kA results in the maximum acceleration of the profile from 0. As a result, when supply voltage is fixed, a **higher profile kA** results in a **lower profile acceleration**. Unlike with slot gains, it is safer to start from a higher kA than what is ideal.
 
 If the Motion Magic® cruise velocity is set to a non-zero value, the profile will only accelerate up to the cruise velocity. Otherwise, the profile will accelerate towards the maximum possible velocity based on the profile kV.
 
@@ -461,7 +461,7 @@ In Motion Magic® Expo, the gains should be configured as follows:
          var motionMagicConfigs = talonFXConfigs.MotionMagic;
          motionMagicConfigs.MotionMagicCruiseVelocity = 0; // Unlimited cruise velocity
          motionMagicConfigs.MotionMagicExpo_kV = 0.12; // kV is around 0.12 V/rps
-         motionMagicConfigs.MotionMagicExpo_kA = 0.1; // Use a slower kA of 0.1 V/rps
+         motionMagicConfigs.MotionMagicExpo_kA = 0.1; // Use a slower kA of 0.1 V/(rps/s)
 
          m_talonFX.getConfigurator().apply(talonFXConfigs);
 
@@ -486,7 +486,7 @@ In Motion Magic® Expo, the gains should be configured as follows:
          auto& motionMagicConfigs = talonFXConfigs.MotionMagic;
          motionMagicConfigs.MotionMagicCruiseVelocity = 0; // Unlimited cruise velocity
          motionMagicConfigs.MotionMagicExpo_kV = 0.12; // kV is around 0.12 V/rps
-         motionMagicConfigs.MotionMagicExpo_kA = 0.1; // Use a slower kA of 0.1 V/rps
+         motionMagicConfigs.MotionMagicExpo_kA = 0.1; // Use a slower kA of 0.1 V/(rps/s)
 
          m_talonFX.GetConfigurator().Apply(talonFXConfigs);
 
@@ -507,11 +507,11 @@ In Motion Magic® Expo, the gains should be configured as follows:
          slot0_configs.k_i = 0 # no output for integrated error
          slot0_configs.k_d = 0.1 # A velocity error of 1 rps results in 0.1 V output
 
-         # set Motion Magic settings
+         # set Motion Magic Expo settings
          motion_magic_configs = talonfx_configs.motion_magic
          motion_magic_configs.motion_magic_cruise_velocity = 0 # Unlimited cruise velocity
          motion_magic_configs.motion_magic_expo_k_v = 0.12 # kV is around 0.12 V/rps
-         motion_magic_configs.motion_magic_expo_k_a = 0.1 # Use a slower kA of 0.1 V/rps
+         motion_magic_configs.motion_magic_expo_k_a = 0.1 # Use a slower kA of 0.1 V/(rps/s)
 
          self.talonfx.configurator.apply(talonfx_configs)
 
