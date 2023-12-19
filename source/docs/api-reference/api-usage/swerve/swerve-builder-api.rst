@@ -20,8 +20,7 @@ Drivetrain, in this instance, refers to the ``SwerveDrivetrainConstants`` class 
 
          private static final SwerveDrivetrainConstants DrivetrainConstants = new SwerveDrivetrainConstants()
             .withPigeon2Id(kPigeonId)
-            .withCANbusName(kCANbusName)
-            .withSupportsPro(true);
+            .withCANbusName(kCANbusName);
 
 Defining Module Characteristics
 -------------------------------
@@ -35,8 +34,10 @@ Mandatory parameters for this factory are:
 * ``withWheelRadius()`` - Radius of the wheel in inches.
 * ``withSteerMotorGains()`` - Instance of ``Slot0Configs``, closed-loop gains for the steering motor.
 * ``withDriveMotorGains()`` - Instance of ``Slot0Configs``, closed-loop gains for the drive motor.
+* ``withSteerMotorClosedLoopOutput()`` - The ``ClosedLoopOutputType`` to use for steer motor closed-loop control requests.
+* ``withDriveMotorClosedLoopOutput()`` - The ``ClosedLoopOutputType`` to use for drive motor closed-loop control requests.
 * ``withSpeedAt12VoltsMps()`` - Required for open-loop control, theoretical free speed (m/s) at 12v applied output.
-* ``withFeedbackSource()`` - Instance of ``SwerveModuleSteerFeedbackType``. Typically ``FusedCANcoder`` (requires Pro) or ``RemoteCANcoder``.
+* ``withFeedbackSource()`` - Instance of ``SteerFeedbackType``. Typically ``FusedCANcoder`` (requires Pro) or ``RemoteCANcoder``.
 
 For functional simulation, the following additional parameters **must** be defined.
 
@@ -62,10 +63,12 @@ For a full reference of the available functions, see the API documentation of ``
             .withSlipCurrent(kSlipCurrentA)
             .withSteerMotorGains(steerGains)
             .withDriveMotorGains(driveGains)
+            .withSteerMotorClosedLoopOutput(steerClosedLoopOutput)
+            .withDriveMotorClosedLoopOutput(driveClosedLoopOutput)
             .withSpeedAt12VoltsMps(kSpeedAt12VoltsMps)
             .withSteerInertia(kSteerInertia)
             .withDriveInertia(kDriveInertia)
-            .withFeedbackSource(SwerveModuleSteerFeedbackType.FusedCANcoder)
+            .withFeedbackSource(SteerFeedbackType.FusedCANcoder)
             .withCouplingGearRatio(kCoupleRatio)
             .withSteerMotorInverted(kSteerMotorReversed);
 
@@ -134,20 +137,25 @@ Full Example
 
       .. code-block:: java
 
-         static class CustomSlotGains extends Slot0Configs {
-            public CustomSlotGains(double kP, double kI, double kD, double kS, double kV, double kA) {
-               this.kP = kP;
-               this.kI = kI;
-               this.kD = kD;
-               this.kS = kS;
-               this.kV = kV;
-               this.kA = kA;
-            }
-         }
+         // Both sets of gains need to be tuned to your individual robot.
 
-         // These gains need to be tuned to your individual robot
-         private static final CustomSlotGains steerGains = new CustomSlotGains(100, 0, 0.05, 0, 0, 0);
-         private static final CustomSlotGains driveGains = new CustomSlotGains(3, 0, 0, 0, 0, 0);
+         // The steer motor uses any SwerveModule.SteerRequestType control request with the
+         // output type specified by SwerveModuleConstants.SteerMotorClosedLoopOutput
+         private static final Slot0Configs steerGains = new Slot0Configs()
+            .withKP(100).withKI(0).withKD(0.2)
+            .withKS(0).withKV(1.5).withKA(0);
+         // When using closed-loop control, the drive motor uses the control
+         // output type specified by SwerveModuleConstants.DriveMotorClosedLoopOutput
+         private static final Slot0Configs driveGains = new Slot0Configs()
+            .withKP(3).withKI(0).withKD(0)
+            .withKS(0).withKV(0).withKA(0);
+
+         // The closed-loop output type to use for the steer motors;
+         // This affects the PID/FF gains for the steer motors
+         private static final ClosedLoopOutputType steerClosedLoopOutput = ClosedLoopOutputType.Voltage;
+         // The closed-loop output type to use for the drive motors;
+         // This affects the PID/FF gains for the drive motors
+         private static final ClosedLoopOutputType driveClosedLoopOutput = ClosedLoopOutputType.TorqueCurrentFOC;
 
          // The stator current at which the wheels start to slip;
          // This needs to be tuned to your individual robot
@@ -169,7 +177,7 @@ Full Example
          private static final boolean kInvertLeftSide = false;
          private static final boolean kInvertRightSide = true;
 
-         private static final String kCANbusName = "";
+         private static final String kCANbusName = "drivetrain";
          private static final int kPigeonId = 1;
 
 
@@ -179,8 +187,7 @@ Full Example
 
          private static final SwerveDrivetrainConstants DrivetrainConstants = new SwerveDrivetrainConstants()
                .withPigeon2Id(kPigeonId)
-               .withCANbusName(kCANbusName)
-               .withSupportsPro(true);
+               .withCANbusName(kCANbusName);
 
          private static final SwerveModuleConstantsFactory ConstantCreator = new SwerveModuleConstantsFactory()
                .withDriveMotorGearRatio(kDriveGearRatio)
@@ -189,10 +196,12 @@ Full Example
                .withSlipCurrent(kSlipCurrentA)
                .withSteerMotorGains(steerGains)
                .withDriveMotorGains(driveGains)
+               .withSteerMotorClosedLoopOutput(steerClosedLoopOutput)
+               .withDriveMotorClosedLoopOutput(driveClosedLoopOutput)
                .withSpeedAt12VoltsMps(kSpeedAt12VoltsMps)
                .withSteerInertia(kSteerInertia)
                .withDriveInertia(kDriveInertia)
-               .withFeedbackSource(SwerveModuleSteerFeedbackType.FusedCANcoder)
+               .withFeedbackSource(SteerFeedbackType.FusedCANcoder)
                .withCouplingGearRatio(kCoupleRatio)
                .withSteerMotorInverted(kSteerMotorReversed);
 
