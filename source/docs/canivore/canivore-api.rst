@@ -33,6 +33,61 @@ If no CAN bus string is passed into the constructor, or the CAN bus string is em
          hardware::TalonFX fx_drivebase{0, "Drivebase"}; // This constructs a TalonFX on the CANivore bus named "Drivebase"
          hardware::CANcoder cc_elevator{0, "Elevator"}; // This constructs a CANcoder on the CANivore bus named "Elevator"
 
+   .. tab-item:: Python
+      :sync: python
+
+      .. code-block:: python
+
+         fx_default = hardware.TalonFX(0) # On roboRIO, this constructs a TalonFX on the RIO native CAN bus
+         fx_rio = hardware.TalonFX(1, "rio") # This also constructs a TalonFX on the RIO native CAN bus
+         fx_drivebase = hardware.TalonFX(0, "Drivebase") # This constructs a TalonFX on the CANivore bus named "Drivebase"
+         cc_elevator = hardware.CANcoder(0, "Elevator") # This constructs a CANcoder on the CANivore bus named "Elevator"
+
+``CANBus`` API
+--------------
+
+The ``CANBus`` API (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/CANBus.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1_c_a_n_bus.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/canbus/index.html>`__) can be used to retrieve information about any given CAN bus, such as the bus utilization.
+
+.. tab-set::
+
+   .. tab-item:: Java
+      :sync: Java
+
+      .. code-block:: java
+
+         // retrieve bus utilization for the CANivore named drivetrain
+         CANBusStatus canInfo = CANBus.getStatus("drivetrain");
+         float busUtil = canInfo.BusUtilization;
+
+         if (busUtil > 0.8) {
+            System.out.println("CAN bus utilization is greater than 80%!");
+         }
+
+   .. tab-item:: C++
+      :sync: C++
+
+      .. code-block:: cpp
+
+         // retrieve bus utilization for the CANivore named drivetrain
+         CANBus::CANBusStatus canInfo = CANBus::GetStatus("drivetrain");
+         float busUtil = canInfo.BusUtilization;
+
+         if (busUtil > 0.8) {
+            std::cout << "CAN bus utilization is greater than 80%!" << std::endl;
+         }
+
+   .. tab-item:: Python
+      :sync: python
+
+      .. code-block:: python
+
+         # retrieve bus utilization for the CANivore named drivetrain
+         can_info = CANBus.get_status("drivetrain")
+         bus_util = can_info.bus_utilization
+
+         if bus_util > 0.8:
+            print("CAN bus utilization is greater than 80%!")
+
 CANivore Status Prints
 ----------------------
 
