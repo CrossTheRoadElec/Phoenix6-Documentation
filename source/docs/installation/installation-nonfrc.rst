@@ -15,28 +15,39 @@ Installation
 API Installation
 ^^^^^^^^^^^^^^^^
 
-Phoenix 6 is distributed through our APT repository. Begin with adding the repository to your APT sources.
+.. tab-set::
 
-.. code-block:: bash
+   .. tab-item:: Java
 
-   sudo curl -s --compressed -o /usr/share/keyrings/ctr-pubkey.gpg "https://deb.ctr-electronics.com/ctr-pubkey.gpg"
-   sudo curl -s --compressed -o /etc/apt/sources.list.d/ctr<year>.list "https://deb.ctr-electronics.com/ctr<year>.list"
+      Phoenix 6 is distributed through our APT repository. Begin with adding the repository to your APT sources.
 
-.. note:: ``<year>`` should be replaced with the year of Phoenix 6 software for which you have purchased licenses.
+      .. code-block:: bash
 
-After adding the sources, Phoenix 6 can be installed and updated using the following:
+         sudo curl -s --compressed -o /usr/share/keyrings/ctr-pubkey.gpg "https://deb.ctr-electronics.com/ctr-pubkey.gpg"
+         sudo curl -s --compressed -o /etc/apt/sources.list.d/ctr<year>.list "https://deb.ctr-electronics.com/ctr<year>.list"
 
-.. code-block:: bash
+      .. note:: ``<year>`` should be replaced with the year of Phoenix 6 software for which you have purchased licenses.
 
-   sudo apt update
-   sudo apt install phoenix-pro
+      After adding the sources, Phoenix 6 can be installed and updated using the following:
 
-.. tip:: To get a robot application up and running quickly, check out our `non-FRC Linux example <https://github.com/CrossTheRoadElec/PhoenixPro-Linux-Example>`__.
+      .. code-block:: bash
 
-C# (non-FRC only)
-^^^^^^^^^^^^^^^^^
+         sudo apt update
+         sudo apt install phoenix-6
 
-Installation is available through `Nuget <https://www.nuget.org/packages/Phoenix6/>`__.  An example on adding nuget packages to a Visual Studio project is available in the `Microsoft Quickstart <https://learn.microsoft.com/en-us/nuget/quickstart/install-and-use-a-package-in-visual-studio>`__.
+      .. tip:: To get a robot application up and running quickly, check out our `non-FRC Linux example <https://github.com/CrossTheRoadElec/PhoenixPro-Linux-Example>`__.
+
+   .. tab-item:: Python
+
+      Installation is available through `PyPI <https://pypi.org/project/phoenix6/>`__.
+
+      .. code-block:: bash
+
+         python3 -m pip install phoenix-6
+
+   .. tab-item:: C#
+
+      Installation is available through `Nuget <https://www.nuget.org/packages/Phoenix6/>`__.  An example on adding nuget packages to a Visual Studio project is available in the `Microsoft Quickstart <https://learn.microsoft.com/en-us/nuget/quickstart/install-and-use-a-package-in-visual-studio>`__.
 
 Firmware Installation
 ^^^^^^^^^^^^^^^^^^^^^
@@ -98,7 +109,7 @@ We recommend that users use the standard language projects to use our library ou
 
 A typical C# project is a `Visual Studio <https://visualstudio.microsoft.com/>`__ project that includes our libraries via nuget.
 
-For C++, an example utilizing CMake is provided `here <https://github.com/CrossTheRoadElec/PhoenixPro-Linux-Example>`__.
+For C++, an example utilizing CMake is provided `here <https://github.com/CrossTheRoadElec/Phoenix6-Linux-Example>`__.
 
 Alternative Support
 -------------------

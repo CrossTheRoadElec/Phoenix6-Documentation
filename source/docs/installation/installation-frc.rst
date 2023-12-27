@@ -3,57 +3,49 @@
 Installing Phoenix 6 (FRC)
 ==========================
 
-Offline
-^^^^^^^
+.. tab-set::
 
-.. important:: Users on non-Windows devices should skip to the :ref:`Online <docs/installation/installation-frc:online>` installation instructions.
+   .. tab-item:: Java/C++
 
-1. Download the `Phoenix Framework Installer <https://github.com/CrossTheRoadElec/Phoenix-Releases/releases>`__
-2. Navigate through the installer, ensuring applicable options are selected
+      .. tab-set::
 
-.. image:: images/framework-installer.png
-   :width: 70%
-   :alt: Showing the installation screen root
+         .. tab-item:: Offline
 
-3. Apply the vendordep via WPILib VS Code `Adding Offline Libraries <https://docs.wpilib.org/en/stable/docs/software/vscode-overview/3rd-party-libraries.html#installing-libraries>`__
+            1. Download the `Phoenix Framework Installer <https://github.com/CrossTheRoadElec/Phoenix-Releases/releases>`__
+            2. Navigate through the installer, ensuring applicable options are selected
 
-.. note:: The Python APIs can only be installed online. See :ref:`docs/installation/installation-frc:installing additional languages` for more information.
+            .. image:: images/framework-installer.png
+               :width: 70%
+               :alt: Showing the installation screen root
 
-Online
-^^^^^^
+            3. Apply the vendordep via WPILib VS Code `Adding Offline Libraries <https://docs.wpilib.org/en/stable/docs/software/vscode-overview/3rd-party-libraries.html#installing-libraries>`__
 
-Users in FRC can install Phoenix without an installer using WPILib's `Install New Libraries <https://docs.wpilib.org/en/stable/docs/software/vscode-overview/3rd-party-libraries.html#libraries>`__ functionality in VS Code. This requires the user to have an installation of WPILib on their machine.
+         .. tab-item:: Online
 
-To begin, open WPILib VS Code and click on the WPILib icon in the top right.
+            Users can install Phoenix without an installer using WPILib's `Install New Libraries <https://docs.wpilib.org/en/stable/docs/software/vscode-overview/3rd-party-libraries.html#libraries>`__ functionality in VS Code. This requires the user to have an installation of WPILib on their machine.
 
-.. image:: images/wpilib-icon-location.png
-   :width: 250
-   :alt: WPILib icon is located in the top right of VS Code
+            To begin, open WPILib VS Code and click on the WPILib icon in the top right.
 
-Then type :guilabel:`Manage Vendor Libraries` and click on the menu option that appears. Click :guilabel:`Install new libraries (online)` and a textbox should appear. Follow the remaining instructions below on pasting the correct link into the textbox.
+            .. image:: images/wpilib-icon-location.png
+               :width: 250
+               :alt: WPILib icon is located in the top right of VS Code
 
-Paste the following URL in WPILib VS Code :guilabel:`Install new libraries (online)`:
+            Then type :guilabel:`Manage Vendor Libraries` and click on the menu option that appears. Click :guilabel:`Install new libraries (online)` and a textbox should appear. Follow the remaining instructions below on pasting the correct link into the textbox.
 
-- ``https://maven.ctr-electronics.com/release/com/ctre/phoenix6/latest/Phoenix6-frc2024-beta-latest.json``
+            Paste the following URL in WPILib VS Code :guilabel:`Install new libraries (online)`:
 
-Additionally, v5 can safely installed alongside it by installing the v5 vendordep.
+            - ``https://maven.ctr-electronics.com/release/com/ctre/phoenix6/latest/Phoenix6-frc2024-beta-latest.json``
 
-- ``https://maven.ctr-electronics.com/release/com/ctre/phoenix/Phoenix5-frc2024-beta-latest.json``
+            Additionally, v5 can safely installed alongside it by installing the v5 vendordep.
 
-.. important:: Users utilizing only v5 devices still need the v6 vendordep added to their robot project.
+            - ``https://maven.ctr-electronics.com/release/com/ctre/phoenix/Phoenix5-frc2024-beta-latest.json``
 
-Installing Additional Languages
--------------------------------
+            .. important:: Users utilizing only v5 devices still need the v6 vendordep added to their robot project.
 
-Python and C# require additional installation steps.
+   .. tab-item:: Python
 
-.. note:: Installation for Python and C# are only required if the user wants to use those languages. Otherwise, the below steps can be skipped.
+      Installation is available through `PyPI <https://pypi.org/project/phoenix6/>`__.
 
-Python
-^^^^^^
+      .. code-block:: bash
 
-Installation is available through `PyPI <https://pypi.org/project/phoenix6/>`__.
-
-.. code-block:: bash
-
-   python3 -m pip install phoenix-6
+         python3 -m pip install phoenix-6
