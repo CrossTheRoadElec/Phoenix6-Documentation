@@ -20,7 +20,9 @@ Currently, the following systems are supported for CANivore development:
 
   - Ubuntu 20.04 or newer
 
-  - Debian Bullseye or newer
+  - Debian Bullseye
+
+.. warning:: On ARM64 devices, Debian Bookworm is not supported at this time. Raspberry Pi users should select a "legacy" OS version that runs on Debian Bullseye.
 
 .. note:: **Custom bit rates and CAN 2.0 are not supported at this time.** The parameters passed into SocketCAN are not applied by the firmware.
 
@@ -85,13 +87,7 @@ Field Upgrading CANivores
 
 A CANivore can be field updated using :doc:`Phoenix Tuner X </docs/tuner/index>`.
 
-Click or tap on the listed CANivore card:
-
-.. image:: images/canivore-cards.png
-   :width: 70%
-   :alt: CANivore root page
-
-The CANivore can then be field upgraded via the dropdown or by manually selected a file:
+Click or tap on the listed CANivore card to open the device details page. The CANivore can then be field upgraded via the dropdown or by manually selected a file:
 
 .. image:: images/canivore-field-upgrade.png
    :width: 70%

@@ -3,7 +3,7 @@ Swerve Simulation
 
 The API supports a functionality focused simulation. This means that the simulation API assumes that the swerve drive is perfect (no scrub and no wheel slip). Additionally, it assumes the inertia of the steer module and the drive modules. Robot-wide, rotational and translational inertia is not accounted for.
 
-To update the simulated swerve robot state, ensure ``m_drivetrain.updateSimState(0.02, 12)`` (``m_drivetrain`` is a ``SwerveDrivetrain``, ``0.02`` is the loop update rate, and ``12`` is the battery voltage) is called in ``simulationPeriodic()``.
+To update the simulated swerve robot state, ensure ``m_drivetrain.updateSimState()`` is called in ``simulationPeriodic()``, where ``m_drivetrain`` is a ``SwerveDrivetrain``. The typical update rate of a robot project is 20 ms (0.020 seconds), and ``RobotController.getBatteryVoltage()`` (`Java <https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/RobotController.html#getBatteryVoltage()>`__) can be used to get the simulated battery voltage.
 
 .. tab-set::
 
@@ -14,11 +14,11 @@ To update the simulated swerve robot state, ensure ``m_drivetrain.updateSimState
 
          @Override
          public void simulationPeriodic() {
-            /* Assume 20ms update rate, 12v battery voltage */
-            updateSimState(0.02, 12);
+            /* Assume 20ms update rate, get battery voltage from WPILib */
+            updateSimState(0.020, RobotController.getBatteryVoltage());
          }
 
-.. note:: When utilizing ``CommandSwerveDrivetrain`` (via example, or Tuner X), this is handled in the subsystem ``simulationPeriodic`` instead.
+.. important:: When utilizing ``CommandSwerveDrivetrain`` (from our examples or Tuner X), this is handled in the subsystem ``simulationPeriodic`` instead.
 
 Simulation FAQ
 --------------

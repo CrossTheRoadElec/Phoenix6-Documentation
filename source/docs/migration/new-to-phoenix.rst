@@ -1,5 +1,5 @@
-New to Phoenix
-==============
+Phoenix 6 Features
+==================
 
 Phoenix 6 currently offers the following features and will further expand.
 
@@ -25,7 +25,17 @@ Improved Device Control
 
 - New and improved :doc:`control output types </docs/api-reference/device-specific/talonfx/talonfx-control-intro>` and :doc:`closed-loop </docs/api-reference/device-specific/talonfx/closed-loop-requests>` configuration.
 - Improved :ref:`Motion Magic® <docs/api-reference/device-specific/talonfx/closed-loop-requests:motion magic®>` with jerk control and support for modifying the profile on the fly.
+- New :ref:`Motion Magic® Expo <docs/api-reference/device-specific/talonfx/closed-loop-requests:motion magic® expo>` control to use an exponential profile following system dynamics, reducing both overshoot and time to target.
 - Kalman-based algorithms to reduce latency while maintaining smooth data.
+
+:doc:`Swerve API </docs/api-reference/api-usage/swerve/swerve-overview>`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- High-performance Swerve API using synchronous, latency-compensated odometry.
+- Eliminate the boilerplate from copying swerve template code.
+- Improved :doc:`odometry performance </docs/application-notes/update-frequency-impact>` with CANivore and Phoenix Pro.
+- Tuner X :doc:`Swerve Project Generator </docs/tuner/tuner-swerve/index>` gets swerve drive up and running quickly.
+- Built-in high-fidelity :doc:`simulation </docs/api-reference/api-usage/swerve/swerve-simulation>` support.
 
 Enhanced Support for `CAN FD <https://store.ctr-electronics.com/can-fd/>`__
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -86,7 +96,7 @@ A full comparison of features between the free Phoenix 6 API and Phoenix Pro is 
 +-------------------------------+-----------------+-----------------------+----------------------+----------------------------+
 | Improved Bus Utilization      | .. centered:: x | .. centered:: x       | .. centered:: x      | .. centered:: x            |
 +-------------------------------+-----------------+-----------------------+----------------------+----------------------------+
-| CANcoder Always Absolutely    | .. centered:: x | .. centered:: x       | .. centered:: x      | .. centered:: x            |
+| CANcoder Always Absolute      | .. centered:: x | .. centered:: x       | .. centered:: x      | .. centered:: x            |
 +-------------------------------+-----------------+-----------------------+----------------------+----------------------------+
 | Kalman-based Velocity         | .. centered:: x | .. centered:: x       | .. centered:: x      | .. centered:: x            |
 +-------------------------------+-----------------+-----------------------+----------------------+----------------------------+
@@ -95,6 +105,10 @@ A full comparison of features between the free Phoenix 6 API and Phoenix Pro is 
 | System Timestamps             | .. centered:: x | .. centered:: x       | .. centered:: x      | .. centered:: x            |
 +-------------------------------+-----------------+-----------------------+----------------------+----------------------------+
 | Explicit Control Requests     | .. centered:: x | .. centered:: x       | .. centered:: x      | .. centered:: x            |
++-------------------------------+-----------------+-----------------------+----------------------+----------------------------+
+| Motion Magic® Velocity        | .. centered:: x | .. centered:: x       | .. centered:: x      | .. centered:: x            |
++-------------------------------+-----------------+-----------------------+----------------------+----------------------------+
+| Motion Magic® Expo            | .. centered:: x | .. centered:: x       | .. centered:: x      | .. centered:: x            |
 +-------------------------------+-----------------+-----------------------+----------------------+----------------------------+
 | Continuous Wrap Mode          | .. centered:: x | .. centered:: x       | .. centered:: x      | .. centered:: x            |
 +-------------------------------+-----------------+-----------------------+----------------------+----------------------------+
@@ -116,11 +130,11 @@ A full comparison of features between the free Phoenix 6 API and Phoenix Pro is 
 +-------------------------------+-----------------+-----------------------+----------------------+----------------------------+
 | Time-Synced Signal Publishing |                 |                       |                      | .. centered:: x            |
 +-------------------------------+-----------------+-----------------------+----------------------+----------------------------+
-| Dynamic Motion Magic          |                 |                       |                      | .. centered:: x            |
+| Dynamic Motion Magic®         |                 |                       |                      | .. centered:: x            |
 +-------------------------------+-----------------+-----------------------+----------------------+----------------------------+
 | Differential Control          |                 |                       |                      | .. centered:: x            |
 +-------------------------------+-----------------+-----------------------+----------------------+----------------------------+
 | Java Swerve API               | .. centered:: + | .. centered:: ++      | .. centered:: ++     | .. centered:: +++          |
 +-------------------------------+-----------------+-----------------------+----------------------+----------------------------+
 
-.. note:: The Java Swerve API is freely available, however performance improves when used on a CANivore bus and further improves when used with Pro devices.
+.. note:: :sup:`+` The Java Swerve API is freely available, however performance improves when used on a CANivore bus and further improves when used with Pro devices.

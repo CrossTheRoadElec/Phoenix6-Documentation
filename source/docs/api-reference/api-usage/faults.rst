@@ -5,11 +5,11 @@ Device Faults
 
 Faults are stored in two fashions. There are "live" faults, which are reported in real-time, and "sticky" faults, which assert persistently and stay asserted until they are manually cleared (like trouble codes in a vehicle).
 
-Sticky Faults can be cleared by clicking the :guilabel:`Blink/Clear Faults` button in Phoenix Tuner X, or by calling ``clearStickyFaults()`` on the device in the robot program. A regular fault can only be cleared when the offending problem has been resolved.
+Sticky Faults can be cleared by clicking the :guilabel:`Clear Faults` button in Phoenix Tuner X, or by calling ``clearStickyFaults()`` on the device in the robot program. A regular fault can only be cleared when the offending problem has been resolved.
 
 .. image:: images/self-test-clear-faults.png
    :width: 70%
-   :alt: Blink/Clear faults button in tuner located in the bottom right.
+   :alt: Clear faults button in Tuner located in the top bar.
 
 Using API to Retrieve Faults
 ----------------------------
@@ -39,5 +39,15 @@ Faults can also be retrieved in API using the ``getFault_*()`` (regular) or ``ge
          if (faulted) {
             // do action when bad magnet fault is set
          }
+
+   .. tab-item:: Python
+      :sync: python
+
+      .. code-block:: python
+
+         faulted = self.cancoder.get_fault_bad_magnet().value
+
+         if faulted:
+            # do action when bad magnet fault is set
 
 A list of possible faults can be found in the API documentation for each device.

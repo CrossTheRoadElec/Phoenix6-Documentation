@@ -48,7 +48,7 @@ Using Control Requests
             .. code-block:: java
 
                // class member variable
-               VoltageOut m_request = new VoltageOut(0);
+               final VoltageOut m_request = new VoltageOut(0);
 
                // main robot code, command 12 V output
                m_motor.setControl(m_request.withOutput(12.0));
@@ -127,7 +127,7 @@ Follower Motors
             .. code-block:: java
 
                // class member variables
-               DutyCycle m_request = new DutyCycle(0);
+               final DutyCycleOut m_request = new DutyCycleOut(0);
 
                // robot init, set m_follower to follow m_leader
                // m_follower should NOT oppose leader
@@ -148,7 +148,7 @@ Follower Motors
             .. code-block:: cpp
 
                // class member variables
-               controls::DutyCycle m_request{0};
+               controls::DutyCycleOut m_request{0};
 
                // robot init, set m_follower to follow m_leader
                // m_follower should NOT oppose leader
@@ -198,7 +198,7 @@ Changing Update Frequency (Control Frame Period)
             .. code-block:: java
 
                // class member variables
-               DutyCycle m_request = new DutyCycle(0);
+               final DutyCycleOut m_request = new DutyCycleOut(0);
 
                // slow down the control request to 50 Hz
                m_request.UpdateFreqHz = 50;
@@ -209,7 +209,7 @@ Changing Update Frequency (Control Frame Period)
             .. code-block:: cpp
 
                // class member variables
-               controls::DutyCycle m_request{0};
+               controls::DutyCycleOut m_request{0};
 
                // slow down the control request to 50 Hz
                m_request.UpdateFreqHz = 50_Hz;

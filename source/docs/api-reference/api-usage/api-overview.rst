@@ -1,7 +1,7 @@
 API Overview
 ============
 
-The Phoenix 6 API resides in the ``com.ctre.phoenix6`` package in Java and the ``ctre::phoenix6`` namespace in C++. The API is then further organized into smaller packages and namespaces that group together similar types of classes and functions:
+The Phoenix 6 API resides in the ``com.ctre.phoenix6`` package in Java, the ``ctre::phoenix6`` namespace in C++, and the ``phoenix6`` module in Python. The API is then further organized into smaller packages and namespaces that group together similar types of classes and functions:
 
 - ``configs`` - classes related to device :doc:`configuration </docs/api-reference/api-usage/configuration>`
 - ``controls`` - classes related to device :doc:`control </docs/api-reference/api-usage/control-requests>`
@@ -23,9 +23,28 @@ In C++, this namespace structure has the advantage of cleaning up IntelliSense w
    hardware::TalonFX m_talonFX{0};
    sim::TalonFXSimState& m_talonFXSim{m_talonFX.GetSimState()};
 
+   controls::DutyCycleOut m_talonFXOut{0};
+
    configs::TalonFXConfiguration m_talonFXConfig{};
    signals::InvertedValue m_talonFXInverted{signals::InvertedValue::CounterClockwise_Positive};
 
-   controls::DutyCycleOut m_talonFXOut{0};
-
 All C++ code examples in this documentation will assume the presence of ``using namespace ctre::phoenix6;``.
+
+Python Imports
+^^^^^^^^^^^^^^
+
+Python also takes advantage of the module structure to improve IntelliSense:
+
+.. code-block:: python
+
+   # first import the relevant modules and types
+   from phoenix6 import controls, configs, hardware, signals
+
+   # now types are organized cleanly by module
+   self.talonfx = hardware.TalonFX(0)
+   self.talonfx_out = controls.DutyCycleOut(0)
+
+   talonfx_configs = configs.TalonFXConfiguration()
+   talonfx_inverted = signals.InvertedValue.COUNTER_CLOCKWISE_POSITIVE
+
+All Python code examples in this documentation will assume the presence of ``from phoenix6 import *``.
