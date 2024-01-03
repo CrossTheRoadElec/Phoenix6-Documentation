@@ -12,7 +12,7 @@ Phoenix 6 supports the following devices:
 - `CANcoder <https://store.ctr-electronics.com/cancoder/>`__
 - `Pigeon 2.0 <https://store.ctr-electronics.com/pigeon-2/>`__
 
-CAN bus Requirements
+CAN Bus Requirements
 --------------------
 
 Phoenix 6 devices are supported on the below CAN bus adapters.
@@ -68,7 +68,7 @@ Phoenix 6 supports a plethora of languages and operating systems. The table foun
    - Ubuntu 22.04 or newer
    - Debian Bullseye or newer
 
-.. [2] Supported ARM32 and ARM64 targets:
+.. [2] Supported Linux ARM32 and ARM64 targets:
 
    - Raspberry Pi
    - NVIDIA Jetson
