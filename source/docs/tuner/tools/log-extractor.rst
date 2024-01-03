@@ -33,7 +33,7 @@ In the below picture, regex is used to select only the ``MotorVoltage``, ``Posit
 Free Signals
 ------------
 
-The following signals are available for free using the :guilabel:`AdvantageScope (wpilog)` option. Any log that contains a :doc:`pro-licensed </docs/licensing/licensing>` device will export with all signals.
+The following signals are available for free using the :guilabel:`AdvantageScope (wpilog)` option. Any log that contains a :doc:`pro-licensed </docs/licensing/licensing>` device will export with all signals. All :ref:`custom signals <docs/api-reference/api-usage/signal-logging:writing custom data>` will be exported regardless of license state.
 
 .. dropdown:: Click here to view free signals
 
