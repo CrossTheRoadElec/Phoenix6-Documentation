@@ -44,7 +44,7 @@ For functional simulation, the following additional parameters **must** be defin
 * ``withSteerInertia()``
 * ``withDriveInertia()``
 
-For a full reference of the available functions, see the API documentation of ``SwerveModuelConstantsFactory``.
+For a full reference of the available functions, see the API documentation of ``SwerveModuleConstantsFactory`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/mechanisms/swerve/SwerveModuleConstantsFactory.html>`__).
 
 ``SwerveModuleConstantsFactory`` Example
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -71,6 +71,19 @@ For a full reference of the available functions, see the API documentation of ``
             .withFeedbackSource(SteerFeedbackType.FusedCANcoder)
             .withCouplingGearRatio(kCoupleRatio)
             .withSteerMotorInverted(kSteerMotorReversed);
+
+Additional Constants
+^^^^^^^^^^^^^^^^^^^^
+
+In the previous section, several optional constants are defined. These constants are not mandatory for usable swerve, but they can greatly increase swerve controllability and accuracy.
+
+``CouplingGearRatio``
+  The ratio at which the output wheel rotates when the azimuth spins. In a traditional swerve module, this is the inverse of the 1st stage of the drive motor.
+
+  To manually determine the coupling ratio, lock the drive wheel in-place, then rotate the azimuth three times. Observe the number of rotations reported by the drive motor. The coupling ratio will be :math:`driveRotations / 3`, or :math:`driveRotations / azimuthRotations`.
+
+``SlipCurrent``
+  This is the amount of stator current the drive motors can apply without slippage. This can be found by placing the robot against a solid wall and slowly increase the output voltage. As the output voltage increases, :ref:`plot <docs/tuner/plotting:plotting>` the drive wheel velocity and stator current. Observe when the drive wheel velocity starts to rise (wheel is slipping) and at what stator current this begins.
 
 Building the Swerve Module Constants
 ------------------------------------
