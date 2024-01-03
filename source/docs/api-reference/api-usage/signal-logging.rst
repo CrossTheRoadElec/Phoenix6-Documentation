@@ -68,10 +68,41 @@ The signal logger can be started and stopped using the ``Start/Stop`` functions.
          SignalLogger.start()
          SignalLogger.stop()
 
+Writing Custom Data
+-------------------
+
+Users can write custom data to the currently opened logs by utilizing the ``write*()`` functions. An example application of this is logging your swerve odometry data.
+
+.. tab-set::
+
+   .. tab-item:: Java
+      :sync: java
+
+      .. code-block:: java
+
+         SignalLogger.writeDoubleArray("odometry", new double[] {pose.getX(), pose.getY(), pose.getRotation().getDegrees()});
+         SignalLogger.writeDouble("odom period", state.OdometryPeriod, "seconds");
+
+   .. tab-item:: C++
+      :sync: cpp
+
+      .. code-block:: cpp
+
+         SignalLogger::WriteDoubleArray("odometry", std::array<double, 3>{pose.X().value(), pose.Y().value(), pose.Rotation().Degrees().value()});
+         SignalLogger::WriteDouble("odom period", state.OdometryPeriod, "seconds");
+
+   .. tab-item:: Python
+      :sync: python
+
+      .. code-block:: python
+
+         SignalLogger.write_double_array("odometry", [pose.X(), pose.Y(), pose.rotation().degrees()])
+         SignalLogger.write_double("odom period", state.odometry_period, "seconds")
+
 Free Signals
 ------------
 
-Any log that contains a :doc:`pro-licensed </docs/licensing/licensing>` device will export all signals. Otherwise, the following status signals and all :ref:`custom signals <docs/api-reference/api-usage/signal-logging:writing custom data>` can be exported for free.
+Any log that contains a :doc:`pro-licensed </docs/licensing/licensing>` device will export all signals. Otherwise, the following status signals and all custom signals can be exported for free.
 
 .. dropdown:: Click here to view free signals
 
@@ -107,37 +138,6 @@ Any log that contains a :doc:`pro-licensed </docs/licensing/licensing>` device w
    - SupplyVoltage
    - Yaw
    - AngularVelocityZWorld
-
-Writing Custom Data
--------------------
-
-Users can write custom data to the currently opened logs by utilizing the ``write*()`` functions. An example application of this is logging your swerve odometry data.
-
-.. tab-set::
-
-   .. tab-item:: Java
-      :sync: java
-
-      .. code-block:: java
-
-         SignalLogger.writeDoubleArray("odometry", new double[] {pose.getX(), pose.getY(), pose.getRotation().getDegrees()});
-         SignalLogger.writeDouble("odom period", state.OdometryPeriod, "seconds");
-
-   .. tab-item:: C++
-      :sync: cpp
-
-      .. code-block:: cpp
-
-         SignalLogger::WriteDoubleArray("odometry", std::array<double, 3>{pose.X().value(), pose.Y().value(), pose.Rotation().Degrees().value()});
-         SignalLogger::WriteDouble("odom period", state.OdometryPeriod, "seconds");
-
-   .. tab-item:: Python
-      :sync: python
-
-      .. code-block:: python
-
-         SignalLogger.write_double_array("odometry", [pose.X(), pose.Y(), pose.rotation().degrees()])
-         SignalLogger.write_double("odom period", state.odometry_period, "seconds")
 
 Low Storage Space Behavior
 --------------------------
