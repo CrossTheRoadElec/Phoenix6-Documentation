@@ -1,11 +1,11 @@
-CHRP Playback
-=============
+Orchestra
+=========
 
-CHRP functionality is a feature of compatible TalonFX motors that actuate the rotor at very specific frequencies, creating audible output. This output can be in the form of music.
+Orchestra is a feature of compatible Talon FX motors that actuates the rotor at specific frequencies using a CHRP file, creating audible output. This can be used to play music through motors.
 
 .. note:: For information on converting MIDI to CHRP, see :doc:`/docs/tuner/tools/chrp-converter`.
 
-To get started, construct a ``Orchestra`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/Orchestra.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1_orchestra.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/orchestra/index.html#module-phoenix6.orchestra>`__) object with an instrument and CHRP. Ensure that ``addInstrument()`` and ``loadMusic()`` are not called periodically, as they are blocking functions.
+To get started, construct an ``Orchestra`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/Orchestra.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1_orchestra.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/orchestra/index.html#module-phoenix6.orchestra>`__) object with an instrument and CHRP. Ensure that ``addInstrument()`` and ``loadMusic()`` are not called periodically, as they are blocking functions.
 
 .. tab-set::
 
@@ -14,11 +14,13 @@ To get started, construct a ``Orchestra`` (`Java <https://api.ctr-electronics.co
 
       .. code-block:: java
 
+         Orchestra m_orchestra = new Orchestra();
+
          // Add a single device to the orchestra
-         orchestra.addInstrument(m_motor);
+         m_orchestra.addInstrument(m_motor);
 
          // Attempt to load the chrp
-         var status = orchestra.loadMusic("track.chrp");
+         var status = m_orchestra.loadMusic("track.chrp");
 
          if (!status.isOK()) {
             // log error
@@ -29,11 +31,13 @@ To get started, construct a ``Orchestra`` (`Java <https://api.ctr-electronics.co
 
       .. code-block:: cpp
 
+         Orchestra m_orchestra;
+
          // Add a single device to the orchestra
-         orchestra.addInstrument(m_motor);
+         m_orchestra.addInstrument(m_motor);
 
          // Attempt to load the chrp
-         auto status = orchestra.loadMusic("track.chrp");
+         auto status = m_orchestra.loadMusic("track.chrp");
 
          if (!status.IsOK()) {
             // log error
@@ -44,11 +48,13 @@ To get started, construct a ``Orchestra`` (`Java <https://api.ctr-electronics.co
 
       .. code-block:: python
 
-         orchestra.add_instrument(self.motor);
+         self.orchestra = Orchestra()
 
-         status = orchestra.load_music("track.chrp")
+         self.orchestra.add_instrument(self.motor);
 
-         if (status.is_ok()):
+         status = self.orchestra.load_music("track.chrp")
+
+         if not status.is_ok():
             # log error
 
 Once the track has been loaded, ``play/pause/stop`` can be used to manage the track. ``play()`` only needs to be called once.
@@ -60,21 +66,21 @@ Once the track has been loaded, ``play/pause/stop`` can be used to manage the tr
 
       .. code-block:: java
 
-         orchestra.play();
+         m_orchestra.play();
 
    .. tab-item:: C++
       :sync: cpp
 
       .. code-block:: cpp
 
-         orchestra.Play();
+         m_orchestra.Play();
 
    .. tab-item:: Python
       :sync: python
 
       .. code-block:: python
 
-         orchestra.play()
+         self.orchestra.play()
 
 Playback While Disabled (FRC)
 -----------------------------
