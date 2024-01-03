@@ -1,7 +1,7 @@
 Swerve Overview
 ===============
 
-.. important:: Swerve functionality is only available for FRC users.
+.. important:: Swerve functionality is only available for FRC users and is limited to Java at this time.
 
 New in 2024 is a high performance swerve framework. This framework simplifies the boilerplate necessary for swerve and maximizes performance.
 

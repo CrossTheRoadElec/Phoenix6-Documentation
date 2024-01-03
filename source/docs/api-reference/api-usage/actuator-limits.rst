@@ -33,3 +33,13 @@ The state of the forward or reverse limit switch can be retrieved from the API v
          if (forwardLimit.GetValue() == signals::ForwardLimitValue::ClosedToGround) {
             // do action when forward limit is closed
          }
+
+   .. tab-item:: Python
+      :sync: Python
+
+      .. code-block:: python
+
+         forward_limit = self.motor.get_forward_limit()
+
+         if forward_limit.value is signals.ForwardLimitValue.CLOSED_TO_GROUND:
+            # do action when forward limit is closed
