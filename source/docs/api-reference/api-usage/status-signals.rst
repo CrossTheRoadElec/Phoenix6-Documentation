@@ -31,7 +31,7 @@ The device object provides getters for all available signals. Each getter return
          auto& supplyVoltageSignal = m_device.GetSupplyVoltage();
 
    .. tab-item:: Python
-      :sync: Python
+      :sync: python
 
       .. code-block:: python
 
@@ -56,7 +56,7 @@ The value of the signal can be retrieved from the ``StatusSignal`` by calling ``
          auto supplyVoltage = supplyVoltageSignal.GetValue();
 
    .. tab-item:: Python
-      :sync: Python
+      :sync: python
 
       .. code-block:: python
 
@@ -99,7 +99,7 @@ The device ``StatusSignal`` getters implicitly refresh the cached signal values.
          BaseStatusSignal::RefreshAll(positionSignal, velocitySignal);
 
    .. tab-item:: Python
-      :sync: Python
+      :sync: python
 
       .. code-block:: python
 
@@ -136,7 +136,7 @@ Instead of using the latest value, the user can instead opt to synchronously wai
          supplyVoltageSignal.WaitForUpdate(20_ms);
 
    .. tab-item:: Python
-      :sync: Python
+      :sync: python
 
       .. code-block:: python
 

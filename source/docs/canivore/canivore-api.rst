@@ -51,7 +51,7 @@ The ``CANBus`` API (`Java <https://api.ctr-electronics.com/phoenix6/release/java
 .. tab-set::
 
    .. tab-item:: Java
-      :sync: java
+      :sync: Java
 
       .. code-block:: java
 
@@ -64,7 +64,7 @@ The ``CANBus`` API (`Java <https://api.ctr-electronics.com/phoenix6/release/java
          }
 
    .. tab-item:: C++
-      :sync: cpp
+      :sync: C++
 
       .. code-block:: cpp
 

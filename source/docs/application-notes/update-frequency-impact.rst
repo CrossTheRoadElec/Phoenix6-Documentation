@@ -51,6 +51,8 @@ The Limelight is configured for a high resolution capture to reduce the error of
 
 As we performed the maneuvers, we logged the pose of the robot as reported by the odometry and the Limelight for use in playback. The "real" robot pose is the odometry-driven pose, and the ghost is the Limelight reported pose. It can be assumed the limelight pose is the "true" pose while the robot is at rest.
 
+.. note:: The Limelight pose measurements are not latency-compensated, so they will lag behind the odometry pose. The focus of this experiment is to see the difference in pose between the two methods while the robot is relatively still, so that this lag due to latency is not a factor.
+
 The same maneuver was teleop-driven under the following circumstances, with the results below:
  - CANivore CAN bus at 250 Hz (top left, measured at 45% CAN bus utilization)
  - CANivore CAN bus at 50 Hz (top right, measured at 16% CAN bus utilization)

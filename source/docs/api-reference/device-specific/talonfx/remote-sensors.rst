@@ -81,7 +81,7 @@ Full example: `Java <https://github.com/CrossTheRoadElec/PhoenixPro-Examples/blo
          :lineno-start: 11
 
    .. tab-item:: Python
-      :sync: Python
+      :sync: python
 
       .. code-block:: python
 
