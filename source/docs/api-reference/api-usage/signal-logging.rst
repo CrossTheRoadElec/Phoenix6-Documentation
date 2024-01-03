@@ -68,6 +68,46 @@ The signal logger can be started and stopped using the ``Start/Stop`` functions.
          SignalLogger.start()
          SignalLogger.stop()
 
+Free Signals
+------------
+
+Any log that contains a :doc:`pro-licensed </docs/licensing/licensing>` device will export all signals. Otherwise, the following status signals and all :ref:`custom signals <docs/api-reference/api-usage/signal-logging:writing custom data>` can be exported for free.
+
+.. dropdown:: Click here to view free signals
+
+   **Common Signals:**
+
+   - VersionMajor
+   - VersionMinor
+   - VersionBugfix
+   - VersionBuild
+   - IsProLicensed
+   - Fault_UnlicensedFeatureInUse
+   - Fault_BootDuringEnable
+
+   **TalonFX:**
+
+   - SupplyVoltage
+   - SupplyCurrent
+   - MotorVoltage
+   - Position
+   - Velocity
+   - DeviceEnable
+   - Fault_DeviceTemp
+   - Fault_ProcTemp
+
+   **CANcoder:**
+
+   - SupplyVoltage
+   - Position
+   - Velocity
+
+   **Pigeon 2.0:**
+
+   - SupplyVoltage
+   - Yaw
+   - AngularVelocityZWorld
+
 Writing Custom Data
 -------------------
 
