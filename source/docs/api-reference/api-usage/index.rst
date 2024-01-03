@@ -60,6 +60,9 @@ There are three major components to the Phoenix 6 API:
 - :doc:`signal-logging`
    - Information on the signal logging API used for capturing signal traffic on the bus.
 
+- :doc:`chrp-playback`
+   - Information on playing music and sounds using the Orchestra API.
+
 - :doc:`swerve/swerve-overview`
    - Documentation on the swerve API.
 
@@ -74,4 +77,6 @@ There are three major components to the Phoenix 6 API:
    faults
    enabling-actuators
    actuator-limits
+   signal-logging
+   chrp-playback
    swerve/swerve-overview
