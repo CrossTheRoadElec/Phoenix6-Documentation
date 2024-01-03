@@ -80,6 +80,8 @@ In the previous section, several optional constants are defined. These constants
 ``CouplingGearRatio``
   The ratio at which the output wheel rotates when the azimuth spins. In a traditional swerve module, this is the 1st stage of the drive motor.
 
+  This can be manually found by locking the drive wheel in-place, then rotate the azimuth three times. Observe the number of rotations reported by the driver motor. The coupling ratio will be :math:`driveRotations / 3`, or :math:`driveRotations / azimuthRotations`.
+
 ``SlipCurrent``
   This is the amount of stator current the drive motors can apply without slippage. This can be found by placing the robot against a solid wall and slowly increase the output voltage. As the output voltage increases, :ref:`plot <docs/tuner/plotting:plotting>` the drive wheel velocity and stator current. Observe when the drive wheel velocity starts the rise (wheel is slipping) and at what stator current this begins.
 
