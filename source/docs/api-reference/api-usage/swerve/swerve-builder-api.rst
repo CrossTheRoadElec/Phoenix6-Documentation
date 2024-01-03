@@ -78,14 +78,12 @@ Additional Constants
 In the previous section, several optional constants are defined. These constants are not mandatory for usable swerve, but they can greatly increase swerve controllability and accuracy.
 
 ``CouplingGearRatio``
-  The ratio at which the output wheel rotates when the azimuth spins. In a traditional swerve module, this is the 1st stage of the drive motor.
+  The ratio at which the output wheel rotates when the azimuth spins. In a traditional swerve module, this is the inverse of the 1st stage of the drive motor.
 
-  This can be manually found by locking the drive wheel in-place, then rotate the azimuth three times. Observe the number of rotations reported by the driver motor. The coupling ratio will be :math:`driveRotations / 3`, or :math:`driveRotations / azimuthRotations`.
+  To manually determine the coupling ratio, lock the drive wheel in-place, then rotate the azimuth three times. Observe the number of rotations reported by the drive motor. The coupling ratio will be :math:`driveRotations / 3`, or :math:`driveRotations / azimuthRotations`.
 
 ``SlipCurrent``
-  This is the amount of stator current the drive motors can apply without slippage. This can be found by placing the robot against a solid wall and slowly increase the output voltage. As the output voltage increases, :ref:`plot <docs/tuner/plotting:plotting>` the drive wheel velocity and stator current. Observe when the drive wheel velocity starts the rise (wheel is slipping) and at what stator current this begins.
-
-.. note:: It's recommended to continuously localize your robot based on the field provided AprilTags.
+  This is the amount of stator current the drive motors can apply without slippage. This can be found by placing the robot against a solid wall and slowly increase the output voltage. As the output voltage increases, :ref:`plot <docs/tuner/plotting:plotting>` the drive wheel velocity and stator current. Observe when the drive wheel velocity starts to rise (wheel is slipping) and at what stator current this begins.
 
 Building the Swerve Module Constants
 ------------------------------------
