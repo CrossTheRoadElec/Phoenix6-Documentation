@@ -8,7 +8,7 @@ Supported Devices
 
 Phoenix 6 supports the following devices:
 
-- TalonFX (`Falcon 500 <https://store.ctr-electronics.com/falcon-500-powered-by-talon-fx/>`__, `Kraken x60 <https://store.ctr-electronics.com/kraken-x60/>`__)
+- TalonFX (`Falcon 500 <https://store.ctr-electronics.com/falcon-500-powered-by-talon-fx/>`__, `Kraken X60 <https://store.ctr-electronics.com/kraken-x60/>`__)
 - `CANcoder <https://store.ctr-electronics.com/cancoder/>`__
 - `Pigeon 2.0 <https://store.ctr-electronics.com/pigeon-2/>`__
 
