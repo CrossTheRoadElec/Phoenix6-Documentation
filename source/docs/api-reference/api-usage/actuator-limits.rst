@@ -80,8 +80,8 @@ Many :doc:`control requests </docs/api-reference/control-requests>` support over
 
       .. code-block:: python
 
-         self.forward_limit = DigitalInput(0)
-         self.reverse_limit = DigitalInput(1)
+         self.forward_limit = wpilib.DigitalInput(0)
+         self.reverse_limit = wpilib.DigitalInput(1)
 
          self.motor.set_control(self.duty_cycle.with_output(0.5)
                .with_limit_forward_motion(self.forward_limit.get())
