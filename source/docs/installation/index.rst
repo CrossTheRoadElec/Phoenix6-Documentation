@@ -45,6 +45,7 @@ Setup
 API
 ^^^
 
-- :ref:`docs/api-reference/api-usage/status-signals:status signals` (retrieving sensor data)
-- :ref:`docs/api-reference/api-usage/control-requests:control requests`  (controlling motors)
-- :ref:`docs/api-reference/examples/index:examples` (integrated usage examples, such as swerve)
+- :doc:`/docs/api-reference/api-usage/configuration` (configuring device settings)
+- :doc:`/docs/api-reference/api-usage/status-signals` (retrieving sensor data)
+- :doc:`/docs/api-reference/api-usage/control-requests`  (controlling motors)
+- :doc:`/docs/api-reference/examples/index` (integrated usage examples, such as swerve)
