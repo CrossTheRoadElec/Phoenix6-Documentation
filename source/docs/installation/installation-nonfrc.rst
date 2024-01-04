@@ -23,8 +23,9 @@ API Installation
 
       .. code-block:: bash
 
+         YEAR=<year>
          sudo curl -s --compressed -o /usr/share/keyrings/ctr-pubkey.gpg "https://deb.ctr-electronics.com/ctr-pubkey.gpg"
-         sudo curl -s --compressed -o /etc/apt/sources.list.d/ctr<year>.list "https://deb.ctr-electronics.com/ctr<year>.list"
+         sudo curl -s --compressed -o /etc/apt/sources.list.d/ctr${YEAR}.list "https://deb.ctr-electronics.com/ctr${YEAR}.list"
 
       .. note:: ``<year>`` should be replaced with the year of Phoenix 6 software for which you have purchased licenses.
 
@@ -33,7 +34,7 @@ API Installation
       .. code-block:: bash
 
          sudo apt update
-         sudo apt install phoenix-6
+         sudo apt install phoenix6
 
       .. tip:: To get a robot application up and running quickly, check out our `non-FRC Linux example <https://github.com/CrossTheRoadElec/Phoenix6-Linux-Example>`__.
 
@@ -43,11 +44,11 @@ API Installation
 
       .. code-block:: bash
 
-         python3 -m pip install phoenix-6
+         py -3 -m pip install phoenix6
 
    .. tab-item:: C# (Windows)
 
-      Installation is available through `Nuget <https://www.nuget.org/packages/Phoenix6/>`__.  An example on adding nuget packages to a Visual Studio project is available in the `Microsoft Quickstart <https://learn.microsoft.com/en-us/nuget/quickstart/install-and-use-a-package-in-visual-studio>`__.
+      Installation is available through `Nuget <https://www.nuget.org/packages/Phoenix6/>`__.  An example on adding Nuget packages to a Visual Studio project is available in the `Microsoft Quickstart <https://learn.microsoft.com/en-us/nuget/quickstart/install-and-use-a-package-in-visual-studio>`__.
 
 Firmware Installation
 ^^^^^^^^^^^^^^^^^^^^^
@@ -68,7 +69,7 @@ A typical C# project is a `Visual Studio <https://visualstudio.microsoft.com/>`_
 
 For C++, an example utilizing CMake is provided `here <https://github.com/CrossTheRoadElec/Phoenix6-Linux-Example>`__.
 
-.. note:: When utilizing actuators outside of FRC, the user must continuously feed an enable signal to the device. For more information, see :ref:`Enabling Actuators <docs/api-reference/api-usage/enabling-actuators:non-frc applications>`
+.. note:: When utilizing actuators outside of FRC, the user must continuously feed an enable signal to the device. For more information, see :ref:`Enabling Actuators <docs/api-reference/api-usage/enabling-actuators:non-frc applications>`.
 
 Alternative Support
 -------------------

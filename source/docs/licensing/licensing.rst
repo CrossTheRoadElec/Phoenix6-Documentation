@@ -92,7 +92,7 @@ Troubleshooting
 
   - Check the version at the bottom of Tuner X's devices page.
 
-    - Latest version details can be found in the `changelog <https://api.ctr-electronics.com/changelog>`__ under the latest Phoenix-Pro version.
+    - Latest version details can be found in the `changelog <https://api.ctr-electronics.com/changelog>`__ under the latest Phoenix-6/Libs version.
 
   - Confirm the **vendordep** in your robot project is the latest version.
   - Alternatively, you can deploy the **temporary diagnostic server**.
