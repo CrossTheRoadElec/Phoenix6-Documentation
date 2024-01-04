@@ -3,9 +3,9 @@ TalonFX
 
 .. tab-set::
 
-   .. tab-item:: Kraken x60
+   .. tab-item:: Kraken X60
 
-      The Kraken X60, powered by Talon FX uses the latest BLDC motor control technology from CTR Electronics. The integrated Talon FX unlocks the full performance of the Kraken X60 BLDC motor while providing best-in-class motion control.
+      The Kraken X60 powered by Talon FX is a brushless motor developed by WestCoast Products that uses the latest BLDC motor control technology from CTR Electronics. The integrated Talon FX unlocks the full performance of the Kraken X60 BLDC motor while providing best-in-class motion control.
 
       .. grid:: 2
 
