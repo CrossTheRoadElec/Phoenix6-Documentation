@@ -1,9 +1,7 @@
 Orchestra
 =========
 
-Orchestra is a feature of compatible Talon FX motors that actuates the rotor at specific frequencies using a CHRP file, creating audible output. This can be used to play music through motors.
-
-.. tip:: Tones can be played directly by using the ``MusicTone`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/controls/MusicTone.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1controls_1_1_music_tone.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/controls/music_tone/index.html#phoenix6.controls.music_tone.MusicTone>`__) control request.
+Compatible motors powered by Talon FX have the ability to produce audible output through the ``MusicTone`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/controls/MusicTone.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1controls_1_1_music_tone.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/controls/music_tone/index.html#phoenix6.controls.music_tone.MusicTone>`__) control request. The Orchestra API extends this ability and orchestrates multiple motors to play music.
 
 To get started, construct an ``Orchestra`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/Orchestra.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1_orchestra.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/orchestra/index.html#module-phoenix6.orchestra>`__) object with an instrument and CHRP. Ensure that ``addInstrument()`` and ``loadMusic()`` are not called periodically, as they are blocking functions.
 
