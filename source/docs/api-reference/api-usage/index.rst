@@ -63,7 +63,7 @@ There are three major components to the Phoenix 6 API:
 - :doc:`swerve/swerve-overview`
    - Documentation on the swerve API.
 
-- :doc:`chrp-playback`
+- :doc:`orchestra`
    - Information on playing music and sounds using the Orchestra API.
 
 .. toctree::
