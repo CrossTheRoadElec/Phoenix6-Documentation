@@ -22,7 +22,7 @@ Phoenix 6 devices are supported on the below CAN bus adapters.
    .. tab-item:: FRC
 
       - roboRIO
-      - CANivore
+      - `CANivore <https://store.ctr-electronics.com/canivore/>`__
 
    .. tab-item:: non-FRC
 
