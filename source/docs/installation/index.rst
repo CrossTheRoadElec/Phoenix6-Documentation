@@ -40,12 +40,12 @@ Setup
 
 - :ref:`docs/tuner/device-details-page:field-upgrade firmware version`
 - :ref:`docs/tuner/device-details-page:configuring name & ids`
-- :ref:`docs/licensing/licensing:device licensing`
+- :doc:`/docs/licensing/licensing`
 
 API
 ^^^
 
-- :doc:`/docs/api-reference/api-usage/configuration` (configuring device settings)
-- :doc:`/docs/api-reference/api-usage/status-signals` (retrieving sensor data)
-- :doc:`/docs/api-reference/api-usage/control-requests`  (controlling motors)
-- :doc:`/docs/api-reference/examples/index` (integrated usage examples, such as swerve)
+- :doc:`/docs/api-reference/api-usage/configuration` - Configuring device settings
+- :doc:`/docs/api-reference/api-usage/status-signals` - Retrieving sensor data
+- :doc:`/docs/api-reference/api-usage/control-requests` - Controlling motors
+- :doc:`/docs/api-reference/examples/index` - Integrated usage examples, such as swerve
