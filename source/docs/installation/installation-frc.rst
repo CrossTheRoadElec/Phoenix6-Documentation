@@ -1,5 +1,3 @@
-:orphan:
-
 Installing Phoenix 6 (FRC)
 ==========================
 
