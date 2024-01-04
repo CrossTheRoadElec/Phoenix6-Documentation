@@ -17,7 +17,7 @@ API Installation
 
 .. tab-set::
 
-   .. tab-item:: C++
+   .. tab-item:: C++ (Linux)
 
       Phoenix 6 is distributed through our APT repository. Begin with adding the repository to your APT sources.
 
@@ -45,7 +45,7 @@ API Installation
 
          python3 -m pip install phoenix-6
 
-   .. tab-item:: C#
+   .. tab-item:: C# (Windows)
 
       Installation is available through `Nuget <https://www.nuget.org/packages/Phoenix6/>`__.  An example on adding nuget packages to a Visual Studio project is available in the `Microsoft Quickstart <https://learn.microsoft.com/en-us/nuget/quickstart/install-and-use-a-package-in-visual-studio>`__.
 
