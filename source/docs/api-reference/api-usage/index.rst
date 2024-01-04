@@ -46,6 +46,9 @@ There are three major components to the Phoenix 6 API:
 - :doc:`status-signals`
    - Details using status signals to retrieve sensor data from devices.
 
+- :doc:`signal-logging`
+   - Information on the signal logging API used for capturing signal traffic on the bus.
+
 - :doc:`faults`
    - Documents how faults are used to indicate device hardware status.
 
@@ -58,6 +61,9 @@ There are three major components to the Phoenix 6 API:
 - :doc:`swerve/swerve-overview`
    - Documentation on the swerve API.
 
+- :doc:`orchestra`
+   - Information on playing music and sounds using the Orchestra API.
+
 .. toctree::
    :maxdepth: 1
    :hidden:
@@ -66,7 +72,9 @@ There are three major components to the Phoenix 6 API:
    configuration
    control-requests
    status-signals
+   signal-logging
    faults
    enabling-actuators
    actuator-limits
    swerve/swerve-overview
+   orchestra
