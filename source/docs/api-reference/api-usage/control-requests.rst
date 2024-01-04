@@ -50,20 +50,20 @@ Control requests are mutable, so they can be saved in a member variable and reus
 
       .. code-block:: java
 
-         var motorRequest = new DutyCycleOut(0.0);
+         final DutyCycleOut m_motorRequest = new DutyCycleOut(0.0);
 
-         motorRequest.Output = 1.0;
-         m_motor.setControl(motorRequest);
+         m_motorRequest.Output = 1.0;
+         m_motor.setControl(m_motorRequest);
 
    .. tab-item:: C++
       :sync: C++
 
       .. code-block:: cpp
 
-         controls::DutyCycleOut motorRequest{0.0};
+         controls::DutyCycleOut m_motorRequest{0.0};
 
-         motorRequest.Output = 1.0;
-         m_motor.SetControl(motorRequest);
+         m_motorRequest.Output = 1.0;
+         m_motor.SetControl(m_motorRequest);
 
    .. tab-item:: Python
       :sync: python
@@ -88,10 +88,10 @@ Control requests also supports modification using method chaining. This can be u
       .. code-block:: java
 
          // initialize torque current FOC request with 0 amps
-         var motorRequest = new TorqueCurrentFOC(0);
+         final TorqueCurrentFOC m_motorRequest = new TorqueCurrentFOC(0);
 
          // mutate request with output of 10 amps and max duty cycle 0.5
-         m_motor.SetControl(motorRequest.withOutputAmps(10).withMaxAbsDutyCycle(0.5));
+         m_motor.SetControl(m_motorRequest.withOutputAmps(10).withMaxAbsDutyCycle(0.5));
 
    .. tab-item:: C++
       :sync: C++
@@ -99,10 +99,10 @@ Control requests also supports modification using method chaining. This can be u
       .. code-block:: cpp
 
          // initialize torque current FOC request with 0 amps
-         controls::TorqueCurrentFOC motorRequest{0_A};
+         controls::TorqueCurrentFOC m_motorRequest{0_A};
 
          // mutate request with output of 10 amps and max duty cycle 0.5
-         m_motor.SetControl(motorRequest.WithOutputAmps(10_A).WithMaxAbsDutyCycle(0.5));
+         m_motor.SetControl(m_motorRequest.WithOutputAmps(10_A).WithMaxAbsDutyCycle(0.5));
 
    .. tab-item:: Python
       :sync: python
@@ -128,9 +128,9 @@ Control requests are automatically transmitted at a fixed update frequency. This
       .. code-block:: java
 
          // create a duty cycle request
-         var motorRequest = new DutyCycleOut(0);
+         final DutyCycleOut m_motorRequest = new DutyCycleOut(0);
          // reduce the update frequency to 50 Hz
-         motorRequest.UpdateFreqHz = 50;
+         m_motorRequest.UpdateFreqHz = 50;
 
    .. tab-item:: C++
       :sync: C++
@@ -138,9 +138,9 @@ Control requests are automatically transmitted at a fixed update frequency. This
       .. code-block:: cpp
 
          // create a duty cycle request
-         controls::DutyCycleOut motorRequest{0};
+         controls::DutyCycleOut m_motorRequest{0};
          // reduce the update frequency to 50 Hz
-         motorRequest.UpdateFreqHz = 50;
+         m_motorRequest.UpdateFreqHz = 50;
 
    .. tab-item:: Python
       :sync: python

@@ -43,3 +43,46 @@ The state of the forward or reverse limit switch can be retrieved from the API v
 
          if forward_limit.value is signals.ForwardLimitValue.CLOSED_TO_GROUND:
             # do action when forward limit is closed
+
+Control Request Limits
+----------------------
+
+Many :doc:`control requests </docs/api-reference/control-requests>` support overriding the limit switch values using ``LimitForwardMotion`` and ``LimitReverseMotion`` parameters (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/controls/DutyCycleOut.html#LimitForwardMotion>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1controls_1_1_duty_cycle_out.html#a2696bd6c0631110656541208a3f40dac>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/controls/duty_cycle_out/index.html#phoenix6.controls.duty_cycle_out.DutyCycleOut.limit_forward_motion>`__). These allow users to use other limit switch sensors connected to the robot controller.
+
+.. tab-set::
+
+   .. tab-item:: Java
+      :sync: Java
+
+      .. code-block:: java
+
+         final DigitalInput m_forwardLimit = new DigitalInput(0);
+         final DigitalInput m_reverseLimit = new DigitalInput(1);
+
+         m_motor.setControl(m_dutyCycle.withOutput(0.5)
+               .withLimitForwardMotion(m_forwardLimit.get())
+               .withLimitReverseMotion(m_reverseLimit.get()));
+
+   .. tab-item:: C++
+      :sync: C++
+
+      .. code-block:: cpp
+
+         frc::DigitalInput m_forwardLimit{0};
+         frc::DigitalInput m_reverseLimit{1};
+
+         m_motor.SetControl(m_dutyCycle.WithOutput(0.5)
+               .WithLimitForwardMotion(m_forwardLimit.Get())
+               .WithLimitReverseMotion(m_reverseLimit.Get()));
+
+   .. tab-item:: Python
+      :sync: Python
+
+      .. code-block:: python
+
+         self.forward_limit = wpilib.DigitalInput(0)
+         self.reverse_limit = wpilib.DigitalInput(1)
+
+         self.motor.set_control(self.duty_cycle.with_output(0.5)
+               .with_limit_forward_motion(self.forward_limit.get())
+               .with_limit_reverse_motion(self.reverse_limit.get()))

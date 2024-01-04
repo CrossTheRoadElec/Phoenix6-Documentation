@@ -47,7 +47,7 @@ Some of you may have noticed that your version of Tuner X has changed recently. 
 Improved connection diagnostics
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Tuner requires a running `diagnostic server <https://pro.docs.ctr-electronics.com/en/latest/docs/installation/running-diagnostics.html>`__ to work. Typically, this is installed through a robot program utilizing one of our devices. Alternatively, this program is temporarily run using a button in `Settings <https://pro.docs.ctr-electronics.com/en/latest/docs/tuner/connecting.html?highlight=settings#temporary-diagnostics-frc>`__. We've improved the disconnection status card to contain information about the ping of the target and diagnostic state of the device.
+Tuner requires a running `diagnostic server <https://pro.docs.ctr-electronics.com/en/latest/docs/troubleshooting/running-diagnostics.html>`__ to work. Typically, this is installed through a robot program utilizing one of our devices. Alternatively, this program is temporarily run using a button in `Settings <https://pro.docs.ctr-electronics.com/en/latest/docs/tuner/connecting.html?highlight=settings#temporary-diagnostics-frc>`__. We've improved the disconnection status card to contain information about the ping of the target and diagnostic state of the device.
 
 .. image:: images/tuner-evolution/tuner-x-2024.png
    :alt: Disconnection card in Tuner X 2024
