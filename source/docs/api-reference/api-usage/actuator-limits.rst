@@ -3,7 +3,7 @@ Actuator Limits
 
 CTR Electronics actuators, such as the TalonFX, support various kinds of hardware and software limits.
 
-.. note:: The TalonFX + Kraken x60 does not support hardware limit switches. Instead, a CANcoder can be used a remote limit switch.
+.. note:: The TalonFX + Kraken x60 does not support hardware limit switches. Instead, `control request limit <docs/api-reference/api-usage/actuator-limits:control request limits>` overrides can be used, or a CANcoder can be used a `remote limit switch <docs/api-reference/api-usage/actuator-limits:remote limit switches>`.
 
 Documentation on wiring limit switches can be found :ref:`here <docs/hardware-reference/talonfx/index:actuator limits>`.
 
@@ -49,8 +49,11 @@ The state of the forward or reverse limit switch can be retrieved from the API v
 Control Request Limits
 ----------------------
 
-Many :doc:`control requests </docs/api-reference/control-requests>` support overriding the limit switch values using ``LimitForwardMotion`` and ``LimitReverseMotion`` parameters (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/controls/DutyCycleOut.html#LimitForwardMotion>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1controls_1_1_duty_cycle_out.html#a2696bd6c0631110656541208a3f40dac>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/controls/duty_cycle_out/index.html#phoenix6.controls.duty_cycle_out.DutyCycleOut.limit_forward_motion>`__). These allow users to use other limit switch sensors connected to the robot controller.
+Many :doc:`control requests </docs/api-reference/api-usage/control-requests>` support overriding the limit switch values using ``LimitForwardMotion`` and ``LimitReverseMotion`` parameters (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/controls/DutyCycleOut.html#LimitForwardMotion>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1controls_1_1_duty_cycle_out.html#a2696bd6c0631110656541208a3f40dac>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/controls/duty_cycle_out/index.html#phoenix6.controls.duty_cycle_out.DutyCycleOut.limit_forward_motion>`__). These allow users to use other limit switch sensors connected to the robot controller.
 
+.. tab-set::
+
+   .. tab-item:: Java
       :sync: Java
 
       .. code-block:: java
