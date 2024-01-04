@@ -26,4 +26,5 @@ Phoenix Tuner X supports Android 8.0+ and Windows 10 (1903+) and Windows 11.
    controlling-devices
    plotting
    pigeon-cal
+   tools
    tuner-swerve/index
