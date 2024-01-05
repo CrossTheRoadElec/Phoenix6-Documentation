@@ -13,6 +13,23 @@ Manual tuning typically follows this process:
 
 All closed-loop control requests follow the naming pattern ``{ClosedLoopMode}{ControlOutputType}``. For example, the ``VelocityVoltage`` control request performs a velocity closed-loop using voltage output.
 
+Choosing Output Type
+--------------------
+
+The choice of :ref:`control output type <docs/api-reference/device-specific/talonfx/talonfx-control-intro:control output types>` can affect the reproducibility and stability of the closed-loop control.
+
+DutyCycle has the benefit of being the simplest control output type, as it is unaffected by voltage and current measurements. However, because DutyCycle represents a proportion of the supply voltage, changes in battery voltage can affect the reproducibility of the control request.
+
+Voltage control output takes into account the supply voltage to ensure its voltage output remains consistent. As a result, Voltage control often results in more stable and reproducible behavior compared to DutyCycle control, so Voltage control is often preferred.
+
+A disadvantage with both DutyCycle and Voltage control output types is that they **control acceleration indirectly** and require a velocity feedforward :math:`K_v` to hold a constant velocity. On the other hand, torque-based control output types, such as TorqueCurrentFOC, **directly control acceleration**, which has several advantages:
+
+- Since the torque request is directly proportional to acceleration, :math:`K_v` is generally unnecessary. A torque output of 0 corresponds to a constant velocity, assuming no external forces.
+- :math:`K_a` can be tuned independently of all the other closed-loop gains by comparing the measured acceleration with the requested acceleration.
+- Because the output is in units of torque, the units of the gains more closely match those of forces in the real world.
+
+As a result, torque-based control output types offer more stable and reproducible behavior that can be easier to tune compared to the other control output types.
+
 Gain Slots
 ----------
 
