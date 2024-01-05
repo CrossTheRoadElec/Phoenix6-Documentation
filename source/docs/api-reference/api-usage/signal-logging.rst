@@ -91,24 +91,39 @@ The integer and floating-point ``write*()`` functions can optionally be supplied
 
       .. code-block:: java
 
+         // Log the odometry pose as a double array
          SignalLogger.writeDoubleArray("odometry", new double[] {pose.getX(), pose.getY(), pose.getRotation().getDegrees()});
+         // Log the odometry period with units of "seconds"
          SignalLogger.writeDouble("odom period", state.OdometryPeriod, "seconds");
+         // Log the camera pose with calculated latency
+         SignalLogger.writeDoubleArray("camera pose", new double[] {camPose.getX(), camPose.getY(), camPose.getRotation().getDegrees()},
+            "", Timer.getFPGATimestamp() - camRes.getTimestampSeconds());
 
    .. tab-item:: C++
       :sync: cpp
 
       .. code-block:: cpp
 
+         // Log the odometry pose as a double array
          SignalLogger::WriteDoubleArray("odometry", std::array<double, 3>{pose.X().value(), pose.Y().value(), pose.Rotation().Degrees().value()});
+         // Log the odometry period with units of "seconds"
          SignalLogger::WriteDouble("odom period", state.OdometryPeriod, "seconds");
+         // Log the camera pose with calculated latency
+         SignalLogger::WriteDoubleArray("camera pose", std::array<double, 3>{camPose.X().value(), camPose.Y().value(), camPose.Rotation().Degrees().value()},
+            "", frc::Timer::GetFPGATimestamp() - camRes.GetTimestamp());
 
    .. tab-item:: Python
       :sync: python
 
       .. code-block:: python
 
+         # Log the odometry pose as a double array
          SignalLogger.write_double_array("odometry", [pose.X(), pose.Y(), pose.rotation().degrees()])
+         # Log the odometry period with units of "seconds"
          SignalLogger.write_double("odom period", state.odometry_period, "seconds")
+         # Log the camera pose with calculated latency
+         SignalLogger.write_double_array("camera pose", [cam_pose.X(), cam_pose.Y(), cam_pose.rotation().degrees()],
+            "", wpilib.Timer.getFPGATimestamp() - cam_res.getTimestamp())
 
 Free Signals
 ------------
