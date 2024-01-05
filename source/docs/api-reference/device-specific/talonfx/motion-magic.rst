@@ -42,7 +42,7 @@ The following parameters must be set when controlling using Motion Magic®
 
 - Cruise Velocity - peak/cruising velocity of the motion
 - Acceleration - controls acceleration and deceleration rates during the beginning and end of motion
-- Jerk - controls jerk, which is the derivative of acceleration
+- Jerk (optional) - controls jerk, which is the derivative of acceleration
 
 Using Motion Magic® in API
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -203,7 +203,7 @@ Once the gains are configured, the Dynamic Motion Magic® request can be sent to
             // while the joystick A button is held, use a slower profile
             m_request.Velocity = 40; // rps
             m_request.Acceleration = 80; // rot/s^2
-            m_request.Jerk = 800; // rot/s^3
+            m_request.Jerk = 400; // rot/s^3
          } else {
             // otherwise use a faster profile
             m_request.Velocity = 80; // rps
@@ -228,7 +228,7 @@ Once the gains are configured, the Dynamic Motion Magic® request can be sent to
             // while the joystick A button is held, use a slower profile
             m_request.Velocity = 40_tps;
             m_request.Acceleration = 80_tr_per_s_sq;
-            m_request.Jerk = 800_tr_per_s_cu;
+            m_request.Jerk = 400_tr_per_s_cu;
          } else {
             // otherwise use a faster profile
             m_request.Velocity = 80_tps;
@@ -252,7 +252,7 @@ Once the gains are configured, the Dynamic Motion Magic® request can be sent to
             # while the joystick A button is held, use a slower profile
             self.request.velocity = 40 # rps
             self.request.acceleration = 80 # rot/s^2
-            self.request.jerk = 800 # rot/s^3
+            self.request.jerk = 400 # rot/s^3
          else:
             # otherwise use a faster profile
             self.request.velocity = 80 # rps
@@ -261,6 +261,184 @@ Once the gains are configured, the Dynamic Motion Magic® request can be sent to
 
          # set target position to 100 rotations
          self.talonfx.set_control(self.request.with_position(100))
+
+Motion Magic® Velocity
+----------------------
+
+The Talon FX also supports onboard velocity motion profiling using Motion Magic® Velocity. When using Motion Magic® Velocity, the motor will ramp to a target velocity using a trapezoidal acceleration profile that honors the specified acceleration and optional jerk.
+
+The benefits of this control mode over "simple" PID velocity closed-looping are:
+
+- Control of the mechanism throughout the entire motion (as opposed to racing to the end target velocity)
+- Control of the mechanism's inertia to ensure smooth transitions between set points
+- Improved repeatability despite changes in battery load
+- Improved repeatability despite changes in motor load
+
+After gain/settings are determined, the robot controller only needs to periodically set the target velocity.
+
+.. image:: images/trapezoidal-vel-profile.png
+   :alt: Graph that showcases the trapezoidal profile velocity and acceleration setpoints.
+
+The following parameters must be set when controlling using Motion Magic® Velocity
+
+- Acceleration - controls acceleration and deceleration rates during the beginning and end of motion
+- Jerk (optional) - controls jerk, which is the derivative of acceleration
+
+Using Motion Magic® Velocity in API
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Motion Magic® Velocity is currently supported for all base :ref:`control output types <docs/api-reference/device-specific/talonfx/talonfx-control-intro:control output types>`. The units of the output is determined by the control output type.
+
+The Motion Magic® Velocity jerk and acceleration can be :doc:`configured in code </docs/api-reference/api-usage/configuration>` using a ``MotionMagicConfigs`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/configs/MotionMagicConfigs.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1configs_1_1_motion_magic_configs.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/configs/config_groups/index.html#phoenix6.configs.config_groups.MotionMagicConfigs>`__) object.
+
+In Motion Magic® Velocity, the gains should be configured as follows:
+
+- :math:`K_s` - output to overcome static friction (output)
+- :math:`K_v` - output per unit of target velocity (output/rps)
+- :math:`K_a` - output per unit of target acceleration (output/(rps/s))
+- :math:`K_p` - output per unit of error in velocity (output/rps)
+- :math:`K_i` - output per unit of integrated error in velocity (output/rotation)
+- :math:`K_d` - output per unit of error derivative in velocity (output/(rps/s))
+
+.. tab-set::
+
+   .. tab-item:: Java
+      :sync: Java
+
+      .. code-block:: java
+
+         // in init function
+         var talonFXConfigs = new TalonFXConfiguration();
+
+         // set slot 0 gains
+         var slot0Configs = talonFXConfigs.Slot0;
+         slot0Configs.kS = 0.25; // Add 0.25 V output to overcome static friction
+         slot0Configs.kV = 0.12; // A velocity target of 1 rps results in 0.12 V output
+         slot0Configs.kA = 0.01; // An acceleration of 1 rps/s requires 0.01 V output
+         slot0Configs.kP = 0.11; // An error of 1 rps results in 0.11 V output
+         slot0Configs.kI = 0; // no output for integrated error
+         slot0Configs.kD = 0; // no output for error derivative
+
+         // set Motion Magic Velocity settings
+         var motionMagicConfigs = talonFXConfigs.MotionMagic;
+         motionMagicConfigs.MotionMagicAcceleration = 400; // Target acceleration of 400 rps/s (0.25 seconds to max)
+         motionMagicConfigs.MotionMagicJerk = 4000; // Target jerk of 4000 rps/s/s (0.1 seconds)
+
+         m_talonFX.getConfigurator().apply(talonFXConfigs);
+
+   .. tab-item:: C++
+      :sync: C++
+
+      .. code-block:: cpp
+
+         // in init function
+         configs::TalonFXConfiguration talonFXConfigs{};
+
+         // set slot 0 gains
+         auto& slot0Configs = talonFXConfigs.Slot0;
+         slot0Configs.kS = 0.25; // Add 0.25 V output to overcome static friction
+         slot0Configs.kV = 0.12; // A velocity target of 1 rps results in 0.12 V output
+         slot0Configs.kA = 0.01; // An acceleration of 1 rps/s requires 0.01 V output
+         slot0Configs.kP = 0.11; // An error of 1 rps results in 0.11 V output
+         slot0Configs.kI = 0; // no output for integrated error
+         slot0Configs.kD = 0; // no output for error derivative
+
+         // set Motion Magic Velocity settings
+         auto& motionMagicConfigs = talonFXConfigs.MotionMagic;
+         motionMagicConfigs.MotionMagicAcceleration = 400; // Target acceleration of 400 rps/s (0.25 seconds to max)
+         motionMagicConfigs.MotionMagicJerk = 4000; // Target jerk of 4000 rps/s/s (0.1 seconds)
+
+         m_talonFX.GetConfigurator().Apply(talonFXConfigs);
+
+   .. tab-item:: Python
+      :sync: python
+
+      .. code-block:: python
+
+         # in init function
+         talonfx_configs = configs.TalonFXConfiguration()
+
+         # set slot 0 gains
+         slot0_configs = talonfx_configs.slot0
+         slot0_configs.k_s = 0.25 # Add 0.25 V output to overcome static friction
+         slot0_configs.k_v = 0.12 # A velocity target of 1 rps results in 0.12 V output
+         slot0_configs.k_a = 0.01 # An acceleration of 1 rps/s requires 0.01 V output
+         slot0_configs.k_p = 0.11 # An error of 1 rps results in 0.11 V output
+         slot0_configs.k_i = 0 # no output for integrated error
+         slot0_configs.k_d = 0 # no output for error derivative
+
+         # set Motion Magic Velocity settings
+         motion_magic_configs = talonfx_configs.motion_magic
+         motion_magic_configs.motion_magic_acceleration = 400 # Target acceleration of 400 rps/s (0.25 seconds to max)
+         motion_magic_configs.motion_magic_jerk = 4000 # Target jerk of 4000 rps/s/s (0.1 seconds)
+
+         self.talonfx.configurator.apply(talonfx_configs)
+
+.. tip:: Motion Magic® Velocity supports modifying acceleration and jerk on the fly (requires firmware version 24.0.6.0 or newer).
+
+Once the gains are configured, the Motion Magic® Velocity request can be sent to the TalonFX.
+
+The Mogion Magic® Velocity request has an Acceleration parameter that can be used to override the profile acceleration during motion. If the Acceleration parameter is left 0, the acceleration config will be used instead.
+
+The control request object also has an optional feedforward term that can be used to add an arbitrary value to the output, which can be useful to account for the effects of gravity.
+
+.. tab-set::
+
+   .. tab-item:: Java
+      :sync: Java
+
+      .. code-block:: java
+
+         // create a Motion Magic Velocity request, voltage output
+         final MotionMagicVelocityVoltage m_request = new MotionMagicVelocityVoltage(0);
+
+         if (m_joy.getAButton()) {
+            // while the joystick A button is held, use a slower acceleration
+            m_request.Acceleration = 100; // rot/s^2
+         } else {
+            // otherwise, fall back to the config
+            m_request.Acceleration = 0;
+         }
+
+         // set target velocity to 80 rps
+         m_talonFX.setControl(m_request.withVelocity(80));
+
+   .. tab-item:: C++
+      :sync: C++
+
+      .. code-block:: cpp
+
+         // create a Motion Magic Velocity request, voltage output
+         controls::MotionMagicVelocityVoltage m_request{0_tps};
+
+         if (m_joy.GetAButton()) {
+            // while the joystick A button is held, use a slower acceleration
+            m_request.Acceleration = 100_tr_per_s_sq;
+         } else {
+            // otherwise, fall back to the config
+            m_request.Acceleration = 0_tr_per_s_sq;
+         }
+
+         // set target velocity to 80 rps
+         m_talonFX.SetControl(m_request.WithVelocity(80_tps));
+
+   .. tab-item:: Python
+      :sync: python
+
+      .. code-block:: python
+
+         # create a Motion Magic Velocity request, voltage output
+         self.request = controls.MotionMagicVelocityVoltage(0)
+
+         if self.joy.getAButton():
+            # while the joystick A button is held, use a slower acceleration
+            self.request.acceleration = 100 # rot/s^2
+         else:
+            # otherwise, fall back to the config
+            self.request.acceleration = 0
+
+         # set target velocity to 80 rps
+         self.talonfx.set_control(self.request.with_velocity(80))
 
 Motion Magic® Expo
 ------------------
