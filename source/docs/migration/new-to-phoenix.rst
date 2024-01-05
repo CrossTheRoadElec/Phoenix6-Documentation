@@ -78,6 +78,7 @@ Time Base Synchronization
 
 - Using :ref:`CANivore Timesync <docs/api-reference/api-usage/status-signals:canivore timesync>`, signals from all devices are sampled and published to the CAN bus at the same time.
 - API can synchronously wait for data from multiple devices on a CANivore to arrive.
+- Device timestamps captured when the signal is sampled provides best possible latency compensation.
 
 Fused CANcoder
 ^^^^^^^^^^^^^^
@@ -145,6 +146,8 @@ A full comparison of features between the free Phoenix 6 API and Phoenix Pro is 
 | Signal Logger MCAP Export           |                 | .. centered:: x       |                      | .. centered:: x            |
 +-------------------------------------+-----------------+-----------------------+----------------------+----------------------------+
 | Time-Synced Signal Publishing       |                 |                       |                      | .. centered:: x            |
++-------------------------------------+-----------------+-----------------------+----------------------+----------------------------+
+| Device Timestamps                   |                 |                       |                      | .. centered:: x            |
 +-------------------------------------+-----------------+-----------------------+----------------------+----------------------------+
 | Dynamic Motion Magic®               |                 |                       |                      | .. centered:: x            |
 +-------------------------------------+-----------------+-----------------------+----------------------+----------------------------+
