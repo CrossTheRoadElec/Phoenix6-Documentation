@@ -18,6 +18,38 @@ Gain Slots
 
 It may be useful to switch between presets of gains in a motor controller, so the TalonFX supports multiple gain slots. All closed-loop control requests have a member variable ``Slot`` that can be assigned an integer ID to select the set of gains used by the closed-loop. The gain slots can be :doc:`configured in code </docs/api-reference/api-usage/configuration>` using ``Slot*Configs`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/configs/Slot0Configs.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1configs_1_1_slot0_configs.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/configs/config_groups/index.html#phoenix6.configs.config_groups.Slot0Configs>`__) objects.
 
+Gravity Feedforward
+-------------------
+
+The gravity feedforward :math:`K_g` is the output necessary to overcome gravity, in units of the :ref:`control output type <docs/api-reference/device-specific/talonfx/talonfx-control-intro:control output types>`. Phoenix 6 supports the two most common use cases for :math:`K_g`---elevators and arms---using the ``GravityType`` config in the gain slots.
+
+Elevator/Static
+^^^^^^^^^^^^^^^
+
+For systems with a constant gravity component, such as an elevator, :math:`K_g` adds a constant value to the closed-loop output. To find :math:`K_g`, determine the output necessary to hold the elevator at a constant height in open-loop control.
+
+Arm/Cosine
+^^^^^^^^^^
+
+For systems with an angular gravity component, such as an arm, the output of :math:`K_g` is dependent on the cosine of the angle between the arm and horizontal. The value of :math:`K_g` can be found by determining the output necessary to hold the arm horizontally forward.
+
+Since the arm :math:`K_g` uses the angle of the arm relative to horizontal, the Talon FX often requires an absolute sensor whose position is 1:1 with the arm, and the sensor offset and ratios must be configured.
+
+When using an absolute sensor, such as a CANcoder, the sensor offset must be configured such that a position of 0 represents the arm being held horizontally forward. From there, the ``RotorToSensor`` ratio must be configured to the ratio between the absolute sensor and the Talon FX rotor.
+
+Converting from Meters
+----------------------
+
+In some applications, it may be useful to translate between meters and rotations. This can be done using the following equation:
+
+.. math::
+
+   rotations = \frac{meters}{2 \pi \cdot wheelRadius} \cdot gearRatio
+
+where ``meters`` is the target in meters, ``wheelRadius`` is the radius of the wheel in meters, and ``gearRatio`` is the gear ratio between the output shaft and the wheel.
+
+This equation also works with converting velocity from m/s to rps or acceleration from m/s² to rps/s.
+
 Velocity Control
 ----------------
 
@@ -119,19 +151,6 @@ Once the gains are configured, the Velocity closed loop control request can be s
 
          # set velocity to 8 rps, add 0.5 V to overcome gravity
          self.talonfx.set_control(request.with_velocity(8).with_feed_forward(0.5))
-
-Converting from Meters
-^^^^^^^^^^^^^^^^^^^^^^
-
-In some applications, it may be useful to translate between meters and rotations. This can be done using the following equation:
-
-.. math::
-
-   rotations = \frac{meters}{\pi \cdot wheelDiameter} \cdot gearRatio
-
-where ``meters`` is the target in meters, ``wheelDiameter`` is the diameter of the wheel in meters, and ``gearRatio`` is the gear ratio between the output shaft and the wheel.
-
-This equation also works with converting velocity from m/s to rps.
 
 Position Control
 ----------------
@@ -410,9 +429,9 @@ Whereas traditional Motion Magic® uses a trapezoidal profile or an S-Curve, Mot
 
 Motion Magic® Expo uses the kV and kA characteristics of the system, as well as an optional cruise velocity. The Motion Magic® Expo kV and kA configs are separate from the slot gain configs, as they may use different units and have different behaviors.
 
-The Motion Magic® Expo kV represents the voltage required to maintain a given velocity and is in units of Volts/rps. Dividing the supply voltage by kV results in the maximum velocity of the profile. As a result, when supply voltage is fixed, a **higher profile kV** results in a **lower profile velocity**. Unlike with slot gains, it is safer to start from a higher kV than what is ideal.
+The Motion Magic® Expo kV represents the voltage required to maintain a given velocity and is in units of Volts/rps. Dividing the supply voltage by kV results in the maximum velocity of the profile. As a result, when supply voltage is fixed, a **higher profile kV** results in a **lower profile velocity**. Unlike with gain slots, it is safer to start from a higher kV than what is ideal.
 
-The Motion Magic® Expo kA represents the voltage required to apply a given acceleration and is in units of Volts/(rps/s). Dividing the supply voltage by kA results in the maximum acceleration of the profile from 0. As a result, when supply voltage is fixed, a **higher profile kA** results in a **lower profile acceleration**. Unlike with slot gains, it is safer to start from a higher kA than what is ideal.
+The Motion Magic® Expo kA represents the voltage required to apply a given acceleration and is in units of Volts/(rps/s). Dividing the supply voltage by kA results in the maximum acceleration of the profile from 0. As a result, when supply voltage is fixed, a **higher profile kA** results in a **lower profile acceleration**. Unlike with gain slots, it is safer to start from a higher kA than what is ideal.
 
 If the Motion Magic® cruise velocity is set to a non-zero value, the profile will only accelerate up to the cruise velocity. Otherwise, the profile will accelerate towards the maximum possible velocity based on the profile kV.
 
@@ -429,7 +448,7 @@ Motion Magic® Expo is currently supported for all base :ref:`control output typ
 
 The Motion Magic® Expo kV, kA, and cruise velocity can be :doc:`configured in code </docs/api-reference/api-usage/configuration>` using a ``MotionMagicConfigs`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/configs/MotionMagicConfigs.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1configs_1_1_motion_magic_configs.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/configs/config_groups/index.html#phoenix6.configs.config_groups.MotionMagicConfigs>`__) object.
 
-.. important:: Unlike the slot gains, the MotionMagicExpo_kV and MotionMagicExpo_kA configs are always in output units of Volts.
+.. important:: Unlike the gain slots, the MotionMagicExpo_kV and MotionMagicExpo_kA configs are always in output units of Volts.
 
 In Motion Magic® Expo, the gains should be configured as follows:
 
