@@ -1,5 +1,5 @@
-Motion Magic® Control
-=====================
+Motion Magic® Controls
+======================
 
 In addition to basic PID control, the Talon FX also supports onboard motion profiling using Motion Magic® controls.
 
@@ -149,10 +149,10 @@ Once the gains are configured, the Motion Magic® request can be sent to the Tal
       .. code-block:: java
 
          // create a Motion Magic request, voltage output, slot 0 configs
-         var request = new MotionMagicVoltage(0).withSlot(0);
+         final MotionMagicVoltage m_request = new MotionMagicVoltage(0).withSlot(0);
 
          // set position to 10 rotations
-         m_talonFX.setControl(request.withPosition(10));
+         m_talonFX.setControl(m_request.withPosition(10));
 
    .. tab-item:: C++
       :sync: C++
@@ -160,10 +160,10 @@ Once the gains are configured, the Motion Magic® request can be sent to the Tal
       .. code-block:: cpp
 
          // create a Motion Magic request, voltage output, slot 0 configs
-         auto request = controls::MotionMagicVoltage{0_tr}.WithSlot(0);
+         controls::MotionMagicVoltage m_request = controls::MotionMagicVoltage{0_tr}.WithSlot(0);
 
          // set position to 10 rotations
-         m_talonFX.SetControl(request.WithPosition(10_tr));
+         m_talonFX.SetControl(m_request.WithPosition(10_tr));
 
    .. tab-item:: Python
       :sync: python
@@ -305,10 +305,10 @@ Once the gains are configured, the Motion Magic® Expo request can be sent to th
       .. code-block:: java
 
          // create a Motion Magic Expo request, voltage output, slot 0 configs
-         var request = new MotionMagicExpoVoltage(0).withSlot(0);
+         final MotionMagicExpoVoltage m_request = new MotionMagicExpoVoltage(0).withSlot(0);
 
          // set position to 10 rotations
-         m_talonFX.setControl(request.withPosition(10));
+         m_talonFX.setControl(m_request.withPosition(10));
 
    .. tab-item:: C++
       :sync: C++
@@ -316,10 +316,10 @@ Once the gains are configured, the Motion Magic® Expo request can be sent to th
       .. code-block:: cpp
 
          // create a Motion Magic Expo request, voltage output, slot 0 configs
-         auto request = controls::MotionMagicExpoVoltage{0_tr}.WithSlot(0);
+         controls::MotionMagicExpoVoltage m_request = controls::MotionMagicExpoVoltage{0_tr}.WithSlot(0);
 
          // set position to 10 rotations
-         m_talonFX.SetControl(request.WithPosition(10_tr));
+         m_talonFX.SetControl(m_request.WithPosition(10_tr));
 
    .. tab-item:: Python
       :sync: python
