@@ -168,9 +168,9 @@ Any log that contains a :doc:`pro-licensed </docs/licensing/licensing>` device w
 Low Storage Space Behavior
 --------------------------
 
-If the target drive (i.e. flash drive or roboRIO internal storage) reaches 50 MB free space, old logs will be deleted and an error will be printed.
+If the target drive (i.e. flash drive or roboRIO internal storage) reaches 50 MB free space, old logs will be deleted, and a warning will be printed.
 
-If the target drive reaches 5 MB of free space, logging will be stopped and an error printed. Logging can not be resumed until more space is made available.
+If the target drive reaches 5 MB of free space, logging will be stopped, and an error will be printed. Logging cannot be resumed until more disk space is made available.
 
 An example error that may occur if the free space limit is reached is shown below.
 
