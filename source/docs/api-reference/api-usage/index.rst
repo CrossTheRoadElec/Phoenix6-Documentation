@@ -41,7 +41,7 @@ There are three major components to the Phoenix 6 API:
    - Describes configuring device configs via code.
 
 - :doc:`control-requests`
-   - Highlights using control requests to control the open and closed loop functionality of actuators such as the TalonFX.
+   - Highlights using control requests to control the output of actuators such as the TalonFX.
 
 - :doc:`status-signals`
    - Details using status signals to retrieve sensor data from devices.
@@ -58,9 +58,6 @@ There are three major components to the Phoenix 6 API:
 - :doc:`actuator-limits`
    - Documents how to retrieve and configure software and hardware actuator limits.
 
-- :doc:`swerve/swerve-overview`
-   - Documentation on the swerve API.
-
 - :doc:`orchestra`
    - Information on playing music and sounds using the Orchestra API.
 
@@ -76,5 +73,4 @@ There are three major components to the Phoenix 6 API:
    faults
    enabling-actuators
    actuator-limits
-   swerve/swerve-overview
    orchestra

@@ -42,8 +42,8 @@ Phoenix 6 now supports the following languages.
 
 Feedback for the new language targets is welcome at `feedback@ctr-electronics.com <mailto:feedback@ctr-electronics.com>`__.
 
-:doc:`Swerve API </docs/api-reference/api-usage/swerve/swerve-overview>`
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+:doc:`Swerve API </docs/api-reference/mechanisms/swerve/swerve-overview>`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Now included in the Phoenix 6 API is a high performance Swerve API (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/mechanisms/swerve/package-summary.html>`__). Teams using Phoenix 6 compatible devices for their swerve drivetrain can utilize the API to maximize performance and **eliminate** the boilerplate that comes with copying swerve template code. Empower your odometry and maximize your robot responsiveness with our synchronous, latency-compensated API with simulation support!
 

@@ -43,6 +43,7 @@ This section highlights the functionality that is exposed as part of the Phoenix
 
    api-usage/index
    device-specific/index
+   mechanisms/index
    simulation/index
    wpilib-integration/index
    examples/index
