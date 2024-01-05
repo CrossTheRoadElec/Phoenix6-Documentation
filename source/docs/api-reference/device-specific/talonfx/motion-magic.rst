@@ -148,8 +148,8 @@ Once the gains are configured, the Motion Magic® request can be sent to the Tal
 
       .. code-block:: java
 
-         // create a Motion Magic request, voltage output, slot 0 configs
-         final MotionMagicVoltage m_request = new MotionMagicVoltage(0).withSlot(0);
+         // create a Motion Magic request, voltage output
+         final MotionMagicVoltage m_request = new MotionMagicVoltage(0);
 
          // set target position to 100 rotations
          m_talonFX.setControl(m_request.withPosition(100));
@@ -159,8 +159,8 @@ Once the gains are configured, the Motion Magic® request can be sent to the Tal
 
       .. code-block:: cpp
 
-         // create a Motion Magic request, voltage output, slot 0 configs
-         controls::MotionMagicVoltage m_request = controls::MotionMagicVoltage{0_tr}.WithSlot(0);
+         // create a Motion Magic request, voltage output
+         controls::MotionMagicVoltage m_request{0_tr};
 
          // set target position to 100 rotations
          m_talonFX.SetControl(m_request.WithPosition(100_tr));
@@ -170,8 +170,8 @@ Once the gains are configured, the Motion Magic® request can be sent to the Tal
 
       .. code-block:: python
 
-         # create a Motion Magic request, voltage output, slot 0 configs
-         self.request = controls.MotionMagicVoltage(0).with_slot(0)
+         # create a Motion Magic request, voltage output
+         self.request = controls.MotionMagicVoltage(0)
 
          # set target position to 100 rotations
          self.talonfx.set_control(self.request.with_position(100))
@@ -194,10 +194,10 @@ Once the gains are configured, the Dynamic Motion Magic® request can be sent to
 
       .. code-block:: java
 
-         // create a Dynamic Motion Magic request, voltage output, slot 0 configs
+         // create a Dynamic Motion Magic request, voltage output
          // default velocity of 80 rps, acceleration of 400 rot/s^2, and jerk of 4000 rot/s^3
          final DynamicMotionMagicVoltage m_request =
-            new DynamicMotionMagicVoltage(0, 80, 400, 4000).withSlot(0);
+            new DynamicMotionMagicVoltage(0, 80, 400, 4000);
 
          if (m_joy.getAButton()) {
             // while the joystick A button is held, use a slower profile
@@ -219,10 +219,10 @@ Once the gains are configured, the Dynamic Motion Magic® request can be sent to
 
       .. code-block:: cpp
 
-         // create a Dynamic Motion Magic request, voltage output, slot 0 configs
+         // create a Dynamic Motion Magic request, voltage output
          // default velocity of 80 rps, acceleration of 400 rot/s^2, and jerk of 4000 rot/s^3
-         controls::DynamicMotionMagicVoltage m_request =
-            controls::DynamicMotionMagicVoltage{0_tr, 80_tps, 400_tr_per_s_sq, 4000_tr_per_s_cu}.WithSlot(0);
+         controls::DynamicMotionMagicVoltage m_request{
+            0_tr, 80_tps, 400_tr_per_s_sq, 4000_tr_per_s_cu};
 
          if (m_joy.GetAButton()) {
             // while the joystick A button is held, use a slower profile
@@ -244,9 +244,9 @@ Once the gains are configured, the Dynamic Motion Magic® request can be sent to
 
       .. code-block:: python
 
-         # create a Dynamic Motion Magic request, voltage output, slot 0 configs
+         # create a Dynamic Motion Magic request, voltage output
          # default velocity of 80 rps, acceleration of 400 rot/s^2, and jerk of 4000 rot/s^3
-         self.request = controls.DynamicMotionMagicVoltage(0, 80, 400, 4000).with_slot(0)
+         self.request = controls.DynamicMotionMagicVoltage(0, 80, 400, 4000)
 
          if self.joy.getAButton():
             # while the joystick A button is held, use a slower profile
@@ -390,8 +390,8 @@ Once the gains are configured, the Motion Magic® Expo request can be sent to th
 
       .. code-block:: java
 
-         // create a Motion Magic Expo request, voltage output, slot 0 configs
-         final MotionMagicExpoVoltage m_request = new MotionMagicExpoVoltage(0).withSlot(0);
+         // create a Motion Magic Expo request, voltage output
+         final MotionMagicExpoVoltage m_request = new MotionMagicExpoVoltage(0)
 
          // set target position to 100 rotations
          m_talonFX.setControl(m_request.withPosition(100));
@@ -401,8 +401,8 @@ Once the gains are configured, the Motion Magic® Expo request can be sent to th
 
       .. code-block:: cpp
 
-         // create a Motion Magic Expo request, voltage output, slot 0 configs
-         controls::MotionMagicExpoVoltage m_request = controls::MotionMagicExpoVoltage{0_tr}.WithSlot(0);
+         // create a Motion Magic Expo request, voltage output
+         controls::MotionMagicExpoVoltage m_request{0_tr}
 
          // set target position to 100 rotations
          m_talonFX.SetControl(m_request.WithPosition(100_tr));
@@ -412,8 +412,8 @@ Once the gains are configured, the Motion Magic® Expo request can be sent to th
 
       .. code-block:: python
 
-         # create a Motion Magic Expo request, voltage output, slot 0 configs
-         self.request = controls.MotionMagicExpoVoltage(0).with_slot(0)
+         # create a Motion Magic Expo request, voltage output
+         self.request = controls.MotionMagicExpoVoltage(0)
 
          # set target position to 100 rotations
          self.talonfx.set_control(self.request.with_position(100))
