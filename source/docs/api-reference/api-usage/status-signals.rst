@@ -245,25 +245,7 @@ The diagram below demonstrates the benefits of using timesync to synchronously a
 .. image:: images/timesync-diagram.png
    :alt: Diagram of timesync operation
 
-The following signals are time-synchronized:
-
-- TalonFX
-
-  - All Signals
-
-- CANcoder
-
-  - All Signals
-
-- Pigeon 2.0
-
-  - Yaw, Pitch, & Roll
-  - Quaternion
-  - Gravity Vector
-  - Accum Gyro
-  - Angular Rate
-  - Accelerometer
-  - Temperature
+Check the API documentation for information on whether a status signal supports CANivore Timesync.
 
 .. tab-set::
 
