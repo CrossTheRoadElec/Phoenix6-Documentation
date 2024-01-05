@@ -6,7 +6,7 @@ The TalonFX has a variety of open-loop and closed-loop control requests and supp
 Control Output Types
 --------------------
 
-The TalonFX supports three base control output types: DutyCycle, Voltage, and TorqueCurrentFOC.
+The TalonFX currently supports three base control output types: DutyCycle, Voltage, and TorqueCurrentFOC.
 
 DutyCycle
 ^^^^^^^^^
@@ -23,7 +23,7 @@ TorqueCurrentFOC
 
 .. important:: This feature requires the device to be :doc:`Pro licensed </docs/licensing/licensing>`.
 
-A TorqueCurrentFOC control request uses Field Oriented Control to directly control the output current of the motor. Unlike the other control output types, where output roughly controls the velocity of the motor, a TorqueCurrentFOC request controls the **acceleration** of the motor.
+A TorqueCurrentFOC control request uses Field Oriented Control to directly control the output torque current of the motor. Unlike the other control output types, where output roughly controls the velocity of the motor, a TorqueCurrentFOC request **directly controls the acceleration** of the motor.
 
 Field Oriented Control
 ----------------------
