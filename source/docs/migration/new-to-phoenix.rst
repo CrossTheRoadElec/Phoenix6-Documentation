@@ -24,8 +24,8 @@ Improved Device Control
 ^^^^^^^^^^^^^^^^^^^^^^^
 
 - New and improved :doc:`control output types </docs/api-reference/device-specific/talonfx/talonfx-control-intro>` and :doc:`closed-loop </docs/api-reference/device-specific/talonfx/closed-loop-requests>` configuration.
-- Improved :ref:`Motion Magic® <docs/api-reference/device-specific/talonfx/closed-loop-requests:motion magic®>` with jerk control and support for modifying the profile on the fly.
-- New :ref:`Motion Magic® Expo <docs/api-reference/device-specific/talonfx/closed-loop-requests:motion magic® expo>` control to use an exponential profile following system dynamics, reducing both overshoot and time to target.
+- Improved :ref:`Motion Magic® <docs/api-reference/device-specific/talonfx/motion-magic:motion magic®>` with jerk control and support for modifying the profile on the fly.
+- New :ref:`Motion Magic® Expo <docs/api-reference/device-specific/talonfx/motion-magic:motion magic® expo>` control to use an exponential profile following system dynamics, reducing both overshoot and time to target.
 - Kalman-based algorithms to reduce latency while maintaining smooth data.
 
 :doc:`Swerve API </docs/api-reference/api-usage/swerve/swerve-overview>`
