@@ -65,3 +65,16 @@ CANcoder sensor direction can be configured via the :guilabel:`Config` page in P
 .. image:: images/verifying-sensor-direction.png
    :width: 70%
    :alt: Verifying sensor direction toggle in Phoenix Tuner X
+
+Zeroing the CANcoder
+--------------------
+
+The zero offset for the CANcoder absolute position can be configured using the Magnet Offset config.
+
+Additionally, CANcoders can be zeroed in Tuner X by pressing on the button shown below. This sets the Magnet Offset config and reports the applied offset to the user.
+
+.. important:: The Tuner X CANcoder zeroing button requires 2024 diagnostics or newer.
+
+.. image:: images/tunerx-zero-cancoder.png
+   :alt: Picture with an arrow pointing at the zero cancoder icon
+   :width: 50%
