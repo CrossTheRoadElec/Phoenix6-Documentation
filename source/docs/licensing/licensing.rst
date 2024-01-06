@@ -5,7 +5,7 @@ Device Licensing
 
 The following devices are eligible for single-device licensing:
 
-- TalonFX (Falcon 500)
+- TalonFX (Falcon 500, Kraken X60)
 - Pigeon 2
 - CANcoder
 
