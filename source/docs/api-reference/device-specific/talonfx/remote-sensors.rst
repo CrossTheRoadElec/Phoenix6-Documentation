@@ -52,7 +52,7 @@ A supported motor controller will update its position and velocity whenever the 
 ``FusedCANcoder``
 -----------------
 
-.. important:: This feature requires the device to be :doc:`Pro licensed </docs/licensing/licensing>`.
+.. important:: This feature requires the device to be :doc:`Pro licensed </docs/licensing/licensing>`. When unlicensed, the TalonFX will fall back to ``RemoteCANcoder`` and trip the UsingFusedCANcoderWhileUnlicensed fault.
 
 New in Phoenix 6 is a feedback sensor type called ``FusedCANcoder``. ``FusedCANcoder`` will fuse another CANcoder's information with the motor's internal rotor, which provides the best possible position and velocity for accuracy and bandwidth. This is useful in applications such as swerve azimuth.
 
@@ -141,7 +141,7 @@ Usage is the same as any :ref:`status signal <docs/api-reference/api-usage/statu
 ``SyncCANcoder``
 -----------------
 
-.. important:: This feature requires the device to be :doc:`Pro licensed </docs/licensing/licensing>`.
+.. important:: This feature requires the device to be :doc:`Pro licensed </docs/licensing/licensing>`. When unlicensed, the TalonFX will fall back to ``RemoteCANcoder`` and trip the UsingFusedCANcoderWhileUnlicensed fault.
 
 ``SyncCANcoder`` allows users to synchronize the TalonFX's internal rotor sensor against the remote CANcoder, but continue to use the rotor sensor for all closed loop control. TalonFX will continue to monitor the remote CANcoder and report if its internal position differs significantly from the reported position or if the remote CANcoder disappears from the bus.
 
