@@ -443,7 +443,7 @@ The control request object also has an optional feedforward term that can be use
 Motion Magic® Expo
 ------------------
 
-Whereas traditional Motion Magic® uses a trapezoidal profile or an S-Curve, Motion Magic® Expo uses an exponential profile. This allows the profile to best match the system dynamics, reducing both overshoot and time to target compared to a trapezoidal profile.
+Whereas traditional Motion Magic® generates a trapezoidal or S-Curve profile, Motion Magic® Expo generates an exponential profile. This allows the profile to best match the system dynamics, reducing both overshoot and time to target compared to a trapezoidal profile.
 
 .. image:: images/exponential-profile.png
    :alt: Graph that showcases the exponential profile position and velocity setpoints.
