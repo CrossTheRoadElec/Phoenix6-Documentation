@@ -179,7 +179,7 @@ Once the gains are configured, the Motion Magic® request can be sent to the Tal
 Dynamic Motion Magic®
 ^^^^^^^^^^^^^^^^^^^^^
 
-.. important:: This feature requires the device to be :doc:`Pro licensed </docs/licensing/licensing>` and on a :doc:`CANivore </docs/canivore/canivore-intro>`.
+.. important:: This feature requires the device to be :doc:`Pro licensed </docs/licensing/licensing>` and on a :doc:`CANivore </docs/canivore/canivore-intro>`. When unlicensed, the TalonFX will disable control output and trip the UnlicensedFeatureInUse fault.
 
 When using a Pro-licensed Talon FX connected to a CANivore, Dynamic Motion Magic® can be used, allowing for the cruise velocity, acceleration, and jerk to be modified directly in the control request during motion. This can be used to set up different values for acceleration vs deceleration or to speed up and slow down the profile on the fly.
 
