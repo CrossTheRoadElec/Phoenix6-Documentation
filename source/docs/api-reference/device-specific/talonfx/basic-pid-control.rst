@@ -8,7 +8,7 @@ Position Control
 
 A Position closed loop can be used to target a specified motor position (in rotations).
 
-Position closed loop is currently supported for all base :ref:`control output types <docs/api-reference/device-specific/talonfx/talonfx-control-intro:control output types>`. The units of the output is determined by the control output type.
+Position closed loop is currently supported for all base :ref:`control output types <docs/api-reference/device-specific/talonfx/talonfx-control-intro:control output types>`. The units of the output are determined by the control output type.
 
 In a Position closed loop, the gains should be configured as follows:
 
@@ -102,7 +102,7 @@ Velocity Control
 
 A Velocity closed loop can be used to maintain a target velocity (in rotations per second). This can be useful for controlling flywheels, where a velocity needs to be maintained for accurate shooting.
 
-Velocity closed loop is currently supported for all base :ref:`control output types <docs/api-reference/device-specific/talonfx/talonfx-control-intro:control output types>`. The units of the output is determined by the control output type.
+Velocity closed loop is currently supported for all base :ref:`control output types <docs/api-reference/device-specific/talonfx/talonfx-control-intro:control output types>`. The units of the output are determined by the control output type.
 
 In a Velocity closed loop, the gains should be configured as follows:
 
