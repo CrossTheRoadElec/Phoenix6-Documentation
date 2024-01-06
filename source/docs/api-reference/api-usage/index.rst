@@ -1,7 +1,7 @@
-API Usage
-=========
+General API Usage
+=================
 
-This section serves to provide basic API usage for the Phoenix 6 API. For full details, please visit the API docs (`Java <https://api.ctr-electronics.com/phoenix6/release/java/>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/>`__).
+This section serves to provide general API usage for the Phoenix 6 API. For full details, please visit the API docs (`Java <https://api.ctr-electronics.com/phoenix6/release/java/>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/>`__).
 
 .. important:: While Phoenix 6 and Phoenix 5 devices may exist on the same CAN bus and same robot project, each robot project **must** use the API tied to the device firmware version.
    This means Phoenix 5 devices **must** use the Phoenix 5 API, and Phoenix 6 devices **must** use the Phoenix 6 API.
@@ -41,7 +41,7 @@ There are three major components to the Phoenix 6 API:
    - Describes configuring device configs via code.
 
 - :doc:`control-requests`
-   - Highlights using control requests to control the open and closed loop functionality of actuators such as the TalonFX.
+   - Highlights using control requests to control the output of actuators such as the TalonFX.
 
 - :doc:`status-signals`
    - Details using status signals to retrieve sensor data from devices.
@@ -58,9 +58,6 @@ There are three major components to the Phoenix 6 API:
 - :doc:`actuator-limits`
    - Documents how to retrieve and configure software and hardware actuator limits.
 
-- :doc:`swerve/swerve-overview`
-   - Documentation on the swerve API.
-
 - :doc:`orchestra`
    - Information on playing music and sounds using the Orchestra API.
 
@@ -76,5 +73,4 @@ There are three major components to the Phoenix 6 API:
    faults
    enabling-actuators
    actuator-limits
-   swerve/swerve-overview
    orchestra

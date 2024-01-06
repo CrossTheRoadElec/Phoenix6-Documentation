@@ -119,6 +119,7 @@ The Phoenix 6 software framework allows you to control and configure your `CTR E
 
    docs/api-reference/api-usage/index
    docs/api-reference/device-specific/index
+   docs/api-reference/mechanisms/index
    docs/api-reference/simulation/index
    docs/api-reference/wpilib-integration/index
    docs/api-reference/examples/index
