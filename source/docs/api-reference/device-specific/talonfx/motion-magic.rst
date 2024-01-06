@@ -11,7 +11,7 @@ Motion Magic® is a control mode that provides the benefit of Motion Profiling w
 The benefits of this control mode over "simple" PID position closed-looping are:
 
 - Control of the mechanism throughout the entire motion (as opposed to racing to the end target position)
-- Control of the mechanism's inertia to ensure smooth transitions between set points
+- Control of the mechanism's inertia to ensure smooth transitions between setpoints
 - Improved repeatability despite changes in battery load
 - Improved repeatability despite changes in motor load
 
@@ -270,7 +270,7 @@ The Talon FX also supports onboard velocity motion profiling using Motion Magic�
 The benefits of this control mode over "simple" PID velocity closed-looping are:
 
 - Control of the mechanism throughout the entire motion (as opposed to racing to the end target velocity)
-- Control of the mechanism's inertia to ensure smooth transitions between set points
+- Control of the mechanism's inertia to ensure smooth transitions between setpoints
 - Improved repeatability despite changes in battery load
 - Improved repeatability despite changes in motor load
 
@@ -378,7 +378,7 @@ In Motion Magic® Velocity, the gains should be configured as follows:
 
 Once the gains are configured, the Motion Magic® Velocity request can be sent to the TalonFX.
 
-The Mogion Magic® Velocity request has an Acceleration parameter that can be used to override the profile acceleration during motion. If the Acceleration parameter is left 0, the acceleration config will be used instead.
+The Motion Magic® Velocity request has an Acceleration parameter that can be used to override the profile acceleration during motion. If the Acceleration parameter is left 0, the acceleration config will be used instead.
 
 The control request object also has an optional feedforward term that can be used to add an arbitrary value to the output, which can be useful to account for the effects of gravity.
 
