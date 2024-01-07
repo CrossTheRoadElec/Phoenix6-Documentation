@@ -15,12 +15,12 @@ In the below example, note that devices are initialized with two arguments. Thes
       .. code-block:: java
 
          // initialize devices on the rio can bus
-         var m_leftLeader = new TalonFX(0, "rio");
-         var m_rightLeader = new TalonFX(1, "rio");
+         final TalonFX m_leftLeader = new TalonFX(0, "rio");
+         final TalonFX m_rightLeader = new TalonFX(1, "rio");
 
          // users should reuse control requests when possible
-         var leftRequest = new DutyCycleOut(0.0);
-         var rightRequest = new DutyCycleOut(0.0);
+         final DutyCycleOut m_leftRequest = new DutyCycleOut(0.0);
+         final DutyCycleOut m_rightRequest = new DutyCycleOut(0.0);
 
          // retrieve joystick inputs
          var forward = -m_driverJoy.getLeftY();
@@ -32,8 +32,8 @@ In the below example, note that devices are initialized with two arguments. Thes
          var rightOut = forward - turn;
 
          // set request to motor controller
-         m_leftLeader.setControl(leftRequest.withOutput(leftOut));
-         m_rightLeader.setControl(rightRequest.withOutput(rightOut));
+         m_leftLeader.setControl(m_leftRequest.withOutput(leftOut));
+         m_rightLeader.setControl(m_rightRequest.withOutput(rightOut));
 
    .. tab-item:: C++
       :sync: C++
@@ -45,8 +45,8 @@ In the below example, note that devices are initialized with two arguments. Thes
          hardware::TalonFX m_rightLeader{1, "rio"};
 
          // users should reuse control requests when possible
-         controls::DutyCycleOut leftRequest{0.0};
-         controls::DutyCycleOut rightRequest{0.0};
+         controls::DutyCycleOut m_leftRequest{0.0};
+         controls::DutyCycleOut m_rightRequest{0.0};
 
          // retrieve joystick inputs
          auto forward = -m_driverJoy.GetLeftY();
@@ -58,8 +58,8 @@ In the below example, note that devices are initialized with two arguments. Thes
          auto rightOut = forward - turn;
 
          // set request to motor controller
-         m_leftLeader.SetControl(leftRequest.WithOutput(leftOut));
-         m_rightLeader.SetControl(rightRequest.WithOutput(rightOut));
+         m_leftLeader.SetControl(m_leftRequest.WithOutput(leftOut));
+         m_rightLeader.SetControl(m_rightRequest.WithOutput(rightOut));
 
    .. tab-item:: Python
       :sync: python
