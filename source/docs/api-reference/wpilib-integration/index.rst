@@ -9,4 +9,5 @@ Phoenix 6 API used as part of `WPILib robot projects <https://docs.wpilib.org>`_
 
    motorcontroller-integration
    gyro-integration
+   sysid-integration
    unit-testing
