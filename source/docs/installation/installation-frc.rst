@@ -32,11 +32,11 @@ Installing Phoenix 6 (FRC)
 
             Paste the following URL in WPILib VS Code :guilabel:`Install new libraries (online)`:
 
-            - ``https://maven.ctr-electronics.com/release/com/ctre/phoenix6/latest/Phoenix6-frc2024-beta-latest.json``
+            - ``https://maven.ctr-electronics.com/release/com/ctre/phoenix6/latest/Phoenix6-frc2024-latest.json``
 
             Additionally, v5 can safely installed alongside it by installing the v5 vendordep.
 
-            - ``https://maven.ctr-electronics.com/release/com/ctre/phoenix/Phoenix5-frc2024-beta-latest.json``
+            - ``https://maven.ctr-electronics.com/release/com/ctre/phoenix/Phoenix5-frc2024-latest.json``
 
             .. important:: Users utilizing only v5 devices still need the v6 vendordep added to their robot project.
 
