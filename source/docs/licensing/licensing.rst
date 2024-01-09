@@ -44,7 +44,7 @@ Once the activation is complete, the license will be downloaded to the device. I
 Batch Activating Licenses
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Tuner X also supports batch activate licenses from the **Devices** page. The user can either select devices by their checkbox (in the top right corner of their respective card) or by selecting the checkmark icon in the top right.
+Tuner X also supports batch activating licenses from the **Devices** page. The user can either select devices by their checkbox (in the top right corner of their respective card) or by selecting the checkmark icon in the top right.
 
 .. tip:: Selecting a device using their checkbox and clicking the checkmark in the top right will select all devices of the same models
 
