@@ -47,3 +47,16 @@ Installing Phoenix 6 (FRC)
       .. code-block:: bash
 
          py -3 -m pip install phoenix6
+
+   .. tab-item:: LabVIEW
+
+      Download the Phoenix Offline Installer from the `Latest GitHub Release <https://github.com/CrossTheRoadElec/Phoenix-Releases/releases>`__, and install it on the computer (with the LabVIEW component checked). This will put the Phoenix LabVIEW VIs into the "WPI Robotics Library -> Third Party -> CTRE" pallette for LabVIEW development.
+
+      To deploy robot projects with Phoenix, you need to first download the Phoenix Libraries to the roboRIO. This can be done one of two ways:
+
+      1. Phoenix Tuner X under "Settings -> FRC Advanced -> Install LabVIEW"
+      2. LabVIEW under "Tools -> FIRST Robotics Tools -> Download CTRE Phoenix Libs".
+
+      After the libraries are downloaded, hard deploy (run as startup) a LabVIEW program and restart the roboRIO.
+
+      .. note:: Currently only Phoenix 5 is supported in LabVIEW. A Phoenix 6 LabVIEW alpha is in development, teams that are interested in this may contact us directly at support@ctr-electronics.com.
