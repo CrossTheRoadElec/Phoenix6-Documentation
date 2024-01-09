@@ -24,17 +24,18 @@ Improved Device Control
 ^^^^^^^^^^^^^^^^^^^^^^^
 
 - New and improved :doc:`control output types </docs/api-reference/device-specific/talonfx/talonfx-control-intro>` and :doc:`closed-loop </docs/api-reference/device-specific/talonfx/closed-loop-requests>` configuration.
-- Improved :ref:`Motion Magic® <docs/api-reference/device-specific/talonfx/closed-loop-requests:motion magic®>` with jerk control and support for modifying the profile on the fly.
+- Improved :ref:`Motion Magic® <docs/api-reference/device-specific/talonfx/motion-magic:motion magic®>` with jerk control and support for modifying the profile on the fly.
+- New :ref:`Motion Magic® Expo <docs/api-reference/device-specific/talonfx/motion-magic:motion magic® expo>` control to use an exponential profile following system dynamics, reducing both overshoot and time to target.
 - Kalman-based algorithms to reduce latency while maintaining smooth data.
 
-:doc:`Swerve API </docs/api-reference/api-usage/swerve/swerve-overview>`
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+:doc:`Swerve API </docs/api-reference/mechanisms/swerve/swerve-overview>`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - High-performance Swerve API using synchronous, latency-compensated odometry.
 - Eliminate the boilerplate from copying swerve template code.
 - Improved :doc:`odometry performance </docs/application-notes/update-frequency-impact>` with CANivore and Phoenix Pro.
 - Tuner X :doc:`Swerve Project Generator </docs/tuner/tuner-swerve/index>` gets swerve drive up and running quickly.
-- Built-in high-fidelity :doc:`simulation </docs/api-reference/api-usage/swerve/swerve-simulation>` support.
+- Built-in high-fidelity :doc:`simulation </docs/api-reference/mechanisms/swerve/swerve-simulation>` support.
 
 Enhanced Support for `CAN FD <https://store.ctr-electronics.com/can-fd/>`__
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -77,59 +78,82 @@ Time Base Synchronization
 
 - Using :ref:`CANivore Timesync <docs/api-reference/api-usage/status-signals:canivore timesync>`, signals from all devices are sampled and published to the CAN bus at the same time.
 - API can synchronously wait for data from multiple devices on a CANivore to arrive.
+- Device timestamps captured when the signal is sampled provides best possible latency compensation.
 
 Fused CANcoder
 ^^^^^^^^^^^^^^
 
 - :ref:`Fuse a CANcoder <fusedcancoder>` with the motor's internal rotor, getting absolute data all the time while using the fast internal sensor for closed looping.
 
+Real-Time High-Fidelity :doc:`Signal Logger </docs/api-reference/api-usage/signal-logging>`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- Log all status signals from every device with timestamps from CAN
+- Data captured as it arrives at the full update rate of the status signals
+- Improved sensitivity and accuracy of system identification with `WPILib SysID <https://docs.wpilib.org/en/stable/docs/software/pathplanning/system-identification/introduction.html>`__
+- Automatically starts logging during an FRC match
+- Support for :ref:`custom user signals <docs/api-reference/api-usage/signal-logging:writing custom signals>` alongside auto-captured data
+- Efficient ``hoot`` logging format minimizes disk space and CPU usage
+- :doc:`Export to multiple formats </docs/tuner/tools/log-extractor>` including WPILOG and MCAP
+- Free users can export a :ref:`limited set of signals <docs/api-reference/api-usage/signal-logging:free signals>` to WPILOG
+
 Feature Breakdown
 ------------------
 
 A full comparison of features between the free Phoenix 6 API and Phoenix Pro is shown below.
 
-+-------------------------------+-----------------+-----------------------+----------------------+----------------------------+
-| Feature                       | Phoenix 6 (rio) | Phoenix 6 + Pro (rio) | Phoenix 6 (CANivore) | Phoenix 6 + Pro (CANivore) |
-+===============================+=================+=======================+======================+============================+
-| Canonical Units               | .. centered:: x | .. centered:: x       | .. centered:: x      | .. centered:: x            |
-+-------------------------------+-----------------+-----------------------+----------------------+----------------------------+
-| Improved Bus Utilization      | .. centered:: x | .. centered:: x       | .. centered:: x      | .. centered:: x            |
-+-------------------------------+-----------------+-----------------------+----------------------+----------------------------+
-| CANcoder Always Absolutely    | .. centered:: x | .. centered:: x       | .. centered:: x      | .. centered:: x            |
-+-------------------------------+-----------------+-----------------------+----------------------+----------------------------+
-| Kalman-based Velocity         | .. centered:: x | .. centered:: x       | .. centered:: x      | .. centered:: x            |
-+-------------------------------+-----------------+-----------------------+----------------------+----------------------------+
-| Synchronous Wait for Data     | .. centered:: x | .. centered:: x       | .. centered:: x      | .. centered:: x            |
-+-------------------------------+-----------------+-----------------------+----------------------+----------------------------+
-| System Timestamps             | .. centered:: x | .. centered:: x       | .. centered:: x      | .. centered:: x            |
-+-------------------------------+-----------------+-----------------------+----------------------+----------------------------+
-| Explicit Control Requests     | .. centered:: x | .. centered:: x       | .. centered:: x      | .. centered:: x            |
-+-------------------------------+-----------------+-----------------------+----------------------+----------------------------+
-| Continuous Wrap Mode          | .. centered:: x | .. centered:: x       | .. centered:: x      | .. centered:: x            |
-+-------------------------------+-----------------+-----------------------+----------------------+----------------------------+
-| Improved Self-Test Snapshot   | .. centered:: x | .. centered:: x       | .. centered:: x      | .. centered:: x            |
-+-------------------------------+-----------------+-----------------------+----------------------+----------------------------+
-| Tuner X Improved Plotting     | .. centered:: x | .. centered:: x       | .. centered:: x      | .. centered:: x            |
-+-------------------------------+-----------------+-----------------------+----------------------+----------------------------+
-| CANivore Timestamps           |                 |                       | .. centered:: x      | .. centered:: x            |
-+-------------------------------+-----------------+-----------------------+----------------------+----------------------------+
-| CAN FD                        |                 |                       | .. centered:: x      | .. centered:: x            |
-+-------------------------------+-----------------+-----------------------+----------------------+----------------------------+
-| Field Oriented Control (FOC)  |                 | .. centered:: x       |                      | .. centered:: x            |
-+-------------------------------+-----------------+-----------------------+----------------------+----------------------------+
-| Fused CANcoder + TalonFX      |                 | .. centered:: x       |                      | .. centered:: x            |
-+-------------------------------+-----------------+-----------------------+----------------------+----------------------------+
-| Sync CANcoder + Talon FX      |                 | .. centered:: x       |                      | .. centered:: x            |
-+-------------------------------+-----------------+-----------------------+----------------------+----------------------------+
-| Signal Logger MCAP Export     |                 | .. centered:: x       |                      | .. centered:: x            |
-+-------------------------------+-----------------+-----------------------+----------------------+----------------------------+
-| Time-Synced Signal Publishing |                 |                       |                      | .. centered:: x            |
-+-------------------------------+-----------------+-----------------------+----------------------+----------------------------+
-| Dynamic Motion Magic          |                 |                       |                      | .. centered:: x            |
-+-------------------------------+-----------------+-----------------------+----------------------+----------------------------+
-| Differential Control          |                 |                       |                      | .. centered:: x            |
-+-------------------------------+-----------------+-----------------------+----------------------+----------------------------+
-| Java Swerve API               | .. centered:: + | .. centered:: ++      | .. centered:: ++     | .. centered:: +++          |
-+-------------------------------+-----------------+-----------------------+----------------------+----------------------------+
++-------------------------------------+-----------------+-----------------------+----------------------+----------------------------+
+| Feature                             | Phoenix 6 (rio) | Phoenix 6 + Pro (rio) | Phoenix 6 (CANivore) | Phoenix 6 + Pro (CANivore) |
++=====================================+=================+=======================+======================+============================+
+| Canonical Units                     | .. centered:: x | .. centered:: x       | .. centered:: x      | .. centered:: x            |
++-------------------------------------+-----------------+-----------------------+----------------------+----------------------------+
+| Improved Bus Utilization            | .. centered:: x | .. centered:: x       | .. centered:: x      | .. centered:: x            |
++-------------------------------------+-----------------+-----------------------+----------------------+----------------------------+
+| CANcoder Always Absolute            | .. centered:: x | .. centered:: x       | .. centered:: x      | .. centered:: x            |
++-------------------------------------+-----------------+-----------------------+----------------------+----------------------------+
+| Kalman-based Velocity               | .. centered:: x | .. centered:: x       | .. centered:: x      | .. centered:: x            |
++-------------------------------------+-----------------+-----------------------+----------------------+----------------------------+
+| Synchronous Wait for Data           | .. centered:: x | .. centered:: x       | .. centered:: x      | .. centered:: x            |
++-------------------------------------+-----------------+-----------------------+----------------------+----------------------------+
+| System Timestamps                   | .. centered:: x | .. centered:: x       | .. centered:: x      | .. centered:: x            |
++-------------------------------------+-----------------+-----------------------+----------------------+----------------------------+
+| Limited Signal Logger WPILOG Export | .. centered:: x | .. centered:: x       | .. centered:: x      | .. centered:: x            |
++-------------------------------------+-----------------+-----------------------+----------------------+----------------------------+
+| Explicit Control Requests           | .. centered:: x | .. centered:: x       | .. centered:: x      | .. centered:: x            |
++-------------------------------------+-----------------+-----------------------+----------------------+----------------------------+
+| Motion Magic® Velocity              | .. centered:: x | .. centered:: x       | .. centered:: x      | .. centered:: x            |
++-------------------------------------+-----------------+-----------------------+----------------------+----------------------------+
+| Motion Magic® Expo                  | .. centered:: x | .. centered:: x       | .. centered:: x      | .. centered:: x            |
++-------------------------------------+-----------------+-----------------------+----------------------+----------------------------+
+| Continuous Wrap Mode                | .. centered:: x | .. centered:: x       | .. centered:: x      | .. centered:: x            |
++-------------------------------------+-----------------+-----------------------+----------------------+----------------------------+
+| Improved Self-Test Snapshot         | .. centered:: x | .. centered:: x       | .. centered:: x      | .. centered:: x            |
++-------------------------------------+-----------------+-----------------------+----------------------+----------------------------+
+| Tuner X Improved Plotting           | .. centered:: x | .. centered:: x       | .. centered:: x      | .. centered:: x            |
++-------------------------------------+-----------------+-----------------------+----------------------+----------------------------+
+| CANivore Timestamps                 |                 |                       | .. centered:: x      | .. centered:: x            |
++-------------------------------------+-----------------+-----------------------+----------------------+----------------------------+
+| CAN FD                              |                 |                       | .. centered:: x      | .. centered:: x            |
++-------------------------------------+-----------------+-----------------------+----------------------+----------------------------+
+| Field Oriented Control (FOC)        |                 | .. centered:: x       |                      | .. centered:: x            |
++-------------------------------------+-----------------+-----------------------+----------------------+----------------------------+
+| Fused CANcoder + TalonFX            |                 | .. centered:: x       |                      | .. centered:: x            |
++-------------------------------------+-----------------+-----------------------+----------------------+----------------------------+
+| Sync CANcoder + Talon FX            |                 | .. centered:: x       |                      | .. centered:: x            |
++-------------------------------------+-----------------+-----------------------+----------------------+----------------------------+
+| Full Signal Logger Export           |                 | .. centered:: x       |                      | .. centered:: x            |
++-------------------------------------+-----------------+-----------------------+----------------------+----------------------------+
+| Signal Logger MCAP Export           |                 | .. centered:: x       |                      | .. centered:: x            |
++-------------------------------------+-----------------+-----------------------+----------------------+----------------------------+
+| Time-Synced Signal Publishing       |                 |                       |                      | .. centered:: x            |
++-------------------------------------+-----------------+-----------------------+----------------------+----------------------------+
+| Device Timestamps                   |                 |                       |                      | .. centered:: x            |
++-------------------------------------+-----------------+-----------------------+----------------------+----------------------------+
+| Dynamic Motion Magic®               |                 |                       |                      | .. centered:: x            |
++-------------------------------------+-----------------+-----------------------+----------------------+----------------------------+
+| Differential Control                |                 |                       |                      | .. centered:: x            |
++-------------------------------------+-----------------+-----------------------+----------------------+----------------------------+
+| Java Swerve API                     | .. centered:: + | .. centered:: ++      | .. centered:: ++     | .. centered:: +++          |
++-------------------------------------+-----------------+-----------------------+----------------------+----------------------------+
 
 .. note:: :sup:`+` The Java Swerve API is freely available, however performance improves when used on a CANivore bus and further improves when used with Pro devices.

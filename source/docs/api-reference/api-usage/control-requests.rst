@@ -8,7 +8,7 @@ Control Requests represent the **output** of a device. A list of control request
 Applying a Control Request
 --------------------------
 
-Control requests can be applied by calling ``setControl()`` on the device object. ``setControl()`` returns a ``StatusCode`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/StatusCode.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/_status_codes_8h.html>`__) enum that represents success state. A successful request will return ``StatusCode.OK``.
+Control requests can be applied by calling ``setControl()`` on the device object. ``setControl()`` returns a ``StatusCode`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/StatusCode.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/_status_codes_8h.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/index.html#phoenix6.StatusCode>`__) enum that represents success state. A successful request will return ``StatusCode.OK``.
 
 .. tab-set::
 
@@ -28,10 +28,18 @@ Control requests can be applied by calling ``setControl()`` on the device object
          // Command m_motor to 100% of duty cycle
          m_motor.SetControl(controls::DutyCycleOut{1.0});
 
+   .. tab-item:: Python
+      :sync: python
+
+      .. code-block:: python
+
+         # Command m_motor to 100% of duty cycle
+         self.motor.set_control(controls.DutyCycleOut(1.0))
+
 Modifying a Control Request
 ---------------------------
 
-Control requests are mutable, so they can be saved in a member variable and reused. For example, ``DutyCycleOut`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/controls/DutyCycleOut.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1controls_1_1_duty_cycle_out.html>`__) has an ``Output`` member variable that can be manipulated, thus changing the output DutyCycle (proportion of supply voltage).
+Control requests are mutable, so they can be saved in a member variable and reused. For example, ``DutyCycleOut`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/controls/DutyCycleOut.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1controls_1_1_duty_cycle_out.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/index.html#phoenix6.DutyCycleOut>`__) has an ``Output`` member variable that can be manipulated, thus changing the output DutyCycle (proportion of supply voltage).
 
 .. note:: Java users should reuse control requests to prevent excessive invocation of the Garbage Collector.
 
@@ -42,20 +50,30 @@ Control requests are mutable, so they can be saved in a member variable and reus
 
       .. code-block:: java
 
-         var motorRequest = new DutyCycleOut(0.0);
+         final DutyCycleOut m_motorRequest = new DutyCycleOut(0.0);
 
-         motorRequest.Output = 1.0;
-         m_motor.setControl(motorRequest);
+         m_motorRequest.Output = 1.0;
+         m_motor.setControl(m_motorRequest);
 
    .. tab-item:: C++
       :sync: C++
 
       .. code-block:: cpp
 
-         controls::DutyCycleOut motorRequest{0.0};
+         controls::DutyCycleOut m_motorRequest{0.0};
 
-         motorRequest.Output = 1.0;
-         m_motor.SetControl(motorRequest);
+         m_motorRequest.Output = 1.0;
+         m_motor.SetControl(m_motorRequest);
+
+   .. tab-item:: Python
+      :sync: python
+
+      .. code-block:: python
+
+         self.motor_request = controls.DutyCycleOut(0.0)
+
+         self.motor_request.output = 1.0
+         self.motor.set_control(self.motor_request)
 
 Method Chaining API
 ^^^^^^^^^^^^^^^^^^^
@@ -70,10 +88,10 @@ Control requests also supports modification using method chaining. This can be u
       .. code-block:: java
 
          // initialize torque current FOC request with 0 amps
-         var motorRequest = new TorqueCurrentFOC(0);
+         final TorqueCurrentFOC m_motorRequest = new TorqueCurrentFOC(0);
 
          // mutate request with output of 10 amps and max duty cycle 0.5
-         m_motor.SetControl(motorRequest.withOutputAmps(10).withMaxDutyCycle(0.5));
+         m_motor.SetControl(m_motorRequest.withOutputAmps(10).withMaxAbsDutyCycle(0.5));
 
    .. tab-item:: C++
       :sync: C++
@@ -81,10 +99,21 @@ Control requests also supports modification using method chaining. This can be u
       .. code-block:: cpp
 
          // initialize torque current FOC request with 0 amps
-         controls::TorqueCurrentFOC motorRequest{0_A};
+         controls::TorqueCurrentFOC m_motorRequest{0_A};
 
          // mutate request with output of 10 amps and max duty cycle 0.5
-         m_motor.SetControl(motorRequest.WithOutputAmps(10_A).WithMaxDutyCycle(0.5));
+         m_motor.SetControl(m_motorRequest.WithOutputAmps(10_A).WithMaxAbsDutyCycle(0.5));
+
+   .. tab-item:: Python
+      :sync: python
+
+      .. code-block:: python
+
+         # initialize torque current FOC request with 0 amps
+         self.motor_request = controls.TorqueCurrentFOC(0)
+
+         # mutate request with output of 10 amps and max duty cycle 0.5
+         self.motor.set_control(self.motor_request.with_output_amps(10).with_max_abs_duty_cycle(0.5))
 
 Changing Update Frequency
 -------------------------
@@ -99,9 +128,9 @@ Control requests are automatically transmitted at a fixed update frequency. This
       .. code-block:: java
 
          // create a duty cycle request
-         var motorRequest = new DutyCycleOut(0);
+         final DutyCycleOut m_motorRequest = new DutyCycleOut(0);
          // reduce the update frequency to 50 Hz
-         motorRequest.UpdateFreqHz = 50;
+         m_motorRequest.UpdateFreqHz = 50;
 
    .. tab-item:: C++
       :sync: C++
@@ -109,8 +138,18 @@ Control requests are automatically transmitted at a fixed update frequency. This
       .. code-block:: cpp
 
          // create a duty cycle request
-         controls::DutyCycleOut motorRequest{0};
+         controls::DutyCycleOut m_motorRequest{0};
          // reduce the update frequency to 50 Hz
-         motorRequest.UpdateFreqHz = 50;
+         m_motorRequest.UpdateFreqHz = 50;
+
+   .. tab-item:: Python
+      :sync: python
+
+      .. code-block:: python
+
+         # create a duty cycle request
+         self.motor_request = controls.DutyCycleOut(0)
+         # reduce the update frequency to 50 Hz
+         self.motor_request.update_freq_hz = 50
 
 .. tip:: ``UpdateFreqHz`` can be set to 0 Hz to synchronously one-shot the control request. In this case, users must ensure the control request is sent periodically in their robot code. Therefore, we recommend users call ``setControl`` no slower than 20 Hz (50 ms) when the control is one-shot.

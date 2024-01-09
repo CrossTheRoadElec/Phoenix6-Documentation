@@ -19,19 +19,31 @@ The Phoenix 6 software framework allows you to control and configure your `CTR E
       :link: docs/yearly-changes/yearly-changelog
       :link-type: doc
 
-      What's new in Phoenix 6 for 2024. A full changelog with bug fixes is available `here <https://api.ctr-electronics.com/changelog>`__.
+      What's new in Phoenix 6 for 2024.
 
    .. grid-item-card:: Migration Guide
       :link: docs/migration/migration-guide/index
       :link-type: doc
 
-      A Phoenix 5 migration guide is available :doc:`here </docs/migration/migration-guide/index>`.
+      A Phoenix 5 migration guide is available here.
+
+   .. grid-item-card:: Changelog
+      :link: https://api.ctr-electronics.com/changelog
+      :link-type: url
+
+      A full changelog with bug fixes is available here.
+
+   .. grid-item-card:: Known Issues
+      :link: https://api.ctr-electronics.com/known_issues
+      :link-type: url
+
+      A list of current known issues is available here.
 
 .. grid:: 1 2 3 3
    :gutter: 3
 
    .. grid-item-card:: :octicon:`paintbrush` Installation
-      :link: docs/installation/installation
+      :link: docs/installation/index
       :link-type: doc
 
       Installation instructions for Phoenix API & Tuner.
@@ -71,9 +83,8 @@ The Phoenix 6 software framework allows you to control and configure your `CTR E
    :caption: Getting Started
    :hidden:
 
+   docs/installation/requirements
    docs/installation/installation
-   docs/installation/running-diagnostics
-   docs/installation/configuring-your-device
    docs/yearly-changes/yearly-changelog
 
 .. toctree::
@@ -110,6 +121,7 @@ The Phoenix 6 software framework allows you to control and configure your `CTR E
 
    docs/api-reference/api-usage/index
    docs/api-reference/device-specific/index
+   docs/api-reference/mechanisms/index
    docs/api-reference/simulation/index
    docs/api-reference/wpilib-integration/index
    docs/api-reference/examples/index

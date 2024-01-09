@@ -3,13 +3,11 @@ New for 2024
 
 The CTR Electronics development team has been hard at work expanding the Phoenix 6 API based on user feedback. We are proud to announce several exciting new features with this release!
 
-Firmware for the beta version of 2024 Phoenix 6 can be found by selecting "2024" instead of "2023" in the firmware selection menu.
+Firmware for the 2024 release of Phoenix 6 can be found by selecting "2024" in the firmware selection menu.
 
-The API vendordep for the 2024 beta is available under ``https://maven.ctr-electronics.com/release/com/ctre/phoenix6/latest/Phoenix6-frc2024-beta-latest.json``.
+The API vendordep for 2024 is available under ``https://maven.ctr-electronics.com/release/com/ctre/phoenix6/latest/Phoenix6-frc2024-latest.json``.
 
 Users will need to update both firmware and API to make use of these features.
-
-.. important:: The 2024 Beta of Phoenix 6 requires 2024 Beta FRC Software.  Find more information about the beta `here <https://github.com/wpilibsuite/2024Beta>`__.
 
 .. note:: This changelog is intended to highlight the major additions to the Phoenix 6 API. For a detailed list of changes and bug fixes, visit the `Phoenix changelog <https://api.ctr-electronics.com/changelog>`__.
 
@@ -25,6 +23,11 @@ A variety of new (Pro and non-Pro) features have been added and are described in
 API
 ---
 
+New Vendordep Procedures
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Installing Phoenix 6 and Phoenix 5 has changed to make installation easier for teams using both Phoenix 5 and Phoenix 6 devices. See :ref:`docs/installation/installation-frc:installing phoenix 6 (frc)` for more details.
+
 New Language Support
 ^^^^^^^^^^^^^^^^^^^^
 
@@ -37,8 +40,8 @@ Phoenix 6 now supports the following languages.
 
 Feedback for the new language targets is welcome at `feedback@ctr-electronics.com <mailto:feedback@ctr-electronics.com>`__.
 
-:doc:`Swerve API </docs/api-reference/api-usage/swerve/swerve-overview>`
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+:doc:`Swerve API </docs/api-reference/mechanisms/swerve/swerve-overview>`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Now included in the Phoenix 6 API is a high performance Swerve API (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/mechanisms/swerve/package-summary.html>`__). Teams using Phoenix 6 compatible devices for their swerve drivetrain can utilize the API to maximize performance and **eliminate** the boilerplate that comes with copying swerve template code. Empower your odometry and maximize your robot responsiveness with our synchronous, latency-compensated API with simulation support!
 
@@ -87,7 +90,7 @@ Swerve drive code is as easy as the following.
 Signal Logging
 ^^^^^^^^^^^^^^
 
-We've added a comprehensive signal logger (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/SignalLogger.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1_signal_logger.html>`__, Python, `C# <https://api.ctr-electronics.com/phoenix6/release/csharp/html/T_CTRE_Phoenix6_SignalLogger.htm>`__) that provides a real-time capture of signals for supported devices. Signal logging can be useful for analysis of signals over a period of time. In applications, they can be useful for tuning PID gains, characterization of systems, analyzing latency on a system and much more. Did something unexpected happen in a match? Go back and check your logs to inspect positions, velocities, voltages, currents, temperatures, etc. Logging is automatic, and does not require choosing which signals you need captured ahead of time.
+We've added a comprehensive signal logger (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/SignalLogger.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1_signal_logger.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/signal_logger/index.html>`__, `C# <https://api.ctr-electronics.com/phoenix6/release/csharp/html/T_CTRE_Phoenix6_SignalLogger.htm>`__) that provides a real-time capture of signals for supported devices. Signal logging can be useful for analysis of signals over a period of time. In applications, they can be useful for tuning PID gains, characterization of systems, analyzing latency on a system and much more. Did something unexpected happen in a match? Go back and check your logs to inspect positions, velocities, voltages, currents, temperatures, etc. Logging is automatic, and does not require choosing which signals you need captured ahead of time.
 
 .. important:: MCAP Export requires Pro Licensing
 
@@ -135,6 +138,8 @@ New Motion Magic® Controls
 
 We have added a Motion Magic® Velocity control mode, which produces a motion profile in real-time for a velocity controller. This allows for smooth transitions between velocity setpoints. Additionally, we have added a Dynamic Motion Magic® control mode for our Pro CANivore users, which supports modifying the cruise velocity, acceleration, and jerk settings during motion.
 
+Furthermore, we have added Motion Magic® Expo control requests. Whereas traditional Motion Magic® uses a trapezoidal profile or an S-Curve, Motion Magic® Expo uses an exponential profile. The profile follows the kV and kA characteristics of the system, and optionally a cruise velocity. This allows the profile to best match the system dynamics, reducing both overshoot and time to target.
+
 For a full list of new Motion Magic® controls, see the controls API documentation (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/controls/package-summary.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/namespacectre_1_1phoenix6_1_1controls.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/controls/index.html>`__, `C# <https://api.ctr-electronics.com/phoenix6/release/csharp/html/N_CTRE_Phoenix6_Controls.htm>`__).
 
 Differential Mechanisms
@@ -167,7 +172,7 @@ Additionally, there is now improved integration with roboRIO motion profiling us
    TrapezoidProfile.State m_setpoint = new TrapezoidProfile.State();
 
    // robot loop
-   m_setpoint = m_profile.calculate(0.020, m_goal, m_setpoint);
+   m_setpoint = m_profile.calculate(0.020, m_setpoint, m_goal);
    m_positionControl.Position = m_setpoint.position;
    m_positionControl.Velocity = m_setpoint.velocity;
    m_talonFX.setControl(m_positionControl);
@@ -224,3 +229,12 @@ All signals exposed in API can now be plotted directly in Tuner X.
 
 .. image:: images/tuner-signal-plotting.png
    :alt: Full signal plotting
+
+Batch Licensing
+^^^^^^^^^^^^^^^
+
+Tuner X now supports licensing multiple devices at once using :ref:`batch licensing <docs/licensing/licensing:batch activating licenses>`, streamlining the process of applying a Season Pass to your devices.
+
+.. image:: images/tunerx-batch-license.png
+   :alt: Batch licensing devices
+   :width: 60%

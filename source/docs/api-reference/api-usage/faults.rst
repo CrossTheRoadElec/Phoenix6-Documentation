@@ -40,4 +40,47 @@ Faults can also be retrieved in API using the ``getFault_*()`` (regular) or ``ge
             // do action when bad magnet fault is set
          }
 
+   .. tab-item:: Python
+      :sync: python
+
+      .. code-block:: python
+
+         faulted = self.cancoder.get_fault_bad_magnet().value
+
+         if faulted:
+            # do action when bad magnet fault is set
+
 A list of possible faults can be found in the API documentation for each device.
+
+Using API to Clear Sticky Faults
+--------------------------------
+
+Sticky faults can be cleared in API using the ``clearStickyFaults()`` method on the device objects. Additionally, individual sticky faults may be cleared using the ``clearStickyFault_*()`` APIs.
+
+.. note:: Clearing sticky faults is a blocking operation and should not be run in a periodic loop.
+
+.. tab-set::
+
+   .. tab-item:: Java
+      :sync: java
+
+      .. code-block:: java
+
+         // clear the undervoltage sticky fault
+         m_cancoder.clearStickyFault_Undervoltage();
+
+   .. tab-item:: C++
+      :sync: C++
+
+      .. code-block:: cpp
+
+         // clear the undervoltage sticky fault
+         m_cancoder.ClearStickyFault_Undervoltage();
+
+   .. tab-item:: Python
+      :sync: python
+
+      .. code-block:: python
+
+         # clear the undervoltage sticky fault
+         self.cancoder.clear_sticky_fault_undervoltage()
