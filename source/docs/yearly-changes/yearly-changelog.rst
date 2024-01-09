@@ -231,3 +231,11 @@ All signals exposed in API can now be plotted directly in Tuner X.
 
 .. image:: images/tuner-signal-plotting.png
    :alt: Full signal plotting
+
+Batch Licensing
+^^^^^^^^^^^^^^^
+
+Tuner X now supports licensing multiple devices at once using :ref:`batch licensing <docs/licensing/licensing:batch activating licenses>`, streamlining the process of applying a Season Pass to your devices.
+
+.. image:: images/tunerx-batch-license.png
+   :alt: Batch licensing devices
