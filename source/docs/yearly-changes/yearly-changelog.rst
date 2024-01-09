@@ -239,3 +239,4 @@ Tuner X now supports licensing multiple devices at once using :ref:`batch licens
 
 .. image:: images/tunerx-batch-license.png
    :alt: Batch licensing devices
+   :width: 60%
