@@ -64,7 +64,7 @@ Phoenix Tuner X allows the user to batch field upgrade from the **Devices** page
    :width: 70%
    :alt: Showing batch selection option in the top right
 
-Step 1 in the above image selects all devices of the same model (or all devices if no device is currently check-boxed).
+Step 1 in the above image selects all devices of the same models selected (or all devices if no device is currently check-boxed).
 
 Step 2 in the above image opens the field-upgrade dialog.
 
