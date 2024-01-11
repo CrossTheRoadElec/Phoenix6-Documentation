@@ -6,7 +6,7 @@ CTR Electronics goes through great efforts to make our products efficient on CAN
 .. note:: Using Phoenix API will automatically start up a diagnostic server which adds a constant 0-5% total CAN bus utilization.
 
 .. list-table::
-   :widths: 25 25 25 25 25
+   :widths: 18 20 20 20 22
    :header-rows: 1
 
    * - Device
