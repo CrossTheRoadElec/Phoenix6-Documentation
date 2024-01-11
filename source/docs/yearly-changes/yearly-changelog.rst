@@ -87,8 +87,8 @@ Swerve drive code is as easy as the following.
 
 .. important:: Swerve API requires all necessary swerve devices to be v6 devices. e.g. 4 drive TalonFX, 4 steer TalonFX, 1 Pigeon 2.0, 4 CANcoders.
 
-Signal Logging
-^^^^^^^^^^^^^^
+:doc:`Signal Logging </docs/api-reference/api-usage/signal-logging>`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 We've added a comprehensive signal logger (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/SignalLogger.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1_signal_logger.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/signal_logger/index.html>`__, `C# <https://api.ctr-electronics.com/phoenix6/release/csharp/html/T_CTRE_Phoenix6_SignalLogger.htm>`__) that provides a real-time capture of signals for supported devices. Signal logging can be useful for analysis of signals over a period of time. In applications, they can be useful for tuning PID gains, characterization of systems, analyzing latency on a system and much more. Did something unexpected happen in a match? Go back and check your logs to inspect positions, velocities, voltages, currents, temperatures, etc. Logging is automatic, and does not require choosing which signals you need captured ahead of time.
 
@@ -133,8 +133,8 @@ Additionally, the following new functions have been added.
 
   * Retrieves the actual update frequency of a given signal
 
-New Motion Magic® Controls
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+New :doc:`Motion Magic® Controls </docs/api-reference/device-specific/talonfx/motion-magic>`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 We have added a Motion Magic® Velocity control mode, which produces a motion profile in real-time for a velocity controller. This allows for smooth transitions between velocity setpoints. Additionally, we have added a Dynamic Motion Magic® control mode for our Pro CANivore users, which supports modifying the cruise velocity, acceleration, and jerk settings during motion.
 

@@ -51,6 +51,11 @@ Integral Zone and Max Integral Accumulator
 
 Phoenix 6 automatically prevents integral windup in closed-loop controls. As a result, the Integral Zone and Max Integral Accumulator configs are no longer necessary and have been removed.
 
+CANcoder Sensor Coefficient and Units
+-------------------------------------
+
+In Phoenix 6, CANcoder does not support setting a custom sensor coefficient, unit string, and sensor time base. Instead, the CANcoder uses canonical units of rotations and rotations per second using the `C++ units library <https://docs.wpilib.org/en/stable/docs/software/basic-programming/cpp-units.html>`__.
+
 Features to Be Implemented
 --------------------------
 
