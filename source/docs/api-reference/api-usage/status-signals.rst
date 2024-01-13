@@ -64,7 +64,7 @@ The value of the signal can be retrieved from the ``StatusSignal`` by calling ``
 
 .. note:: Phoenix 6 utilizes the `C++ units library <https://docs.wpilib.org/en/stable/docs/software/basic-programming/cpp-units.html>`__ when applicable.
 
-The ``StatusCode`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/StatusCode.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/_status_codes_8h.html#a1edbab973bc8d4d5097a6bcc17c88c19>`__, `StatusCode <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/index.html#phoenix6.StatusCode>`__) of the signal can be retrieved by calling ``getStatus()``. This can be used to determine if the device is not present on the CAN bus.
+The ``StatusCode`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/StatusCode.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/_status_codes_8h.html#a1edbab973bc8d4d5097a6bcc17c88c19>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/index.html#phoenix6.StatusCode>`__) of the signal can be retrieved by calling ``getStatus()``. This can be used to determine if the device is not present on the CAN bus.
 
 .. note:: If a status signal is not available on the CAN bus, an error will be reported to the Driver Station.
 
