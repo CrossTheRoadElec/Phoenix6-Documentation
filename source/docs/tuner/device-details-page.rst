@@ -55,7 +55,7 @@ Tuner X has improved firmware upgrading functionality by **automatically downloa
 
 Users can switch between firmware release years by selecting from the dropdown above the firmware selection.
 
-.. note:: The toggle between firmware years only affects online field-upgrades.
+.. note:: The toggle between firmware years only affects the firmware versions downloaded by Tuner X. Files selected using the "Browse" button are not affected.
 
 .. image:: images/swapping-pro-phoenix5.png
    :width: 70%
