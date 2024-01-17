@@ -5,7 +5,7 @@ For the purpose of this documentation, we focus on integration of Phoenix and WP
 
 To get started, users must construct a ``SysIdRoutine`` that defines a ``Config`` and ``Mechanism``. The ``Config`` constructor allows the users to define the logging state callback, ramp rate, and other options when running the tests.
 
-The ``Mechanism`` constructor takes a lambda that has ``Voltage`` as a parameter. The code below passes that lambda as a double argument to a ``VoltageOut`` request. The second argument to the constructor is a logging callback. Since the Phoenix ``SignalLogger`` has much higher accuracy than user-mode logging, we pass ``null``. The last parameter is just an instance of the ``Subsystem`` we are currently in.
+The ``Mechanism`` constructor takes a lambda that has ``Voltage`` as a parameter. This lambda is ran when the characterization is performed and what actually causes the mechanism to move. We utilize the parameter provided in the lambda, and pass that as double voltage to a ``VoltageOut`` request. The second argument to the constructor is a logging callback. Since the Phoenix ``SignalLogger`` has much higher accuracy than user-mode logging, we pass ``null``. The last parameter is just an instance of the ``Subsystem`` we are currently in.
 
 .. tab-set::
 
