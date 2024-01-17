@@ -11,7 +11,7 @@ This identification usually consists of:
 
 2. Data collection
 
-   * ``Voltage``, ``Current``, and ``MotorOutput`` samples are collected while the tests are running.
+   * ``Position``, ``Velocity``, and ``MotorOutput`` samples are collected while the tests are running.
 
 3. Data analysis
 
