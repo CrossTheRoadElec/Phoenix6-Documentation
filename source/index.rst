@@ -5,7 +5,7 @@ Welcome to the Phoenix 6 documentation. Individuals looking for `Phoenix 5` docu
 
 The Phoenix 6 software framework allows you to control and configure your `CTR Electronics <https://store.ctr-electronics.com/>`__ Phoenix 6 Devices. Phoenix 6 represents a complete rewrite of the software framework over the existing Phoenix 5 framework. With Phoenix 6, users have access to many new features that expand the control the user has over their devices.
 
-.. important:: User's looking for documentation on the Phoenix 6 API can find that on the `latest version of this site <https://pro.docs.ctr-electronics.com/en/latest/>`__.
+.. important:: Users looking for the latest documentation on the Phoenix 6 API can find it on the `latest version of this site <https://v6.docs.ctr-electronics.com/en/latest/>`__.
 
 .. card:: CTR Electronics Blog
    :link: https://store.ctr-electronics.com/blog/
