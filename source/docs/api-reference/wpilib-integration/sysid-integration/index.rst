@@ -1,12 +1,12 @@
-SysID Integration
+SysId Integration
 =================
 
-System Identification, or commonly referred to as SysID, is the process of identifying the characteristics of a given `system <https://en.wikipedia.org/wiki/System>`__.
+System Identification, or commonly referred to as SysId, is the process of identifying the characteristics of a given `system <https://en.wikipedia.org/wiki/System>`__.
 
 This identification usually consists of:
 
 1. Mechanism testing
-  
+
    * In FRC, two tests are performed: Quasistatic and Dynamic.
 
 2. Data collection
@@ -16,6 +16,8 @@ This identification usually consists of:
 3. Data analysis
 
    * Collected data is analyzed to calculate constants such as :ref:`PID <docs/api-reference/device-specific/talonfx/closed-loop-requests:gain slots>` gains, slip current (maximum stator current), maximum robot velocity, etc.
+
+.. note:: This documentation assumes that the user is utilizing a `command-based robot program <https://docs.wpilib.org/en/stable/docs/software/commandbased/index.html>`__.
 
 Advantages of Hoot Logger vs DataLogging
 ----------------------------------------
@@ -38,11 +40,14 @@ When users utilize the :doc:`signal logging API </docs/api-reference/api-usage/s
 
 * Signal logging is unaffected by language issues such as garbage collection.
 
-Motor Characterization Example
-------------------------------
+This section guides the user through characterizing a motor, converting to a WPILib ``WPILog`` for data analysis and integrating gains for control. This section can also be used as a characterizing other mechanisms such as a :doc:`Swerve </docs/tuner/tuner-swerve/index>` azimuth or drive motors.
 
-This example guides the user through characterizing a motor, converting to a WPILib ``WPILog`` for data analysis and integrating gains for control. This article can also be used for characterizing other mechanisms such as a :doc:`Swerve </docs/tuner/tuner-swerve/index>` azimuth or drive motors.
+Characterization begins with a functionining robot program. Users should have basic code for the mechanism already put together, alongside ``SensorToMechanismRatio`` and ``RotorToSensorRatio`` :ref:`configs <docs/api-reference/api-usage/configuration:applying configs>` applied. Any changes to the ratios or the way the data is presented may require the user to recharacterize their mechanism.
 
-Plumbing SysID
-^^^^^^^^^^^^^^
+Get started:
 
+.. toctree::
+   :maxdepth: 1
+
+   plumbing-and-running-sysid
+   analyzing-results

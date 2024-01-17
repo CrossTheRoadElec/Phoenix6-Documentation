@@ -6,8 +6,9 @@ Phoenix 6 API used as part of `WPILib robot projects <https://docs.wpilib.org>`_
 .. note:: While the Python API does support simulation, it currently does not hook into WPILib's simulation GUI at this time.
 
 .. toctree::
+   :maxdepth: 3
 
    motorcontroller-integration
    gyro-integration
-   sysid-integration
+   sysid-integration/index
    unit-testing
