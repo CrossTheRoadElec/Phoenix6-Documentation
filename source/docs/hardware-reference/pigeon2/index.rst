@@ -41,12 +41,11 @@ Status Light Reference
             border: 1px solid black;
             border-radius: 10px;
             margin: 5px;
-            background-color: black
+            background-color: darkgray;
         }
         .ledGroup {
             display: inline-block;
             height: 20px;
-            width: 80px;
         }
         table.center, table.center th, table.center td {
             border: 1px solid white;
@@ -169,7 +168,7 @@ Status Light Reference
                     if (turningOn) {
                         c.style.background = c.getAttribute('oncolor');
                     } else {
-                        c.style.background = 'black';
+                        c.style.background = 'darkgray';
                     }
                 }
             };
