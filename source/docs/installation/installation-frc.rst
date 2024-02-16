@@ -42,7 +42,7 @@ Installing Phoenix 6 (FRC)
 
    .. tab-item:: Python
 
-      First, make sure to `install RobotPy <https://robotpy.readthedocs.io/en/stable/install/index.html>`__. From there, installation of Phoenix 6 is available through `PyPI <https://pypi.org/project/phoenix6/>`__.
+      First, make sure to `install RobotPy <https://docs.wpilib.org/en/stable/docs/zero-to-robot/step-2/python-setup.html>`__. From there, installation of Phoenix 6 is available through `PyPI <https://pypi.org/project/phoenix6/>`__.
 
       .. code-block:: bash
 
