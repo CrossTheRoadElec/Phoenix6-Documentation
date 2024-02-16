@@ -1,7 +1,7 @@
 Swerve Builder API
 ==================
 
-To simplify the API surface, both `builder and factory <https://stackoverflow.com/questions/757743/what-is-the-difference-between-builder-design-pattern-and-factory-design-pattern>`__ paradigms are used. Users create a ``SwerveDrivetrain`` by first defining the global drivetrain characteristics and then each module characteristics.
+To simplify the API surface, both `builder <https://en.wikipedia.org/wiki/Builder_pattern>`__ and `factory <https://en.wikipedia.org/wiki/Factory_method_pattern>`__ paradigms are used. Users create a ``SwerveDrivetrain`` by first defining the global drivetrain characteristics and then each module characteristics.
 
 Defining Drivetrain Characteristics
 -----------------------------------
