@@ -163,9 +163,14 @@ Status Light Reference
             };
             ledGrpElems[i].setAttribute('blink', 'false');
             ledGrpElems[i].onclick = function(){
-                this.setAttribute('blink', !(this.getAttribute('blink') ==='true'));
+                var turningOn = !(this.getAttribute('blink') === 'true');
+                this.setAttribute('blink', turningOn);
                 for (var c of this.children) {
-                    c.style.background = 'black';
+                    if (turningOn) {
+                        c.style.background = c.getAttribute('oncolor');
+                    } else {
+                        c.style.background = 'black';
+                    }
                 }
             };
         }
