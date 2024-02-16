@@ -15,7 +15,7 @@ Attaching a Team Number to Season Pass
 
 .. warning:: Attaching a team number to a season pass is permanent.
 
-1. Click on the license to attach a team for.
+1. On the "Profile" page of Tuner X, click on the license to attach a team for.
 
 .. image:: images/redeeming-season-pass.png
 
