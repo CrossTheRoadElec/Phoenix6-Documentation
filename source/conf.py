@@ -208,7 +208,9 @@ linkcheck_retries = 3
 linkcheck_workers = 1
 
 # Specify a standard user agent, as Sphinx default is blocked on some sites
-user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:123.0) Gecko/20100101 Firefox/123.0"
+user_agent = (
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:123.0) Gecko/20100101 Firefox/123.0"
+)
 
 # Autosection labels prefix document path and filename
 # Helps handle label collisions throughout the documentation
@@ -216,6 +218,7 @@ autosectionlabel_prefix_document = True
 
 # Linkcheck exclusions
 linkcheck_ignore = [
+    r".*chiefdelphi.com.*",
     r".*canable.io.*",
     r".*vexrobotics.com.*",
 ]

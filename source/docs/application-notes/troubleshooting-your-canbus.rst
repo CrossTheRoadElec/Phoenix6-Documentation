@@ -50,7 +50,7 @@ Before diving too deep into if it's a CAN problem, it's important to ask the fol
 Diagnosing the Problem
 ----------------------
 
-Once you identified that it's an issue with your wiring, the next step is identifying where the problem is occuring. Is it (not a checklist, but these are often causes)?
+Once you identified that it's an issue with your wiring, the next step is identifying where the problem is occurring. Is it (not a checklist, but these are often causes)?
 
 - A bad crimp in a connector?
 - Bad strip so copper wire is not touching the inside of the connector?
@@ -61,7 +61,7 @@ The above list isn't all encompassing, but a good list to keep in mind when diag
 
 Diagnosing a CANivore bus can be a little tricky (TODO link to canivore step). For the roboRIO, you should be able to see where the CAN fails visually in the LEDs of the devices.
 
-Follow the chain from the roboRIO, continuing until you encounter a device with bad CAN leds, then inspect wiring between the last good device and the first bad device).
+Follow the chain from the roboRIO, continuing until you encounter a device with bad CAN leds, then inspect wiring between the last good device and the first bad device.
 
 Random Tangent
 ^^^^^^^^^^^^^^
@@ -86,7 +86,7 @@ I'll be going with the continuity check approach (at the same time, you can have
 
 Using your multimeter, switch the dial to the continuity option (kinda looks like a WiFi icon).
 
-.. image:: images/troubleshooting-your-canbus/multimeter-continuity.png
+.. image:: images/troubleshooting-your-canbus/multimeter-continuity.jp
    :width: 550px
    :alt: Multimeter with continuity option selected
 
@@ -94,7 +94,7 @@ If you touch the red and black probes together, the multimeter should make an au
 
 Disconnect the green and yellow CAN wires from the CANivore. Place one of the probes on the green wire. Then, at the first primary area of interest (in a swerve drive, I typically choose the first connection into one of the modules), disconnect the wires there. Place the other probe at the green wire that you just disconnected (the one leading back to the CANivore, not the rest of the chain).
 
-.. image:: images/troubleshooting-your-canbus/probing-continuity.png
+.. image:: images/troubleshooting-your-canbus/probing-continuity.jpg
    :width: 550px
    :alt: Probing the green wires on candersons and the connection into the CANivore
 
