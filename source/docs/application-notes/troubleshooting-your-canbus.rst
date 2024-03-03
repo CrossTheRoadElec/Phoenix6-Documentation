@@ -86,7 +86,7 @@ I'll be going with the continuity check approach (at the same time, you can have
 
 Using your multimeter, switch the dial to the continuity option (kinda looks like a WiFi icon).
 
-.. image:: images/troubleshooting-your-canbus/multimeter-continuity.jp
+.. image:: images/troubleshooting-your-canbus/multimeter-continuity.jpg
    :width: 550px
    :alt: Multimeter with continuity option selected
 
