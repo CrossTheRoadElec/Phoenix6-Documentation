@@ -111,93 +111,101 @@ Status Light Reference
     <div class="tableOverflow">
         <table class="center">
             <tr>
-                <th colspan="3">Blink Codes</th>
+                <th colspan="4">Blink Codes</th>
             </tr>
             <tr>
-                <th colspan="3">Disabled Codes</th>
+                <th colspan="4">Disabled Codes</th>
             </tr>
             <tr>
                 <th>Animation (Click to animate)</th>
                 <th>LED State</th>
-                <th>Meaning</th>
+                <th>Cause</th>
+                <th>Possible Fix</th>
             </tr>
             <tr>
                 <td><div class='ledGroup'><div class='led' ontime='0' offtime='0' oncolor='black' offcolor='black'></div>
                                           <div class='led' ontime='0' offtime='0' oncolor='black' offcolor='black'></div></div></td>
                 <td>LEDs Off</td>
                 <td>No Power</td>
+                <td>Provide 12V to Red/Black leads.</td>
             </tr>
             <tr>
                 <td><div class='ledGroup'><div class='led' ontime='300' offtime='300' oncolor='red' offcolor='black'></div>
                                           <div class='led' ontime='300' offtime='300' oncolor='black' offcolor='red'></div></div></td>
                 <td>Blinking Alternating Red</td>
                 <td>Talon FX does not have valid CAN/PWM signal.</td>
+                <td>Ensure good connections between CANH and CANL (Yellow and Green) & robot controller is on.</td>
             </tr>
             <tr>
                 <td><div class='ledGroup'><div class='led' ontime='300' offtime='300' oncolor='orange' offcolor='black'></div>
                                           <div class='led' ontime='300' offtime='300' oncolor='black' offcolor='orange'></div></div></td>
                 <td>Blinking Alternating Orange</td>
-                <td>Talon FX has valid CAN/PWM signal. If on CAN, Phoenix is not running in robot controller <b>or</b> Talon FX does not have good CAN connection to robot controller.</td>
+                <td>TalonFX detects CAN but does not see Phoenix running on the robot controller.</td>
+                <td>If Phoenix is running on the robot controller, ensure good connection between the controller and this device. Otherwise deploy a robot program that uses Phoenix.</td>
             </tr>
             <tr>
                 <td><div class='ledGroup'><div class='led' ontime='300' offtime='300' oncolor='orange' offcolor='black'></div>
                                           <div class='led' ontime='300' offtime='300' oncolor='orange' offcolor='black'></div></div></td>
                 <td>Blinking Simultaneous Orange</td>
-                <td>Talon FX has valid CAN/PWM signal. If on CAN, Phoenix is running in robot controller <b>and</b> Talon FX has good CAN connection to robot controller.</td>
+                <td colspan="2">Talon FX has valid CAN/PWM signal. If on CAN, Phoenix is running in robot controller <b>and</b> Talon FX has good CAN connection to robot controller.</td>
             </tr>
             <tr>
-                <th colspan="3">Enabled Codes</th>
+                <th colspan="4">Enabled Codes</th>
             </tr>
             <tr>
                 <td><div class='ledGroup'><div class='led' ontime='0' offtime='0' oncolor='orange' offcolor='orange'></div>
                                           <div class='led' ontime='0' offtime='0' oncolor='orange' offcolor='orange'></div></div></td>
                 <td>Both Solid Orange</td>
-                <td>Talon FX Enabled with Neutral Output</td>
+                <td colspan="2">Talon FX Enabled with Neutral Output.</td>
             </tr>
             <tr>
                 <td><div class='ledGroup'><div class='led' ontime='300' offtime='300' oncolor='red' offcolor='black'></div>
                                           <div class='led' ontime='300' offtime='300' oncolor='red' offcolor='black'></div></div></td>
                 <td>Blinking Simultaneous Red</td>
-                <td>Talon FX driving in reverse. Rate of blink corresponds to duty cycle applied.</td>
+                <td colspan="2">Talon FX driving in reverse. Rate of blink corresponds to duty cycle applied.</td>
             </tr>
             <tr>
                 <td><div class='ledGroup'><div class='led' ontime='300' offtime='300' oncolor='green' offcolor='black'></div>
                                           <div class='led' ontime='300' offtime='300' oncolor='green' offcolor='black'></div></div></td>
                 <td>Blinking Simultaneous Green</td>
-                <td>Talon FX driving forward. Rate of blink corresponds to duty cycle applied.</td>
+                <td colspan="2">Talon FX driving forward. Rate of blink corresponds to duty cycle applied.</td>
             </tr>
             <tr>
                 <td><div class='ledGroup'><div class='led' ontime='100' offtime='400' oncolor='red' offcolor='black'></div>
                                           <div class='led' ontime='400' offtime='100' oncolor='black' offcolor='red'></div></div></td>
                 <td>Offset Alternating Red/Off</td>
-                <td>Talon FX limited (hard or soft limit). Direction of offset determines forward/reverse limit.</td>
+                <td colspan="2">Talon FX limited (hard or soft limit). Direction of offset determines forward/reverse limit.</td>
             </tr>
             <tr>
-                <th colspan="3">Special Codes</th>
+                <th colspan="4">Special Codes</th>
             </tr>
             <tr>
                 <td><div class='ledGroup'><div class='led' ontime='400' offtime='100' oncolor='black' offcolor='orange'></div>
                                           <div class='led' ontime='100' offtime='400' oncolor='orange' offcolor='black'></div></div></td>
                 <td>Offset Orange/Off</td>
                 <td>Talon FX in thermal cutoff.</td>
+                <td>Allow Talon FX to cool. Investigate implementing Stator Current Limits to reduce heat generation.</td>
             </tr>
             <tr>
                 <td><div class='ledGroup'><div class='led' ontime='300' offtime='300' oncolor='red' offcolor='green'></div>
                                           <div class='led' ontime='300' offtime='300' oncolor='green' offcolor='red'></div></div></td>
                 <td>Alternate Red/Green</td>
                 <td>Talon FX driven with Pro-only command while unlicensed.</td>
+                <td>Use non-Pro-only command or license device for Pro.</td>
             </tr>
             <tr>
                 <td><div class='ledGroup'><div class='led' ontime='300' offtime='300' oncolor='red' offcolor='orange'></div>
                                           <div class='led' ontime='300' offtime='300' oncolor='orange' offcolor='red'></div></div></td>
                 <td>Alternate Red/Orange</td>
                 <td>Damaged Hardware.</td>
+                <td>Contact CTRE.</td>
             </tr>
             <tr>
                 <td><div class='ledGroup'><div class='led' ontime='0' offtime='0' oncolor='black' offcolor='black'></div>
                                           <div class='led' ontime='300' offtime='300' oncolor='green' offcolor='orange'></div></div></td>
                 <td>Single LED alternates Green/Orange</td>
                 <td>Talon FX in bootloader.</td>
+                <td>Field-upgrade device in Tuner X.</td>
             </tr>
         </table>
     </div>
