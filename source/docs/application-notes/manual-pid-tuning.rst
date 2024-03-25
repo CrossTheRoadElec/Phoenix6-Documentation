@@ -1,3 +1,9 @@
+.. raw:: html
+
+   <script src="../../../../_static/pid-tune.js"></script>
+   <link rel="stylesheet" type="text/css" href="../../../../_static/pid-tune.css" />
+
+
 How to Manually Tune your PID Loops
 ===================================
 *Authored by Cory*
@@ -47,4 +53,21 @@ Similar math can be done for every other gain constant to find a good starting p
 Specific Response Tuning
 ------------------------
 
-This is the
+These general guidelines are great for understanding what's happening in a closed loop controller and how to forward-calculate what a reasonable starting point is. However, the specific mechanism you're tuning is going to affect how to find the ideal gains and what gains you should be using in the first place.
+
+.. raw:: html
+
+    <div class="viz-div" id="flywheel_feedback_container">
+      <div >
+         <div class="col" id="flywheel_feedback_plotVals"></div>
+         <div class="col" id="flywheel_feedback_plotVolts"></div>
+      </div>
+      <div class="flex-grid">
+         <div class="col" id="flywheel_feedback_viz"></div>
+         <div id="flywheel_feedback_ctrls"></div>
+      </div>
+      <script>
+         flywheel_bb = new FlywheelPIDF("flywheel_feedback", "feedback");
+      </script>
+    </div>
+

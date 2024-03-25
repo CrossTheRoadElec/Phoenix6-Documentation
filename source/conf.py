@@ -51,6 +51,12 @@ extensions = [
     "sphinx_copybutton",
 ]
 
+local_extensions = [
+    "_extensions.controls_js_sim"
+]
+
+extensions += local_extensions
+
 images_config = {
     "override_image_directive": True,
 }
