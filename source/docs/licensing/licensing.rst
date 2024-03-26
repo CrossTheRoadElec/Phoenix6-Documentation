@@ -127,3 +127,6 @@ Troubleshooting
   - Alternatively, you can deploy the **temporary diagnostic server**.
 
 - Is the latest **Pro** firmware flashed onto the device?
+
+- **FRC Only**: If using season pass, is the roboRIO configured with the `correct team number <https://docs.wpilib.org/en/stable/docs/zero-to-robot/step-3/roborio2-imaging.html#setting-the-roborio-team-number>`__?
+
