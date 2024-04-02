@@ -58,14 +58,14 @@ New in Phoenix 6 is a feedback sensor type called ``FusedCANcoder``. ``FusedCANc
 
 ``FusedCANcoder`` requires the configuration of several ``Feedback`` config group items, shown below.
 
-Full example: `Java <https://github.com/CrossTheRoadElec/PhoenixPro-Examples/blob/main/java/FusedCANcoder/src/main/java/frc/robot/Robot.java>`__, `C++ <https://github.com/CrossTheRoadElec/PhoenixPro-Examples/blob/main/cpp/FusedCANcoder/src/main/cpp/Robot.cpp>`__
+Full example: `Java <https://github.com/CrossTheRoadElec/Phoenix6-Examples/blob/main/java/FusedCANcoder/src/main/java/frc/robot/Robot.java>`__, `C++ <https://github.com/CrossTheRoadElec/Phoenix6-Examples/blob/main/cpp/FusedCANcoder/src/main/cpp/Robot.cpp>`__
 
 .. tab-set::
 
    .. tab-item:: Java
       :sync: Java
 
-      .. rli:: https://github.com/CrossTheRoadElec/PhoenixPro-Examples/raw/96a53e96227c8dbc102c04da198f28415da60af4/java/FusedCANcoder/src/main/java/frc/robot/Robot.java
+      .. rli:: https://github.com/CrossTheRoadElec/Phoenix6-Examples/raw/96a53e96227c8dbc102c04da198f28415da60af4/java/FusedCANcoder/src/main/java/frc/robot/Robot.java
          :language: java
          :lines: 51-64
          :linenos:
@@ -74,7 +74,7 @@ Full example: `Java <https://github.com/CrossTheRoadElec/PhoenixPro-Examples/blo
    .. tab-item:: C++
       :sync: C++
 
-      .. rli:: https://github.com/CrossTheRoadElec/PhoenixPro-Examples/raw/96a53e96227c8dbc102c04da198f28415da60af4/cpp/FusedCANcoder/src/main/cpp/Robot.cpp
+      .. rli:: https://github.com/CrossTheRoadElec/Phoenix6-Examples/raw/96a53e96227c8dbc102c04da198f28415da60af4/cpp/FusedCANcoder/src/main/cpp/Robot.cpp
          :language: cpp
          :lines: 11-24
          :linenos:

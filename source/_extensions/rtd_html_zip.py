@@ -3,8 +3,10 @@
 
 from sphinx.builders.html import StandaloneHTMLBuilder
 
+
 class ReadtheDocsBuilderLocalMedia(StandaloneHTMLBuilder):
     name = "readthedocssinglehtmllocalmedia"
+
 
 def setup(app):
     app.add_builder(ReadtheDocsBuilderLocalMedia, override=True)
