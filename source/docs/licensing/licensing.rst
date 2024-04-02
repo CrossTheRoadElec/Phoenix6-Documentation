@@ -126,4 +126,7 @@ Troubleshooting
   - Confirm the **vendordep** in your robot project is the latest version.
   - Alternatively, you can deploy the **temporary diagnostic server**.
 
-- Is the latest **Pro** firmware flashed onto the device?
+- Is the latest **Phoenix 6** firmware flashed onto the device?
+
+- **FRC Only**: If using Season Pass, is the roboRIO configured with the `correct team number <https://docs.wpilib.org/en/stable/docs/zero-to-robot/step-3/roborio2-imaging.html#setting-the-roborio-team-number>`__?
+
