@@ -55,7 +55,7 @@ After adding the sources, the kernel module can be installed and updated using t
    sudo apt update
    sudo apt install canivore-usb
 
-.. tip:: To get a robot application up and running quickly, check out our `non-FRC Linux example <https://github.com/CrossTheRoadElec/PhoenixPro-Linux-Example>`__.
+.. tip:: To get a robot application up and running quickly, check out our `non-FRC Linux example <https://github.com/CrossTheRoadElec/Phoenix6-Linux-Example>`__.
 
 Raspberry Pi 4 Errata
 ~~~~~~~~~~~~~~~~~~~~~
