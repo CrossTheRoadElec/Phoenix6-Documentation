@@ -128,5 +128,5 @@ Troubleshooting
 
 - Is the latest **Phoenix 6** firmware flashed onto the device?
 
-- **FRC Only**: If using season pass, is the roboRIO configured with the `correct team number <https://docs.wpilib.org/en/stable/docs/zero-to-robot/step-3/roborio2-imaging.html#setting-the-roborio-team-number>`__?
+- **FRC Only**: If using Season Pass, is the roboRIO configured with the `correct team number <https://docs.wpilib.org/en/stable/docs/zero-to-robot/step-3/roborio2-imaging.html#setting-the-roborio-team-number>`__?
 

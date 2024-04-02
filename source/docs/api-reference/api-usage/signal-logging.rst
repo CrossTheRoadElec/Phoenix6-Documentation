@@ -46,7 +46,7 @@ The below example sets the logging path to a ``ctre-logs`` folder on the first U
 
          SignalLogger.set_path("/media/sda1/ctre-logs/")
 
-Each CAN Bus gets its own dedicated signal log. For example, signal logging on the roboRIO with a CANivore attached will output 2 logs. The roboRIO log will be ``rio_<DATETIME>.hoot`` and the CANivore log will be ``<CANIVORESERIALNUM>_<DATETIME>.hoot``.
+.. note:: Each CAN bus gets its own dedicated log file.
 
 Start/Stop Logging
 ------------------
