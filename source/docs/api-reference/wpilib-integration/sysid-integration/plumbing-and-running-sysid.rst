@@ -1,11 +1,15 @@
 Plumbing & Running SysId
 ========================
 
-For the purpose of this documentation, we focus on integration of Phoenix and WPILib SysId to characterize common mechanisms. Detailed documentation on the SysId routines can be found `here <https://docs.wpilib.org/en/stable/docs/software/advanced-controls/system-identification/introduction.html>`__.
+For the purpose of this documentation, we focus on the integration of Phoenix 6 and WPILib's SysId API to characterize common mechanisms. Detailed documentation on the SysId routines can be found `here <https://docs.wpilib.org/en/stable/docs/software/advanced-controls/system-identification/introduction.html>`__.
 
-To get started, users must construct a ``SysIdRoutine`` that defines a ``Config`` and ``Mechanism``. The ``Config`` constructor allows the users to define the logging state callback, ramp rate, and other options when running the tests.
+To get started, users must construct a ``SysIdRoutine`` that defines a ``Config`` and ``Mechanism``.
 
-The ``Mechanism`` constructor takes a lambda that has ``Voltage`` as a parameter. This lambda is ran when the characterization is performed and what actually causes the mechanism to move. We utilize the parameter provided in the lambda, and pass that as double voltage to a ``VoltageOut`` request. The second argument to the constructor is a logging callback. Since the Phoenix ``SignalLogger`` has much higher accuracy than user-mode logging, we pass ``null``. The last parameter is just an instance of the ``Subsystem`` we are currently in.
+The ``Config`` constructor allows the users to define the voltage ramp rate, dynamic step voltage, characterization timeout, and a lambda that accepts the ``SysIdRoutineLog.State`` for logging. The lambda needs to be overridden to log the State string using the :doc:`Phoenix 6 Signal Logger </docs/api-reference/api-usage/signal-logging>`.
+
+The ``Mechanism`` constructor takes a lambda accepts a ``Measure<Voltage>``. This lambda is used to apply the voltage request to the motors during characterization, which can be done using a VoltageOut request. The second argument to the constructor is a logging callback; this is left ``null`` when using the Signal Logger, as all signals are logged automatically. The last parameter is a reference to this ``Subsystem``.
+
+Putting this all together results in the example shown below.
 
 .. tab-set::
 
@@ -14,24 +18,23 @@ The ``Mechanism`` constructor takes a lambda that has ``Voltage`` as a parameter
 
       .. code-block::
 
-         TalonFX m_motor = new TalonFX(0);
+         private final TalonFX m_motor = new TalonFX(0);
+         private final VoltageOut m_voltReq = new VoltageOut(0.0);
 
-         VoltageOut m_voltReq = new VoltageOut(0.0);
-
-         private SysIdRoutine m_sysidRoutine =
+         private final SysIdRoutine m_sysidRoutine =
             new SysIdRoutine(
                new SysIdRoutine.Config(
-                  null,
-                  Volts.of(7),
-                  null,
-                  (state)->SignalLogger.writeString("state", state.toString())
+                  null,        // use default ramp rate (1 V/s)
+                  Volts.of(7), // use a 7 V step voltage
+                  null,        // use default timeout (10s)
+                  (state) -> SignalLogger.writeString("state", state.toString())
                ),
                new SysIdRoutine.Mechanism(
-                  (volts)->m_motor.setControl(m_voltReq.withOutput(volts.in(Volts))),
+                  (volts) -> m_motor.setControl(m_voltReq.withOutput(volts.in(Volts))),
                   null,
                   this));
 
-Now that the routine has been plumbed, we need to expose some commands to perform characterization
+Now that the routine has been plumbed, the characterization commands need to be exposed from the subsystem.
 
 .. tab-set::
 
@@ -48,7 +51,7 @@ Now that the routine has been plumbed, we need to expose some commands to perfor
             return m_sysidRoutine.dynamic(direction);
          }
 
-and then bind to these commands from ``RobotContainer``.
+From there, the program can bind buttons to these commands in ``RobotContainer``.
 
 .. tab-set::
 
@@ -61,17 +64,17 @@ and then bind to these commands from ``RobotContainer``.
          m_joystick.rightBumper().whenPressed(Commands.run(() -> SignalLogger.stop()));
 
          /**
-         * Joystick Y = quasistatic forward
-         * Joystick B = dynamic forward
-         * Joystick A = quasistatic reverse
-         * Joystick X = dyanmic reverse
-         */
+          * Joystick Y = quasistatic forward
+          * Joystick B = dynamic forward
+          * Joystick A = quasistatic reverse
+          * Joystick X = dyanmic reverse
+          */
          m_joystick.y().whileTrue(m_mechanism.sysIdQuasistatics(SysIdRoutine.Direction.kForward));
          m_joystick.a().whileTrue(m_mechanism.sysIdQuasistatic(SysIdRoutine.Direction.kReverse));
          m_joystick.b().whileTrue(m_mechanism.sysIdDynamic(SysIdRoutine.Direction.kForward));
          m_joystick.x().whileTrue(m_mechanism.sysIdDynamic(SysIdRoutine.Direction.kReverse));
 
-It's important that the user starts and stops the logger after the tests have been ran. This will ensure a log is not cluttered with data from other actions such as driving the robot to an open area.
+All four tests must be run and captured in a single log file. As a result, it is important that the user starts the Signal Logger before running the tests and stops the Signal Logger after all tests have been completed. This will ensure the log is not cluttered with data from other actions such as driving the robot to an open area.
 
 .. note:: Consult the `WPILib documentation <https://docs.wpilib.org/en/stable/docs/software/advanced-controls/system-identification/index.html>`__ for additional details on mechanism characterization.
 
@@ -88,25 +91,24 @@ There are a couple of important things to consider before running the characteri
 
 **Ensure Adequate Space**
 
-- If the mechanism is continuous (swerve azimuth or a flywheel), then this isn't an issue. Mechanisms such as a drivetrain or elevator have a limited degree of movement. Ensure the configuration parameters match what is possible, and be prepared to disable the robot early.
+- If the mechanism is continuous (swerve azimuth or a flywheel), then this is not an issue. However, mechanisms such as a drivetrain or elevator have a limited degree of movement. Ensure the configuration parameters match what is possible, and be prepared to disable the robot early.
 
 **Only Run Each Test Once**
 
-- Limitations of the SysId desktop utility prevent multiple of the same tests to be properly analyzed. Ensure each test is analyzed once.
+- Limitations of the SysId desktop utility prevent multiple of the same tests to be properly analyzed. Ensure each test is run exactly once.
 
 Running Characterization
 ------------------------
 
-The quasistatic test will slowly ramp up voltage until the button has been released or a timeout has been hit. It's always safe to end the tests early, but at least ~3-5 seconds of data is necessary. Ensure ramp rate is configured such that this can be accomplished.
+The quasistatic test will slowly ramp up voltage until the button has been released or a timeout has been hit. It is always safe to end the tests early, but at least ~3-5 seconds of data is necessary. Ensure ramp rate is configured such that this can be accomplished.
 
 The dynamic test will immediately run the mechanism at the target voltage. This voltage may need to be adjusted if there is not sufficient room for the test.
 
-
-Now that the routines have been configured and buttons have been binded, the characterization tests can be performed. To keep things simple and debuggable, perform tests in the following order.
+With the routines configured and buttons set up, the characterization tests can be performed. To keep things simple and debuggable, perform tests in the following order.
 
 1. Quasistatic forward
 2. Quasistatic reverse
 3. Dynamic forward
 4. Dynamic reverse
 
-Ensure each test is ran once, and only once. If a test is accidentally started multiple times, stop and restart the logger and try again.
+Ensure each test is ran once, and only once. If a test is accidentally started multiple times, stop and restart the Signal Logger and try again.
