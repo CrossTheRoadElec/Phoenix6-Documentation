@@ -25,7 +25,7 @@ Advantages of SignalLogger over DataLog
 When collecting data for analysis, it's important to take into account several factors, such as:
 
 - Impact of CAN latency
-- Signals sent faster than the robot program can log them
+- Signals sent faster than the 20ms main robot loop
 - Language data collection issues (such as Java garbage collection causing pauses in the log)
 
 When users utilize the :doc:`signal logging API </docs/api-reference/api-usage/signal-logging>`, these issues are eliminated.
