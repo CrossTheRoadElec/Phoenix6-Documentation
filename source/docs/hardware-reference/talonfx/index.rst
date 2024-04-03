@@ -117,7 +117,7 @@ Status Light Reference
                 <th colspan="4">Disabled Codes</th>
             </tr>
             <tr>
-                <th>Animation (Click to animate)</th>
+                <th>Animation (Click to play)</th>
                 <th>LED State</th>
                 <th>Cause</th>
                 <th>Possible Fix</th>

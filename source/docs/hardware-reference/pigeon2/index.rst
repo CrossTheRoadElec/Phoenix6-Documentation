@@ -78,54 +78,60 @@ Status Light Reference
     <div class="tableOverflow">
         <table class="center">
             <tr>
-                <th colspan="3">Blink Codes</th>
+                <th colspan="4">Blink Codes</th>
             </tr>
             <tr>
-                <th>Animation (Click to animate)</th>
+                <th>Animation (Click to play)</th>
                 <th>LED State</th>
-                <th>Meaning</th>
+                <th>Cause</th>
+                <th>Possible Fix</th>
             </tr>
             <tr>
                 <td><div class='ledGroup'><div class='led' ontime='0' offtime='0' oncolor='black' offcolor='black'></div>
                                           <div class='led' ontime='0' offtime='0' oncolor='black' offcolor='black'></div></div></td>
                 <td>LEDs Off</td>
                 <td>No Power</td>
+                <td>Provide 12V to Red/Black leads.</td>
             </tr>
             <tr>
                 <td><div class='ledGroup'><div class='led' ontime='300' offtime='300' oncolor='red' offcolor='black'></div>
                                           <div class='led' ontime='300' offtime='300' oncolor='black' offcolor='red'></div></div></td>
                 <td>Blinking Alternating Red</td>
                 <td>Pigeon 2 does not have valid CAN.</td>
+                <td>Ensure good connections between CANH and CANL (Yellow and Green) & robot controller is on.</td>
             </tr>
             <tr>
                 <td><div class='ledGroup'><div class='led' ontime='300' offtime='300' oncolor='orange' offcolor='black'></div>
                                           <div class='led' ontime='300' offtime='300' oncolor='black' offcolor='orange'></div></div></td>
                 <td>Blinking Alternating Orange</td>
-                <td>Pigeon 2 detects CAN and does not see robot enable. Phoenix is not running in robot controller <b>or</b> Pigeon 2 does not have good CAN connection to robot controller.</td>
+                <td>Pigeon 2 detects CAN but does not see Phoenix running on the robot controller.</td>
+                <td>If Phoenix is running on the robot controller, ensure good connection between the controller and this device. Otherwise, deploy a robot program that uses Phoenix.</td>
             </tr>
             <tr>
                 <td><div class='ledGroup'><div class='led' ontime='300' offtime='300' oncolor='orange' offcolor='black'></div>
                                           <div class='led' ontime='300' offtime='300' oncolor='orange' offcolor='black'></div></div></td>
                 <td>Blinking Simultaneous Orange</td>
-                <td>Pigeon 2 detects CAN and does not see robot enable. Phoenix is running in robot controller <b>and</b> Pigeon 2 has good CAN connection to robot controller.</td>
+                <td colspan="2">Pigeon 2 detects CAN and does not see robot enable. Phoenix is running in robot controller <b>and</b> Pigeon 2 has good CAN connection to robot controller.</td>
             </tr>
             <tr>
                 <td><div class='ledGroup'><div class='led' ontime='300' offtime='300' oncolor='green' offcolor='black'></div>
                                           <div class='led' ontime='300' offtime='300' oncolor='black' offcolor='green'></div></div></td>
                 <td>Blinking Alternating Green</td>
-                <td>Pigeon 2 detects CAN and sees the robot enable.</td>
+                <td colspan="2">Pigeon 2 detects CAN and sees the robot enable.</td>
             </tr>
             <tr>
                 <td><div class='ledGroup'><div class='led' ontime='300' offtime='300' oncolor='red' offcolor='orange'></div>
                                           <div class='led' ontime='300' offtime='300' oncolor='orange' offcolor='red'></div></div></td>
                 <td>Alternate Red/Orange</td>
                 <td>Damaged Hardware.</td>
+                <td>Contact CTRE.</td>
             </tr>
             <tr>
                 <td><div class='ledGroup'><div class='led' ontime='0' offtime='0' oncolor='black' offcolor='black'></div>
                                           <div class='led' ontime='300' offtime='300' oncolor='green' offcolor='orange'></div></div></td>
                 <td>Single LED alternates Green/Orange</td>
                 <td>Pigeon 2 in bootloader.</td>
+                <td>Field-upgrade device in Tuner X.</td>
             </tr>
         </table>
     </div>

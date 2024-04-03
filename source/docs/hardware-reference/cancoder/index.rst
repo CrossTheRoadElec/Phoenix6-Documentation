@@ -74,7 +74,7 @@ Status Light Reference
                 <th colspan="3">Blink Codes</th>
             </tr>
             <tr>
-                <th>Animation (Click to animate)</th>
+                <th>Animation (Click to play)</th>
                 <th>LED State</th>
                 <th>Meaning</th>
             </tr>
