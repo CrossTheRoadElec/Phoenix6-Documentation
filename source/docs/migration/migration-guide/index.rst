@@ -3,6 +3,9 @@ API Migration
 
 This section serves as a "cheat sheet" of commonly-used functions in Phoenix 5 and their equivalents in Phoenix 6.
 
+- :doc:`api-structure-guide`
+   - General structure of the Phoenix 6 namespaces and packages
+
 - :doc:`configuration-guide`
    - Configuring device configs in robot code
 
@@ -22,6 +25,7 @@ This section serves as a "cheat sheet" of commonly-used functions in Phoenix 5 a
    :maxdepth: 1
    :hidden:
 
+   api-structure-guide
    configuration-guide
    status-signals-guide
    control-requests-guide
