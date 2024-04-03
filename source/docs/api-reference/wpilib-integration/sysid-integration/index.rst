@@ -19,30 +19,20 @@ This identification usually consists of:
 
 .. note:: This documentation assumes that the user is utilizing a `command-based robot program <https://docs.wpilib.org/en/stable/docs/software/commandbased/index.html>`__.
 
-Advantages of Hoot Logger vs DataLogging
-----------------------------------------
+Advantages of SignalLogger over DataLog
+---------------------------------------
 
-When collecting data for analysis, it's important to minimize factors such as:
+When collecting data for analysis, it's important to take into account several factors, such as:
 
-- CAN latency
-- Signal timestamps coming in out-of-order
-- Language data collection issues (such as Java garbage collection causing data to be lost).
+- Impact of CAN latency
+- Signals sent faster than the robot program can log them
+- Language data collection issues (such as Java garbage collection causing pauses in the log)
 
-When users utilize the :doc:`signal logging API </docs/api-reference/api-usage/signal-logging>`, these issues are mitigated or even eliminated.
+When users utilize the :doc:`signal logging API </docs/api-reference/api-usage/signal-logging>`, these issues are eliminated.
 
-* Signals timestamps are device timestamps when Pro-licensed.
+This section guides the user through characterizing a motor, converting to a WPILib ``WPILOG`` for data analysis and integrating gains for control. This section can also be used as a characterizing other mechanisms such as a :doc:`swerve </docs/tuner/tuner-swerve/index>` azimuth and drive motors.
 
-  * Removes CAN latency being part of the collected data timestamps.set
-
-* Signals are :ref:`Time Synced <docs/api-reference/api-usage/status-signals:canivore timesync>` when on a CANivore bus and :doc:`Pro-licensed </docs/licensing/licensing>`
-
-  * SysID important signals; such as ``Voltage``, ``MotorOutput``, and ``Current`` will all be synchronized.
-
-* Signal logging is unaffected by language issues such as garbage collection.
-
-This section guides the user through characterizing a motor, converting to a WPILib ``WPILog`` for data analysis and integrating gains for control. This section can also be used as a characterizing other mechanisms such as a :doc:`Swerve </docs/tuner/tuner-swerve/index>` azimuth or drive motors.
-
-Characterization begins with a functionining robot program. Users should have basic code for the mechanism already put together, alongside ``SensorToMechanismRatio`` and ``RotorToSensorRatio`` :ref:`configs <docs/api-reference/api-usage/configuration:applying configs>` applied. Any changes to the ratios or the way the data is presented may require the user to recharacterize their mechanism.
+Characterization begins with a functioning robot program. Users should have basic code for the mechanism already put together, and all :ref:`configs <docs/api-reference/api-usage/configuration:applying configs>` in the ``FeedbackConfigs`` group should be applied. Any changes to the gear ratios and sensor source in ``FeedbackConfigs`` may require the user to recharacterize their mechanism.
 
 Get started:
 
