@@ -125,7 +125,7 @@ Status Light Reference
                 <td><div class='ledGroup'><div class='led' ontime='0' offtime='0' oncolor='black' offcolor='black'></div>
                                           <div class='led' ontime='300' offtime='300' oncolor='green' offcolor='orange'></div></div></td>
                 <td>Single LED alternates Green/Orange</td>
-                <td>Talon FX in bootloader.</td>
+                <td>Pigeon 2 in bootloader.</td>
             </tr>
         </table>
     </div>

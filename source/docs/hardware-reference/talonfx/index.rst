@@ -133,7 +133,7 @@ Status Light Reference
                 <td><div class='ledGroup'><div class='led' ontime='300' offtime='300' oncolor='red' offcolor='black'></div>
                                           <div class='led' ontime='300' offtime='300' oncolor='black' offcolor='red'></div></div></td>
                 <td>Blinking Alternating Red</td>
-                <td>Talon FX does not have valid CAN/PWM signal.</td>
+                <td>Talon FX does not have a valid CAN/PWM signal.</td>
                 <td>Ensure good connections between CANH and CANL (Yellow and Green) & robot controller is on.</td>
             </tr>
             <tr>
