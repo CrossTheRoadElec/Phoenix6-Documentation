@@ -102,8 +102,8 @@ Phoenix 6 uses a separate, simpler set of namespaces and packages from Phoenix 5
             .. code-block:: cpp
 
                // Phoenix 6 is in the ctre/phoenix6 headers
-               #include "ctre/phoenix6/hardware/CANcoder.hpp"
-               #include "ctre/phoenix6/hardware/TalonFX.hpp"
+               #include "ctre/phoenix6/CANcoder.hpp"
+               #include "ctre/phoenix6/TalonFX.hpp"
 
                // Phoenix 6 uses the ctre::phoenix6 namespace
                using namespace ctre::phoenix6;

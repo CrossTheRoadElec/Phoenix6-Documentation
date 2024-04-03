@@ -47,30 +47,34 @@ Applying Configs
 
             .. code-block:: java
 
+               var talonFXConfigs = new TalonFXConfiguration();
+
                // set slot 0 gains
-               var slot0Configs = new Slot0Configs();
+               var slot0Configs = talonFXConfigs.Slot0;
                slot0Configs.kV = 0.12;
                slot0Configs.kP = 0.11;
                slot0Configs.kI = 0.5;
                slot0Configs.kD = 0.001;
 
-               // apply gains, 50 ms total timeout
-               m_talonFX.getConfigurator().apply(slot0Configs, 0.050);
+               // apply all configs, 50 ms total timeout
+               m_talonFX.getConfigurator().apply(talonFXConfigs, 0.050);
 
          .. tab-item:: C++
             :sync: C++
 
             .. code-block:: cpp
 
+               configs::TalonFXConfiguration talonFXConfigs{};
+
                // set slot 0 gains
-               configs::Slot0Configs slot0Configs{};
+               configs::Slot0Configs& slot0Configs = talonFXConfigs.Slot0;
                slot0Configs.kV = 0.12;
                slot0Configs.kP = 0.11;
                slot0Configs.kI = 0.5;
                slot0Configs.kD = 0.001;
 
-               // apply gains, 50 ms total timeout
-               m_talonFX.GetConfigurator().Apply(slot0Configs, 50_ms);
+               // apply all configs, 50 ms total timeout
+               m_talonFX.GetConfigurator().Apply(talonFXConfigs, 50_ms);
 
 Factory Defaulting Configs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -87,7 +91,7 @@ Factory Defaulting Configs
 
             .. code-block:: Java
 
-               // user must remember to factory default if they configure devices in code
+               // user must remember to explicitly factory default if they configure devices in code
                m_motor.configFactoryDefault();
 
          .. tab-item:: C++
@@ -95,7 +99,7 @@ Factory Defaulting Configs
 
             .. code-block:: cpp
 
-               // user must remember to factory default if they configure devices in code
+               // user must remember to explicitly factory default if they configure devices in code
                m_motor.ConfigFactoryDefault();
 
    * - .. centered:: v6
@@ -106,8 +110,11 @@ Factory Defaulting Configs
 
             .. code-block:: Java
 
-               // any unmodified configs in a configuration object are *automatically* factory-defaulted;
-               // user can perform a full factory default by passing a new device configuration object
+               // Any unmodified configs in a configuration object are *automatically* factory-defaulted.
+               // As a result, factory-defaulting before applying configs is *unnecessary* when using a
+               // full device configuration object, such as TalonFXConfiguration.
+
+               // Users can perform a full factory default by passing a new device configuration object.
                m_motor.getConfigurator().apply(new TalonFXConfiguration());
 
          .. tab-item:: C++
@@ -115,9 +122,12 @@ Factory Defaulting Configs
 
             .. code-block:: cpp
 
-               // any unmodified configs in a configuration object are *automatically* factory-defaulted;
-               // user can perform a full factory default by passing a new device configuration object
-               m_motor.GetConfigurator().Apply(TalonFXConfiguration{});
+               // Any unmodified configs in a configuration object are *automatically* factory-defaulted;
+               // As a result, factory-defaulting before applying configs is *unnecessary* when using a
+               // full device configuration object, such as TalonFXConfiguration.
+
+               // Users can perform a full factory default by passing a new device configuration object.
+               m_motor.GetConfigurator().Apply(configs::TalonFXConfiguration{});
 
 Retrieving Configs
 ------------------
