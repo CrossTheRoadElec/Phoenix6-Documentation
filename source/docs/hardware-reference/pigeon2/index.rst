@@ -111,7 +111,7 @@ Status Light Reference
                 <td><div class='ledGroup'><div class='led' ontime='300' offtime='300' oncolor='orange' offcolor='black'></div>
                                           <div class='led' ontime='300' offtime='300' oncolor='orange' offcolor='black'></div></div></td>
                 <td>Blinking Simultaneous Orange</td>
-                <td colspan="2">Pigeon 2 detects CAN and does not see robot enable. Phoenix is running in robot controller <b>and</b> Pigeon 2 has good CAN connection to robot controller.</td>
+                <td colspan="2">Pigeon 2 detects CAN and does not see the robot enable. Phoenix is running in robot controller <b>and</b> Pigeon 2 has good CAN connection to robot controller.</td>
             </tr>
             <tr>
                 <td><div class='ledGroup'><div class='led' ontime='300' offtime='300' oncolor='green' offcolor='black'></div>
