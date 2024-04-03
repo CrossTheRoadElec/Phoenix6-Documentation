@@ -24,33 +24,181 @@ Status Light Reference
 
 .. note:: Users wishing to test magnet placement must wait 8 seconds after boot for the LEDs to blink the magnet placement status.
 
-+---------------------+-----------------+------------------------------------+------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| LED Color           | Led Brightness  | CAN bus Detection                  | Magnet Field Strength  | Description                                                                                                                                                                                                                 |
-+=====================+=================+====================================+========================+=============================================================================================================================================================================================================================+
-| Off                 | -               | -                                  | -                      | CANcoder is not powered/plugged in. Check power cabling to the CANcoder.                                                                                                                                                    |
-+---------------------+-----------------+------------------------------------+------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Yellow/Green        | Bright          | -                                  | -                      | Device is in boot-loader, most likely because firmware upgrading has failed. Inspect CAN bus wiring and retry firmware upgrading. If device has valid firmware, turn device off, wait 10 seconds, and turn device back on.  |
-+---------------------+-----------------+------------------------------------+------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Slow Red Blink      | Bright          | CAN bus has been lost.             | -                      | Check CAN bus health and connection to the CANcoder.                                                                                                                                                                        |
-+---------------------+-----------------+------------------------------------+------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Red/Green           | Bright          | -                                  | -                      | Device is not licensed. Please license device in Phoenix Tuner.                                                                                                                                                             |
-+---------------------+-----------------+------------------------------------+------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-|                     |                 |                                    |                        |                                                                                                                                                                                                                             |
-+---------------------+-----------------+------------------------------------+------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Rapid Red Blink     | Dim             | CAN bus never detected since boot  | <25mT or >135mT        | Magnet is out of range                                                                                                                                                                                                      |
-+---------------------+-----------------+------------------------------------+------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Rapid Yellow Blink  | Dim             | CAN bus never detected since boot  | 25-45mT or 75-136mT    | Magnet in range with slightly reduced accuracy                                                                                                                                                                              |
-+---------------------+-----------------+------------------------------------+------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Rapid Green Blink   | Dim             | CAN bus never detected since boot  | Magnet in range        | Magnet in range                                                                                                                                                                                                             |
-+---------------------+-----------------+------------------------------------+------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-|                     |                 |                                    |                        |                                                                                                                                                                                                                             |
-+---------------------+-----------------+------------------------------------+------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Rapid Red Blink     | Bright          | CAN bus present                    | <25mT or >135mT        | Magnet is out of range                                                                                                                                                                                                      |
-+---------------------+-----------------+------------------------------------+------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Rapid Yellow Blink  | Bright          | CAN bus present                    | 25-45mT or 75-136mT    | Magnet in range with slightly reduced accuracy                                                                                                                                                                              |
-+---------------------+-----------------+------------------------------------+------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Rapid Green Blink   | Bright          | CAN bus present                    | Magnet in range        | Magnet in range                                                                                                                                                                                                             |
-+---------------------+-----------------+------------------------------------+------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+.. raw:: html
+
+    <style>
+        .led {
+            float: left;
+            height: 20px;
+            width: 20px;
+            border: 1px solid black;
+            border-radius: 10px;
+            margin: 5px;
+            background-color: darkgray;
+        }
+        .ledGroup {
+            display: inline-block;
+            height: 20px;
+        }
+        table.center, table.center th, table.center td {
+            border: 1px solid white;
+            border-collapse: collapse;
+            padding: 5px;
+            text-align: center;
+        }
+
+        .tableOverflow {
+            overflow: scroll;
+        }
+
+        td.overflow {
+            max-width: 550px;
+            overflow: scroll;
+        }
+
+        @media screen and (max-width: 480px) {
+            td.overflow {
+                max-width: 0;
+                overflow: scroll;
+            }
+
+            .tableOverflow {
+                max-width: 480px;
+            }
+        }
+    </style>
+
+    <div class="tableOverflow">
+        <table class="center">
+            <tr>
+                <th colspan="4">Blink Codes</th>
+            </tr>
+            <tr>
+                <th>Animation (Click to play)</th>
+                <th>LED State</th>
+                <th>Cause</th>
+                <th>Possible Fix</th>
+            </tr>
+            <tr>
+                <td><div class='ledGroup'><div class='led' ontime='0' offtime='0' oncolor='black' offcolor='black'></div></div></td>
+                <td>LED Off</td>
+                <td>No Power</td>
+                <td>Provide 12V to Red/Black leads.</td>
+            </tr>
+            <tr>
+                <td><div class='ledGroup'><div class='led' ontime='300' offtime='300' oncolor='red' offcolor='black'></div></div></td>
+                <td>Slow Bright Red</td>
+                <td>CANcoder does not have valid CAN.</td>
+                <td>Ensure good connections between CANH and CANL (Yellow and Green) & robot controller is on.</td>
+            </tr>
+            <tr>
+                <td><div class='ledGroup'><div class='led' ontime='300' offtime='20' oncolor='darkred' offcolor='black'></div></div></td>
+                <td>Rapid Dim Red</td>
+                <td>CAN bus never detected since boot, CANcoder now reporting strength of magnet. Magnet is out of range (<25 mT or > 135 mT)</td>
+                <td>Ensure good connections between CANH and CANL (Yellow and Green) & robot controller is on. Additionally, ensure the magnet's center axis is aligned with the defined center of the CANcoder housing and the magnet is in range of the CANcoder. See Section 2.1 of the Hardware User Manual.</td>
+            </tr>
+            <tr>
+                <td><div class='ledGroup'><div class='led' ontime='300' offtime='20' oncolor='#a67000' offcolor='black'></div></div></td>
+                <td>Rapid Dim Orange</td>
+                <td>CAN bus never detected since boot, CANcoder now reporting strength of magnet. Magnet is in range with slightly reduced accuracy (25-45 mT or 75-135 mT).</td>
+                <td>Ensure good connections between CANH and CANL (Yellow and Green) & robot controller is on. Additionally, ensure the magnet's center axis is aligned with the defined center of the CANcoder housing and the CANcoder is not too close or too far from the magnet. See Section 2.1 of the Hardware User Manual.</td>
+            </tr>
+            <tr>
+                <td><div class='ledGroup'><div class='led' ontime='300' offtime='20' oncolor='darkgreen' offcolor='black'></div></div></td>
+                <td>Rapid Dim Green</td>
+                <td>CAN bus never detected since boot, CANcoder now reporting strength of magnet. Magnet is in range.</td>
+                <td>Ensure good connections between CANH and CANL (Yellow and Green) & robot controller is on.</td>
+            </tr>
+            <tr>
+                <td><div class='ledGroup'><div class='led' ontime='300' offtime='20' oncolor='red' offcolor='black'></div></div></td>
+                <td>Rapid Bright Red</td>
+                <td>CAN bus healthy. Magnet is out of range (<25 mT or > 135 mT)</td>
+                <td>Ensure the magnet's center axis is aligned with the defined center of the CANcoder housing and the magnet is in range of the CANcoder. See Section 2.1 of the Hardware User Manual.</td>
+            </tr>
+            <tr>
+                <td><div class='ledGroup'><div class='led' ontime='300' offtime='20' oncolor='orange' offcolor='black'></div></div></td>
+                <td>Rapid Bright Orange</td>
+                <td>CAN bus healthy. Magnet is in range with slightly reduced accuracy (25-45 mT or 75-135 mT).</td>
+                <td>Ensure the magnet's center axis is aligned with the defined center of the CANcoder housing and the CANcoder is not too close or too far from the magnet. See Section 2.1 of the Hardware User Manual.</td>
+            </tr>
+            <tr>
+                <td><div class='ledGroup'><div class='led' ontime='300' offtime='20' oncolor='green' offcolor='black'></div></div></td>
+                <td>Rapid Bright Green</td>
+                <td colspan="2">CAN bus healthy. Magnet is in range.</td>
+            </tr>
+            <tr>
+                <td><div class='ledGroup'><div class='led' ontime='300' offtime='300' oncolor='red' offcolor='orange'></div></div></td>
+                <td>Alternate Red/Orange</td>
+                <td>Damaged Hardware.</td>
+                <td>Contact CTRE.</td>
+            </tr>
+            <tr>
+                <td><div class='ledGroup'><div class='led' ontime='300' offtime='300' oncolor='orange' offcolor='green'></div></div></td>
+                <td>Alternate Orange/Green</td>
+                <td>CANcoder in bootloader.</td>
+                <td>Field-upgrade device in Tuner X.</td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        var ledGrpElems = document.getElementsByClassName('ledGroup');
+        var ledGrps = [];
+        for(var i = 0; i < ledGrpElems.length; i++) {
+            ledGrps[i] = {
+                "consts": [
+                    {
+                        'ontime': ledGrpElems[i].children[0].getAttribute('ontime'),
+                        'offtime': ledGrpElems[i].children[0].getAttribute('offtime'),
+                        'oncolor': ledGrpElems[i].children[0].getAttribute('oncolor'),
+                        'offcolor': ledGrpElems[i].children[0].getAttribute('offcolor')
+                    }
+                ],
+                "vars": [
+                    {
+                        'time': 0,
+                        'state': false,
+                    }
+                ]
+            };
+            ledGrpElems[i].setAttribute('blink', 'false');
+            ledGrpElems[i].onclick = function(){
+                var turningOn = !(this.getAttribute('blink') === 'true');
+                this.setAttribute('blink', turningOn);
+                for (var c of this.children) {
+                    if (turningOn) {
+                        c.style.background = c.getAttribute('oncolor');
+                    } else {
+                        c.style.background = 'darkgray';
+                    }
+                }
+            };
+        }
+
+        setInterval(function() {
+            for(var i = 0; i < ledGrpElems.length; i++) {
+                if (ledGrpElems[i].getAttribute('blink') === 'true') {
+                    for(var j = 0; j < ledGrpElems[i].children.length; j++) {
+                        var time = ledGrps[i]['vars'][j]['time'];
+                        ledGrps[i]['vars'][j]['time'] = time + 10;
+                        if (ledGrps[i]['vars'][j]['state']) {
+                            if (time > ledGrps[i]['consts'][j]['offtime']) {
+                                ledGrpElems[i].children[j].style.background = ledGrps[i]['consts'][j]['oncolor'];
+                                ledGrps[i]['vars'][j]['state'] = false;
+                                ledGrps[i]['vars'][j]['time'] = 0;
+                            }
+                        } else {
+                            if (time > ledGrps[i]['consts'][j]['ontime']) {
+                                ledGrpElems[i].children[j].style.background = ledGrps[i]['consts'][j]['offcolor'];
+                                ledGrps[i]['vars'][j]['state'] = true;
+                                ledGrps[i]['vars'][j]['time'] = 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }, 10);
+    </script>
 
 Magnet Placement
 ----------------
