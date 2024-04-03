@@ -44,7 +44,7 @@ In Phoenix 5, users could configure the TalonFX to clear its sensor position (i.
 Velocity Measurement Period/Window
 ----------------------------------
 
-In Phoenix 6, the velocity rolling average window in Talon FX and CANcoder has been replaced with a Kalman filter, resulting in a less noisy velocity signal with a minimal impact on latency. As a result, the velocity measurement period/window configs are no longer necessary in Phoenix 6 and have been removed.
+In Phoenix 6, the velocity rolling average window in Talon FX and CANcoder has been replaced with a Kalman filter, resulting in a less noisy velocity signal with a minimal impact on latency (~1 ms). As a result, the velocity measurement period/window configs are no longer necessary in Phoenix 6 and have been removed.
 
 Integral Zone and Max Integral Accumulator
 ------------------------------------------
