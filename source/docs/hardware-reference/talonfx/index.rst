@@ -147,7 +147,8 @@ Status Light Reference
                 <td><div class='ledGroup'><div class='led' ontime='300' offtime='300' oncolor='orange' offcolor='black'></div>
                                           <div class='led' ontime='300' offtime='300' oncolor='orange' offcolor='black'></div></div></td>
                 <td>Blinking Simultaneous Orange</td>
-                <td colspan="2">Talon FX has valid CAN/PWM signal. If on CAN, Phoenix is running in robot controller <b>and</b> Talon FX has good CAN connection to robot controller.</td>
+                <td>Talon FX has valid CAN/PWM signal and is disabled. If on CAN, Phoenix is running in robot controller <b>and</b> Talon FX has good CAN connection to robot controller.</td>
+                <td>If robot is enabled, ensure a control request is being sent to the Talon FX.</td>
             </tr>
             <tr>
                 <th colspan="4">Enabled Codes</th>
