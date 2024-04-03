@@ -127,8 +127,14 @@ Status Light Reference
                 <td colspan="2">CAN bus healthy. Magnet is in range.</td>
             </tr>
             <tr>
+                <td><div class='ledGroup'><div class='led' ontime='300' offtime='300' oncolor='red' offcolor='orange'></div></div></td>
+                <td>Alternate Red/Orange</td>
+                <td>Damaged Hardware.</td>
+                <td>Contact CTRE.</td>
+            </tr>
+            <tr>
                 <td><div class='ledGroup'><div class='led' ontime='300' offtime='300' oncolor='orange' offcolor='green'></div></div></td>
-                <td>Alternating Orange/Green</td>
+                <td>Alternate Orange/Green</td>
                 <td>CANcoder in bootloader.</td>
                 <td>Field-upgrade device in Tuner X.</td>
             </tr>
