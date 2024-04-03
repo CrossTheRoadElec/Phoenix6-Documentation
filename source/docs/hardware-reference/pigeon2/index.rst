@@ -135,7 +135,7 @@ Status Light Reference
         var ledGrps = [];
         for(var i = 0; i < ledGrpElems.length; i++) {
             ledGrps[i] = {
-            	"consts": [
+                "consts": [
                     {
                         'ontime': ledGrpElems[i].children[0].getAttribute('ontime'),
                         'offtime': ledGrpElems[i].children[0].getAttribute('offtime'),
@@ -177,7 +177,7 @@ Status Light Reference
         setInterval(function() {
             for(var i = 0; i < ledGrpElems.length; i++) {
                 if (ledGrpElems[i].getAttribute('blink') === 'true') {
-              		for(var j = 0; j < ledGrpElems[i].children.length; j++) {
+                    for(var j = 0; j < ledGrpElems[i].children.length; j++) {
                         var time = ledGrps[i]['vars'][j]['time'];
                         ledGrps[i]['vars'][j]['time'] = time + 100;
                         if (ledGrps[i]['vars'][j]['state']) {

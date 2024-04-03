@@ -141,7 +141,7 @@ Status Light Reference
                                           <div class='led' ontime='300' offtime='300' oncolor='black' offcolor='orange'></div></div></td>
                 <td>Blinking Alternating Orange</td>
                 <td>TalonFX detects CAN but does not see Phoenix running on the robot controller.</td>
-                <td>If Phoenix is running on the robot controller, ensure good connection between the controller and this device. Otherwise deploy a robot program that uses Phoenix.</td>
+                <td>If Phoenix is running on the robot controller, ensure good connection between the controller and this device. Otherwise, deploy a robot program that uses Phoenix.</td>
             </tr>
             <tr>
                 <td><div class='ledGroup'><div class='led' ontime='300' offtime='300' oncolor='orange' offcolor='black'></div>
@@ -184,14 +184,14 @@ Status Light Reference
                                           <div class='led' ontime='100' offtime='400' oncolor='orange' offcolor='black'></div></div></td>
                 <td>Offset Orange/Off</td>
                 <td>Talon FX in thermal cutoff.</td>
-                <td>Allow Talon FX to cool. Investigate implementing Stator Current Limits to reduce heat generation.</td>
+                <td>Allow Talon FX to cool. Consider configuring Stator Current Limits to reduce heat generation.</td>
             </tr>
             <tr>
                 <td><div class='ledGroup'><div class='led' ontime='300' offtime='300' oncolor='red' offcolor='green'></div>
                                           <div class='led' ontime='300' offtime='300' oncolor='green' offcolor='red'></div></div></td>
                 <td>Alternate Red/Green</td>
                 <td>Talon FX driven with Pro-only command while unlicensed.</td>
-                <td>Use non-Pro-only command or license device for Pro.</td>
+                <td>Use non-Pro-only command, or license device for Pro.</td>
             </tr>
             <tr>
                 <td><div class='ledGroup'><div class='led' ontime='300' offtime='300' oncolor='red' offcolor='orange'></div>
@@ -215,7 +215,7 @@ Status Light Reference
         var ledGrps = [];
         for(var i = 0; i < ledGrpElems.length; i++) {
             ledGrps[i] = {
-            	"consts": [
+                "consts": [
                     {
                         'ontime': ledGrpElems[i].children[0].getAttribute('ontime'),
                         'offtime': ledGrpElems[i].children[0].getAttribute('offtime'),
@@ -257,7 +257,7 @@ Status Light Reference
         setInterval(function() {
             for(var i = 0; i < ledGrpElems.length; i++) {
                 if (ledGrpElems[i].getAttribute('blink') === 'true') {
-              		for(var j = 0; j < ledGrpElems[i].children.length; j++) {
+                    for(var j = 0; j < ledGrpElems[i].children.length; j++) {
                         var time = ledGrps[i]['vars'][j]['time'];
                         ledGrps[i]['vars'][j]['time'] = time + 100;
                         if (ledGrps[i]['vars'][j]['state']) {
