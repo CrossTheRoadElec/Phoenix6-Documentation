@@ -49,7 +49,7 @@ Applying Configs
 
                var talonFXConfigs = new TalonFXConfiguration();
 
-               // set slot 0 gains
+               // set slot 0 gains and leave every other config factory-default
                var slot0Configs = talonFXConfigs.Slot0;
                slot0Configs.kV = 0.12;
                slot0Configs.kP = 0.11;
@@ -66,7 +66,7 @@ Applying Configs
 
                configs::TalonFXConfiguration talonFXConfigs{};
 
-               // set slot 0 gains
+               // set slot 0 gains and leave every other config factory-default
                configs::Slot0Configs& slot0Configs = talonFXConfigs.Slot0;
                slot0Configs.kV = 0.12;
                slot0Configs.kP = 0.11;
