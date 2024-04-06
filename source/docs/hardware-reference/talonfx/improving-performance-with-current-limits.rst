@@ -3,7 +3,7 @@ Improving Performance with Current Limits
 
 Current-limiting, is the process of reducing and eliminating motor output when a given current has surpassed a limit. There are 3 types of current limits available: supply, stator, and torque. Each of these limits accomplishes different goals. This article goes over how to configure those limits, when to configure them and why current limiting is important.
 
-.. note:: By default, devices are not configured with limits by default. This is because optimal limits depends on how the motor is integrated into the system. There are additional safety measures in place to prevent damage to the motor or motor controller under excessive load.
+.. note:: By default, devices are not configured with any current limits. This is because the optimal limits depend on how the motor is integrated into the system. There are additional safety measures in place to prevent damage to the motor or motor controller under excessive load.
 
 Supply, Stator and Torque Limits
 --------------------------------
@@ -24,7 +24,7 @@ Supply Limits
 
 When ``SupplyCurrentThreshold`` has elapsed for ``SupplyTimeThreshold`` amount of time, it will lower motor output until it's within range of the current limit (see the above section on examples of these configs).
 
-Supply current limits are useful to prevent fuses from reseting and breakers from tripping. They are also effective at preventing brownouts, but stator or torque limits are often more effective.
+Supply current limits are useful to prevent fuses from reseting and breakers from tripping. They are also effective at preventing brownouts and reducing overall current load on the battery.
 
 Stator & Torque Limits
 ^^^^^^^^^^^^^^^^^^^^^^
