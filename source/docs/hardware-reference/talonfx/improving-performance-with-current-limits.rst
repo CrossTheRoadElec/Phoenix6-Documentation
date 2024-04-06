@@ -80,15 +80,133 @@ Using Limits to Reduce Brownouts
 
 The same strategy for improving battery life is applicable to brownouts as well. In the above example, we can see that our peak draw is 365A. Brownouts occur when the robot voltage dips below a threshold (for the `FRC roboRIO <https://docs.wpilib.org/en/stable/docs/software/roborio-info/roborio-brownouts.html>`__, this threshold is around ~7V). When the roboRIO dips below 7V, it will disable all actuators to prevent a total robot reboot.
 
-As current increases, the battery voltage will decrease in a 
+As supply current increases, the battery voltage will decrease in a similar fashion. A simplified equation for modeling voltage sag is shown below along with a calculator.
+
+.. math::
+
+   voltage = unloadedvoltage - (current * m\Omega)
+
+.. raw:: html
+
+   <h4>Battery Sag Calculator</h4>
+   <div style="height:80px;width:100%;position:relative;">
+      <form style="float:left;">
+         <p>Unloaded voltage (V)</p>
+         <input onchange="updateOutput()" id="uV" value="12.5" style="width:90%;" type="numeric" placeholder="12.5"/>
+      </form>
+      <form style="float:left;">
+         <p>Total draw (A)</p>
+         <input onchange="updateOutput()" id="current" value="240" style="width:90%;" type="numeric" placeholder="240"/>
+      </form>
+      <form style="float:left;">
+         <p>Battery resistance (mOhms)</p>
+         <input onchange="updateOutput()" id="resistance" value="20" style="width:90%;" type="numeric" placeholder="20"/>
+      </form>
+      <p style="float:left;margin-left:10px;margin-top:35px;font-weight:bold;color:#bdeb34;">=<span id="output">10.12V</span></p>
+   </div>
+   <br/>
+
+   <script>
+      updateOutput();
+
+      function updateOutput() {
+         var unloadedVoltage = document.getElementById("uV").value
+         var current = document.getElementById("current").value
+         var resistance = document.getElementById("resistance").value
+         var output = document.getElementById("output")
+
+         var calculatedOutput = parseFloat(unloadedVoltage) - (parseFloat(current) * (parseFloat(resistance) / 1000))
+
+         output.innerHTML = (Math.round(calculatedOutput*10**2)/10**2) + "V"
+      }
+   </script>
+
+Be aware that battery health (in the form of battery resistance above) changes how much increased current draw effects the output voltage of the battery. Health of the battery can be roughly determined via a `battery beak <https://store.ctr-electronics.com/battery-beak/>`__ or a via a battery discharge test with a `battery analyzer <https://www.andymark.com/products/computerized-battery-analyzer>`__.
+
+Using the above information, ensure your battery is healthy and that your supply current limits will prevent the battery sagging below 7V.
 
 Using Limits to Reduce Wheel Slip
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Using Limits to Prevent Mechanism Damage
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Stator current limits are excellent at preventing wheel slip (thus increasing traction). To determine wheel slip, perform the following instructions.
 
+1. Place the robot on carpet against a wall.
+2. Begin plotting velocity and stator current in :doc:`Tuner X </docs/tuner/plotting>`.
+3. Slowly increase dutycycle until the velocity becomes non-zero.
+
+Set your stator limit to a value below the observed stator current in Tuner. In the below plot, you can see that the wheels began slipping at around 130A.
+
+.. image:: images/slip-current.png
+   :alt: wheel slip at 130A
+
+An interesting observation here is that supply current in the above graph was only around ~37A, this information helps provide real world evidence that stator current limits are effective at reducing brownouts.
+
+Using Limits to Decrease Acceleration
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. note:: The numbers below are quite small compared to a typical drivetrain application. The below example uses a low-load flywheel and because of such, acceleration is already extremely large.
+
+Stator current limits can also be used to reduce acceleration. Below is two graphs. The one on the left has no stator limit applied, and the one on the right does. Because acceleration events are often the most demanding events, this can also help reduce brownouts.
+
+.. grid:: 1 2 2 2
+   :gutter: 3
+
+   .. grid-item-card:: Without stator limits (~900 rotations/second)
+
+      .. image:: images/no-stator-limit-accel.png
+         :alt: no stator limit applied graph with peak accel around 900 rotations / second
+
+   .. grid-item-card:: With stator limits (~200 rotations/second)
+
+      .. image:: images/with-stator-limit-accel.png
+         :alt: stator limit applied graph with peak accel around 200 rotations / second
 
 How to Apply Limits
 -------------------
+
+Limits must be **enabled** and **configured**. This can be performed utilizing :doc:`Tuner X configs </docs/tuner/configs>` or using the Phoenix 6 :ref:`configuration API <docs/api-reference/api-usage/configuration:applying configs>`.
+
+.. tab-set::
+
+   .. tab-item:: Java
+      :sync: Java
+
+      .. code-block:: java
+
+         var talonFXConfigurator = m_talonFX.getConfigurator();
+         var limitConfigs = new CurrentLimitConfigs();
+
+         // enable stator current limit
+         limitConfigs.StatorCurrentLimitEnable = true;
+         limitConfigs.StatorCurrentLimit = 120;
+         
+         talonFXConfigurator.apply(limitConfigs);
+
+   .. tab-item:: C++
+      :sync: C++
+
+      .. code-block:: c++
+
+         auto& talonFXConfigurator = m_talonFX.GetConfigurator();
+         configs::CurrentLimitConfigs limitConfigs{};
+
+         // enable stator current limit
+         limitConfigs.StatorCurrentLimitEnable = true;
+         limitConfigs.StatorCurrentLimit = 120;
+
+         talonFXConfigurator.Apply(limitConfigs);
+
+   .. tab-item:: Python
+      :sync: python
+
+      .. code-block:: python
+
+         talonfx_configurator = self.talonfx.configurator
+         limit_configs = configs.CurrentLimitConfigs()
+
+         # set invert to CW+ and apply config change
+         limit_configs.stator_current_limit_enable = true
+         limit_configs.stator_current_limit = 120
+
+         talonfx_configurator.apply(limit_configs)
 
