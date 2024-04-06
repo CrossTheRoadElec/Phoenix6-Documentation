@@ -1,16 +1,16 @@
 Improving Performance with Current Limits
 =========================================
 
-Current-limiting, is the process of reducing and eliminating motor output when a given current has surpassed a limit. There are 3 types of current limits available: supply, stator, and torque. Each of these limits accomplishes different goals. This article goes over how to configure those limits, when to configure them and why current limiting is important.
+Current-limiting, is the process of reducing motor output when a given current has surpassed a limit. There are 2 types of current limits available: supply and stator/torque. Each of these limits accomplishes different goals. This article goes over how to configure those limits, when to configure them and why current limiting is important.
 
 .. note:: By default, devices are not configured with any current limits. This is because the optimal limits depend on how the motor is integrated into the system. There are additional safety measures in place to prevent damage to the motor or motor controller under excessive load.
 
-Supply, Stator and Torque Limits
---------------------------------
+Supply and Stator/Torque Limits
+-------------------------------
 
-It's important to understand how current limits work. When a motor is under a load, it takes an increasing amount of current to continue rotating the shaft of the motor (and by extension the mechanism). When integrating multiple motors into a system (such as an FRC robot), this increase current draw can drain batteries, reset fuses, blow breakers, or even damage the battery.
+It's important to understand the need for current limits and how they work. When a motor is under a load, it takes an increasing amount of current to continue rotating the shaft of the motor (and by extension the mechanism). When integrating multiple motors into a system (such as an FRC robot), this increase current draw can drain batteries, reset fuses, blow breakers, or even damage the battery.
 
-There exists 3 forms of current limiting: supply, stator and torque. For all limits, the following :ref:`configs <docs/tuner/configs:tuner configs>` apply. In the below example, replace ``Supply`` with ``Stator``.
+There exists 2 forms of current limiting: supply and stator/torque. For all limits, the following :ref:`configs <docs/tuner/configs:tuner configs>` apply. In the below example, replace ``Supply`` with ``Stator``.
 
 .. note:: Limits for torque based control modes should be applied with ``Peak Forward Torque Current`` and ``Peak Reverse Torque Current`` instead.
 
@@ -24,7 +24,7 @@ Supply Limits
 
 .. note:: Supply limits are not functional in torque based control modes. Use the peak torque current configs instead.
 
-When ``SupplyCurrentThreshold`` has elapsed for ``SupplyTimeThreshold`` amount of time, it will lower motor output until it's within range of the current limit (see the above section on examples of these configs).
+When ``SupplyCurrentThreshold`` has elapsed for ``SupplyTimeThreshold`` amount of time, it will reduce motor output until it's within range of the current limit (see the above section on examples of these configs).
 
 Supply current limits are useful to prevent fuses from reseting and breakers from tripping. They are also effective at preventing brownouts and reducing overall current load on the battery.
 
@@ -35,25 +35,25 @@ Stator & Torque Limits
 
    Stator current limits are only applicable in non-torque control modes. For example, a stator limit would have no affect if the current control mode is ``TorqueCurrentFOC``. Users utilizing torque based control modes should use ``Peak Forward Torque Current`` and ``Peak Reverse Torque Current`` configs instead, but the following documentation is still applicable.
 
-Stator current is the output current (and proportional to torque) of the motor. The stator current differs from supply current in that it's at a different voltage from the input.
+Stator current is the output current of the motor and is directly proportional to torque. The stator current differs from supply current in that it's at a different voltage from the input.
 
 .. note:: The below example ignores factors such as energy loss from heat or inefficiency.
 
-For example, if a motor is being applied with 50% dutycycle with :math:`80A`` of load (stator current), the resulting supply current will be :math:`40A`. If the motor has 100% dutycycle applied wth :math:`80A`` of stator current, the resulting supply current wll be :math:`80A`.
+For example, if a motor is being applied with 50% dutycycle with :math:`80A` of load (stator current), the resulting supply current will be :math:`40A`. If the motor has 100% dutycycle applied wth :math:`80A` of measured stator current, the resulting supply current wll be :math:`80A`.
 
 .. figure:: images/stator-limit.png
    :alt: 80a stator limit being applied
 
    *80a torque limit taking affect*
 
-Stator limits apply the same limiting strategy used by supply limits, but are more effective in dealing with situations such as wheel slip or acceleration induced brownouts. The rationale behind it reducing acceleration induced brownouts is that initial acceleration is typically peak supply and stator current.
+Stator limits are more effective in dealing with situations such as wheel slip or ramping acceleration.
 
 If a robot acceleration event draws :math:`100A` of supply current, it will only do so for a very small portion of the entire acceleration event up to a maximum velocity. During the acceleration event, the motor is likely not being commanded with 100% dutycycle. Therefore, if :math:`100A` are being drawn at supply at :math:`6V`, then output stator is around :math:`200A`. A :math:`100A` stator limit would cap the supply current at `50A` while being more efficient at not limiting the entire robot velocity.
 
 How to Budget Limits
 --------------------
 
-Budgeting a current limit depends on the limit and your overall battery budget. When budgeting current limits for FRC, the most robust strategy is to run a robot in match-like conditions and observe battery draw and current draw through the course of the robot operation.
+When budgeting current limits for FRC, the most robust strategy is to run a robot in match-like conditions and observe battery draw and current draw through the course of the robot operation. One thing to be aware of when reading the following section is that the robot won't be under peak draw of **all** mechanisms at the same time.
 
 Using Limits to Improve Battery Longevity
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -71,7 +71,7 @@ For example, a user may have the following mechanisms and supply limits.
 - x1 Kraken(s) on elevator - 30A supply
 - x1 Kraken(s) on intake - 15A supply
 
-This would yield peak supply current of ~395A for a worst case scenario. This draw is extremely unlikely as peak supply is often extremely brief (for example, 60A on all 4 swerve drive motors will likely be for less than 5 seconds).
+This would yield peak supply current of ~365A for a worst case scenario. This draw is extremely unlikely as peak supply is often extremely brief (for example, 60A on all 4 swerve drive motors will likely be for less than 5 seconds) and all mechanisms won't be under peak load at the same time.
 
 .. math::
 
