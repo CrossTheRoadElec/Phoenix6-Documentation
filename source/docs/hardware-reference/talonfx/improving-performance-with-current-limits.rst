@@ -88,15 +88,15 @@ As supply current increases, the battery voltage will decrease in a similar fash
 
    <h4>Battery Sag Calculator</h4>
    <div style="height:80px;width:100%;position:relative;">
-      <form style="float:left;">
+      <form onkeypress="return event.keyCode != 13" style="float:left;">
          <p>Unloaded voltage (V)</p>
          <input onchange="updateOutput()" id="uV" value="12.5" style="width:90%;" type="numeric" placeholder="12.5"/>
       </form>
-      <form style="float:left;">
+      <form onkeypress="return event.keyCode != 13" style="float:left;">
          <p>Total draw (A)</p>
          <input onchange="updateOutput()" id="current" value="240" style="width:90%;" type="numeric" placeholder="240"/>
       </form>
-      <form style="float:left;">
+      <form onkeypress="return event.keyCode != 13" style="float:left;">
          <p>Battery resistance (mOhms)</p>
          <input onchange="updateOutput()" id="resistance" value="20" style="width:90%;" type="numeric" placeholder="20"/>
       </form>
