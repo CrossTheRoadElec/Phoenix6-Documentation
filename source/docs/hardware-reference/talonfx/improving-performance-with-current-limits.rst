@@ -39,7 +39,7 @@ Stator current is the output current (and proportional to torque) of the motor. 
 
 .. note:: The below example ignores factors such as energy loss from heat or inefficiency.
 
-A good example of this is a motor that is powered with a :math:`12V` supply drawing :math:`40A` of supply current. If the dutycycle of the motor is at 100% dutycycle, then the stator current will be close to :math:`40A`  as well. If the motor is at 50% of dutycycle, then the output voltage will be :math:`6V` at :math:`80A`.
+For example, if a motor is being applied with 50% dutycycle with :math:`80A`` of load (stator current), the resulting supply current will be :math:`40A`. If the motor has 100% dutycycle applied wth :math:`80A`` of stator current, the resulting supply current wll be :math:`80A`.
 
 .. figure:: images/stator-limit.png
    :alt: 80a stator limit being applied
