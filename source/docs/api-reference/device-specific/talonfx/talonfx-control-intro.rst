@@ -1,7 +1,7 @@
 Introduction to TalonFX Control
 ===============================
 
-The TalonFX has a variety of open-loop and closed-loop control requests and supports Field Oriented Control.
+The TalonFX has a variety of open-loop and closed-loop control requests and supports Field Oriented Control. Keep in mind the various configuration options available that influence the onboard control (for example, see :doc:`/docs/hardware-reference/talonfx/improving-performance-with-current-limits`).
 
 Control Output Types
 --------------------

@@ -179,7 +179,7 @@ Limits must be **enabled** and **configured**. This can be performed utilizing :
          // enable stator current limit
          limitConfigs.StatorCurrentLimitEnable = true;
          limitConfigs.StatorCurrentLimit = 120;
-         
+
          talonFXConfigurator.apply(limitConfigs);
 
    .. tab-item:: C++
@@ -209,4 +209,3 @@ Limits must be **enabled** and **configured**. This can be performed utilizing :
          limit_configs.stator_current_limit = 120
 
          talonfx_configurator.apply(limit_configs)
-
