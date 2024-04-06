@@ -10,7 +10,9 @@ Supply, Stator and Torque Limits
 
 It's important to understand how current limits work. When a motor is under a load, it takes an increasing amount of current to continue rotating the shaft of the motor (and by extension the mechanism). When integrating multiple motors into a system (such as an FRC robot), this increase current draw can drain batteries, reset fuses, blow breakers, or even damage the battery.
 
-There exists 3 forms of current limiting: supply, stator and torque. For all limits, the following :ref:`configs <docs/tuner/configs:tuner configs>` apply. In the below example, replace ``Supply`` with ``Stator`` or ``Torque``.
+There exists 3 forms of current limiting: supply, stator and torque. For all limits, the following :ref:`configs <docs/tuner/configs:tuner configs>` apply. In the below example, replace ``Supply`` with ``Stator``.
+
+.. note:: Limits for torque based control modes should be applied with ``Peak Forward Torque Current`` and ``Peak Reverse Torque Current`` instead.
 
 - ``SupplyCurrentLimit``
 - ``SupplyCurrentLimitEnable``
@@ -27,7 +29,9 @@ Supply current limits are useful to prevent fuses from reseting and breakers fro
 Stator & Torque Limits
 ^^^^^^^^^^^^^^^^^^^^^^
 
-.. important:: Stator current limits are only applicable in non-torque control modes. For example, a stator limit would have no affect if the current control mode is ``TorqueCurrentFOC``. Users utilizing torque based control modes should use ``Torque`` limits instead, but the following documentation is still applicable.
+.. important::
+   
+   Stator current limits are only applicable in non-torque control modes. For example, a stator limit would have no affect if the current control mode is ``TorqueCurrentFOC``. Users utilizing torque based control modes should use ``Peak Forward Torque Current`` and ``Peak Reverse Torque Current`` configs instead, but the following documentation is still applicable.
 
 Stator current is the output current (and proportional to torque) of the motor. The stator current differs from supply current in that it's at a different voltage from the input.
 
