@@ -14,15 +14,13 @@ There exists 3 forms of current limiting: supply, stator and torque. For all lim
 
 - ``SupplyCurrentLimit``
 - ``SupplyCurrentLimitEnable``
-- ``SupplyCurrentThreshold``
-- ``SupplyTimeThreshold``
 
 All limits must be enabled using the appropriate enable config.
 
 Supply Limits
 ^^^^^^^^^^^^^
 
-When a given current threshold has elapsed for a given amount of time, it will lower motor output until it's within range of the current limit (see the above section on examples of these configs).
+When ``SupplyCurrentThreshold`` has elapsed for ``SupplyTimeThreshold`` amount of time, it will lower motor output until it's within range of the current limit (see the above section on examples of these configs).
 
 Supply current limits are useful to prevent fuses from reseting and breakers from tripping. They are also effective at preventing brownouts, but stator or torque limits are often more effective.
 
@@ -42,7 +40,7 @@ A good example of this is a motor that is powered with a :math:`12V` supply draw
 
    *80a torque limit taking affect*
 
-Stator limits apply the same limiting strategy used by supply limits, but are more effective in dealing with situations such as wheel slip or acceleration induced brownouts. The rationale behind it reducing acceleration induced brownouts is that initial acceleration is typically peak supply and stator current. 
+Stator limits apply the same limiting strategy used by supply limits, but are more effective in dealing with situations such as wheel slip or acceleration induced brownouts. The rationale behind it reducing acceleration induced brownouts is that initial acceleration is typically peak supply and stator current.
 
 If a robot acceleration event draws :math:`100A` of supply current, it will only do so for a very small portion of the entire acceleration event up to a maximum velocity. During the acceleration event, the motor is likely not being commanded with 100% dutycycle. Therefore, if :math:`100A` are being drawn at supply at :math:`6V`, then output stator is around :math:`200A`. A :math:`100A` stator limit would cap the supply current at `50A` while being more efficient at not limiting the entire robot velocity.
 
@@ -70,7 +68,7 @@ For example, a user may have the following mechanisms and supply limits.
 This would yield peak supply current of ~395A for a worst case scenario. This draw is extremely unlikely as peak supply is often extremely brief (for example, 60A on all 4 swerve drive motors will likely be for less than 5 seconds).
 
 .. math::
-   
+
    (60 * 4) + (20 * 4) + (30 * 1) + (15 * 1) \approx 365A
 
 Reduce your limits until your battery life is in an acceptable range.
