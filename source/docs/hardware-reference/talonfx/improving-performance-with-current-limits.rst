@@ -22,6 +22,8 @@ All limits must be enabled using the appropriate enable config.
 Supply Limits
 ^^^^^^^^^^^^^
 
+.. note:: Supply limits are not functional in torque based control modes. Use the peak torque current configs instead.
+
 When ``SupplyCurrentThreshold`` has elapsed for ``SupplyTimeThreshold`` amount of time, it will lower motor output until it's within range of the current limit (see the above section on examples of these configs).
 
 Supply current limits are useful to prevent fuses from reseting and breakers from tripping. They are also effective at preventing brownouts and reducing overall current load on the battery.
