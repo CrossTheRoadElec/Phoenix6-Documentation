@@ -30,7 +30,7 @@ Stator & Torque Limits
 ^^^^^^^^^^^^^^^^^^^^^^
 
 .. important::
-   
+
    Stator current limits are only applicable in non-torque control modes. For example, a stator limit would have no affect if the current control mode is ``TorqueCurrentFOC``. Users utilizing torque based control modes should use ``Peak Forward Torque Current`` and ``Peak Reverse Torque Current`` configs instead, but the following documentation is still applicable.
 
 Stator current is the output current (and proportional to torque) of the motor. The stator current differs from supply current in that it's at a different voltage from the input.
