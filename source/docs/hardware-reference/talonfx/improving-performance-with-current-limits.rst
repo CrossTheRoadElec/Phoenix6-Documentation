@@ -48,7 +48,9 @@ For example, if a motor is being applied with 50% dutycycle with :math:`80A` of 
 
 Stator limits are more effective in dealing with situations such as wheel slip or ramping acceleration.
 
-If a robot acceleration event draws :math:`100A` of supply current, it will only do so for a very small portion of the entire acceleration event up to a maximum velocity. During the acceleration event, the motor is likely not being commanded with 100% dutycycle. Therefore, if :math:`100A` are being drawn at supply at :math:`6V`, then output stator is around :math:`200A`. A :math:`100A` stator limit would cap the supply current at `50A` while being more efficient at not limiting the entire robot velocity.
+Supply current limits, at least at low velocity, actually have less of a restriction on acceleration than stator limits, and they are more effective at preventing brownouts. For example, a :math:`50A` supply limit here could allow for more than :math:`100A` stator at stall.
+
+While you can explain the relationship between the two currents using duty cycle out, it's hard to do the same for current limits, because the current limits are what restrict duty cycle out. Stator limits do so linearly, while supply is nonlinear. Voltage is the dependent variable here, velocity and current limit are the independent variables.
 
 How to Budget Limits
 --------------------
@@ -71,7 +73,7 @@ For example, a user may have the following mechanisms and supply limits.
 - x1 Kraken(s) on elevator - 30A supply
 - x1 Kraken(s) on intake - 15A supply
 
-This would yield peak supply current of ~365A for a worst case scenario. This draw is extremely unlikely as peak supply is often extremely brief (for example, 60A on all 4 swerve drive motors will likely be for less than 5 seconds) and all mechanisms won't be under peak load at the same time.
+This would yield peak supply current of ~365A for a worst case scenario. This draw is extremely unlikely as peak supply is often extremely brief (for example, 60A on all 4 swerve drive motors will likely be for less than 5 seconds) and all mechanisms won't be under peak load at the same time. A more common scenario is 4 swerve drive motors accelerating at the same time for a peak supply of 240A.
 
 .. math::
 

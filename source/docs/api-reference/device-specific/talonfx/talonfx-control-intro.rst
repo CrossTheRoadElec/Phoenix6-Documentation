@@ -8,7 +8,7 @@ Control Output Types
 
 The TalonFX currently supports three base control output types: DutyCycle, Voltage, and TorqueCurrentFOC.
 
-.. note:: Keep in mind the various configuration options available that influence the onboard control (for example, see :doc:`/docs/hardware-reference/talonfx/improving-performance-with-current-limits`).
+.. note:: There are various configuration options available that influence the onboard control (for example, see :doc:`/docs/hardware-reference/talonfx/improving-performance-with-current-limits`).
 
 DutyCycle
 ^^^^^^^^^
