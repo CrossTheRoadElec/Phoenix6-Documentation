@@ -57,20 +57,25 @@ For a full reference of the available functions, see the API documentation of ``
       .. code-block:: java
 
          private static final SwerveModuleConstantsFactory ConstantCreator = new SwerveModuleConstantsFactory()
-            .withDriveMotorGearRatio(kDriveGearRatio)
-            .withSteerMotorGearRatio(kSteerGearRatio)
-            .withWheelRadius(kWheelRadiusInches)
-            .withSlipCurrent(kSlipCurrentA)
-            .withSteerMotorGains(steerGains)
-            .withDriveMotorGains(driveGains)
-            .withSteerMotorClosedLoopOutput(steerClosedLoopOutput)
-            .withDriveMotorClosedLoopOutput(driveClosedLoopOutput)
-            .withSpeedAt12VoltsMps(kSpeedAt12VoltsMps)
-            .withSteerInertia(kSteerInertia)
-            .withDriveInertia(kDriveInertia)
-            .withFeedbackSource(SteerFeedbackType.FusedCANcoder)
-            .withCouplingGearRatio(kCoupleRatio)
-            .withSteerMotorInverted(kSteerMotorReversed);
+                  .withDriveMotorGearRatio(kDriveGearRatio)
+                  .withSteerMotorGearRatio(kSteerGearRatio)
+                  .withWheelRadius(kWheelRadiusInches)
+                  .withSlipCurrent(kSlipCurrentA)
+                  .withSteerMotorGains(steerGains)
+                  .withDriveMotorGains(driveGains)
+                  .withSteerMotorClosedLoopOutput(steerClosedLoopOutput)
+                  .withDriveMotorClosedLoopOutput(driveClosedLoopOutput)
+                  .withSpeedAt12VoltsMps(kSpeedAt12VoltsMps)
+                  .withSteerInertia(kSteerInertia)
+                  .withDriveInertia(kDriveInertia)
+                  .withSteerFrictionVoltage(kSteerFrictionVoltage)
+                  .withDriveFrictionVoltage(kDriveFrictionVoltage)
+                  .withFeedbackSource(SteerFeedbackType.FusedCANcoder)
+                  .withCouplingGearRatio(kCoupleRatio)
+                  .withSteerMotorInverted(kSteerMotorReversed)
+                  .withDriveMotorInitialConfigs(kDriveConfigs)
+                  .withSteerMotorInitialConfigs(kSteerConfigs)
+                  .withCANcoderInitialConfigs(kEncoderConfigs);
 
 Additional Constants
 ^^^^^^^^^^^^^^^^^^^^
@@ -84,6 +89,9 @@ In the previous section, several optional constants are defined. These constants
 
 ``SlipCurrent``
   This is the amount of stator current the drive motors can apply without slippage. This can be found by placing the robot against a solid wall and slowly increase the output voltage. As the output voltage increases, :ref:`plot <docs/tuner/plotting:plotting>` the drive wheel velocity and stator current. Observe when the drive wheel velocity starts to rise (wheel is slipping) and at what stator current this begins.
+
+``DriveMotorInitialConfigs``/``SteerMotorInitialConfigs``/``CANcoderInitialConfigs``
+  An initial configuration object that can be used to apply custom configs to the backing devices for each swerve module. This is useful for logic such as applying supply current limits.
 
 Building the Swerve Module Constants
 ------------------------------------
