@@ -143,8 +143,6 @@ Set your stator limit to a value below the observed stator current in Tuner. In 
 .. image:: images/slip-current.png
    :alt: wheel slip at 130A
 
-An interesting observation here is that supply current in the above graph was only around ~37A, this information helps provide real world evidence that stator current limits are effective at reducing brownouts.
-
 Using Limits to Decrease Acceleration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
