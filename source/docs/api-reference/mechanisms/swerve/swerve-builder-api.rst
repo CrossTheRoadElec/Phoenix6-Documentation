@@ -8,6 +8,8 @@ Defining Drivetrain Characteristics
 
 Drivetrain, in this instance, refers to the ``SwerveDrivetrainConstants`` class (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/mechanisms/swerve/SwerveDrivetrainConstants.html>`__). This class defines characteristics that are not module specific. Mandatory parameters include ``.withPigeon2Id()``.
 
+Users can optionally provide a configuration object to apply custom configs to the Pigeon 2, such as mount orientation. Leaving the configuration object null will skip applying configs to the Pigeon 2.
+
 ``SwerveDrivetrainConstants`` Example
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -20,7 +22,8 @@ Drivetrain, in this instance, refers to the ``SwerveDrivetrainConstants`` class 
 
          private static final SwerveDrivetrainConstants DrivetrainConstants = new SwerveDrivetrainConstants()
             .withPigeon2Id(kPigeonId)
-            .withCANbusName(kCANbusName);
+            .withCANbusName(kCANbusName)
+            .withPigeon2Configs(kPigeonConfigs);
 
 Defining Module Characteristics
 -------------------------------
