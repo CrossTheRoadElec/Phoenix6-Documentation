@@ -1,61 +1,65 @@
 Improving Performance with Current Limits
 =========================================
 
-Current-limiting, is the process of reducing motor output when a given current has surpassed a limit. There are 2 types of current limits available: supply and stator/torque. Each of these limits accomplishes different goals. This article goes over how to configure those limits, when to configure them and why current limiting is important.
+Current limiting is the process of restricting motor output when a given current has surpassed a limit. There are two types of current limits available: stator and supply. Each of these limits accomplishes different goals. This article goes over why current limiting is important, when to configure these limits, and how to configure them.
 
 .. note:: By default, devices are not configured with any current limits. This is because the optimal limits depend on how the motor is integrated into the system. There are additional safety measures in place to prevent damage to the motor or motor controller under excessive load.
 
-Supply and Stator/Torque Limits
--------------------------------
+Stator and Supply Current Limits
+--------------------------------
 
-It's important to understand the need for current limits and how they work. When a motor is under a load, it takes an increasing amount of current to continue rotating the shaft of the motor (and by extension the mechanism). When integrating multiple motors into a system (such as an FRC robot), this increase current draw can drain batteries, reset fuses, blow breakers, or even damage the battery.
+It's important to understand the need for current limits and how they work. When a motor is under a load, it takes an increasing amount of current to continue rotating the shaft of the motor (and by extension the mechanism). When integrating multiple motors into a system (such as an FRC robot), this increase in current draw can drain batteries, reset fuses, trip breakers, or even damage the battery.
 
-There exists 2 forms of current limiting: supply and stator/torque. For all limits, the following :ref:`configs <docs/tuner/configs:tuner configs>` apply. In the below example, replace ``Supply`` with ``Stator``.
+There are two forms of current limiting: stator and supply. The relevant :ref:`configs <docs/tuner/configs:tuner configs>` are located in the CurrentLimits config group (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/configs/CurrentLimitsConfigs.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1configs_1_1_current_limits_configs.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/configs/config_groups/index.html#phoenix6.configs.config_groups.CurrentLimitsConfigs>`__).
 
-.. note:: Limits for torque based control modes should be applied with ``Peak Forward Torque Current`` and ``Peak Reverse Torque Current`` instead.
+.. warning:: Current limits are not applied in torque based control modes, such as ``TorqueCurrentFOC``. Limits for torque based control modes should be applied with ``PeakForwardTorqueCurrent`` and ``PeakReverseTorqueCurrent`` instead. Torque current is equivalent to stator current in magnitude.
 
-- ``SupplyCurrentLimit``
-- ``SupplyCurrentLimitEnable``
+All current limits must be separately enabled using the appropriate enable config.
 
-All limits must be enabled using the appropriate enable config.
+Stator Limits
+^^^^^^^^^^^^^
+
+.. important:: Stator current limits are only applicable in non-torque control modes. Users utilizing torque based control modes should use the ``PeakForwardTorqueCurrent`` and ``PeakReverseTorqueCurrent`` configs instead, where the following documentation is still applicable.
+
+Stator current is the output current of the motor and is directly proportional to torque.
+
+.. figure:: images/stator-limit.png
+   :alt: 80 A stator current limit being applied
+
+   *80 A stator current limit taking effect*
+
+Stator current limits are used to restrict the torque output of the motor. This can be used to prevent wheel slip, limit acceleration, or avoid damaging a mechanism when running into a hard stop. Stator current limits also reduce heat buildup in the motor.
+
+Since stator current limits also limit supply current, they are also effective at preventing brownouts when accelerating.
+
+.. dropdown:: Relationship between Supply and Stator Current
+   :open:
+
+   .. note:: This explanation ignores energy loss from heat or other inefficiencies.
+
+   By conservation of energy, power going into the motor must equal power out. Since power is equivalent to voltage times current, :math:`V_{supply} * I_{supply} = V_{stator} * I_{stator}`, where :math:`V_{stator}` is the output voltage of the motor. The duty cycle output of a motor is equivalent to :math:`V_{stator} / V_{supply}`, so the relationship between supply and stator current can be described as :math:`I_{supply} = I_{stator} * duty cycle`.
+
+   As an example, if a motor is applied 100% output (~12 V) and has 80 A of measured stator current, then the supply current will also be 80 A. However, if the motor is applied 50% output (~6 V) and has 80 A of measured stator current, then supply current will only be 40 A.
+
+   This means that stator current limits also effectively limit supply current. Supply current will not exceed a stator current limit and is often significantly lower than stator current.
 
 Supply Limits
 ^^^^^^^^^^^^^
 
-.. note:: Supply limits are not functional in torque based control modes. Use the peak torque current configs instead.
+.. important:: Supply limits are not functional in torque based control modes. Use the ``PeakForwardTorqueCurrent`` and ``PeakReverseTorqueCurrent`` configs instead.
 
-When ``SupplyCurrentThreshold`` has elapsed for ``SupplyTimeThreshold`` amount of time, it will reduce motor output until it's within range of the current limit (see the above section on examples of these configs).
+Supply current is the current drawn from the battery. As a result, limiting supply current can be useful to prevent fuses from resetting and breakers from tripping, as well as to improve the longevity of the battery.
 
-Supply current limits are useful to prevent fuses from reseting and breakers from tripping. They are also effective at preventing brownouts and reducing overall current load on the battery.
+.. tip:: Since stator current limits also limit supply current, it is often not necessary to enable both limits.
 
-Stator & Torque Limits
-^^^^^^^^^^^^^^^^^^^^^^
+When the ``SupplyCurrentThreshold`` has elapsed for ``SupplyTimeThreshold`` amount of time, the supply current limiter will activate and reduce motor output until supply current is within range of the limit.
 
-.. important::
-
-   Stator current limits are only applicable in non-torque control modes. For example, a stator limit would have no affect if the current control mode is ``TorqueCurrentFOC``. Users utilizing torque based control modes should use ``Peak Forward Torque Current`` and ``Peak Reverse Torque Current`` configs instead, but the following documentation is still applicable.
-
-Stator current is the output current of the motor and is directly proportional to torque. The stator current differs from supply current in that it's at a different voltage from the input.
-
-.. note:: The below example ignores factors such as energy loss from heat or inefficiency.
-
-For example, if a motor is being applied with 50% dutycycle with :math:`80A` of load (stator current), the resulting supply current will be :math:`40A`. If the motor has 100% dutycycle applied wth :math:`80A` of measured stator current, the resulting supply current wll be :math:`80A`.
-
-.. figure:: images/stator-limit.png
-   :alt: 80a stator limit being applied
-
-   *80a torque limit taking affect*
-
-Stator limits are more effective in dealing with situations such as wheel slip or ramping acceleration.
-
-Supply current limits, at least at low velocity, actually have less of a restriction on acceleration than stator limits, and they are more effective at preventing brownouts. For example, a :math:`50A` supply limit here could allow for more than :math:`100A` stator at stall.
-
-While you can explain the relationship between the two currents using duty cycle out, it's hard to do the same for current limits, because the current limits are what restrict duty cycle out. Stator limits do so linearly, while supply is nonlinear. Voltage is the dependent variable here, velocity and current limit are the independent variables.
+In the rare case where the robot experiences brownouts despite configuring stator current limits, a supply current limit can also further help avoid brownouts. However, such brownouts are most commonly caused by a bad battery or poor power wiring, so those should be examined first.
 
 How to Budget Limits
 --------------------
 
-When budgeting current limits for FRC, the most robust strategy is to run a robot in match-like conditions and observe battery draw and current draw through the course of the robot operation. One thing to be aware of when reading the following section is that the robot won't be under peak draw of **all** mechanisms at the same time.
+When budgeting current limits for FRC, the most robust strategy is to run a robot in match-like conditions and observe current draw through the course of the robot operation. One thing to be aware of when reading the following section is that the robot will not be under peak draw of **all** mechanisms at the same time.
 
 Using Limits to Improve Battery Longevity
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -155,15 +159,15 @@ Stator current limits can also be used to reduce acceleration. Below is two grap
 .. grid:: 1 2 2 2
    :gutter: 3
 
-   .. grid-item-card:: Without stator limits (~900 rotations/second)
+   .. grid-item-card:: Without stator limit (~170 rotations/second²)
 
       .. image:: images/no-stator-limit-accel.png
-         :alt: no stator limit applied graph with peak accel around 900 rotations / second
+         :alt: Graph with no stator limit applied and a peak accel around 170 rotations/second²
 
-   .. grid-item-card:: With stator limits (~200 rotations/second)
+   .. grid-item-card:: With 80 A stator limit (~76 rotations/second²)
 
       .. image:: images/with-stator-limit-accel.png
-         :alt: stator limit applied graph with peak accel around 200 rotations / second
+         :alt: Graph with stator limit applied and a peak accel around 76 rotations/second²
 
 How to Apply Limits
 -------------------
@@ -181,8 +185,8 @@ Limits must be **enabled** and **configured**. This can be performed utilizing :
          var limitConfigs = new CurrentLimitConfigs();
 
          // enable stator current limit
-         limitConfigs.StatorCurrentLimitEnable = true;
          limitConfigs.StatorCurrentLimit = 120;
+         limitConfigs.StatorCurrentLimitEnable = true;
 
          talonFXConfigurator.apply(limitConfigs);
 
@@ -195,8 +199,8 @@ Limits must be **enabled** and **configured**. This can be performed utilizing :
          configs::CurrentLimitConfigs limitConfigs{};
 
          // enable stator current limit
-         limitConfigs.StatorCurrentLimitEnable = true;
          limitConfigs.StatorCurrentLimit = 120;
+         limitConfigs.StatorCurrentLimitEnable = true;
 
          talonFXConfigurator.Apply(limitConfigs);
 
@@ -208,8 +212,8 @@ Limits must be **enabled** and **configured**. This can be performed utilizing :
          talonfx_configurator = self.talonfx.configurator
          limit_configs = configs.CurrentLimitConfigs()
 
-         # set invert to CW+ and apply config change
-         limit_configs.stator_current_limit_enable = true
+         # enable stator current limit
          limit_configs.stator_current_limit = 120
+         limit_configs.stator_current_limit_enable = true
 
          talonfx_configurator.apply(limit_configs)
