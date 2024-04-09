@@ -28,7 +28,7 @@ Stator current is the output current of the motor and is directly proportional t
 
    *80 A stator current limit taking effect*
 
-Stator current limits are used to restrict the torque output of the motor. This can be used to prevent wheel slip, limit acceleration, or avoid damaging a mechanism when running into a hard stop. Stator current limits also reduce heat buildup in the motor.
+Stator current limits are used to restrict the torque output of the motor. This can be used to prevent wheel slip or avoid damaging a mechanism when running into a hard stop. Stator current limits also reduce heat buildup in the motor.
 
 Since stator current limits also limit supply current, they are also effective at preventing brownouts when accelerating.
 
@@ -43,7 +43,7 @@ Since stator current limits also limit supply current, they are also effective a
 
    This means that stator current limits also effectively limit supply current. Supply current will not exceed a stator current limit and is often significantly lower than stator current.
 
-Another impact that stator current limits have is that upon acceleration. Limits to torque directly increase the amount of time it takes to accelerate to max velocity. An example of this is shown below.
+Another impact that stator current limits have is that they restrict acceleration. Stator current limits cap the torque output of the motor, which directly increases the amount of time it takes to accelerate to max velocity. As a result, it is important not to set stator current limits too low, otherwise performance may be negatively impacted.
 
 .. grid:: 1 2 2 2
    :gutter: 3
@@ -74,16 +74,16 @@ In the rare case where the robot experiences brownouts despite configuring stato
 Determining Current Limits
 --------------------------
 
-While supply current limits can be theoretically estimated by calculating max supply draw for every mechanism, stator limits are not easy to estimate. Determine your stator lmiits first, then supply only if necessary. In many cases, stator is sufficient to prevent battery brownouts.
+While supply current limits can be theoretically estimated by calculating max supply draw for every mechanism, stator limits are not easy to estimate. Determine your stator current limits first, then supply only if necessary. In many cases, stator current limits are sufficient to prevent battery brownouts, as stator current limits also limit supply current.
 
 Preventing Wheel Slip
 ^^^^^^^^^^^^^^^^^^^^^
 
-Stator current limits are excellent at preventing wheel slip (thus increasing traction). To determine wheel slip, perform the following instructions.
+Stator current limits are excellent at preventing wheel slip, which is necessary to maximize power output of the system. To determine wheel slip, perform the following instructions:
 
 1. Place the robot on carpet against a wall.
 2. Begin plotting velocity and stator current in :doc:`Tuner X </docs/tuner/plotting>`.
-3. Slowly increase voltage output until the velocity becomes non-zero.
+3. Slowly increase voltage output until the velocity becomes non-zero and the stator current drops.
 
 Set your stator current limit to a value below the observed stator current in Tuner. In the example below, the wheels began slipping at around 130 A.
 
