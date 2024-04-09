@@ -43,6 +43,21 @@ Since stator current limits also limit supply current, they are also effective a
 
    This means that stator current limits also effectively limit supply current. Supply current will not exceed a stator current limit and is often significantly lower than stator current.
 
+Another impact that stator current limits have is that upon acceleration. Limits to torque directly increase the amount of time it takes to accelerate to max velocity. An example of this is shown below.
+
+.. grid:: 1 2 2 2
+   :gutter: 3
+
+   .. grid-item-card:: Without stator limit (~170 rotations/second²)
+
+      .. image:: images/no-stator-limit-accel.png
+         :alt: Graph with no stator limit applied and a peak accel around 170 rotations/second²
+
+   .. grid-item-card:: With 80 A stator limit (~75 rotations/second²)
+
+      .. image:: images/with-stator-limit-accel.png
+         :alt: Graph with stator limit applied and a peak accel around 75 rotations/second²
+
 Supply Limits
 ^^^^^^^^^^^^^
 
@@ -59,7 +74,7 @@ In the rare case where the robot experiences brownouts despite configuring stato
 Determining Current Limits
 --------------------------
 
-While supply current limits can be theoretically estimated by calculating max supply draw for every mechanism, stator limits are not easy to estimate. This section details some common use cases for various kinds of current limits and how to find them.
+While supply current limits can be theoretically estimated by calculating max supply draw for every mechanism, stator limits are not easy to estimate. Determine your stator lmiits first, then supply only if necessary. In many cases, stator is sufficient to prevent battery brownouts.
 
 Preventing Wheel Slip
 ^^^^^^^^^^^^^^^^^^^^^
@@ -74,24 +89,6 @@ Set your stator current limit to a value below the observed stator current in Tu
 
 .. image:: images/slip-current.png
    :alt: Wheel slip at 130 A stator current
-
-Limiting Acceleration
-^^^^^^^^^^^^^^^^^^^^^
-
-Stator current limits can also be used to reduce acceleration. Below are two graphs demonstrating the effect of stator current limits on acceleration. The one on the left has no stator current limit applied, while the one on the right does. Because acceleration events are often the most demanding events, this can also help reduce power draw and prevent brownouts.
-
-.. grid:: 1 2 2 2
-   :gutter: 3
-
-   .. grid-item-card:: Without stator limit (~170 rotations/second²)
-
-      .. image:: images/no-stator-limit-accel.png
-         :alt: Graph with no stator limit applied and a peak accel around 170 rotations/second²
-
-   .. grid-item-card:: With 80 A stator limit (~75 rotations/second²)
-
-      .. image:: images/with-stator-limit-accel.png
-         :alt: Graph with stator limit applied and a peak accel around 75 rotations/second²
 
 Preventing Brownouts
 ^^^^^^^^^^^^^^^^^^^^
