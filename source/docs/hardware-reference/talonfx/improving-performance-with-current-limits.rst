@@ -93,7 +93,7 @@ Set your stator current limit to a value below the observed stator current in Tu
 Preventing Brownouts
 ^^^^^^^^^^^^^^^^^^^^
 
-The same strategy for improving battery life is applicable to brownouts as well. In the above example, we can see that our peak draw is 365 A. Brownouts occur when the robot voltage dips below a threshold (for the `FRC roboRIO <https://docs.wpilib.org/en/stable/docs/software/roborio-info/roborio-brownouts.html>`__, this threshold is around ~7 V). When the roboRIO dips below the threshold, it will disable all actuators to prevent a total robot reboot.
+Brownouts occur when the robot voltage dips below a threshold (for the `FRC roboRIO <https://docs.wpilib.org/en/stable/docs/software/roborio-info/roborio-brownouts.html>`__, this threshold is around ~7 V). When the roboRIO dips below the threshold, it will disable all actuators to prevent a total robot reboot. Alongside stator limits, supply limits can be used for further prevent brownouts by applying a hard cap to supply voltage across the entire robot. If brownouts are continuous and due to increased total load across all mechanisms, supply limits are affective in this regard.
 
 As supply current increases, the battery voltage will decrease in a similar fashion. A simplified equation for modeling voltage sag is shown below along with a calculator. However, it's easier and more accurate to emperically determine supply current limits. The process of emperically finding these limits is the same as in :ref:`docs/hardware-reference/talonfx/improving-performance-with-current-limits:improving battery longevity`.
 
