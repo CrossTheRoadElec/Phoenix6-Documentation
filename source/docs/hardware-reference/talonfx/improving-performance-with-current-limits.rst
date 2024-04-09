@@ -61,8 +61,8 @@ How to Budget Limits
 
 When budgeting current limits for FRC, the most robust strategy is to run a robot in match-like conditions and observe current draw through the course of the robot operation. One thing to be aware of when reading the following section is that the robot will not be under peak draw of **all** mechanisms at the same time.
 
-Using Limits to Improve Battery Longevity
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Improving Battery Longevity
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 While supply limits can be estimated using battery datasheets and average mechanism current draw, the easiest method is to graph and reduce. By applying a conservative supply limit to mechanisms that can operate with minimal current draw, you can improve the performance of other mechanisms (e.g. capping your intake supply to increase the amount of current a swerve drivetrain can draw).
 
@@ -72,47 +72,47 @@ While supply limits can be estimated using battery datasheets and average mechan
 
 For example, a user may have the following mechanisms and supply limits.
 
-- x4 Kraken(s) on swerve drive - 60A supply
-- x4 Kraken(s) on swerve dzimuth - 20A supply
-- x1 Kraken(s) on elevator - 30A supply
-- x1 Kraken(s) on intake - 15A supply
+- x4 Kraken(s) on swerve drive - 60 A supply
+- x4 Kraken(s) on swerve azimuth - 20 A supply
+- x1 Kraken(s) on elevator - 30 A supply
+- x1 Kraken(s) on intake - 15 A supply
 
-This would yield peak supply current of ~365A for a worst case scenario. This draw is extremely unlikely as peak supply is often extremely brief (for example, 60A on all 4 swerve drive motors will likely be for less than 5 seconds) and all mechanisms won't be under peak load at the same time. A more common scenario is 4 swerve drive motors accelerating at the same time for a peak supply of 240A.
+This would yield peak supply current of ~365 A for a worst case scenario. This draw is extremely unlikely as peak supply current is often extremely brief (for example, 60 A on all 4 swerve drive motors will likely be for less than 2 seconds), and all mechanisms will not be under peak load at the same time. A more common scenario is 4 swerve drive motors accelerating at the same time for a peak supply current of 240 A.
 
 .. math::
 
-   (60 * 4) + (20 * 4) + (30 * 1) + (15 * 1) \approx 365A
+   (60 * 4) + (20 * 4) + (30 * 1) + (15 * 1) \approx 365\text{ A}
 
 Reduce your limits until your battery life is in an acceptable range.
 
-Using Limits to Reduce Brownouts
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Preventing Brownouts
+^^^^^^^^^^^^^^^^^^^^
 
-The same strategy for improving battery life is applicable to brownouts as well. In the above example, we can see that our peak draw is 365A. Brownouts occur when the robot voltage dips below a threshold (for the `FRC roboRIO <https://docs.wpilib.org/en/stable/docs/software/roborio-info/roborio-brownouts.html>`__, this threshold is around ~7V). When the roboRIO dips below 7V, it will disable all actuators to prevent a total robot reboot.
+The same strategy for improving battery life is applicable to brownouts as well. In the above example, we can see that our peak draw is 365 A. Brownouts occur when the robot voltage dips below a threshold (for the `FRC roboRIO <https://docs.wpilib.org/en/stable/docs/software/roborio-info/roborio-brownouts.html>`__, this threshold is around ~7 V). When the roboRIO dips below the threshold, it will disable all actuators to prevent a total robot reboot.
 
 As supply current increases, the battery voltage will decrease in a similar fashion. A simplified equation for modeling voltage sag is shown below along with a calculator.
 
 .. math::
 
-   voltage = unloadedvoltage - (current * m\Omega)
+   V_{loaded} = V_{unloaded} - (I_{totalsupply} * R_{battery})
 
 .. raw:: html
 
-   <h4>Battery Sag Calculator</h4>
+   <h4>Loaded Battery Voltage Calculator</h4>
    <div style="width:100%; overflow:hidden;">
       <form onkeypress="return event.keyCode != 13" style="float:left;">
          <p>Unloaded voltage (V)</p>
          <input onchange="updateOutput()" id="uV" value="12.5" style="width:90%;" type="numeric" placeholder="12.5"/>
       </form>
       <form onkeypress="return event.keyCode != 13" style="float:left;">
-         <p>Total draw (A)</p>
+         <p>Total current draw (A)</p>
          <input onchange="updateOutput()" id="current" value="240" style="width:90%;" type="numeric" placeholder="240"/>
       </form>
       <form onkeypress="return event.keyCode != 13" style="float:left;">
          <p>Battery resistance (mOhms)</p>
          <input onchange="updateOutput()" id="resistance" value="20" style="width:90%;" type="numeric" placeholder="20"/>
       </form>
-      <p style="float:left;margin-left:10px;margin-top:35px;font-weight:bold;color:#bdeb34;">=<span id="output">10.12V</span></p>
+      <p style="float:left;margin-left:10px;margin-top:35px;font-weight:bold;color:#bdeb34;">= <span id="output">0 V</span></p>
    </div>
    <br/>
 
@@ -127,34 +127,32 @@ As supply current increases, the battery voltage will decrease in a similar fash
 
          var calculatedOutput = parseFloat(unloadedVoltage) - (parseFloat(current) * (parseFloat(resistance) / 1000))
 
-         output.innerHTML = (Math.round(calculatedOutput*10**2)/10**2) + "V"
+         output.innerHTML = (Math.round(calculatedOutput*10**2)/10**2) + " V"
       }
    </script>
 
-Be aware that battery health (in the form of battery resistance above) changes how much increased current draw effects the output voltage of the battery. Health of the battery can be roughly determined via a `battery beak <https://store.ctr-electronics.com/battery-beak/>`__ or a via a battery discharge test with a `battery analyzer <https://www.andymark.com/products/computerized-battery-analyzer>`__.
+Be aware that battery health (in the form of battery resistance above) significantly impacts how large current draw affects the output voltage of the battery. Health of the battery can be roughly determined via a `battery beak <https://store.ctr-electronics.com/battery-beak/>`__ or by performing a battery discharge test with a `battery analyzer <https://www.andymark.com/products/computerized-battery-analyzer>`__.
 
-Using the above information, ensure your battery is healthy and that your supply current limits will prevent the battery sagging below 7V.
+Using the above information, ensure your battery is healthy and that your current limits will prevent the battery from sagging below 7 V.
 
-Using Limits to Reduce Wheel Slip
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Preventing Wheel Slip
+^^^^^^^^^^^^^^^^^^^^^
 
 Stator current limits are excellent at preventing wheel slip (thus increasing traction). To determine wheel slip, perform the following instructions.
 
 1. Place the robot on carpet against a wall.
 2. Begin plotting velocity and stator current in :doc:`Tuner X </docs/tuner/plotting>`.
-3. Slowly increase dutycycle until the velocity becomes non-zero.
+3. Slowly increase voltage output until the velocity becomes non-zero.
 
-Set your stator limit to a value below the observed stator current in Tuner. In the below plot, you can see that the wheels began slipping at around 130A.
+Set your stator current limit to a value below the observed stator current in Tuner. In the example below, the wheels began slipping at around 130 A.
 
 .. image:: images/slip-current.png
-   :alt: wheel slip at 130A
+   :alt: Wheel slip at 130 A stator current
 
-Using Limits to Decrease Acceleration
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Limiting Acceleration
+^^^^^^^^^^^^^^^^^^^^^
 
-.. note:: The numbers below are quite small compared to a typical drivetrain application. The below example uses a low-load flywheel and because of such, acceleration is already extremely large.
-
-Stator current limits can also be used to reduce acceleration. Below is two graphs. The one on the left has no stator limit applied, and the one on the right does. Because acceleration events are often the most demanding events, this can also help reduce brownouts.
+Stator current limits can also be used to reduce acceleration. Below are two graphs demonstrating the effect of stator current limits on acceleration. The one on the left has no stator current limit applied, while the one on the right does. Because acceleration events are often the most demanding events, this can also help reduce power draw and prevent brownouts.
 
 .. grid:: 1 2 2 2
    :gutter: 3
@@ -164,15 +162,15 @@ Stator current limits can also be used to reduce acceleration. Below is two grap
       .. image:: images/no-stator-limit-accel.png
          :alt: Graph with no stator limit applied and a peak accel around 170 rotations/second²
 
-   .. grid-item-card:: With 80 A stator limit (~76 rotations/second²)
+   .. grid-item-card:: With 80 A stator limit (~75 rotations/second²)
 
       .. image:: images/with-stator-limit-accel.png
-         :alt: Graph with stator limit applied and a peak accel around 76 rotations/second²
+         :alt: Graph with stator limit applied and a peak accel around 75 rotations/second²
 
-How to Apply Limits
--------------------
+How to Apply Current Limits
+---------------------------
 
-Limits must be **enabled** and **configured**. This can be performed utilizing :doc:`Tuner X configs </docs/tuner/configs>` or using the Phoenix 6 :ref:`configuration API <docs/api-reference/api-usage/configuration:applying configs>`.
+Current limits must be **enabled** and **configured**. This can be done in :doc:`Tuner X configs </docs/tuner/configs>` or using the Phoenix 6 :ref:`configuration API <docs/api-reference/api-usage/configuration:applying configs>`.
 
 .. tab-set::
 
