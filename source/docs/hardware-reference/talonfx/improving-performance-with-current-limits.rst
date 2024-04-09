@@ -1,7 +1,7 @@
 Improving Performance with Current Limits
 =========================================
 
-Current limiting is the process of restricting motor output when a given current has surpassed a limit. There are two types of current limits available: stator and supply. Each of these limits accomplishes different goals. This article goes over why current limiting is important, when to configure these limits, and how to configure them.
+Current limiting is the process of restricting motor output when a given current has surpassed a limit. There are two types of current limits available: stator and supply. Each of these limits accomplishes different goals. This article goes over **why** current limiting is important, **when** to configure these limits, and **how** to configure them.
 
 .. note:: By default, devices are not configured with any current limits. This is because the optimal limits depend on how the motor is integrated into the system. There are additional safety measures in place to prevent damage to the motor or motor controller under excessive load.
 
@@ -56,41 +56,49 @@ When the ``SupplyCurrentThreshold`` has elapsed for ``SupplyTimeThreshold`` amou
 
 In the rare case where the robot experiences brownouts despite configuring stator current limits, a supply current limit can also further help avoid brownouts. However, such brownouts are most commonly caused by a bad battery or poor power wiring, so those should be examined first.
 
-How to Budget Limits
---------------------
+Determining Current Limits
+--------------------------
 
-When budgeting current limits for FRC, the most robust strategy is to run a robot in match-like conditions and observe current draw through the course of the robot operation. One thing to be aware of when reading the following section is that the robot will not be under peak draw of **all** mechanisms at the same time.
+While supply current limits can be theoretically estimated by calculating max supply draw for every mechanism, stator limits are not easy to estimate. This section details some common use cases for various kinds of current limits and how to find them.
 
-Improving Battery Longevity
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Preventing Wheel Slip
+^^^^^^^^^^^^^^^^^^^^^
 
-While supply limits can be estimated using battery datasheets and average mechanism current draw, the easiest method is to graph and reduce. By applying a conservative supply limit to mechanisms that can operate with minimal current draw, you can improve the performance of other mechanisms (e.g. capping your intake supply to increase the amount of current a swerve drivetrain can draw).
+Stator current limits are excellent at preventing wheel slip (thus increasing traction). To determine wheel slip, perform the following instructions.
 
-1. Plot a mechanism supply currents throughout the match
-2. Reduce your supply current until your performance begins to suffer (unable to intake items, etc). Increase this value slightly for some comfort room.
-3. Repeat this for all mechanisms on a fresh battery each time. Time how long it takes before brownouts are regular and battery capacity has dropped.
+1. Place the robot on carpet against a wall.
+2. Begin plotting velocity and stator current in :doc:`Tuner X </docs/tuner/plotting>`.
+3. Slowly increase voltage output until the velocity becomes non-zero.
 
-For example, a user may have the following mechanisms and supply limits.
+Set your stator current limit to a value below the observed stator current in Tuner. In the example below, the wheels began slipping at around 130 A.
 
-- x4 Kraken(s) on swerve drive - 60 A supply
-- x4 Kraken(s) on swerve azimuth - 20 A supply
-- x1 Kraken(s) on elevator - 30 A supply
-- x1 Kraken(s) on intake - 15 A supply
+.. image:: images/slip-current.png
+   :alt: Wheel slip at 130 A stator current
 
-This would yield peak supply current of ~365 A for a worst case scenario. This draw is extremely unlikely as peak supply current is often extremely brief (for example, 60 A on all 4 swerve drive motors will likely be for less than 2 seconds), and all mechanisms will not be under peak load at the same time. A more common scenario is 4 swerve drive motors accelerating at the same time for a peak supply current of 240 A.
+Limiting Acceleration
+^^^^^^^^^^^^^^^^^^^^^
 
-.. math::
+Stator current limits can also be used to reduce acceleration. Below are two graphs demonstrating the effect of stator current limits on acceleration. The one on the left has no stator current limit applied, while the one on the right does. Because acceleration events are often the most demanding events, this can also help reduce power draw and prevent brownouts.
 
-   (60 * 4) + (20 * 4) + (30 * 1) + (15 * 1) \approx 365\text{ A}
+.. grid:: 1 2 2 2
+   :gutter: 3
 
-Reduce your limits until your battery life is in an acceptable range.
+   .. grid-item-card:: Without stator limit (~170 rotations/second²)
+
+      .. image:: images/no-stator-limit-accel.png
+         :alt: Graph with no stator limit applied and a peak accel around 170 rotations/second²
+
+   .. grid-item-card:: With 80 A stator limit (~75 rotations/second²)
+
+      .. image:: images/with-stator-limit-accel.png
+         :alt: Graph with stator limit applied and a peak accel around 75 rotations/second²
 
 Preventing Brownouts
 ^^^^^^^^^^^^^^^^^^^^
 
 The same strategy for improving battery life is applicable to brownouts as well. In the above example, we can see that our peak draw is 365 A. Brownouts occur when the robot voltage dips below a threshold (for the `FRC roboRIO <https://docs.wpilib.org/en/stable/docs/software/roborio-info/roborio-brownouts.html>`__, this threshold is around ~7 V). When the roboRIO dips below the threshold, it will disable all actuators to prevent a total robot reboot.
 
-As supply current increases, the battery voltage will decrease in a similar fashion. A simplified equation for modeling voltage sag is shown below along with a calculator.
+As supply current increases, the battery voltage will decrease in a similar fashion. A simplified equation for modeling voltage sag is shown below along with a calculator. However, it's easier and more accurate to emperically determine supply current limits. The process of emperically finding these limits is the same as in :ref:`docs/hardware-reference/talonfx/improving-performance-with-current-limits:improving battery longevity`.
 
 .. math::
 
@@ -135,37 +143,31 @@ Be aware that battery health (in the form of battery resistance above) significa
 
 Using the above information, ensure your battery is healthy and that your current limits will prevent the battery from sagging below 7 V.
 
-Preventing Wheel Slip
-^^^^^^^^^^^^^^^^^^^^^
+Improving Battery Longevity
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Stator current limits are excellent at preventing wheel slip (thus increasing traction). To determine wheel slip, perform the following instructions.
+While supply limits can be estimated using battery datasheets and average mechanism current draw, the easiest method is to graph and reduce. By applying a conservative supply limit to mechanisms that can operate with minimal current draw, you can improve the performance of other mechanisms (e.g. capping your intake supply to increase the amount of current a swerve drivetrain can draw).
 
-1. Place the robot on carpet against a wall.
-2. Begin plotting velocity and stator current in :doc:`Tuner X </docs/tuner/plotting>`.
-3. Slowly increase voltage output until the velocity becomes non-zero.
+1. Plot a mechanism supply currents throughout the match
+2. Reduce your supply current until your performance begins to suffer (unable to intake items, etc). Increase this value slightly for some comfort room.
+3. Repeat this for all mechanisms on a fresh battery each time. Time how long it takes before brownouts are regular and battery capacity has dropped.
 
-Set your stator current limit to a value below the observed stator current in Tuner. In the example below, the wheels began slipping at around 130 A.
+For example, a user may have the following mechanisms and supply limits.
 
-.. image:: images/slip-current.png
-   :alt: Wheel slip at 130 A stator current
+- x4 Kraken(s) on swerve drive - 60 A supply
+- x4 Kraken(s) on swerve azimuth - 20 A supply
+- x1 Kraken(s) on elevator - 30 A supply
+- x1 Kraken(s) on intake - 15 A supply
 
-Limiting Acceleration
-^^^^^^^^^^^^^^^^^^^^^
+This would yield peak supply current of ~365 A for a worst case scenario. This draw is extremely unlikely as peak supply current is often extremely brief (for example, 60 A on all 4 swerve drive motors will likely be for less than 2 seconds), and all mechanisms will not be under peak load at the same time. A more common scenario is 4 swerve drive motors accelerating at the same time for a peak supply current of 240 A.
 
-Stator current limits can also be used to reduce acceleration. Below are two graphs demonstrating the effect of stator current limits on acceleration. The one on the left has no stator current limit applied, while the one on the right does. Because acceleration events are often the most demanding events, this can also help reduce power draw and prevent brownouts.
+.. math::
 
-.. grid:: 1 2 2 2
-   :gutter: 3
+   (60 * 4) + (20 * 4) + (30 * 1) + (15 * 1) \approx 365\text{ A}
 
-   .. grid-item-card:: Without stator limit (~170 rotations/second²)
+When determining supply limits for a mechanism, ensure that any peak supply load does not cause any breakers to trip. FRC breakers are typically based on temperature and can sustain well beyond their rated amperage for a given amount of time. Consult the manufacturer datasheet for the breakers you use to see their trip capacity.
 
-      .. image:: images/no-stator-limit-accel.png
-         :alt: Graph with no stator limit applied and a peak accel around 170 rotations/second²
-
-   .. grid-item-card:: With 80 A stator limit (~75 rotations/second²)
-
-      .. image:: images/with-stator-limit-accel.png
-         :alt: Graph with stator limit applied and a peak accel around 75 rotations/second²
+Reduce your limits until your battery life is in an acceptable range.
 
 How to Apply Current Limits
 ---------------------------
