@@ -93,9 +93,18 @@ Set your stator current limit to a value below the observed stator current in Tu
 Preventing Brownouts
 ^^^^^^^^^^^^^^^^^^^^
 
-Brownouts occur when the robot voltage dips below a threshold (for the `FRC roboRIO <https://docs.wpilib.org/en/stable/docs/software/roborio-info/roborio-brownouts.html>`__, this threshold is around ~7 V). When the roboRIO dips below the threshold, it will disable all actuators to prevent a total robot reboot. Alongside stator limits, supply limits can be used for further prevent brownouts by applying a hard cap to supply voltage across the entire robot. If brownouts are continuous and due to increased total load across all mechanisms, supply limits are affective in this regard.
+Brownouts occur when the robot voltage dips below a threshold (for the `FRC roboRIO <https://docs.wpilib.org/en/stable/docs/software/roborio-info/roborio-brownouts.html>`__, this threshold is around ~7 V by default). When the roboRIO dips below the threshold, it will disable all actuators to prevent a total robot reboot.
 
-As supply current increases, the battery voltage will decrease in a similar fashion. A simplified equation for modeling voltage sag is shown below along with a calculator. However, it's easier and more accurate to emperically determine supply current limits. The process of emperically finding these limits is the same as in :ref:`docs/hardware-reference/talonfx/improving-performance-with-current-limits:improving battery longevity`.
+Brownouts most commonly occur when the motor accelerates or is otherwise under high load (such as in a pushing match). Since stator current limits are highly effective at limiting supply current, especially at the start of acceleration, they are also highly effective at preventing brownouts in both of these scenarios.
+
+For a few high-inertia mechanisms, such as some flywheels, supply current limits can also be used to further prevent brownouts during long periods of acceleration or high load. However, if a robot is still experiencing brownouts after configuring reasonable stator current limits, the robot should be checked for some common electrical issues before considering more restrictive current limits:
+
+- Check the health of the battery, which can be done using a `Battery Beak <https://store.ctr-electronics.com/battery-beak/>`__ or by performing a full discharge test with a `battery analyzer <https://www.andymark.com/products/computerized-battery-analyzer>`__.
+- Make sure your battery leads are properly tightened to the battery, and the battery connector is properly crimped.
+- If using the CTRE PDP, make sure the leads going into the PDP are properly crimped and secured.
+- Check all device power connections at the PDP/PDH. The PDP/PDH should be clearly connected to copper and not wire insulation.
+
+As motor supply currents increase, the battery voltage will decrease in a similar fashion. A simplified equation for modeling voltage sag is shown below along with a calculator. However, it is easier and more accurate to emperically determine supply current limits. The process of emperically finding these limits is the same as in :ref:`docs/hardware-reference/talonfx/improving-performance-with-current-limits:improving battery longevity`.
 
 .. math::
 
@@ -136,35 +145,29 @@ As supply current increases, the battery voltage will decrease in a similar fash
       }
    </script>
 
-Be aware that battery health (in the form of battery resistance above) significantly impacts how large current draw affects the output voltage of the battery. Health of the battery can be roughly determined via a `battery beak <https://store.ctr-electronics.com/battery-beak/>`__ or by performing a battery discharge test with a `battery analyzer <https://www.andymark.com/products/computerized-battery-analyzer>`__.
-
-Using the above information, ensure your battery is healthy and that your current limits will prevent the battery from sagging below 7 V.
+Be aware that battery health (in the form of battery resistance above) significantly impacts how large current draw affects the output voltage of the battery. Health of the battery can be roughly determined via a `Battery Beak <https://store.ctr-electronics.com/battery-beak/>`__ or by performing a battery discharge test with a `battery analyzer <https://www.andymark.com/products/computerized-battery-analyzer>`__.
 
 Improving Battery Longevity
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-While supply limits can be estimated using battery datasheets and average mechanism current draw, the easiest method is to graph and reduce. By applying a conservative supply limit to mechanisms that can operate with minimal current draw, you can improve the performance of other mechanisms (e.g. capping your intake supply to increase the amount of current a swerve drivetrain can draw).
+While supply limits can be estimated using battery datasheets and average mechanism current draw, the easiest and most reliable method is to test, analyze, and reduce. By applying a conservative supply limit to mechanisms that can operate with minimal current draw, you can improve the performance of other mechanisms (e.g. reducing your intake current limits to increase the amount of current available for a swerve drivetrain).
 
-1. Plot a mechanism supply currents throughout the match
-2. Reduce your supply current until your performance begins to suffer (unable to intake items, etc). Increase this value slightly for some comfort room.
+1. Plot a mechanism's supply currents throughout the match.
+2. Reduce the supply current limits until your performance begins to suffer (unable to intake items, etc.). Increase this value slightly for some comfort room.
 3. Repeat this for all mechanisms on a fresh battery each time. Time how long it takes before brownouts are regular and battery capacity has dropped.
 
-For example, a user may have the following mechanisms and supply limits.
+For example, a user may have the following mechanisms and current limits:
 
-- x4 Kraken(s) on swerve drive - 60 A supply
-- x4 Kraken(s) on swerve azimuth - 20 A supply
-- x1 Kraken(s) on elevator - 30 A supply
-- x1 Kraken(s) on intake - 15 A supply
+- x4 Kraken(s) on swerve drive - 120 A stator, 70 A supply
+- x4 Kraken(s) on swerve azimuth - 40 A stator, no supply limit (<40 A)
+- x1 Kraken(s) on elevator - 80 A stator, 30 A supply
+- x1 Kraken(s) on intake - 20 A stator, no supply limit (<20 A)
 
-This would yield peak supply current of ~365 A for a worst case scenario. This draw is extremely unlikely as peak supply current is often extremely brief (for example, 60 A on all 4 swerve drive motors will likely be for less than 2 seconds), and all mechanisms will not be under peak load at the same time. A more common scenario is 4 swerve drive motors accelerating at the same time for a peak supply current of 240 A.
+This would yield a peak supply current of <490 A in the worst case scenario. However, this current draw is **extremely unlikely**. Stator current limits ensure all motors and mechanisms will not be under peak load at the same time. Peak current draw occurs towards the end of acceleration when stator current limits are enabled. Additionally, peak supply current is often extremely brief (>60 A on all 4 swerve drive motors lasts <0.5 seconds). A more common scenario is 4 swerve drive motors accelerating at the same time for a peak supply current of 280 A.
 
-.. math::
+When determining supply current limits for a mechanism, ensure that its peak supply current and the duration of that peak does not cause any breakers to trip. FRC breakers typically trip from temperature and can sustain well beyond their rated amperage for a given amount of time. Consult the manufacturer datasheet for the breakers you use to see their trip times.
 
-   (60 * 4) + (20 * 4) + (30 * 1) + (15 * 1) \approx 365\text{ A}
-
-When determining supply limits for a mechanism, ensure that any peak supply load does not cause any breakers to trip. FRC breakers are typically based on temperature and can sustain well beyond their rated amperage for a given amount of time. Consult the manufacturer datasheet for the breakers you use to see their trip capacity.
-
-Reduce your limits until your battery life is in an acceptable range.
+Reduce your current limits until your battery life is in an acceptable range.
 
 How to Apply Current Limits
 ---------------------------
