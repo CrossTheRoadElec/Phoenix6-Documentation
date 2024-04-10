@@ -93,7 +93,7 @@ Set your stator current limit to a value below the observed stator current in Tu
 Preventing Brownouts
 ^^^^^^^^^^^^^^^^^^^^
 
-Brownouts occur when the robot voltage dips below a threshold (for the `FRC roboRIO <https://docs.wpilib.org/en/stable/docs/software/roborio-info/roborio-brownouts.html>`__, this threshold is around ~7 V by default). When the roboRIO dips below the threshold, it will disable all actuators to prevent a total robot reboot.
+Brownouts occur when the robot voltage dips below a threshold. For the `FRC roboRIO <https://docs.wpilib.org/en/stable/docs/software/roborio-info/roborio-brownouts.html>`__, this threshold is 6.3 V on the roboRIO 1 and 6.75 V (by default) on the roboRIO 2. When the roboRIO dips below the threshold, it will disable all actuators to prevent a total robot reboot.
 
 Brownouts most commonly occur when the motor accelerates or is otherwise under high load (such as in a pushing match). Since stator current limits are highly effective at limiting supply current, especially at the start of acceleration, they are also highly effective at preventing brownouts in both of these scenarios.
 
