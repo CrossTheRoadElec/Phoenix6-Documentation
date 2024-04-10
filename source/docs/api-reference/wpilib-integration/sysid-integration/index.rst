@@ -40,4 +40,3 @@ Get started:
    :maxdepth: 1
 
    plumbing-and-running-sysid
-   analyzing-results
