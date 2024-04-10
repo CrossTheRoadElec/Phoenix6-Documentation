@@ -7,7 +7,7 @@ To get started, users must construct a ``SysIdRoutine`` that defines a ``Config`
 
 The ``Config`` constructor allows the users to define the voltage ramp rate, dynamic step voltage, characterization timeout, and a lambda that accepts the ``SysIdRoutineLog.State`` for logging. The lambda needs to be overridden to log the State string using the :doc:`Phoenix 6 Signal Logger </docs/api-reference/api-usage/signal-logging>`.
 
-The ``Mechanism`` constructor takes a lambda accepts a ``Measure<Voltage>``. This lambda is used to apply the voltage request to the motors during characterization, which can be done using a VoltageOut request. The second argument to the constructor is a logging callback; this is left ``null`` when using the Signal Logger, as all signals are logged automatically. The last parameter is a reference to this ``Subsystem``.
+The ``Mechanism`` constructor takes a lambda accepts a ``Measure<Voltage>``. This lambda is used to apply the voltage request to the motors during characterization, which can be done using a ``VoltageOut`` request. The second argument to the constructor is a logging callback; this is left ``null`` when using the Signal Logger, as all signals are logged automatically. The last parameter is a reference to this ``Subsystem``.
 
 Putting this all together results in the example shown below.
 
@@ -24,9 +24,10 @@ Putting this all together results in the example shown below.
          private final SysIdRoutine m_sysIdRoutine =
             new SysIdRoutine(
                new SysIdRoutine.Config(
-                  null,        // use default ramp rate (1 V/s)
-                  Volts.of(7), // use a 7 V step voltage
-                  null,        // use default timeout (10s)
+                  null,        // Use default ramp rate (1 V/s)
+                  Volts.of(4), // Reduce dynamic step voltage to 4 to prevent brownout
+                  null,        // Use default timeout (10 s)
+                               // Log state with Phoenix SignalLogger class
                   (state) -> SignalLogger.writeString("state", state.toString())
                ),
                new SysIdRoutine.Mechanism(
@@ -46,9 +47,10 @@ Putting this all together results in the example shown below.
 
          frc2::sysid::SysIdRoutine m_sysIdRoutine{
             frc2::sysid::Config{
-               std::nullopt,  // use default ramp rate (1 V/s)
-               7_V,           // use a 7 V step voltage
-               std::nullopt,  // use default timeout (10s)
+               std::nullopt,  // Use default ramp rate (1 V/s)
+               4_V,           // Reduce dynamic step voltage to 4 to prevent brownout
+               std::nullopt,  // Use default timeout (10 s)
+                              // Log state with Phoenix SignalLogger class
                [](frc::sysid::State state)
                {
                   SignalLogger::WriteString("state", frc::sysid::SysIdRoutineLog::StateEnumToString(state));
@@ -56,7 +58,7 @@ Putting this all together results in the example shown below.
             },
             frc2::sysid::Mechanism{
                [this](units::volt_t volts) { m_motor.SetControl(m_voltReq.WithOutput(volts)); },
-               std::nullopt,
+               [](auto) {},
                this
             }
          };
@@ -71,14 +73,16 @@ Putting this all together results in the example shown below.
 
          self.sys_id_routine = SysIdRoutine(
             SysIdRoutine.Config(
-               # use default ramp rate (1 V/s) and timeout (10 s)
-               # use a 7 V step voltage
-               stepVoltage = 7.0,
+               # Use default ramp rate (1 V/s) and timeout (10 s)
+               # Reduce dynamic voltage to 4 to prevent brownout
+               stepVoltage = 4.0,
+               # Log state with Phoenix SignalLogger class
                recordState = lambda state: SignalLogger.write_string("state", SysIdRoutineLog.stateEnumToString(state))
             ),
             SysIdRoutine.Mechanism(
-               drive = lambda volts: self.motor.set_control(self.voltage_req.with_output(volts)),
-               subsystem = self
+               lambda volts: self.motor.set_control(self.voltage_req.with_output(volts)),
+               lambda log: None,
+               self
             )
          )
 
@@ -134,8 +138,8 @@ From there, the program can bind buttons to these commands in ``RobotContainer``
 
       .. code-block:: java
 
-         m_joystick.leftBumper().onTrue(Commands.runOnce(() -> SignalLogger.start()));
-         m_joystick.rightBumper().onTrue(Commands.runOnce(() -> SignalLogger.stop()));
+         m_joystick.leftBumper().onTrue(Commands.runOnce(SignalLogger::start));
+         m_joystick.rightBumper().onTrue(Commands.runOnce(SignalLogger::stop));
 
          /*
           * Joystick Y = quasistatic forward
@@ -153,8 +157,8 @@ From there, the program can bind buttons to these commands in ``RobotContainer``
 
       .. code-block:: cpp
 
-         m_joystick.LeftBumper().OnTrue(frc2::cmd::RunOnce([] { SignalLogger::Start(); }));
-         m_joystick.RightBumper().OnTrue(frc2::cmd::RunOnce([] { SignalLogger::Stop(); }));
+         m_joystick.LeftBumper().OnTrue(frc2::cmd::RunOnce(SignalLogger::Start));
+         m_joystick.RightBumper().OnTrue(frc2::cmd::RunOnce(SignalLogger::Stop));
 
          /*
           * Joystick Y = quasistatic forward
@@ -172,8 +176,8 @@ From there, the program can bind buttons to these commands in ``RobotContainer``
 
       .. code-block:: python
 
-         self.joystick.leftBumper().onTrue(cmd.runOnce(lambda: SignalLogger.start()))
-         self.joystick.rightBumper().onTrue(cmd.runOnce(lambda: SignalLogger.stop()))
+         self.joystick.leftBumper().onTrue(cmd.runOnce(SignalLogger.start))
+         self.joystick.rightBumper().onTrue(cmd.runOnce(SignalLogger.stop))
 
          # Joystick Y = quasistatic forward
          # Joystick A = quasistatic reverse
