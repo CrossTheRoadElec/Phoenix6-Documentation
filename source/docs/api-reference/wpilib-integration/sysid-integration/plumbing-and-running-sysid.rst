@@ -125,7 +125,7 @@ Now that the routine has been plumbed, the characterization commands need to be 
 
          def sys_id_quasistatic(self, direction: SysIdRoutine.Direction) -> Command:
             return self.sys_id_routine.quasistatic(direction)
-         
+
          def sys_id_dynamic(self, direction: SysIdRoutine.Direction) -> Command:
             return self.sys_id_routine.dynamic(direction)
 
