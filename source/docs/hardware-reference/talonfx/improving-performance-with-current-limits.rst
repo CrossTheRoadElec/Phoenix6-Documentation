@@ -10,11 +10,9 @@ Stator and Supply Current Limits
 
 It's important to understand the need for current limits and how they work. When a motor is under a load, it takes an increasing amount of current to continue rotating the shaft of the motor (and by extension the mechanism). The cumulative sum of all the currents in a multi-motor system, such as a robot, may excessively drain batteries, trigger brownout protection, or in the worst case trip breakers.
 
-There are two forms of current limiting: stator and supply. The relevant :ref:`configs <docs/tuner/configs:tuner configs>` are located in the CurrentLimits config group (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/configs/CurrentLimitsConfigs.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1configs_1_1_current_limits_configs.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/configs/config_groups/index.html#phoenix6.configs.config_groups.CurrentLimitsConfigs>`__).
+There are two forms of current limiting: stator and supply. The relevant :ref:`configs <docs/tuner/configs:tuner configs>` are located in the ``CurrentLimits`` config group (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/configs/CurrentLimitsConfigs.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1configs_1_1_current_limits_configs.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/configs/config_groups/index.html#phoenix6.configs.config_groups.CurrentLimitsConfigs>`__). All current limits must be **separately enabled** using the appropriate enable config.
 
 .. warning:: Current limits are not applied in torque based control modes, such as ``TorqueCurrentFOC``. Limits for torque based control modes should be applied with ``PeakForwardTorqueCurrent`` and ``PeakReverseTorqueCurrent`` instead. Torque current is equivalent to stator current in magnitude.
-
-All current limits must be separately enabled using the appropriate enable config.
 
 Stator Limits
 ^^^^^^^^^^^^^
