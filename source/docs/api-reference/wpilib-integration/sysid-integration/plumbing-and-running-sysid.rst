@@ -21,7 +21,7 @@ Putting this all together results in the example shown below.
          private final TalonFX m_motor = new TalonFX(0);
          private final VoltageOut m_voltReq = new VoltageOut(0.0);
 
-         private final SysIdRoutine m_sysidRoutine =
+         private final SysIdRoutine m_sysIdRoutine =
             new SysIdRoutine(
                new SysIdRoutine.Config(
                   null,        // use default ramp rate (1 V/s)
@@ -44,7 +44,7 @@ Putting this all together results in the example shown below.
          hardware::TalonFX m_motor{0};
          controls::VoltageOut m_voltReq{0_V};
 
-         frc2::sysid::SysIdRoutine m_sysidRoutine{
+         frc2::sysid::SysIdRoutine m_sysIdRoutine{
             frc2::sysid::Config{
                std::nullopt,  // use default ramp rate (1 V/s)
                7_V,           // use a 7 V step voltage
@@ -61,6 +61,27 @@ Putting this all together results in the example shown below.
             }
          };
 
+   .. tab-item:: Python
+      :sync: Python
+
+      .. code-block:: python
+
+         self.motor = hardware.TalonFX(0)
+         self.voltage_req = controls.VoltageOut(0)
+
+         self.sys_id_routine = SysIdRoutine(
+            SysIdRoutine.Config(
+               # use default ramp rate (1 V/s) and timeout (10 s)
+               # use a 7 V step voltage
+               stepVoltage = 7.0,
+               recordState = lambda state: SignalLogger.write_string("state", SysIdRoutineLog.stateEnumToString(state))
+            ),
+            SysIdRoutine.Mechanism(
+               drive = lambda volts: self.motor.set_control(self.voltage_req.with_output(volts)),
+               subsystem = self
+            )
+         )
+
 Now that the routine has been plumbed, the characterization commands need to be exposed from the subsystem.
 
 .. tab-set::
@@ -71,11 +92,11 @@ Now that the routine has been plumbed, the characterization commands need to be 
       .. code-block:: java
 
          public Command sysIdQuasistatic(SysIdRoutine.Direction direction) {
-            return m_sysidRoutine.quasistatic(direction);
+            return m_sysIdRoutine.quasistatic(direction);
          }
 
          public Command sysIdDynamic(SysIdRoutine.Direction direction) {
-            return m_sysidRoutine.dynamic(direction);
+            return m_sysIdRoutine.dynamic(direction);
          }
 
    .. tab-item:: C++
@@ -85,13 +106,24 @@ Now that the routine has been plumbed, the characterization commands need to be 
 
          frc2::CommandPtr SysIdQuasistatic(frc2::sysid::Direction direction)
          {
-            return m_sysidRoutine.Quasistatic(direction);
+            return m_sysIdRoutine.Quasistatic(direction);
          }
 
          frc2::CommandPtr SysIdDynamic(frc2::sysid::Direction direction)
          {
-            return m_sysidRoutine.Dynamic(direction);
+            return m_sysIdRoutine.Dynamic(direction);
          }
+
+   .. tab-item:: Python
+      :sync: Python
+
+      .. code-block:: python
+
+         def sys_id_quasistatic(self, direction: SysIdRoutine.Direction) -> Command:
+            return self.sys_id_routine.quasistatic(direction)
+         
+         def sys_id_dynamic(self, direction: SysIdRoutine.Direction) -> Command:
+            return self.sys_id_routine.dynamic(direction)
 
 From there, the program can bind buttons to these commands in ``RobotContainer``.
 
@@ -134,6 +166,23 @@ From there, the program can bind buttons to these commands in ``RobotContainer``
          m_joystick.A().WhileTrue(m_mechanism.SysIdQuasistatic(frc2::sysid::Direction::kReverse));
          m_joystick.B().WhileTrue(m_mechanism.SysIdDynamic(frc2::sysid::Direction::kForward));
          m_joystick.X().WhileTrue(m_mechanism.SysIdDynamic(frc2::sysid::Direction::kReverse));
+
+   .. tab-item:: Python
+      :sync: Python
+
+      .. code-block:: python
+
+         self.joystick.leftBumper().onTrue(cmd.runOnce(lambda: SignalLogger.start()))
+         self.joystick.rightBumper().onTrue(cmd.runOnce(lambda: SignalLogger.stop()))
+
+         # Joystick Y = quasistatic forward
+         # Joystick A = quasistatic reverse
+         # Joystick B = dynamic forward
+         # Joystick X = dynamic reverse
+         self.joystick.y().whileTrue(self.mechanism.sys_id_quasistatic(SysIdRoutine.Direction.kForward))
+         self.joystick.a().whileTrue(self.mechanism.sys_id_quasistatic(SysIdRoutine.Direction.kReverse))
+         self.joystick.b().whileTrue(self.mechanism.sys_id_dynamic(SysIdRoutine.Direction.kForward))
+         self.joystick.x().whileTrue(self.mechanism.sys_id_dynamic(SysIdRoutine.Direction.kReverse))
 
 All four tests must be run and captured in a single log file. As a result, it is important that the user starts the Signal Logger before running the tests and stops the Signal Logger after all tests have been completed. This will ensure the log is not cluttered with data from other actions such as driving the robot to an open area.
 
