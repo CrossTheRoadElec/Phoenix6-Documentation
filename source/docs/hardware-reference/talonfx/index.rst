@@ -39,6 +39,14 @@ TalonFX
 
             Wiring and mount instructions in PDF format.
 
+Utilizing your TalonFX
+----------------------
+
+.. toctree::
+   :maxdepth: 1
+
+   improving-performance-with-current-limits
+
 Actuator Limits
 ---------------
 
@@ -279,4 +287,3 @@ Status Light Reference
             }
         }, 100);
     </script>
-
