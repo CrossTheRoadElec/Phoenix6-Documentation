@@ -16,7 +16,7 @@ Putting this all together results in the example shown below.
    .. tab-item:: Java
       :sync: java
 
-      .. code-block::
+      .. code-block:: java
 
          private final TalonFX m_motor = new TalonFX(0);
          private final VoltageOut m_voltReq = new VoltageOut(0.0);
@@ -32,7 +32,34 @@ Putting this all together results in the example shown below.
                new SysIdRoutine.Mechanism(
                   (volts) -> m_motor.setControl(m_voltReq.withOutput(volts.in(Volts))),
                   null,
-                  this));
+                  this
+               )
+            );
+
+   .. tab-item:: C++
+      :sync: C++
+
+      .. code-block:: cpp
+
+         hardware::TalonFX m_motor{0};
+         controls::VoltageOut m_voltReq{0_V};
+
+         frc2::sysid::SysIdRoutine m_sysidRoutine{
+            frc2::sysid::Config{
+               std::nullopt,  // use default ramp rate (1 V/s)
+               7_V,           // use a 7 V step voltage
+               std::nullopt,  // use default timeout (10s)
+               [](frc::sysid::State state)
+               {
+                  SignalLogger::WriteString("state", frc::sysid::SysIdRoutineLog::StateEnumToString(state));
+               }
+            },
+            frc2::sysid::Mechanism{
+               [this](units::volt_t volts) { m_motor.SetControl(m_voltReq.WithOutput(volts)); },
+               std::nullopt,
+               this
+            }
+         };
 
 Now that the routine has been plumbed, the characterization commands need to be exposed from the subsystem.
 
@@ -51,6 +78,21 @@ Now that the routine has been plumbed, the characterization commands need to be 
             return m_sysidRoutine.dynamic(direction);
          }
 
+   .. tab-item:: C++
+      :sync: C++
+
+      .. code-block:: cpp
+
+         frc2::CommandPtr SysIdQuasistatic(frc2::sysid::Direction direction)
+         {
+            return m_sysidRoutine.Quasistatic(direction);
+         }
+
+         frc2::CommandPtr SysIdDynamic(frc2::sysid::Direction direction)
+         {
+            return m_sysidRoutine.Dynamic(direction);
+         }
+
 From there, the program can bind buttons to these commands in ``RobotContainer``.
 
 .. tab-set::
@@ -60,19 +102,38 @@ From there, the program can bind buttons to these commands in ``RobotContainer``
 
       .. code-block:: java
 
-         m_joystick.leftBumper().whenPressed(Commands.run(() -> SignalLogger.start()));
-         m_joystick.rightBumper().whenPressed(Commands.run(() -> SignalLogger.stop()));
+         m_joystick.leftBumper().onTrue(Commands.runOnce(() -> SignalLogger.start()));
+         m_joystick.rightBumper().onTrue(Commands.runOnce(() -> SignalLogger.stop()));
 
-         /**
+         /*
           * Joystick Y = quasistatic forward
-          * Joystick B = dynamic forward
           * Joystick A = quasistatic reverse
+          * Joystick B = dynamic forward
           * Joystick X = dyanmic reverse
           */
-         m_joystick.y().whileTrue(m_mechanism.sysIdQuasistatics(SysIdRoutine.Direction.kForward));
+         m_joystick.y().whileTrue(m_mechanism.sysIdQuasistatic(SysIdRoutine.Direction.kForward));
          m_joystick.a().whileTrue(m_mechanism.sysIdQuasistatic(SysIdRoutine.Direction.kReverse));
          m_joystick.b().whileTrue(m_mechanism.sysIdDynamic(SysIdRoutine.Direction.kForward));
          m_joystick.x().whileTrue(m_mechanism.sysIdDynamic(SysIdRoutine.Direction.kReverse));
+
+   .. tab-item:: C++
+      :sync: C++
+
+      .. code-block:: cpp
+
+         m_joystick.LeftBumper().OnTrue(frc2::cmd::RunOnce([] { SignalLogger::Start(); }));
+         m_joystick.RightBumper().OnTrue(frc2::cmd::RunOnce([] { SignalLogger::Stop(); }));
+
+         /*
+          * Joystick Y = quasistatic forward
+          * Joystick A = quasistatic reverse
+          * Joystick B = dynamic forward
+          * Joystick X = dynamic reverse
+          */
+         m_joystick.Y().WhileTrue(m_mechanism.SysIdQuasistatic(frc2::sysid::Direction::kForward));
+         m_joystick.A().WhileTrue(m_mechanism.SysIdQuasistatic(frc2::sysid::Direction::kReverse));
+         m_joystick.B().WhileTrue(m_mechanism.SysIdDynamic(frc2::sysid::Direction::kForward));
+         m_joystick.X().WhileTrue(m_mechanism.SysIdDynamic(frc2::sysid::Direction::kReverse));
 
 All four tests must be run and captured in a single log file. As a result, it is important that the user starts the Signal Logger before running the tests and stops the Signal Logger after all tests have been completed. This will ensure the log is not cluttered with data from other actions such as driving the robot to an open area.
 
