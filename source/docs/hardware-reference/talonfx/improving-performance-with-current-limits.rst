@@ -8,7 +8,7 @@ Current limiting is the process of restricting motor output when a given current
 Stator and Supply Current Limits
 --------------------------------
 
-It's important to understand the need for current limits and how they work. When a motor is under a load, it takes an increasing amount of current to continue rotating the shaft of the motor (and by extension the mechanism). When integrating multiple motors into a system (such as an FRC robot), this increase in current draw can drain batteries, reset fuses, trip breakers, or even damage the battery.
+It's important to understand the need for current limits and how they work. When a motor is under a load, it takes an increasing amount of current to continue rotating the shaft of the motor (and by extension the mechanism). The cumulative sum of all the currents in a multi-motor system, such as a robot, may excessively drain batteries, trigger brownout protection, or in the worst case trip breakers.
 
 There are two forms of current limiting: stator and supply. The relevant :ref:`configs <docs/tuner/configs:tuner configs>` are located in the CurrentLimits config group (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/configs/CurrentLimitsConfigs.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1configs_1_1_current_limits_configs.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/configs/config_groups/index.html#phoenix6.configs.config_groups.CurrentLimitsConfigs>`__).
 
@@ -63,7 +63,7 @@ Supply Limits
 
 .. important:: Supply limits are not functional in torque based control modes. Use the ``PeakForwardTorqueCurrent`` and ``PeakReverseTorqueCurrent`` configs instead.
 
-Supply current is the current drawn from the battery. As a result, limiting supply current can be useful to prevent fuses from resetting and breakers from tripping, as well as to improve the longevity of the battery.
+Supply current is the current drawn from the battery. As a result, limiting supply current can be useful to prevent breakers from tripping, as well as to improve the longevity of the battery.
 
 .. tip:: Since stator current limits also limit supply current, it is often not necessary to enable both limits.
 
