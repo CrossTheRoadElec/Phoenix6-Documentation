@@ -102,7 +102,7 @@ For a few high-inertia mechanisms, such as some flywheels, supply current limits
 - If using the CTRE PDP, make sure the leads going into the PDP are properly crimped and secured.
 - Check all device power connections at the PDP/PDH. The PDP/PDH should be clearly connected to copper and not wire insulation.
 
-As motor supply currents increase, the battery voltage will decrease in a similar fashion. A simplified equation for modeling voltage sag is shown below along with a calculator. However, it is easier and more accurate to emperically determine supply current limits. The process of emperically finding these limits is the same as in :ref:`docs/hardware-reference/talonfx/improving-performance-with-current-limits:improving battery longevity`.
+As motor supply currents increase, the battery voltage will decrease in a similar fashion. A simplified equation for modeling voltage sag is shown below along with a calculator. However, it is easier and more accurate to empirically determine supply current limits. The process of empirically finding these limits is the same as in :ref:`docs/hardware-reference/talonfx/improving-performance-with-current-limits:improving battery longevity`.
 
 .. math::
 
