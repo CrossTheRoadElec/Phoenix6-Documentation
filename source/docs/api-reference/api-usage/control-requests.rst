@@ -91,7 +91,7 @@ Control requests also supports modification using method chaining. This can be u
          final TorqueCurrentFOC m_motorRequest = new TorqueCurrentFOC(0);
 
          // mutate request with output of 10 amps and max duty cycle 0.5
-         m_motor.SetControl(m_motorRequest.withOutputAmps(10).withMaxAbsDutyCycle(0.5));
+         m_motor.SetControl(m_motorRequest.withOutput(10).withMaxAbsDutyCycle(0.5));
 
    .. tab-item:: C++
       :sync: C++
@@ -102,7 +102,7 @@ Control requests also supports modification using method chaining. This can be u
          controls::TorqueCurrentFOC m_motorRequest{0_A};
 
          // mutate request with output of 10 amps and max duty cycle 0.5
-         m_motor.SetControl(m_motorRequest.WithOutputAmps(10_A).WithMaxAbsDutyCycle(0.5));
+         m_motor.SetControl(m_motorRequest.WithOutput(10_A).WithMaxAbsDutyCycle(0.5));
 
    .. tab-item:: Python
       :sync: python
@@ -113,7 +113,7 @@ Control requests also supports modification using method chaining. This can be u
          self.motor_request = controls.TorqueCurrentFOC(0)
 
          # mutate request with output of 10 amps and max duty cycle 0.5
-         self.motor.set_control(self.motor_request.with_output_amps(10).with_max_abs_duty_cycle(0.5))
+         self.motor.set_control(self.motor_request.with_output(10).with_max_abs_duty_cycle(0.5))
 
 Changing Update Frequency
 -------------------------
