@@ -58,9 +58,9 @@ class FlywheelVisualization extends BaseVisualization{
         const positionRad = this.positionRad;
 
         // todo: magic numbers again
-        const setpointPlotScale = this.setpoint * 1/500 * this.wheelRadius;
-        const outputPlotScale = this.output * 1/500 * this.wheelRadius;
-        const controlEffortPlotScale = this.controlEffortVolts * 1/6 * this.wheelRadius;
+        const setpointPlotScale = this.setpoint * 1/50 * this.wheelRadius;
+        const outputPlotScale = this.output * 1/50 * this.wheelRadius;
+        const controlEffortPlotScale = this.controlEffortVolts * 1/150 * this.wheelRadius;
 
         const vectorY = this.wheelCenterY - this.wheelRadius;
         const setpointEndX = this.wheelCenterX + setpointPlotScale;
