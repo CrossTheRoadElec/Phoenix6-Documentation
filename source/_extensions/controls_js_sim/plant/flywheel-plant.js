@@ -12,7 +12,7 @@ class FlywheelPlant{
         let GEARBOX_RATIO = 1.0/1.0; // output over input - 1:1 direct-drive gear ratio
 
         // Kraken FOC Torque-Constant
-        let Kt = 19.81; // Nm/A torque constant -  Taken from Kraken Motor Performance Analysis Report
+        let Kt = 0.01981; // Nm/A torque constant -  Taken from Kraken Motor Performance Analysis Report
 
         // TODO: better comment and descriptive variable naming
         // Constants from the blog post equations
