@@ -57,17 +57,17 @@ These general guidelines are great for understanding what's happening in a close
 
 .. raw:: html
 
-    <div class="viz-div" id="flywheel_feedback_container">
+    <div class="viz-div" id="flywheel_both_container">
       <div >
-         <div class="col" id="flywheel_feedback_plotVals"></div>
-         <div class="col" id="flywheel_feedback_plotVolts"></div>
+         <div class="col" id="flywheel_both_plotVals"></div>
+         <div class="col" id="flywheel_both_plotVolts"></div>
       </div>
       <div class="flex-grid">
-         <div class="col" id="flywheel_feedback_viz"></div>
-         <div id="flywheel_feedback_ctrls"></div>
+         <div class="col" id="flywheel_both_viz"></div>
+         <div id="flywheel_both_ctrls"></div>
       </div>
       <script>
-         flywheel_bb = new FlywheelPIDF("flywheel_feedback", "feedback");
+         flywheel_bb = new FlywheelPIDF("flywheel_both", "both");
       </script>
     </div>
 

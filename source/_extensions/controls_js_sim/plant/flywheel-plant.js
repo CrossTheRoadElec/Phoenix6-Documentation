@@ -18,8 +18,7 @@ class FlywheelPlant{
 
         // TODO: better comment and descriptive variable naming
         // Constants from the blog post equations
-        this.C1 = 2 *  Kt / (mass * radius * radius * GEARBOX_RATIO * Rc);
-        this.C2 = 2 * Kv * Kt / (mass * radius * radius * Rc);
+        this.C1 = 2 * Kt / (mass * radius * radius * GEARBOX_RATIO);
         this.C3 = 2 / (mass * radius * radius);
 
         this.systemNoise = false;
@@ -37,14 +36,15 @@ class FlywheelPlant{
         this.ballEnterWheelAngle = null;
     }
 
-    update(t, inVolts) {
-        //Simulate friction
-        let extTrq = 0.0005*this.speedPrev;
+    update(t, inAmps) {
+        //Simulate friction - both static and dynamic
+        let extTrq = 0.005; // 0.005 nm of static friction
+        extTrq += 0.0005*this.speedPrev; // 0.0005 nm of friction every RPM it speeds up
 
         // Simulate system noise
-        if (this.systemNoise && inVolts > 0) {
+        if (this.systemNoise && inAmps > 0) {
             // apply system noise
-            inVolts += this.gaussianNoise();
+            inAmps += this.gaussianNoise();
         }
 
         if (t > this.ballEnterTime & this.ballExitTime == null){
@@ -53,8 +53,8 @@ class FlywheelPlant{
             if (this.ballEnterWheelAngle == null) {
                 // First loop, init the enter angle
                 this.ballEnterWheelAngle = this.curpositionRev;
-            } 
-            
+            }
+
             if (this.curpositionRev > this.ballEnterWheelAngle + 0.25) {
                 // ball has just exited the flywheel.
                 this.ballExitTime = t;
@@ -65,7 +65,7 @@ class FlywheelPlant{
         }
 
         // Simulate main Plant behavior
-        this.speed = (this.Ts*this.C1*inVolts - this.Ts*this.C3*extTrq + this.speedPrev)/(1+this.Ts*this.C2);
+        this.speed = (this.Ts*this.C1*inAmps - this.Ts*this.C3*extTrq + this.speedPrev);
         if(this.speed < 0) {
             this.speed = 0;
         }
@@ -83,7 +83,7 @@ class FlywheelPlant{
     getCurrentPositionRad() {
         return this.curpositionRev * 2.0 * Math.PI;
     }
-    
+
 
     getBallEnterTime() {
         return this.ballEnterTime;

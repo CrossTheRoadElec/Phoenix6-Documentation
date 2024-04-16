@@ -14,6 +14,9 @@ class FlywheelPIDF extends FlywheelSim {
     this.kV = 0.0;
     this.kS = 0.0;
 
+    // User-configured stator current limit
+    this.statorLimit = 300;
+
     // Can be "feedforward", "feedback", or "both"
     this.controlStrategy = controlStrategy;
 
@@ -71,6 +74,26 @@ class FlywheelPIDF extends FlywheelSim {
     curRow.appendChild(label);
     curRow.appendChild(control);
 
+    curRow = document.createElement("tr");
+    label = document.createElement("td");
+    label.innerHTML = "Stator Limit";
+    control = document.createElement("td");
+    controlTable.appendChild(curRow);
+    input = document.createElement("INPUT");
+    input.setAttribute("type", "text");
+    input.setAttribute("value", "300.0");
+    //input.setAttribute("step", "10.0");
+    //input.setAttribute("max", "1800.0");
+    //input.setAttribute("min", "0.0");
+    input.onchange = function (event) {
+      this.animationReset = true;
+      this.statorLimit = parseFloat(event.target.value);
+      this.begin();
+    }.bind(this);
+    control.append(input);
+    curRow.appendChild(label);
+    curRow.appendChild(control);
+
     // Display feedforward gain inputs
     if (
       this.controlStrategy == "feedforward" ||
@@ -88,6 +111,24 @@ class FlywheelPIDF extends FlywheelSim {
       input.onchange = function (event) {
         this.animationReset = true;
         this.kV = parseFloat(event.target.value);
+        this.begin();
+      }.bind(this);
+      control.append(input);
+      curRow.appendChild(label);
+      curRow.appendChild(control);
+
+      curRow = document.createElement("tr");
+      label = document.createElement("td");
+      label.innerHTML = "kS";
+      control = document.createElement("td");
+      controlTable.appendChild(curRow);
+      input = document.createElement("INPUT");
+      input.setAttribute("type", "text");
+      input.setAttribute("value", "0.0");
+      //input.setAttribute("step", "0.00001");
+      input.onchange = function (event) {
+        this.animationReset = true;
+        this.kS = parseFloat(event.target.value);
         this.begin();
       }.bind(this);
       control.append(input);
@@ -175,10 +216,10 @@ class FlywheelPIDF extends FlywheelSim {
       this.kD * err_delta;
 
     //Cap voltage at max/min of the physically possible command
-    if (ctrlEffort > 12) {
-      ctrlEffort = 12;
-    } else if (ctrlEffort < -12) {
-      ctrlEffort = -12;
+    if (ctrlEffort > this.statorLimit) {
+      ctrlEffort = this.statorLimit;
+    } else if (ctrlEffort < -this.statorLimit) {
+      ctrlEffort = -this.statorLimit;
     }
 
     this.previousError = error;
