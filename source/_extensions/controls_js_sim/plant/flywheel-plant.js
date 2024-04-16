@@ -9,12 +9,10 @@ class FlywheelPlant{
         let radius = 0.0762; //3 inch radius, converted to meters
 
         // Gearbox
-        let GEARBOX_RATIO = 5.0/1.0; // output over input - 5:1 gear ratio
+        let GEARBOX_RATIO = 1.0/1.0; // output over input - 1:1 direct-drive gear ratio
 
-        // 775 Pro Motor
-        let Rc = 0.08; // Coil & Wiring Resistance in Ohms
-        let Kt = 0.71/134; // Nm/A torque constant -  Calculated from Stall Torque/Stall Current
-        let Kv = (12-(0.7*Rc))/(18730*2*3.14159/60); // V/(rad/s). Calculated from Vemf@FreeSpeed/(2pi/60*RPM@FreeSpeed). Steady-state Vemf = Vs - I@FreeSpeed*Rc, for Vs = 12
+        // Kraken FOC Torque-Constant
+        let Kt = 19.81; // Nm/A torque constant -  Taken from Kraken Motor Performance Analysis Report
 
         // TODO: better comment and descriptive variable naming
         // Constants from the blog post equations
