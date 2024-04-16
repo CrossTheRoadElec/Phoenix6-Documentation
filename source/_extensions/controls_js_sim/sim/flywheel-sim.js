@@ -31,7 +31,7 @@ class FlywheelSim extends BaseSim {
     this.visualization.setCurSetpoint(0.0);
     this.visualization.setCurControlEffort(0.0);
 
-    this.inputVolts = 0.0;
+    this.inputAmps = 0.0;
     this.nextControllerRunTime = 0;
 
     this.iterationCount = 0;
@@ -55,27 +55,27 @@ class FlywheelSim extends BaseSim {
 
     //Simulate Controller
     if (this.curSimTimeS >= this.nextControllerRunTime) {
-      this.inputVolts = this.controllerUpdate(this.curSimTimeS, currentSetpoint, meas_speed);
+      this.inputAmps = this.controllerUpdate(this.curSimTimeS, currentSetpoint, meas_speed);
       //Maintain separate sample rate for controller
       this.nextControllerRunTime += this.controllerTimestepS;
     }
 
-    this.inputVolts = this.plant.restrict(this.inputVolts, 12.0);
-    this.plant.update(this.curSimTimeS, this.inputVolts);
+    this.inputAmps = this.plant.restrict(this.inputAmps, 12.0);
+    this.plant.update(this.curSimTimeS, this.inputAmps);
 
     this.speed_delay_line.addSample(this.plant.getCurrentSpeedRPS());
 
 
     this.procVarActualSignal.addSample(new Sample(this.curSimTimeS, this.plant.getCurrentSpeedRPS()));
     this.procVarDesiredSignal.addSample(new Sample(this.curSimTimeS, currentSetpoint));
-    this.ampsSignal.addSample(new Sample(this.curSimTimeS, this.inputVolts));
+    this.ampsSignal.addSample(new Sample(this.curSimTimeS, this.inputAmps));
 
     this.visualization.setBallState(this.curSimTimeS > this.plant.getBallEnterTime());
     this.visualization.setCurPos(this.plant.getCurrentPositionRad());
     this.visualization.setCurOutput(this.plant.getCurrentSpeedRPS());
     this.visualization.setCurTime(this.curSimTimeS);
     this.visualization.setCurSetpoint(currentSetpoint);
-    this.visualization.setCurControlEffort(this.inputVolts);
+    this.visualization.setCurControlEffort(this.inputAmps);
 
     this.iterationCount++;
 
