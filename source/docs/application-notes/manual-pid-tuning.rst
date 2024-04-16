@@ -25,7 +25,7 @@ Every closed loop controller has the following aspects consistent:
 
    - :math:`k_{S} = \mathrm{motor\_output}`
 
-   - :math:`k_{G} = \frac{\mathrm{motor\_output}}{\cos(\mathrm{angle})}`
+   - :math:`k_{G} = \frac{\mathrm{motor\_output}}{\cos(\mathrm{angle})}` if mechanism is arm; :math:`k_{G} = \mathrm{motor\_output}` if mechanism is an elevator
 
    - :math:`k_{V} = \frac{\mathrm{motor\_output}}{\mathrm{vel}}`
 
@@ -43,7 +43,7 @@ Every closed loop controller has the following aspects consistent:
 
    - This generally multiplies the gains by the gear ratio
 
-   - A 100:1 reduction means a :math:`k_{P}=1` is 1 Volt output at 1 rotation error at the mechanism, or 1 Volt output at 0.01 rotations error at the motor.
+   - A 100:1 reduction means a :math:`k_{P}=1` is 1 Volt output at 1 rotation error at the mechanism, or 1 Volt output at 100 rotations error at the motor.
 
 
 This leads to the first major aspect of manual PID tuning - finding a good start. Since every gain is canonical, you can back-calculate what value the gain should start at based on the error you see and the desired motor voltage. Say I have an arm mechanism that is currently 0.1 rotations away from where I want it to be. I know that applying 1 volt of output is enough to move it, and if I were the mechanism I'd apply 1 volt to slowly bring it to the setpoint. This means at 0.1 rotation error I want 1 volt of output. That means my kP is :math:`k_{P}=\frac{\mathrm{Volts}}{\mathrm{error}}=\frac{1}{0.1}=10`. This is a good starting point for my mechanism and I can see a safe response that matches what I would do manually.
