@@ -1,6 +1,8 @@
 Introduction to Simulation
 ==========================
 
+Many CTR Electronics devices support high-fidelity simulation, allowing the simulated robot to match the behavior of the real robot hardware as closely as possible. This makes simulation a powerful tool to quickly diagnose and fix bugs in robot code without relying on access to hardware.
+
 Supported Devices
 -----------------
 
@@ -102,39 +104,61 @@ Some device ``SimState`` objects also contain outputs that can be used in simula
 
       .. code-block:: java
 
-         // get the motor voltage of the TalonFX
-         var motorVoltage = m_talonFXSim.getMotorVoltage();
+         private final DCMotorSim m_motorSimModel =
+            new DCMotorSim(DCMotor.getKrakenX60Foc(1), 1.0, 0.001);
 
-         // use the motor voltage to calculate new position and velocity using an external MotorSimModel class
-         m_motorSimModel.setMotorVoltage(motorVoltage);
-         m_motorSimModel.update(0.020); // assume 20 ms loop time
+         public void simulationPeriodic() {
+            var talonFXSim = m_talonFX.getSimState();
 
-         // apply the new rotor position and velocity to the TalonFX
-         m_talonFXSim.setRawRotorPosition(m_motorSimModel.getPosition());
-         m_talonFXSim.setRotorVelocity(m_motorSimModel.getVelocity());
+            // get the motor voltage of the TalonFX
+            var motorVoltage = talonFXSim.getMotorVoltage();
+
+            // use the motor voltage to calculate new position and velocity
+            // using WPILib's DCMotorSim class for physics simulation
+            m_motorSimModel.setInputVoltage(motorVoltage);
+            m_motorSimModel.update(0.020); // assume 20 ms loop time
+
+            // apply the new rotor position and velocity to the TalonFX;
+            // note that this is rotor position/velocity (before gear ratios)
+            talonFXSim.setRawRotorPosition(m_motorSimModel.getAngularPositionRotations());
+            talonFXSim.setRotorVelocity(
+               Units.radiansToRotations(m_motorSimModel.getAngularVelocityRadPerSec())
+            );
+         }
 
    .. tab-item:: C++
       :sync: C++
 
       .. code-block:: cpp
 
-         // get the motor voltage of the TalonFX
-         auto motorVoltage = m_talonFXSim.GetMotorVoltage();
+         frc::sim::DCMotorSim m_motorSimModel{
+            frc::DCMotor::KrakenX60FOC(1), 1.0, 0.001_kg_sq_m
+         };
 
-         // use the motor voltage to calculate new position and velocity using an external MotorSimModel class
-         m_motorSimModel.SetMotorVoltage(motorVoltage);
-         m_motorSimModel.Update(20_ms); // assume 20 ms loop time
+         void SimulationPeriodic()
+         {
+            auto& talonFXSim = m_talonFX.GetSimState();
 
-         // apply the new rotor position and velocity to the TalonFX
-         m_talonFXSim.SetRawRotorPosition(m_motorSimModel.GetPosition());
-         m_talonFXSim.SetRotorVelocity(m_motorSimModel.GetVelocity());
+            // get the motor voltage of the TalonFX
+            auto motorVoltage = talonFXSim.GetMotorVoltage();
+
+            // use the motor voltage to calculate new position and velocity
+            // using WPILib's DCMotorSim class for physics simulation
+            m_motorSimModel.SetInputVoltage(motorVoltage);
+            m_motorSimModel.Update(20_ms); // assume 20 ms loop time
+
+            // apply the new rotor position and velocity to the TalonFX;
+            // note that this is rotor position/velocity (before gear ratios)
+            talonFXSim.SetRawRotorPosition(m_motorSimModel.GetAngularPosition());
+            talonFXSim.SetRotorVelocity(m_motorSimModel.GetAngularVelocity());
+         }
 
 High Fidelity CAN Bus Simulation
 --------------------------------
 
-Many popular CTR Electronics CAN devices support high-fidelity simulation, where the influence of the CAN bus is simulated at a level similar to what happens on a real robot. This means that the timing behavior of control and status signals in simulation will align to the same framing intervals seen on a real CAN bus. In simulation, this may appear as a delay between setting a signal and getting its real value, or between setting its real value and getting it in API.
+As a part of high-fidelity simulation, the influence of the CAN bus is simulated at a level similar to what happens on a real robot. This means that the timing behavior of control and status signals in simulation will align to the same framing intervals seen on a real CAN bus. In simulation, this may appear as a delay between setting a signal and getting its real value, or between setting its real value and getting it in API.
 
-The update rate can be modified for simulation by wrapping the :ref:`signal update frequency <docs/api-reference/api-usage/status-signals:changing update frequency>` in a ``Utils.isSimulation()`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/Utils.html#isSimulation()>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/namespacectre_1_1phoenix6.html#ab4754e75285682ed3f46dac92e35985b>`__) condition.
+In unit tests, it may be useful to increase the update rate of status signals to avoid erroneous failures and minimize delays. The update rate can be modified for simulation by wrapping the :ref:`signal update frequency <docs/api-reference/api-usage/status-signals:changing update frequency>` in a ``Utils.isSimulation()`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/Utils.html#isSimulation()>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/namespacectre_1_1phoenix6.html#ab4754e75285682ed3f46dac92e35985b>`__) condition.
 
 .. tab-set::
 
@@ -144,7 +168,8 @@ The update rate can be modified for simulation by wrapping the :ref:`signal upda
       .. code-block:: java
 
          if (Utils.isSimulation()) {
-            m_velocitySignal.setUpdateFrequency(1000); // set update rate to 1ms
+            // set update rate to 1ms for unit tests
+            m_velocitySignal.setUpdateFrequency(1000);
          }
 
    .. tab-item:: C++
@@ -153,5 +178,6 @@ The update rate can be modified for simulation by wrapping the :ref:`signal upda
       .. code-block:: cpp
 
          if (IsSimulation()) {
-            m_velocitySignal.SetUpdateFrequency(1000_Hz); // set update rate to 1ms
+            // set update rate to 1ms for unit tests
+            m_velocitySignal.SetUpdateFrequency(1000_Hz);
          }

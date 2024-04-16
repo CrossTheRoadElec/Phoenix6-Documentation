@@ -168,8 +168,9 @@ Configs can be applied to a device by calling ``apply()`` on the ``Configurator`
 Factory Default
 ~~~~~~~~~~~~~~~
 
-A newly-created ``Configuration`` object contains the default configuration values of a device.
-Passing this newly-created ``Configuration`` object to the device ``Configurator`` will factory default the device's configs.
+A newly-created ``Configuration`` object contains the default configuration values of a device. As a result, it is **unnecessary** to factory default a device before applying a modified device ``Configuration`` object.
+
+A device's configs can be explicitly restored to the factory defaults by passing a newly-created ``Configuration`` object to the device ``Configurator``.
 
 .. tab-set::
 

@@ -7,4 +7,4 @@ Comprehensive API usage examples and tutorials.
    :maxdepth: 1
 
    quickstart
-   GitHub Examples <https://github.com/CrossTheRoadElec/PhoenixPro-Examples>
+   GitHub Examples <https://github.com/CrossTheRoadElec/Phoenix6-Examples>

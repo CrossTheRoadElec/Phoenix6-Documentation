@@ -46,6 +46,8 @@ The below example sets the logging path to a ``ctre-logs`` folder on the first U
 
          SignalLogger.set_path("/media/sda1/ctre-logs/")
 
+.. note:: Each CAN bus gets its own dedicated log file.
+
 Start/Stop Logging
 ------------------
 
