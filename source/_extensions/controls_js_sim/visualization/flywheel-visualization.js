@@ -40,7 +40,7 @@ class FlywheelVisualization extends BaseVisualization{
         this.staticCanvasContext.lineTo(this.ballLoadTrackX - this.ballRadius, this.ballLoadTrackYEnd);
         this.staticCanvasContext.arc(this.wheelCenterX, this.wheelCenterY, this.wheelRadius + this.ballRadius*2, Math.PI, Math.PI * 3/2, false);
         this.staticCanvasContext.stroke();
-        
+
         //Ball Guide Track - inner load
         this.staticCanvasContext.beginPath();
         this.staticCanvasContext.moveTo(this.ballLoadTrackX + this.ballRadius, this.ballLoadTrackYStart);
@@ -97,7 +97,7 @@ class FlywheelVisualization extends BaseVisualization{
                 if(this.ballEnterAngle == null){
                     //First loop of exit, calc entry wheel angle
                     this.ballEnterAngle = this.positionRad;
-                }    
+                }
 
                 let ballDrawAngle = this.positionRad - this.ballEnterAngle  + Math.PI;
                 ballCenterX = this.wheelCenterX + (this.wheelRadius + this.ballRadius) * Math.cos(ballDrawAngle);
@@ -106,7 +106,7 @@ class FlywheelVisualization extends BaseVisualization{
                 //Check for ball exit conditions
                 if(this.positionRad - this.ballEnterAngle > Math.PI/2){
                     this.ballExited = true;
-                    this.ballExitSpeed = 2 * Math.PI * (this.wheelRadius + this.ballRadius) / 60 * this.output; //output assumed in RPM
+                    this.ballExitSpeed = 2 * Math.PI * (this.wheelRadius + this.ballRadius) * this.output; //output assumed in RPM
                     this.ballExitTime = this.timeS;
                 }
 

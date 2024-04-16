@@ -1,13 +1,13 @@
 class FlywheelSim extends BaseSim {
   constructor(div_id_prefix) {
-    super(div_id_prefix, "RPM", 0, 1800);
+    super(div_id_prefix, "RPS", 0, 1800);
 
     this.simDurationS = 10.0;
     this.simulationTimestepS = 0.005;
     this.controllerTimestepS = 0.02;
 
     // User-configured setpoints
-    this.setpointVal = 300.0;
+    this.setpointVal = 60.0;
     this.setpointStepTime = 1.0;
 
     this.plant = new FlywheelPlant();
@@ -36,7 +36,7 @@ class FlywheelSim extends BaseSim {
 
     this.iterationCount = 0;
 
-    this.speed_delay_line = new DelayLine(9); //models sensor lag
+    this.speed_delay_line = new DelayLine(3); //models sensor lag - this is minimal in Kraken firmware
 
   }
 
@@ -62,16 +62,16 @@ class FlywheelSim extends BaseSim {
 
     this.plant.update(this.curSimTimeS, this.inputVolts);
 
-    this.speed_delay_line.addSample(this.plant.getCurrentSpeedRPM());
+    this.speed_delay_line.addSample(this.plant.getCurrentSpeedRPS());
 
 
-    this.procVarActualSignal.addSample(new Sample(this.curSimTimeS, this.plant.getCurrentSpeedRPM()));
+    this.procVarActualSignal.addSample(new Sample(this.curSimTimeS, this.plant.getCurrentSpeedRPS()));
     this.procVarDesiredSignal.addSample(new Sample(this.curSimTimeS, currentSetpoint));
     this.ampsSignal.addSample(new Sample(this.curSimTimeS, this.inputVolts));
 
     this.visualization.setBallState(this.curSimTimeS > this.plant.getBallEnterTime());
     this.visualization.setCurPos(this.plant.getCurrentPositionRad());
-    this.visualization.setCurOutput(this.plant.getCurrentSpeedRPM());
+    this.visualization.setCurOutput(this.plant.getCurrentSpeedRPS());
     this.visualization.setCurTime(this.curSimTimeS);
     this.visualization.setCurSetpoint(currentSetpoint);
     this.visualization.setCurControlEffort(this.inputVolts);

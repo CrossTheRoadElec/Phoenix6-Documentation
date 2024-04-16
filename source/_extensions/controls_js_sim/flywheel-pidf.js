@@ -61,7 +61,7 @@ class FlywheelPIDF extends FlywheelSim {
     controlTable.appendChild(curRow);
     input = document.createElement("INPUT");
     input.setAttribute("type", "text");
-    input.setAttribute("value", "300.0");
+    input.setAttribute("value", "50.0");
     //input.setAttribute("step", "10.0");
     //input.setAttribute("max", "1800.0");
     //input.setAttribute("min", "0.0");

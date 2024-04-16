@@ -36,8 +36,8 @@ class FlywheelPlant{
 
     update(t, inAmps) {
         //Simulate friction - both static and dynamic
-        let extTrq = 0.005; // 0.005 nm of static friction
-        extTrq += 0.0005*this.speedPrev; // 0.0005 nm of friction every RPM it speeds up
+        let extTrq = 0.005; // 0.005 Nm of static friction
+        extTrq += 0.0005*this.speedPrev; // 0.0005 Nm of friction every RPM it speeds up
 
         // Simulate system noise
         if (this.systemNoise && inAmps > 0) {
@@ -74,8 +74,8 @@ class FlywheelPlant{
 
     }
 
-    getCurrentSpeedRPM() {
-        return this.speed*60/2/Math.PI;
+    getCurrentSpeedRPS() {
+        return this.speed/2/Math.PI;
     }
 
     getCurrentPositionRad() {
