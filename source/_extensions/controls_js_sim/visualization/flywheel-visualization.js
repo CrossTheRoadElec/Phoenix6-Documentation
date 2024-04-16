@@ -99,16 +99,18 @@ class FlywheelVisualization extends BaseVisualization{
                     this.ballEnterAngle = this.positionRad;
                 }
 
-                let ballDrawAngle = this.positionRad - this.ballEnterAngle  + Math.PI;
-                ballCenterX = this.wheelCenterX + (this.wheelRadius + this.ballRadius) * Math.cos(ballDrawAngle);
-                ballCenterY = this.wheelCenterY + (this.wheelRadius + this.ballRadius) * Math.sin(ballDrawAngle);
-
+                let ballTravelAngle = this.positionRad - this.ballEnterAngle;
                 //Check for ball exit conditions
-                if(this.positionRad - this.ballEnterAngle > Math.PI/2){
+                if(ballTravelAngle > Math.PI/2){
+                    ballTravelAngle = Math.PI/2;
                     this.ballExited = true;
-                    this.ballExitSpeed = 2 * Math.PI * (this.wheelRadius + this.ballRadius) * this.output; //output assumed in RPM
+                    this.ballExitSpeed = 2 * Math.PI * (this.wheelRadius + this.ballRadius) * this.output; //output assumed in RPS
                     this.ballExitTime = this.timeS;
                 }
+
+                let ballDrawAngle = ballTravelAngle + Math.PI;
+                ballCenterX = this.wheelCenterX + (this.wheelRadius + this.ballRadius) * Math.cos(ballDrawAngle);
+                ballCenterY = this.wheelCenterY + (this.wheelRadius + this.ballRadius) * Math.sin(ballDrawAngle);
 
             } else {
                 ballCenterX = this.ballLaunchTrackXStart + this.ballExitSpeed * (this.timeS - this.ballExitTime);
