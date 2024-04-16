@@ -11,8 +11,8 @@ class FlywheelPIDF extends FlywheelSim {
     this.kD = 0.0;
 
     // User-configured Feed-Forward
-    this.kV = 0.0;
     this.kS = 0.0;
+    this.kV = 0.0;
 
     // User-configured stator current limit
     this.statorLimit = 300;
@@ -101,24 +101,6 @@ class FlywheelPIDF extends FlywheelSim {
     ) {
       curRow = document.createElement("tr");
       label = document.createElement("td");
-      label.innerHTML = "kV";
-      control = document.createElement("td");
-      controlTable.appendChild(curRow);
-      input = document.createElement("INPUT");
-      input.setAttribute("type", "text");
-      input.setAttribute("value", "0.0");
-      //input.setAttribute("step", "0.00001");
-      input.onchange = function (event) {
-        this.animationReset = true;
-        this.kV = parseFloat(event.target.value);
-        this.begin();
-      }.bind(this);
-      control.append(input);
-      curRow.appendChild(label);
-      curRow.appendChild(control);
-
-      curRow = document.createElement("tr");
-      label = document.createElement("td");
       label.innerHTML = "kS";
       control = document.createElement("td");
       controlTable.appendChild(curRow);
@@ -129,6 +111,24 @@ class FlywheelPIDF extends FlywheelSim {
       input.onchange = function (event) {
         this.animationReset = true;
         this.kS = parseFloat(event.target.value);
+        this.begin();
+      }.bind(this);
+      control.append(input);
+      curRow.appendChild(label);
+      curRow.appendChild(control);
+
+      curRow = document.createElement("tr");
+      label = document.createElement("td");
+      label.innerHTML = "kV";
+      control = document.createElement("td");
+      controlTable.appendChild(curRow);
+      input = document.createElement("INPUT");
+      input.setAttribute("type", "text");
+      input.setAttribute("value", "0.0");
+      //input.setAttribute("step", "0.00001");
+      input.onchange = function (event) {
+        this.animationReset = true;
+        this.kV = parseFloat(event.target.value);
         this.begin();
       }.bind(this);
       control.append(input);
@@ -209,8 +209,8 @@ class FlywheelPIDF extends FlywheelSim {
 
     //PID + kv/ks control law
     let ctrlEffort =
-      this.kV * setpoint +
       this.kS * Math.sign(setpoint) +
+      this.kV * setpoint +
       this.kP * error +
       this.kI * this.accumulatedError +
       this.kD * err_delta;

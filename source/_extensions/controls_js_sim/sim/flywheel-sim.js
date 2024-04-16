@@ -1,13 +1,13 @@
 class FlywheelSim extends BaseSim {
   constructor(div_id_prefix) {
-    super(div_id_prefix, "RPS", 0, 1800);
+    super(div_id_prefix, "RPS", 0, 100);
 
     this.simDurationS = 10.0;
     this.simulationTimestepS = 0.005;
     this.controllerTimestepS = 0.02;
 
     // User-configured setpoints
-    this.setpointVal = 60.0;
+    this.setpointVal = 50.0;
     this.setpointStepTime = 1.0;
 
     this.plant = new FlywheelPlant();
@@ -60,6 +60,7 @@ class FlywheelSim extends BaseSim {
       this.nextControllerRunTime += this.controllerTimestepS;
     }
 
+    this.inputVolts = this.plant.restrict(this.inputVolts, 12.0);
     this.plant.update(this.curSimTimeS, this.inputVolts);
 
     this.speed_delay_line.addSample(this.plant.getCurrentSpeedRPS());

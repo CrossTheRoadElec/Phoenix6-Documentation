@@ -20,7 +20,7 @@ class FlywheelPlant{
         this.C3 = 2 / (mass * radius * radius);
 
         this.systemNoise = false;
-        // Simulate 4 volt std dev system noise at the loop update frequency
+        // Simulate 4 amp std dev system noise at the loop update frequency
         this.gaussianNoise = gaussian(0, 4);
     }
 
@@ -34,9 +34,26 @@ class FlywheelPlant{
         this.ballEnterWheelAngle = null;
     }
 
+    restrict(inAmps, supplyV) {
+        // restrict output current based on supply voltage and back EMF
+        let Rc = 0.0252; // Coil & Wiring Resistance in Ohms
+        let maxRps = 100.0; // Max motor velocity in RPS
+
+        let bemf = this.getCurrentSpeedRPS() * supplyV / maxRps;
+        let maxCurrent = (supplyV - bemf) / Rc;
+        let minCurrent = (-supplyV - bemf) / Rc;
+        if (inAmps > maxCurrent) {
+            inAmps = maxCurrent;
+        } else if (inAmps < minCurrent) {
+            inAmps = minCurrent;
+        }
+        
+        return inAmps;
+    }
+
     update(t, inAmps) {
         //Simulate friction - both static and dynamic
-        let extTrq = 0.005; // 0.005 Nm of static friction
+        let extTrq = 0.05; // 0.05 Nm of static friction
         extTrq += 0.0005*this.speedPrev; // 0.0005 Nm of friction every RPM it speeds up
 
         // Simulate system noise
