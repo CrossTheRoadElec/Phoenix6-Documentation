@@ -6,9 +6,11 @@ To simplify the API surface, both `builder <https://en.wikipedia.org/wiki/Builde
 Defining Drivetrain Characteristics
 -----------------------------------
 
-Drivetrain, in this instance, refers to the ``SwerveDrivetrainConstants`` class (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/mechanisms/swerve/SwerveDrivetrainConstants.html>`__). This class defines characteristics that are not module specific. Mandatory parameters include ``.withPigeon2Id()``.
+Drivetrain, in this instance, refers to the ``SwerveDrivetrainConstants`` class (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/mechanisms/swerve/SwerveDrivetrainConstants.html>`__). This class defines characteristics that are not module specific. Mandatory parameters include ``withCANbusName()`` and ``withPigeon2Id()``.
 
-Users can optionally provide a configuration object to apply custom configs to the Pigeon 2, such as mount orientation. Leaving the configuration object null will skip applying configs to the Pigeon 2.
+.. note:: All devices in the swerve drivetrain must be on the same CAN bus.
+
+Users can optionally provide a configuration object to apply custom configs to the Pigeon 2, such as mount orientation. Leaving the configuration object ``null`` will skip applying configs to the Pigeon 2.
 
 ``SwerveDrivetrainConstants`` Example
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -21,9 +23,9 @@ Users can optionally provide a configuration object to apply custom configs to t
       .. code-block:: java
 
          private static final SwerveDrivetrainConstants DrivetrainConstants = new SwerveDrivetrainConstants()
-            .withPigeon2Id(kPigeonId)
             .withCANbusName(kCANbusName)
-            .withPigeon2Configs(kPigeonConfigs);
+            .withPigeon2Id(kPigeonId)
+            .withPigeon2Configs(pigeonConfigs);
 
 Defining Module Characteristics
 -------------------------------
@@ -76,9 +78,9 @@ For a full reference of the available functions, see the API documentation of ``
                   .withFeedbackSource(SteerFeedbackType.FusedCANcoder)
                   .withCouplingGearRatio(kCoupleRatio)
                   .withSteerMotorInverted(kSteerMotorReversed)
-                  .withDriveMotorInitialConfigs(kDriveConfigs)
-                  .withSteerMotorInitialConfigs(kSteerConfigs)
-                  .withCANcoderInitialConfigs(kEncoderConfigs);
+                  .withDriveMotorInitialConfigs(driveInitialConfigs)
+                  .withSteerMotorInitialConfigs(steerInitialConfigs)
+                  .withCANcoderInitialConfigs(cancoderInitialConfigs);
 
 Additional Constants
 ^^^^^^^^^^^^^^^^^^^^
@@ -94,7 +96,7 @@ In the previous section, several optional constants are defined. These constants
   This is the amount of stator current the drive motors can apply without slippage. This can be found by placing the robot against a solid wall and slowly increase the output voltage. As the output voltage increases, :ref:`plot <docs/tuner/plotting:plotting>` the drive wheel velocity and stator current. Observe when the drive wheel velocity starts to rise (wheel is slipping) and at what stator current this begins.
 
 ``DriveMotorInitialConfigs``/``SteerMotorInitialConfigs``/``CANcoderInitialConfigs``
-  An initial configuration object that can be used to apply custom configs to the backing devices for each swerve module. This is useful for logic such as applying supply current limits.
+  An initial configuration object that can be used to apply custom configs to the backing devices for each swerve module. This is useful for situations such as applying supply current limits.
 
 Building the Swerve Module Constants
 ------------------------------------
