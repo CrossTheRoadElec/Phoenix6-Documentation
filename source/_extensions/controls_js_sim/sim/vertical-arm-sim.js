@@ -3,7 +3,7 @@ class VerticalArmSim extends BaseSim {
     super(divIdPrefix, "Rad", -Math.PI * 1.25, Math.PI * 1.25);
 
     this.positionDelayLine = new DelayLine(49); //models sensor lag
-    
+
     this.simDurationS = 5.0;
     this.simulationTimestepS = 0.005;
     this.controllerTimestepS = 0.02;
@@ -69,7 +69,7 @@ class VerticalArmSim extends BaseSim {
     this.positionDelayLine = new DelayLine(50); //models sensor lag
 
   }
-  
+
 
   iterateCustom() {
 
@@ -96,7 +96,7 @@ class VerticalArmSim extends BaseSim {
 
     this.procVarActualSignal.addSample(new Sample(this.curSimTimeS, this.plant.getPositionRad()));
     this.procVarDesiredSignal.addSample(new Sample(this.curSimTimeS, this.currentSetpointRad));
-    this.voltsSignal.addSample(new Sample(this.curSimTimeS, this.inputVolts));
+    this.ampsSignal.addSample(new Sample(this.curSimTimeS, this.inputVolts));
 
     this.iterationCount++;
 

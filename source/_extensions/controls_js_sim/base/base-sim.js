@@ -5,7 +5,7 @@ class BaseSim {
     this.voltsGraph = null;
     this.containerDiv = document.getElementById(divIdPrefix + "_container");
     let plotDrawDivVals = document.getElementById(divIdPrefix + "_plotVals");
-    let plotDrawDivVolts = document.getElementById(divIdPrefix + "_plotVolts");
+    let plotDrawDivAmps = document.getElementById(divIdPrefix + "_plotAmps");
 
     // Set up process variable chart - two signals indicating "actual" and "desired"
     // values for the simulation
@@ -18,10 +18,10 @@ class BaseSim {
 
 
     // Set up "volts" chart - indicates control effort applied to the system
-    this.voltsPlot = new Plot(plotDrawDivVolts);
-    this.voltsSignal = new Signal("Control Effort", "V");
-    this.voltsPlot.addSignal(this.voltsSignal, "green");
-    this.voltsPlot.setNumValueAxes(1);
+    this.ampsPlot = new Plot(plotDrawDivAmps);
+    this.ampsSignal = new Signal("Control Effort", "A");
+    this.ampsPlot.addSignal(this.ampsSignal, "green");
+    this.ampsPlot.setNumValueAxes(1);
 
     this.visualizationDrawDiv = document.getElementById(divIdPrefix + "_viz");
 
@@ -36,13 +36,13 @@ class BaseSim {
 
     this.curSimTimeS = 0.0;
 
-    //Register mouseover & scrollwheel callbacks. 
+    //Register mouseover & scrollwheel callbacks.
     // This is still tentative, as these won't work if the sim is running
-    this.procVarPlot.chart.mouseoverAtTimeCallback = this.onChartMouseOver.bind(this); 
-    this.voltsPlot.chart.mouseoverAtTimeCallback = this.onChartMouseOver.bind(this); 
-    this.procVarPlot.chart.zoomRangeUpdateCallback = this.onChartZoomAction.bind(this); 
-    this.voltsPlot.chart.zoomRangeUpdateCallback = this.onChartZoomAction.bind(this); 
-    
+    this.procVarPlot.chart.mouseoverAtTimeCallback = this.onChartMouseOver.bind(this);
+    this.ampsPlot.chart.mouseoverAtTimeCallback = this.onChartMouseOver.bind(this);
+    this.procVarPlot.chart.zoomRangeUpdateCallback = this.onChartZoomAction.bind(this);
+    this.ampsPlot.chart.zoomRangeUpdateCallback = this.onChartZoomAction.bind(this);
+
 
   }
 
@@ -54,7 +54,7 @@ class BaseSim {
     this.resetCustom(); //Callback to fixed point in specific sim classes
     this.procVarActualSignal.clearValues();
     this.procVarDesiredSignal.clearValues();
-    this.voltsSignal.clearValues();
+    this.ampsSignal.clearValues();
     this.curSimTimeS = 0.0;
     this.animationReset = true;
     this.simRunning = true;
@@ -78,7 +78,7 @@ class BaseSim {
       this.animationStartTimeS = currentTimeS;
       this.animationReset = false;
       this.procVarPlot.setDrawRange(0, this.simDurationS);
-      this.voltsPlot.setDrawRange(0, this.simDurationS);
+      this.ampsPlot.setDrawRange(0, this.simDurationS);
     }
 
     if(this.simRunning){
@@ -91,13 +91,13 @@ class BaseSim {
       }
 
       this.procVarPlot.setCursorPos(animationTimeS);
-      this.voltsPlot.setCursorPos(animationTimeS);
-    } 
+      this.ampsPlot.setCursorPos(animationTimeS);
+    }
 
     //Redraw only if visible.
     if(this.isInViewport()){
       this.visualization.drawDynamic();
-      this.voltsPlot.drawDataToChart();
+      this.ampsPlot.drawDataToChart();
       this.procVarPlot.drawDataToChart();
     }
 
@@ -120,7 +120,7 @@ class BaseSim {
   onChartMouseOver(timeAtMouse){
     if(!this.simRunning){
         this.procVarPlot.setCursorPos(timeAtMouse);
-        this.voltsPlot.setCursorPos(timeAtMouse);
+        this.ampsPlot.setCursorPos(timeAtMouse);
     }
   }
 
@@ -128,8 +128,8 @@ class BaseSim {
   onChartZoomAction(startTime, endTime){
     if(!this.simRunning){
       this.procVarPlot.setDrawRange(startTime, endTime);
-      this.voltsPlot.setDrawRange(startTime, endTime);
-    } 
+      this.ampsPlot.setDrawRange(startTime, endTime);
+    }
   }
 
 }

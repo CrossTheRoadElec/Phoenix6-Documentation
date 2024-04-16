@@ -60,7 +60,7 @@ These general guidelines are great for understanding what's happening in a close
     <div class="viz-div" id="flywheel_both_container">
       <div >
          <div class="col" id="flywheel_both_plotVals"></div>
-         <div class="col" id="flywheel_both_plotVolts"></div>
+         <div class="col" id="flywheel_both_plotAmps"></div>
       </div>
       <div class="flex-grid">
          <div class="col" id="flywheel_both_viz"></div>
