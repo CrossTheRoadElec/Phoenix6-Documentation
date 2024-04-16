@@ -1,7 +1,7 @@
 .. raw:: html
 
-   <script src="../../../../_static/pid-tune.js"></script>
-   <link rel="stylesheet" type="text/css" href="../../../../_static/pid-tune.css" />
+   <script src="../../_static/pid-tune.js"></script>
+   <link rel="stylesheet" type="text/css" href="../../_static/pid-tune.css" />
 
 
 How to Manually Tune your PID Loops
