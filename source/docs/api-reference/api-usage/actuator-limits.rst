@@ -61,6 +61,8 @@ Many :doc:`control requests </docs/api-reference/api-usage/control-requests>` su
          final DigitalInput m_forwardLimit = new DigitalInput(0);
          final DigitalInput m_reverseLimit = new DigitalInput(1);
 
+         final DutyCycleOut m_dutyCycle = new DutyCycleOut(0.0);
+
          m_motor.setControl(m_dutyCycle.withOutput(0.5)
                .withLimitForwardMotion(m_forwardLimit.get())
                .withLimitReverseMotion(m_reverseLimit.get()));
@@ -73,6 +75,8 @@ Many :doc:`control requests </docs/api-reference/api-usage/control-requests>` su
          frc::DigitalInput m_forwardLimit{0};
          frc::DigitalInput m_reverseLimit{1};
 
+         controls::DutyCycleOut m_dutyCycle{0.0};
+
          m_motor.SetControl(m_dutyCycle.WithOutput(0.5)
                .WithLimitForwardMotion(m_forwardLimit.Get())
                .WithLimitReverseMotion(m_reverseLimit.Get()));
@@ -84,6 +88,8 @@ Many :doc:`control requests </docs/api-reference/api-usage/control-requests>` su
 
          self.forward_limit = wpilib.DigitalInput(0)
          self.reverse_limit = wpilib.DigitalInput(1)
+
+         self.duty_cycle = controls.DutyCycleOut(0.0)
 
          self.motor.set_control(self.duty_cycle.with_output(0.5)
                .with_limit_forward_motion(self.forward_limit.get())
