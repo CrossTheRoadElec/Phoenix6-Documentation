@@ -118,7 +118,7 @@ As motor supply currents increase, the battery voltage will decrease in a simila
       </form>
       <form onkeypress="return event.keyCode != 13" style="float:left;">
          <p>Total current draw (A)</p>
-         <input onchange="updateOutput()" id="current" value="240" style="width:90%;" type="numeric" placeholder="240"/>
+         <input onchange="updateOutput()" id="current" value="280" style="width:90%;" type="numeric" placeholder="280"/>
       </form>
       <form onkeypress="return event.keyCode != 13" style="float:left;">
          <p>Battery resistance (mOhms)</p>
