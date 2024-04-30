@@ -50,6 +50,11 @@ Users can utilize the below checklist to ensure their robot is ready for project
 
           <input type="checkbox"/>
 
+   * - **REQUIRED:** Are all devices on the same CAN bus?
+     - .. raw:: html
+
+          <input type="checkbox"/>
+
    * - **REQUIRED:** Is all firmware up-to-date? (24.X)
      - .. raw:: html
 
