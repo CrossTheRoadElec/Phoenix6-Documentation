@@ -148,6 +148,7 @@ Any log that contains a :doc:`pro-licensed </docs/licensing/licensing>` device w
 
    - SupplyVoltage
    - SupplyCurrent
+   - StatorCurrent
    - MotorVoltage
    - Position
    - Velocity
