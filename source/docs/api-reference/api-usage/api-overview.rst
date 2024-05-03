@@ -56,8 +56,8 @@ The vast majority of Phoenix 6 can be considered thread safe with a few exceptio
 
 - ``StatusSignal`` objects (including the implicit device getters)
 - ``Config`` objects
-   * e.g. setters such as ``setPosition()``
-   * does **not** include the configurators
+   * E.g. setters such as ``setPosition()``
+   * Does **not** include the configurators
 
 - ``Control`` objects
    * Sending a control request to a device is thread safe, but mutating a control object across threading requires a user-defined mutex.
