@@ -61,4 +61,3 @@ The vast majority of Phoenix 6 can be considered thread safe with a few exceptio
 
 - ``Control`` objects
    * Sending a control request to a device is thread safe, but mutating a control object across threading requires a user-defined mutex.
-  
