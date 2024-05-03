@@ -48,3 +48,16 @@ Python also takes advantage of the module structure to improve IntelliSense:
    talonfx_inverted = signals.InvertedValue.COUNTER_CLOCKWISE_POSITIVE
 
 All Python code examples in this documentation will assume the presence of ``from phoenix6 import *``.
+
+Thread Safety
+^^^^^^^^^^^^^
+
+The vast majority of Phoenix 6 can be considered thread safe with a few exception. Primarily, objects that are represented as Plain Data Storage (PDS) are not thread safe. These include:
+
+- ``StatusSignal`` objects (including the implicit device getters)
+- ``Config`` objects
+   * e.g. setters such as ``setPosition()``
+   * does **not** include the configurators
+
+- ``Control`` objects
+   * Sending a control request to a device is thread safe, but mutating a control object across threading requires a user-defined mutex.
