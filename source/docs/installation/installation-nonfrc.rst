@@ -62,7 +62,7 @@ Simulation vs Hardware
 
       Users may notice the robot program is using simulated devices by default. This is the default behavior if the host platform supports simulation (see :ref:`requirements <docs/installation/requirements:system requirements>` for a full list of supported platforms).
 
-      In order for the robot program to communicate with physical devices (on platforms that support both simulation and hardware), the following environment variable must be set.
+      In order for the robot program to communicate with physical devices (on platforms that support both simulation and hardware), the ``CTR_TARGET`` environment variable must be set. Examples of this are shown below.
 
       .. code-block:: bash
 
@@ -71,6 +71,7 @@ Simulation vs Hardware
      Or
              
       .. code-block:: bash
+
          CTR_TARGET=Hardware python3 application.py # Set the environment variable only for the python call
 
 Examples
