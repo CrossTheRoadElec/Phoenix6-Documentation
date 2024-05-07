@@ -46,6 +46,8 @@ On non-FRC Linux systems, the ``canivore-usb`` kernel module must be installed t
 
 .. note:: ``<year>`` should be replaced with the year of Phoenix 6 software for which you have purchased licenses.
 
+Certain systems require :ref:`modifying the .list file <canivore-modifying-list-dist>` before installing the kernel module.
+
 After adding the sources, the kernel module can be installed and updated using the following:
 
 .. important:: Users on a Raspberry Pi OS based platform must install the kernel headers before running the below install script. Headers can be installed by running ``sudo apt install raspberrypi-kernel-headers``.
@@ -57,10 +59,41 @@ After adding the sources, the kernel module can be installed and updated using t
 
 .. tip:: To get a robot application up and running quickly, check out our `non-FRC Linux example <https://github.com/CrossTheRoadElec/Phoenix6-Linux-Example>`__.
 
-Raspberry Pi 4 Errata
-~~~~~~~~~~~~~~~~~~~~~
+.. _canivore-modifying-list-dist:
 
-On a Raspberry Pi 4 or newer, the latest 32-bit Raspberry Pi OS image will default to using the 64-bit kernel while still using 32-bit APT packages. As a result, our canivore-usb kernel module will fail to install.
+Modifying the ``.list`` Distribution
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Some systems require modifying the distribution of the ``tools`` entry in the ``.list`` file. To switch distributions, open ``/etc/apt/sources.list.d/ctr${YEAR}.list`` in a text editor and modify the line for the ``tools`` entry.
+
+.. code-block:: bash
+
+   # APT repo for CTR tools, including canivore-usb
+   deb [signed-by=/usr/share/keyrings/ctr-pubkey.gpg] https://deb.ctr-electronics.com/tools <dist> main
+
+The table below shows possible values for ``<dist>``.
+
+.. list-table:: ``.list`` Distributions
+   :header-rows: 1
+
+   * - System
+     - ``<dist>``
+
+   * - Raspberry Pi
+     - raspberrypi
+
+   * - NVIDIA Jetson
+     - jetson
+
+   * - Other Linux systems (default)
+     - stable
+
+.. warning:: Do not modify the distribution of the ``libs/<year>`` entry in the ``.list`` file.
+
+Raspberry Pi Errata
+~~~~~~~~~~~~~~~~~~~
+
+On a Raspberry Pi 4 or newer, the latest 32-bit Raspberry Pi OS image will default to using the 64-bit kernel while still using 32-bit APT packages. As a result, the canivore-usb kernel module will fail to install.
 
 There are two options to work around this issue:
 
