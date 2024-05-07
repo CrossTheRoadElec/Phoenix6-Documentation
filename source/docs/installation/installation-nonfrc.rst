@@ -56,13 +56,17 @@ Device firmware upgrading is handled by the :doc:`/docs/tuner/index` configurati
 Simulation vs Hardware
 ^^^^^^^^^^^^^^^^^^^^^^
 
-Users may notice the robot program is using simulated devices by default. This is the default behavior if the host platform supports simulation (see :ref:`requirements <docs/installation/requirements:system requirements>` for a full list of supported platforms).
+.. tab-set::
 
-In order for the robot program to communicate with physical devices (on platforms that support both simulation and hardware), the following environment variable must be set.
+   .. tab-item:: Python
 
-.. code-block:: bash
+      Users may notice the robot program is using simulated devices by default. This is the default behavior if the host platform supports simulation (see :ref:`requirements <docs/installation/requirements:system requirements>` for a full list of supported platforms).
 
-   CTR_TARGET=Hardware
+      In order for the robot program to communicate with physical devices (on platforms that support both simulation and hardware), the following environment variable must be set.
+
+      .. code-block:: bash
+
+         CTR_TARGET=Hardware
 
 Examples
 --------
