@@ -53,6 +53,27 @@ Firmware Installation
 
 Device firmware upgrading is handled by the :doc:`/docs/tuner/index` configuration client.
 
+Simulation vs Hardware
+^^^^^^^^^^^^^^^^^^^^^^
+
+.. tab-set::
+
+   .. tab-item:: Python
+
+      Users may notice the robot program is using simulated devices by default. This is the default behavior if the host platform supports simulation (see :ref:`requirements <docs/installation/requirements:system requirements>` for a full list of supported platforms).
+
+      In order for the robot program to communicate with physical devices (on platforms that support both simulation and hardware), the ``CTR_TARGET`` environment variable must be set. Examples of this are shown below.
+
+      .. code-block:: bash
+
+         export CTR_TARGET=Hardware # Export the environment variable so it's persistent in the shell
+
+      Or
+
+      .. code-block:: bash
+
+         CTR_TARGET=Hardware python3 application.py # Set the environment variable only for the python call
+
 Examples
 --------
 
