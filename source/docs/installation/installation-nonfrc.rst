@@ -67,9 +67,9 @@ Simulation vs Hardware
       .. code-block:: bash
 
          export CTR_TARGET=Hardware # Export the environment variable so it's persistent in the shell
-     
+
      Or
-             
+
       .. code-block:: bash
 
          CTR_TARGET=Hardware python3 application.py # Set the environment variable only for the python call
