@@ -68,7 +68,7 @@ Simulation vs Hardware
 
          export CTR_TARGET=Hardware # Export the environment variable so it's persistent in the shell
 
-     Or
+      Or
 
       .. code-block:: bash
 
