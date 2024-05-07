@@ -53,6 +53,17 @@ Firmware Installation
 
 Device firmware upgrading is handled by the :doc:`/docs/tuner/index` configuration client.
 
+Simulation vs Hardware
+^^^^^^^^^^^^^^^^^^^^^^
+
+Users may notice the robot program is using simulated devices by default. This is the default behavior if the host platform supports simulation (see :ref:`requirements <docs/installation/requirements:system requirements>` for a full list of supported platforms).
+
+In order for the robot program to communicate with physical devices (on platforms that support both simulation and hardware), the following environment variable must be set.
+
+.. code-block:: bash
+
+   CTR_TARGET=Hardware
+
 Examples
 --------
 
