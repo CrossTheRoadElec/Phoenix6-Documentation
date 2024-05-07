@@ -20,11 +20,13 @@ Phoenix 6 devices are supported on the below CAN bus adapters.
 .. tab-set::
 
    .. tab-item:: FRC
+      :sync: FRC
 
       - roboRIO
       - `CANivore <https://store.ctr-electronics.com/canivore/>`__
 
    .. tab-item:: non-FRC
+      :sync: non-FRC
 
       Any SocketCAN capable adapter will work, but the `CANivore <https://store.ctr-electronics.com/canivore/>`__ is highly recommended. CANivore offers :ref:`additional functionality <docs/migration/new-to-phoenix:feature breakdown>` over other SocketCAN adapters.
 
@@ -36,6 +38,7 @@ Phoenix 6 supports a plethora of languages and operating systems. The table foun
 .. tab-set::
 
    .. tab-item:: FRC
+      :sync: FRC
 
       +-----------------------------+-----------------------+----------------------------------------------------------+---------------------------------------------------------------------------------+
       | Targets                     | Supported Languages   | Supports :doc:`CANivore </docs/canivore/canivore-intro>` | Supports :doc:`High-Fidelity Simulation </docs/api-reference/simulation/index>` |
@@ -50,11 +53,12 @@ Phoenix 6 supports a plethora of languages and operating systems. The table foun
       +-----------------------------+-----------------------+----------------------------------------------------------+---------------------------------------------------------------------------------+
 
    .. tab-item:: non-FRC
+      :sync: non-FRC
 
       +-----------------------------+-----------------------+----------------------------------------------------------+---------------------------------------------------------------------------------+
       | Targets                     | Supported Languages   | Supports :doc:`CANivore </docs/canivore/canivore-intro>` | Supports :doc:`High-Fidelity Simulation </docs/api-reference/simulation/index>` |
       +=============================+=======================+==========================================================+=================================================================================+
-      | Windows 10/11 x86-64        | C#, C++, Python       | Yes                                                      | Yes (Python only)                                                               |
+      | Windows 10/11 x86-64        | C#, Python            | Yes                                                      | Yes (Python only)                                                               |
       +-----------------------------+-----------------------+----------------------------------------------------------+---------------------------------------------------------------------------------+
       | Linux x86-64 (desktop) [1]_ | C++, Python           | Yes                                                      | Yes (Python only)                                                               |
       +-----------------------------+-----------------------+----------------------------------------------------------+---------------------------------------------------------------------------------+
