@@ -52,15 +52,15 @@ All Python code examples in this documentation will assume the presence of ``fro
 Thread Safety
 ^^^^^^^^^^^^^
 
-The vast majority of Phoenix 6 can be considered thread safe with a few exception. Objects that are **not** thread safe include:
+The vast majority of Phoenix 6 is thread-safe with a few exceptions. Objects that are **not** thread-safe include:
 
 - ``StatusSignal`` objects
    * Calling the same device ``StatusSignal`` getter (e.g. ``TalonFX.getVelocity()``) from multiple threads is unsafe. This is because device status signal getters refresh the ``StatusSignal`` implicitly.
-   * Users should clone or copy the object to get a unique instance for a given thread.
+   * Users should clone or copy a ``StatusSignal`` object to get a unique instance for a given thread.
 
 - ``Config`` objects
-   * Includes setters such as ``setPosition()``.
-   * Device configurators are still thread safe.
+   * Includes ``TalonFX.setInverted()`` and ``TalonFX.setNeutralMode()``
+   * However, device ``Configurator`` objects and other setters (e.g. ``TalonFX.setPosition()``) **are** thread safe.
 
 - ``Control`` objects
-   * Sending a control request to a device is thread safe, but mutating a control object across threading requires a user-defined mutex.
+   * However, sending a control request to a device **is** thread safe.
