@@ -52,7 +52,7 @@ All Python code examples in this documentation will assume the presence of ``fro
 Thread Safety
 ^^^^^^^^^^^^^
 
-The vast majority of Phoenix 6 can be considered thread safe with a few exception. Objects that can be considered thread unsafe include:
+The vast majority of Phoenix 6 can be considered thread safe with a few exception. Objects that are **not** thread safe include:
 
 - ``StatusSignal`` objects
    * Calling the same device ``StatusSignal`` getter (e.g. ``TalonFX.getVelocity()``) from multiple threads is unsafe. This is because device status signal getters refresh the ``StatusSignal`` implicitly.
