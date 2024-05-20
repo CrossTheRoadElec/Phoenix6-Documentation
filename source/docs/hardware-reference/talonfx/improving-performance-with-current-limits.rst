@@ -180,7 +180,7 @@ Current limits must be **enabled** and **configured**. This can be done in :doc:
       .. code-block:: java
 
          var talonFXConfigurator = m_talonFX.getConfigurator();
-         var limitConfigs = new CurrentLimitConfigs();
+         var limitConfigs = new CurrentLimitsConfigs();
 
          // enable stator current limit
          limitConfigs.StatorCurrentLimit = 120;
@@ -194,7 +194,7 @@ Current limits must be **enabled** and **configured**. This can be done in :doc:
       .. code-block:: c++
 
          auto& talonFXConfigurator = m_talonFX.GetConfigurator();
-         configs::CurrentLimitConfigs limitConfigs{};
+         configs::CurrentLimitsConfigs limitConfigs{};
 
          // enable stator current limit
          limitConfigs.StatorCurrentLimit = 120;
@@ -208,7 +208,7 @@ Current limits must be **enabled** and **configured**. This can be done in :doc:
       .. code-block:: python
 
          talonfx_configurator = self.talonfx.configurator
-         limit_configs = configs.CurrentLimitConfigs()
+         limit_configs = configs.CurrentLimitsConfigs()
 
          # enable stator current limit
          limit_configs.stator_current_limit = 120
