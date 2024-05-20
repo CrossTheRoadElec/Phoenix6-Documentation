@@ -52,7 +52,7 @@ All Python code examples in this documentation will assume the presence of ``fro
 Thread Safety
 ^^^^^^^^^^^^^
 
-The vast majority of Phoenix 6 can be considered thread safe with a few exception. Thread safe objects include:
+The vast majority of Phoenix 6 can be considered thread safe with a few exception. Objects that can be considered thread unsafe include:
 
 - ``StatusSignal`` objects (including the implicit device getters)
    * Users may instead clone or copy the object to get a unique object for a given thread.
