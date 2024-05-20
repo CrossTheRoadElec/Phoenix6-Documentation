@@ -12,6 +12,7 @@ fonttools = {version = "==4.42.1", extras = ["woff"]}
 furo = "==2023.09.10"
 latex = "==0.7.0"
 packaging = "==23.1"
+setuptools = "==69.5.1"
 sphinx = "==7.2.5"
 sphinx-copybutton = "==0.5.2"
 sphinx-hoverxref = "==1.3.0"
