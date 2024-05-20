@@ -52,9 +52,11 @@ All Python code examples in this documentation will assume the presence of ``fro
 Thread Safety
 ^^^^^^^^^^^^^
 
-The vast majority of Phoenix 6 can be considered thread safe with a few exception. Primarily, objects that are represented as Plain Data Storage (PDS) are not thread safe. These include:
+The vast majority of Phoenix 6 can be considered thread safe with a few exception. Thread safe objects include:
 
 - ``StatusSignal`` objects (including the implicit device getters)
+   * Users may instead clone or copy the object to get a unique object for a given thread.
+
 - ``Config`` objects
    * E.g. setters such as ``setPosition()``
    * Does **not** include the configurators
