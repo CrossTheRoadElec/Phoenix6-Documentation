@@ -54,12 +54,13 @@ Thread Safety
 
 The vast majority of Phoenix 6 can be considered thread safe with a few exception. Objects that can be considered thread unsafe include:
 
-- ``StatusSignal`` objects (including the implicit device getters)
-   * Users may instead clone or copy the object to get a unique object for a given thread.
+- ``StatusSignal`` objects
+   * Calling the same device ``StatusSignal`` getter (e.g. ``TalonFX.getVelocity()``) from multiple threads is unsafe. This is because device status signal getters refresh the ``StatusSignal`` implicitly.
+   * Users should clone or copy the object to get a unique instance for a given thread.
 
 - ``Config`` objects
-   * E.g. setters such as ``setPosition()``
-   * Does **not** include the configurators
+   * Includes setters such as ``setPosition()``.
+   * Device configurators are still thread safe.
 
 - ``Control`` objects
    * Sending a control request to a device is thread safe, but mutating a control object across threading requires a user-defined mutex.
