@@ -45,6 +45,8 @@ Closed-Loop Setpoints
 
 Phoenix 6 uses canonical units for closed-loop setpoints.
 
+.. note:: This calculator assumes the ``RotorToSensorRatio`` and ``SensorToMechanismRatio`` configs are both set to 1. If this is not the case in your robot program, **divide** the resulting values by both ratios.
+
 .. raw:: html
 
     <div class="tableOverflow">
@@ -109,6 +111,8 @@ Position without Voltage Comp
 
 Phoenix 5 ``ControlMode.Position`` with voltage compensation **disabled** maps to the Phoenix 6 ``PositionDutyCycle`` control request.
 
+.. note:: This calculator assumes the ``RotorToSensorRatio`` and ``SensorToMechanismRatio`` configs are both set to 1. If this is not the case in your robot program, **multiply** the resulting gains by both ratios.
+
 .. raw:: html
 
     <div class="tableOverflow">
@@ -170,6 +174,8 @@ Position with Voltage Comp
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Phoenix 5 ``ControlMode.Position`` with voltage compensation **enabled** has been replaced with the Phoenix 6 ``PositionVoltage`` control request, which directly controls voltage.
+
+.. note:: This calculator assumes the ``RotorToSensorRatio`` and ``SensorToMechanismRatio`` configs are both set to 1. If this is not the case in your robot program, **multiply** the resulting gains by both ratios.
 
 .. raw:: html
 
@@ -237,6 +243,8 @@ Velocity without Voltage Comp
 Phoenix 5 ``ControlMode.Velocity`` with voltage compensation **disabled** maps to the Phoenix 6 ``VelocityDutyCycle`` control request.
 
 Additionally, kF from Phoenix 5 has been replaced with kV in Phoenix 6.
+
+.. note:: This calculator assumes the ``RotorToSensorRatio`` and ``SensorToMechanismRatio`` configs are both set to 1. If this is not the case in your robot program, **multiply** the resulting gains by both ratios.
 
 .. raw:: html
 
@@ -314,6 +322,8 @@ Velocity with Voltage Comp
 Phoenix 5 ``ControlMode.Velocity`` with voltage compensation **enabled** has been replaced with the Phoenix 6 ``VelocityVoltage`` control request, which directly controls voltage.
 
 Additionally, kF from Phoenix 5 has been replaced with kV in Phoenix 6.
+
+.. note:: This calculator assumes the ``RotorToSensorRatio`` and ``SensorToMechanismRatio`` configs are both set to 1. If this is not the case in your robot program, **multiply** the resulting gains by both ratios.
 
 .. raw:: html
 
