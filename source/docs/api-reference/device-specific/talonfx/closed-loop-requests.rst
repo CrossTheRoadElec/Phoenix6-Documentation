@@ -8,11 +8,12 @@ Since closed-loop control changes based on the dynamics of the system (velocity,
 Manual tuning typically follows this process:
 
 1. Set all gains to zero.
-2. Determine :math:`K_g` if using an arm or elevator.
-3. Increase :math:`K_s` until just before the motor moves.
-4. If using velocity setpoints, increase :math:`K_v` until the output velocity closely matches the velocity setpoints.
-5. Increase :math:`K_p` until the output starts to oscillate around the setpoint.
-6. Increase :math:`K_d` as much as possible without introducing jittering to the response.
+2. Determine :math:`K_g` if using an :ref:`elevator <docs/api-reference/device-specific/talonfx/closed-loop-requests:elevator/static>` or :ref:`arm  <docs/api-reference/device-specific/talonfx/closed-loop-requests:arm/cosine>`.
+3. Select the appropriate :ref:`docs/api-reference/device-specific/talonfx/closed-loop-requests:static feedforward sign` for your closed-loop type.
+4. Increase :math:`K_s` until just before the motor moves.
+5. If using velocity setpoints, increase :math:`K_v` until the output velocity closely matches the velocity setpoints.
+6. Increase :math:`K_p` until the output starts to oscillate around the setpoint.
+7. Increase :math:`K_d` as much as possible without introducing jittering to the response.
 
 All closed-loop control requests follow the naming pattern ``{ClosedLoopMode}{ControlOutputType}``. For example, the ``VelocityVoltage`` control request performs a velocity closed-loop using voltage output.
 
