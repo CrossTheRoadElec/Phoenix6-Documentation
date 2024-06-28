@@ -3,6 +3,8 @@ Motion Magic® Controls
 
 In addition to basic PID control, the Talon FX also supports onboard motion profiling using Motion Magic® controls.
 
+.. note:: For more information on feedback and feedforward gains, see :doc:`/docs/api-reference/device-specific/talonfx/closed-loop-requests`.
+
 Motion Magic®
 -------------
 
@@ -53,6 +55,7 @@ The Motion Magic® jerk, acceleration, and cruise velocity can be :doc:`configur
 
 In Motion Magic®, the gains should be configured as follows:
 
+- :math:`K_g` - output to overcome gravity (output)
 - :math:`K_s` - output to overcome static friction (output)
 - :math:`K_v` - output per unit of target velocity (output/rps)
 - :math:`K_a` - output per unit of target acceleration (output/(rps/s))
@@ -293,6 +296,7 @@ The Motion Magic® Velocity jerk and acceleration can be :doc:`configured in cod
 
 In Motion Magic® Velocity, the gains should be configured as follows:
 
+- :math:`K_g` - output to overcome gravity (output)
 - :math:`K_s` - output to overcome static friction (output)
 - :math:`K_v` - output per unit of target velocity (output/rps)
 - :math:`K_a` - output per unit of target acceleration (output/(rps/s))
@@ -473,6 +477,7 @@ The Motion Magic® Expo kV, kA, and cruise velocity can be :doc:`configured in c
 
 In Motion Magic® Expo, the gains should be configured as follows:
 
+- :math:`K_g` - output to overcome gravity (output)
 - :math:`K_s` - output to overcome static friction (output)
 - :math:`K_v` - output per unit of target velocity (output/rps)
 - :math:`K_a` - output per unit of target acceleration (output/(rps/s))

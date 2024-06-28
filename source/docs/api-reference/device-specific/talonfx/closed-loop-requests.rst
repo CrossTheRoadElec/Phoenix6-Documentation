@@ -7,9 +7,12 @@ Since closed-loop control changes based on the dynamics of the system (velocity,
 
 Manual tuning typically follows this process:
 
-1. Set :math:`K_p`, :math:`K_i` and :math:`K_d` to zero.
-2. Increase :math:`K_p` until the output starts to oscillate around the setpoint.
-3. Increase :math:`K_d` as much as possible without introducing jittering to the response.
+1. Set all gains to zero.
+2. Determine :math:`K_g` if using an arm or elevator.
+3. Increase :math:`K_s` until just before the motor moves.
+4. If using velocity setpoints, increase :math:`K_v` until the output velocity closely matches the velocity setpoints.
+5. Increase :math:`K_p` until the output starts to oscillate around the setpoint.
+6. Increase :math:`K_d` as much as possible without introducing jittering to the response.
 
 All closed-loop control requests follow the naming pattern ``{ClosedLoopMode}{ControlOutputType}``. For example, the ``VelocityVoltage`` control request performs a velocity closed-loop using voltage output.
 
@@ -53,6 +56,23 @@ For systems with an angular gravity component, such as an arm, the output of :ma
 Since the arm :math:`K_g` uses the angle of the arm relative to horizontal, the Talon FX often requires an absolute sensor whose position is 1:1 with the arm, and the sensor offset and ratios must be configured.
 
 When using an absolute sensor, such as a CANcoder, the sensor offset must be configured such that a position of 0 represents the arm being held horizontally forward. From there, the ``RotorToSensor`` ratio must be configured to the ratio between the absolute sensor and the Talon FX rotor.
+
+Static Feedforward Sign
+-----------------------
+
+The static feedforward :math:`K_s` is the output needed to overcome the system's static friction, in units of the :ref:`control output type <docs/api-reference/device-specific/talonfx/talonfx-control-intro:control output types>`. Because friction always opposes the direction of motion, the sign of :math:`K_s` also depends on the direction of motion. Phoenix 6 provides two possible methods of determining this signage using the ``StaticFeedforwardSign`` config in the gain slots.
+
+Velocity Sign
+^^^^^^^^^^^^^
+
+By default, the signage of :math:`K_s` is determined by the signage of the velocity setpoint. In other words, if the velocity setpoint is positive, then the output of :math:`K_s` is positive; if the velocity setpoint is negative, then :math:`K_s` is negative. This option is always used when running velocity closed loops, and it is recommended for Motion Magic® controls and motion-profiled position closed loops.
+
+Closed-Loop Sign
+^^^^^^^^^^^^^^^^
+
+When using a position closed-loop controller, signage of :math:`K_s` can instead be determined by the sign of the closed-loop error. For example, if the position error (target - measured) is positive, then the output of :math:`K_s` is positive; if the error is negative, then :math:`K_s` is negative. This option is typically used when a velocity setpoint is otherwise not available, such as when running unprofiled position closed loops.
+
+.. important:: When using the sign of closed-loop error for :math:`K_s`, it is important that the selected :math:`K_s` value is not too large. Otherwise, the motor output may dither or oscillate when near the closed-loop target.
 
 Converting from Meters
 ----------------------
