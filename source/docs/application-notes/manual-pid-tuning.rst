@@ -111,8 +111,8 @@ The simulator below allows you to follow these steps to find the right gains.
 
    And that's the flywheel tuned! This took 2 iterations of going between low setpoint and high setpoint, but sometimes you may need more depending on how difficult your system's dynamics are and if you need tighter tolerances. In this case I'm eyeballing the response and saying it's good enough, but in practice you should use the closed loop error Status Signal to verify the error is within the tolerance of your mechanism.
 
-Turret Tuning with Torque control
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Turret Tuning with TorqueCurrentFOC
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Tuning a Turret is identical to any other position controller that has no gravity component.
 
 Similarly to the velocity controller, below is a list of steps and simulator for turret tuning. Red is the setpoint in rotations, purple is the current position, green is the stator current in amps.
