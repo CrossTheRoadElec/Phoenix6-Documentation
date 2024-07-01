@@ -124,6 +124,7 @@ The following steps cover the general idea:
  4. Increase kP until you notice significant overshoot.
  5. Increase kD until the overshoot stops happening.
  6. Repeat steps 4 and 5 until increasing kD results in more oscillation, or until the system oscillates on its way to the setpoint.
+ 7. Verify gains work for other setpoints as well. Tune kP/kD as appropriate for most general cases.
 
 .. note:: Values of kP=200, kD=15 demonstrate the "oscillates on its way to the setpoint" case for setpoints within 1 rotation.
 
