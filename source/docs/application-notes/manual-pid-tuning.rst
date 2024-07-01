@@ -57,6 +57,8 @@ These general guidelines are great for understanding what's happening in a close
 
 Flywheel Tuning with TorqueCurrentFOC
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Below is a list of steps and a simulator that provides the opportunity to try tuning a flywheel system using PID with TorqueControl. The Red line is the setpoint of the flywheel controller, purple is the current velocity, and the green line is the current of the motor in stator-amps.
+
 Tuning a flywheel is largely done with the following steps:
  1. Zero all PID gains.
  2. Set a high setpoint (typically 8/10th the maximum velocity).
@@ -108,3 +110,36 @@ The simulator below allows you to follow these steps to find the right gains.
    I first double kP to 2, then 4, 8, and 16, noticing that the time to target is decreasing with a larger kP. A kP of 16 results in a bit of overshoot that I don't like, so I decrease it to 12, then 10 before it matches what I want. I increase to 11 and still like the response, so I leave it at 11.
 
    And that's the flywheel tuned! This took 2 iterations of going between low setpoint and high setpoint, but sometimes you may need more depending on how difficult your system's dynamics are and if you need tighter tolerances. In this case I'm eyeballing the response and saying it's good enough, but in practice you should use the closed loop error Status Signal to verify the error is within the tolerance of your mechanism.
+
+Turret Tuning with Torque control
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Tuning a Turret is identical to any other position controller that has no gravity component.
+
+Similarly to the velocity controller, below is a list of steps and simulator for turret tuning. Red is the setpoint in rotations, purple is the current position, green is the stator current in amps.
+
+The following steps cover the general idea:
+ 1. Zero all PID gains.
+ 2. Set a setpoint relatively nearby (typically 0.1).
+ 3. Increase kS until just before the turret starts moving.
+ 4. Increase kP until you notice significant overshoot.
+ 5. Increase kD until the overshoot stops happening.
+ 6. Repeat steps 4 and 5 until increasing kD results in more oscillation, or until the system oscillates on its way to the setpoint.
+
+.. note:: Values of kP=200, kD=15 demonstrate the "oscillates on its way to the setpoint" case for setpoints within 1 rotation.
+
+.. raw:: html
+
+    <div class="viz-div" id="turret_both_container">
+      <div >
+         <div class="col" id="turret_both_plotVals"></div>
+         <div class="col" id="turret_both_plotAmps"></div>
+      </div>
+      <div class="flex-grid">
+         <div class="col" id="turret_both_viz"></div>
+         <div id="turret_both_ctrls"></div>
+      </div>
+      <script>
+         turret = new TurretPIDF("turret_both", "both");
+      </script>
+    </div>
+

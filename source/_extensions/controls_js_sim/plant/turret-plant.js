@@ -1,59 +1,86 @@
 class TurretPlant {
-  constructor(TimestepS) {
-    this.TimestepS = TimestepS;
+    constructor(TimestepS) {
+        this.TimestepS = TimestepS;
 
-    // Gains estimated by ReCalc (http://reca.lc) with the specs below
-    // Vertical arm simulator used with kG ignored
-    // motor: 1x REV Neo 550
-    // gearing: 100:1
-    // efficiency: 100
-    // effective turret radius: 0.25 meters
-    // effective turrent point mass: 1 kg
-    this.kVVoltSecondPerRad = 0.2;
-    this.kAVoltSecondSquaredPerRad = 0.03;
+        // Constants related to plant model
+        // Flywheel
 
-    this.state = [0, 0];
+        let mass = 10; //Turret wheel mass in Kg
+        let radius = 0.2032; //8 inch radius, converted to meters
 
-    this.systemNoise = false;
-    // Simulate half volt std dev system noise at sim loop update frequency
-    this.gaussianNoise = gaussian(0, 0.5);
-  }
+        // Gearbox
+        let GEARBOX_RATIO = 1.0 / 20.0; // output over input - 1:20 reduction gear ratio
 
-  acceleration([posRad, velRadPerS], inputVolts) {
-    if (this.systemNoise) {
-      inputVolts += this.gaussianNoise();
+        // Kraken FOC Torque-Constant
+        let Kt = 0.01981; // Nm/A torque constant -  Taken from Kraken Motor Performance Analysis Report
+
+        // TODO: better comment and descriptive variable naming
+        // Constants from the blog post equations
+        this.C1 = 2 * Kt / (mass * radius * radius * GEARBOX_RATIO);
+        this.C3 = 2 / (mass * radius * radius);
+
+        this.systemNoise = false;
+        // Simulate 4 amp std dev system noise at the loop update frequency
+        this.gaussianNoise = gaussian(0, 4);
+    }
+    init() {
+        this.speed = 0;
+        this.speedPrev = 0;
+        this.curpositionRev = 0;
+        this.ballEnterTime = 5.0;
+        this.ballExitTime = null; // gets filled out if the ball does indeed exit in this sim.
+        this.ballEnterWheelAngle = null;
     }
 
-    const EMFAcceleration = -this.kVVoltSecondPerRad * velRadPerS / this.kAVoltSecondSquaredPerRad;
-    const controlEffortAcceleration = inputVolts / this.kAVoltSecondSquaredPerRad;
-    const accelRadPerSSquared = EMFAcceleration + controlEffortAcceleration;
+    restrict(inAmps, supplyV) {
+        // restrict output current based on supply voltage and back EMF
+        let Rc = 0.0252; // Coil & Wiring Resistance in Ohms
+        let maxRps = 100.0; // Max motor velocity in RPS
 
-    return [velRadPerS, accelRadPerSSquared]
-  }
-  
-  reset() {
-    this.state = [0, 0];
-  }
+        let bemf = this.getCurrentSpeedRPS() * supplyV / maxRps;
+        let maxCurrent = (supplyV - bemf) / Rc;
+        let minCurrent = (-supplyV - bemf) / Rc;
+        if (inAmps > maxCurrent) {
+            inAmps = maxCurrent;
+        } else if (inAmps < minCurrent) {
+            inAmps = minCurrent;
+        }
 
-  update(inputVolts) {
-    // Simulate system noise
-    if (this.systemNoise && inputVolts > 0) {
-      // apply system noise
-      inputVolts += this.gaussianNoise();
+        return inAmps;
     }
 
-    this.state =
-      secondOrderRK4((state, inputVolts) => this.acceleration(state, inputVolts),
-      this.state,
-      inputVolts,
-      this.TimestepS);
-  }
+    update(inAmps) {
+        // Simulate friction - both static and dynamic
+        let extTrq = 0.05; // 0.05 Nm of static friction
+        extTrq += 0.0005*this.speedPrev; // 0.0005 Nm of friction for every RPM it's spinning
+        // Simulate system noise
+        if (this.systemNoise && inputVolts > 0) {
+            // apply system noise
+            inputVolts += this.gaussianNoise();
+        }
 
-  getPositionRad() {
-    return this.state[0];
-  }
+        // Simulate main Plant behavior
+        this.speed = (this.TimestepS*this.C1*inAmps + this.speedPrev);
+        let speedsign = Math.sign(this.speed);
+        this.speed -= speedsign * this.TimestepS*this.C3*extTrq;
+        if (Math.sign(this.speed) != speedsign) {
+            this.speed = 0;
+        }
 
-  setSystemNoise(enabled) {
-    this.systemNoise = enabled;
-  }
+        this.curpositionRev += this.speed * this.TimestepS;
+
+        this.speedPrev = this.speed;
+    }
+
+    getCurrentSpeedRPS() {
+        return this.speed;
+    }
+
+    getCurrentPosition() {
+        return this.curpositionRev;
+    }
+
+    setSystemNoise(enabled) {
+        this.systemNoise = enabled;
+    }
 }

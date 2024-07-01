@@ -1,15 +1,15 @@
 class TurretSim extends BaseSim {
   constructor(divIdPrefix) {
-    super(divIdPrefix, "Rad", -Math.PI * 1.25, Math.PI * 1.25);
+    super(divIdPrefix, "Rot", -0.75, 0.75);
 
-    this.positionDelayLine = new DelayLine(49); //models sensor lag
+    this.positionDelayLine = new DelayLine(3); //models sensor lag
 
     this.simDurationS = 5.0;
     this.simulationTimestepS = 0.005;
     this.controllerTimestepS = 0.02;
 
     // User-configured setpoints
-    this.currentSetpointRad = 0.0;
+    this.currentSetpoint = 0.0;
 
     this.plant = new TurretPlant(this.simulationTimestepS);
 
@@ -17,7 +17,7 @@ class TurretSim extends BaseSim {
       this.visualizationDrawDiv,
       this.simulationTimestepS,
       () => this.iterationCount - 1,
-      setpoint => this.setSetpointRad(setpoint),
+      setpoint => this.setSetpoint(setpoint),
       () => this.begin()
     );
     this.visualization.drawStatic();
@@ -26,7 +26,8 @@ class TurretSim extends BaseSim {
 
     this.accumulatedError = 0.0;
     this.previousError = 0.0;
-    this.previousSetpoint = 0.0;
+
+    this.validPrevious = false;
 
     //User-configured feedback
     this.kP = 0.0;
@@ -34,21 +35,21 @@ class TurretSim extends BaseSim {
     this.kD = 0.0;
 
     //User-configured Feed-Forward
-    this.kG = 0.0;
-    this.kV = 0.0;
+    this.kS = 0.0;
 
-    this.inputVolts = 0.0;
+    this.inputAmps = 0.0;
+    this.statorLimit = 300.0;
 
     this.resetCustom();
   }
 
-  setSetpointRad(setpoint) {
-    this.currentSetpointRad = setpoint;
+  setSetpoint(setpoint) {
+    this.currentSetpoint = setpoint;
     document.getElementById(this.divIdPrefix + "_setpoint").value = setpoint;
   }
 
   resetCustom() {
-    this.plant.reset();
+    this.plant.init();
     this.timeS = Array(this.simDurationS / this.simulationTimestepS)
       .fill()
       .map((_, index) => {
@@ -62,11 +63,11 @@ class TurretSim extends BaseSim {
 
     this.accumulatedError = 0.0;
     this.previousError = 0.0;
-    this.previousSetpoint = 0.0;
-    this.inputvolts = 0.0;
+    this.validPrevious = false;
+    this.inputAmps = 0.0;
     this.iterationCount = 0;
 
-    this.positionDelayLine = new DelayLine(50); //models sensor lag
+    this.positionDelayLine = new DelayLine(2); //models sensor lag
 
   }
 
@@ -78,24 +79,24 @@ class TurretSim extends BaseSim {
 
     // Update controller at controller freq
     if (this.timeSinceLastControllerIteration >= this.controllerTimestepS) {
-      this.inputVolts = this.updateController(this.currentSetpointRad, measuredPositionRad);
+      this.inputAmps = this.updateController(this.currentSetpoint, measuredPositionRad);
       this.timeSinceLastControllerIteration = 0;
     } else {
       this.timeSinceLastControllerIteration = this.timeSinceLastControllerIteration + this.simulationTimestepS;
     }
 
-    this.plant.update(this.inputVolts);
+    this.plant.update(this.inputAmps);
 
-    this.positionDelayLine.addSample(this.plant.getPositionRad());
+    this.positionDelayLine.addSample(this.plant.getCurrentPosition());
 
-    this.procVarActualSignal.addSample(new Sample(this.curSimTimeS, this.plant.getPositionRad()));
-    this.procVarDesiredSignal.addSample(new Sample(this.curSimTimeS, this.currentSetpointRad));
-    this.ampsSignal.addSample(new Sample(this.curSimTimeS, this.inputVolts));
+    this.procVarActualSignal.addSample(new Sample(this.curSimTimeS, this.plant.getCurrentPosition()));
+    this.procVarDesiredSignal.addSample(new Sample(this.curSimTimeS, this.currentSetpoint));
+    this.ampsSignal.addSample(new Sample(this.curSimTimeS, this.inputAmps));
 
-    this.visualization.setCurPos(this.plant.getPositionRad());
+    this.visualization.setCurPos(this.plant.getCurrentPosition());
     this.visualization.setCurTime(this.curSimTimeS);
-    this.visualization.setCurSetpoint(this.currentSetpointRad);
-    this.visualization.setCurControlEffort(this.inputVolts);
+    this.visualization.setCurSetpoint(this.currentSetpoint);
+    this.visualization.setCurControlEffort(this.inputAmps);
 
 
     this.iterationCount++;
@@ -110,33 +111,34 @@ class TurretSim extends BaseSim {
 
     // Calculate error, error derivative, and error integral
     let error = setpoint - measurement;
-    const derivativeSetpoint =
-      (setpoint - this.previousSetpoint) / this.controllerTimestepS;
 
     this.accumulatedError += error * this.controllerTimestepS;
 
-    const derivativeError =
+    let derivativeError =
       (error - this.previousError) / this.controllerTimestepS;
 
-    // PID + cosine feed-forward control law
-    let controlEffortVolts =
-      this.kG * Math.cos(setpoint) +
-      this.kV * derivativeSetpoint +
+    if (this.validPrevious == false) {
+      derivativeError = 0;
+    }
+
+    // PID + kS
+    let controlEffortAmps =
+      this.kS * Math.sign(error) +
       this.kP * error +
       this.kI * this.accumulatedError +
       this.kD * derivativeError;
 
     // Cap voltage at max/min of the physically possible command
-    if (controlEffortVolts > 12) {
-      controlEffortVolts = 12;
-    } else if (controlEffortVolts < -12) {
-      controlEffortVolts = -12;
+    if (controlEffortAmps > this.statorLimit) {
+      controlEffortAmps = this.statorLimit;
+    } else if (controlEffortAmps < -this.statorLimit) {
+      controlEffortAmps = -this.statorLimit;
     }
 
     this.previousError = error;
-    this.previousSetpoint = setpoint;
+    this.validPrevious = true;
 
-    return controlEffortVolts;
+    return controlEffortAmps;
   }
 
 }

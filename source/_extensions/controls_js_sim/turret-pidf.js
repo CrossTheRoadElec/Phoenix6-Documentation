@@ -39,6 +39,23 @@ class TurretPIDF extends TurretSim {
 
     curRow = document.createElement("tr");
     label = document.createElement("td");
+    label.innerHTML = "Stator Limit";
+    control = document.createElement("td");
+    controlTable.appendChild(curRow);
+    input = document.createElement("INPUT");
+    input.setAttribute("type", "text");
+    input.setAttribute("value", "300.0");
+    input.setAttribute("id", divIdPrefix + "_statorlimit");
+    input.onchange = function (event) {
+      this.statorLimit = parseFloat(event.target.value);
+      this.begin();
+    }.bind(this);
+    control.append(input);
+    curRow.appendChild(label);
+    curRow.appendChild(control);
+
+    curRow = document.createElement("tr");
+    label = document.createElement("td");
     label.innerHTML = "Setpoint";
     control = document.createElement("td");
     controlTable.appendChild(curRow);
@@ -47,36 +64,31 @@ class TurretPIDF extends TurretSim {
     input.setAttribute("value", "0.0");
     input.setAttribute("id", divIdPrefix + "_setpoint");
     input.onchange = function (event) {
-      this.currentSetpointRad = parseFloat(event.target.value);
+      this.currentSetpoint = parseFloat(event.target.value);
       this.begin();
     }.bind(this);
     control.append(input);
     curRow.appendChild(label);
     curRow.appendChild(control);
 
-    if (
-      this.controlStrategy == "feedforward" ||
-      this.controlStrategy == "both"
-    ) {
+    if (this.controlStrategy == "feedback" || this.controlStrategy == "both") {
       curRow = document.createElement("tr");
       label = document.createElement("td");
-      label.innerHTML = "kV";
+      label.innerHTML = "kS";
       control = document.createElement("td");
       controlTable.appendChild(curRow);
       input = document.createElement("INPUT");
       input.setAttribute("type", "text");
       input.setAttribute("value", "0.0");
-      //input.setAttribute("step", "0.0000001");
+      //input.setAttribute("step", "0.1");
       input.onchange = function (event) {
-        this.kV = parseFloat(event.target.value);
+        this.kS = parseFloat(event.target.value);
         this.begin();
       }.bind(this);
       control.append(input);
       curRow.appendChild(label);
       curRow.appendChild(control);
-    }
 
-    if (this.controlStrategy == "feedback" || this.controlStrategy == "both") {
       curRow = document.createElement("tr");
       label = document.createElement("td");
       label.innerHTML = "kP";

@@ -9,7 +9,7 @@ class VerticalArmSim extends BaseSim {
     this.controllerTimestepS = 0.02;
 
     // User-configured setpoints
-    this.currentSetpointRad = 0.0;
+    this.currentSetpoint = 0.0;
 
     this.plant = new VerticalArmPlant(this.simulationTimestepS);
 
@@ -43,7 +43,7 @@ class VerticalArmSim extends BaseSim {
   }
 
   setSetpointRad(setpoint) {
-    this.currentSetpointRad = setpoint;
+    this.currentSetpoint = setpoint;
     document.getElementById(this.divIdPrefix + "_setpoint").value = setpoint;
   }
 
@@ -79,7 +79,7 @@ class VerticalArmSim extends BaseSim {
 
     // Update controller at controller freq
     if (this.timeSinceLastControllerIteration >= this.controllerTimestepS) {
-      this.inputVolts = this.updateController(this.currentSetpointRad, measuredPositionRad);
+      this.inputVolts = this.updateController(this.currentSetpoint, measuredPositionRad);
       this.timeSinceLastControllerIteration = 0;
     } else {
       this.timeSinceLastControllerIteration = this.timeSinceLastControllerIteration + this.simulationTimestepS;
@@ -91,11 +91,11 @@ class VerticalArmSim extends BaseSim {
 
     this.visualization.setCurPos(this.plant.getPositionRad());
     this.visualization.setCurTime(this.curSimTimeS);
-    this.visualization.setCurSetpoint(this.currentSetpointRad);
+    this.visualization.setCurSetpoint(this.currentSetpoint);
     this.visualization.setCurControlEffort(this.inputVolts);
 
     this.procVarActualSignal.addSample(new Sample(this.curSimTimeS, this.plant.getPositionRad()));
-    this.procVarDesiredSignal.addSample(new Sample(this.curSimTimeS, this.currentSetpointRad));
+    this.procVarDesiredSignal.addSample(new Sample(this.curSimTimeS, this.currentSetpoint));
     this.ampsSignal.addSample(new Sample(this.curSimTimeS, this.inputVolts));
 
     this.iterationCount++;
