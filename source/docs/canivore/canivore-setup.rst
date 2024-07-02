@@ -26,43 +26,88 @@ Currently, the following systems are supported for CANivore development:
 
 .. note:: **Custom bit rates and CAN 2.0 are not supported at this time.** The parameters passed into SocketCAN are not applied by the firmware.
 
-roboRIO
-^^^^^^^
+Installing for roboRIO
+----------------------
 
 .. note:: Phoenix Tuner X requires a 2023 roboRIO image or newer to configure the CANivore.
 
 No additional steps are required. The roboRIO comes with the ``canivore-usb`` kernel module pre-installed.
 
-Linux (non-FRC)
-^^^^^^^^^^^^^^^
+Installing for Linux (non-FRC)
+------------------------------
 
-On non-FRC Linux systems, the ``canivore-usb`` kernel module must be installed to add SocketCAN support for the CANivore. The kernel module is distributed through our APT repository. Begin with adding the repository to your APT sources.
+On non-FRC Linux systems, the ``canivore-usb`` kernel module must be installed to add SocketCAN support for the CANivore. The kernel module is distributed through our APT repository.
 
-.. code-block:: bash
+.. dropdown:: Raspberry Pi
 
-   YEAR=<year>
-   sudo curl -s --compressed -o /usr/share/keyrings/ctr-pubkey.gpg "https://deb.ctr-electronics.com/ctr-pubkey.gpg"
-   sudo curl -s --compressed -o /etc/apt/sources.list.d/ctr${YEAR}.list "https://deb.ctr-electronics.com/ctr${YEAR}.list"
+   .. warning:: Raspberry Pi 4 with 32-bit OS require additional instructions. See :ref:`docs/canivore/canivore-setup:raspberry pi errata` for more information.
 
-.. note:: ``<year>`` should be replaced with the year of Phoenix 6 software for which you have purchased licenses.
+   1. Install the Raspberry Pi kernel headers.
 
-Certain systems require :ref:`modifying the .list file <canivore-modifying-list-dist>` before installing the kernel module.
+   .. code-block:: bash
 
-After adding the sources, the kernel module can be installed and updated using the following:
+      sudo apt install raspberrypi-kernel-headers
 
-.. important:: Users on a Raspberry Pi OS based platform must install the kernel headers before running the below install script. Headers can be installed by running ``sudo apt install raspberrypi-kernel-headers``.
+   2. Add the CTR APT repository. Remember to replace ``<year>`` with the year of Phoenix 6 you would like to use. Most users will want the current year.
 
-.. code-block:: bash
+   .. code-block:: bash
 
-   sudo apt update
-   sudo apt install canivore-usb
+      YEAR=<year>
+      sudo curl -s --compressed -o /usr/share/keyrings/ctr-pubkey.gpg "https://deb.ctr-electronics.com/ctr-pubkey.gpg"
+      sudo curl -s --compressed -o /etc/apt/sources.list.d/ctr${YEAR}.list "https://deb.ctr-electronics.com/ctr${YEAR}.list"
+
+   3. Open ``/etc/apt/sources.list.d/ctr${YEAR}.list`` with an editor of your choice.
+
+   .. code-block:: bash
+
+      nano /etc/apt/sources.list.d/ctr${YEAR}.list
+
+   4. Replace
+
+   .. code-block:: bash
+
+      # APT repo for CTR tools, including canivore-usb
+      deb [signed-by=/usr/share/keyrings/ctr-pubkey.gpg] https://deb.ctr-electronics.com/tools stable main
+
+   with
+
+   .. code-block:: bash
+
+      # APT repo for CTR tools, including canivore-usb
+      deb [signed-by=/usr/share/keyrings/ctr-pubkey.gpg] https://deb.ctr-electronics.com/tools raspberrypi main
+
+   5. Update APT and install ``canivore-usb``
+
+   .. code-block::
+
+      sudo apt update
+      sudo apt install canivore-usb -y
+
+.. dropdown:: Other Supported Distributions
+
+   1. Add the APT repository. Remember to replace ``<year>`` with the year of Phoenix 6 you would like to use. Most users will want the current year.
+
+   .. code-block:: bash
+
+      YEAR=<year>
+      sudo curl -s --compressed -o /usr/share/keyrings/ctr-pubkey.gpg "https://deb.ctr-electronics.com/ctr-pubkey.gpg"
+      sudo curl -s --compressed -o /etc/apt/sources.list.d/ctr${YEAR}.list "https://deb.ctr-electronics.com/ctr${YEAR}.list"
+
+   .. note:: Certain systems require :ref:`modifying the .list file <canivore-modifying-list-dist>` before installing the kernel module.
+
+   2. Update APT and install ``canivore-usb``.
+
+   .. code-block:: bash
+
+      sudo apt update
+      sudo apt install canivore-usb
 
 .. tip:: To get a robot application up and running quickly, check out our `non-FRC Linux example <https://github.com/CrossTheRoadElec/Phoenix6-Linux-Example>`__.
 
 .. _canivore-modifying-list-dist:
 
-Modifying the ``.list`` Distribution
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Supported ``.list`` distributions
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Some systems require modifying the distribution of the ``tools`` entry in the ``.list`` file. To switch distributions, open ``/etc/apt/sources.list.d/ctr${YEAR}.list`` in a text editor and modify the line for the ``tools`` entry.
 
@@ -91,7 +136,7 @@ The table below shows possible values for ``<dist>``.
 .. warning:: Do not modify the distribution of the ``libs/<year>`` entry in the ``.list`` file.
 
 Raspberry Pi Errata
-~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^
 
 On a Raspberry Pi 4 or newer, the latest 32-bit Raspberry Pi OS image will default to using the 64-bit kernel while still using 32-bit APT packages. As a result, the canivore-usb kernel module will fail to install.
 
