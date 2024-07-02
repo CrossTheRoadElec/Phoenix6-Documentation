@@ -53,10 +53,10 @@ class TurretPlant {
         // Simulate friction - both static and dynamic
         let extTrq = 0.05; // 0.05 Nm of static friction
         extTrq += 0.0005*this.speedPrev; // 0.0005 Nm of friction for every RPM it's spinning
-        // Simulate system noise
-        if (this.systemNoise && inputVolts > 0) {
+        // Simulate system noise only if control input is outside 3 amps
+        if (this.systemNoise && Math.abs(inAmps) > 3) {
             // apply system noise
-            inputVolts += this.gaussianNoise();
+            inAmps += this.gaussianNoise();
         }
 
         // Simulate main Plant behavior

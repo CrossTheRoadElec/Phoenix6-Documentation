@@ -93,7 +93,7 @@ The simulator below allows you to follow these steps to find the right gains.
 
 .. dropdown:: Tuning Walkthrough
 
-   So, following the guide, I start with all gains set to 0, set a setpoint of 80 (100 rps maximum), and begin with playing with the kS parameter.
+   Following the guide, I start with all gains set to 0, set a setpoint of 80 (100 rps maximum), and begin with playing with the kS parameter.
 
    Setting kS to 1 doesn't start spinning the wheel, so I double it to 2, which remains still. Doubling it to 4 does start moving the wheel, so I take the halway point between 2 and 4, and set it to 3, but that lets the wheel move. So I leave the kS at 2 and move on to the next step.
 
@@ -114,6 +114,8 @@ The simulator below allows you to follow these steps to find the right gains.
 Turret Tuning with TorqueCurrentFOC
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Tuning a Turret is identical to any other position controller that has no gravity component.
+
+One key thing to note with any position-based torque controller is the reliance on the kD term. When tuning a position controller with voltage, it's often enough to rely on the natural dampening of the system to dampen the response, negating some of the need for kD. However when using torque as the control type, most of that natural dampening is gone, so kD is necessary for the system to stop itself in any reasonable amount of time.
 
 Similarly to the velocity controller, below is a list of steps and simulator for turret tuning. Red is the setpoint in rotations, purple is the current position, green is the stator current in amps.
 
@@ -143,4 +145,32 @@ The following steps cover the general idea:
          turret = new TurretPIDF("turret_both", "both");
       </script>
     </div>
+
+.. dropdown:: Tuning Walkthrough
+
+   Following the guide, I start with all gains at 0 and set a setpoint of 0.1 rotations.
+
+   I start with a kS of 1 amp and notice it moves, so I cut it in half to 0.5, 0.25, 0.125 until it stops. Increasing to 0.13 gets the turret moving again, so I leave it at 0.125 amps.
+
+   I then set a kP of 1, and see significant overshoot, so I add a kD of 1. This is very overdamped system, but that's fine, as I'll start increasing kP again.
+
+   I double kP to 2 and see no overshoot. Double again to 4, and I see a little overshoot. Double again to 8 and I see significant overshoot, indicating I should increase kD again. I double it to 2 and the overshoot becomes minimal, but then I double it again to 4 before it becomes significantly overdamped again.
+
+   Doubling kP again to 16 still looks fine, to 32 is still fine, 64 finally has significant overshoot. I double kD to 8 and that overshoot is gone.
+
+   So I doule kP again to 128, then to 256 where I notice it oscillates a bit. I try to stop this oscillation by increasing kD to 16, then to 32 where I notice it's always oscillating. This means I've reached the limit of the system, and need to back off on gains a bit.
+
+   I reduce kD back to 16 where I notice a bit of oscillation on its way to the setpoint, and start dialing back kP. I start with a kP of 200, where it's overdamped and oscillating on its way to the setpoint. So I reduce kD to 12.
+
+   From here I continue to reduce kP to 180, then 150 where I notice the oscillation on its way to the setpoint again. Reduce kD again to 10, and decrease kP to 140, then 130 where I see oscillation on its way to setpoint again.
+
+   Reduce kD even more to 9, and the system response looks relatively good at this point. Now it's time to play with different setpoint. Any setpoint within 1 rotation looks good, which is appropriate for a turret. However, let's say I'm not tuning a turret anymore, but some other position controller where a setpoint of, say, 20 is appropriate. When I set a setpoint of 20, I notice significant overshoot that I should correct in PID.
+
+   At this point, I know that my kD can't go much higher otherwise I have oscillation on my way to the setpoint at smaller setpoints. So I try to stop the oscillation only with kP. Reducing it to 120, 110, 100, then finally 90 before the overshoot stops. I check back with my 0.1 setpoint to make sure it's still good, but now it looks overdamped.
+
+   So I reduce kD to 8, and it looks good. Back to a setpoint of 20, I have a bit of overshoot, so I reduce kP to 80 which looks good. Back to setpoint of 0.1, I have a bit of overdamped behavior, so I increase kP up to 85. Setpoint of 20 still has a bit of overshoot, so I bring kD up to 8.5 which looks good.
+
+   Back to a setpoint of 0.1 and I still have some underdamped behavior, but it's minimal at this point and what I'd consider acceptable.
+
+   If my system normally expects setpoints within 1 rotation of my current position, then I'd prioritize the within-1-rotation situation for my PID controller, however if my system normally expects setpoints closer to 20 rotations away from current position then I'd prioritize that situation. If I really needed both close and far away behavior, then I'd look at gain-scheduling based on the value of the error, using both Slots 0 and 1, with 0 for the within-1-rotation situation, and 1 for the outside-1-rotation situation.
 
