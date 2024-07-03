@@ -10,10 +10,11 @@ Phoenix 6 is fully supported outside of `FRC <https://en.wikipedia.org/wiki/FIRS
 Installation
 ------------
 
-Installation is composed of two primary pieces. Users may skip CANivore installation if they are using a generic USB-to-CAN adapter.
+Installation is composed of a few primary pieces. Users may skip CANivore installation if they are using a generic USB-to-CAN adapter.
 
-1. :ref:`docs/installation/installation-nonfrc:canivore installation`
-2. :ref:`docs/installation/installation-nonfrc:api installation`
+1. :ref:`docs/installation/installation-nonfrc:installing the phoenix apt repository`
+2. (Optional) :ref:`docs/installation/installation-nonfrc:canivore installation`
+3. :ref:`docs/installation/installation-nonfrc:api installation`
 
 Installing the Phoenix APT Repository
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -119,7 +120,7 @@ Troubleshooting
 ``Bad return status on module...``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This error can show up on Raspberry Pi or Jetson systems when using the incorrect tools distribution for APT. Refer to :ref:`canivore-modifying-list-dist` to correct your ``.list`` file.
+This error can show up on Raspberry Pi or Jetson systems when using the incorrect tools distribution for APT. Refer to :ref:`Modifying list Distribution <canivore-modifying-list-dist>` to correct your ``.list`` file.
 
 Diagnostics is running but no CAN
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
