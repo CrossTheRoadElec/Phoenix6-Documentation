@@ -15,6 +15,69 @@ Installation is composed of two primary pieces. Users may skip CANivore installa
 1. :ref:`docs/installation/installation-nonfrc:canivore installation`
 2. :ref:`docs/installation/installation-nonfrc:api installation`
 
+Installing the Phoenix APT Repository
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Phoenix 6 is distributed through our APT repository. Begin with adding the repository to your APT sources.
+
+.. code-block:: bash
+
+   YEAR=<year>
+   sudo curl -s --compressed -o /usr/share/keyrings/ctr-pubkey.gpg "https://deb.ctr-electronics.com/ctr-pubkey.gpg"
+   sudo curl -s --compressed -o /etc/apt/sources.list.d/ctr${YEAR}.list "https://deb.ctr-electronics.com/ctr${YEAR}.list"
+
+.. note:: ``<year>`` should be replaced with the year of Phoenix 6 software for which you have purchased licenses.
+
+Open ``/etc/apt/sources.list.d/ctr${YEAR}.list`` with an editor of your choice.
+
+.. code-block:: bash
+
+   sudo nano /etc/apt/sources.list.d/ctr${YEAR}.list
+
+Replace ``stable`` with the distribution you want to use.
+
+.. code-block:: bash
+
+   # APT repo for CTR tools, including canivore-usb
+   deb [signed-by=/usr/share/keyrings/ctr-pubkey.gpg] https://deb.ctr-electronics.com/tools stable main
+
+For example. Raspberry Pi would look like:
+
+.. code-block:: bash
+
+   # APT repo for CTR tools, including canivore-usb
+   deb [signed-by=/usr/share/keyrings/ctr-pubkey.gpg] https://deb.ctr-electronics.com/tools raspberrypi main
+
+Available distributions can be found in the dropdown below.
+
+.. _canivore-modifying-list-dist:
+
+.. dropdown:: Modifying ``.list`` Distribution
+
+   .. list-table::
+      :header-rows: 1
+      :align: left
+      :width: 100%
+
+      * - System
+
+        - ``<dist>``
+
+      * - Raspberry Pi
+
+        - raspberrypi
+
+      * - NVIDIA Jetson
+
+        - jetson
+
+      * - Other Linux systems (default)
+
+        - stable
+
+   .. warning:: Do not modify the distribution of the ``libs/<year>`` entry in the ``.list`` file.
+
+
 CANivore Installation
 ^^^^^^^^^^^^^^^^^^^^^
 
@@ -32,35 +95,7 @@ On non-FRC Linux systems, the ``canivore-usb`` kernel module must be installed t
 
       sudo apt install raspberrypi-kernel-headers
 
-   2. Add the CTR APT repository. Remember to replace ``<year>`` with the year of Phoenix 6 you would like to use. Most users will want the current year.
-
-   .. code-block:: bash
-
-      YEAR=<year>
-      sudo curl -s --compressed -o /usr/share/keyrings/ctr-pubkey.gpg "https://deb.ctr-electronics.com/ctr-pubkey.gpg"
-      sudo curl -s --compressed -o /etc/apt/sources.list.d/ctr${YEAR}.list "https://deb.ctr-electronics.com/ctr${YEAR}.list"
-
-   3. Open ``/etc/apt/sources.list.d/ctr${YEAR}.list`` with an editor of your choice.
-
-   .. code-block:: bash
-
-      sudo nano /etc/apt/sources.list.d/ctr${YEAR}.list
-
-   4. Replace
-
-   .. code-block:: bash
-
-      # APT repo for CTR tools, including canivore-usb
-      deb [signed-by=/usr/share/keyrings/ctr-pubkey.gpg] https://deb.ctr-electronics.com/tools stable main
-
-   with
-
-   .. code-block:: bash
-
-      # APT repo for CTR tools, including canivore-usb
-      deb [signed-by=/usr/share/keyrings/ctr-pubkey.gpg] https://deb.ctr-electronics.com/tools raspberrypi main
-
-   5. Update APT and install ``canivore-usb``
+   2. Update APT and install ``canivore-usb``
 
    .. code-block::
 
@@ -69,17 +104,7 @@ On non-FRC Linux systems, the ``canivore-usb`` kernel module must be installed t
 
 .. dropdown:: Other Supported Distributions
 
-   1. Add the APT repository. Remember to replace ``<year>`` with the year of Phoenix 6 you would like to use. Most users will want the current year.
-
-   .. code-block:: bash
-
-      YEAR=<year>
-      sudo curl -s --compressed -o /usr/share/keyrings/ctr-pubkey.gpg "https://deb.ctr-electronics.com/ctr-pubkey.gpg"
-      sudo curl -s --compressed -o /etc/apt/sources.list.d/ctr${YEAR}.list "https://deb.ctr-electronics.com/ctr${YEAR}.list"
-
-   .. note:: Certain systems require :ref:`modifying the .list file <canivore-modifying-list-dist>` before installing the kernel module.
-
-   2. Update APT and install ``canivore-usb``.
+   1. Update APT and install ``canivore-usb``.
 
    .. code-block:: bash
 
@@ -87,37 +112,6 @@ On non-FRC Linux systems, the ``canivore-usb`` kernel module must be installed t
       sudo apt install canivore-usb
 
 .. tip:: To get a robot application up and running quickly, check out our `non-FRC Linux example <https://github.com/CrossTheRoadElec/Phoenix6-Linux-Example>`__.
-
-.. _canivore-modifying-list-dist:
-
-Supported ``.list`` distributions
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Some systems require modifying the distribution of the ``tools`` entry in the ``.list`` file. To switch distributions, open ``/etc/apt/sources.list.d/ctr${YEAR}.list`` in a text editor and modify the line for the ``tools`` entry.
-
-.. code-block:: bash
-
-   # APT repo for CTR tools, including canivore-usb
-   deb [signed-by=/usr/share/keyrings/ctr-pubkey.gpg] https://deb.ctr-electronics.com/tools <dist> main
-
-The table below shows possible values for ``<dist>``.
-
-.. list-table:: ``.list`` Distributions
-   :header-rows: 1
-
-   * - System
-     - ``<dist>``
-
-   * - Raspberry Pi
-     - raspberrypi
-
-   * - NVIDIA Jetson
-     - jetson
-
-   * - Other Linux systems (default)
-     - stable
-
-.. warning:: Do not modify the distribution of the ``libs/<year>`` entry in the ``.list`` file.
 
 Troubleshooting
 ^^^^^^^^^^^^^^^
@@ -141,8 +135,7 @@ Diagnostics is running but no CAN
 
 .. code-block:: bash
 
-   sudo apt remove canivore-usb
-   sudo apt autoremove
+   sudo apt remove canivore-usb canivore-usb-kernel
    sudo apt install canivore-usb
 
 Raspberry Pi Errata
@@ -164,17 +157,7 @@ API Installation
 
    .. tab-item:: C++ (Linux)
 
-      Phoenix 6 is distributed through our APT repository. Begin with adding the repository to your APT sources.
-
-      .. code-block:: bash
-
-         YEAR=<year>
-         sudo curl -s --compressed -o /usr/share/keyrings/ctr-pubkey.gpg "https://deb.ctr-electronics.com/ctr-pubkey.gpg"
-         sudo curl -s --compressed -o /etc/apt/sources.list.d/ctr${YEAR}.list "https://deb.ctr-electronics.com/ctr${YEAR}.list"
-
-      .. note:: ``<year>`` should be replaced with the year of Phoenix 6 software for which you have purchased licenses.
-
-      After adding the sources, Phoenix 6 can be installed and updated using the following:
+      Phoenix 6 can be installed and updated using the following:
 
       .. code-block:: bash
 
