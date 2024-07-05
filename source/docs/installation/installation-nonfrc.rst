@@ -114,43 +114,6 @@ On non-FRC Linux systems, the ``canivore-usb`` kernel module must be installed t
 
 .. tip:: To get a robot application up and running quickly, check out our `non-FRC Linux example <https://github.com/CrossTheRoadElec/Phoenix6-Linux-Example>`__.
 
-Troubleshooting
-^^^^^^^^^^^^^^^
-
-``Bad return status on module...``
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-This error can show up on Raspberry Pi or Jetson systems when using the incorrect tools distribution for APT. Refer to :ref:`Modifying list Distribution <canivore-modifying-list-dist>` to correct your ``.list`` file.
-
-Diagnostics is running but no CAN
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-**Symptom:** Tuner can ping the system and see that diagnostics is running but there are no devices.
-**Possible Solutions:**
-
-* Verify that the CAN Bus is valid. Motors should be blinking amber. Consult :ref:`docs/hardware-reference/index:hardware reference` for a full list of LED codes.
-
-* Verify that the ``canivore-usb`` kernel module is correctly installed by running ``modinfo canivore-usb``.
-
-  * If ``canivore-usb`` shows installed with APT but does not appear with ``modinfo``, then an update may have broken the module. Uninstall and reinstall ``canivore-usb`` with:
-
-.. code-block:: bash
-
-   sudo apt remove canivore-usb canivore-usb-kernel
-   sudo apt install canivore-usb
-
-Raspberry Pi Errata
-~~~~~~~~~~~~~~~~~~~
-
-On a Raspberry Pi 4 or newer, the latest 32-bit Raspberry Pi OS image will default to using the 64-bit kernel while still using 32-bit APT packages. As a result, the canivore-usb kernel module will fail to install.
-
-There are two options to work around this issue:
-
-1. (Recommended) Use the 64-bit Raspberry Pi OS. This allows programs to use all available RAM and improves overall system performance and stability.
-2. Add ``arm_64bit=0`` to /boot/config.txt and reboot. This forces the Raspberry Pi to use the 32-bit kernel. Note that programs will be limited to using 3 GB of RAM, and system performance may be impacted.
-
-.. warning:: Do not add ``arm_64bit=0`` to /boot/config.txt when using the 64-bit Raspberry Pi OS. Attempting to do so may cause the Pi to be unable to boot.
-
 API Installation
 ^^^^^^^^^^^^^^^^
 
@@ -204,6 +167,43 @@ Simulation vs Hardware
       .. code-block:: bash
 
          CTR_TARGET=Hardware python3 application.py # Set the environment variable only for the python call
+
+Troubleshooting
+^^^^^^^^^^^^^^^
+
+``Bad return status on module...``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This error can show up on Raspberry Pi or Jetson systems when using the incorrect tools distribution for APT. Refer to :ref:`Modifying list Distribution <canivore-modifying-list-dist>` to correct your ``.list`` file.
+
+Diagnostics is running but no CAN
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Symptom:** Tuner can ping the system and see that diagnostics is running but there are no devices.
+**Possible Solutions:**
+
+* Verify that the CAN Bus is valid. Motors should be blinking orange. Consult :ref:`docs/hardware-reference/index:hardware reference` for a full list of LED codes.
+
+* Verify that the ``canivore-usb`` kernel module is correctly installed by running ``modinfo canivore-usb``.
+
+  * If ``canivore-usb`` shows installed with APT but does not appear with ``modinfo``, then an update may have broken the module. Uninstall and reinstall ``canivore-usb`` with:
+
+.. code-block:: bash
+
+   sudo apt remove canivore-usb canivore-usb-kernel
+   sudo apt install canivore-usb
+
+Raspberry Pi Errata
+~~~~~~~~~~~~~~~~~~~
+
+On a Raspberry Pi 4 or newer, the latest 32-bit Raspberry Pi OS image will default to using the 64-bit kernel while still using 32-bit APT packages. As a result, the canivore-usb kernel module will fail to install.
+
+There are two options to work around this issue:
+
+1. (Recommended) Use the 64-bit Raspberry Pi OS. This allows programs to use all available RAM and improves overall system performance and stability.
+2. Add ``arm_64bit=0`` to /boot/config.txt and reboot. This forces the Raspberry Pi to use the 32-bit kernel. Note that programs will be limited to using 3 GB of RAM, and system performance may be impacted.
+
+.. warning:: Do not add ``arm_64bit=0`` to /boot/config.txt when using the 64-bit Raspberry Pi OS. Attempting to do so may cause the Pi to be unable to boot.
 
 Examples
 --------
