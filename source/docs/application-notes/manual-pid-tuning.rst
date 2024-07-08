@@ -70,7 +70,7 @@ Tuning a flywheel is largely done with the following steps:
  6. Set a low setpoint (1/10th of the maximum velocity).
  7. Adjust kS until flywheel achieves setpoint.
  8. Set back to the high setpoint.
- 9. Repeat steps 5-7 until the gains do not change.
+ 9. Repeat steps 5-8 until the gains do not change.
  10. Increase kP until the flywheel oscillates, then back off to just before that oscillation.
  11. Verify gains hold for expected velocities.
 
