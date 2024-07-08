@@ -64,7 +64,7 @@ This particular flywheel has a maximum velocity of 100 rps.
 Tuning a flywheel is largely done with the following steps:
  1. Zero all PID gains.
  2. Set a high setpoint (typically 8/10th the maximum velocity).
- 3. Increase kS until just before the wheel starts moving.
+ 3. Increase kS until the wheel starts moving, then back off to just before that movement.
  4. Set kP to a very low number (typically 10 / setpoint is a good starting point).
  5. Adjust kV until flywheel achieves setpoint.
  6. Set a low setpoint (1/10th of the maximum velocity).
@@ -125,7 +125,7 @@ Similarly to the velocity controller, below is a list of steps and simulator for
 The following steps cover the general idea:
  1. Zero all PID gains.
  2. Set a setpoint relatively nearby (typically 0.1 mechanism rotations).
- 3. Increase kS until just before the turret starts moving.
+ 3. Increase kS until until the turret starts moving, then back off to just before that movement.
  4. Increase kP until you notice significant overshoot.
  5. Increase kD until the overshoot stops happening.
  6. Repeat steps 4 and 5 until increasing kD results in more oscillation, or until the system oscillates on its way to the setpoint.
@@ -182,7 +182,17 @@ Arm Tuning with TorqueCurrentFOC
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Tuning an Arm is very similar to tuning a turret, just with the addition of needing to account for gravity. As such, the process is nearly identical, except for a small section dedicated to dialing in the kG term.
 
-
+The steps:
+ 1. Zero all PID gains.
+ 2. Increase kG and find the smallest possible kG that stops the arm from moving.
+ 3. Increase kG and find the largest possible kG that stops the arm from moving.
+ 4. Set kG to the middle of the two.
+ 5. Set a setpoint relatively nearby (typically 0.1 mechanism rotations).
+ 6. Increase kS until the arm starts moving, then back off to just before that movement.
+ 7. Increase kP until you notice significant overshoot.
+ 8. Increase kD until the overshoot stops happening.
+ 9. Repeat steps 7 and 8 until increasing kD results in more oscillation, or until the system oscillates on its way to the setpoint.
+ 10. Verify gains work for other setpoints as well. Tune kP/kD as appropriate for most general cases.
 
 .. raw:: html
 
@@ -200,3 +210,16 @@ Tuning an Arm is very similar to tuning a turret, just with the addition of need
       </script>
     </div>
 
+.. dropdown:: Tuning Process Example
+
+   Following the guide, I start with all gains at 0 to dial in kG.
+
+   I start with a kG of 1, and notice that the arm's still falling, so I increase it to 2, 4, 8, and 16 before it stops moving. From there I reduce it to 12, then 10 and notice it fall again. I bring it up to 11 and see it still falls appreciably, so I leave it at 12 for the lower bound.
+
+   Going back up, I start at 16 again, then to 18, and 20 before it moves its way up. 19 also produces appreciable movement, so I leave it at 18. This means my kG is (12 + 18) / 2 = 15 amps.
+
+   From here, I set a setpoint of 0.1 and dial in kS to just before it starts moving. I increase it to 1, 2, and 4 when it starts moving. From here, I dial it down to 3 where it doesn't move, and back up to 3.5, 3.7 where it moves again. I check 3.6 and see it doesn't move, so I leave kS at 3.6 amps.
+
+   Now it's time for kP/kD tuning. I bring kP up to 1, 2, 4, 8, 16, and 32 before I get significant overshoot, where I dial kD in to 1, 2, 4, and 8 before that overshoot is gone. kP keeps increasing to 64 and 128, then kD goes up to 16 and 32 before it's back to kP. I go up to 256 and 512 where I notice a bit of oscillation, and I may be near the limit at this point. kD increases to 64 and I get oscillation on the way to the target, so I bring it down to 50 then 40 before I'm happy with it. There's still a little oscillation at the target, but it's minimal.
+
+   I check with other setpoints of -0.1, 0.4, 0.6 and confirm the movement looks good, and say the PID tuning is done.

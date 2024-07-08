@@ -1,6 +1,6 @@
 class VerticalArmSim extends BaseSim {
   constructor(divIdPrefix) {
-    super(divIdPrefix, "Rad", -.75, .75);
+    super(divIdPrefix, "Rot", -.75, .75);
 
     this.positionDelayLine = new DelayLine(3); //models sensor lag
 
@@ -77,6 +77,10 @@ class VerticalArmSim extends BaseSim {
     this.curSimTimeS = this.timeS[this.iterationCount];
 
     let measuredPositionRad = this.positionDelayLine.getSample();
+
+    if (this.validPrevious == false) {
+      measuredPositionRad = 0
+    }
 
     // Update controller at controller freq
     if (this.timeSinceLastControllerIteration >= this.controllerTimestepS) {
