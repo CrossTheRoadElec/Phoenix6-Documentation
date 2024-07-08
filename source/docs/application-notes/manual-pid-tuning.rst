@@ -59,6 +59,8 @@ Flywheel Tuning with TorqueCurrentFOC
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Below is a list of steps and a simulator that provides the opportunity to try tuning a flywheel system using PID with TorqueControl. The Red line is the setpoint of the flywheel controller, purple is the current velocity, and the green line is the current of the motor in stator-amps.
 
+This particular flywheel has a maximum velocity of 100 rps.
+
 Tuning a flywheel is largely done with the following steps:
  1. Zero all PID gains.
  2. Set a high setpoint (typically 8/10th the maximum velocity).
@@ -68,8 +70,8 @@ Tuning a flywheel is largely done with the following steps:
  6. Set a low setpoint (1/10th of the maximum velocity).
  7. Adjust kS until flywheel achieves setpoint.
  8. Set back to the high setpoint.
- 9. Repeat steps 4-7 until the gains stabilize.
- 10. Increase kP until just before oscillation.
+ 9. Repeat steps 5-7 until the gains do not change.
+ 10. Increase kP until the flywheel oscillates, then back off to just before that oscillation.
  11. Verify gains hold for expected velocities.
 
 The simulator below allows you to follow these steps to find the right gains.
@@ -90,8 +92,9 @@ The simulator below allows you to follow these steps to find the right gains.
       </script>
     </div>
 
+.. note:: The flywheel will react to the ball getting launched at 5 seconds.
 
-.. dropdown:: Tuning Walkthrough
+.. dropdown:: Tuning Process Example
 
    Following the guide, I start with all gains set to 0, set a setpoint of 80 (100 rps maximum), and begin with playing with the kS parameter.
 
@@ -121,7 +124,7 @@ Similarly to the velocity controller, below is a list of steps and simulator for
 
 The following steps cover the general idea:
  1. Zero all PID gains.
- 2. Set a setpoint relatively nearby (typically 0.1).
+ 2. Set a setpoint relatively nearby (typically 0.1 mechanism rotations).
  3. Increase kS until just before the turret starts moving.
  4. Increase kP until you notice significant overshoot.
  5. Increase kD until the overshoot stops happening.
@@ -146,7 +149,7 @@ The following steps cover the general idea:
       </script>
     </div>
 
-.. dropdown:: Tuning Walkthrough
+.. dropdown:: Tuning Process Example
 
    Following the guide, I start with all gains at 0 and set a setpoint of 0.1 rotations.
 
@@ -158,7 +161,7 @@ The following steps cover the general idea:
 
    Doubling kP again to 16 still looks fine, to 32 is still fine, 64 finally has significant overshoot. I double kD to 8 and that overshoot is gone.
 
-   So I doule kP again to 128, then to 256 where I notice it oscillates a bit. I try to stop this oscillation by increasing kD to 16, then to 32 where I notice it's always oscillating. This means I've reached the limit of the system, and need to back off on gains a bit.
+   So I double kP again to 128, then to 256 where I notice it oscillates a bit. I try to stop this oscillation by increasing kD to 16, then to 32 where I notice it's always oscillating. This means I've reached the limit of the system, and need to back off on gains a bit.
 
    I reduce kD back to 16 where I notice a bit of oscillation on its way to the setpoint, and start dialing back kP. I start with a kP of 200, where it's overdamped and oscillating on its way to the setpoint. So I reduce kD to 12.
 
@@ -173,4 +176,27 @@ The following steps cover the general idea:
    Back to a setpoint of 0.1 and I still have some underdamped behavior, but it's minimal at this point and what I'd consider acceptable.
 
    If my system normally expects setpoints within 1 rotation of my current position, then I'd prioritize the within-1-rotation situation for my PID controller, however if my system normally expects setpoints closer to 20 rotations away from current position then I'd prioritize that situation. If I really needed both close and far away behavior, then I'd look at gain-scheduling based on the value of the error, using both Slots 0 and 1, with 0 for the within-1-rotation situation, and 1 for the outside-1-rotation situation.
+
+
+Arm Tuning with TorqueCurrentFOC
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Tuning an Arm is very similar to tuning a turret, just with the addition of needing to account for gravity. As such, the process is nearly identical, except for a small section dedicated to dialing in the kG term.
+
+
+
+.. raw:: html
+
+    <div class="viz-div" id="vertical_arm_container">
+      <div >
+         <div class="col" id="vertical_arm_plotVals"></div>
+         <div class="col" id="vertical_arm_plotAmps"></div>
+      </div>
+      <div class="flex-grid">
+         <div class="col" id="vertical_arm_viz"></div>
+         <div id="vertical_arm_ctrls"></div>
+      </div>
+      <script>
+         turret = new VerticalArmPIDF("vertical_arm", "both");
+      </script>
+    </div>
 

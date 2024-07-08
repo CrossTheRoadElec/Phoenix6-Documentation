@@ -27,9 +27,6 @@ class TurretPlant {
         this.speed = 0;
         this.speedPrev = 0;
         this.curpositionRev = 0;
-        this.ballEnterTime = 5.0;
-        this.ballExitTime = null; // gets filled out if the ball does indeed exit in this sim.
-        this.ballEnterWheelAngle = null;
     }
 
     restrict(inAmps, supplyV) {

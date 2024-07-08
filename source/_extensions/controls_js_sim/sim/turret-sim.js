@@ -75,16 +75,17 @@ class TurretSim extends BaseSim {
 
     this.curSimTimeS = this.timeS[this.iterationCount];
 
-    let measuredPositionRad = this.positionDelayLine.getSample();
+    let measuredPosition = this.positionDelayLine.getSample();
 
     // Update controller at controller freq
     if (this.timeSinceLastControllerIteration >= this.controllerTimestepS) {
-      this.inputAmps = this.updateController(this.currentSetpoint, measuredPositionRad);
+      this.inputAmps = this.updateController(this.currentSetpoint, measuredPosition);
       this.timeSinceLastControllerIteration = 0;
     } else {
       this.timeSinceLastControllerIteration = this.timeSinceLastControllerIteration + this.simulationTimestepS;
     }
 
+    this.inputAmps = this.plant.restrict(this.inputAmps, 12.0);
     this.plant.update(this.inputAmps);
 
     this.positionDelayLine.addSample(this.plant.getCurrentPosition());

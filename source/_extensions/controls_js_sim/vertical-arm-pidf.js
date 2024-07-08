@@ -54,6 +54,23 @@ class VerticalArmPIDF extends VerticalArmSim {
     curRow.appendChild(label);
     curRow.appendChild(control);
 
+    curRow = document.createElement("tr");
+    label = document.createElement("td");
+    label.innerHTML = "Stator Limit";
+    control = document.createElement("td");
+    controlTable.appendChild(curRow);
+    input = document.createElement("INPUT");
+    input.setAttribute("type", "text");
+    input.setAttribute("value", "300.0");
+    input.setAttribute("id", divIdPrefix + "_statorlimit");
+    input.onchange = function (event) {
+      this.statorLimit = parseFloat(event.target.value);
+      this.begin();
+    }.bind(this);
+    control.append(input);
+    curRow.appendChild(label);
+    curRow.appendChild(control);
+
     if (
       this.controlStrategy == "feedforward" ||
       this.controlStrategy == "both"
@@ -77,7 +94,7 @@ class VerticalArmPIDF extends VerticalArmSim {
 
       curRow = document.createElement("tr");
       label = document.createElement("td");
-      label.innerHTML = "kV";
+      label.innerHTML = "kS";
       control = document.createElement("td");
       controlTable.appendChild(curRow);
       input = document.createElement("INPUT");
@@ -85,7 +102,7 @@ class VerticalArmPIDF extends VerticalArmSim {
       input.setAttribute("value", "0.0");
       //input.setAttribute("step", "0.0000001");
       input.onchange = function (event) {
-        this.kV = parseFloat(event.target.value);
+        this.kS = parseFloat(event.target.value);
         this.begin();
       }.bind(this);
       control.append(input);
