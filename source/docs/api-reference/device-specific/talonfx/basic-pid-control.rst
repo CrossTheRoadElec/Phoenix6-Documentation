@@ -3,6 +3,8 @@ Basic PID and Profiling
 
 The Talon FX supports basic PID control and motion profiling for position and velocity.
 
+.. note:: For more information on feedback and feedforward gains, see :doc:`/docs/api-reference/device-specific/talonfx/closed-loop-requests`.
+
 Position Control
 ----------------
 
@@ -12,7 +14,8 @@ Position closed loop is currently supported for all base :ref:`control output ty
 
 In a Position closed loop, the gains should be configured as follows:
 
-- :math:`K_s` - unused, as there is no target velocity
+- :math:`K_g` - output to overcome gravity (output)
+- :math:`K_s` - Velocity Sign: unused; Closed-Loop Sign: output to overcome static friction (output)
 - :math:`K_v` - unused, as there is no target velocity
 - :math:`K_a` - unused, as there is no target acceleration
 - :math:`K_p` - output per unit of error in position (output/rotation)
@@ -106,6 +109,7 @@ Velocity closed loop is currently supported for all base :ref:`control output ty
 
 In a Velocity closed loop, the gains should be configured as follows:
 
+- :math:`K_g` - output to overcome gravity (output)
 - :math:`K_s` - output to overcome static friction (output)
 - :math:`K_v` - output per unit of requested velocity (output/rps)
 - :math:`K_a` - unused, as there is no target acceleration
@@ -209,6 +213,7 @@ The Position and Velocity closed-loop requests can be used to run a `motion prof
 
       In a Position motion profile, the gains should be configured as follows:
 
+      - :math:`K_g` - output to overcome gravity (output)
       - :math:`K_s` - output to overcome static friction (output)
       - :math:`K_v` - output per unit of requested velocity (output/rps)
       - :math:`K_a` - unused, as there is no target acceleration
@@ -343,6 +348,7 @@ The Position and Velocity closed-loop requests can be used to run a `motion prof
 
       In a Velocity motion profile, the gains should be configured as follows:
 
+      - :math:`K_g` - output to overcome gravity (output)
       - :math:`K_s` - output to overcome static friction (output)
       - :math:`K_v` - output per unit of requested velocity (output/rps)
       - :math:`K_a` - output per unit of requested acceleration (output/(rps/s))

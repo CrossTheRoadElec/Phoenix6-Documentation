@@ -27,4 +27,4 @@ Attaching a Team Number to Season Pass
 How many devices can I activate?
 --------------------------------
 
-A season pass contains 60 individual device licenses. In the event that a team needs more licenses, contact us at `support@ctr-electronics.com <mailto:support@ctr-electronics.com>`__.
+A season pass contains 100 individual device licenses. In the event that a team needs more licenses, contact us at `support@ctr-electronics.com <mailto:support@ctr-electronics.com>`__.
