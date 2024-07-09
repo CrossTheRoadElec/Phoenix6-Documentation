@@ -27,13 +27,13 @@ Every closed loop controller has the following aspects consistent:
       - The amount of output to apply per change in error over time.
 
    - :math:`k_{S} = \mathrm{motor\_output}`
-      - A static amount of output to apply typically used to overcome friction.
+      - A static or constant amount of output to apply typically used to overcome friction.
 
    - :math:`k_{G} = \frac{\mathrm{motor\_output}}{\cos(\mathrm{angle})}` if mechanism is arm; :math:`k_{G} = \mathrm{motor\_output}` if mechanism is an elevator
       - The amount of output to apply to counteract the force of gravity.
 
    - :math:`k_{V} = \frac{\mathrm{motor\_output}}{\mathrm{vel}}`
-      - The amount of output to apply per target velocity. In Voltage modes this is a feed forward to counteract the back-emf of the motor, in Current modes this is a feed forward to counteract the force of drag on the system.
+      - The amount of output to apply per target velocity. In Voltage control modes this is a feed forward to counteract the back-emf of the motor. In Current control modes this is a feed forward to counteract the force of drag on the system.
 
    - :math:`k_{A} = \frac{\mathrm{motor\_output}}{\mathrm{acc}}`
       - The amount of output to apply per target acceleration. This is used to account for the inertia of a system.
@@ -86,7 +86,7 @@ Tuning a flywheel is largely done with the following steps:
    1. We start with PID gains at 0 to isolate as many of the forces in play as possible, and iteratively get closer to the "ideal" gains.
    2. There needs to be a setpoint for the parameters to take affect, and a higher setpoint sets up the following steps.
    3. The kS gain is meant to reduce the effect of friction without it moving the mechanism on its own, so getting it as close to breaking friction without it actually breaking friction is ideal. However, this step alone only accounts for static friction which isn't ideal in a flywheel, where it'll typically be experiencing rolling friction. This is managed in a later step.
-   4. A low kP will exacerbate the requirement for a good kS and kV. If this gain is too high it'll mask a "bad" kS and kV during the kS/kV tuning.
+   4. A low kP will magnify the requirement for a good kS and kV. If this gain is too high it'll mask a "bad" kS and kV during the kS/kV tuning.
    5. When the setpoint is high, the kV will dwarf the kS term in its effectiveness, so the kV term should be prioritized to achieve the setpoint.
    6. Setting a low setpoint will prioritize the kS term during its tuning phase.
    7. With the low setpoint, the kS term will dwarf the kV term and correctly account for rolling friction.
@@ -157,7 +157,7 @@ The following steps cover the general idea:
 .. dropdown:: "Why" for each step
 
    1. We start with PID gains at 0 to isolate as many of the forces in play as possible, and iteratively get closer to the "ideal" gains.
-   2. A close-by setpoint ensures the system response should be relatively small to start with when tuning.
+   2. A nearby setpoint ensures the system response should be relatively small to start with when tuning.
    3. The kS gain is meant to reduce the effect of friction, so the largest possible value that still prevents the system from moving will reduce the effect of friction in general.
    4. The kP gain will control how quickly the system gets to the setpoint, however in TorqueCurrentFOC modes there is no natural dampening force, so overshoot is expected at the beginning. Once that happens kD should be tuned.
    5. The kD gain will effectively slow down the system as it reaches the setpoint, increasing it will increase the force slowing it down, so it should be increased until the system no longer overshoots.
@@ -228,10 +228,10 @@ The steps:
 .. dropdown:: "Why" for each step
 
    1. We start with PID gains at 0 to isolate as many of the forces in play as possible, and iteratively get closer to the "ideal" gains.
-   2. The kG gain is meant to counteract the force of gravity, however the force of friction is also at play in an arm. The lowest possible kG that prevents the system from moving finds the lower bound of the gravity and friction component.
-   3. The highest possible kG that prevents the system from moving finds the upper bound of the gravity and friction component.
-   4. Setting kG to the middle point of the lower and upper bound is a good approximation for the true effect of gravity minus the force of friction.
-   5. A close-by setpoint ensures the system response should be relatively small to start with when tuning.
+   2. The kG gain is meant to counteract the force of gravity, however the force of friction is also at play in an arm. The lowest possible kG that prevents the system from moving is the lower bound of the gravity and friction component.
+   3. The highest possible kG that prevents the system from moving is the upper bound of the gravity and friction component.
+   4. Setting kG to the middle point of the lower and upper bounds is a good approximation for the true effect of gravity, removing the force of friction.
+   5. A nearby setpoint ensures the system response should be relatively small to start with when tuning.
    6. The kS gain is meant to reduce the effect of friction, so the largest possible value that still prevents the system from moving will reduce the effect of friction in general.
    7. The kP gain will control how quickly the system gets to the setpoint, however in TorqueCurrentFOC modes there is no natural dampening force, so overshoot is expected at the beginning. Once that happens kD should be tuned.
    8. The kD gain will effectively slow down the system as it reaches the setpoint, increasing it will increase the force slowing it down, so it should be increased until the system no longer overshoots.
