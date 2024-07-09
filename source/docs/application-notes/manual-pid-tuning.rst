@@ -18,18 +18,25 @@ Every closed loop controller has the following aspects consistent:
 1. Gains are canonical
 
    - :math:`k_{P} = \frac{\mathrm{motor\_output}}{\mathrm{error}}`
+      - The amount of output to apply per unit of error in the system.
 
    - :math:`k_{I} = \frac{\mathrm{motor\_output}}{\mathrm{error} \cdot \mathrm{sec}}`
+      - The amount of output to apply per unit of error for every second of that error.
 
    - :math:`k_{D} = \frac{\mathrm{motor\_output}}{\frac{\mathrm{error}}{\mathrm{sec}}}=\frac{\mathrm{motor\_output} \cdot \mathrm{sec}}{\mathrm{error}}`
+      - The amount of output to apply per change in error over time.
 
    - :math:`k_{S} = \mathrm{motor\_output}`
+      - A static amount of output to apply typically used to overcome friction.
 
    - :math:`k_{G} = \frac{\mathrm{motor\_output}}{\cos(\mathrm{angle})}` if mechanism is arm; :math:`k_{G} = \mathrm{motor\_output}` if mechanism is an elevator
+      - The amount of output to apply to counteract the force of gravity.
 
    - :math:`k_{V} = \frac{\mathrm{motor\_output}}{\mathrm{vel}}`
+      - The amount of output to apply per target velocity. In Voltage modes this is a feed forward to counteract the back-emf of the motor, in Current modes this is a feed forward to counteract the force of drag on the system.
 
    - :math:`k_{A} = \frac{\mathrm{motor\_output}}{\mathrm{acc}}`
+      - The amount of output to apply per target acceleration. This is used to account for the inertia of a system.
 
 2. Motor output is dependent on control type
 
@@ -73,6 +80,20 @@ Tuning a flywheel is largely done with the following steps:
  9. Repeat steps 5-8 until the gains do not change.
  10. Increase kP until the flywheel oscillates, then back off to just before that oscillation.
  11. Verify gains hold for expected velocities.
+
+.. dropdown:: "Why" for each step
+
+   1. We start with PID gains at 0 to isolate as many of the forces in play as possible, and iteratively get closer to the "ideal" gains.
+   2. There needs to be a setpoint for the parameters to take affect, and a higher setpoint sets up the following steps.
+   3. The kS gain is meant to reduce the effect of friction without it moving the mechanism on its own, so getting it as close to breaking friction without it actually breaking friction is ideal. However, this step alone only accounts for static friction which isn't ideal in a flywheel, where it'll typically be experiencing rolling friction. This is managed in a later step.
+   4. A low kP will exacerbate the requirement for a good kS and kV. If this gain is too high it'll mask a "bad" kS and kV during the kS/kV tuning.
+   5. When the setpoint is high, the kV will dwarf the kS term in its effectiveness, so the kV term should be prioritized to achieve the setpoint.
+   6. Setting a low setpoint will prioritize the kS term during its tuning phase.
+   7. With the low setpoint, the kS term will dwarf the kV term and correctly account for rolling friction.
+   8. Going back to a high setpoint verifies the kV term is still correct.
+   9. Typically, after reducing kS the system won't achieve its high setpoint, so the kV term needs to increase. Similarly, increasing kV may cause the system to overshoot the low setpoint, requiring the kS to lower. This procedure continues until the kS/kV gains stabilize and stop changing, indicating the feed forwards are correct.
+   10. With proper kS/kV terms, the kP can be increased to quickly achieve the setpoint. The system wants as high a kP gain as possible to decrease the time taken to get to the setpoint. The limit of how high the kP term can be is determined by the system latency, at which point the oscillation is impossible to avoid. The goal of repeating steps 5-8 is to find that limit.
+   11. Always verify the gains work for the setpoints you expect the system to be commanded, as it's possible the generic gains may not work under the operating range of the system. If that's the case, adjust the setpoints to be within the expected operating range and re-tune with them.
 
 The simulator below allows you to follow these steps to find the right gains.
 
@@ -125,13 +146,23 @@ Similarly to the velocity controller, below is a list of steps and simulator for
 The following steps cover the general idea:
  1. Zero all PID gains.
  2. Set a setpoint relatively nearby (typically 0.1 mechanism rotations).
- 3. Increase kS until until the turret starts moving, then back off to just before that movement.
+ 3. Increase kS until the turret starts moving, then back off to just before that movement.
  4. Increase kP until you notice significant overshoot.
  5. Increase kD until the overshoot stops happening.
- 6. Repeat steps 4 and 5 until increasing kD results in more oscillation, or until the system oscillates on its way to the setpoint.
+ 6. Repeat steps 4 and 5 until increasing kD results in more oscillation, or until the system oscillates on its way to the setpoint. If oscillation on the way to setpoint is seen, decrease kD until it stops. If overshoot in general is happening and kD is already at max, reduce kP until it stops.
  7. Verify gains work for other setpoints as well. Tune kP/kD as appropriate for most general cases.
 
 .. note:: Values of kP=200, kD=15 demonstrate the "oscillates on its way to the setpoint" case for setpoints within 1 rotation.
+
+.. dropdown:: "Why" for each step
+
+   1. We start with PID gains at 0 to isolate as many of the forces in play as possible, and iteratively get closer to the "ideal" gains.
+   2. A close-by setpoint ensures the system response should be relatively small to start with when tuning.
+   3. The kS gain is meant to reduce the effect of friction, so the largest possible value that still prevents the system from moving will reduce the effect of friction in general.
+   4. The kP gain will control how quickly the system gets to the setpoint, however in TorqueCurrentFOC modes there is no natural dampening force, so overshoot is expected at the beginning. Once that happens kD should be tuned.
+   5. The kD gain will effectively slow down the system as it reaches the setpoint, increasing it will increase the force slowing it down, so it should be increased until the system no longer overshoots.
+   6. In general, the system wants as high a kP gain as possible to decrease the time taken to get to the setpoint. This also requires a high kD gain to properly dampen the system. The limit of how high the kP/kD term can be is determined by the system latency, at which point the oscillation is impossible to avoid. The goal of repeating steps 4 and 5 is to find that limit.
+   7. Always verify the gains work for the expected setpoints of the system, it's possible the general solution may not work under the expected operating range of the system. If that's the case, re-tune for the expected operating range using the generic gains as a basis.
 
 .. raw:: html
 
@@ -191,8 +222,21 @@ The steps:
  6. Increase kS until the arm starts moving, then back off to just before that movement.
  7. Increase kP until you notice significant overshoot.
  8. Increase kD until the overshoot stops happening.
- 9. Repeat steps 7 and 8 until increasing kD results in more oscillation, or until the system oscillates on its way to the setpoint.
+ 9. Repeat steps 7 and 8 until increasing kD results in more oscillation, or until the system oscillates on its way to the setpoint. If oscillation on the way to setpoint is seen, decrease kD until it stops. If overshoot in general is happening and kD is already at max, reduce kP until it stops.
  10. Verify gains work for other setpoints as well. Tune kP/kD as appropriate for most general cases.
+
+.. dropdown:: "Why" for each step
+
+   1. We start with PID gains at 0 to isolate as many of the forces in play as possible, and iteratively get closer to the "ideal" gains.
+   2. The kG gain is meant to counteract the force of gravity, however the force of friction is also at play in an arm. The lowest possible kG that prevents the system from moving finds the lower bound of the gravity and friction component.
+   3. The highest possible kG that prevents the system from moving finds the upper bound of the gravity and friction component.
+   4. Setting kG to the middle point of the lower and upper bound is a good approximation for the true effect of gravity minus the force of friction.
+   5. A close-by setpoint ensures the system response should be relatively small to start with when tuning.
+   6. The kS gain is meant to reduce the effect of friction, so the largest possible value that still prevents the system from moving will reduce the effect of friction in general.
+   7. The kP gain will control how quickly the system gets to the setpoint, however in TorqueCurrentFOC modes there is no natural dampening force, so overshoot is expected at the beginning. Once that happens kD should be tuned.
+   8. The kD gain will effectively slow down the system as it reaches the setpoint, increasing it will increase the force slowing it down, so it should be increased until the system no longer overshoots.
+   9. In general, the system wants as high a kP gain as possible to decrease the time taken to get to the setpoint. This also requires a high kD gain to properly dampen the system. The limit of how high the kP/kD term can be is determined by the system latency, at which point the oscillation is impossible to avoid. The goal of repeating steps 7 and 8 is to find that limit.
+   10. Always verify the gains work for the expected setpoints of the system, it's possible the general solution may not work under the expected operating range of the system. If that's the case, re-tune for the expected operating range using the generic gains as a basis.
 
 .. raw:: html
 
