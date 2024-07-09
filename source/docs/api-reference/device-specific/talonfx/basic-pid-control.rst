@@ -3,6 +3,8 @@ Basic PID and Profiling
 
 The Talon FX supports basic PID control and motion profiling for position and velocity.
 
+.. note:: For more information on feedback and feedforward gains, see :doc:`/docs/api-reference/device-specific/talonfx/closed-loop-requests`.
+
 Position Control
 ----------------
 
@@ -12,7 +14,8 @@ Position closed loop is currently supported for all base :ref:`control output ty
 
 In a Position closed loop, the gains should be configured as follows:
 
-- :math:`K_s` - unused, as there is no target velocity
+- :math:`K_g` - output to overcome gravity (output)
+- :math:`K_s` - Velocity Sign: unused; Closed-Loop Sign: output to overcome static friction (output)
 - :math:`K_v` - unused, as there is no target velocity
 - :math:`K_a` - unused, as there is no target acceleration
 - :math:`K_p` - output per unit of error in position (output/rotation)
@@ -28,7 +31,7 @@ In a Position closed loop, the gains should be configured as follows:
 
          // in init function, set slot 0 gains
          var slot0Configs = new Slot0Configs();
-         slot0Configs.kP = 24; // An error of 0.5 rotations results in 12 V output
+         slot0Configs.kP = 2.4; // An error of 1 rotation results in 2.4 V output
          slot0Configs.kI = 0; // no output for integrated error
          slot0Configs.kD = 0.1; // A velocity of 1 rps results in 0.1 V output
 
@@ -41,7 +44,7 @@ In a Position closed loop, the gains should be configured as follows:
 
          // in init function, set slot 0 gains
          configs::Slot0Configs slot0Configs{};
-         slot0Configs.kP = 24; // An error of 0.5 rotations results in 12 V output
+         slot0Configs.kP = 2.4; // An error of 1 rotation results in 2.4 V output
          slot0Configs.kI = 0; // no output for integrated error
          slot0Configs.kD = 0.1; // A velocity of 1 rps results in 0.1 V output
 
@@ -54,7 +57,7 @@ In a Position closed loop, the gains should be configured as follows:
 
          # in init function, set slot 0 gains
          slot0_configs = configs.Slot0Configs()
-         slot0_configs.k_p = 24 # An error of 0.5 rotations results in 12 V output
+         slot0_configs.k_p = 2.4 # An error of 1 rotation results in 2.4 V output
          slot0_configs.k_i = 0 # no output for integrated error
          slot0_configs.k_d = 0.1 # A velocity of 1 rps results in 0.1 V output
 
@@ -106,6 +109,7 @@ Velocity closed loop is currently supported for all base :ref:`control output ty
 
 In a Velocity closed loop, the gains should be configured as follows:
 
+- :math:`K_g` - output to overcome gravity (output)
 - :math:`K_s` - output to overcome static friction (output)
 - :math:`K_v` - output per unit of requested velocity (output/rps)
 - :math:`K_a` - unused, as there is no target acceleration
@@ -122,7 +126,7 @@ In a Velocity closed loop, the gains should be configured as follows:
 
          // in init function, set slot 0 gains
          var slot0Configs = new Slot0Configs();
-         slot0Configs.kS = 0.05; // Add 0.05 V output to overcome static friction
+         slot0Configs.kS = 0.1; // Add 0.1 V output to overcome static friction
          slot0Configs.kV = 0.12; // A velocity target of 1 rps results in 0.12 V output
          slot0Configs.kP = 0.11; // An error of 1 rps results in 0.11 V output
          slot0Configs.kI = 0; // no output for integrated error
@@ -137,7 +141,7 @@ In a Velocity closed loop, the gains should be configured as follows:
 
          // in init function, set slot 0 gains
          configs::Slot0Configs slot0Configs{};
-         slot0Configs.kS = 0.05; // Add 0.05 V output to overcome static friction
+         slot0Configs.kS = 0.1; // Add 0.1 V output to overcome static friction
          slot0Configs.kV = 0.12; // A velocity target of 1 rps results in 0.12 V output
          slot0Configs.kP = 0.11; // An error of 1 rps results in 0.11 V output
          slot0Configs.kI = 0; // no output for integrated error
@@ -151,7 +155,7 @@ In a Velocity closed loop, the gains should be configured as follows:
       .. code-block:: python
 
          slot0_configs = configs.Slot0Configs()
-         slot0_configs.k_s = 0.05 # Add 0.05V output to overcome static friction
+         slot0_configs.k_s = 0.1 # Add 0.1 V output to overcome static friction
          slot0_configs.k_v = 0.12 # A velocity target of 1 rps results in 0.12 V output
          slot0_configs.k_p = 0.11 # An error of 1 rps results in 0.11 V output
          slot0_configs.k_i = 0 # no output for integrated error
@@ -209,6 +213,7 @@ The Position and Velocity closed-loop requests can be used to run a `motion prof
 
       In a Position motion profile, the gains should be configured as follows:
 
+      - :math:`K_g` - output to overcome gravity (output)
       - :math:`K_s` - output to overcome static friction (output)
       - :math:`K_v` - output per unit of requested velocity (output/rps)
       - :math:`K_a` - unused, as there is no target acceleration
@@ -343,6 +348,7 @@ The Position and Velocity closed-loop requests can be used to run a `motion prof
 
       In a Velocity motion profile, the gains should be configured as follows:
 
+      - :math:`K_g` - output to overcome gravity (output)
       - :math:`K_s` - output to overcome static friction (output)
       - :math:`K_v` - output per unit of requested velocity (output/rps)
       - :math:`K_a` - output per unit of requested acceleration (output/(rps/s))

@@ -9,7 +9,7 @@ if "%SPHINXBUILD%" == "" (
 )
 set SOURCEDIR=source
 set BUILDDIR=build
-set SPHINXOPTS=--keep-going
+set SPHINXOPTS=--keep-going -W
 set LINTER=doc8
 set LINTEROPTS=--ignore D001 --ignore D004 --ignore-path build --ignore-path venv
 set SIZECHECKER=python -m scripts.imagesizechecker

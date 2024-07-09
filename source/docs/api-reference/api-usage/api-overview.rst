@@ -48,3 +48,19 @@ Python also takes advantage of the module structure to improve IntelliSense:
    talonfx_inverted = signals.InvertedValue.COUNTER_CLOCKWISE_POSITIVE
 
 All Python code examples in this documentation will assume the presence of ``from phoenix6 import *``.
+
+Thread Safety
+^^^^^^^^^^^^^
+
+The vast majority of Phoenix 6 is thread-safe with a few exceptions. Objects that are **not** thread-safe include:
+
+- ``StatusSignal`` objects
+   * Calling the same device ``StatusSignal`` getter (e.g. ``TalonFX.getVelocity()``) from multiple threads is unsafe. This is because device signal getters refresh the ``StatusSignal`` implicitly.
+   * Users should clone or copy a ``StatusSignal`` object to get a unique instance for a given thread.
+
+- ``Config`` objects
+   * Includes ``TalonFX.setInverted()`` and ``TalonFX.setNeutralMode()``
+   * However, device ``Configurator`` objects and other setters (e.g. ``TalonFX.setPosition()``) **are** thread-safe.
+
+- ``Control`` objects
+   * However, sending a control request to a device **is** thread-safe.
