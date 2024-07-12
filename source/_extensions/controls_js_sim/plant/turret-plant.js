@@ -1,5 +1,5 @@
 class TurretPlant {
-    constructor(TimestepS) {
+    constructor(TimestepS, lowIntertia) {
         this.TimestepS = TimestepS;
 
         // Constants related to plant model
@@ -9,7 +9,10 @@ class TurretPlant {
         let radius = 0.2032; //8 inch radius, converted to meters
 
         // Gearbox
-        let GEARBOX_RATIO = 1.0 / 20.0; // output over input - 1:20 reduction gear ratio
+        let GEARBOX_RATIO = 1.0 / 1.0;
+        if (lowIntertia) {
+            GEARBOX_RATIO = 1.0 / 20.0; // output over input - 1:20 reduction gear ratio
+        }
 
         // Kraken FOC Torque-Constant
         let Kt = 0.01981; // Nm/A torque constant -  Taken from Kraken Motor Performance Analysis Report

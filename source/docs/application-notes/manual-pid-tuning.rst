@@ -270,8 +270,17 @@ The steps:
 
 Profiled Tuning
 ^^^^^^^^^^^^^^^
+Profiled tuning can be treated much the same way as normal tuning, but the introduction of a profile the system should follow means much of the response can be calculated in advance with feed-forwards.
 
-To be documented...
+The example below uses a pre-generated profile for the system to follow, and the general steps to tune it are below:
+ 1. Zero all PID gains.
+ 2. Set a setpoint relatively nearby (typically 0.1 mechanism rotations).
+ 3. Increase kS until the system starts moving, then back off to just before that movement.
+ 4. Increase kA until the measured position matches the profiled position at the beginning.
+ 5. Increase kV until the measured position matches the profiled position at the end.
+ 6. Increase kP until you notice significant overshoot or oscillation (even during motion at cruise velocity).
+ 7. Increase kD until the overshoot/oscillation stops happening.
+ 8. Repeat steps 6 and 7 until increasing kD results in more oscillation, or until the system oscillates on its way to the setpoint. If oscillation on the way to setpoint is seen, decrease kD until it stops. If overshoot in general is happening and kD is already at max, reduce kP until it stops.
 
 .. raw:: html
 
