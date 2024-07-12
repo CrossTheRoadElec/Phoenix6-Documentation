@@ -17,7 +17,7 @@ class TurretSim extends BaseSim {
       this.visualizationDrawDiv,
       this.simulationTimestepS,
       () => this.iterationCount - 1,
-      setpoint => this.setSetpoint(setpoint),
+      setpoint => {}, // Cannot set setpoints for a profiled sim
       () => this.begin()
     );
     this.visualization.drawStatic();
@@ -38,7 +38,7 @@ class TurretSim extends BaseSim {
     this.kS = 0.0;
 
     this.inputAmps = 0.0;
-    this.statorLimit = 300.0;
+    this.statorLimit = 120.0;
 
     this.resetCustom();
   }

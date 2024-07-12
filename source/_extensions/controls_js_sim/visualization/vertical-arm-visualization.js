@@ -71,7 +71,7 @@ class VerticalArmVisualization extends BaseVisualization {
   drawStaticCustom() {
     //Supports
     this.staticCanvasContext.lineWidth = 5;
-    this.staticCanvasContext.strokeStyle = "#000000";
+    this.staticCanvasContext.strokeStyle = "#808080";
     this.staticCanvasContext.beginPath();
     this.staticCanvasContext.moveTo(this.width / 2, this.height / 2);
     this.staticCanvasContext.lineTo(0.3 * this.width, 0.9 * this.height);
@@ -83,7 +83,7 @@ class VerticalArmVisualization extends BaseVisualization {
 
     //Wheels
     this.staticCanvasContext.lineWidth = 5;
-    this.staticCanvasContext.fillStyle = "#000000";
+    this.staticCanvasContext.fillStyle = "#808080";
     this.staticCanvasContext.strokeStyle = "#444444";
     this.staticCanvasContext.beginPath();
     this.staticCanvasContext.arc(
@@ -141,7 +141,7 @@ class VerticalArmVisualization extends BaseVisualization {
     // todo: systematize magic numbers
 
     //Time Indicator
-    this.animatedCanvasContext.fillStyle = "#000000";
+    this.animatedCanvasContext.fillStyle = "#808080";
     this.animatedCanvasContext.font = "bold 20px Arial";
     this.animatedCanvasContext.fillText(
       "t = " + this.timeS.toFixed(2) + " sec",

@@ -267,3 +267,24 @@ The steps:
    Now it's time for kP/kD tuning. I bring kP up to 1, 2, 4, 8, 16, and 32 before I get significant overshoot, where I dial kD in to 1, 2, 4, and 8 before that overshoot is gone. kP keeps increasing to 64 and 128, then kD goes up to 16 and 32 before it's back to kP. I go up to 256 and 512 where I notice a bit of oscillation, and I may be near the limit at this point. kD increases to 64 and I get oscillation on the way to the target, so I bring it down to 50 then 40 before I'm happy with it. There's still a little oscillation at the target, but it's minimal.
 
    I check with other setpoints of -0.1, 0.4, 0.6 and confirm the movement looks good, and say the PID tuning is done.
+
+Profiled Tuning
+^^^^^^^^^^^^^^^
+
+To be documented...
+
+.. raw:: html
+
+    <div class="viz-div" id="profiled_container">
+      <div >
+         <div class="col" id="profiled_plotVals"></div>
+         <div class="col" id="profiled_plotAmps"></div>
+      </div>
+      <div class="flex-grid">
+         <div class="col" id="profiled_viz"></div>
+         <div id="profiled_ctrls"></div>
+      </div>
+      <script>
+         turret = new ProfiledPIDF("profiled", "both");
+      </script>
+    </div>

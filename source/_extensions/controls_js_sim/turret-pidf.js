@@ -44,7 +44,7 @@ class TurretPIDF extends TurretSim {
     controlTable.appendChild(curRow);
     input = document.createElement("INPUT");
     input.setAttribute("type", "text");
-    input.setAttribute("value", "300.0");
+    input.setAttribute("value", "120.0");
     input.setAttribute("id", divIdPrefix + "_statorlimit");
     input.onchange = function (event) {
       this.statorLimit = parseFloat(event.target.value);

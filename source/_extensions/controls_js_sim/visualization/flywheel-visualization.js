@@ -26,7 +26,7 @@ class FlywheelVisualization extends BaseVisualization{
         //Wheel
         this.staticCanvasContext.lineWidth = 4;
         this.staticCanvasContext.fillStyle="#DDDDDD"
-        this.staticCanvasContext.strokeStyle = '#000000';
+        this.staticCanvasContext.strokeStyle = "#808080";
         this.staticCanvasContext.beginPath();
         this.staticCanvasContext.arc(this.wheelCenterX, this.wheelCenterY, this.wheelRadius, 0, 2 * Math.PI, false);
         this.staticCanvasContext.fill();
@@ -34,7 +34,7 @@ class FlywheelVisualization extends BaseVisualization{
 
         //Ball Guide Track - outer
         this.staticCanvasContext.lineWidth = 2;
-        this.staticCanvasContext.strokeStyle = '#000000';
+        this.staticCanvasContext.strokeStyle = "#808080";
         this.staticCanvasContext.beginPath();
         this.staticCanvasContext.moveTo(this.ballLoadTrackX - this.ballRadius, this.ballLoadTrackYStart);
         this.staticCanvasContext.lineTo(this.ballLoadTrackX - this.ballRadius, this.ballLoadTrackYEnd);
@@ -69,7 +69,7 @@ class FlywheelVisualization extends BaseVisualization{
 
 
         //Time Indicator
-        this.animatedCanvasContext.fillStyle = "#000000";
+        this.animatedCanvasContext.fillStyle = "#808080";
         this.animatedCanvasContext.font = "bold 20px Arial";
         this.animatedCanvasContext.fillText(
         "t = " + this.timeS.toFixed(2) + " sec",

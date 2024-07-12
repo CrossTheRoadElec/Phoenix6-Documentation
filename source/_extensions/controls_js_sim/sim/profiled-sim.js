@@ -1,19 +1,19 @@
-class VerticalArmSim extends BaseSim {
+class ProfiledSim extends BaseProfiledSim {
   constructor(divIdPrefix) {
-    super(divIdPrefix, "Rot", -.75, .75);
+    super(divIdPrefix, "Rot", -0.75, 0.75);
 
     this.positionDelayLine = new DelayLine(3); //models sensor lag
 
-    this.simDurationS = 5.0;
+    this.simDurationS = 10.0;
     this.simulationTimestepS = 0.005;
-    this.controllerTimestepS = 0.02;
+    this.controllerTimestepS = 0.01;
 
     // User-configured setpoints
     this.currentSetpoint = 0.0;
 
-    this.plant = new VerticalArmPlant(this.simulationTimestepS);
+    this.plant = new TurretPlant(this.simulationTimestepS);
 
-    this.visualization = new VerticalArmVisualization(
+    this.visualization = new TurretVisualization(
       this.visualizationDrawDiv,
       this.simulationTimestepS,
       () => this.iterationCount - 1,
@@ -27,19 +27,22 @@ class VerticalArmSim extends BaseSim {
     this.accumulatedError = 0.0;
     this.previousError = 0.0;
 
-    this.validPrevious = false
+    this.validPrevious = false;
 
     //User-configured feedback
     this.kP = 0.0;
     this.kI = 0.0;
     this.kD = 0.0;
 
-    //User-configured Feed-Forward
-    this.kG = 0.0;
+    //User-configured Feed-Forwards
     this.kS = 0.0;
+    this.kV = 0.0;
+    this.kA = 0.0;
 
     this.inputAmps = 0.0;
     this.statorLimit = 120.0;
+
+    this.profile = Profile1Data.profileData;
 
     this.resetCustom();
   }
@@ -69,22 +72,22 @@ class VerticalArmSim extends BaseSim {
     this.iterationCount = 0;
 
     this.positionDelayLine = new DelayLine(2); //models sensor lag
-  }
 
+  }
 
   iterateCustom() {
 
     this.curSimTimeS = this.timeS[this.iterationCount];
 
-    let measuredPositionRad = this.positionDelayLine.getSample();
+    let measuredPosition = this.positionDelayLine.getSample();
 
-    if (this.validPrevious == false) {
-      measuredPositionRad = 0
-    }
+    let profileIteration = Math.floor(this.curSimTimeS * 100);
+    if (profileIteration > this.profile.length) profileIteration = this.profile.length;
+    let targets = this.profile[profileIteration];
 
     // Update controller at controller freq
     if (this.timeSinceLastControllerIteration >= this.controllerTimestepS) {
-      this.inputAmps = this.updateController(this.currentSetpoint, measuredPositionRad);
+      this.inputAmps = this.updateController(targets["Position"], targets["Velocity"], targets["Acceleration"], measuredPosition);
       this.timeSinceLastControllerIteration = 0;
     } else {
       this.timeSinceLastControllerIteration = this.timeSinceLastControllerIteration + this.simulationTimestepS;
@@ -95,23 +98,27 @@ class VerticalArmSim extends BaseSim {
 
     this.positionDelayLine.addSample(this.plant.getCurrentPosition());
 
+    this.procVarActualSignal.addSample(new Sample(this.curSimTimeS, this.plant.getCurrentPosition()));
+    this.procVarDesiredSignal.addSample(new Sample(this.curSimTimeS, targets["Position"]));
+    this.procVelocity.addSample(new Sample(this.curSimTimeS, targets["Velocity"]));
+    this.procAcceleration.addSample(new Sample(this.curSimTimeS, targets["Acceleration"]));
+    this.ampsSignal.addSample(new Sample(this.curSimTimeS, this.inputAmps));
+
     this.visualization.setCurPos(this.plant.getCurrentPosition());
     this.visualization.setCurTime(this.curSimTimeS);
-    this.visualization.setCurSetpoint(this.currentSetpoint);
+    this.visualization.setCurSetpoint(targets["Position"]);
     this.visualization.setCurControlEffort(this.inputAmps);
 
-    this.procVarActualSignal.addSample(new Sample(this.curSimTimeS, this.plant.getCurrentPosition()));
-    this.procVarDesiredSignal.addSample(new Sample(this.curSimTimeS, this.currentSetpoint));
-    this.ampsSignal.addSample(new Sample(this.curSimTimeS, this.inputAmps));
 
     this.iterationCount++;
 
     if (this.iterationCount >= this.timeS.length) {
       this.end();
     }
+
   }
 
-  updateController(setpoint, measurement) {
+  updateController(setpoint, velocity, acceleration, measurement) {
 
     // Calculate error, error derivative, and error integral
     let error = setpoint - measurement;
@@ -125,25 +132,26 @@ class VerticalArmSim extends BaseSim {
       derivativeError = 0;
     }
 
-    // PID + cosine feed-forward control law
-    let controlEffortVolts =
-      this.kG * Math.cos(measurement * 2 * Math.PI) +
-      this.kS * Math.sign(error) +
+    // PID + kS
+    let controlEffortAmps =
+      this.kS * Math.sign(velocity) +
+      this.kV * velocity +
+      this.kA * acceleration +
       this.kP * error +
       this.kI * this.accumulatedError +
       this.kD * derivativeError;
 
     // Cap voltage at max/min of the physically possible command
-    if (controlEffortVolts > this.statorLimit) {
-      controlEffortVolts = this.statorLimit;
-    } else if (controlEffortVolts < -this.statorLimit) {
-      controlEffortVolts = -this.statorLimit;
+    if (controlEffortAmps > this.statorLimit) {
+      controlEffortAmps = this.statorLimit;
+    } else if (controlEffortAmps < -this.statorLimit) {
+      controlEffortAmps = -this.statorLimit;
     }
 
     this.previousError = error;
     this.validPrevious = true;
 
-    return controlEffortVolts;
+    return controlEffortAmps;
   }
 
 }

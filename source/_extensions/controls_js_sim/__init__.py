@@ -20,6 +20,7 @@ FOLDER_INCS = [
     "utils",
     "base",
     "plant",
+    "profiles",
     "visualization",
     "sim",
     ".",

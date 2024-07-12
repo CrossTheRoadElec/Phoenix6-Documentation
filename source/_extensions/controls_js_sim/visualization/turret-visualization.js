@@ -36,7 +36,7 @@ class TurretVisualization extends BaseVisualization {
   }
 
   angleFromArmCenter([x, y]) {
-    return -Math.atan2(y - this.turretCenterY, x - this.turretCenterX);
+    return -Math.atan2(y - this.turretCenterY, x - this.turretCenterX) / (2 * Math.PI); // Get angle in rotations
   }
 
   handleMouseDown(event) {
@@ -77,6 +77,9 @@ class TurretVisualization extends BaseVisualization {
     this.turretRadiusPx = Math.min(this.width, this.height) * 0.4;
     this.staticCanvasContext.moveTo(this.width / 2, this.height / 2);
 
+    this.staticCanvasContext.fillStyle = "#808080";
+    this.staticCanvasContext.strokeStyle = "#808080";
+
     // Center of turret
     this.staticCanvasContext.beginPath();
     this.staticCanvasContext.arc(
@@ -87,7 +90,6 @@ class TurretVisualization extends BaseVisualization {
       2 * Math.PI,
       false
     );
-    this.staticCanvasContext.fillStyle = "black";
     this.staticCanvasContext.fill();
     this.staticCanvasContext.stroke();
 
@@ -109,7 +111,7 @@ class TurretVisualization extends BaseVisualization {
     // todo: systematize magic numbers
 
     //Time Indicator
-    this.animatedCanvasContext.fillStyle = "#000000";
+    this.animatedCanvasContext.fillStyle = "#808080";
     this.animatedCanvasContext.font = "bold 20px Arial";
     this.animatedCanvasContext.fillText(
       "t = " + this.timeS.toFixed(2) + " sec",

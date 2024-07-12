@@ -1,32 +1,16 @@
-class FlywheelPIDF extends FlywheelSim {
+class ProfiledPIDF extends ProfiledSim {
   constructor(divIdPrefix, controlStrategy) {
     super(divIdPrefix);
-
-    this.accumulatedError = 0.0;
-    this.previousError = 0.0;
-
-    // User-configured feedback
-    this.kP = 0.0;
-    this.kI = 0.0;
-    this.kD = 0.0;
-
-    // User-configured Feed-Forward
-    this.kS = 0.0;
-    this.kV = 0.0;
-
-    // User-configured stator current limit
-    this.statorLimit = 120;
 
     // Can be "feedforward", "feedback", or "both"
     this.controlStrategy = controlStrategy;
 
-    this.buildControlTable();
+    this.buildControlTable(divIdPrefix);
 
     this.begin();
-
   }
 
-  buildControlTable() {
+  buildControlTable(divIdPrefix) {
     let curRow;
     let label;
     let control;
@@ -44,30 +28,9 @@ class FlywheelPIDF extends FlywheelSim {
     input = document.createElement("INPUT");
     input.setAttribute("type", "checkbox");
     input.setAttribute("value", "false");
-    input.setAttribute("id", "systemNoise");
+    input.setAttribute("id", divIdPrefix + "_systemNoise");
     input.onclick = function (event) {
-      this.animationReset = true;
-      this.plant.setSystemNoise(document.getElementById("systemNoise").checked);
-      this.begin();
-    }.bind(this);
-    control.append(input);
-    curRow.appendChild(label);
-    curRow.appendChild(control);
-
-    curRow = document.createElement("tr");
-    label = document.createElement("td");
-    label.innerHTML = "Setpoint";
-    control = document.createElement("td");
-    controlTable.appendChild(curRow);
-    input = document.createElement("INPUT");
-    input.setAttribute("type", "text");
-    input.setAttribute("value", "50.0");
-    //input.setAttribute("step", "10.0");
-    //input.setAttribute("max", "1800.0");
-    //input.setAttribute("min", "0.0");
-    input.onchange = function (event) {
-      this.animationReset = true;
-      this.setpointVal = parseFloat(event.target.value);
+      this.plant.setSystemNoise(document.getElementById(divIdPrefix + "_systemNoise").checked);
       this.begin();
     }.bind(this);
     control.append(input);
@@ -82,11 +45,8 @@ class FlywheelPIDF extends FlywheelSim {
     input = document.createElement("INPUT");
     input.setAttribute("type", "text");
     input.setAttribute("value", "120.0");
-    //input.setAttribute("step", "10.0");
-    //input.setAttribute("max", "1800.0");
-    //input.setAttribute("min", "0.0");
+    input.setAttribute("id", divIdPrefix + "_statorlimit");
     input.onchange = function (event) {
-      this.animationReset = true;
       this.statorLimit = parseFloat(event.target.value);
       this.begin();
     }.bind(this);
@@ -94,11 +54,7 @@ class FlywheelPIDF extends FlywheelSim {
     curRow.appendChild(label);
     curRow.appendChild(control);
 
-    // Display feedforward gain inputs
-    if (
-      this.controlStrategy == "feedforward" ||
-      this.controlStrategy == "both"
-    ) {
+    if (this.controlStrategy == "feedback" || this.controlStrategy == "both") {
       curRow = document.createElement("tr");
       label = document.createElement("td");
       label.innerHTML = "kS";
@@ -107,9 +63,8 @@ class FlywheelPIDF extends FlywheelSim {
       input = document.createElement("INPUT");
       input.setAttribute("type", "text");
       input.setAttribute("value", "0.0");
-      //input.setAttribute("step", "0.00001");
+      //input.setAttribute("step", "0.1");
       input.onchange = function (event) {
-        this.animationReset = true;
         this.kS = parseFloat(event.target.value);
         this.begin();
       }.bind(this);
@@ -125,18 +80,32 @@ class FlywheelPIDF extends FlywheelSim {
       input = document.createElement("INPUT");
       input.setAttribute("type", "text");
       input.setAttribute("value", "0.0");
-      //input.setAttribute("step", "0.00001");
+      //input.setAttribute("step", "0.1");
       input.onchange = function (event) {
-        this.animationReset = true;
         this.kV = parseFloat(event.target.value);
         this.begin();
       }.bind(this);
       control.append(input);
       curRow.appendChild(label);
       curRow.appendChild(control);
-    }
 
-    if (this.controlStrategy == "feedback" || this.controlStrategy == "both") {
+      curRow = document.createElement("tr");
+      label = document.createElement("td");
+      label.innerHTML = "kA";
+      control = document.createElement("td");
+      controlTable.appendChild(curRow);
+      input = document.createElement("INPUT");
+      input.setAttribute("type", "text");
+      input.setAttribute("value", "0.0");
+      //input.setAttribute("step", "0.1");
+      input.onchange = function (event) {
+        this.kA = parseFloat(event.target.value);
+        this.begin();
+      }.bind(this);
+      control.append(input);
+      curRow.appendChild(label);
+      curRow.appendChild(control);
+
       curRow = document.createElement("tr");
       label = document.createElement("td");
       label.innerHTML = "kP";
@@ -145,9 +114,8 @@ class FlywheelPIDF extends FlywheelSim {
       input = document.createElement("INPUT");
       input.setAttribute("type", "text");
       input.setAttribute("value", "0.0");
-      //input.setAttribute("step", "0.001");
+      //input.setAttribute("step", "0.1");
       input.onchange = function (event) {
-        this.animationReset = true;
         this.kP = parseFloat(event.target.value);
         this.begin();
       }.bind(this);
@@ -163,9 +131,8 @@ class FlywheelPIDF extends FlywheelSim {
       input = document.createElement("INPUT");
       input.setAttribute("type", "text");
       input.setAttribute("value", "0.0");
-      //input.setAttribute("step", "0.001");
+      //input.setAttribute("step", "0.1");
       input.onchange = function (event) {
-        this.animationReset = true;
         this.kI = parseFloat(event.target.value);
         this.begin();
       }.bind(this);
@@ -181,9 +148,8 @@ class FlywheelPIDF extends FlywheelSim {
       input = document.createElement("INPUT");
       input.setAttribute("type", "text");
       input.setAttribute("value", "0.0");
-      //input.setAttribute("step", "0.001");
+      //input.setAttribute("step", "0.01");
       input.onchange = function (event) {
-        this.animationReset = true;
         this.kD = parseFloat(event.target.value);
         this.begin();
       }.bind(this);
@@ -191,39 +157,5 @@ class FlywheelPIDF extends FlywheelSim {
       curRow.appendChild(label);
       curRow.appendChild(control);
     }
-  }
-
-  controllerUpdate(time, setpoint, output) {
-    //Handle Init
-    if (time == 0.0) {
-      this.accumulatedError = 0.0;
-      this.previousError = 0.0;
-    }
-
-    //Calculate error, error derivative, and error integral
-    let error = setpoint - output;
-
-    this.accumulatedError += error * this.controllerTimestepS;
-
-    let err_delta = (error - this.previousError) / this.controllerTimestepS;
-
-    //PID + kv/ks control law
-    let ctrlEffort =
-      this.kS * Math.sign(setpoint) +
-      this.kV * setpoint +
-      this.kP * error +
-      this.kI * this.accumulatedError +
-      this.kD * err_delta;
-
-    //Cap voltage at max/min of the physically possible command
-    if (ctrlEffort > this.statorLimit) {
-      ctrlEffort = this.statorLimit;
-    } else if (ctrlEffort < -this.statorLimit) {
-      ctrlEffort = -this.statorLimit;
-    }
-
-    this.previousError = error;
-
-    return ctrlEffort;
   }
 }
