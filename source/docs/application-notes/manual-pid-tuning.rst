@@ -119,17 +119,21 @@ The simulator below allows you to follow these steps to find the right gains.
 
    Following the guide, I start with all gains set to 0, set a setpoint of 80 (100 rps maximum), and begin with playing with the kS parameter.
 
-   Setting kS to 1 doesn't start spinning the wheel, so I double it to 2, which remains still. Doubling it to 4 does start moving the wheel, so I take the halway point between 2 and 4, and set it to 3, but that lets the wheel move. So I leave the kS at 2 and move on to the next step.
+   Setting kS to 1 doesn't start spinning the wheel, so I double it to 2, which remains still. Doubling it to 4 still doesn't move, so I up it to 8 where it does start moving. Going back to 6 stops the wheel, and so does 7, so I leave the kS at 7 and move on to the next step.
 
    I set the kP to 10/10 = 1 (1 amp output per rps error), and notice that the wheel starts moving up to the setpoint, but can't quite reach it. It stalls out at 65-70 rps. This means the drag is significant and preventing us from reaching the setpoint, necessitating a kV.
 
-   Now I set kV to 1, and notice that it significantly overshoots. I halve it to 0.5, 0.25, then 0.125 before I notice it doesn't achieve the target anymore. It's somewhere between 0.125 and 0.25 so I set it to 0.15 before saying it's good enough.
+   Now I set kV to 1, and notice that it significantly overshoots. I halve it to 0.5, 0.25, then 0.125 before I notice it just barely passes the target, so I leave it at 0.125 and move on to the low setpoint.
 
-   Then, I set the setpoint to 10, and notice that I'm undershooting. This means I need to increase the kS gain further.
+   Then, I set the setpoint to 10, and notice that I'm overshooting. This means I need to decrease the kS gain.
 
-   I try 3 from before again, and notice that it overshoots. So I cut it in half to 2.5 and find that's pretty close.
+   I try 4 from before again, and notice that it overshoots. So I bring it down to 3 and see it's pretty much perfect.
 
-   Going back to 80 rps, I'm still pretty close to the target, so I move on to increasing kP.
+   Going back to 80 rps, I'm now undershooting, so I increase kV to 0.13, then 0.14 before I'm happy with it.
+   
+   Back down to 10 rps, I'm overshooting again, so I bring kS down to 2 and see it undershoot. I take the halfway point and make it 2.5, then 2.6 before I'm happy with it reaching the target.
+
+   Again up at 80 rps I'm generally happy with how close it's reaching the target, so I move on to increasing kP.
 
    I first double kP to 2, then 4, 8, and 16, noticing that the time to target is decreasing with a larger kP. A kP of 16 results in a bit of overshoot that I don't like, so I decrease it to 12, then 10 before it matches what I want. I increase to 11 and still like the response, so I leave it at 11.
 
