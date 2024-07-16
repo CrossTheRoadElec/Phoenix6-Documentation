@@ -42,6 +42,7 @@ release = ""
 extensions = [
     "notfound.extension",
     "sphinxcontrib.images",
+    "readthedocs_ext.readthedocs",
     "sphinxext.mimictoc",
     "sphinxext.opengraph",
     "sphinxext.rediraffe",
@@ -75,6 +76,7 @@ master_doc = "index"
 on_rtd = os.environ.get("READTHEDOCS") == "True"
 
 if on_rtd:
+    html_baseurl = os.environ.get("READTHEDOCS_CANONICAL_URL", "")
     notfound_no_urls_prefix = False
 else:
     notfound_no_urls_prefix = True

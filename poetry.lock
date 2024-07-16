@@ -689,6 +689,22 @@ files = [
 windows-terminal = ["colorama (>=0.4.6)"]
 
 [[package]]
+name = "readthedocs-sphinx-ext"
+version = "2.2.5"
+description = "Sphinx extension for Read the Docs overrides"
+optional = false
+python-versions = "*"
+files = [
+    {file = "readthedocs-sphinx-ext-2.2.5.tar.gz", hash = "sha256:ee5fd5b99db9f0c180b2396cbce528aa36671951b9526bb0272dbfce5517bd27"},
+    {file = "readthedocs_sphinx_ext-2.2.5-py2.py3-none-any.whl", hash = "sha256:f8c56184ea011c972dd45a90122568587cc85b0127bc9cf064d17c68bc809daa"},
+]
+
+[package.dependencies]
+Jinja2 = ">=2.9"
+packaging = "*"
+requests = "*"
+
+[[package]]
 name = "requests"
 version = "2.32.3"
 description = "Python HTTP for Humans."
@@ -1244,4 +1260,4 @@ test = ["pytest"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "ec934eb87583f872e9a96d818b270ab5518d5272cadb1db08a335ccc738a9b16"
+content-hash = "551fb1203357e3a6057f0023d73b8649b44c5f0c41d52707032ccb711f9624a0"
