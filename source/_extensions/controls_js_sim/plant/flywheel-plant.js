@@ -52,9 +52,14 @@ class FlywheelPlant{
     }
 
     update(t, inAmps) {
-        //Simulate friction - both static and dynamic
+        //Simulate friction - both constand and drag-related
         let extTrq = 0.05; // 0.05 Nm of static friction
         extTrq += 0.0005*this.speedPrev; // 0.0005 Nm of friction every RPM it speeds up
+
+        //Increase friction when not moving to simulate static friction
+        if (this.speedPrev == 0) {
+            extTrq = 0.15;
+        }
 
         // Simulate system noise
         if (this.systemNoise && inAmps > 0) {

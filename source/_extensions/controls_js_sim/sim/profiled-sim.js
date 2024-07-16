@@ -45,6 +45,8 @@ class ProfiledSim extends BaseProfiledSim {
 
     this.profile = Profile1Data.profileData;
 
+    this.error = 0.0;
+
     this.resetCustom();
   }
 
@@ -72,6 +74,7 @@ class ProfiledSim extends BaseProfiledSim {
     this.validPrevious = false;
     this.inputAmps = 0.0;
     this.iterationCount = 0;
+    this.error = 0.0;
 
     this.positionDelayLine = new DelayLine(2); //models sensor lag
 
@@ -85,7 +88,7 @@ class ProfiledSim extends BaseProfiledSim {
     let measuredVelocity = (measuredPosition - this.previousPosition) / this.controllerTimestepS;
     let measuredAcceleration = (measuredVelocity - this.previousVelocity) / this.controllerTimestepS;
 
-    let profileIteration = Math.floor(this.curSimTimeS * 100);
+    let profileIteration = this.iterationCount;
     if (profileIteration >= this.profile.length) profileIteration = this.profile.length - 1;
     let targets = this.profile[profileIteration];
 
@@ -129,9 +132,9 @@ class ProfiledSim extends BaseProfiledSim {
   updateController(setpoint, velocity, acceleration, measurement, measuredVelocity, measuredAcceleration) {
 
     // Calculate error, error derivative, and error integral
-    let error = setpoint - measurement;
+    this.error = setpoint - measurement;
 
-    this.accumulatedError += error * this.controllerTimestepS;
+    this.accumulatedError += this.error * this.controllerTimestepS;
 
     let derivativeError = velocity - measuredVelocity;
 
@@ -144,7 +147,7 @@ class ProfiledSim extends BaseProfiledSim {
       this.kS * Math.sign(velocity) +
       this.kV * velocity +
       this.kA * acceleration +
-      this.kP * error +
+      this.kP * this.error +
       this.kI * this.accumulatedError +
       this.kD * derivativeError;
 

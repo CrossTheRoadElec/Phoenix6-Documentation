@@ -270,17 +270,30 @@ The steps:
 
 Profiled Tuning
 ^^^^^^^^^^^^^^^
-Profiled tuning can be treated much the same way as normal tuning, but the introduction of a profile the system should follow means much of the response can be calculated in advance with feed-forwards.
+Profiled tuning can be treated much the same way as tuning a normal PID, but the introduction of a profile means much of the response can be calculated in advance with feed-forwards. This results in most of the work being done due to feed forward, and the feedback gains being used to account for any error in the system.
+
+In Phoenix 6, you can either generate your own profile and feed in the position and velocity setpoints, or use MotionMagic® and let the Talon generate the profile for you. In either case the Talon will have Velocity and/or Acceleration setpoints that it can use the kV and kA feedforward terms on, for more accurate profile following.
 
 The example below uses a pre-generated profile for the system to follow, and the general steps to tune it are below:
  1. Zero all PID gains.
- 2. Set a setpoint relatively nearby (typically 0.1 mechanism rotations).
+ 2. Set a setpoint relatively nearby (typically 0.1 mechanism rotations). This isn't relevant for the simulation, as the setpoint is determined by the pre-generated profile.
  3. Increase kS until the system starts moving, then back off to just before that movement.
  4. Increase kA until the measured position matches the profiled position at the beginning.
  5. Increase kV until the measured position matches the profiled position at the end.
  6. Increase kP until you notice significant overshoot or oscillation (even during motion at cruise velocity).
  7. Increase kD until the overshoot/oscillation stops happening.
  8. Repeat steps 6 and 7 until increasing kD results in more oscillation, or until the system oscillates on its way to the setpoint. If oscillation on the way to setpoint is seen, decrease kD until it stops. If overshoot in general is happening and kD is already at max, reduce kP until it stops.
+
+.. dropdown:: "Why" for each step
+
+   1. We start with PID gains at 0 to isolate as many of the forces in play as possible, and iteratively get closer to the "ideal" gains.
+   2. A nearby setpoint ensures the system response should be relatively small to start with when tuning.
+   3. The kS gain is meant to reduce the effect of friction, so the largest possible value that still prevents the system from moving will reduce the effect of friction in general.
+   4. The kA gain effectively accounts for the inertia of the system. Since torqueCurrent is proportional to the torque applied at the rotor, kA is the coefficient used to scale the amperes applied to an acceleration the system will see. It is the backbone of the profile and doing most of the heavy lifting.
+   5. The kV gain controls the compensation due to drag in the system. If the mechanism sees a lot of drag, the end position will be far away, despite it tracking well at the beginning, so tuning kV to account for the drag compensates in that manner.
+   6. With the feed forwards taken care of, the feedback tuning comes into play, with kP being used to control how strongly the system minimizes error. However, in TorqueCurrentFOC modes there is no natural dampening force, so overshoot is expected at the beginning. Once that happens kD should be tuned.
+   7. The kD gain will effectively act as a kP on velocity, increasing it will increase the force bringing the system to the target velocity, so it should be increased until the system no longer oscillates.
+   8. Steps 6 and 7 are repeated until the gains reach the maximum they can be, indicating they're optimal for the system. These gains probably will not work in normal position closed loops, because it relies on a significant amount of feedforward to naturally dampen the system as physics would expect.
 
 .. raw:: html
 
@@ -297,3 +310,21 @@ The example below uses a pre-generated profile for the system to follow, and the
          turret = new ProfiledPIDF("profiled", "both");
       </script>
     </div>
+
+.. dropdown:: Tuning Process Example
+
+   Following the guide, I have set all gains to 0.
+
+   I start with kS and set it to 1, and notice it doesn't move, increase it to 2, then 4 before it starts moving. Back off to 3, and 2.5 until it stops. I nudge it up to 2.6 and see it's still moving, so I move it back down to 2.5 and leave it there.
+
+   Moving on to kA, I start with a kA of 1, and the system doesn't reach the necessary acceleration or velocity at all, so I increase it to 2, then 4, and 8, and 16 before I se it finally overshoot. I then start reducing kA to 12 and 10, then back up to 10.5 where I'm pretty much at the right acceleration.
+
+   I then start increasing kV to account for the friction due to drag. Starting with 1 creates a lot of overshoot, so I reduce it to 0.1 and still see some overshoot. Down to 0.05 and it's close, but still gaining a bit at the end. Finally 0.03 produces a good response to account for drag.
+
+   So now it's time to tune P. I start with a kP of 1, and notice there's barely a response. Increasing kP to 10 has a noticeable change, but it's still far too weak. Going up to 100 creates a noticeable oscillation, so kD should be increased to dampen it.
+
+   Starting with a kD of 1, the oscillation is still present, so it increases to 10 where there's an impact but it's not enough. Doubling at this point to 20 looks much better, but it also looks like it can be further improved, so it doubles again to 40 where it looks sufficient to move back to kP.
+
+   Since kP is already at 100, we'll double to 200, then 400, then 800 before the oscillation at ~2 seconds appears significant. The end point looks good, though, so there's no more need to increase kP, as long as we can remove the oscillation with kD.
+
+   So kD increases to 80, then 160, then 320. At 320 the profile looks to have hardly any overshoot or oscillation at all, and the end position is right on top of the target, so it looks sufficient for this mechanism.

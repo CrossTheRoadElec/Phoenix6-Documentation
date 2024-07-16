@@ -24,11 +24,10 @@ class TurretPlant {
 
         this.systemNoise = false;
         // Simulate 4 amp std dev system noise at the loop update frequency
-        this.gaussianNoise = gaussian(0, 4);
+        this.gaussianNoise = gaussian(0, 0.13);
     }
     init() {
         this.speed = 0;
-        this.speedPrev = 0;
         this.curpositionRev = 0;
     }
 
@@ -52,15 +51,15 @@ class TurretPlant {
     update(inAmps) {
         // Simulate friction - both static and dynamic
         let extTrq = 0.05; // 0.05 Nm of static friction
-        extTrq += 0.0005*this.speedPrev; // 0.0005 Nm of friction for every RPM it's spinning
+        extTrq += 0.0005*this.speed; // 0.0005 Nm of friction for every RPM it's spinning
         // Simulate system noise only if control input is outside 3 amps
-        if (this.systemNoise && Math.abs(inAmps) > 3) {
+        if (this.systemNoise && Math.abs(inAmps) > 0.3) {
             // apply system noise
-            inAmps += this.gaussianNoise();
+            inAmps += this.gaussianNoise() * inAmps;
         }
 
         // Simulate main Plant behavior
-        this.speed = (this.TimestepS*this.C1*inAmps + this.speedPrev);
+        this.speed = (this.TimestepS*this.C1*inAmps + this.speed);
         let speedsign = Math.sign(this.speed);
         this.speed -= speedsign * this.TimestepS*this.C3*extTrq;
         if (Math.sign(this.speed) != speedsign) {
@@ -68,8 +67,6 @@ class TurretPlant {
         }
 
         this.curpositionRev += this.speed * this.TimestepS;
-
-        this.speedPrev = this.speed;
     }
 
     getCurrentSpeedRPS() {
