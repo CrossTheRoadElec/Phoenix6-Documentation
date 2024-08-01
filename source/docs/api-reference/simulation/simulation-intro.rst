@@ -148,7 +148,7 @@ Some device ``SimState`` objects also contain outputs that can be used in simula
             auto& talonFXSim = m_talonFX.GetSimState();
 
             // set the supply voltage of the TalonFX
-            m_talonFXSim.setSupplyVoltage(frc::RobotController::GetBatteryVoltage());
+            talonFXSim.SetSupplyVoltage(frc::RobotController::GetBatteryVoltage());
 
             // get the motor voltage of the TalonFX
             auto motorVoltage = talonFXSim.GetMotorVoltage();
