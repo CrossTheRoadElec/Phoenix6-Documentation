@@ -27,7 +27,7 @@ Types of Licenses
 
       A single device license can be activated and installed individually per device. Each purchase licenses exactly one compatible CAN bus device to use Phoenix Pro features.
 
-      This may be prefered for systems with a small number of devices that need to utilize Pro features, or when used in a benchtop application.
+      This may be preferred for systems with a small number of devices that need to utilize Pro features, or when used in a benchtop application.
 
    .. grid-item-card:: CANivore Bus
       :link: /docs/licensing/licensing
