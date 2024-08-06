@@ -42,7 +42,6 @@ release = ""
 extensions = [
     "notfound.extension",
     "sphinxcontrib.images",
-    "readthedocs_ext.readthedocs",
     "sphinxext.mimictoc",
     "sphinxext.opengraph",
     "sphinxext.rediraffe",
