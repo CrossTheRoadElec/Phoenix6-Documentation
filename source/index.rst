@@ -102,6 +102,7 @@ The Phoenix 6 software framework allows you to control and configure your `CTR E
    :hidden:
 
    docs/tuner/index
+   docs/licensing/what-is-licensing
    docs/licensing/licensing
    docs/licensing/team-licensing
 

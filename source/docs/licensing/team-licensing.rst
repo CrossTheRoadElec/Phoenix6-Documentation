@@ -10,6 +10,18 @@ Season Pass is a single, cost-effective purchase that allows **FRC teams** to li
 3. Follow the below steps for attaching a team number to your license.
 4. Once a team number has been attached, licensing process is the same as :doc:`/docs/licensing/licensing`.
 
+When is a Season Pass Applicable?
+---------------------------------
+
+Season Pass licenses enable Pro features when the licensed device is:
+
+* Used on a roboRIO configured for the team number assigned to the Season Pass
+
+  * Season Pass licensing will work on the roboRIO regardless of whether the device is on the native CAN Bus or a CANivore Bus.
+
+* Used for Hardware Attached Simulation (a CANivore connected to PC) with a WPILib robot project
+* Used on a roboRIO configured for one of the reserved "Off-Season Demo" team numbers (currently team numbers 9970 - 9999)
+
 Attaching a Team Number to Season Pass
 --------------------------------------
 
