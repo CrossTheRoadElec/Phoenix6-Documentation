@@ -104,11 +104,15 @@ Some device ``SimState`` objects also contain outputs that can be used in simula
 
       .. code-block:: java
 
+         private static final double kGearRatio = 10.0;
          private final DCMotorSim m_motorSimModel =
-            new DCMotorSim(DCMotor.getKrakenX60Foc(1), 1.0, 0.001);
+            new DCMotorSim(DCMotor.getKrakenX60Foc(1), kGearRatio, 0.001);
 
          public void simulationPeriodic() {
             var talonFXSim = m_talonFX.getSimState();
+
+            // set the supply voltage of the TalonFX
+            talonFXSim.setSupplyVoltage(RobotController.getBatteryVoltage());
 
             // get the motor voltage of the TalonFX
             var motorVoltage = talonFXSim.getMotorVoltage();
@@ -119,10 +123,13 @@ Some device ``SimState`` objects also contain outputs that can be used in simula
             m_motorSimModel.update(0.020); // assume 20 ms loop time
 
             // apply the new rotor position and velocity to the TalonFX;
-            // note that this is rotor position/velocity (before gear ratios)
-            talonFXSim.setRawRotorPosition(m_motorSimModel.getAngularPositionRotations());
+            // note that this is rotor position/velocity (before gear ratio), but
+            // DCMotorSim returns mechanism position/velocity (after gear ratio)
+            talonFXSim.setRawRotorPosition(
+               kGearRatio * m_motorSimModel.getAngularPositionRotations()
+            );
             talonFXSim.setRotorVelocity(
-               Units.radiansToRotations(m_motorSimModel.getAngularVelocityRadPerSec())
+               kGearRatio * Units.radiansToRotations(m_motorSimModel.getAngularVelocityRadPerSec())
             );
          }
 
@@ -131,13 +138,17 @@ Some device ``SimState`` objects also contain outputs that can be used in simula
 
       .. code-block:: cpp
 
+         static constexpr double kGearRatio = 10.0;
          frc::sim::DCMotorSim m_motorSimModel{
-            frc::DCMotor::KrakenX60FOC(1), 1.0, 0.001_kg_sq_m
+            frc::DCMotor::KrakenX60FOC(1), kGearRatio, 0.001_kg_sq_m
          };
 
          void SimulationPeriodic()
          {
             auto& talonFXSim = m_talonFX.GetSimState();
+
+            // set the supply voltage of the TalonFX
+            talonFXSim.SetSupplyVoltage(frc::RobotController::GetBatteryVoltage());
 
             // get the motor voltage of the TalonFX
             auto motorVoltage = talonFXSim.GetMotorVoltage();
@@ -148,9 +159,10 @@ Some device ``SimState`` objects also contain outputs that can be used in simula
             m_motorSimModel.Update(20_ms); // assume 20 ms loop time
 
             // apply the new rotor position and velocity to the TalonFX;
-            // note that this is rotor position/velocity (before gear ratios)
-            talonFXSim.SetRawRotorPosition(m_motorSimModel.GetAngularPosition());
-            talonFXSim.SetRotorVelocity(m_motorSimModel.GetAngularVelocity());
+            // note that this is rotor position/velocity (before gear ratio), but
+            // DCMotorSim returns mechanism position/velocity (after gear ratio)
+            talonFXSim.SetRawRotorPosition(kGearRatio * m_motorSimModel.GetAngularPosition());
+            talonFXSim.SetRotorVelocity(kGearRatio * m_motorSimModel.GetAngularVelocity());
          }
 
 High Fidelity CAN Bus Simulation
