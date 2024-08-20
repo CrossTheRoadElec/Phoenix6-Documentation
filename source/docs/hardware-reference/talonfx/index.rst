@@ -47,10 +47,27 @@ Utilizing your TalonFX
 
    improving-performance-with-current-limits
 
+Motor Orientation
+-----------------
+
+Talon FX supports Clockwise and Counter Clockwise inverts. Inverts are determined from the perspective of looking at the face of the motor.
+
+   .. grid:: 2
+
+      .. grid-item-card:: Clockwise
+
+         .. image:: images/clockwise.png
+            :alt: Clockwise can be found by tracing the motor mount holes from right to left
+
+      .. grid-item-card:: Counter Clockwise
+
+         .. image:: images/counter-clockwise.png
+            :alt: Counter Clockwise can be found by tracing the motor mount holes from left to right
+
 Actuator Limits
 ---------------
 
-CTR Electronics actuators, such as the TalonFX, support various kinds of hardware and software limits.
+CTR Electronics actuators, such as the Talon FX, support various kinds of hardware and software limits.
 
 .. note:: The TalonFX + Kraken X60 does not support hardware limit switches. Instead, :ref:`control request limit <docs/api-reference/api-usage/actuator-limits:control request limits>` overrides can be used, or a CANcoder can be used a :ref:`remote limit switch <docs/api-reference/api-usage/actuator-limits:remote limit switches>`.
 
