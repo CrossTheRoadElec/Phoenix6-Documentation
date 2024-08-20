@@ -69,7 +69,7 @@ Actuator Limits
 
 CTR Electronics actuators, such as the Talon FX, support various kinds of hardware and software limits.
 
-.. note:: The TalonFX + Kraken X60 does not support hardware limit switches. Instead, :ref:`control request limit <docs/api-reference/api-usage/actuator-limits:control request limits>` overrides can be used, or a CANcoder can be used a :ref:`remote limit switch <docs/api-reference/api-usage/actuator-limits:remote limit switches>`.
+.. note:: The TalonFX + Kraken X60 does not support hardware limit switches. Instead, :ref:`control request limit <docs/api-reference/api-usage/actuator-limits:control request limits>` overrides can be used, or a CANcoder can be used as a :ref:`remote limit switch <docs/api-reference/api-usage/actuator-limits:remote limit switches>`.
 
 Documentation on retrieving and configuring limits can be found :doc:`here </docs/api-reference/api-usage/actuator-limits>`.
 
