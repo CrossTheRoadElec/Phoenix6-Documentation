@@ -10,7 +10,7 @@ Documentation on wiring limit switches can be found :ref:`here <docs/hardware-re
 Retrieving Limit Switch State
 -----------------------------
 
-The state of the forward or reverse limit switch can be retrieved from the API via ``getForwardLimit()`` and ``getReverseLimit()``.
+The state of the forward or reverse limit switch can be retrieved from the API via ``getForwardLimit()`` and ``getReverseLimit()``. The state of the forward or reverse soft limit switch can be retrieved from the API via ``getFault_ForwardSoftLimit()`` and ``getFault_ReverseSoftLimit()``
 
 .. tab-set::
 
@@ -25,6 +25,12 @@ The state of the forward or reverse limit switch can be retrieved from the API v
             // do action when forward limit is closed
          }
 
+         var forwardSoftLimit = m_motor.getFault_ForwardSoftLimit();
+
+         if (forwardSoftLimit.getValue()) {
+             // do action when forward soft limit is reached
+         }
+
    .. tab-item:: C++
       :sync: C++
 
@@ -36,6 +42,12 @@ The state of the forward or reverse limit switch can be retrieved from the API v
             // do action when forward limit is closed
          }
 
+         auto& forwardSoftLimit = m_motor.GetFault_ForwardSoftLimit();
+
+         if (forwardSoftLimit.GetValue()) {
+             // do action when forward soft limit is reached
+         }
+
    .. tab-item:: Python
       :sync: Python
 
@@ -44,7 +56,12 @@ The state of the forward or reverse limit switch can be retrieved from the API v
          forward_limit = self.motor.get_forward_limit()
 
          if forward_limit.value is signals.ForwardLimitValue.CLOSED_TO_GROUND:
-            # do action when forward limit is closed
+             # do action when forward limit is closed
+
+         forward_soft_limit = self.motor.get_fault_forward_soft_limit()
+
+         if forward_soft_limit.value:
+             # do action when forward soft limit is reached 
 
 Control Request Limits
 ----------------------
