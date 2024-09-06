@@ -55,7 +55,7 @@ The state of the forward or reverse limit switch can be retrieved from the API v
 
          forward_soft_limit = self.motor.get_fault_forward_soft_limit()
          if forward_soft_limit.value:
-            # do action when forward soft limit is reached 
+            # do action when forward soft limit is reached
 
 Control Request Limits
 ----------------------
