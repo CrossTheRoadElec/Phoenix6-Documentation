@@ -76,8 +76,7 @@ Available distributions can be found in the dropdown below.
 
         - stable
 
-   .. warning:: Do not modify the distribution of the ``libs/<year>`` entry in the ``.list`` file.
-
+.. warning:: Do not modify the distribution of the ``libs/<year>`` entry in the ``.list`` file.
 
 CANivore Installation
 ^^^^^^^^^^^^^^^^^^^^^
