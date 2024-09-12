@@ -35,7 +35,7 @@ Open ``/etc/apt/sources.list.d/ctr${YEAR}.list`` with an editor of your choice.
 
    sudo nano /etc/apt/sources.list.d/ctr${YEAR}.list
 
-Replace ``stable`` with the distribution you want to use.
+In the ``tools`` entry, replace ``stable`` with the distribution you want to use.
 
 .. code-block:: bash
 
