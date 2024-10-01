@@ -28,7 +28,7 @@ Phoenix 6 devices are supported on the below CAN bus adapters.
    .. tab-item:: non-FRC
       :sync: non-FRC
 
-      Any SocketCAN capable adapter will work, but the `CANivore <https://store.ctr-electronics.com/canivore/>`__ is highly recommended. CANivore offers :ref:`additional functionality <docs/migration/new-to-phoenix:feature breakdown>` over other SocketCAN adapters.
+      On Linux systems, any SocketCAN capable adapter will work, but the `CANivore <https://store.ctr-electronics.com/canivore/>`__ is highly recommended. CANivore offers :ref:`additional functionality <docs/migration/new-to-phoenix:feature breakdown>` over other SocketCAN adapters. On Windows systems, you will need a CANivore to communicate with hardware.
 
 System Requirements
 -------------------
