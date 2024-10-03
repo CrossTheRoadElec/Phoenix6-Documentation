@@ -67,6 +67,7 @@ There are three major components to the Phoenix 6 API:
 
    api-overview
    configuration
+   device-specific-configs/index
    control-requests
    status-signals
    signal-logging
