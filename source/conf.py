@@ -45,7 +45,7 @@ on_rtd = os.environ.get("READTHEDOCS") == "True"
 # ones.
 extensions = [
     "notfound.extension",
-#    "sphinxcontrib.images",
+    #    "sphinxcontrib.images",
     "sphinxext.mimictoc",
     "sphinxext.opengraph",
     "sphinxext.rediraffe",
@@ -55,7 +55,7 @@ extensions = [
     "sphinx_copybutton",
 ]
 
-if (on_rtd):
+if on_rtd:
     extensions = extensions + ["sphinx_build_compatibility.extension"]
 
 local_extensions = [
