@@ -32,6 +32,10 @@ release = ""
 
 # -- General configuration ---------------------------------------------------
 
+# Only one language supported, no URL prefix
+# This is only needed when deploying a non-RTD server
+on_rtd = os.environ.get("READTHEDOCS") == "True"
+
 # If your documentation needs a minimal Sphinx version, state it here.
 #
 # needs_sphinx = '1.0'
@@ -41,7 +45,7 @@ release = ""
 # ones.
 extensions = [
     "notfound.extension",
-    "sphinxcontrib.images",
+#    "sphinxcontrib.images",
     "sphinxext.mimictoc",
     "sphinxext.opengraph",
     "sphinxext.rediraffe",
@@ -50,6 +54,9 @@ extensions = [
     "sphinx_design",
     "sphinx_copybutton",
 ]
+
+if (on_rtd):
+    extensions = extensions + ["sphinx_build_compatibility.extension"]
 
 local_extensions = [
     "_extensions.rtd_html_zip",
@@ -69,10 +76,6 @@ source_suffix = ".rst"
 
 # The master toctree document.
 master_doc = "index"
-
-# Only one language supported, no URL prefix
-# This is only needed when deploying a non-RTD server
-on_rtd = os.environ.get("READTHEDOCS") == "True"
 
 if on_rtd:
     html_baseurl = os.environ.get("READTHEDOCS_CANONICAL_URL", "")
