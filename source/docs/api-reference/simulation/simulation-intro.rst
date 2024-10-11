@@ -38,7 +38,7 @@ Each supported device has a device-specific ``SimState`` object that can be used
 
          talon_fx_sim = self.talon_fx.sim_state
 
-.. note:: Phoenix 6 utilizes the `C++ units library <https://docs.wpilib.org/en/stable/docs/software/basic-programming/cpp-units.html>`__ when applicable.
+.. note:: Phoenix 6 utilizes the `Java units library <https://docs.wpilib.org/en/stable/docs/software/basic-programming/java-units.html>`__ and `C++ units library <https://docs.wpilib.org/en/stable/docs/software/basic-programming/cpp-units.html>`__ when applicable.
 
 Orientation
 ^^^^^^^^^^^
@@ -148,22 +148,18 @@ Some device ``SimState`` objects also contain outputs that can be used in simula
             talonFXSim.setSupplyVoltage(RobotController.getBatteryVoltage());
 
             // get the motor voltage of the TalonFX
-            var motorVoltage = talonFXSim.getMotorVoltage();
+            var motorVoltage = talonFXSim.getMotorVoltageMeasure();
 
             // use the motor voltage to calculate new position and velocity
             // using WPILib's DCMotorSim class for physics simulation
-            m_motorSimModel.setInputVoltage(motorVoltage);
+            m_motorSimModel.setInputVoltage(motorVoltage.in(Volts));
             m_motorSimModel.update(0.020); // assume 20 ms loop time
 
             // apply the new rotor position and velocity to the TalonFX;
             // note that this is rotor position/velocity (before gear ratio), but
             // DCMotorSim returns mechanism position/velocity (after gear ratio)
-            talonFXSim.setRawRotorPosition(
-               kGearRatio * m_motorSimModel.getAngularPositionRotations()
-            );
-            talonFXSim.setRotorVelocity(
-               kGearRatio * Units.radiansToRotations(m_motorSimModel.getAngularVelocityRadPerSec())
-            );
+            talonFXSim.setRawRotorPosition(m_motorSimModel.getAngularPosition().times(kGearRatio));
+            talonFXSim.setRotorVelocity(m_motorSimModel.getAngularVelocity().times(kGearRatio));
          }
 
    .. tab-item:: C++
@@ -231,8 +227,14 @@ Some device ``SimState`` objects also contain outputs that can be used in simula
             # apply the new rotor position and velocity to the TalonFX;
             # note that this is rotor position/velocity (before gear ratio), but
             # DCMotorSim returns mechanism position/velocity (after gear ratio)
-            talon_fx_sim.set_raw_rotor_position(GEAR_RATIO * self.motor_sim_model.getAngularPosition() / (2 * math.pi))
-            talon_fx_sim.set_rotor_velocity(GEAR_RATIO * m_motorSimModel.getAngularVelocity() / (2 * math.pi))
+            talon_fx_sim.set_raw_rotor_position(
+               GEAR_RATIO
+               * units.radiansToRotations(self.motor_sim_model.getAngularPosition())
+            )
+            talon_fx_sim.set_rotor_velocity(
+               GEAR_RATIO
+               * units.radiansToRotations(m_motorSimModel.getAngularVelocity())
+            )
 
 High Fidelity CAN Bus Simulation
 --------------------------------
