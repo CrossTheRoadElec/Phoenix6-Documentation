@@ -28,17 +28,50 @@ To utilize hardware-attached simulation, ensure the CANivore is connected direct
 
          hardware::TalonFX m_motor{0, "mycanivore"};
 
-In VS Code, select the 3 dots in the top-right, then select :guilabel:`Hardware Sim Robot Code`
+   .. tab-item:: Python
+      :sync: Python
 
-.. image:: images/hardware-attached-sim-location.png
-   :alt: Location of hardware attached simulation
-   :width: 450
+      .. code-block:: python
 
-A message in the console should appear that the CAN Bus is connected.
+         self.motor = TalonFX(0, "mycanivore")
 
-.. code-block:: text
+.. tab-set::
 
-   ********** Robot program startup complete **********
-   [phoenix] CANbus Connected: uno (WinUSB, 2B189E633353385320202034383803FF)
-   [phoenix] CANbus Network Up: uno (WinUSB, 2B189E633353385320202034383803FF)
-   [phoenix] Library initialization is complete.
+   .. tab-item:: Java/C++
+
+      In VS Code, select the 3 dots in the top-right, then select :guilabel:`Hardware Sim Robot Code`
+
+      .. image:: images/hardware-attached-sim-location.png
+         :alt: Location of hardware attached simulation
+         :width: 450
+
+      A message in the console should appear that the CAN Bus is connected.
+
+      .. code-block:: text
+
+         ********** Robot program startup complete **********
+         [phoenix] CANbus Connected: uno (WinUSB, 2B189E633353385320202034383803FF)
+         [phoenix] CANbus Network Up: uno (WinUSB, 2B189E633353385320202034383803FF)
+         [phoenix] Library initialization is complete.
+
+   .. tab-item:: Python
+
+      Simulation can be started using
+
+      .. code-block:: bash
+
+         python -m robotpy sim
+
+      Users may notice the robot program is using simulated devices by default. This is the default behavior if the host platform supports simulation (see :ref:`requirements <docs/installation/requirements:system requirements>` for a full list of supported platforms).
+
+      In order for the robot program to communicate with physical devices (on platforms that support both simulation and hardware), the ``CTR_TARGET`` environment variable must be set. Examples of this are shown below.
+
+      .. code-block:: bash
+
+         export CTR_TARGET=Hardware # Export the environment variable so it's persistent in the shell
+
+      Or
+
+      .. code-block:: bash
+
+         CTR_TARGET=Hardware python3 application.py # Set the environment variable only for the python call
