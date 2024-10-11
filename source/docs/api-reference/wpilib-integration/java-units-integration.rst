@@ -1,3 +1,0 @@
-Java Units Integration
-======================
-
