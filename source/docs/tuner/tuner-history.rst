@@ -1,5 +1,7 @@
-Device History
+Tuner History
 ==============
+
+Tuner history provides insight on past connected devices and robot networks. **Device History** allows teams to view previously connected devices and license them without being directly connected to them. Users may wish to license previously connected devices due to a lack of internet connection while being connected to them. **Network History** indicates a list of past connected robot networks.
 
 Users can access a list of past devices connected to Tuner X and license them via the :guilabel:`Device History` page. This is accessible from the left-hand sidebar. This list is not automatically refreshed, but users can refresh it by pressing the refresh icon in the top-right of the page.
 
