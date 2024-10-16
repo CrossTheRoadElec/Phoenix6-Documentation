@@ -47,7 +47,7 @@ Various support has been added in the library utilizing the `2025 WPILib Java un
    // status signals now return a unit type
    AngularVelocity velocity = m_motor.getVelocity().getValue();
 
-   // users can alternatively use getValueAsDouble to get a double value
+   // users can alternatively use getValueAsDouble() to get a double value
    double velocity = m_motor.getVelocity().getValueAsDouble();
 
    // configs support units using the "with" decorators
@@ -63,7 +63,7 @@ Hoot Replay
 
 Hoot Replay is a new feature that allows users to playback their hoot logs in their robot program. This allows them to view and interact with their devices in simulation using measurements from real world IO.
 
-.. important: Hoot Replay requires the hoot log to have a Pro-licensed device. Currently, only one hoot log may be replayed at a time.
+.. important:: Hoot Replay requires the hoot log to have a Pro-licensed device. Currently, only one hoot log may be replayed at a time.
 
 Hoot Replay, controlled using the ``HootReplay`` class, supports playing back device status signals and custom user signals. Configs and control requests are ignored during replay.
 
