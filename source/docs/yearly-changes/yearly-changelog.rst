@@ -1,240 +1,173 @@
-New for 2024
+New for 2025
 ============
 
-The CTR Electronics development team has been hard at work expanding the Phoenix 6 API based on user feedback. We are proud to announce several exciting new features with this release!
+At CTR Electronics, we pride ourselves for taking our customer feedback seriously. The feedback our customers provide to us indicates a healthy and active developer ecosystem. Software changes constantly and our customer needs do too. We will continue to invest in our customers' needs and we are proud to announce our changelog for the 2025 year.
 
-Firmware for the 2024 release of Phoenix 6 can be found by selecting "2024" in the firmware selection menu.
-
-The API vendordep for 2024 is available under ``https://maven.ctr-electronics.com/release/com/ctre/phoenix6/latest/Phoenix6-frc2024-latest.json``.
-
-Users will need to update both firmware and API to make use of these features.
-
-.. note:: This changelog is intended to highlight the major additions to the Phoenix 6 API. For a detailed list of changes and bug fixes, visit the `Phoenix changelog <https://api.ctr-electronics.com/changelog>`__.
-
-Phoenix Pro Licensing
----------------------
-
-Introduced earlier this year is the new season pass licensing model. Season pass improves licensing flexibility when utilizing multiple robots and the roboRIO CAN bus. Additional information on this can be found in the `blog post <https://store.ctr-electronics.com/blog/phoenix-pro-licensing-announcing-season-pass/>`__.
-
-As a reminder, many of the features available in Phoenix 6 do **not** require Pro to use. A full breakdown of what is and is not supported is available under :ref:`the feature table <docs/migration/new-to-phoenix:feature breakdown>`.
-
-A variety of new (Pro and non-Pro) features have been added and are described in the API section below.
+.. note:: This changelog is intended to highlight the major additions to the Phoenix 6 API. For a detailed list of changes and bug fixes, visit the `API changelog <https://api.ctr-electronics.com/changelog>`__.
 
 API
 ---
 
-New Vendordep Procedures
-^^^^^^^^^^^^^^^^^^^^^^^^
-
-Installing Phoenix 6 and Phoenix 5 has changed to make installation easier for teams using both Phoenix 5 and Phoenix 6 devices. See :ref:`docs/installation/installation-frc:installing phoenix 6 (frc)` for more details.
-
-New Language Support
-^^^^^^^^^^^^^^^^^^^^
-
-Phoenix 6 now supports the following languages.
-
-- Java
-- C++
-- `Python <https://pypi.org/project/phoenix6/>`__
-- `C# <https://www.nuget.org/packages/Phoenix6/>`__ (non-FRC only)
-
-Feedback for the new language targets is welcome at `feedback@ctr-electronics.com <mailto:feedback@ctr-electronics.com>`__.
-
-:doc:`Swerve API </docs/api-reference/mechanisms/swerve/swerve-overview>`
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Now included in the Phoenix 6 API is a high performance Swerve API (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/mechanisms/swerve/package-summary.html>`__). Teams using Phoenix 6 compatible devices for their swerve drivetrain can utilize the API to maximize performance and **eliminate** the boilerplate that comes with copying swerve template code. Empower your odometry and maximize your robot responsiveness with our synchronous, latency-compensated API with simulation support!
-
-To complement the Swerve API, we've added a :doc:`project generation utility </docs/tuner/tuner-swerve/index>` to Tuner X to handle boilerplate related to inverts, offsets and gearing.
-
-Swerve drive code is as easy as the following.
-
-.. note:: The following example utilizes a generated ``TunerConstants`` class from Tuner X, but users can create the ``CommandSwerveDrivetrain`` or ``SwerveDrivetrain`` directly if they prefer. Additionally, this API is currently only available for Java.
-
-.. code-block:: java
-
-   /* Setting up bindings for necessary control of the swerve drive platform */
-   CommandXboxController joystick = new CommandXboxController(0); // My joystick
-   CommandSwerveDrivetrain drivetrain = TunerConstants.DriveTrain; // My drivetrain
-   SwerveRequest.FieldCentric drive = new SwerveRequest.FieldCentric().withIsOpenLoop(true); // I want field-centric
-                                                                                             // driving in open loop
-   SwerveRequest.SwerveDriveBrake brake = new SwerveRequest.SwerveDriveBrake();
-   SwerveRequest.PointWheelsAt point = new SwerveRequest.PointWheelsAt();
-   Telemetry logger = new Telemetry(MaxSpeed);
-
-   private void configureBindings() {
-      drivetrain.setDefaultCommand( // Drivetrain will execute this command periodically
-         drivetrain.applyRequest(() ->
-            drive.withVelocityX(-joystick.getLeftY() * MaxSpeed) // Drive forward with negative Y (forward)
-               .withVelocityY(-joystick.getLeftX() * MaxSpeed) // Drive left with negative X (left)
-               .withRotationalRate(-joystick.getRightX() * MaxAngularRate) // Drive counterclockwise with negative X (left)
-         )
-      );
-
-      joystick.a().whileTrue(drivetrain.applyRequest(() -> brake));
-      joystick.b().whileTrue(drivetrain
-         .applyRequest(() -> point.withModuleDirection(new Rotation2d(-joystick.getLeftY(), -joystick.getLeftX()))));
-
-      if (Utils.isSimulation()) {
-         drivetrain.seedFieldRelative(new Pose2d(new Translation2d(), Rotation2d.fromDegrees(90)));
-      }
-
-      drivetrain.registerTelemetry(logger::telemeterize);
-   }
-
-.. figure:: images/swerve-simulation-video.*
-   :alt: GIF showing swerve simulation support
-
-.. important:: Swerve API requires all necessary swerve devices to be v6 devices. e.g. 4 drive TalonFX, 4 steer TalonFX, 1 Pigeon 2.0, 4 CANcoders.
-
-:doc:`Signal Logging </docs/api-reference/api-usage/signal-logging>`
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-We've added a comprehensive signal logger (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/SignalLogger.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1_signal_logger.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/signal_logger/index.html>`__, `C# <https://api.ctr-electronics.com/phoenix6/release/csharp/html/T_CTRE_Phoenix6_SignalLogger.htm>`__) that provides a real-time capture of signals for supported devices. Signal logging can be useful for analysis of signals over a period of time. In applications, they can be useful for tuning PID gains, characterization of systems, analyzing latency on a system and much more. Did something unexpected happen in a match? Go back and check your logs to inspect positions, velocities, voltages, currents, temperatures, etc. Logging is automatic, and does not require choosing which signals you need captured ahead of time.
-
-.. important:: MCAP Export requires Pro Licensing
-
-.. note:: Documentation on configuring and extracting logs will be available soon.
-
-.. grid:: 2
-
-   .. grid-item-card:: Log Extractor
-
-      Logs can be extracted and converted to compatible formats directly in Tuner X.
-
-      .. image:: images/tuner-x-log-extractor.png
-         :alt: Log extractor page in Tuner X
-
-   .. grid-item-card:: Foxglove Log Analysis
-
-      Logs can then be analyzed in `Foxglove <https://foxglove.dev/>`__ to identify hardware failures, tuning gains, etc.
-
-      .. image:: images/foxglove-example.png
-         :alt: Picture of foxglove analyzing data
-
-Signal API Improvements
-^^^^^^^^^^^^^^^^^^^^^^^
-
-Users can now disable signals by setting their update rate to 0 Hz. To reduce boilerplate when disabling signals, we have added an ``optimizeBusUtilization()`` function on device objects. This will automatically disable all signals that have not explicitly been given an update frequency with ``setUpdateFrequency()``. There is also a ``ParentDevice.optimizeBusUtilizationForAll()`` static function that takes a list of devices to optimize. Additionally, update frequencies are automatically reapplied when devices reset.
-
-Setting a given signal's frequency behavior has been improved by keeping track of the signal with the highest frequency in a frame. The highest frequency of all signals in the frame is used for the frame instead of the most recent signal.
-
-Additionally, the following new functions have been added.
-
-* ``BaseStatusSignal.refreshAll()``
-
-  * Refreshes all passed in signals
-
-* ``BaseStatusSignal.setUpdateFrequencyForAll()``
-
-  * Applies the given update frequency to all signals that are passed in
-
-* ``getAppliedUpdateFrequency()``
-
-  * Retrieves the actual update frequency of a given signal
-
-New :doc:`Motion Magic® Controls </docs/api-reference/device-specific/talonfx/motion-magic>`
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-We have added a Motion Magic® Velocity control mode, which produces a motion profile in real-time for a velocity controller. This allows for smooth transitions between velocity setpoints. Additionally, we have added a Dynamic Motion Magic® control mode for our Pro CANivore users, which supports modifying the cruise velocity, acceleration, and jerk settings during motion.
-
-Furthermore, we have added Motion Magic® Expo control requests. Whereas traditional Motion Magic® uses a trapezoidal profile or an S-Curve, Motion Magic® Expo uses an exponential profile. The profile follows the kV and kA characteristics of the system, and optionally a cruise velocity. This allows the profile to best match the system dynamics, reducing both overshoot and time to target.
-
-For a full list of new Motion Magic® controls, see the controls API documentation (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/controls/package-summary.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/namespacectre_1_1phoenix6_1_1controls.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/controls/index.html>`__, `C# <https://api.ctr-electronics.com/phoenix6/release/csharp/html/N_CTRE_Phoenix6_Controls.htm>`__).
-
-Differential Mechanisms
-^^^^^^^^^^^^^^^^^^^^^^^
-
-.. important:: ``DifferentialMechanism`` requires both Pro and CANFD. ``SimpleDifferentialMechanism`` is a lower performance alternative that requires neither.
-
-``DifferentialMechanism`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/mechanisms/DifferentialMechanism.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1mechanisms_1_1_differential_mechanism.html>`__) provides an easy way to control two-axis differential mechanisms, such as a two motor elevator (motors on the left and right sides of the elevator that are not mechanically linked).
-
-New Configs
-^^^^^^^^^^^
-
-We've added several new configs. A full list of available configs is available in the ``configs`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/configs/package-summary.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/namespacectre_1_1phoenix6_1_1configs.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/configs/index.html>`__, `C# <https://api.ctr-electronics.com/phoenix6/release/csharp/html/N_CTRE_Phoenix6_Configs.htm>`__) namespace.
-
-Improved Support for roboRIO Motion Profiles
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-In addition to the kS and kV feedforward terms supported in 2023, Phoenix 6 now supports kG and kA. kG can be constant for use with an elevator, or it can calculate feedforward based on the cosine of position for mechanisms such as a rotating arm.
-
-Additionally, there is now improved integration with roboRIO motion profiling using velocity setpoints in position control modes, along with acceleration setpoints in velocity control modes.
-
-.. code-block:: java
-
-   // Trapezoid profile with max velocity 80 rps, max accel 160 rps/s
-   final TrapezoidProfile m_profile = new TrapezoidProfile(
-      new TrapezoidProfile.Constraints(80, 160)
-   );
-   // Final target of 200 rot, 0 rps
-   TrapezoidProfile.State m_goal = new TrapezoidProfile.State(200, 0);
-   TrapezoidProfile.State m_setpoint = new TrapezoidProfile.State();
-
-   // robot loop
-   m_setpoint = m_profile.calculate(0.020, m_setpoint, m_goal);
-   m_positionControl.Position = m_setpoint.position;
-   m_positionControl.Velocity = m_setpoint.velocity;
-   m_talonFX.setControl(m_positionControl);
-
-New ``SyncCANcoder`` Remote Sensor
+Additional Swerve Language Support
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Added support for ``SyncCANcoder`` feedback. This allows users to synchronize the TalonFX's internal rotor sensor against the remote CANcoder, but continue to use the rotor sensor for all closed loop control. TalonFX will continue to monitor the remote CANcoder and report if its internal position differs significantly from the reported position, or if the remote CANcoder disappears from the bus. Users may want this instead of FusedCANcoder if there is risk that the sensor can fail in a way that the sensor is still reporting "good" data, but the data does not match the mechanism, such as if the entire sensor mount assembly breaks off. Users using this over FusedCANcoder will not have the backlash compensation, as the CANcoder position is not continually fused in.
+.. image:: images/tuner-multi-language.png
+   :alt: Multiple language support in Tuner
+   :width: 550
 
-Miscellaneous Improvements
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+The implementation of the Swerve API has been moved to C++ to improve portability and performance. With this change, we are announcing Swerve Generator and Swerve API support for Python and C++.
 
-* Orchestra (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/Orchestra.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1_orchestra.html>`__, Python, `C# <https://api.ctr-electronics.com/phoenix6/release/csharp/html/T_CTRE_Phoenix6_Orchestra.htm>`__) has been ported from Phoenix 5.
+These changes result in a substantial performance improvement, as the odometry thread no longer pauses during Java garbage collection using native Phoenix swerve request calls. Custom swerve request calls are still available; however, their usage may not benefit from the performance improvements due to GC overhead.
 
-  * Now supports multiple devices playing a single track.
-  * Now works when the robot is disabled.
-  * A new ``MusicTone`` control mode has been added and can be used for playing a specific frequency.
+.. note: The previous Java swerve implementation is still available with the prefix ``Legacy`` added to it.
 
-* Remote limits have been ported from Phoenix 5.
-* Improved support for :doc:`unit tests </docs/api-reference/wpilib-integration/unit-testing>`.
-
-Tuner X
--------
-
-Swerve Project Generator
+Improved Swerve Requests
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Swerve has many common pitfalls (inverts, encoder offsets, gearing, etc.). Utilizing our new Tuner X :doc:`Swerve Project Generator </docs/tuner/tuner-swerve/index>` can help eliminate these problems. This utility will guide the user through specifying their drivebase characteristics, device selection, CANcoder offset configuration and drive/steer validation. This utility will then generate a project that provides minimum viable swerve control!
+After further testing, the SysId swerve requests have been improved to output usable gains for both drive and steer motors, as well as the ``HeadingController`` used in ```FieldCentricFacingAngle```.
 
-.. important:: This utility does not characterize the swerve. To maximize robot responsiveness, we recommend characterizing and modifying the gains specified in the generated ``TunerConstants`` class.
+Additionally, ``ApplyChassisSpeeds`` and ``SwerveModule.apply()`` now optionally accept (robot-relative) wheel force feedforward vectors. This allows the robot to more closely follow acceleration along autonomous paths.
 
-.. image:: images/tuner-swerve-page.png
-   :alt: Picture of the swerve configuration page in Tuner X
+Java Units Support
+^^^^^^^^^^^^^^^^^^
 
-.. note:: The Swerve Project Generator is only supported in FRC Java.
+Various support has been added in the library utilizing the 2025 WPILib Java units. This support includes:
 
-CANcoder Zero Button
-^^^^^^^^^^^^^^^^^^^^
+Units for status signals
+Unit overloads for control request parameters
+Unit overloads for config arguments
+Swerve API support for units
 
-.. important:: This feature requires 2024 diagnostics or newer.
+.. important:: Users wishing to utilize the primitive ``double`` types with status signals can use ``getValueAsDouble()`` instead (Java, Python, C++).
 
-CANcoders can be zeroed by pressing on the button shown below. This applies an offset to the encoder config and reports the applied offset to the user.
+Hoot Replay
+^^^^^^^^^^^
 
-.. image:: images/tuner-zero-cancoder.png
-   :alt: Picture with an arrow pointing at the zero cancoder icon
-   :width: 350px
+Hoot Replay is a new feature that allows users to playback their hoot logs in their robot program. This allows them to view and interact with their devices in simulation using measurements from real world IO.
 
-Improved Plotting
+.. important: Hoot Replay requires the hoot log to have a Pro-licensed device. Currently, only one hoot log may be replayed at a time.
+
+Hoot Replay, controlled using the `HootReplay` class, supports playing back device status signals and custom user signals. Configs and control requests are ignored during replay.
+
+During Hoot Replay, the robot will automatically enable and run through all the maneuvers recorded in the hoot log. Additionally, Hoot Replay supports step timing and changing the speed of the playback.
+
+.. image:: images/swerve_replay.gif
+   :width: 550
+
+Current Limiting Improvements
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Both supply and stator current limits now apply in TorqueCurrentFOC control. Additionally, supply current limiting is now more responsive and has been reworked to better prevent brownouts.
+
+Previously, when ``SupplyCurrentThreshold`` and ``SupplyTimeThreshold`` were configured, the Talon FX would allow **unlimited** supply current until it exceeded the ``SupplyCurrentThreshold`` for ``SupplyTimeThreshold``, after which the ``SupplyCurrentLimit`` takes effect. This was useful to maximize motor performance without tripping breakers. However, it was ineffective at preventing brownouts.
+
+As a result, the behavior of the supply current limiter has been changed:
+
+- The supply current limiter never allows more current draw than the configured ``SupplyCurrentLimit``, preventing brownouts.
+- ``SupplyCurrentThreshold`` and ``SupplyTimeThreshold`` have been replaced with (optional) ``SupplyCurrentLowerLimit`` and ``SupplyCurrentLowerTime`` parameters.
+- If supply current has been limited for ``SupplyCurrentLowerTime``, the supply current limit is reduced to the ``SupplyCurrentLowerLimit`` until current drops below the lower limit, preventing breaker trips.
+
+Additionally, the following default current limits are now in place:
+
+- Stator current limit of 120 A
+- Supply current limit of 70 A
+- Supply current lower limit of 40 A after limiting (at 70 A) for 1 second
+
+Timesync Control
+^^^^^^^^^^^^^^^^
+
+For Pro-licensed devices on a CANivore, timesync can now be used with control requests to delay applying the request until a timesync boundary. This eliminates the impact of nondeterministic network delays in exchange for a larger but deterministic control latency.
+
+Deprecations/Removals
+^^^^^^^^^^^^^^^^^^^^^
+
+- Deprecated ``Pigeon2::getAngle()`` and ``Pigeon2::getRate()``
+- Deprecated ``TalonFX::setInverted()``
+- Removed ``SupplyCurrentThreshold`` and ``SupplyTimeThreshold``
+- TalonFX no longer directly implements MotorController
+  - The APIs associated with MotorController are still available, but this gives us the flexibility to make QOL adjustments to the API (such as returning StatusCodes)
+
+Miscellaneous API Improvements
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- C++: Configs now use the C++ units library
+- C++: Configs are now ``constexpr``
+- Python: Added WPILib integrations to device classes
+- The ``CANBus`` API is now instantiable, and device constructors now have an overload accepting a ``CANBus`` object
+- Added an overload to device status signal getters to pull out the ``StatusSignal`` without refreshing
+- Added ``Utils.fpgaToCurrentTime()`` helper function to convert an FPGA timestamp to the timebase of ``Utils.getCurrentTimeSeconds()``
+- Robot state (teleop/auton/etc.) is now automatically logged in hoot files
+- Simulation: Improved performance and fixed frequent stale frame warnings
+- Simulation: Added support for simulating Pigeon 2 angular velocities
+
+Phoenix Tuner X
+---------------
+
+iOS and macOS Support
+^^^^^^^^^^^^^^^^^^^^^
+
+.. image:: images/tuner-macos.png
+   :alt: Tuner on macOS
+   :width: 550
+
+Added support for iOS and macOS. The application is available for a one-time cost to offset Apple development costs. We are actively investigating making iOS and macOS Tuner X free for season pass licensed teams but we cannot offer a timeline at this time.
+
+Enhanced Plotting
 ^^^^^^^^^^^^^^^^^
 
-.. important:: This feature requires 2024 diagnostics or newer.
+.. image:: images/tuner-plotter.gif
+   :width: 550
 
-All signals exposed in API can now be plotted directly in Tuner X.
+Plotting has been redone from the ground up to maximize accuracy, performance, and usability.
 
-.. image:: images/tuner-signal-plotting.png
-   :alt: Full signal plotting
+- Users can zoom and pan individual axes, and the entire plot.
+- Explicit points have been added to indicate if there are gaps in retrieved data.
+- Signals are plotted at their specified update frequency, ensuring there is no data lost.
+- Plotter has been benchmarked for millions of points, maximizing plot performance.
+- Clicking on the plot will bring up a selection box that will indicate the X/Y range of the provided selection.
+- Hovering on the plot will highlight and show the value of the nearest point for all signals.
+- Users can export the current enabled signals as a CSV.
+- Added a new signal analysis tab (accessed at the bottom of the device page).
 
-Batch Licensing
-^^^^^^^^^^^^^^^
+  - Users can customize the visualization of their signals, specifying point markers, colors, min/max, grid lines, or reset zoom on an individual series
+  - Statistics tab shows real time statistics for the currently selected series
+  - Signals can be grouped together by adding a new group, then dragging the signals in them. Grouped signals will share minimum and maximum, and scale for all plot zoom and pan operations.
 
-Tuner X now supports licensing multiple devices at once using :ref:`batch licensing <docs/licensing/licensing:batch activating licenses>`, streamlining the process of applying a Season Pass to your devices.
+QR Code Hot-Launch
+^^^^^^^^^^^^^^^^^^
 
-.. image:: images/tunerx-batch-license.png
-   :alt: Batch licensing devices
-   :width: 60%
+.. image:: images/tuner-qrcode-gen.png
+   :width: 550
+   :alt: Tuner QR code generation
+
+QR codes for a given device can be generated on desktop platforms. Individuals can scan the QR code on their mobile phone to launch Tuner navigating to the provided device.
+
+Notification Support
+^^^^^^^^^^^^^^^^^^^^
+
+Tuner X for Android and iOS supports notifications. Get notified when critical firmware or API releases are available.
+
+Miscellaneous Tuner Improvements
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- Up to an 88% improvement in device navigation speed.
+- Renamed the "Device History" tab to "Tuner History", which contains both "Device History" and "Network History". Network history highlights all previous robot networks that the Tuner has connected to.
+- Added support for POST diagnostic requests, improving portability and performance.
+- Added support for dynamically downloading the necessary version of Owlet for hoot.
+- Added a changelog flyout in Tuner. Click on the bell icon at the bottom right to view the latest changes in Tuner, API, or firmware.
+- Tuner Configs indicate if the current config value is not the default config value.
+- Tuner Configs indicate if the current config value is not within the acceptable minimum and maximum range of the config.
+- Added tooltips for enums and configs in Tuner.
+- Invert is no longer a boolean config, but instead an enum which matches API.
+
+Infrastructure and Tooling
+--------------------------
+
+We now publish an RSS feed at https://api.ctr-electronics.com/rss/rss.xml
+
+Additionally, there is now a webpage for downloading various CTR Electronics CLI utilities. These utilities include Owlet, Passerine, Phoenix Diagnostics Server, and Caniv.
+
+Please see the webpage for a description on what these tools are and how to download them.
+
+https://docs.ctr-electronics.com/cli-tools
+
