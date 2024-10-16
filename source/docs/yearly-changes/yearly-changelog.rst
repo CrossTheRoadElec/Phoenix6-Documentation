@@ -38,6 +38,20 @@ Various support has been added in the library utilizing the `2025 WPILib Java un
 - Unit overloads for config arguments
 - Swerve API support for units
 
+.. code-block:: java
+
+   // status signals now return a unit type
+   AngularVelocity velocity = m_motor.getVelocity().getValue();
+
+   // users can alternatively use getValueAsDouble to get a double value
+   double velocity = m_motor.getVelocity().getValueAsDouble();
+
+   // configs support units using the "with" decorators
+   var currentConfigs = new CurrentLimitConfigs().withStatorCurrentLimit(Amps.of(120));
+
+   // control requests support units for parameters
+   m_motor.setControl(m_motionMagicPosition.withPosition(Degrees.of(90)));
+
 .. important:: Users wishing to utilize the primitive ``double`` types with status signals can use ``getValueAsDouble()`` instead (Java, Python, C++).
 
 Hoot Replay
