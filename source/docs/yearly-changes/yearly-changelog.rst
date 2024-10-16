@@ -19,7 +19,7 @@ The implementation of the Swerve API has been moved to C++ to improve portabilit
 
 These changes result in a substantial performance improvement, as the odometry thread no longer pauses during Java garbage collection using native Phoenix swerve request calls. Custom swerve request calls are still available; however, their usage may not benefit from the performance improvements due to GC overhead.
 
-.. note: The previous Java swerve implementation is still available with the prefix ``Legacy`` added to it.
+.. note:: The previous Java swerve implementation is still available with the prefix ``Legacy`` added to it.
 
 Improved Swerve Requests
 ^^^^^^^^^^^^^^^^^^^^^^^^
