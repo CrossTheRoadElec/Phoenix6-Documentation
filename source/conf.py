@@ -53,6 +53,7 @@ extensions = [
     "sphinx.ext.autosectionlabel",
     "sphinx_design",
     "sphinx_copybutton",
+    "sphinx.ext.imgconverter",
 ]
 
 if on_rtd:
