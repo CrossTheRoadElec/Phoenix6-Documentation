@@ -13,7 +13,7 @@ Additional Swerve Language Support
 
 .. image:: images/tuner-multi-language.png
    :alt: Multiple language support in Tuner
-   :width: 550
+   :width: 650
 
 The implementation of the Swerve API has been moved to C++ to improve portability and performance. With this change, we are announcing Swerve Generator and Swerve API support for Python and C++.
 
@@ -23,6 +23,10 @@ These changes result in a substantial performance improvement, as the odometry t
 
 Improved Swerve Requests
 ^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. image:: images/sysid-steer.png
+   :alt: Picture of SysID showing improved gains
+   :width: 650
 
 After further testing, the SysId swerve requests have been improved to output usable gains for both drive and steer motors, as well as the ``HeadingController`` used in ``FieldCentricFacingAngle``.
 
@@ -66,7 +70,7 @@ Hoot Replay, controlled using the ``HootReplay`` class, supports playing back de
 During Hoot Replay, the robot will automatically enable and run through all the maneuvers recorded in the hoot log. Additionally, Hoot Replay supports step timing and changing the speed of the playback.
 
 .. image:: images/swerve_replay.gif
-   :width: 550
+   :width: 650
 
 Current Limiting Improvements
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -99,7 +103,8 @@ Deprecations/Removals
 - Deprecated ``TalonFX::setInverted()``
 - Removed ``SupplyCurrentThreshold`` and ``SupplyTimeThreshold``
 - TalonFX no longer directly implements MotorController
-  - The APIs associated with MotorController are still available, but this gives us the flexibility to make QOL adjustments to the API (such as returning StatusCodes)
+
+   - The APIs associated with MotorController are still available, but this gives us the flexibility to make QOL adjustments to the API (such as returning StatusCodes)
 
 Miscellaneous API Improvements
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -126,7 +131,7 @@ iOS and macOS Support
 
 .. image:: images/tuner-macos.png
    :alt: Tuner on macOS
-   :width: 550
+   :width: 650
 
 Added support for iOS and macOS. The application is available for a one-time cost to offset Apple development costs. We are actively investigating making iOS and macOS Tuner X free for season pass licensed teams but we cannot offer a timeline at this time.
 
@@ -134,7 +139,7 @@ Enhanced Plotting
 ^^^^^^^^^^^^^^^^^
 
 .. image:: images/tuner-plotter.gif
-   :width: 550
+   :width: 650
 
 Plotting has been redone from the ground up to maximize accuracy, performance, and usability.
 
@@ -147,15 +152,15 @@ Plotting has been redone from the ground up to maximize accuracy, performance, a
 - Users can export the current enabled signals as a CSV.
 - Added a new signal analysis tab (accessed at the bottom of the device page).
 
-  - Users can customize the visualization of their signals, specifying point markers, colors, min/max, grid lines, or reset zoom on an individual series
-  - Statistics tab shows real time statistics for the currently selected series
-  - Signals can be grouped together by adding a new group, then dragging the signals in them. Grouped signals will share minimum and maximum, and scale for all plot zoom and pan operations.
+   - Users can customize the visualization of their signals, specifying point markers, colors, min/max, grid lines, or reset zoom on an individual series
+   - Statistics tab shows real time statistics for the currently selected series
+   - Signals can be grouped together by adding a new group, then dragging the signals in them. Grouped signals will share minimum and maximum, and scale for all plot zoom and pan operations.
 
 QR Code Hot-Launch
 ^^^^^^^^^^^^^^^^^^
 
 .. image:: images/tuner-qrcode-gen.png
-   :width: 550
+   :width: 650
    :alt: Tuner QR code generation
 
 QR codes for a given device can be generated on desktop platforms. Individuals can scan the QR code on their mobile phone to launch Tuner navigating to the provided device.
