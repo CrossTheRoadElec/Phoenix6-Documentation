@@ -31,12 +31,12 @@ Additionally, ``ApplyChassisSpeeds`` and ``SwerveModule.apply()`` now optionally
 Java Units Support
 ^^^^^^^^^^^^^^^^^^
 
-Various support has been added in the library utilizing the 2025 WPILib Java units. This support includes:
+Various support has been added in the library utilizing the `2025 WPILib Java units <https://docs.wpilib.org/en/latest/docs/software/basic-programming/java-units.html>`__. This support includes:
 
-Units for status signals
-Unit overloads for control request parameters
-Unit overloads for config arguments
-Swerve API support for units
+- Units for status signals
+- Unit overloads for control request parameters
+- Unit overloads for config arguments
+- Swerve API support for units
 
 .. important:: Users wishing to utilize the primitive ``double`` types with status signals can use ``getValueAsDouble()`` instead (Java, Python, C++).
 
@@ -47,7 +47,7 @@ Hoot Replay is a new feature that allows users to playback their hoot logs in th
 
 .. important: Hoot Replay requires the hoot log to have a Pro-licensed device. Currently, only one hoot log may be replayed at a time.
 
-Hoot Replay, controlled using the `HootReplay` class, supports playing back device status signals and custom user signals. Configs and control requests are ignored during replay.
+Hoot Replay, controlled using the ``HootReplay`` class, supports playing back device status signals and custom user signals. Configs and control requests are ignored during replay.
 
 During Hoot Replay, the robot will automatically enable and run through all the maneuvers recorded in the hoot log. Additionally, Hoot Replay supports step timing and changing the speed of the playback.
 
