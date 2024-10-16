@@ -79,7 +79,7 @@ master_doc = "index"
 
 # We intentionally have multiple parents
 suppress_warnings = [
-    'toc.multiple_toc_parents',
+    "toc.multiple_toc_parents",
 ]
 
 if on_rtd:
