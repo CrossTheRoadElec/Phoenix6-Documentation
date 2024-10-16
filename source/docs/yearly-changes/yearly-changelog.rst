@@ -21,6 +21,8 @@ These changes result in a substantial performance improvement, as the odometry t
 
 .. note:: The previous Java swerve implementation is still available with the prefix ``Legacy`` added to it.
 
+We recommend all Java users regenerate their swerve projects to pick up new features and various other improvements to the 2025 Swerve API and project generator.
+
 Improved Swerve Requests
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
