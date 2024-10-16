@@ -104,7 +104,7 @@ Deprecations/Removals
 - Removed ``SupplyCurrentThreshold`` and ``SupplyTimeThreshold``
 - TalonFX no longer directly implements MotorController
 
-   - The APIs associated with MotorController are still available, but this gives us the flexibility to make QOL adjustments to the API (such as returning StatusCodes)
+  - The APIs associated with MotorController are still available, but this gives us the flexibility to make QOL adjustments to the API (such as returning StatusCodes)
 
 Miscellaneous API Improvements
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -152,9 +152,9 @@ Plotting has been redone from the ground up to maximize accuracy, performance, a
 - Users can export the current enabled signals as a CSV.
 - Added a new signal analysis tab (accessed at the bottom of the device page).
 
-   - Users can customize the visualization of their signals, specifying point markers, colors, min/max, grid lines, or reset zoom on an individual series
-   - Statistics tab shows real time statistics for the currently selected series
-   - Signals can be grouped together by adding a new group, then dragging the signals in them. Grouped signals will share minimum and maximum, and scale for all plot zoom and pan operations.
+  - Users can customize the visualization of their signals, specifying point markers, colors, min/max, grid lines, or reset zoom on an individual series
+  - Statistics tab shows real time statistics for the currently selected series
+  - Signals can be grouped together by adding a new group, then dragging the signals in them. Grouped signals will share minimum and maximum, and scale for all plot zoom and pan operations.
 
 QR Code Hot-Launch
 ^^^^^^^^^^^^^^^^^^
