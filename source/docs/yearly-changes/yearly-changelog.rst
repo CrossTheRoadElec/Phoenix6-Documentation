@@ -24,7 +24,7 @@ These changes result in a substantial performance improvement, as the odometry t
 Improved Swerve Requests
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-After further testing, the SysId swerve requests have been improved to output usable gains for both drive and steer motors, as well as the ``HeadingController`` used in ```FieldCentricFacingAngle```.
+After further testing, the SysId swerve requests have been improved to output usable gains for both drive and steer motors, as well as the ``HeadingController`` used in ``FieldCentricFacingAngle``.
 
 Additionally, ``ApplyChassisSpeeds`` and ``SwerveModule.apply()`` now optionally accept (robot-relative) wheel force feedforward vectors. This allows the robot to more closely follow acceleration along autonomous paths.
 
