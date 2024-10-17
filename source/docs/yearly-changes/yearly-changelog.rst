@@ -25,7 +25,7 @@ The implementation of the Swerve API has been moved to C++ to improve portabilit
 
 .. note:: The previous Java swerve implementation is still available with the prefix ``Legacy`` added to it.
 
-With this change, we are also announcing Swerve API and Swerve Project Generator support for both Python and C++.
+With this change, we are also announcing Swerve API and Swerve Project Generator support for all three languages supported in FRC (`Java <https://api.ctr-electronics.com/phoenix6/latest/java/com/ctre/phoenix6/swerve/SwerveDrivetrain.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/latest/cpp/classctre_1_1phoenix6_1_1swerve_1_1_swerve_drivetrain.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/latest/python/autoapi/phoenix6/swerve/swerve_drivetrain/index.html>`__).
 
 We recommend all Java users regenerate their swerve projects to pick up new features and various other improvements to the 2025 Swerve API and project generator.
 
@@ -38,7 +38,7 @@ Improved Swerve Requests
 
 After further testing, the SysId swerve requests have been improved to output usable gains for both drive and steer motors, as well as the ``HeadingController`` used in ``FieldCentricFacingAngle``.
 
-Additionally, ``ApplyChassisSpeeds`` and ``SwerveModule.apply()`` now optionally accept (robot-relative) wheel force feedforward vectors. This allows the robot to more closely follow acceleration along autonomous paths.
+Additionally, ``ApplyChassisSpeeds`` and ``SwerveModule.apply()`` now optionally accept (robot-relative) wheel force feedforward vectors (`Java <https://api.ctr-electronics.com/phoenix6/latest/java/com/ctre/phoenix6/swerve/SwerveRequest.ApplyChassisSpeeds.html#WheelForceFeedforwardsX>`__, `C++ <https://api.ctr-electronics.com/phoenix6/latest/cpp/classctre_1_1phoenix6_1_1swerve_1_1requests_1_1_apply_chassis_speeds.html#ae8351dacd3f40fd2df1e6086a461b221>`__, `Python <https://api.ctr-electronics.com/phoenix6/latest/python/autoapi/phoenix6/swerve/requests/index.html#phoenix6.swerve.requests.ApplyChassisSpeeds.wheel_force_feedforwards_x>`__). This allows the robot to more closely follow acceleration along autonomous paths.
 
 Java Units Support
 ^^^^^^^^^^^^^^^^^^
@@ -64,7 +64,7 @@ Support for the `2025 WPILib Java units <https://docs.wpilib.org/en/latest/docs/
    // control requests support units for parameters
    m_motor.setControl(m_motionMagicPosition.withPosition(Degrees.of(90)));
 
-.. important:: Users wishing to utilize the primitive ``double`` types with status signals can use ``getValueAsDouble()`` instead (Java, Python, C++).
+.. important:: Users wishing to utilize the primitive ``double`` types with status signals can use ``getValueAsDouble()`` instead (`Java <https://api.ctr-electronics.com/phoenix6/latest/java/com/ctre/phoenix6/BaseStatusSignal.html#getValueAsDouble()>`__, `C++ <https://api.ctr-electronics.com/phoenix6/latest/cpp/classctre_1_1phoenix6_1_1_base_status_signal.html#ac1a057dd56c1d26026ec15a779279f01>`__, `Python <https://api.ctr-electronics.com/phoenix6/latest/python/autoapi/phoenix6/base_status_signal/index.html#phoenix6.base_status_signal.BaseStatusSignal.value_as_double>`__).
 
 Hoot Replay
 ^^^^^^^^^^^
@@ -73,7 +73,7 @@ Hoot Replay is a new feature that allows users to playback their hoot logs in th
 
 .. important:: Hoot Replay requires the hoot log to have a Pro-licensed device. Currently, only one hoot log may be replayed at a time.
 
-Hoot Replay, controlled using the ``HootReplay`` class, supports playing back device status signals and custom user signals. Configs and control requests are ignored during replay.
+Hoot Replay, controlled using the ``HootReplay`` class (`Java <https://api.ctr-electronics.com/phoenix6/latest/java/com/ctre/phoenix6/HootReplay.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/latest/cpp/classctre_1_1phoenix6_1_1_hoot_replay.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/latest/python/autoapi/phoenix6/hoot_replay/index.html>`__), supports playing back device status signals and custom user signals. Configs and control requests are ignored during replay.
 
 During Hoot Replay, the simulated robot will automatically enable and run through all the maneuvers recorded in the hoot log. Additionally, Hoot Replay supports step timing and changing the speed of the playback.
 
@@ -92,7 +92,7 @@ Previously, when ``SupplyCurrentThreshold`` and ``SupplyTimeThreshold`` were con
 As a result, the behavior of the supply current limiter has been changed:
 
 - The supply current limiter never allows more current draw than the configured ``SupplyCurrentLimit``, preventing brownouts.
-- ``SupplyCurrentThreshold`` and ``SupplyTimeThreshold`` have been replaced with (optional) ``SupplyCurrentLowerLimit`` and ``SupplyCurrentLowerTime`` parameters.
+- ``SupplyCurrentThreshold`` and ``SupplyTimeThreshold`` have been replaced with (optional) ``SupplyCurrentLowerLimit`` and ``SupplyCurrentLowerTime`` parameters (`Java <https://api.ctr-electronics.com/phoenix6/latest/java/com/ctre/phoenix6/configs/CurrentLimitsConfigs.html#SupplyCurrentLowerLimit>`__, `C++ <https://api.ctr-electronics.com/phoenix6/latest/cpp/classctre_1_1phoenix6_1_1configs_1_1_current_limits_configs.html#adff5f6731f7ed4a1ef4af040f3542f79>`__, `Python <https://api.ctr-electronics.com/phoenix6/latest/python/autoapi/phoenix6/configs/config_groups/index.html#phoenix6.configs.config_groups.CurrentLimitsConfigs.supply_current_lower_limit>`__).
 - If supply current has been limited for ``SupplyCurrentLowerTime``, the supply current limit is reduced to the ``SupplyCurrentLowerLimit`` until current drops below the lower limit, preventing breaker trips.
 
 Additionally, the following default current limits are now in place:
@@ -104,7 +104,7 @@ Additionally, the following default current limits are now in place:
 Timesync Control
 ^^^^^^^^^^^^^^^^
 
-For Pro-licensed devices on a CANivore, timesync can now be used with control requests to delay applying the request until a timesync boundary. This eliminates the impact of nondeterministic network delays in exchange for a larger but deterministic control latency.
+For Pro-licensed devices on a CANivore, timesync can now be used with control requests to delay applying the request until a timesync boundary (`Java <https://api.ctr-electronics.com/phoenix6/latest/java/com/ctre/phoenix6/controls/DutyCycleOut.html#UseTimesync>`__, `C++ <https://api.ctr-electronics.com/phoenix6/latest/cpp/classctre_1_1phoenix6_1_1controls_1_1_duty_cycle_out.html#a74793aa81d80c52e184533ae896d7885>`__, `Python <https://api.ctr-electronics.com/phoenix6/latest/python/autoapi/phoenix6/controls/duty_cycle_out/index.html#phoenix6.controls.duty_cycle_out.DutyCycleOut.use_timesync>`__). This eliminates the impact of nondeterministic network delays in exchange for a larger but deterministic control latency.
 
 Deprecations/Removals
 ^^^^^^^^^^^^^^^^^^^^^
@@ -122,12 +122,12 @@ Miscellaneous API Improvements
 - C++: Configs now use the C++ units library
 - C++: Configs are now ``constexpr``
 - Python: Added WPILib integrations to device classes
-- The ``CANBus`` API is now instantiable, and device constructors now have an overload accepting a ``CANBus`` object
-- Added an overload to device status signal getters to pull out the ``StatusSignal`` without refreshing
-- Added ``Utils.fpgaToCurrentTime()`` helper function to convert an FPGA timestamp to the timebase of ``Utils.getCurrentTimeSeconds()``
+- The ``CANBus`` API is now instantiable (`Java <https://api.ctr-electronics.com/phoenix6/latest/java/com/ctre/phoenix6/CANBus.html#%3Cinit%3E(java.lang.String)>`__, `C++ <https://api.ctr-electronics.com/phoenix6/latest/cpp/classctre_1_1phoenix6_1_1_c_a_n_bus.html#aa0ba8f81a92ad8dfea7817908d60c60d>`__, `Python <https://api.ctr-electronics.com/phoenix6/latest/python/autoapi/phoenix6/canbus/index.html#phoenix6.canbus.CANBus>`__), and device constructors now have an overload accepting a ``CANBus`` object (`Java <https://api.ctr-electronics.com/phoenix6/latest/java/com/ctre/phoenix6/hardware/TalonFX.html#%3Cinit%3E(int,com.ctre.phoenix6.CANBus)>`__, `C++ <https://api.ctr-electronics.com/phoenix6/latest/cpp/classctre_1_1phoenix6_1_1hardware_1_1_talon_f_x.html#a25743e613c6cc9ca68e8ec861494c1a8>`__, `Python <https://api.ctr-electronics.com/phoenix6/latest/python/autoapi/phoenix6/hardware/talon_fx/index.html#phoenix6.hardware.talon_fx.TalonFX>`__)
+- Added an overload to device status signal getters to pull out the ``StatusSignal`` without refreshing (`Java <https://api.ctr-electronics.com/phoenix6/latest/java/com/ctre/phoenix6/hardware/core/CoreTalonFX.html#getPosition(boolean)>`__, `C++ <https://api.ctr-electronics.com/phoenix6/latest/cpp/classctre_1_1phoenix6_1_1hardware_1_1core_1_1_core_talon_f_x.html#a13c2cf460281eacd1c4c6ab0ea93e1ea>`__, `Python <https://api.ctr-electronics.com/phoenix6/latest/python/autoapi/phoenix6/hardware/core/core_talon_fx/index.html#phoenix6.hardware.core.core_talon_fx.CoreTalonFX.get_position>`__)
+- Added ``Utils.fpgaToCurrentTime()`` helper function (`Java <https://api.ctr-electronics.com/phoenix6/latest/java/com/ctre/phoenix6/Utils.html#fpgaToCurrentTime(double)>`__, `C++ <https://api.ctr-electronics.com/phoenix6/latest/cpp/namespacectre_1_1phoenix6_1_1utils.html#a827736803aff9dea38dd2d84fa717d6f>`__, `Python <https://api.ctr-electronics.com/phoenix6/latest/python/autoapi/phoenix6/utils/index.html#phoenix6.utils.fpga_to_current_time>`__) to convert an FPGA timestamp to the timebase of ``Utils.getCurrentTimeSeconds()``
 - Robot state (teleop/auton/etc.) is now automatically logged in hoot files
 - Simulation: Improved performance and fixed frequent stale frame warnings
-- Simulation: Added support for simulating Pigeon 2 angular velocities
+- Simulation: Added support for simulating Pigeon 2 angular velocities (`Java <https://api.ctr-electronics.com/phoenix6/latest/java/com/ctre/phoenix6/sim/Pigeon2SimState.html#setAngularVelocityX(double)>`__, `C++ <https://api.ctr-electronics.com/phoenix6/latest/cpp/classctre_1_1phoenix6_1_1sim_1_1_pigeon2_sim_state.html#ae2e0f58e29e788deb044a4c90663ad85>`__, `Python <https://api.ctr-electronics.com/phoenix6/latest/python/autoapi/phoenix6/sim/pigeon2_sim_state/index.html#phoenix6.sim.pigeon2_sim_state.Pigeon2SimState.set_angular_velocity_x>`__)
 - Improved API documentation of several configs, controls, and status signals
 
 Phoenix Tuner X
