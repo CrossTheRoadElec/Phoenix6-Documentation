@@ -128,6 +128,7 @@ Miscellaneous API Improvements
 - Robot state (teleop/auton/etc.) is now automatically logged in hoot files
 - Simulation: Improved performance and fixed frequent stale frame warnings
 - Simulation: Added support for simulating Pigeon 2 angular velocities
+- Improved API documentation of several configs, controls, and status signals
 
 Phoenix Tuner X
 ---------------
