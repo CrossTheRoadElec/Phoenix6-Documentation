@@ -21,11 +21,11 @@ Additional Swerve Language Support
    :alt: Multiple language support in Tuner
    :width: 650
 
-The implementation of the Swerve API has been moved to C++ to improve portability and performance. With this change, we are announcing Swerve Generator and Swerve API support for Python and C++.
-
-These changes result in a substantial performance improvement, as the odometry thread no longer pauses during Java garbage collection using native Phoenix swerve request calls. Custom swerve request calls are still available; however, their usage may not benefit from the performance improvements due to GC overhead.
+The implementation of the Swerve API has been moved to C++ to improve portability and performance. These changes result in a substantial performance improvement, as the odometry thread no longer pauses during Java garbage collection when using native Phoenix ``SwerveRequest`` calls. Custom swerve request calls are still available; however, their usage may not benefit from the performance improvements due to GC overhead.
 
 .. note:: The previous Java swerve implementation is still available with the prefix ``Legacy`` added to it.
+
+With this change, we are also announcing Swerve API and Swerve Project Generator support for both Python and C++.
 
 We recommend all Java users regenerate their swerve projects to pick up new features and various other improvements to the 2025 Swerve API and project generator.
 
