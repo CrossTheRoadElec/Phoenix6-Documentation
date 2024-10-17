@@ -32,7 +32,7 @@ Users can optionally provide a configuration object to apply custom configs to t
 Defining Module Characteristics
 -------------------------------
 
-The typical FRC drivetrain includes 4 identical modules. To simplify module creation, there exists a ``SwerveModuleConstantsFactory`` (`Java <https://api.ctr-electronics.com/phoenix6/latest/java/com/ctre/phoenix6/mechanisms/swerve/SwerveModuleConstantsFactory.html>`__) class to simplify module creation.
+The typical FRC drivetrain includes 4 identical modules. To simplify module creation, there exists a ``SwerveModuleConstantsFactory`` (`Java <https://api.ctr-electronics.com/phoenix6/latest/java/com/ctre/phoenix6/swerve/SwerveModuleConstantsFactory.html>`__) class to simplify module creation.
 
 Mandatory parameters for this factory are:
 
