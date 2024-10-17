@@ -53,6 +53,7 @@ extensions = [
     "sphinx.ext.autosectionlabel",
     "sphinx_design",
     "sphinx_copybutton",
+    "sphinx.ext.imgconverter",
 ]
 
 if on_rtd:
@@ -76,6 +77,11 @@ source_suffix = ".rst"
 
 # The master toctree document.
 master_doc = "index"
+
+# We intentionally have multiple parents
+suppress_warnings = [
+    "toc.multiple_toc_parents",
+]
 
 if on_rtd:
     html_baseurl = os.environ.get("READTHEDOCS_CANONICAL_URL", "")
