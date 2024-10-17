@@ -43,7 +43,7 @@ Additionally, ``ApplyChassisSpeeds`` and ``SwerveModule.apply()`` now optionally
 Java Units Support
 ^^^^^^^^^^^^^^^^^^
 
-Various support has been added in the library utilizing the `2025 WPILib Java units <https://docs.wpilib.org/en/latest/docs/software/basic-programming/java-units.html>`__. This support includes:
+Support for the `2025 WPILib Java units <https://docs.wpilib.org/en/latest/docs/software/basic-programming/java-units.html>`__ has been added to many APIs. This support includes:
 
 - Units for status signals
 - Unit overloads for control request parameters
