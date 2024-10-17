@@ -12,7 +12,7 @@ There are device-specific ``Configuration`` classes that group configuration dat
 These classes are `Passive Data Structures <https://en.wikipedia.org/wiki/Passive_data_structure>`__.
 One example is ``TalonFXConfiguration``, which has subgroups of configs such as ``MotorOutputConfigs``.
 The configs can be modified through public member variables of the ``Configuration`` object.
-The complete list of configuration objects can be found in the API documentation (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/configs/package-summary.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/namespacectre_1_1phoenix6_1_1configs.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/configs/index.html#module-phoenix6.configs>`__).
+The complete list of configuration objects can be found in the API documentation (`Java <https://api.ctr-electronics.com/phoenix6/latest/java/com/ctre/phoenix6/configs/package-summary.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/latest/cpp/namespacectre_1_1phoenix6_1_1configs.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/latest/python/autoapi/phoenix6/configs/index.html#module-phoenix6.configs>`__).
 
 .. tab-set::
 
@@ -40,7 +40,7 @@ The complete list of configuration objects can be found in the API documentation
 Future Proofing Configs
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-There is a corner case with configs where the device may have firmware with newer configs that didn't exist when the version of the API was built. To account for this problem, device ``Configuration`` objects have a ``FutureProofConfigs`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/configs/TalonFXConfiguration.html#FutureProofConfigs>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1configs_1_1_talon_f_x_configuration.html#a36c4797bc533994122b779405622934d>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/configs/talon_fx_configs/index.html#phoenix6.configs.talon_fx_configs.TalonFXConfiguration.future_proof_configs>`__) field.
+There is a corner case with configs where the device may have firmware with newer configs that didn't exist when the version of the API was built. To account for this problem, device ``Configuration`` objects have a ``FutureProofConfigs`` (`Java <https://api.ctr-electronics.com/phoenix6/latest/java/com/ctre/phoenix6/configs/TalonFXConfiguration.html#FutureProofConfigs>`__, `C++ <https://api.ctr-electronics.com/phoenix6/latest/cpp/classctre_1_1phoenix6_1_1configs_1_1_talon_f_x_configuration.html#a36c4797bc533994122b779405622934d>`__, `Python <https://api.ctr-electronics.com/phoenix6/latest/python/autoapi/phoenix6/configs/talon_fx_configs/index.html#phoenix6.configs.talon_fx_configs.TalonFXConfiguration.future_proof_configs>`__) field.
 
 Configurator API
 ----------------
@@ -79,9 +79,9 @@ As a result, the caller can pass the entire device ``Configuration`` object or j
 Reading Configs
 ^^^^^^^^^^^^^^^
 
-To read configs stored in a device, use the ``refresh()`` method to update a ``Configuration`` object. The example below demonstrates retrieving a full ``TalonFXConfiguration`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/configs/TalonFXConfiguration.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1configs_1_1_talon_f_x_configuration.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/index.html#phoenix6.TalonFXConfiguration>`__) object from a ``TalonFX`` device.
+To read configs stored in a device, use the ``refresh()`` method to update a ``Configuration`` object. The example below demonstrates retrieving a full ``TalonFXConfiguration`` (`Java <https://api.ctr-electronics.com/phoenix6/latest/java/com/ctre/phoenix6/configs/TalonFXConfiguration.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/latest/cpp/classctre_1_1phoenix6_1_1configs_1_1_talon_f_x_configuration.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/latest/python/autoapi/phoenix6/configs/talon_fx_configs/index.html#phoenix6.configs.talon_fx_configs.TalonFXConfiguration>`__) object from a ``TalonFX`` device.
 
-.. warning:: ``refresh()`` is a blocking API call that waits on the device to respond. Calling ``refresh()`` periodically may slow down the execution time of the periodic function, as it will always wait up to ``defaultTimeoutSeconds`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/configs/ParentConfigurator.html#defaultTimeoutSeconds>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1configs_1_1_parent_configurator.html#a166da706f551536b66314687866afc10>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/configs/talon_fx_configs/index.html#phoenix6.configs.talon_fx_configs.TalonFXConfigurator.refresh>`__) for the response when no timeout parameter is specified.
+.. warning:: ``refresh()`` is a blocking API call that waits on the device to respond. Calling ``refresh()`` periodically may slow down the execution time of the periodic function, as it will always wait up to ``DefaultTimeoutSeconds`` (`Java <https://api.ctr-electronics.com/phoenix6/latest/java/com/ctre/phoenix6/configs/ParentConfigurator.html#DefaultTimeoutSeconds>`__, `C++ <https://api.ctr-electronics.com/phoenix6/latest/cpp/classctre_1_1phoenix6_1_1configs_1_1_parent_configurator.html#aebb53abb6fdcbdf08d3b5e6803c75a81>`__, `Python <https://api.ctr-electronics.com/phoenix6/latest/python/autoapi/phoenix6/configs/talon_fx_configs/index.html#phoenix6.configs.talon_fx_configs.TalonFXConfigurator.refresh>`__) for the response when no timeout parameter is specified.
 
 .. tab-set::
 
@@ -123,7 +123,7 @@ Applying Configs
 
 Configs can be applied to a device by calling ``apply()`` on the ``Configurator`` with a ``Configuration`` object.
 
-.. warning:: ``apply()`` is a blocking API call that waits on the device to respond. Calling ``apply()`` periodically may slow down the execution time of the periodic function, as it will always wait up to ``defaultTimeoutSeconds`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/configs/ParentConfigurator.html#defaultTimeoutSeconds>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1configs_1_1_parent_configurator.html#a166da706f551536b66314687866afc10>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/configs/talon_fx_configs/index.html#phoenix6.configs.talon_fx_configs.TalonFXConfigurator.apply>`__) for the response when no timeout parameter is specified.
+.. warning:: ``apply()`` is a blocking API call that waits on the device to respond. Calling ``apply()`` periodically may slow down the execution time of the periodic function, as it will always wait up to ``DefaultTimeoutSeconds`` (`Java <https://api.ctr-electronics.com/phoenix6/latest/java/com/ctre/phoenix6/configs/ParentConfigurator.html#DefaultTimeoutSeconds>`__, `C++ <https://api.ctr-electronics.com/phoenix6/latest/cpp/classctre_1_1phoenix6_1_1configs_1_1_parent_configurator.html#aebb53abb6fdcbdf08d3b5e6803c75a81>`__, `Python <https://api.ctr-electronics.com/phoenix6/latest/python/autoapi/phoenix6/configs/talon_fx_configs/index.html#phoenix6.configs.talon_fx_configs.TalonFXConfigurator.apply>`__) for the response when no timeout parameter is specified.
 
 .. tab-set::
 

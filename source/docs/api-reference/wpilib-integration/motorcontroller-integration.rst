@@ -1,7 +1,7 @@
 MotorController Integration
 ===========================
 
-Phoenix 6 motor controller classes such as ``TalonFX`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/hardware/TalonFX.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1hardware_1_1_talon_f_x.html>`__) implement the ``MotorController`` (`Java <https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/motorcontrol/MotorController.html>`__, `C++ <https://github.wpilib.org/allwpilib/docs/release/cpp/classfrc_1_1_motor_controller.html>`__) interface. This allows Phoenix 6 motor controllers to be used in WPILib drivetrain classes such as ``DifferentialDrive``.
+Phoenix 6 motor controller classes such as ``TalonFX`` (`Java <https://api.ctr-electronics.com/phoenix6/latest/java/com/ctre/phoenix6/hardware/TalonFX.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/latest/cpp/classctre_1_1phoenix6_1_1hardware_1_1_talon_f_x.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/latest/python/autoapi/phoenix6/hardware/talon_fx/index.html>`__) implement many APIs from the ``MotorController`` (`Java <https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/motorcontrol/MotorController.html>`__, `C++ <https://github.wpilib.org/allwpilib/docs/release/cpp/classfrc_1_1_motor_controller.html>`__) interface. This allows Phoenix 6 motor controllers to more easily be used in WPILib drivetrain classes such as ``DifferentialDrive``.
 
 .. tab-set::
 
@@ -11,14 +11,16 @@ Phoenix 6 motor controller classes such as ``TalonFX`` (`Java <https://api.ctr-e
       .. code-block:: java
 
          // instantiate motor controllers
-         TalonFX m_motorLeft = new TalonFX(0);
-         TalonFX m_motorRight = new TalonFX(1);
+         final TalonFX m_motorLeft = new TalonFX(0);
+         final TalonFX m_motorRight = new TalonFX(1);
 
-         // create differentialdrive object for robot control
-         DifferentialDrive m_diffDrive = new DifferentialDrive(m_motorLeft, m_motorRight);
+         // create DifferentialDrive object for robot control
+         final DifferentialDrive m_diffDrive = new DifferentialDrive(
+            m_motorLeft::set, m_motorRight::set
+         );
 
          // instantiate joystick
-         XboxController m_driverJoy = new XboxController(0);
+         final XboxController m_driverJoy = new XboxController(0);
 
          public void teleopPeriodic() {
             var forward = -m_driverJoy.getLeftY();
@@ -49,10 +51,37 @@ Phoenix 6 motor controller classes such as ``TalonFX`` (`Java <https://api.ctr-e
          hardware::TalonFX m_motorRight{1};
 
          // create differentialdrive object for robot control
-         frc::DifferentialDrive m_diffDrive{m_motorLeft, m_motorRight};
+         frc::DifferentialDrive m_diffDrive{
+            [this](double output) { m_motorLeft.Set(output); },
+            [this](double output) { m_motorRight.Set(output); }
+         };
 
          // instantiate joystick
          frc::XboxController m_driverJoy{0};
+
+   .. tab-item:: Python
+      :sync: python
+
+      .. code-block:: python
+
+         def __init__(self):
+            # instantiate motor controllers
+            self.motor_left = hardware.TalonFX(0)
+            self.motor_right = hardware.TalonFX(1)
+
+            # create DifferentialDrive object for robot control
+            self.diff_drive = wpilib.drive.DifferentialDrive(
+               self.motor_left.set, self.motor_right.set
+            )
+
+            # instantiate joystick
+            self.driver_joy = wpilib.XboxController(0)
+
+         def teleopPeriodic(self):
+            forward = -self.driver_joy.getLeftY()
+            rot = -self.driver_joy.getRightX()
+
+            self.diff_drive.arcadeDrive(forward, rot)
 
 Motor Safety
 ------------
