@@ -46,7 +46,7 @@ If no CAN bus string is passed into the constructor, or the CAN bus string is em
 ``CANBus`` API
 --------------
 
-The ``CANBus`` API (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/CANBus.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1_c_a_n_bus.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/canbus/index.html>`__) can be used to retrieve information about any given CAN bus, such as the bus utilization.
+The ``CANBus`` API (`Java <https://api.ctr-electronics.com/phoenix6/latest/java/com/ctre/phoenix6/CANBus.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/latest/cpp/classctre_1_1phoenix6_1_1_c_a_n_bus.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/latest/python/autoapi/phoenix6/canbus/index.html>`__) can be used to retrieve information about any given CAN bus, such as the bus utilization.
 
 .. tab-set::
 
