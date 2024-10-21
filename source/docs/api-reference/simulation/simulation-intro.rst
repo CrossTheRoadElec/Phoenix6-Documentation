@@ -106,7 +106,7 @@ All ``SimState`` objects contain multiple inputs to manipulate the state of the 
       .. code-block:: java
 
          // set the supply voltage of the TalonFX to 12 V
-         m_talonFXSim.setSupplyVoltage(12);
+         m_talonFXSim.setSupplyVoltage(Volts.of(12));
 
    .. tab-item:: C++
       :sync: C++
@@ -250,7 +250,7 @@ In unit tests, it may be useful to increase the update rate of status signals to
 
          if (Utils.isSimulation()) {
             // set update rate to 1ms for unit tests
-            m_velocitySignal.setUpdateFrequency(1000);
+            m_velocitySignal.setUpdateFrequency(Hertz.of(1000));
          }
 
    .. tab-item:: C++
