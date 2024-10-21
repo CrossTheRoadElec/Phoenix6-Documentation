@@ -73,7 +73,7 @@ The :guilabel:`License devices` button at the bottom of the popup shows the numb
 Activating a License without a Robot
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Devices that have been seen by Tuner X at least once will be available in :ref:`Device History <docs/tuner/device-history:licensing from device history>`. This can be useful for licensing a device when disconnected from the robot.
+Devices that have been seen by Tuner X at least once will be available in :ref:`Device History <docs/tuner/tuner-history:licensing from device history>`. This can be useful for licensing a device when disconnected from the robot.
 
 Verifying Activation State
 --------------------------
