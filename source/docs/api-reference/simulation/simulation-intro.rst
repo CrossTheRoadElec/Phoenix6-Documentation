@@ -32,18 +32,18 @@ Each supported device has a device-specific ``SimState`` object that can be used
          auto& talonFXSim = m_talonFX.GetSimState();
 
    .. tab-item:: Python
-      :sync: Python
+      :sync: python
 
       .. code-block:: python
 
-         talonfx_sim = self.talonfx.sim_state
+         talon_fx_sim = self.talon_fx.sim_state
 
-.. note:: Phoenix 6 utilizes the `Java <https://docs.wpilib.org/en/stable/docs/software/basic-programming/java-units.html>`__ and `C++ <https://docs.wpilib.org/en/stable/docs/software/basic-programming/cpp-units.html>`__ units library when applicable.
+.. note:: Phoenix 6 utilizes the `C++ units library <https://docs.wpilib.org/en/stable/docs/software/basic-programming/cpp-units.html>`__ when applicable.
 
 Orientation
 ^^^^^^^^^^^
 
-The ``SimState`` API ignores typical device invert settings, as the user may change invert for any reason (such as flipping which direction is forward for a drivebase). As a result, for some devices, the ``SimState`` object supports specifying the orientation of the device relative to the robot chassis (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/sim/TalonFXSimState.html#Orientation>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1sim_1_1_talon_f_x_sim_state.html#ac3cce344719d64c98216286399936d6e>`__).
+The ``SimState`` API ignores typical device invert settings, as the user may change invert for any reason (such as flipping which direction is forward for a drivebase). As a result, for some devices, the ``SimState`` object supports specifying the orientation of the device relative to the robot chassis (`Java <https://api.ctr-electronics.com/phoenix6/latest/java/com/ctre/phoenix6/sim/TalonFXSimState.html#Orientation>`__, `C++ <https://api.ctr-electronics.com/phoenix6/latest/cpp/classctre_1_1phoenix6_1_1sim_1_1_talon_f_x_sim_state.html#ac3cce344719d64c98216286399936d6e>`__, `Python <https://api.ctr-electronics.com/phoenix6/latest/python/autoapi/phoenix6/sim/talon_fx_sim_state/index.html#phoenix6.sim.talon_fx_sim_state.TalonFXSimState.orientation>`__).
 
 This orientation represents the **mechanical** linkage between the device and the robot chassis. It **should not be changed with runtime invert**, as runtime invert specifies the *logical* orientation of the device. Rather, the orientation should **only be modified when the mechanical linkage itself changes**, such as when switching between two gearboxes inverted from each other.
 
@@ -78,18 +78,18 @@ This orientation represents the **mechanical** linkage between the device and th
          rightTalonFXSim.Orientation = sim::ChassisReference::Clockwise_Positive;
 
    .. tab-item:: Python
-      :sync: Python
+      :sync: python
 
       .. code-block:: python
 
-         left_talonfx_sim = self.left_talonfx.sim_state
-         right_talonfx_sim = self.right_talonfx.sim_state
+         left_talon_fx_sim = self.left_talon_fx.sim_state
+         right_talon_fx_sim = self.right_talon_fx.sim_state
 
          # left drivetrain motors are typically CCW+
-         left_talonfx_sim.orientation = ChassisReference.CounterClockwise_Positive
+         left_talon_fx_sim.orientation = sim.ChassisReference.CounterClockwise_Positive
 
          # right drivetrain motors are typically CW+
-         right_talonfx_sim.orientation = ChassisReference.Clockwise_Positive
+         right_talon_fx_sim.orientation = sim.ChassisReference.Clockwise_Positive
 
 Inputs and Outputs
 ^^^^^^^^^^^^^^^^^^
@@ -117,14 +117,14 @@ All ``SimState`` objects contain multiple inputs to manipulate the state of the 
          m_talonFXSim.SetSupplyVoltage(12_V);
 
    .. tab-item:: Python
-      :sync: Python
+      :sync: python
 
       .. code-block:: python
 
          # set the supply voltage of the TalonFX to 12 V
-         self.talonfx_sim.set_supply_voltage(12)
+         self.talon_fx_sim.set_supply_voltage(12.0)
 
-Some device ``SimState`` objects also contain outputs that can be used in simulation physics calculations. For example, the ``TalonFXSimState`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/sim/TalonFXSimState.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1sim_1_1_talon_f_x_sim_state.html>`__) object has a motor voltage output that can be used to calculate position and velocity:
+Some device ``SimState`` objects also contain outputs that can be used in simulation physics calculations. For example, the ``TalonFXSimState`` (`Java <https://api.ctr-electronics.com/phoenix6/latest/java/com/ctre/phoenix6/sim/TalonFXSimState.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/latest/cpp/classctre_1_1phoenix6_1_1sim_1_1_talon_f_x_sim_state.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/latest/python/autoapi/phoenix6/sim/talon_fx_sim_state/index.html>`__) object has a motor voltage output that can be used to calculate position and velocity:
 
 .. tab-set::
 
@@ -134,8 +134,12 @@ Some device ``SimState`` objects also contain outputs that can be used in simula
       .. code-block:: java
 
          private static final double kGearRatio = 10.0;
-         private final DCMotorSim m_motorSimModel =
-            new DCMotorSim(DCMotor.getKrakenX60Foc(1), kGearRatio, 0.001);
+         private final DCMotorSim m_motorSimModel = new DCMotorSim(
+            LinearSystemId.createDCMotorSystem(
+               DCMotor.getKrakenX60Foc(1), 0.001, kGearRatio
+            )
+            DCMotor.getKrakenX60Foc(1)
+         );
 
          public void simulationPeriodic() {
             var talonFXSim = m_talonFX.getSimState();
@@ -144,18 +148,22 @@ Some device ``SimState`` objects also contain outputs that can be used in simula
             talonFXSim.setSupplyVoltage(RobotController.getBatteryVoltage());
 
             // get the motor voltage of the TalonFX
-            var motorVoltage = talonFXSim.getMotorVoltageMeasure();
+            var motorVoltage = talonFXSim.getMotorVoltage();
 
             // use the motor voltage to calculate new position and velocity
             // using WPILib's DCMotorSim class for physics simulation
-            m_motorSimModel.setInputVoltage(motorVoltage.in(Volts));
+            m_motorSimModel.setInputVoltage(motorVoltage);
             m_motorSimModel.update(0.020); // assume 20 ms loop time
 
             // apply the new rotor position and velocity to the TalonFX;
             // note that this is rotor position/velocity (before gear ratio), but
             // DCMotorSim returns mechanism position/velocity (after gear ratio)
-            talonFXSim.setRawRotorPosition(m_motorSimModel.getAngularPosition().times(kGearRatio));
-            talonFXSim.setRotorVelocity(m_motorSimModel.getAngularVelocity().times(kGearRatio));
+            talonFXSim.setRawRotorPosition(
+               kGearRatio * m_motorSimModel.getAngularPositionRotations()
+            );
+            talonFXSim.setRotorVelocity(
+               kGearRatio * Units.radiansToRotations(m_motorSimModel.getAngularVelocityRadPerSec())
+            );
          }
 
    .. tab-item:: C++
@@ -165,7 +173,12 @@ Some device ``SimState`` objects also contain outputs that can be used in simula
 
          static constexpr double kGearRatio = 10.0;
          frc::sim::DCMotorSim m_motorSimModel{
-            frc::DCMotor::KrakenX60FOC(1), kGearRatio, 0.001_kg_sq_m
+            frc::LinearSystemId::DCMotorSystem{
+               frc::DCMotor::KrakenX60FOC(1),
+               0.001_kg_sq_m,
+               kGearRatio
+            },
+            frc::DCMotor::KrakenX60FOC(1)
          };
 
          void SimulationPeriodic()
@@ -191,57 +204,42 @@ Some device ``SimState`` objects also contain outputs that can be used in simula
          }
 
    .. tab-item:: Python
-      :sync: Python
+      :sync: python
 
       .. code-block:: python
 
-         def robotInit(self) -> None:
-            """
-            This function is run when the robot is first started up and should be used for any
-            initialization code.
-            """
-            self.GEAR_RATIO: float = 10.0
-            self.__motor_sim_model = DCMotorSim(
-               DCMotor.krakenX60FOC(1), self.GEAR_RATIO, 0.001
-            )
+         GEAR_RATIO = 10.0
 
-         def _simulationPeriodic(self) -> None:
-            """
-            Periodic simulation code should go here.
+         def __init__(self):
+            gearbox = DCMotor.krakenX60FOC(1)
+            self.motor_sim_model = DCMotorSim(LinearSystemId.DCMotorSystem(gearbox, 0.001, GEAR_RATIO), gearbox)
 
-            This function is called in a simulated robot after user code executes.
-            """
-            talonfx_sim = self.talonfx.sim_state
+         def simulationPeriodic(self):
+            talon_fx_sim = self.talon_fx.sim_state
 
             # set the supply voltage of the TalonFX
-            talonfx_sim.set_supply_voltage(RobotController.getBatteryVoltage())
+            talon_fx_sim.set_supply_voltage(RobotControllergetBatteryVoltage())
 
             # get the motor voltage of the TalonFX
-            motor_voltage = talonfx_sim.motor_voltage
+            motor_voltage = talon_fx_sim.motor_voltage
 
             # use the motor voltage to calculate new position and velocity
-            # using the WPILib's DCMotorSim class for physics simulation
-            self.__motor_sim_model.setInputVoltage(motor_voltage)
-            self.__motor_sim_model.update(0.020)  # assume 20 ms loop time
+            # using WPILib's DCMotorSim class for physics simulation
+            self.motor_sim_model.setInputVoltage(motor_voltage)
+            self.motor_sim_model.update(0.020) # assume 20 ms loop time
 
             # apply the new rotor position and velocity to the TalonFX;
             # note that this is rotor position/velocity (before gear ratio), but
             # DCMotorSim returns mechanism position/velocity (after gear ratio)
-            talonfx_sim.set_raw_rotor_position(
-               self.GEAR_RATIO
-               * units.radiansToRotations(self.__motor_sim_model.getAngularPosition())
-            )
-            talonfx_sim.set_rotor_velocity(
-               self.GEAR_RATIO
-               * units.radiansToRotations(self.__motor_sim_model.getAngularVelocity())
-            )
+            talon_fx_sim.set_raw_rotor_position(GEAR_RATIO * self.motor_sim_model.getAngularPosition() / (2 * math.pi))
+            talon_fx_sim.set_rotor_velocity(GEAR_RATIO * m_motorSimModel.getAngularVelocity() / (2 * math.pi))
 
 High Fidelity CAN Bus Simulation
 --------------------------------
 
 As a part of high-fidelity simulation, the influence of the CAN bus is simulated at a level similar to what happens on a real robot. This means that the timing behavior of control and status signals in simulation will align to the same framing intervals seen on a real CAN bus. In simulation, this may appear as a delay between setting a signal and getting its real value, or between setting its real value and getting it in API.
 
-In unit tests, it may be useful to increase the update rate of status signals to avoid erroneous failures and minimize delays. The update rate can be modified for simulation by wrapping the :ref:`signal update frequency <docs/api-reference/api-usage/status-signals:changing update frequency>` in a ``Utils.isSimulation()`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/Utils.html#isSimulation()>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/namespacectre_1_1phoenix6.html#ab4754e75285682ed3f46dac92e35985b>`__) condition.
+In unit tests, it may be useful to increase the update rate of status signals to avoid erroneous failures and minimize delays. The update rate can be modified for simulation by wrapping the :ref:`signal update frequency <docs/api-reference/api-usage/status-signals:changing update frequency>` in a ``Utils.isSimulation()`` (`Java <https://api.ctr-electronics.com/phoenix6/latest/java/com/ctre/phoenix6/Utils.html#isSimulation()>`__, `C++ <https://api.ctr-electronics.com/phoenix6/latest/cpp/namespacectre_1_1phoenix6_1_1utils.html#a4d309e0125a0f686b3fe1a8c064a1f65>`__, `Python <https://api.ctr-electronics.com/phoenix6/latest/python/autoapi/phoenix6/utils/index.html#phoenix6.utils.is_simulation>`__) condition.
 
 .. tab-set::
 
@@ -266,10 +264,10 @@ In unit tests, it may be useful to increase the update rate of status signals to
          }
 
    .. tab-item:: Python
-      :sync: Python
+      :sync: python
 
       .. code-block:: python
 
-         if (utils.is_simulation()):
+         if utils.is_simulation():
             # set update rate to 1ms for unit tests
-            self.velocity_signal.set_update_frequency(1000)
+            self.velocity_signal.set_update_frequency(1000.0)

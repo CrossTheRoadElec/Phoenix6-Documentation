@@ -15,11 +15,11 @@ The Phoenix 6 software framework allows you to control and configure your `CTR E
 .. grid:: 1 2 2 2
    :gutter: 3
 
-   .. grid-item-card:: New for 2024
+   .. grid-item-card:: New for 2025
       :link: docs/yearly-changes/yearly-changelog
       :link-type: doc
 
-      What's new in Phoenix 6 for 2024.
+      What's new in Phoenix 6 for 2025.
 
    .. grid-item-card:: Migration Guide
       :link: docs/migration/migration-guide/index
@@ -143,9 +143,9 @@ The Phoenix 6 software framework allows you to control and configure your `CTR E
    :caption: API docs
    :hidden:
 
-   Java API Docs <https://api.ctr-electronics.com/phoenix6/release/java/>
-   C++ API Docs <https://api.ctr-electronics.com/phoenix6/release/cpp/>
-   Python API Docs <https://api.ctr-electronics.com/phoenix6/release/python/>
+   Java API Docs <https://api.ctr-electronics.com/phoenix6/latest/java/>
+   C++ API Docs <https://api.ctr-electronics.com/phoenix6/latest/cpp/>
+   Python API Docs <https://api.ctr-electronics.com/phoenix6/latest/python/>
    C# API Docs <https://api.ctr-electronics.com/phoenix6/release/csharp/>
 
 .. toctree::
