@@ -8,8 +8,7 @@ Devices support persistent settings through the use of "configs".
 Configuration Objects
 ---------------------
 
-There are device-specific ``Configuration`` classes that group configuration data of devices in a meaningful way.
-These classes are `Passive Data Structures <https://en.wikipedia.org/wiki/Passive_data_structure>`__.
+There are device-specific ``Configuration`` classes that group configuration data of devices in a meaningful way. These classes are `Passive Data Structures <https://en.wikipedia.org/wiki/Passive_data_structure>`__.
 One example is ``TalonFXConfiguration``, which has subgroups of configs such as ``MotorOutputConfigs``.
 The configs can be modified through public member variables of the ``Configuration`` object.
 The complete list of configuration objects can be found in the API documentation (`Java <https://api.ctr-electronics.com/phoenix6/latest/java/com/ctre/phoenix6/configs/package-summary.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/latest/cpp/namespacectre_1_1phoenix6_1_1configs.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/latest/python/autoapi/phoenix6/configs/index.html#module-phoenix6.configs>`__).
