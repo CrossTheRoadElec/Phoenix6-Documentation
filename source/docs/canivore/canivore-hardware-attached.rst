@@ -33,7 +33,7 @@ To utilize hardware-attached simulation, ensure the CANivore is connected direct
 
       .. code-block:: python
 
-         self.motor = TalonFX(0, "mycanivore")
+         self.motor = hardware.TalonFX(0, "mycanivore")
 
 .. tab-set::
 

@@ -206,6 +206,8 @@ When optimizing the bus utilization for devices, all status signals that have no
 
 .. tip:: Instead of disabling all unused status signals, an update frequency can be specified instead to keep them enabled at a slower update rate (`Java <https://api.ctr-electronics.com/phoenix6/latest/java/com/ctre/phoenix6/hardware/ParentDevice.html#optimizeBusUtilizationForAll(double,com.ctre.phoenix6.hardware.ParentDevice...)>`__, `c++ <https://api.ctr-electronics.com/phoenix6/latest/cpp/classctre_1_1phoenix6_1_1hardware_1_1_parent_device.html#a8e6cd768e43b16719df126a27c484e16>`__, `Python <https://api.ctr-electronics.com/phoenix6/latest/python/autoapi/phoenix6/hardware/parent_device/index.html#phoenix6.hardware.parent_device.ParentDevice.optimize_bus_utilization_for_all>`__). This is useful when using :doc:`/docs/api-reference/api-usage/signal-logging`.
 
+.. warning:: When using followers, the leader motor must keep the `DutyCycle`, `MotorVoltage`, and `TorqueCurrent` status signals enabled. Additionally, remote sensors must keep related status signals enabled (such as position and velocity).
+
 .. tab-set::
 
    .. tab-item:: Java
