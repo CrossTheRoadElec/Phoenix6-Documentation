@@ -91,7 +91,7 @@ Control requests also supports modification using method chaining. This can be u
          final TorqueCurrentFOC m_motorRequest = new TorqueCurrentFOC(0);
 
          // mutate request with output of 10 amps and max duty cycle 0.5
-         m_motor.SetControl(m_motorRequest.withOutput(Amps.of(10)).withMaxAbsDutyCycle(0.5));
+         m_motor.setControl(m_motorRequest.withOutput(Amps.of(10)).withMaxAbsDutyCycle(0.5));
 
    .. tab-item:: C++
       :sync: C++
