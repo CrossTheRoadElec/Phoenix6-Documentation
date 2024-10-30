@@ -3,7 +3,7 @@ Control Requests
 
 Control Requests represent the **output** of a device. A list of control requests can be found in the API docs (`Java <https://api.ctr-electronics.com/phoenix6/latest/java/com/ctre/phoenix6/controls/package-summary.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/latest/cpp/namespacectre_1_1phoenix6_1_1controls.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/latest/python/autoapi/phoenix6/controls/index.html>`__).
 
-.. note:: Phoenix 6 utilizes the `C++ units library <https://docs.wpilib.org/en/stable/docs/software/basic-programming/cpp-units.html>`__ when applicable.
+.. note:: Phoenix 6 utilizes the `C++ units library <https://docs.wpilib.org/en/stable/docs/software/basic-programming/cpp-units.html>`__ and, optionally, the `Java units library <https://docs.wpilib.org/en/stable/docs/software/basic-programming/java-units.html>`__ when applicable. Using the Java units library may increase GC overhead.
 
 Applying a Control Request
 --------------------------
@@ -78,7 +78,7 @@ Control requests are mutable, so they can be saved in a member variable and reus
 Method Chaining API
 ^^^^^^^^^^^^^^^^^^^
 
-Control requests also supports modification using method chaining. This can be useful for mutating multiple values of a control request.
+Control requests also supports modification using method chaining. This can be useful for mutating multiple values of a control request. In Java, this can also be used to provide a unit type.
 
 .. tab-set::
 
@@ -91,7 +91,7 @@ Control requests also supports modification using method chaining. This can be u
          final TorqueCurrentFOC m_motorRequest = new TorqueCurrentFOC(0);
 
          // mutate request with output of 10 amps and max duty cycle 0.5
-         m_motor.SetControl(m_motorRequest.withOutput(10).withMaxAbsDutyCycle(0.5));
+         m_motor.SetControl(m_motorRequest.withOutput(Amps.of(10)).withMaxAbsDutyCycle(0.5));
 
    .. tab-item:: C++
       :sync: C++
