@@ -61,7 +61,7 @@ Instead of raw strings, a ``CANBus`` object (`Java <https://api.ctr-electronics.
          TalonFX fx = new TalonFX(0, canbus);
 
          // retrieve bus utilization for the CAN bus
-         CANBusStatus canInfo = canbus.getStatus("drivetrain");
+         CANBusStatus canInfo = canbus.getStatus();
          float busUtil = canInfo.BusUtilization;
 
          if (busUtil > 0.8) {
@@ -79,7 +79,7 @@ Instead of raw strings, a ``CANBus`` object (`Java <https://api.ctr-electronics.
          hardware::TalonFX fx{0, canbus};
 
          // retrieve bus utilization for the CANivore named drivetrain
-         CANBus::CANBusStatus canInfo = canbus.GetStatus("drivetrain");
+         CANBus::CANBusStatus canInfo = canbus.GetStatus();
          float busUtil = canInfo.BusUtilization;
 
          if (busUtil > 0.8) {
@@ -97,7 +97,7 @@ Instead of raw strings, a ``CANBus`` object (`Java <https://api.ctr-electronics.
          fx = hardware.TalonFX(0, canbus)
 
          # retrieve bus utilization for the CANivore named drivetrain
-         can_info = canbus.get_status("drivetrain")
+         can_info = canbus.get_status()
          bus_util = can_info.bus_utilization
 
          if bus_util > 0.8:
