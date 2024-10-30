@@ -233,7 +233,7 @@ Some device ``SimState`` objects also contain outputs that can be used in simula
             )
             talon_fx_sim.set_rotor_velocity(
                GEAR_RATIO
-               * units.radiansToRotations(m_motorSimModel.getAngularVelocity())
+               * units.radiansToRotations(self.motor_sim_model.getAngularVelocity())
             )
 
 High Fidelity CAN Bus Simulation
