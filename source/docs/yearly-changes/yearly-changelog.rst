@@ -21,7 +21,7 @@ Additional Swerve Language Support
    :alt: Multiple language support in Tuner
    :width: 650
 
-The implementation of the Swerve API has been moved to C++ to improve portability and performance. These changes result in a substantial performance improvement, as the odometry thread no longer pauses during Java garbage collection when using native Phoenix ``SwerveRequest`` calls. Custom swerve request calls are still available; however, their usage may not benefit from the performance improvements due to GC overhead.
+The implementation of the Swerve API has been moved to C++ to improve portability and performance. These changes result in a substantial performance improvement, as the odometry thread no longer pauses during Java garbage collection when using native Phoenix ``SwerveRequest`` calls. Custom swerve request calls are still available and can be composed with native requests (see ``FieldCentricFacingAngle``); however, their usage may not fully benefit from the performance improvements due to GC overhead.
 
 .. note:: The previous Java swerve implementation is still available with the prefix ``Legacy`` added to it.
 
@@ -36,9 +36,9 @@ Improved Swerve Requests
    :alt: Picture of SysID showing improved gains
    :width: 650
 
-After further testing, the SysId swerve requests have been improved to output usable gains for both drive and steer motors, as well as the ``HeadingController`` used in ``FieldCentricFacingAngle``.
+After further testing, the SysId swerve requests have been improved to output usable gains for both drive and steer motors, as well as the ``HeadingController`` used in ``FieldCentricFacingAngle``. ``ApplyChassisSpeeds`` has also been renamed to ``ApplyRobotSpeeds``, and ``ApplyFieldSpeeds`` has been added to accept a field-centric ``ChassisSpeeds`` object.
 
-Additionally, ``ApplyChassisSpeeds`` and ``SwerveModule.apply()`` now optionally accept (robot-relative) wheel force feedforward vectors (`Java <https://api.ctr-electronics.com/phoenix6/latest/java/com/ctre/phoenix6/swerve/SwerveRequest.ApplyChassisSpeeds.html#WheelForceFeedforwardsX>`__, `C++ <https://api.ctr-electronics.com/phoenix6/latest/cpp/classctre_1_1phoenix6_1_1swerve_1_1requests_1_1_apply_chassis_speeds.html#ae8351dacd3f40fd2df1e6086a461b221>`__, `Python <https://api.ctr-electronics.com/phoenix6/latest/python/autoapi/phoenix6/swerve/requests/index.html#phoenix6.swerve.requests.ApplyChassisSpeeds.wheel_force_feedforwards_x>`__). This allows the robot to more closely follow acceleration along autonomous paths.
+Additionally, ``ApplyRobotSpeeds`` and ``SwerveModule.apply()`` now optionally accept robot-relative wheel force feedforward vectors (`Java <https://api.ctr-electronics.com/phoenix6/latest/java/com/ctre/phoenix6/swerve/SwerveRequest.ApplyRobotSpeeds.html#WheelForceFeedforwardsX>`__, `C++ <https://api.ctr-electronics.com/phoenix6/latest/cpp/classctre_1_1phoenix6_1_1swerve_1_1requests_1_1_apply_robot_speeds.html#a56cbd59656d10489ebe215dc75fb0a89>`__, `Python <https://api.ctr-electronics.com/phoenix6/latest/python/autoapi/phoenix6/swerve/requests/index.html#phoenix6.swerve.requests.ApplyRobotSpeeds.wheel_force_feedforwards_x>`__). Similarly, ``ApplyFieldSpeeds`` optionally accepts field-relative wheel force feedforward vectors. This allows the robot to more closely follow acceleration along autonomous paths.
 
 Java Units Support
 ^^^^^^^^^^^^^^^^^^
@@ -46,7 +46,7 @@ Java Units Support
 Support for the `2025 WPILib Java units <https://docs.wpilib.org/en/latest/docs/software/basic-programming/java-units.html>`__ has been added to many APIs. This support includes:
 
 - Units for status signals
-- Unit overloads for control request parameters
+- Unit overloads for control request parameters (including constructors)
 - Unit overloads for config arguments
 - Swerve API support for units
 
