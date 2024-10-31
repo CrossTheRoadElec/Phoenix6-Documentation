@@ -57,8 +57,7 @@ In a traditional robot drivetrain, there are two motors attached to each horizon
 
       .. code-block:: java
 
-         @Override
-         public void robotInit() {
+         public Robot() {
             // start with factory-default configs
             var currentConfigs = new MotorOutputConfigs();
 
@@ -84,7 +83,7 @@ In a traditional robot drivetrain, there are two motors attached to each horizon
 
          using namespace ctre::phoenix6;
 
-         void Robot::RobotInit() {
+         Robot::Robot() {
             // start with factory-default configs
             configs::MotorOutputConfigs currentConfigs{};
 
@@ -124,8 +123,7 @@ Full Example
 
             private final XboxController m_driverJoy = new XboxController(0);
 
-            @Override
-            public void robotInit() {
+            public Robot() {
                // start with factory-default configs
                var currentConfigs = new MotorOutputConfigs();
 
@@ -167,7 +165,7 @@ Full Example
 
          using namespace ctre::phoenix6;
 
-         void Robot::RobotInit() {
+         Robot::Robot() {
             // start with factory-default configs
             configs::MotorOutputConfigs currentConfigs{};
 

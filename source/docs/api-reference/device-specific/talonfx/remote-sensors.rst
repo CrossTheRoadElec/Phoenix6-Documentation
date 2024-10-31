@@ -65,16 +65,16 @@ Full example: `Java <https://github.com/CrossTheRoadElec/Phoenix6-Examples/blob/
    .. tab-item:: Java
       :sync: Java
 
-      .. rli:: https://github.com/CrossTheRoadElec/Phoenix6-Examples/raw/96a53e96227c8dbc102c04da198f28415da60af4/java/FusedCANcoder/src/main/java/frc/robot/Robot.java
+      .. rli:: https://github.com/CrossTheRoadElec/Phoenix6-Examples/raw/c3385ff9a45bf6670f036c74aad87b2d0deba9ec/java/FusedCANcoder/src/main/java/frc/robot/Robot.java
          :language: java
-         :lines: 51-64
+         :lines: 60-73
          :linenos:
-         :lineno-start: 51
+         :lineno-start: 60
 
    .. tab-item:: C++
       :sync: C++
 
-      .. rli:: https://github.com/CrossTheRoadElec/Phoenix6-Examples/raw/96a53e96227c8dbc102c04da198f28415da60af4/cpp/FusedCANcoder/src/main/cpp/Robot.cpp
+      .. rli:: https://github.com/CrossTheRoadElec/Phoenix6-Examples/raw/c3385ff9a45bf6670f036c74aad87b2d0deba9ec/cpp/FusedCANcoder/src/main/cpp/Robot.cpp
          :language: cpp
          :lines: 11-24
          :linenos:
