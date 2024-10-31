@@ -46,14 +46,26 @@ The value of the signal can be retrieved from the ``StatusSignal`` by calling ``
 
       .. code-block:: java
 
+         // get the value as a unit type
          var supplyVoltage = supplyVoltageSignal.getValue();
+         // convert the unit type to our desired units
+         double supplyVoltageVolts = supplyVoltage.in(Volts);
+
+         // alternatively, get the value as a double in the documented canonical units
+         double supplyVoltage = supplyVoltageSignal.getValueAsDouble();
 
    .. tab-item:: C++
       :sync: C++
 
       .. code-block:: cpp
 
+         // get the value as a unit type
          auto supplyVoltage = supplyVoltageSignal.GetValue();
+         // pull out the underlying value from the unit type
+         double supplyVoltageVolts = supplyVoltage.value();
+
+         // alternatively, get the value as a double in the documented canonical units
+         double supplyVoltage = supplyVoltageSignal.GetValueAsDouble();
 
    .. tab-item:: Python
       :sync: python
@@ -62,7 +74,7 @@ The value of the signal can be retrieved from the ``StatusSignal`` by calling ``
 
          supply_voltage = supply_voltage_signal.value
 
-.. note:: Phoenix 6 utilizes the `C++ units library <https://docs.wpilib.org/en/stable/docs/software/basic-programming/cpp-units.html>`__ when applicable.
+.. note:: Phoenix 6 utilizes the `Java units library <https://docs.wpilib.org/en/stable/docs/software/basic-programming/java-units.html>`__ and `C++ units library <https://docs.wpilib.org/en/stable/docs/software/basic-programming/cpp-units.html>`__ when applicable. Using the Java units library may increase GC overhead.
 
 The ``StatusCode`` (`Java <https://api.ctr-electronics.com/phoenix6/latest/java/com/ctre/phoenix6/StatusCode.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/latest/cpp/_status_codes_8h.html#a1edbab973bc8d4d5097a6bcc17c88c19>`__, `Python <https://api.ctr-electronics.com/phoenix6/latest/python/autoapi/phoenix6/index.html#phoenix6.StatusCode>`__) of the signal can be retrieved by calling ``getStatus()``. This can be used to determine if the device is not present on the CAN bus.
 
@@ -193,6 +205,8 @@ For users that wish to disable every unused status signal for their devices to r
 When optimizing the bus utilization for devices, all status signals that have not been given an update frequency using ``setUpdateFrequency()`` will be disabled. This results in an opt-in model for status signals, maximizing the reduction in bus utilization.
 
 .. tip:: Instead of disabling all unused status signals, an update frequency can be specified instead to keep them enabled at a slower update rate (`Java <https://api.ctr-electronics.com/phoenix6/latest/java/com/ctre/phoenix6/hardware/ParentDevice.html#optimizeBusUtilizationForAll(double,com.ctre.phoenix6.hardware.ParentDevice...)>`__, `c++ <https://api.ctr-electronics.com/phoenix6/latest/cpp/classctre_1_1phoenix6_1_1hardware_1_1_parent_device.html#a8e6cd768e43b16719df126a27c484e16>`__, `Python <https://api.ctr-electronics.com/phoenix6/latest/python/autoapi/phoenix6/hardware/parent_device/index.html#phoenix6.hardware.parent_device.ParentDevice.optimize_bus_utilization_for_all>`__). This is useful when using :doc:`/docs/api-reference/api-usage/signal-logging`.
+
+.. warning:: When using followers, the leader motor must keep the ``DutyCycle``, ``MotorVoltage``, and ``TorqueCurrent`` status signals enabled. Additionally, remote sensors must keep related status signals enabled (such as position and velocity).
 
 .. tab-set::
 

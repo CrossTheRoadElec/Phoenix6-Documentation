@@ -52,6 +52,8 @@ Using Control Requests
 
                // main robot code, command 12 V output
                m_motor.setControl(m_request.withOutput(12.0));
+               // the control request `with` methods also accept unit types
+               m_motor.setControl(m_request.withOutput(Volts.of(12.0)));
 
          .. tab-item:: C++
             :sync: C++

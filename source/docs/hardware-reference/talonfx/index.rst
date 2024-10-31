@@ -34,7 +34,7 @@ TalonFX
             CAD, Firmware and purchase instructions.
 
          .. grid-item-card:: Hardware User Manual
-            :link: https://store.ctr-electronics.com/content/user-manual/Falcon%20500%20User%20Guide.pdf
+            :link: https://ctre.download/files/user-manual/Falcon%20500%20v3%20User's%20Guide.pdf
             :link-type: url
 
             Wiring and mount instructions in PDF format.
@@ -80,7 +80,7 @@ CTR Electronics supported actuators have limit features that will automatically 
 
 When the limit switch is closed (connected to ground), the actuator will disable and the pattern will move toward the forward/reverse limit pin (red blink pattern will move toward the forward limit pin when the forward limit is closed, and vice-versa).
 
-.. tip:: For more information on limit switch wiring in the Falcon 500, consult the `Falcon 500 User's Guide <https://store.ctr-electronics.com/content/user-manual/Falcon%20500%20User%20Guide.pdf>`__.
+.. tip:: For more information on limit switch wiring in the Falcon 500, consult the `Falcon 500 User's Guide <https://ctre.download/files/user-manual/Falcon%20500%20v3%20User's%20Guide.pdf>`__.
 
 Status Light Reference
 ----------------------

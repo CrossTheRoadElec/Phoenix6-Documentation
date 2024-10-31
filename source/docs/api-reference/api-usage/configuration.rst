@@ -8,11 +8,9 @@ Devices support persistent settings through the use of "configs".
 Configuration Objects
 ---------------------
 
-There are device-specific ``Configuration`` classes that group configuration data of devices in a meaningful way.
-These classes are `Passive Data Structures <https://en.wikipedia.org/wiki/Passive_data_structure>`__.
-One example is ``TalonFXConfiguration``, which has subgroups of configs such as ``MotorOutputConfigs``.
-The configs can be modified through public member variables of the ``Configuration`` object.
-The complete list of configuration objects can be found in the API documentation (`Java <https://api.ctr-electronics.com/phoenix6/latest/java/com/ctre/phoenix6/configs/package-summary.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/latest/cpp/namespacectre_1_1phoenix6_1_1configs.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/latest/python/autoapi/phoenix6/configs/index.html#module-phoenix6.configs>`__).
+There are device-specific ``Configuration`` classes that group configuration data of devices in a meaningful way. These classes are `Passive Data Structures <https://en.wikipedia.org/wiki/Passive_data_structure>`__. One example is ``TalonFXConfiguration``, which has subgroups of configs such as ``MotorOutputConfigs``. The configs can be modified through public member variables of the ``Configuration`` object. The complete list of configuration objects can be found in the API documentation (`Java <https://api.ctr-electronics.com/phoenix6/latest/java/com/ctre/phoenix6/configs/package-summary.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/latest/cpp/namespacectre_1_1phoenix6_1_1configs.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/latest/python/autoapi/phoenix6/configs/index.html#module-phoenix6.configs>`__).
+
+.. note:: Phoenix 6 utilizes the `C++ units library <https://docs.wpilib.org/en/stable/docs/software/basic-programming/cpp-units.html>`__ and, optionally, the `Java units library <https://docs.wpilib.org/en/stable/docs/software/basic-programming/java-units.html>`__ when applicable. Using the Java units library may increase GC overhead.
 
 .. tab-set::
 
@@ -45,13 +43,11 @@ There is a corner case with configs where the device may have firmware with newe
 Configurator API
 ----------------
 
-Device objects have a ``getConfigurator()`` method that returns a device-specific ``Configurator`` object.
-The ``Configurator`` is used to retrieve, apply, and factory default the configs of a device.
+Device objects have a ``getConfigurator()`` method that returns a device-specific ``Configurator`` object. The ``Configurator`` is used to retrieve, apply, and factory default the configs of a device.
 
 .. note:: The ``getConfigurator()`` routine can be called frequently without any performance implications.
 
-The device-specific configurators have type-specific overloads that allow for the widest variety of device-compatible configs.
-As a result, the caller can pass the entire device ``Configuration`` object or just the relevant subgroup of configs to the ``Configurator`` API.
+The device-specific configurators have type-specific overloads that allow for the widest variety of device-compatible configs. As a result, the caller can pass the entire device ``Configuration`` object or just the relevant subgroup of configs to the ``Configurator`` API.
 
 .. tab-set::
 

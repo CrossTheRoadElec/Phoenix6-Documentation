@@ -46,7 +46,7 @@ If no CAN bus string is passed into the constructor, or the CAN bus string is em
 ``CANBus`` API
 --------------
 
-The ``CANBus`` API (`Java <https://api.ctr-electronics.com/phoenix6/latest/java/com/ctre/phoenix6/CANBus.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/latest/cpp/classctre_1_1phoenix6_1_1_c_a_n_bus.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/latest/python/autoapi/phoenix6/canbus/index.html>`__) can be used to retrieve information about any given CAN bus, such as the bus utilization.
+Instead of raw strings, a ``CANBus`` object (`Java <https://api.ctr-electronics.com/phoenix6/latest/java/com/ctre/phoenix6/CANBus.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/latest/cpp/classctre_1_1phoenix6_1_1_c_a_n_bus.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/latest/python/autoapi/phoenix6/canbus/index.html>`__) can be constructed and provided to device constructors. The API can also be used to retrieve information about any given CAN bus, such as the bus utilization.
 
 .. tab-set::
 
@@ -55,8 +55,13 @@ The ``CANBus`` API (`Java <https://api.ctr-electronics.com/phoenix6/latest/java/
 
       .. code-block:: java
 
-         // retrieve bus utilization for the CANivore named drivetrain
-         CANBusStatus canInfo = CANBus.getStatus("drivetrain");
+         // create a CAN bus for the CANivore named drivetrain
+         CANBus canbus = new CANBus("drivetrain");
+         // construct a TalonFX on the CAN bus
+         TalonFX fx = new TalonFX(0, canbus);
+
+         // retrieve bus utilization for the CAN bus
+         CANBusStatus canInfo = canbus.getStatus();
          float busUtil = canInfo.BusUtilization;
 
          if (busUtil > 0.8) {
@@ -68,8 +73,13 @@ The ``CANBus`` API (`Java <https://api.ctr-electronics.com/phoenix6/latest/java/
 
       .. code-block:: cpp
 
+         // create a CAN bus for the CANivore named drivetrain
+         CANBus canbus{"drivetrain"};
+         // construct a TalonFX on the CAN bus
+         hardware::TalonFX fx{0, canbus};
+
          // retrieve bus utilization for the CANivore named drivetrain
-         CANBus::CANBusStatus canInfo = CANBus::GetStatus("drivetrain");
+         CANBus::CANBusStatus canInfo = canbus.GetStatus();
          float busUtil = canInfo.BusUtilization;
 
          if (busUtil > 0.8) {
@@ -81,8 +91,13 @@ The ``CANBus`` API (`Java <https://api.ctr-electronics.com/phoenix6/latest/java/
 
       .. code-block:: python
 
+         # create a CAN bus for the CANivore named drivetrain
+         canbus = CANBus("drivetrain")
+         # construct a TalonFX on the CAN bus
+         fx = hardware.TalonFX(0, canbus)
+
          # retrieve bus utilization for the CANivore named drivetrain
-         can_info = CANBus.get_status("drivetrain")
+         can_info = canbus.get_status()
          bus_util = can_info.bus_utilization
 
          if bus_util > 0.8:
