@@ -15,13 +15,13 @@ Requests are instantiated once and then mutated using various ``withX`` function
 
       .. code-block:: java
 
-         private final SwerveDrivetrain m_drivetrain = TunerConstants.createDrivetrain();
          private final SwerveRequest.FieldCentric m_driveRequest = new SwerveRequest.FieldCentric()
             .withDeadband(MaxSpeed * 0.1).withRotationalDeadband(MaxAngularRate * 0.1) // Add a 10% deadband
             .withDriveRequestType(DriveRequestType.OpenLoopVoltage)
             .withSteerRequestType(SteerRequestType.MotionMagicExpo);
 
          private final XboxController m_joystick = new XboxController(0);
+         public final SwerveDrivetrain m_drivetrain = TunerConstants.createDrivetrain();
 
          @Override
          public void teleopPeriodic() {

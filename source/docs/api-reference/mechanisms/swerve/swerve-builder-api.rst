@@ -114,6 +114,7 @@ Calling ``createModuleConstants()`` takes the following arguments:
 * Y position
 * Whether the drive motor is inverted
 * Whether the steer motor is inverted
+* Whether the CANcoder is inverted
 
 .. note:: The X and Y position of the modules is measured from the center point of the robot along the X and Y axes, respectively. These values use the same coordinate system as ``Translation2d`` (`Java <https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Translation2d.html>`__), where forward is positive X and left is positive Y.
 
@@ -128,13 +129,17 @@ Calling ``createModuleConstants()`` takes the following arguments:
       .. code-block:: java
 
          public static final SwerveModuleConstants FrontLeft = ConstantCreator.createModuleConstants(
-               kFrontLeftSteerMotorId, kFrontLeftDriveMotorId, kFrontLeftEncoderId, kFrontLeftEncoderOffset, kFrontLeftXPos, kFrontLeftYPos, kInvertLeftSide, kFrontLeftSteerMotorInverted);
+               kFrontLeftSteerMotorId, kFrontLeftDriveMotorId, kFrontLeftEncoderId, kFrontLeftEncoderOffset,
+               kFrontLeftXPos, kFrontLeftYPos, kInvertLeftSide, kFrontLeftSteerMotorInverted, kFrontLeftCANcoderInverted);
          public static final SwerveModuleConstants FrontRight = ConstantCreator.createModuleConstants(
-               kFrontRightSteerMotorId, kFrontRightDriveMotorId, kFrontRightEncoderId, kFrontRightEncoderOffset, kFrontRightXPos, kFrontRightYPos, kInvertRightSide, kFrontRightSteerMotorInverted);
+               kFrontRightSteerMotorId, kFrontRightDriveMotorId, kFrontRightEncoderId, kFrontRightEncoderOffset,
+               kFrontRightXPos, kFrontRightYPos, kInvertRightSide, kFrontRightSteerMotorInverted, kFrontRightCANcoderInverted);
          public static final SwerveModuleConstants BackLeft = ConstantCreator.createModuleConstants(
-               kBackLeftSteerMotorId, kBackLeftDriveMotorId, kBackLeftEncoderId, kBackLeftEncoderOffset, kBackLeftXPos, kBackLeftYPos, kInvertLeftSide, kBackLeftSteerMotorInverted);
+               kBackLeftSteerMotorId, kBackLeftDriveMotorId, kBackLeftEncoderId, kBackLeftEncoderOffset,
+               kBackLeftXPos, kBackLeftYPos, kInvertLeftSide, kBackLeftSteerMotorInverted, kBackLeftCANcoderInverted);
          public static final SwerveModuleConstants BackRight = ConstantCreator.createModuleConstants(
-               kBackRightSteerMotorId, kBackRightDriveMotorId, kBackRightEncoderId, kBackRightEncoderOffset, kBackRightXPos, kBackRightYPos, kInvertRightSide, kBackRightSteerMotorInverted);
+               kBackRightSteerMotorId, kBackRightDriveMotorId, kBackRightEncoderId, kBackRightEncoderOffset,
+               kBackRightXPos, kBackRightYPos, kInvertRightSide, kBackRightSteerMotorInverted, kBackRightCANcoderInverted);
 
 Building the ``SwerveDrivetrain``
 ---------------------------------
@@ -152,7 +157,7 @@ Building the ``SwerveDrivetrain``
 
          public static CommandSwerveDrivetrain createDrivetrain() {
             return new CommandSwerveDrivetrain(
-                  DrivetrainConstants, FrontLeft, FrontRight, BackLeft, BackRight
+               DrivetrainConstants, FrontLeft, FrontRight, BackLeft, BackRight
             );
          }
 
@@ -173,20 +178,21 @@ Full Example
          // The steer motor uses any SwerveModule.SteerRequestType control request with the
          // output type specified by SwerveModuleConstants.SteerMotorClosedLoopOutput
          private static final Slot0Configs steerGains = new Slot0Configs()
-            .withKP(100).withKI(0).withKD(3.0)
-            .withKS(0.2).withKV(1.5).withKA(0);
+            .withKP(100).withKI(0).withKD(2.0)
+            .withKS(0.2).withKV(1.91).withKA(0)
+            .withStaticFeedforwardSign(StaticFeedforwardSignValue.UseClosedLoopSign);
          // When using closed-loop control, the drive motor uses the control
          // output type specified by SwerveModuleConstants.DriveMotorClosedLoopOutput
          private static final Slot0Configs driveGains = new Slot0Configs()
             .withKP(0.1).withKI(0).withKD(0)
-            .withKS(0).withKV(0.12);
+            .withKS(0).withKV(0.124);
 
          // The closed-loop output type to use for the steer motors;
          // This affects the PID/FF gains for the steer motors
          private static final ClosedLoopOutputType kSteerClosedLoopOutput = ClosedLoopOutputType.Voltage;
          // The closed-loop output type to use for the drive motors;
          // This affects the PID/FF gains for the drive motors
-         private static final ClosedLoopOutputType kDriveClosedLoopOutput = ClosedLoopOutputType.TorqueCurrentFOC;
+         private static final ClosedLoopOutputType kDriveClosedLoopOutput = ClosedLoopOutputType.Voltage;
 
          // The remote sensor feedback type to use for the steer motors;
          // When not Pro-licensed, FusedCANcoder/SyncCANcoder automatically fall back to RemoteCANcoder
@@ -211,6 +217,10 @@ Full Example
          // Configs for the Pigeon 2; leave this null to skip applying Pigeon 2 configs
          private static final Pigeon2Configuration pigeonConfigs = null;
 
+         // CAN bus that the devices are located on;
+         // All swerve devices must share the same CAN bus
+         public static final CANBus kCANbus = new CANBus("drivetrain", "./logs/example.hoot");
+
          // Theoretical free speed (m/s) at 12v applied output;
          // This needs to be tuned to your individual robot
          public static final LinearVelocity kSpeedAt12Volts = MetersPerSecond.of(4.73);
@@ -226,13 +236,11 @@ Full Example
          private static final boolean kInvertLeftSide = false;
          private static final boolean kInvertRightSide = true;
 
-         private static final CANBus kCANbus = new CANBus("drivetrain", "./logs/example.hoot");
          private static final int kPigeonId = 1;
 
-
          // These are only used for simulation
-         private static double kSteerInertia = 0.00001;
-         private static double kDriveInertia = 0.001;
+         private static double kSteerInertia = 0.01;
+         private static double kDriveInertia = 0.01;
          // Simulated voltage necessary to overcome friction
          private static final double kSteerFrictionVoltage = 0.25;
          private static final double kDriveFrictionVoltage = 0.25;
@@ -269,6 +277,7 @@ Full Example
          private static final int kFrontLeftEncoderId = 0;
          private static final Angle kFrontLeftEncoderOffset = Rotations.of(-0.75);
          private static final boolean kFrontLeftSteerMotorInverted = false;
+         private static final boolean kFrontLeftCANcoderInverted = false;
 
          private static final Distance kFrontLeftXPos = Inches.of(10.5);
          private static final Distance kFrontLeftYPos = Inches.of(10.5);
@@ -279,6 +288,7 @@ Full Example
          private static final int kFrontRightEncoderId = 1;
          private static final Angle kFrontRightEncoderOffset = Rotations.of(-0.75);
          private static final boolean kFrontRightSteerMotorInverted = false;
+         private static final boolean kFrontRightCANcoderInverted = false;
 
          private static final Distance kFrontRightXPos = Inches.of(10.5);
          private static final Distance kFrontRightYPos = Inches.of(-10.5);
@@ -289,6 +299,7 @@ Full Example
          private static final int kBackLeftEncoderId = 2;
          private static final Angle kBackLeftEncoderOffset = Rotations.of(-0.75);
          private static final boolean kBackLeftSteerMotorInverted = false;
+         private static final boolean kBackLeftCANcoderInverted = false;
 
          private static final Distance kBackLeftXPos = Inches.of(-10.5);
          private static final Distance kBackLeftYPos = Inches.of(10.5);
@@ -299,26 +310,31 @@ Full Example
          private static final int kBackRightEncoderId = 3;
          private static final Angle kBackRightEncoderOffset = Rotations.of(-0.75);
          private static final boolean kBackRightSteerMotorInverted = false;
+         private static final boolean kBackRightCANcoderInverted = false;
 
          private static final Distance kBackRightXPos = Inches.of(-10.5);
          private static final Distance kBackRightYPos = Inches.of(-10.5);
 
 
          public static final SwerveModuleConstants FrontLeft = ConstantCreator.createModuleConstants(
-               kFrontLeftSteerMotorId, kFrontLeftDriveMotorId, kFrontLeftEncoderId, kFrontLeftEncoderOffset, kFrontLeftXPos, kFrontLeftYPos, kInvertLeftSide, kFrontLeftSteerMotorInverted);
+               kFrontLeftSteerMotorId, kFrontLeftDriveMotorId, kFrontLeftEncoderId, kFrontLeftEncoderOffset,
+               kFrontLeftXPos, kFrontLeftYPos, kInvertLeftSide, kFrontLeftSteerMotorInverted, kFrontLeftCANcoderInverted);
          public static final SwerveModuleConstants FrontRight = ConstantCreator.createModuleConstants(
-               kFrontRightSteerMotorId, kFrontRightDriveMotorId, kFrontRightEncoderId, kFrontRightEncoderOffset, kFrontRightXPos, kFrontRightYPos, kInvertRightSide, kFrontRightSteerMotorInverted);
+               kFrontRightSteerMotorId, kFrontRightDriveMotorId, kFrontRightEncoderId, kFrontRightEncoderOffset,
+               kFrontRightXPos, kFrontRightYPos, kInvertRightSide, kFrontRightSteerMotorInverted, kFrontRightCANcoderInverted);
          public static final SwerveModuleConstants BackLeft = ConstantCreator.createModuleConstants(
-               kBackLeftSteerMotorId, kBackLeftDriveMotorId, kBackLeftEncoderId, kBackLeftEncoderOffset, kBackLeftXPos, kBackLeftYPos, kInvertLeftSide, kBackLeftSteerMotorInverted);
+               kBackLeftSteerMotorId, kBackLeftDriveMotorId, kBackLeftEncoderId, kBackLeftEncoderOffset,
+               kBackLeftXPos, kBackLeftYPos, kInvertLeftSide, kBackLeftSteerMotorInverted, kBackLeftCANcoderInverted);
          public static final SwerveModuleConstants BackRight = ConstantCreator.createModuleConstants(
-               kBackRightSteerMotorId, kBackRightDriveMotorId, kBackRightEncoderId, kBackRightEncoderOffset, kBackRightXPos, kBackRightYPos, kInvertRightSide, kBackRightSteerMotorInverted);
+               kBackRightSteerMotorId, kBackRightDriveMotorId, kBackRightEncoderId, kBackRightEncoderOffset,
+               kBackRightXPos, kBackRightYPos, kInvertRightSide, kBackRightSteerMotorInverted, kBackRightCANcoderInverted);
 
          /**
           * Creates a CommandSwerveDrivetrain instance.
-          * This should only be called once in your robot program,.
+          * This should only be called once in your robot program.
           */
          public static CommandSwerveDrivetrain createDrivetrain() {
             return new CommandSwerveDrivetrain(
-                  DrivetrainConstants, FrontLeft, FrontRight, BackLeft, BackRight
+               DrivetrainConstants, FrontLeft, FrontRight, BackLeft, BackRight
             );
          }
