@@ -7,11 +7,6 @@ The Phoenix 6 software framework allows you to control and configure your `CTR E
 
 .. important:: This documentation is for the **2025 beta** version of Phoenix 6. Users looking for the current stable documentation can find it `here <https://v6.docs.ctr-electronics.com/en/stable/>`__.
 
-.. card:: CTR Electronics Blog
-   :link: https://store.ctr-electronics.com/blog/
-
-   For news and updates about your CTR Electronics device, please check out our `blog <https://store.ctr-electronics.com/blog/>`__.
-
 .. grid:: 1 2 2 2
    :gutter: 3
 
