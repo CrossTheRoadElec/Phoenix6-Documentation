@@ -6,10 +6,14 @@ CANrange is a CAN-enabled Time-of-Flight distance measurement sensor. This produ
 .. grid:: 2
 
    .. grid-item-card:: Store Page
-      :link: https://store.ctr-electronics.com/canrange/
+      :link: https://store.ctr-electronics.com/products/canrange
       :link-type: url
 
       CAD and purchase instructions.
+
+   .. grid-item-card:: Hardware User Manual
+      :link: https://ctre.download/files/user-manual/CANrange%20User's%20Guide.pdf
+      :link-type: url
 
 .. raw:: html
 
