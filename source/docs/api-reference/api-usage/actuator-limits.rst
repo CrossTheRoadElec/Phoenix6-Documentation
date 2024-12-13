@@ -109,7 +109,10 @@ Many :doc:`control requests </docs/api-reference/api-usage/control-requests>` su
 Remote Limit Switches
 ---------------------
 
-Supported devices (TalonFX, CANcoder, CANifier) can be utilized as a remote limit switch, disabling actuator outputs when triggers. When utilizing a CANcoder as a remote sensor, the limit will trigger when the magnet strength changes from BAD (red) to ADEQUATE (orange) or GOOD (green).
+Supported devices (TalonFX, CANcoder, CANrange) can be utilized as a remote limit switch, disabling actuator outputs when triggers.
+
+- When utilizing a CANcoder as a remote limit, the limit will trigger when the magnet strength changes from BAD (red) to ADEQUATE (orange) or GOOD (green).
+- When utilizing a CANrange as a remote limit, the limit will trigger when the detected distance is shorter than the configured distance threshold.
 
 The remote limit switch can be selected using the ``LimitSource`` and ``LimitRemoteSensorID`` configs.
 
