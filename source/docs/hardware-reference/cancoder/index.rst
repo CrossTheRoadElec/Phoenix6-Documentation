@@ -1,8 +1,6 @@
 CANcoder
 ========
 
-.. important:: As of late August 2022, there are multiple hardware versions of CANcoder available. This is due to the ongoing worldwide chip shortage causing CTR Electronics to replace the original processor with a substitute. This new version of CANcoder requires a different firmware, but is otherwise functionally identical to the original. Details on checking the version can be found in the :ref:`device details section <docs/tuner/device-details-page:verifying device details>`.
-
 The CANcoder is the next evolution in the line of CTRE magnetic encoder products. As its name implies, this product is a rotary magnetic encoder that communicates over the CAN bus. Supporting CAN FD and CAN 2.0, this product provides the same position and velocity with the same resolutions you've come to expect from the SRX Magnetic Encoder.
 
 .. grid:: 2
