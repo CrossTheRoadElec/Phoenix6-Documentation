@@ -178,8 +178,8 @@ Full Example
          // The steer motor uses any SwerveModule.SteerRequestType control request with the
          // output type specified by SwerveModuleConstants.SteerMotorClosedLoopOutput
          private static final Slot0Configs steerGains = new Slot0Configs()
-            .withKP(100).withKI(0).withKD(2.0)
-            .withKS(0.2).withKV(1.91).withKA(0)
+            .withKP(100).withKI(0).withKD(0.5)
+            .withKS(0.1).withKV(1.91).withKA(0)
             .withStaticFeedforwardSign(StaticFeedforwardSignValue.UseClosedLoopSign);
          // When using closed-loop control, the drive motor uses the control
          // output type specified by SwerveModuleConstants.DriveMotorClosedLoopOutput
@@ -242,8 +242,8 @@ Full Example
          private static double kSteerInertia = 0.01;
          private static double kDriveInertia = 0.01;
          // Simulated voltage necessary to overcome friction
-         private static final double kSteerFrictionVoltage = 0.25;
-         private static final double kDriveFrictionVoltage = 0.25;
+         private static final double kSteerFrictionVoltage = 0.2;
+         private static final double kDriveFrictionVoltage = 0.2;
 
          public static final SwerveDrivetrainConstants DrivetrainConstants = new SwerveDrivetrainConstants()
                .withCANbusName(kCANbus.getName())
