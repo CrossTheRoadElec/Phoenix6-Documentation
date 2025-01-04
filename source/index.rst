@@ -139,9 +139,9 @@ The Phoenix 6 software framework allows you to control and configure your `CTR E
    :caption: API docs
    :hidden:
 
-   Java API Docs <https://api.ctr-electronics.com/phoenix6/latest/java/>
-   C++ API Docs <https://api.ctr-electronics.com/phoenix6/latest/cpp/>
-   Python API Docs <https://api.ctr-electronics.com/phoenix6/latest/python/>
+   Java API Docs <https://api.ctr-electronics.com/phoenix6/release/java/>
+   C++ API Docs <https://api.ctr-electronics.com/phoenix6/release/cpp/>
+   Python API Docs <https://api.ctr-electronics.com/phoenix6/release/python/>
    C# API Docs <https://api.ctr-electronics.com/phoenix6/release/csharp/>
 
 .. toctree::

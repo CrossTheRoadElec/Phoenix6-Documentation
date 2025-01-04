@@ -8,7 +8,7 @@ To simplify the API surface, both `builder <https://en.wikipedia.org/wiki/Builde
 Defining Drivetrain Characteristics
 -----------------------------------
 
-Drivetrain, in this instance, refers to the ``SwerveDrivetrainConstants`` class (`Java <https://api.ctr-electronics.com/phoenix6/latest/java/com/ctre/phoenix6/swerve/SwerveDrivetrainConstants.html>`__). This class defines characteristics that are not module specific. Mandatory parameters include ``withCANBusName()`` and ``withPigeon2Id()``.
+Drivetrain, in this instance, refers to the ``SwerveDrivetrainConstants`` class (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/swerve/SwerveDrivetrainConstants.html>`__). This class defines characteristics that are not module specific. Mandatory parameters include ``withCANBusName()`` and ``withPigeon2Id()``.
 
 .. note:: All devices in the swerve drivetrain must be on the same CAN bus.
 
@@ -29,7 +29,7 @@ Users can optionally provide a configuration object to apply custom configs to t
 Defining Module Characteristics
 -------------------------------
 
-The typical FRC drivetrain includes 4 identical modules. To simplify module creation, there exists a ``SwerveModuleConstantsFactory`` (`Java <https://api.ctr-electronics.com/phoenix6/latest/java/com/ctre/phoenix6/swerve/SwerveModuleConstantsFactory.html>`__) class to simplify module creation.
+The typical FRC drivetrain includes 4 identical modules. To simplify module creation, there exists a ``SwerveModuleConstantsFactory`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/swerve/SwerveModuleConstantsFactory.html>`__) class to simplify module creation.
 
 Mandatory parameters for this factory are:
 
@@ -48,7 +48,7 @@ For functional simulation, the following additional parameters **must** be defin
 * ``withSteerInertia()``
 * ``withDriveInertia()``
 
-For a full reference of the available functions, see the API documentation of ``SwerveModuleConstantsFactory`` (`Java <https://api.ctr-electronics.com/phoenix6/latest/java/com/ctre/phoenix6/swerve/SwerveModuleConstantsFactory.html>`__).
+For a full reference of the available functions, see the API documentation of ``SwerveModuleConstantsFactory`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/swerve/SwerveModuleConstantsFactory.html>`__).
 
 ``SwerveModuleConstantsFactory`` Example
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -81,7 +81,7 @@ In the previous section, several optional constants are defined. These constants
 Building the Swerve Module Constants
 ------------------------------------
 
-``SwerveModuleConstants`` (`Java <https://api.ctr-electronics.com/phoenix6/latest/java/com/ctre/phoenix6/swerve/SwerveModuleConstants.html>`__) can be derived, or created, from the previous ``SwerveModuleConstantsFactory``. A typical swerve drivetrain consists of four identical modules: Front Left, Front Right, Back Left, Back Right. While these modules can be instantiated directly (only really useful if the modules have different physical characteristics), the modules can also be created by calling ``createModuleConstants()`` with the aforementioned factory.
+``SwerveModuleConstants`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/swerve/SwerveModuleConstants.html>`__) can be derived, or created, from the previous ``SwerveModuleConstantsFactory``. A typical swerve drivetrain consists of four identical modules: Front Left, Front Right, Back Left, Back Right. While these modules can be instantiated directly (only really useful if the modules have different physical characteristics), the modules can also be created by calling ``createModuleConstants()`` with the aforementioned factory.
 
 Calling ``createModuleConstants()`` takes the following arguments:
 
@@ -114,7 +114,7 @@ Building the ``SwerveDrivetrain``
 
 .. note:: ``CommandSwerveDrivetrain`` is a version created by the Tuner X :doc:`Swerve Project Generator </docs/tuner/tuner-swerve/index>` that implements ``Subsystem`` (`Java <https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj2/command/Subsystem.html>`__) for easy command-based integration.
 
-``SwerveDrivetrain`` (`Java <https://api.ctr-electronics.com/phoenix6/latest/java/com/ctre/phoenix6/swerve/SwerveDrivetrain.html>`__) is the class that handles odometry, configuration and control of the drivetrain. The constructor for this class takes the previous ``SwerveDrivetrainConstants`` and a list of ``SwerveModuleConstants``.
+``SwerveDrivetrain`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/swerve/SwerveDrivetrain.html>`__) is the class that handles odometry, configuration and control of the drivetrain. The constructor for this class takes the previous ``SwerveDrivetrainConstants`` and a list of ``SwerveModuleConstants``.
 
 .. tab-set::
 
