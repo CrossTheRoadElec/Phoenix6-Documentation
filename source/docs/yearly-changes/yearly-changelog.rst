@@ -5,7 +5,7 @@ At CTR Electronics, we pride ourselves for taking our customer feedback seriousl
 
 Firmware for the 2025 release of Phoenix 6 can be found by selecting “2025” in the firmware selection menu.
 
-The API vendordep for 2025 is available under ``https://maven.ctr-electronics.com/release/com/ctre/phoenix6/latest/Phoenix6-frc2025-beta-latest.json``.
+The API vendordep for 2025 is available under ``https://maven.ctr-electronics.com/release/com/ctre/phoenix6/latest/Phoenix6-frc2025-latest.json``.
 
 Users will need to update both firmware and API to make use of these features.
 
@@ -77,7 +77,7 @@ Hoot Replay, controlled using the ``HootReplay`` class (`Java <https://api.ctr-e
 
 During Hoot Replay, the simulated robot will automatically enable and run through all the maneuvers recorded in the hoot log. Additionally, Hoot Replay supports step timing and changing the speed of the playback.
 
-Hoot Replay uses a different vendordep, found at ``https://maven.ctr-electronics.com/release/com/ctre/phoenix6/latest/Phoenix6-replay-frc2025-beta-latest.json``. This vendordep replaces :doc:`/docs/canivore/canivore-hardware-attached` with Hoot Replay. Note that only one Phoenix 6 vendordep may be used in the ``vendordeps`` folder at a time.
+Hoot Replay uses a different vendordep, found at ``https://maven.ctr-electronics.com/release/com/ctre/phoenix6/latest/Phoenix6-replay-frc2025-latest.json``. This vendordep replaces :doc:`/docs/canivore/canivore-hardware-attached` with Hoot Replay. Note that only one Phoenix 6 vendordep may be used in the ``vendordeps`` folder at a time.
 
 .. image:: images/swerve_replay.gif
    :width: 650
