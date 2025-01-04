@@ -55,8 +55,10 @@ Using Status Signals
                //rotorPosSignal.refresh();
 
                // retrieve position value that we just refreshed
-               // units are rotations
+               // units are rotations, uses the units library
                var rotorPos = rotorPosSignal.getValue();
+               // the units library can be bypassed using getValueAsDouble()
+               double rotorPosRotations = rotorPosSignal.getValueAsDouble();
 
                // get latency of the signal
                var rotorPosLatency = rotorPosSignal.getTimestamp().getLatency();

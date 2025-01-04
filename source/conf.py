@@ -21,7 +21,7 @@ sys.path.insert(0, os.path.abspath("."))
 # -- Project information -----------------------------------------------------
 
 project = "Phoenix 6"
-copyright = "2023, CTR Electronics"
+copyright = "2024, CTR Electronics"
 author = "CTR Electronics"
 
 # The short X.Y version
@@ -32,6 +32,10 @@ release = ""
 
 # -- General configuration ---------------------------------------------------
 
+# Only one language supported, no URL prefix
+# This is only needed when deploying a non-RTD server
+on_rtd = os.environ.get("READTHEDOCS") == "True"
+
 # If your documentation needs a minimal Sphinx version, state it here.
 #
 # needs_sphinx = '1.0'
@@ -41,7 +45,8 @@ release = ""
 # ones.
 extensions = [
     "notfound.extension",
-    "sphinxcontrib.images",
+    #    "sphinxcontrib.images",
+    "sphinxcontrib.jquery",
     "sphinxext.mimictoc",
     "sphinxext.opengraph",
     "sphinxext.rediraffe",
@@ -49,7 +54,11 @@ extensions = [
     "sphinx.ext.autosectionlabel",
     "sphinx_design",
     "sphinx_copybutton",
+    "sphinx.ext.imgconverter",
 ]
+
+if on_rtd:
+    extensions = extensions + ["sphinx_build_compatibility.extension"]
 
 local_extensions = [
     "_extensions.rtd_html_zip",
@@ -70,9 +79,10 @@ source_suffix = ".rst"
 # The master toctree document.
 master_doc = "index"
 
-# Only one language supported, no URL prefix
-# This is only needed when deploying a non-RTD server
-on_rtd = os.environ.get("READTHEDOCS") == "True"
+# We intentionally have multiple parents
+suppress_warnings = [
+    "toc.multiple_toc_parents",
+]
 
 if on_rtd:
     html_baseurl = os.environ.get("READTHEDOCS_CANONICAL_URL", "")
@@ -124,6 +134,7 @@ html_logo = "images/ctre.png"
 # Theme tweaks on top of RTD
 def setup(app):
     app.add_css_file("css/theme_ctre.css")
+    app.add_js_file("js/external_links_new_tab.js")
 
 
 # Hide the HTML title for furo theme
