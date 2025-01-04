@@ -43,7 +43,7 @@ Additionally, ``ApplyRobotSpeeds`` and ``SwerveModule.apply()`` now optionally a
 Java Units Support
 ^^^^^^^^^^^^^^^^^^
 
-Support for the `2025 WPILib Java units <https://docs.wpilib.org/en/latest/docs/software/basic-programming/java-units.html>`__ has been added to many APIs. This support includes:
+Support for the `2025 WPILib Java units <https://docs.wpilib.org/en/stable/docs/software/basic-programming/java-units.html>`__ has been added to many APIs. This support includes:
 
 - Units for status signals
 - Unit overloads for control request parameters (including constructors)

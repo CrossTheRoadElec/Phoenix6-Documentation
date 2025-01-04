@@ -3,7 +3,7 @@ Swerve Builder API
 
 To simplify the API surface, both `builder <https://en.wikipedia.org/wiki/Builder_pattern>`__ and `factory <https://en.wikipedia.org/wiki/Factory_method_pattern>`__ paradigms are used. Users create a ``SwerveDrivetrain`` by first defining the global drivetrain characteristics and then each module characteristics.
 
-.. note:: Phoenix 6 supports the `Java units library <https://docs.wpilib.org/en/latest/docs/software/basic-programming/java-units.html>`__ when applicable.
+.. note:: Phoenix 6 supports the `Java units library <https://docs.wpilib.org/en/stable/docs/software/basic-programming/java-units.html>`__ when applicable.
 
 Defining Drivetrain Characteristics
 -----------------------------------

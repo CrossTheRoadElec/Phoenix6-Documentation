@@ -18,7 +18,7 @@ Canonical Units
 ^^^^^^^^^^^^^^^
 
 - Uses the popular `C++ units library <https://github.com/nholthaus/units>`__ and standardizes on SI units.
-- Provides overloads using the `Java units library <https://docs.wpilib.org/en/latest/docs/software/basic-programming/java-units.html>`__.
+- Provides overloads using the `Java units library <https://docs.wpilib.org/en/stable/docs/software/basic-programming/java-units.html>`__.
 - Signals are documented with the unit type and the minimum and maximum values.
 
 Improved Device Control
