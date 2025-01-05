@@ -136,9 +136,9 @@ Miscellaneous API Improvements
 Phoenix Tuner X
 ---------------
 
-Windows: https://apps.microsoft.com/store/detail/9N17NS6NM06V
+Windows: https://apps.microsoft.com/detail/9NVV4PWDW27Z
 Android: https://play.google.com/store/apps/details?id=com.ctre.phoenix_tuner&hl=en_US
-macOS & iOS: https://apps.apple.com/us/app/phoenix-tuner-x-preview/id6502530040
+macOS & iOS: https://apps.apple.com/us/app/phoenix-tuner-x/id6502530040
 
 iOS and macOS Support
 ^^^^^^^^^^^^^^^^^^^^^
