@@ -46,6 +46,7 @@ on_rtd = os.environ.get("READTHEDOCS") == "True"
 extensions = [
     "notfound.extension",
     #    "sphinxcontrib.images",
+    "sphinxcontrib.jquery",
     "sphinxext.mimictoc",
     "sphinxext.opengraph",
     "sphinxext.rediraffe",
@@ -133,6 +134,7 @@ html_logo = "images/ctre.png"
 # Theme tweaks on top of RTD
 def setup(app):
     app.add_css_file("css/theme_ctre.css")
+    app.add_js_file("js/external_links_new_tab.js")
 
 
 # Hide the HTML title for furo theme
