@@ -1,18 +1,18 @@
 Swerve Overview
 ===============
 
-.. important:: Swerve functionality is only available for FRC users and is limited to Java at this time.
+.. important:: Swerve functionality is only available for FRC users.
 
-New in 2024 is a high performance swerve API. This API simplifies the boilerplate necessary for swerve and maximizes performance.
+CTR Electronics has a first-party Swerve API that supports Java, C++, and Python. This API simplifies the boilerplate necessary for swerve and maximizes performance.
 
 This section focuses on utilizing the Swerve API and configuring it correctly. Tuner X supports a :doc:`swerve project creator </docs/tuner/tuner-swerve/index>` that greatly simplifies this process and removes common error cases.
 
 - Small API surface, easily debuggable
 
-  * Build robot characteristics using ``SwerveModuleConstants`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/swerve/SwerveModuleConstants.html>`__) and ``SwerveDrivetrainConstants`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/swerve/SwerveDrivetrainConstants.html>`__).
+  * Build robot characteristics using ``SwerveModuleConstants`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/swerve/SwerveModuleConstants.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/_swerve_module_constants_8hpp.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/swerve/swerve_module_constants/index.html#phoenix6.swerve.swerve_module_constants.SwerveModuleConstants>`__) and ``SwerveDrivetrainConstants`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/swerve/SwerveDrivetrainConstants.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/structctre_1_1phoenix6_1_1swerve_1_1_swerve_drivetrain_constants.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/swerve/swerve_drivetrain_constants/index.html#phoenix6.swerve.swerve_drivetrain_constants.SwerveDrivetrainConstants>`__).
   * Integrates cleanly into WPILib `command-based <https://docs.wpilib.org/en/stable/docs/software/commandbased/index.html>`__ framework using ``CommandSwerveDrivetrain`` (from our examples or Tuner X).
-  * Telemetrize directly in the odometry loop using the ``registerTelemetry()`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/swerve/SwerveDrivetrain.html#registerTelemetry(java.util.function.Consumer)>`__) lambda.
-  * Supports handling the swerve state via ``SwerveRequest`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/swerve/SwerveRequest.html>`__).
+  * Telemetrize directly in the odometry loop using the ``registerTelemetry()`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/swerve/SwerveDrivetrain.html#registerTelemetry(java.util.function.Consumer)>`__ `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1swerve_1_1_swerve_drivetrain.html#a436b15dcc20e3c4ece0f3c0656a9701a>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/swerve/index.html#phoenix6.swerve.SwerveDrivetrain.register_telemetry>`__) lambda.
+  * Supports handling the swerve state via ``SwerveRequest`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/swerve/SwerveRequest.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1swerve_1_1requests_1_1_swerve_request.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/swerve/requests/index.html#phoenix6.swerve.requests.SwerveRequest>`__).
 
     * Supports robot-centric, field-centric and field-centric facing angle.
     * Supports common scenarios such as X mode (point all modules toward the center of the robot).
@@ -20,7 +20,7 @@ This section focuses on utilizing the Swerve API and configuring it correctly. T
 - Simulation
 
   * Swerve simulation focuses on usability, and as such isn't perfectly accurate to a real robot.
-  * Simply call ``updateSimState`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/swerve/SwerveDrivetrain.html#updateSimState(double,double)>`__) in ``simulationPeriodic()`` (`Java <https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/IterativeRobotBase.html#simulationPeriodic()>`__).
+  * Simply call ``updateSimState`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/swerve/SwerveDrivetrain.html#updateSimState(double,double)>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1swerve_1_1_swerve_drivetrain.html#a26d01bf576e432bd377dd82498ed90d3>`__) in ``simulationPeriodic()`` (`Java <https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/IterativeRobotBase.html#simulationPeriodic()>`__).
 
 - Performance
 
@@ -35,8 +35,15 @@ Hardware Requirements
 
 Utilizing the swerve API requires that the robot drivetrain is composed of supported Phoenix 6 devices. At a minimum, these requirements are:
 
+.. note:: You can mix and match within a given grouping (steer, drive), but motors within a grouping must be of the same type. For example, you can utilize 4 Talon FXS connected to a Minion for steer, and you can use 4 Kraken x60 for drive.
+
 - 8 TalonFX motor controllers (4 steer, 4 drive)
-- 4 CANcoders
+- 4 encoders (must be one selection of the following)
+
+  - 4 CANcoders
+  - At least 2 CANdi with PWM absolute encoder
+  - 4 PWM absolute encoder connected to Talon FXS when used in steer
+
 - 1 Pigeon 2.0
 
 Overview on the API
