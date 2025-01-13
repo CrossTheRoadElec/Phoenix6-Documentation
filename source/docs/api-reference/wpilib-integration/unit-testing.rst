@@ -73,15 +73,15 @@ Below is an example unit test that verifies the robot is enabled and verifies th
                /* verify that the motor output is zero */
                assertEquals(dutyCycle.getValue(), 0.0, DELTA);
 
-               /* request 100% output */
-               m_fx.setControl(new DutyCycleOut(1.0));
+               /* request 10% output */
+               m_fx.setControl(new DutyCycleOut(0.1));
                /* wait for the control to apply */
                Timer.delay(0.020);
 
                /* wait for a new duty cycle signal */
                dutyCycle.waitForUpdate(0.100);
-               /* verify that the motor output is 1.0 */
-               assertEquals(dutyCycle.getValue(), 1.0, DELTA);
+               /* verify that the motor output is 0.1 */
+               assertEquals(dutyCycle.getValue(), 0.1, DELTA);
             }
          }
 
@@ -125,13 +125,13 @@ Below is an example unit test that verifies the robot is enabled and verifies th
             /* verify that the motor output is zero */
             EXPECT_DOUBLE_EQ(dutyCycle.GetValue(), 0.0);
 
-            /* request 100% output */
-            m_fx.SetControl(controls::DutyCycleOut{1.0});
+            /* request 10% output */
+            m_fx.SetControl(controls::DutyCycleOut{0.1});
             /* wait for the control to apply */
             std::this_thread::sleep_for(std::chrono::milliseconds{20});
 
             /* wait for a new duty cycle signal */
             dutyCycle.WaitForUpdate(100_ms);
-            /* verify that the motor output is 1.0 */
-            EXPECT_DOUBLE_EQ(dutyCycle.GetValue(), 1.0);
+            /* verify that the motor output is 0.1 */
+            EXPECT_DOUBLE_EQ(dutyCycle.GetValue(), 0.1);
          }
