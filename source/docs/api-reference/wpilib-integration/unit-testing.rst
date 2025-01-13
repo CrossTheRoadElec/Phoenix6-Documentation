@@ -25,8 +25,11 @@ Below is an example unit test that verifies the robot is enabled and verifies th
          public class TalonFXTest implements AutoCloseable {
             static final double DELTA = 1e-3; // acceptable deviation range
 
+            static final double kGearRatio = 10.0;
+
             TalonFX m_fx;
             TalonFXSimState m_fxSim;
+            DCMotorSim m_motorSim;
 
             @Override
             public void close() {
@@ -41,6 +44,12 @@ Below is an example unit test that verifies the robot is enabled and verifies th
                /* create the TalonFX */
                m_fx = new TalonFX(0);
                m_fxSim = m_fx.getSimState();
+               /* create the simulated DC motor */
+               var gearbox = DCMotor.getKrakenX60Foc(1);
+               m_motorSim = new DCMotorSim(
+                  LinearSystemId.createDCMotorSystem(gearbox, 0.001, kGearRatio),
+                  gearbox
+               );
 
                /* enable the robot */
                DriverStationSim.setEnabled(true);
@@ -75,8 +84,16 @@ Below is an example unit test that verifies the robot is enabled and verifies th
 
                /* request 100% output */
                m_fx.setControl(new DutyCycleOut(1.0));
-               /* wait for the control to apply */
-               Timer.delay(0.020);
+
+               /* wait for the control to apply and the motor to accelerate */
+               for (int i = 0; i < 10; ++i) {
+                  Timer.delay(0.020);
+                  m_motorSim.setInputVoltage(m_fxSim.getMotorVoltage();
+                  m_motorSim.update(0.020);
+
+                  m_fxSim.setRawRotorPosition(m_motorSim.getAngularPosition().times(kGearRatio));
+                  m_fxSim.setRotorVelocity(m_motorSim.getAngularVelocity().times(kGearRatio));
+               }
 
                /* wait for a new duty cycle signal */
                dutyCycle.waitForUpdate(0.100);
@@ -92,9 +109,20 @@ Below is an example unit test that verifies the robot is enabled and verifies th
 
          class TalonFXTest : public testing::Test {
          protected:
+            static constexpr double kGearRatio = 10.0;
+
             /* create the TalonFX */
             hardware::TalonFX m_fx{0};
             sim::TalonFXSimState& m_fxSim{m_fx.GetSimState()};
+            /* create the simulated DC motor */
+            frc::sim::DCMotorSim m_motorSim{
+               frc::LinearSystemId::DCMotorSystem{
+                  frc::DCMotor::KrakenX60FOC(1),
+                  0.001_kg_sq_m,
+                  kGearRatio
+               },
+               frc::DCMotor::KrakenX60FOC(1)
+            };
 
             void SetUp() override
             {
@@ -127,8 +155,16 @@ Below is an example unit test that verifies the robot is enabled and verifies th
 
             /* request 100% output */
             m_fx.SetControl(controls::DutyCycleOut{1.0});
-            /* wait for the control to apply */
-            std::this_thread::sleep_for(std::chrono::milliseconds{20});
+
+            /* wait for the control to apply and the motor to accelerate */
+            for (int i = 0; i < 10; ++i) {
+               std::this_thread::sleep_for(std::chrono::milliseconds{20});
+               m_motorSim.SetInputVoltage(m_fxSim.GetMotorVoltage());
+               m_motorSim.Update(20_ms);
+
+               m_fxSim.SetRawRotorPosition(kGearRatio * m_motorSim.GetAngularPosition());
+               m_fxSim.SetRotorVelocity(kGearRatio * m_motorSim.GetAngularVelocity());
+            }
 
             /* wait for a new duty cycle signal */
             dutyCycle.WaitForUpdate(100_ms);
