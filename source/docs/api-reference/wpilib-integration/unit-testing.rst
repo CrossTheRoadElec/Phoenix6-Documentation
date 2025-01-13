@@ -23,7 +23,7 @@ Below is an example unit test that verifies the robot is enabled and verifies th
       .. code-block:: java
 
          public class TalonFXTest implements AutoCloseable {
-            static final double DELTA = 1e-3; // acceptable deviation range
+            static final double DELTA = 1e-2; // acceptable deviation range
 
             TalonFX m_fx;
             TalonFXSimState m_fxSim;
@@ -71,7 +71,7 @@ Below is an example unit test that verifies the robot is enabled and verifies th
                /* wait for a fresh duty cycle signal */
                dutyCycle.waitForUpdate(0.100);
                /* verify that the motor output is zero */
-               assertEquals(dutyCycle.getValue(), 0.0, DELTA);
+               assertEquals(dutyCycle.getValueAsDouble(), 0.0, DELTA);
 
                /* request 10% output */
                m_fx.setControl(new DutyCycleOut(0.1));
@@ -81,7 +81,7 @@ Below is an example unit test that verifies the robot is enabled and verifies th
                /* wait for a new duty cycle signal */
                dutyCycle.waitForUpdate(0.100);
                /* verify that the motor output is 0.1 */
-               assertEquals(dutyCycle.getValue(), 0.1, DELTA);
+               assertEquals(dutyCycle.getValueAsDouble(), 0.1, DELTA);
             }
          }
 
