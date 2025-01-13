@@ -88,7 +88,7 @@ Below is an example unit test that verifies the robot is enabled and verifies th
                /* wait for the control to apply and the motor to accelerate */
                for (int i = 0; i < 10; ++i) {
                   Timer.delay(0.020);
-                  m_motorSim.setInputVoltage(m_fxSim.getMotorVoltage();
+                  m_motorSim.setInputVoltage(m_fxSim.getMotorVoltage());
                   m_motorSim.update(0.020);
 
                   m_fxSim.setRawRotorPosition(m_motorSim.getAngularPosition().times(kGearRatio));
