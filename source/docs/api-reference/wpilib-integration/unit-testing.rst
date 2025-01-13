@@ -80,7 +80,7 @@ Below is an example unit test that verifies the robot is enabled and verifies th
                /* wait for a fresh duty cycle signal */
                dutyCycle.waitForUpdate(0.100);
                /* verify that the motor output is zero */
-               assertEquals(dutyCycle.getValue(), 0.0, DELTA);
+               assertEquals(dutyCycle.getValueAsDouble(), 0.0, DELTA);
 
                /* request 100% output */
                m_fx.setControl(new DutyCycleOut(1.0));
@@ -98,7 +98,7 @@ Below is an example unit test that verifies the robot is enabled and verifies th
                /* wait for a new duty cycle signal */
                dutyCycle.waitForUpdate(0.100);
                /* verify that the motor output is 1.0 */
-               assertEquals(dutyCycle.getValue(), 1.0, DELTA);
+               assertEquals(dutyCycle.getValueAsDouble(), 1.0, DELTA);
             }
          }
 
