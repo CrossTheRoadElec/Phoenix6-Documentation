@@ -113,6 +113,7 @@ Supported devices (TalonFX, CANifier, CANcoder, CANdi, CANrange) can be utilized
 
 - When utilizing a CANcoder as a remote limit, the limit will trigger when the magnet strength changes from BAD (red) to ADEQUATE (orange) or GOOD (green).
 - When utilizing a CANrange as a remote limit, the limit will trigger when the proximity detect is tripped following the ``ProximityParamsConfigs`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/configs/ProximityParamsConfigs.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1configs_1_1_proximity_params_configs.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/configs/config_groups/index.html#phoenix6.configs.config_groups.ProximityParamsConfigs>`__).
+- When utilizing a CANdi as a remote limit, the limit will trigger when the ``S1Closed`` or ``S2Closed`` signal is true.
 
 The remote limit switch can be selected using the ``LimitSource`` and ``LimitRemoteSensorID`` configs.
 
