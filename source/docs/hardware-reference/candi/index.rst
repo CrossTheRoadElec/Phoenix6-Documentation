@@ -6,7 +6,7 @@ CANdi seamlessly integrates digital signals into existing CAN bus networks, simp
 .. grid:: 2
 
    .. grid-item-card:: Store Page
-      :link: https://store.ctr-electronics.com/canrange/
+      :link: https://store.ctr-electronics.com/products/candi
       :link-type: url
 
       CAD and purchase instructions.

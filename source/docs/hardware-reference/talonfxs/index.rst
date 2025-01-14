@@ -7,6 +7,14 @@ The Talon FXS supports the `CTR Electronics Minion <https://store.ctr-electronic
 
 Phoenix Pro users also benefit with “Advanced Hall Support” which can increase motor peak efficiency as high as an additional 2% percentage points and further reduce velocity measurement noise, making it ideal for velocity closed loop modes.
 
+.. grid:: 2
+
+   .. grid-item-card:: Store Page
+      :link: https://store.ctr-electronics.com/products/talon-fxs
+      :link-type: url
+
+      CAD and purchase instructions.
+
 Supported Motors
 ----------------
 
