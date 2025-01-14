@@ -107,9 +107,11 @@ The Phoenix 6 software framework allows you to control and configure your `CTR E
    :hidden:
 
    docs/hardware-reference/cancoder/index
+   docs/hardware-reference/candi/index
    docs/hardware-reference/canrange/index
    docs/hardware-reference/pigeon2/index
    docs/hardware-reference/talonfx/index
+   docs/hardware-reference/talonfxs/index
 
 .. toctree::
    :maxdepth: 1

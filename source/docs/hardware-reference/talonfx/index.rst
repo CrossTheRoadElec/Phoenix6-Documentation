@@ -1,5 +1,5 @@
-TalonFX
-=======
+Talon FX
+========
 
 .. tab-set::
 
@@ -13,7 +13,7 @@ TalonFX
             :link: https://store.ctr-electronics.com/kraken-x60/
             :link-type: url
 
-            CAD, Firmware and purchase instructions.
+            CAD and purchase instructions.
 
          .. grid-item-card:: Hardware User Manual
             :link: https://docs.wcproducts.com/kraken-x60/kraken-x60-motor/overview-and-features
