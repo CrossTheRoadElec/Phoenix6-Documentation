@@ -27,7 +27,7 @@ The implementation of the Swerve API has been moved to C++ to improve portabilit
 
 With this change, we are also announcing Swerve API and Swerve Project Generator support for all three languages supported in FRC (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/swerve/SwerveDrivetrain.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1swerve_1_1_swerve_drivetrain.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/swerve/swerve_drivetrain/index.html>`__).
 
-We recommend all Java users regenerate their swerve projects to pick up new features and various other improvements to the 2025 Swerve API and project generator.
+We recommend all Java users regenerate their swerve projects to pick up new features and various other improvements to the 2025 Swerve API and project generator, including support for Talon FXS and CANdi.
 
 Improved Swerve Requests
 ^^^^^^^^^^^^^^^^^^^^^^^^
