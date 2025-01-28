@@ -17,7 +17,7 @@ jobs:
     - name: Install LaTeX
       run: |
         sudo apt -y update
-        sudo apt install -y texlive-latex-recommended texlive-fonts-recommended texlive-latex-extra latexmk texlive-lang-greek texlive-luatex texlive-xetex texlive-fonts-extra dvipng librsvg2-bin
+        sudo apt install -y imagemagick texlive-latex-recommended texlive-fonts-recommended texlive-latex-extra latexmk texlive-lang-greek texlive-luatex texlive-xetex texlive-fonts-extra dvipng librsvg2-bin
     - name: Build PDF
       run: |
         make latexpdf
