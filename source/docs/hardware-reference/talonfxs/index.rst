@@ -19,9 +19,9 @@ Supported Motors
 ----------------
 
 - CTR Electronics Minion
-- REV Robotics NEO
-- REV Robotics NEO 550
-- REV Robotics Vortex with Solo Adapter
+- Third-party NEO
+- Third-party NEO 550
+- Third-party NEO Vortex with Solo Adapter
 - Most 3rd party brushed motors
 
 .. raw:: html
@@ -145,7 +145,7 @@ Supported Motors
                                           <div class='led' ontime='100' offtime='400' oncolor='orange' offcolor='black'></div></div></td>
                 <td>Offset Orange/Off</td>
                 <td>Talon FXS in thermal cutoff or temperature measurement is missing.</td>
-                <td>Please see <span style="font-weight: bold;">"Troubleshooting Thermal Faults"</span> for potential solutions.</td>
+                <td>Please see <span style="font-weight: bold;">"Troubleshooting Fault LED"</span> for potential solutions.</td>
             </tr>
             <tr>
                 <td><div class='ledGroup'><div class='led' ontime='300' offtime='300' oncolor='red' offcolor='green'></div>
@@ -153,6 +153,13 @@ Supported Motors
                 <td>Alternate Red/Green</td>
                 <td>Talon FXS driven with Pro-only command while unlicensed.</td>
                 <td>Use non-Pro-only command, or license device for Pro.</td>
+            </tr>
+            <tr>
+                <td><div class='ledGroup'><div class='led' ontime='300' offtime='300' oncolor='green' offcolor='orange'></div>
+                                          <div class='led' ontime='300' offtime='300' oncolor='orange' offcolor='green'></div></div></td>
+                <td>Alternate Orange/Green</td>
+                <td>Talon FXS driven with no motor selected in motor arrangement.</td>
+                <td>Configure the Talon FXS with the attached motor.</td>
             </tr>
             <tr>
                 <td><div class='ledGroup'><div class='led' ontime='300' offtime='300' oncolor='red' offcolor='orange'></div>
@@ -240,8 +247,8 @@ Supported Motors
         }, 100);
     </script>
 
-Troubleshooting Thermal Faults
-------------------------------
+Troubleshooting Fault LED
+-------------------------
 
 A Talon FXS thermal fault, as indicated with an "Offset Orange/Off" blink code, can be triggered for a variety of reasons. The following list can be used to help identify the reason and a potential solution.
 
