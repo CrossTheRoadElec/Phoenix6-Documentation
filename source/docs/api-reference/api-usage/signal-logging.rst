@@ -179,7 +179,7 @@ Any log that contains a :doc:`pro-licensed </docs/licensing/licensing>` device w
 
    **CANdi:**
 
-   - Supplyvoltage
+   - SupplyVoltage
    - Pin1State
    - Pin2State
    - S1Closed
