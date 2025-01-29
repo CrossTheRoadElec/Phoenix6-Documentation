@@ -143,6 +143,8 @@ Any log that contains a :doc:`pro-licensed </docs/licensing/licensing>` device w
    - IsProLicensed
    - Fault_UnlicensedFeatureInUse
    - Fault_BootDuringEnable
+   - Fault_Hardware
+   - Fault_Undervoltage
 
    **TalonFX:**
 
@@ -167,6 +169,35 @@ Any log that contains a :doc:`pro-licensed </docs/licensing/licensing>` device w
    - SupplyVoltage
    - Yaw
    - AngularVelocityZWorld
+
+   **CANrange:**
+
+   - SupplyVoltage
+   - DistanceMeters
+   - ProximityDetected
+   - SignalStrength
+
+   **CANdi:**
+
+   - SupplyVoltage
+   - Pin1State
+   - Pin2State
+   - S1Closed
+   - S2Closed
+   - QuadPosition
+   - QuadVelocity
+   - Pwm1_Position
+   - Pwm1_Velocity
+   - Pwm2_Position
+   - Pwm2_Velocity
+   - Overcurrent
+
+   **Talon FXS:**
+
+   - ConnectedMotor
+   - Fault_HallSensorMissing
+   - Fault_DriveDisabledHallSensor
+   - Fault_MotorTempSensorMissing
 
 Low Storage Space Behavior
 --------------------------
