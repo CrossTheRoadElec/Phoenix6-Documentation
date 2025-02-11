@@ -3,18 +3,18 @@ Swerve Requirements
 
 The swerve project creator and :doc:`swerve API </docs/tuner/tuner-swerve/index>` have several limitations. These limitations are in place to maximize performance and improve maintainability.
 
-* Only Phoenix 6 supported hardware (e.g. TalonFX, CANcoder, Pigeon 2.0).
+* Only Phoenix 6 supported hardware (e.g. Talon FX, Talon FXS, CANdi, CANcoder, Pigeon 2.0).
 
-  * 8 TalonFX (4 steer, 4 drive)
-  * 4 CANcoder (4 steer)
+  * 8 Talon FX or Talon FXS (4 steer, 4 drive)
+  * 4 CANcoder (4 steer) **OR** 4 Talon FXS + PWM encoder **OR** 4 CANdi
   * 1 Pigeon 2.0
 
-* Requires Phoenix 6 software released for year 2024 or newer.
+* Requires Phoenix 6 software released for the current release year of Tuner.
 
-  * Firmware version should begin with 24.X
-  * Ensure Tuner shows server version as "2024" or newer
+  * Firmware version of devices should show indicate the year of the firmware (25.X firmware corresponds to 2025 API/Tuner)
+  * Ensure Tuner shows server version (located at the bottom of Tuner) that matches the Tuner major version (2025 Tuner requires 2025 server version)
 
-* Temporary diagnostic server (or an existing 2024 robot project) must be running and Tuner should be connected to the robot.
+* Temporary diagnostic server (or an existing robot project for that year of software) must be running and Tuner should be connected to the robot.
 
   * This allows the generator to perform it's setup and auto-calibration routines
 
@@ -55,12 +55,12 @@ Users can utilize the below checklist to ensure their robot is ready for project
 
           <input type="checkbox"/>
 
-   * - **REQUIRED:** Is all firmware up-to-date? (24.X)
+   * - **REQUIRED:** Is all firmware up-to-date? (25.X)
      - .. raw:: html
 
           <input type="checkbox"/>
 
-   * - **REQUIRED:** Is 2024 (or newer) diagnostics running?
+   * - **REQUIRED:** Is the current year (2025) of diagnostics running?
      - .. raw:: html
 
           <input type="checkbox"/>
