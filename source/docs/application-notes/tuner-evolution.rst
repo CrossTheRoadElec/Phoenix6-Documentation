@@ -35,7 +35,7 @@ With Tuner X, users can:
 
 .. important:: Tuner X does not require v6 and can be used with v5 flashed devices.
 
-For a full list of features, check out the `v6 documentation <https://pro.docs.ctr-electronics.com/en/latest/docs/tuner/index.html>`__.
+For a full list of features, check out the :doc:`v6 documentation </docs/tuner/index>`.
 
 Introducing a new iteration of Tuner X
 --------------------------------------
@@ -47,7 +47,7 @@ Some of you may have noticed that your version of Tuner X has changed recently. 
 Improved connection diagnostics
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Tuner requires a running `diagnostic server <https://pro.docs.ctr-electronics.com/en/latest/docs/troubleshooting/running-diagnostics.html>`__ to work. Typically, this is installed through a robot program utilizing one of our devices. Alternatively, this program is temporarily run using a button in `Settings <https://pro.docs.ctr-electronics.com/en/latest/docs/tuner/connecting.html?highlight=settings#temporary-diagnostics-frc>`__. We've improved the disconnection status card to contain information about the ping of the target and diagnostic state of the device.
+Tuner requires a running :doc:`diagnostic server </docs/troubleshooting/running-diagnostics>` to work. Typically, this is installed through a robot program utilizing one of our devices. Alternatively, this program is temporarily run using a button in :ref:`Settings <docs/tuner/connecting:temporary diagnostics (frc)>`. We've improved the disconnection status card to contain information about the ping of the target and diagnostic state of the device.
 
 .. image:: images/tuner-evolution/tuner-x-2024.png
    :alt: Disconnection card in Tuner X 2024
@@ -58,7 +58,7 @@ This 3 step check looks for the following:
 2. Is diagnostics (or a robot program with diagnostics) running?
 3. Are there any devices reported?
 
-To summarize, if a user is not seeing devices in Tuner but checks 1 and 2 are good, then the next recommendation is to check the LED status of the device. We have an extensive list of status LEDs that indicate if the device is detected on a CAN bus, or other problems. This list can be found on the corresponding device page in the docs. For example, look at the `CANcoder LED table <https://pro.docs.ctr-electronics.com/en/latest/docs/hardware-reference/cancoder/index.html#status-light-reference>`__.
+To summarize, if a user is not seeing devices in Tuner but checks 1 and 2 are good, then the next recommendation is to check the LED status of the device. We have an extensive list of status LEDs that indicate if the device is detected on a CAN bus, or other problems. This list can be found on the corresponding device page in the docs. For example, look at the :ref:`CANcoder LED table <docs/hardware-reference/cancoder/index:status light reference>`.
 
 Redesigned device overview
 ^^^^^^^^^^^^^^^^^^^^^^^^^^

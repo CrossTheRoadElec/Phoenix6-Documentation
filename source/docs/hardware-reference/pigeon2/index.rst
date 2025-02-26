@@ -16,7 +16,7 @@ With no on-boot calibration or temperature calibration required and dramatic imp
       :link: https://store.ctr-electronics.com/pigeon-2/
       :link-type: url
 
-      CAD, Firmware and purchase instructions.
+      CAD and purchase instructions.
 
    .. grid-item-card:: Hardware User Manual
       :link: https://store.ctr-electronics.com/content/user-manual/Pigeon2%20User's%20Guide.pdf

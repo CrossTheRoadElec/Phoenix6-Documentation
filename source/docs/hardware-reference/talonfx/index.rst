@@ -1,5 +1,5 @@
-TalonFX
-=======
+Talon FX
+========
 
 .. tab-set::
 
@@ -13,7 +13,7 @@ TalonFX
             :link: https://store.ctr-electronics.com/kraken-x60/
             :link-type: url
 
-            CAD, Firmware and purchase instructions.
+            CAD and purchase instructions.
 
          .. grid-item-card:: Hardware User Manual
             :link: https://docs.wcproducts.com/kraken-x60/kraken-x60-motor/overview-and-features
@@ -34,7 +34,7 @@ TalonFX
             CAD, Firmware and purchase instructions.
 
          .. grid-item-card:: Hardware User Manual
-            :link: https://store.ctr-electronics.com/content/user-manual/Falcon%20500%20User%20Guide.pdf
+            :link: https://ctre.download/files/user-manual/Falcon%20500%20v3%20User's%20Guide.pdf
             :link-type: url
 
             Wiring and mount instructions in PDF format.
@@ -47,12 +47,29 @@ Utilizing your TalonFX
 
    improving-performance-with-current-limits
 
+Motor Orientation
+-----------------
+
+Talon FX supports Clockwise and Counter Clockwise inverts. Inverts are determined from the perspective of looking at the face of the motor.
+
+   .. grid:: 2
+
+      .. grid-item-card:: Clockwise
+
+         .. image:: images/clockwise.png
+            :alt: Clockwise can be found by tracing the motor mount holes from right to left
+
+      .. grid-item-card:: Counter Clockwise
+
+         .. image:: images/counter-clockwise.png
+            :alt: Counter Clockwise can be found by tracing the motor mount holes from left to right
+
 Actuator Limits
 ---------------
 
-CTR Electronics actuators, such as the TalonFX, support various kinds of hardware and software limits.
+CTR Electronics actuators, such as the Talon FX, support various kinds of hardware and software limits.
 
-.. note:: The TalonFX + Kraken X60 does not support hardware limit switches. Instead, :ref:`control request limit <docs/api-reference/api-usage/actuator-limits:control request limits>` overrides can be used, or a CANcoder can be used a :ref:`remote limit switch <docs/api-reference/api-usage/actuator-limits:remote limit switches>`.
+.. note:: The TalonFX + Kraken X60 does not support hardware limit switches. Instead, :ref:`control request limit <docs/api-reference/api-usage/actuator-limits:control request limits>` overrides can be used, or a CANcoder can be used as a :ref:`remote limit switch <docs/api-reference/api-usage/actuator-limits:remote limit switches>`.
 
 Documentation on retrieving and configuring limits can be found :doc:`here </docs/api-reference/api-usage/actuator-limits>`.
 
@@ -63,7 +80,7 @@ CTR Electronics supported actuators have limit features that will automatically 
 
 When the limit switch is closed (connected to ground), the actuator will disable and the pattern will move toward the forward/reverse limit pin (red blink pattern will move toward the forward limit pin when the forward limit is closed, and vice-versa).
 
-.. tip:: For more information on limit switch wiring in the Falcon 500, consult the `Falcon 500 User's Guide <https://store.ctr-electronics.com/content/user-manual/Falcon%20500%20User%20Guide.pdf>`__.
+.. tip:: For more information on limit switch wiring in the Falcon 500, consult the `Falcon 500 User's Guide <https://ctre.download/files/user-manual/Falcon%20500%20v3%20User's%20Guide.pdf>`__.
 
 Status Light Reference
 ----------------------

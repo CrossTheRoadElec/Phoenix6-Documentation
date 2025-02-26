@@ -6,7 +6,7 @@ The below example showcases controlling a four-motor drivetrain.
 Declaring Motor Controllers
 ---------------------------
 
-The ``TalonFX`` motor controller constructor (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/hardware/TalonFX.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1hardware_1_1_talon_f_x.html>`__) requires a **device ID** (int) and an optional **CAN bus** (string).
+The ``TalonFX`` motor controller constructor (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/hardware/TalonFX.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1hardware_1_1_talon_f_x.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/hardware/talon_fx/index.html>`__) requires a **device ID** (int) and an optional **CAN bus** (string).
 
 .. note:: The name of the native roboRIO CAN bus is ``rio``. This is also the default CAN bus on the roboRIO when none is specified.
 
@@ -57,8 +57,7 @@ In a traditional robot drivetrain, there are two motors attached to each horizon
 
       .. code-block:: java
 
-         @Override
-         public void robotInit() {
+         public Robot() {
             // start with factory-default configs
             var currentConfigs = new MotorOutputConfigs();
 
@@ -84,7 +83,7 @@ In a traditional robot drivetrain, there are two motors attached to each horizon
 
          using namespace ctre::phoenix6;
 
-         void Robot::RobotInit() {
+         Robot::Robot() {
             // start with factory-default configs
             configs::MotorOutputConfigs currentConfigs{};
 
@@ -124,8 +123,7 @@ Full Example
 
             private final XboxController m_driverJoy = new XboxController(0);
 
-            @Override
-            public void robotInit() {
+            public Robot() {
                // start with factory-default configs
                var currentConfigs = new MotorOutputConfigs();
 
@@ -167,7 +165,7 @@ Full Example
 
          using namespace ctre::phoenix6;
 
-         void Robot::RobotInit() {
+         Robot::Robot() {
             // start with factory-default configs
             configs::MotorOutputConfigs currentConfigs{};
 

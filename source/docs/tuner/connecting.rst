@@ -23,7 +23,7 @@ Alternatively, the user can manually enter the robot IP into the textbox.
 Configuring SSH Credentials (non-FRC)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-When using a non-FRC robot controller (non-roboRIO), users must have their SSH credentials configured in :guilabel:`Settings` for general use.
+When using a non-FRC robot controller (non-roboRIO) with SSH (instead of the default POST), credentials must be configured in :guilabel:`Settings` for general use.
 
 .. image:: images/highlighting-ssh-creds.png
    :width: 70%
@@ -32,11 +32,11 @@ When using a non-FRC robot controller (non-roboRIO), users must have their SSH c
 Temporary Diagnostics (FRC)
 ---------------------------
 
-Devices can be configured without a diagnostic server present. This can be useful if the roboRIO has been freshly imaged. Ensure that you are pointed at the roboRIO IP address (usually ``10.TE.AM.2`` where ``TE.AM`` is the team number) and then click the :guilabel:`Run Temporary Diagnostic Server` in :guilabel:`Settings`.
+Devices can be configured without a diagnostic server present. This can be useful if the roboRIO has been freshly imaged. Ensure that you are pointed at the roboRIO IP address (usually ``10.TE.AM.2`` where ``TE.AM`` is the team number) and then click the :guilabel:`Run Temporary Diagnostic Server`.
 
-.. image:: images/highlighting-temp-diag-server.png
+.. image:: images/tuner-run-temporary.png
    :width: 70%
-   :alt: Temporary diagnostic server is the second button available to the user.
+   :alt: Temporary diagnostic server card present
 
 Changing Diagnostics Server Port (non-FRC)
 ------------------------------------------

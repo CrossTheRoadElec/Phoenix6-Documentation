@@ -7,19 +7,14 @@ The Phoenix 6 software framework allows you to control and configure your `CTR E
 
 .. important:: Users looking for beta documentation for the Phoenix 6 API can find it on the `latest version of this site <https://v6.docs.ctr-electronics.com/en/latest/>`__.
 
-.. card:: CTR Electronics Blog
-   :link: https://store.ctr-electronics.com/blog/
-
-   For news and updates about your CTR Electronics device, please check out our `blog <https://store.ctr-electronics.com/blog/>`__.
-
 .. grid:: 1 2 2 2
    :gutter: 3
 
-   .. grid-item-card:: New for 2024
+   .. grid-item-card:: New for 2025
       :link: docs/yearly-changes/yearly-changelog
       :link-type: doc
 
-      What's new in Phoenix 6 for 2024.
+      What's new in Phoenix 6 for 2025.
 
    .. grid-item-card:: Migration Guide
       :link: docs/migration/migration-guide/index
@@ -102,6 +97,7 @@ The Phoenix 6 software framework allows you to control and configure your `CTR E
    :hidden:
 
    docs/tuner/index
+   docs/licensing/what-is-licensing
    docs/licensing/licensing
    docs/licensing/team-licensing
 
@@ -110,9 +106,12 @@ The Phoenix 6 software framework allows you to control and configure your `CTR E
    :caption: Hardware Reference
    :hidden:
 
-   docs/hardware-reference/talonfx/index
-   docs/hardware-reference/pigeon2/index
    docs/hardware-reference/cancoder/index
+   docs/hardware-reference/candi/index
+   docs/hardware-reference/canrange/index
+   docs/hardware-reference/pigeon2/index
+   docs/hardware-reference/talonfx/index
+   docs/hardware-reference/talonfxs/index
 
 .. toctree::
    :maxdepth: 1

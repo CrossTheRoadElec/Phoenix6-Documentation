@@ -20,7 +20,7 @@ Nominal Output
 
 The Talon FX forward and reverse Nominal Output configs have been removed in Phoenix 6.
 
-The typical use case of the nominal output configs is to overcome friction in closed-loop control modes, which can now be achieved using the ``kS`` feedforward parameter (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/configs/Slot0Configs.html#kS>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1configs_1_1_slot0_configs.html#af9aff78b5fafed0bf20c096b11718d80>`__).
+The typical use case of the nominal output configs is to overcome friction in closed-loop control modes, which can now be achieved using the ``kS`` feedforward parameter (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/configs/Slot0Configs.html#kS>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1configs_1_1_slot0_configs.html#a00d6ee0ad9827e7ab3ac086c4093c5b5>`__).
 
 Sensor Phase
 ------------
@@ -39,7 +39,7 @@ The Talon FX and CANcoder sensors are always initialized to their absolute posit
 Clear Position on Limit
 -----------------------
 
-In Phoenix 5, users could configure the TalonFX to clear its sensor position (i.e. set to 0) when a limit switch is triggered. In Phoenix 6, this feature has been improved to allow users to specify the applied sensor position when a limit switch is triggered. This can be configured using the ``*LimitAutosetPositionValue`` configs (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/configs/HardwareLimitSwitchConfigs.html#ForwardLimitAutosetPositionValue>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1configs_1_1_hardware_limit_switch_configs.html#aba2bf53336c0ebd9988fc9b3154efeef>`__).
+In Phoenix 5, users could configure the TalonFX to clear its sensor position (i.e. set to 0) when a limit switch is triggered. In Phoenix 6, this feature has been improved to allow users to specify the applied sensor position when a limit switch is triggered. This can be configured using the ``*LimitAutosetPositionValue`` configs (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/configs/HardwareLimitSwitchConfigs.html#ForwardLimitAutosetPositionValue>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1configs_1_1_hardware_limit_switch_configs.html#a33f21915d1147448ea89cb96829476a1>`__).
 
 Velocity Measurement Period/Window
 ----------------------------------

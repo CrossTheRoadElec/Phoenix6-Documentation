@@ -6,6 +6,9 @@ Hardware Reference
 .. mimictoc::
    :maxdepth: 1
 
-   talonfx/index
-   pigeon2/index
    cancoder/index
+   candi/index
+   canrange/index
+   pigeon2/index
+   talonfx/index
+   talonfxs/index

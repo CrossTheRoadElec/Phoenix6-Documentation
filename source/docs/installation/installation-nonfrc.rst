@@ -35,7 +35,7 @@ Open ``/etc/apt/sources.list.d/ctr${YEAR}.list`` with an editor of your choice.
 
    sudo nano /etc/apt/sources.list.d/ctr${YEAR}.list
 
-Replace ``stable`` with the distribution you want to use.
+In the ``tools`` entry, replace ``stable`` with the distribution you want to use.
 
 .. code-block:: bash
 
@@ -76,8 +76,7 @@ Available distributions can be found in the dropdown below.
 
         - stable
 
-   .. warning:: Do not modify the distribution of the ``libs/<year>`` entry in the ``.list`` file.
-
+.. warning:: Do not modify the distribution of the ``libs/<year>`` entry in the ``.list`` file.
 
 CANivore Installation
 ^^^^^^^^^^^^^^^^^^^^^
