@@ -134,7 +134,7 @@ Any log that contains a :doc:`pro-licensed </docs/licensing/licensing>` device w
 
 .. dropdown:: Click here to view free signals
 
-   **Common Signals:**
+   **Common Signals**
 
    - VersionMajor
    - VersionMinor
