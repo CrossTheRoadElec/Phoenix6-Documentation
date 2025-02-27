@@ -141,63 +141,69 @@ Any log that contains a :doc:`pro-licensed </docs/licensing/licensing>` device w
    - VersionBugfix
    - VersionBuild
    - IsProLicensed
+   - SupplyVoltage
    - Fault_UnlicensedFeatureInUse
    - Fault_BootDuringEnable
    - Fault_Hardware
    - Fault_Undervoltage
 
-   **TalonFX:**
+   .. tab-set::
 
-   - SupplyVoltage
-   - SupplyCurrent
-   - StatorCurrent
-   - MotorVoltage
-   - Position
-   - Velocity
-   - DeviceEnable
-   - Fault_DeviceTemp
-   - Fault_ProcTemp
+      .. tab-item:: Talon FX
 
-   **CANcoder:**
+         - SupplyCurrent
+         - StatorCurrent
+         - MotorVoltage
+         - Position
+         - Velocity
+         - DeviceEnable
+         - Fault_DeviceTemp
+         - Fault_ProcTemp
 
-   - SupplyVoltage
-   - Position
-   - Velocity
+      .. tab-item:: Talon FXS
 
-   **Pigeon 2.0:**
+         - SupplyCurrent
+         - StatorCurrent
+         - MotorVoltage
+         - Position
+         - Velocity
+         - DeviceEnable
+         - ConnectedMotor
+         - Fault_DeviceTemp
+         - Fault_ProcTemp
+         - Fault_HallSensorMissing
+         - Fault_DriveDisabledHallSensor
+         - Fault_MotorTempSensorMissing
 
-   - SupplyVoltage
-   - Yaw
-   - AngularVelocityZWorld
+      .. tab-item:: CANcoder
 
-   **CANrange:**
+         - Position
+         - Velocity
 
-   - SupplyVoltage
-   - DistanceMeters
-   - ProximityDetected
-   - SignalStrength
+      .. tab-item:: Pigeon 2.0
 
-   **CANdi:**
+         - Yaw
+         - AngularVelocityZWorld
 
-   - SupplyVoltage
-   - Pin1State
-   - Pin2State
-   - S1Closed
-   - S2Closed
-   - QuadPosition
-   - QuadVelocity
-   - Pwm1_Position
-   - Pwm1_Velocity
-   - Pwm2_Position
-   - Pwm2_Velocity
-   - Overcurrent
+      .. tab-item:: CANrange
 
-   **Talon FXS:**
+         - DistanceMeters
+         - ProximityDetected
+         - SignalStrength
 
-   - ConnectedMotor
-   - Fault_HallSensorMissing
-   - Fault_DriveDisabledHallSensor
-   - Fault_MotorTempSensorMissing
+      .. tab-item:: CANdi
+
+         - Pin1State
+         - Pin2State
+         - S1Closed
+         - S2Closed
+         - QuadPosition
+         - QuadVelocity
+         - Pwm1_Position
+         - Pwm1_Velocity
+         - Pwm2_Position
+         - Pwm2_Velocity
+         - Overcurrent
 
 Low Storage Space Behavior
 --------------------------
