@@ -3,16 +3,16 @@ Swerve Requirements
 
 The swerve project creator and :doc:`swerve API </docs/tuner/tuner-swerve/index>` have several limitations. These limitations are in place to maximize performance and improve maintainability.
 
-* Only Phoenix 6 supported hardware (e.g. Talon FX, Talon FXS, CANdi, CANcoder, Pigeon 2.0).
+* Only Phoenix 6 supported hardware (e.g. Talon FX, Talon FXS, CANcoder, CANdi, Pigeon 2.0).
 
   * 8 Talon FX or Talon FXS (4 steer, 4 drive)
   * 4 CANcoder (4 steer) **OR** 4 Talon FXS + PWM encoder **OR** 4 CANdi
   * 1 Pigeon 2.0
 
-* Requires Phoenix 6 software released for the current release year of Tuner.
+* Requires Phoenix 6 software released for the current release year of Tuner X.
 
-  * Firmware version of devices should show indicate the year of the firmware (25.X firmware corresponds to 2025 API/Tuner)
-  * Ensure Tuner shows server version (located at the bottom of Tuner) that matches the Tuner major version (2025 Tuner requires 2025 server version)
+  * Firmware version of devices should match the API year (25.X firmware corresponds to 2025 API/Tuner)
+  * Ensure Tuner X shows server version (located at the bottom of Tuner X) that matches the Tuner X major version (2025 Tuner X requires 2025 server version)
 
 * Temporary diagnostic server (or an existing robot project for that year of software) must be running and Tuner should be connected to the robot.
 
