@@ -40,7 +40,7 @@ Users can utilize the below checklist to ensure their robot is ready for project
      - Done?
    * - **REQUIRED:** Is there the minimum number of devices?
 
-       (8 TalonFX, 4 CANcoder, 1 Pigeon 2.0)
+       (8 Talon FX/FXS, 4 CANcoder/CANdi/Talon FXS + PWM encoder, 1 Pigeon 2.0)
      - .. raw:: html
 
            <input type="checkbox"/>
