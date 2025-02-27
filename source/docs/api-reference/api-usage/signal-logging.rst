@@ -211,3 +211,22 @@ An example error that may occur if the free space limit is reached is shown belo
 .. code-block:: text
 
    [phoenix] Signal Logger: Available disk space (3 MB) below 5 MB, stopping log
+
+Converting Signal Logs
+----------------------
+
+Signal logs can be converted to other common file formats such as WPILOG or MCAP using the :doc:`Tuner X Log Extractor </docs/tuner/tools/log-extractor>`.
+
+Additionally, the ``owlet`` CLI tool can be used from a terminal, including on platforms not supported by Tuner X. ``owlet`` can be downloaded from the `CLI Tools download page <https://docs.ctr-electronics.com/cli-tools>`__.
+
+To view a list of available commands, run ``owlet`` either with no parameters or with ``--help``.
+
+.. image:: images/owlet-cli.png
+   :width: 70%
+   :alt: Running the owlet CLI help message
+
+As an example, to convert a ``hoot`` file to WPILOG, run:
+
+.. code-block:: bash
+
+   ./owlet -f wpilog input.hoot output.wpilog

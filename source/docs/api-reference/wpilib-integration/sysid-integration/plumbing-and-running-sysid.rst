@@ -227,4 +227,6 @@ With the routines configured and buttons set up, the characterization tests can 
 
 Ensure each test is ran once, and only once. If a test is accidentally started multiple times, stop and restart the Signal Logger and try again.
 
-Once you have a log with all the tests, you can use Tuner X to :doc:`extract the hoot log to WPILOG </docs/tuner/tools/log-extractor>`. The exported WPILOG can then be `loaded into SysId <https://docs.wpilib.org/en/stable/docs/software/advanced-controls/system-identification/loading-data.html>`__ for analysis using the Talon FX ``Position``, ``Velocity``, and ``MotorVoltage`` signals.
+Once you have a log with all the tests, you can use Tuner X or the :ref:`owlet CLI tool <docs/api-reference/api-usage/signal-logging:converting signal logs>` to :doc:`extract the hoot log to WPILOG </docs/tuner/tools/log-extractor>`. The exported WPILOG can then be `loaded into SysId <https://docs.wpilib.org/en/stable/docs/software/advanced-controls/system-identification/loading-data.html>`__ for analysis using the Talon FX ``Position``, ``Velocity``, and ``MotorVoltage`` signals.
+
+.. important:: We recommend against using third-party tools to export a hoot log to WPILOG. Doing so may result in a lossy conversion that impacts the quality of the SysId analysis. This is particularly true in simulation, where a lossy export can result in SysId failing to analyze the data.

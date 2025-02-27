@@ -1,7 +1,9 @@
 Extracting Signal Logs
 ======================
 
-.. tip:: Information on how to use the signal logger API can be found in the :ref:`corresponding API article <docs/api-reference/api-usage/signal-logging:signal logging>`. Tuner offers in-app functionality to retrieve, manage, and convert ``hoot`` logs to compatible formats.
+.. tip:: Information on how to use the signal logger API can be found in the :ref:`corresponding API article <docs/api-reference/api-usage/signal-logging:signal logging>`.
+
+Tuner X offers in-app functionality to retrieve, manage, and convert ``hoot`` logs to compatible formats.
 
 .. image:: images/log-extractor-overview.png
    :width: 70%
