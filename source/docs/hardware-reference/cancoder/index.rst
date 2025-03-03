@@ -128,7 +128,7 @@ Status Light Reference
                 <td><div class='ledGroup'><div class='led' ontime='300' offtime='300' oncolor='red' offcolor='orange'></div></div></td>
                 <td>Alternate Red/Orange</td>
                 <td>Damaged Hardware.</td>
-                <td>Contact CTRE.</td>
+                <td>Use Tuner X Self Test to confirm the LEDs, then contact CTRE.</td>
             </tr>
             <tr>
                 <td><div class='ledGroup'><div class='led' ontime='300' offtime='300' oncolor='orange' offcolor='green'></div></div></td>
