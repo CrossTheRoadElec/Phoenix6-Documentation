@@ -22,7 +22,7 @@ jobs:
       run: |
         make latexpdf
     - name: Archive PDF
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: phoenix6-docs-pdf
         path: build/latex/phoenix6.pdf
@@ -31,7 +31,7 @@ jobs:
   build-html:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - uses: actions/setup-python@v4
       with:
         python-version: 3.11
@@ -47,7 +47,7 @@ jobs:
       run: |
         make html
     - name: Archive HTML
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: phoenix6-docs-html
         path: build/html/
@@ -56,7 +56,7 @@ jobs:
   check-links:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
         fetch-depth: 0
     - uses: actions/setup-python@v4
@@ -73,7 +73,7 @@ jobs:
   check-linting:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - uses: actions/setup-python@v4
       with:
         python-version: 3.11
@@ -88,7 +88,7 @@ jobs:
   check-image-size:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - uses: actions/setup-python@v4
       with:
         python-version: 3.11
@@ -103,7 +103,7 @@ jobs:
   check-spelling:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: misspell
         uses: reviewdog/action-misspell@v1
         with:
@@ -113,7 +113,7 @@ jobs:
   check-redirects:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Checkout main
       run: |
         git fetch origin main --depth=1
@@ -134,7 +134,7 @@ jobs:
   check-formatting:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - uses: actions/setup-python@v4
       with:
         python-version: 3.11
