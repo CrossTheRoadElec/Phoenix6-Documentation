@@ -14,7 +14,7 @@ Creating your Project
 
 #. FL to BL distance (inches)
 
-   * This is the distance between the center of the front-left module, and the center of the back-right module.
+   * This is the distance between the center of the front-left module, and the center of the back-left module.
 
 #. Module Type
 

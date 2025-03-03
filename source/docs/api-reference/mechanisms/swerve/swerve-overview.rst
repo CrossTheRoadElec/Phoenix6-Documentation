@@ -3,7 +3,7 @@ Swerve Overview
 
 .. important:: Swerve functionality is only available for FRC users and is limited to Java at this time.
 
-New in 2024 is a high performance swerve API. This API simplifies the boilerplate necessary for swerve and maximizes performance.
+Phoenix 6 incorporates a high performance swerve API. This API simplifies the boilerplate necessary for swerve and maximizes performance.
 
 This section focuses on utilizing the Swerve API and configuring it correctly. Tuner X supports a :doc:`swerve project creator </docs/tuner/tuner-swerve/index>` that greatly simplifies this process and removes common error cases.
 
