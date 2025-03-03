@@ -33,7 +33,7 @@ Improved Swerve Requests
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. image:: images/sysid-steer.png
-   :alt: Picture of SysID showing improved gains
+   :alt: Picture of SysId showing improved gains
    :width: 650
 
 After further testing, the SysId swerve requests have been improved to output usable gains for both drive and steer motors, as well as the ``HeadingController`` used in ``FieldCentricFacingAngle``. ``ApplyChassisSpeeds`` has also been renamed to ``ApplyRobotSpeeds``, and ``ApplyFieldSpeeds`` has been added to accept a field-centric ``ChassisSpeeds`` object.
