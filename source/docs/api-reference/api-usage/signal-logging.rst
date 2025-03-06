@@ -3,7 +3,7 @@ Signal Logging
 
 .. note:: Information on how to retrieve and convert ``hoot`` files to compatible formats can be found in :doc:`/docs/tuner/tools/log-extractor`.
 
-Phoenix 6 comes with a real-time, high-fidelity signal logger. This can be useful for any form of post analysis, including diagnosing issues after a match or using `WPILib SysID <https://docs.wpilib.org/en/stable/docs/software/pathplanning/system-identification/introduction.html>`__.
+Phoenix 6 comes with a real-time, high-fidelity signal logger. This can be useful for any form of post analysis, including diagnosing issues after a match or using `WPILib SysId <https://docs.wpilib.org/en/stable/docs/software/pathplanning/system-identification/introduction.html>`__.
 
 The Phoenix 6 signal logger provides the following advantages over alternatives:
 
@@ -15,6 +15,8 @@ The Phoenix 6 signal logger provides the following advantages over alternatives:
 - The **highly efficient** ``hoot`` file format minimizes the **size** of the log files and the **CPU usage** of the logger.
 
 The signal logging API is available through static functions in the ``SignalLogger`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/SignalLogger.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1_signal_logger.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/signal_logger/index.html#phoenix6.signal_logger.SignalLogger>`__) class. Signal logging is **enabled by default** whenever it detects an FRC match is currently being played. Users can disable this behavior with ``SignalLogger.enableAutoLogging(false)`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/SignalLogger.html#enableAutoLogging(boolean)>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1_signal_logger.html#ae9261bb623fbc9cb4040fedeedc5c91e>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/signal_logger/index.html#phoenix6.signal_logger.SignalLogger.enable_auto_logging>`__).
+
+.. tip:: Device status signals can also be viewed live in the :doc:`Tuner X Plotting page </docs/tuner/plotting>`.
 
 Setting Log Path
 ----------------
@@ -134,39 +136,76 @@ Any log that contains a :doc:`pro-licensed </docs/licensing/licensing>` device w
 
 .. dropdown:: Click here to view free signals
 
-   **Common Signals:**
+   **Common Signals**
 
    - VersionMajor
    - VersionMinor
    - VersionBugfix
    - VersionBuild
    - IsProLicensed
+   - SupplyVoltage
    - Fault_UnlicensedFeatureInUse
    - Fault_BootDuringEnable
+   - Fault_Hardware
+   - Fault_Undervoltage
 
-   **TalonFX:**
+   .. tab-set::
 
-   - SupplyVoltage
-   - SupplyCurrent
-   - StatorCurrent
-   - MotorVoltage
-   - Position
-   - Velocity
-   - DeviceEnable
-   - Fault_DeviceTemp
-   - Fault_ProcTemp
+      .. tab-item:: Talon FX
 
-   **CANcoder:**
+         - SupplyCurrent
+         - StatorCurrent
+         - MotorVoltage
+         - Position
+         - Velocity
+         - DeviceEnable
+         - Fault_DeviceTemp
+         - Fault_ProcTemp
 
-   - SupplyVoltage
-   - Position
-   - Velocity
+      .. tab-item:: Talon FXS
 
-   **Pigeon 2.0:**
+         - SupplyCurrent
+         - StatorCurrent
+         - MotorVoltage
+         - Position
+         - Velocity
+         - DeviceEnable
+         - ConnectedMotor
+         - Fault_DeviceTemp
+         - Fault_ProcTemp
+         - Fault_HallSensorMissing
+         - Fault_DriveDisabledHallSensor
+         - Fault_MotorTempSensorMissing
 
-   - SupplyVoltage
-   - Yaw
-   - AngularVelocityZWorld
+      .. tab-item:: CANcoder
+
+         - Position
+         - Velocity
+
+      .. tab-item:: Pigeon 2.0
+
+         - Yaw
+         - AngularVelocityZWorld
+
+      .. tab-item:: CANrange
+
+         - DistanceMeters
+         - ProximityDetected
+         - SignalStrength
+
+      .. tab-item:: CANdi
+
+         - Pin1State
+         - Pin2State
+         - S1Closed
+         - S2Closed
+         - QuadPosition
+         - QuadVelocity
+         - Pwm1_Position
+         - Pwm1_Velocity
+         - Pwm2_Position
+         - Pwm2_Velocity
+         - Overcurrent
 
 Low Storage Space Behavior
 --------------------------
@@ -180,3 +219,22 @@ An example error that may occur if the free space limit is reached is shown belo
 .. code-block:: text
 
    [phoenix] Signal Logger: Available disk space (3 MB) below 5 MB, stopping log
+
+Converting Signal Logs
+----------------------
+
+Signal logs can be converted to other common file formats such as WPILOG or MCAP using the :doc:`Tuner X Log Extractor </docs/tuner/tools/log-extractor>`.
+
+Additionally, the ``owlet`` CLI tool can be used from a terminal, including on platforms not supported by Tuner X. ``owlet`` can be downloaded from the `CLI Tools download page <https://docs.ctr-electronics.com/cli-tools>`__.
+
+To view a list of available commands, run ``owlet`` either with no parameters or with ``--help``.
+
+.. image:: images/owlet-cli.png
+   :width: 70%
+   :alt: Running the owlet CLI help message
+
+As an example, to convert a ``hoot`` file to WPILOG, run:
+
+.. code-block:: bash
+
+   ./owlet -f wpilog "input.hoot" "output.wpilog"
