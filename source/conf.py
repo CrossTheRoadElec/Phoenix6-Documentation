@@ -95,6 +95,9 @@ else:
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = []
 
+# List of extra files to include with the build
+html_extra_path = ["robots.txt"]
+
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = None
 
