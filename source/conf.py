@@ -96,9 +96,7 @@ else:
 exclude_patterns = []
 
 # List of extra files to include with the build
-html_extra_path = [
-    "robots.txt"
-]
+html_extra_path = ["robots.txt"]
 
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = None
