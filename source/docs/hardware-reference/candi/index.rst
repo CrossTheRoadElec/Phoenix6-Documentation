@@ -1,7 +1,7 @@
-CANdi
-=====
+CANdi™
+======
 
-CANdi seamlessly integrates digital signals into existing CAN bus networks, simplifying wiring and allowing multiple devices to share and utilize valuable input data. CANdi enables CAN interopability with sensors such as: PWM encoders, Quadrature encoders, beam break sensors, and limit switches.
+The CTR Electronics' CANdi™ branded device seamlessly integrates digital signals into existing CAN bus networks, simplifying wiring and allowing multiple devices to share and utilize valuable input data. CANdi™ enables CAN interopability with sensors such as: PWM encoders, Quadrature encoders, beam break sensors, and limit switches.
 
 .. grid:: 2
 
@@ -77,14 +77,14 @@ CANdi seamlessly integrates digital signals into existing CAN bus networks, simp
                 <td><div class='ledGroup'><div class='led' ontime='300' offtime='300' oncolor='red' offcolor='black'></div>
                                           <div class='led' ontime='300' offtime='300' oncolor='black' offcolor='red'></div></div></td>
                 <td>Blinking Alternating Red</td>
-                <td>CANdi does not have valid CAN.</td>
+                <td>CANdi™ does not have valid CAN.</td>
                 <td>Ensure good connections between CANH and CANL (Yellow and Green) & robot controller is on.</td>
             </tr>
             <tr>
                 <td><div class='ledGroup'><div class='led' ontime='300' offtime='300' oncolor='green' offcolor='black'></div>
                                           <div class='led' ontime='300' offtime='300' oncolor='black' offcolor='green'></div></div></td>
                 <td>Blinking Alternating Green</td>
-                <td colspan="2">CANdi has a good CAN connection.</td>
+                <td colspan="2">CANdi™ has a good CAN connection.</td>
             </tr>
             <tr>
                 <td><div class='ledGroup'><div class='led' ontime='300' offtime='300' oncolor='red' offcolor='orange'></div>
@@ -97,7 +97,7 @@ CANdi seamlessly integrates digital signals into existing CAN bus networks, simp
                 <td><div class='ledGroup'><div class='led' ontime='0' offtime='0' oncolor='black' offcolor='black'></div>
                                           <div class='led' ontime='300' offtime='300' oncolor='green' offcolor='orange'></div></div></td>
                 <td>Single LED alternates Green/Orange</td>
-                <td>CANdi in bootloader.</td>
+                <td>CANdi™ in bootloader.</td>
                 <td>Field-upgrade device in Tuner X.</td>
             </tr>
         </table>
