@@ -193,7 +193,7 @@ Any log that contains a :doc:`pro-licensed </docs/licensing/licensing>` device w
          - ProximityDetected
          - SignalStrength
 
-      .. tab-item:: CANdi
+      .. tab-item:: CANdi™
 
          - Pin1State
          - Pin2State
