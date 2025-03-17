@@ -3,7 +3,7 @@ Actuator Limits
 
 CTR Electronics actuators, such as the TalonFX, support various kinds of hardware and software limits.
 
-.. note:: The TalonFX + Kraken X60 does not support hardware limit switches. Instead, :ref:`control request limit <docs/api-reference/api-usage/actuator-limits:control request limits>` overrides can be used, or a CANcoder/CANdi/CANrange can be used as a :ref:`remote limit switch <docs/api-reference/api-usage/actuator-limits:remote limit switches>`.
+.. note:: The TalonFX + Kraken X60 does not support hardware limit switches. Instead, :ref:`control request limit <docs/api-reference/api-usage/actuator-limits:control request limits>` overrides can be used, or a CANcoder/CANdi™/CANrange can be used as a :ref:`remote limit switch <docs/api-reference/api-usage/actuator-limits:remote limit switches>`.
 
 Documentation on wiring limit switches can be found :ref:`here <docs/hardware-reference/talonfx/index:actuator limits>`.
 
@@ -109,11 +109,11 @@ Many :doc:`control requests </docs/api-reference/api-usage/control-requests>` su
 Remote Limit Switches
 ---------------------
 
-Supported devices (TalonFX, CANifier, CANcoder, CANdi, CANrange) can be utilized as a remote limit switch, disabling actuator outputs when triggers.
+Supported devices (TalonFX, CANifier, CANcoder, CANdi™, CANrange) can be utilized as a remote limit switch, disabling actuator outputs when triggers.
 
 - When utilizing a CANcoder as a remote limit, the limit will trigger when the magnet strength changes from BAD (red) to ADEQUATE (orange) or GOOD (green).
 - When utilizing a CANrange as a remote limit, the limit will trigger when the proximity detect is tripped following the ``ProximityParamsConfigs`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/configs/ProximityParamsConfigs.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1configs_1_1_proximity_params_configs.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/configs/config_groups/index.html#phoenix6.configs.config_groups.ProximityParamsConfigs>`__).
-- When utilizing a CANdi as a remote limit, the limit will trigger when the ``S1Closed`` or ``S2Closed`` signal is true.
+- When utilizing a CANdi™ as a remote limit, the limit will trigger when the ``S1Closed`` or ``S2Closed`` signal is true.
 
 The remote limit switch can be selected using the ``LimitSource`` and ``LimitRemoteSensorID`` configs.
 
