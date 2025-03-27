@@ -61,6 +61,7 @@ if on_rtd:
     extensions = extensions + ["sphinx_build_compatibility.extension"]
 
 local_extensions = [
+    "_extensions.controls_js_sim",
     "_extensions.rtd_html_zip",
 ]
 
