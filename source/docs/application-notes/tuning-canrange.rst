@@ -53,7 +53,7 @@ The following is an example of a CANrange being used to detect an object and is 
 In the image, the distance measurement is unreliable at signal strengths below 2000, and very reliable when the strength is above 2000.
 
 Given that the signal strength alone is sufficient to detect game piece detection, we can specify a large distance threshold without much concern.
-In this case, I specified a distance threshold of 0.5 meters, despite the measured distance only being 0.11 meters.
+In this case, I specified a distance threshold of 0.4 meters, despite the measured distance only being 0.11 meters.
 
 This results in the following IsDetected result.
 
