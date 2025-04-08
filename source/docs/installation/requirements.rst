@@ -12,7 +12,7 @@ Phoenix 6 supports the following devices:
 - `CANdi™ <https://store.ctr-electronics.com/products/candi>`__
 - `CANrange <https://store.ctr-electronics.com/products/canrange>`__
 - `Pigeon 2.0 <https://store.ctr-electronics.com/pigeon-2/>`__
-- Talon FX (`Falcon 500 <https://store.ctr-electronics.com/falcon-500-powered-by-talon-fx/>`__, `Kraken X60 <https://store.ctr-electronics.com/kraken-x60/>`__, `Kraken X40 <https://store.ctr-electronics.com/products/kraken-x44>`__)
+- Talon FX (`Falcon 500 <https://store.ctr-electronics.com/falcon-500-powered-by-talon-fx/>`__, `Kraken X60 <https://store.ctr-electronics.com/kraken-x60/>`__, `Kraken X44 <https://store.ctr-electronics.com/products/kraken-x44>`__)
 - `Talon FXS <https://store.ctr-electronics.com/products/talon-fxs>`__
 
 CAN Bus Requirements
