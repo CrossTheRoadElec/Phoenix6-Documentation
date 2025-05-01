@@ -8,6 +8,7 @@ Hardware Reference
 
    cancoder/index
    candi/index
+   candle/index
    canrange/index
    pigeon2/index
    talonfx/index
