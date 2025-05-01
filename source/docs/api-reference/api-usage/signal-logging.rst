@@ -159,8 +159,13 @@ Any log that contains a :doc:`pro-licensed </docs/licensing/licensing>` device w
          - Position
          - Velocity
          - DeviceEnable
+         - RobotEnable
+         - ConnectedMotor
          - Fault_DeviceTemp
          - Fault_ProcTemp
+         - Fault_RemoteSensorDataInvalid
+         - Fault_StaticBrakeDisabled
+         - Fault_BridgeBrownout
 
       .. tab-item:: Talon FXS
 
@@ -170,12 +175,17 @@ Any log that contains a :doc:`pro-licensed </docs/licensing/licensing>` device w
          - Position
          - Velocity
          - DeviceEnable
+         - RobotEnable
          - ConnectedMotor
          - Fault_DeviceTemp
          - Fault_ProcTemp
+         - Fault_RemoteSensorDataInvalid
+         - Fault_StaticBrakeDisabled
+         - Fault_BridgeBrownout
          - Fault_HallSensorMissing
          - Fault_DriveDisabledHallSensor
          - Fault_MotorTempSensorMissing
+         - Fault_MotorTempSensorTooHot
 
       .. tab-item:: CANcoder
 
@@ -206,6 +216,19 @@ Any log that contains a :doc:`pro-licensed </docs/licensing/licensing>` device w
          - Pwm2_Position
          - Pwm2_Velocity
          - Overcurrent
+         - Fault_5V
+
+      .. tab-item:: CANdle®
+
+         - OutputCurrent
+         - DeviceTemp
+         - MaxSimultaneousAnimationCount
+         - Fault_Overvoltage
+         - Fault_5VTooHigh
+         - Fault_5VTooLow
+         - Fault_Thermal
+         - Fault_SoftwareFuse
+         - Fault_ShortCircuit
 
 Low Storage Space Behavior
 --------------------------
