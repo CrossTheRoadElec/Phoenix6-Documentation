@@ -69,25 +69,25 @@ The CTR Electronics' CANdle® branded device makes it easy to control individual
             <tr>
                 <td><div class='ledGroup'><div class='led' ontime='0' offtime='0' oncolor='black' offcolor='black'></div></div></td>
                 <td>LEDs Off</td>
-                <td>No power, or StatusLedWhenActive is set to Disabled.</td>
+                <td>No power, or the StatusLedWhenActive config is set to Disabled.</td>
                 <td>If you cannot communicate with the CANdle® and all LEDs are off, validate 12V on the Red/Black (+Vin/-Vin) leads.</td>
             </tr>
             <tr>
                 <td><div class='ledGroup'><div class='led' ontime='300' offtime='300' oncolor='red' offcolor='black'></div></div></td>
                 <td>Blinking Red</td>
-                <td>CANdle® does not have valid CAN or Pixel pulse train.</td>
-                <td>Ensure good connections between CANH and CANL (Yellow and Green) and the CAN bus or Pixel pulse train, and robot controller is on.</td>
+                <td>CANdle® does not have valid CAN or Pixel pulse train [1].</td>
+                <td>Ensure good connections between CANH and CANL (Yellow and Green) and the CAN bus or Pixel pulse train [1], and robot controller is on.</td>
             </tr>
             <tr>
                 <td><div class='ledGroup'><div class='led' ontime='300' offtime='300' oncolor='orange' offcolor='black'></div></div></td>
                 <td>Blinking Orange</td>
-                <td>CANdle® has a good CAN or Pixel pulse train connection but is not being controlled.</td>
+                <td>CANdle® has a good CAN or Pixel pulse train [1] connection but is not being controlled.</td>
                 <td>If the robot program is trying to control the CANdle®, ensure good connection between the controller and this device.</td>
             </tr>
             <tr>
                 <td><div class='ledGroup'><div class='led' ontime='300' offtime='300' oncolor='green' offcolor='black'></div></div></td>
                 <td>Blinking Green</td>
-                <td colspan="2">CANdle® has a good CAN or Pixel pulse train connection and is being actively controlled.</td>
+                <td colspan="2">CANdle® has a good CAN or Pixel pulse train [1] connection and is being actively controlled.</td>
             </tr>
             <tr>
                 <td><div class='ledGroup'><div class='led' ontime='200' offtime='50' oncolor='red' offcolor='black'></div></div></td>
@@ -182,3 +182,5 @@ The CTR Electronics' CANdle® branded device makes it easy to control individual
             }
         }, 10);
     </script>
+
+[1] CANdle can be directly controlled using a WS2812B-compliant pulse train from other devices, such as an Arduino. See the `User's Guide <https://ctre.download/files/user-manual/CANdle%20User's%20Guide.pdf>`__ for more information.
