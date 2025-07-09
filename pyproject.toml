@@ -6,13 +6,11 @@ authors = []
 
 [tool.poetry.dependencies]
 python = "^3.11"
-doc8 = "==1.1.1"
+doc8 = "==1.1.2"
 docutils = "==0.20.1"
-fonttools = {version = "==4.42.1", extras = ["woff"]}
 furo = "==2024.8.6"
 latex = "==0.7.0"
 packaging = "==24.1"
-setuptools = "==70.2.0"
 sphinx = "==8.2.3"
 sphinx-copybutton = "==0.5.2"
 sphinx-hoverxref = "==1.4.0"
@@ -27,9 +25,12 @@ sphinxext-mimic = "==0.1.1"
 sphinxext-opengraph = "==0.10.0"
 sphinxext-rediraffe = "==0.2.7"
 sphinxext-remoteliteralinclude = "==0.4.0"
-urllib3 = "==2.2.2"
+
 sphinx-build-compatibility = {git = "https://github.com/readthedocs/sphinx-build-compatibility.git", rev = "main"}
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.requires-plugins]
+poetry-plugin-export = ">=1.8"
