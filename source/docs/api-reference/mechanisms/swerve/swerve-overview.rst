@@ -1,7 +1,7 @@
 Swerve Overview
 ===============
 
-.. important:: Swerve functionality is only available for FRC users and is limited to Java at this time.
+.. important:: Swerve functionality is only available for FRC users.
 
 Phoenix 6 incorporates a high performance swerve API. This API simplifies the boilerplate necessary for swerve and maximizes performance.
 
