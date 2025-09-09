@@ -10,13 +10,31 @@ Talon FX
       .. grid:: 2
 
          .. grid-item-card:: Store Page
-            :link: https://store.ctr-electronics.com/kraken-x60/
+            :link: https://store.ctr-electronics.com/products/kraken-x60/
             :link-type: url
 
             CAD and purchase instructions.
 
          .. grid-item-card:: Hardware User Manual
-            :link: https://docs.wcproducts.com/kraken-x60/kraken-x60-motor/overview-and-features
+            :link: https://docs.wcproducts.com/kraken-x60/
+            :link-type: url
+
+            Wiring and mount instructions available on the WestCoast Products documentation site.
+
+   .. tab-item:: Kraken X44
+
+      The Kraken X44 powered by Talon FX is a compact brushless motor developed by `WestCoast Products <https://wcproducts.com/products/kraken>`__ that uses the latest BLDC motor control technology from CTR Electronics. The integrated Talon FX unlocks the full performance of the Kraken X44 BLDC motor while providing best-in-class motion control.
+
+      .. grid:: 2
+
+         .. grid-item-card:: Store Page
+            :link: https://store.ctr-electronics.com/products/kraken-x44/
+            :link-type: url
+
+            CAD and purchase instructions.
+
+         .. grid-item-card:: Hardware User Manual
+            :link: https://docs.wcproducts.com/kraken-x44/
             :link-type: url
 
             Wiring and mount instructions available on the WestCoast Products documentation site.
@@ -54,15 +72,15 @@ Talon FX supports Clockwise and Counter Clockwise inverts. Inverts are determine
 
    .. grid:: 2
 
-      .. grid-item-card:: Clockwise
-
-         .. image:: images/clockwise.png
-            :alt: Clockwise can be found by tracing the motor mount holes from right to left
-
       .. grid-item-card:: Counter Clockwise
 
          .. image:: images/counter-clockwise.png
-            :alt: Counter Clockwise can be found by tracing the motor mount holes from left to right
+            :alt: Counter Clockwise can be found by tracing the motor mount holes from right to left
+
+      .. grid-item-card:: Clockwise
+
+         .. image:: images/clockwise.png
+            :alt: Clockwise can be found by tracing the motor mount holes from left to right
 
 Actuator Limits
 ---------------
