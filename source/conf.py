@@ -241,6 +241,7 @@ autosectionlabel_prefix_document = True
 linkcheck_ignore = [
     r".*canable.io.*",
     r".*vexrobotics.com.*",
+    r".*chiefdelphi.com.*",
 ]
 
 # Set redirects location
