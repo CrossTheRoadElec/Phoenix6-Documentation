@@ -7,9 +7,9 @@ Hoot Replay allows users to playback hoot logs in their robot program. This allo
 
 .. important:: Hoot Replay requires the hoot log to have a Pro-licensed device. Currently, only one hoot log may be replayed at a time.
 
-Hoot Replay, controlled using the ``HootReplay`` class (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/HootReplay.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1_hoot_replay.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/hoot_replay/index.html>`__), supports playing back device status signals and custom user signals. Configs and control requests are ignored during replay.
+Compared to other replay frameworks, Hoot Replay offers **automatic** status signal playback without any code changes. However, replaying custom logged signals still requires modifications to the robot's subsystems.
 
-During Hoot Replay, the simulated robot will automatically enable and run through all the maneuvers recorded in the hoot log. Additionally, Hoot Replay supports step timing and changing the speed of the playback.
+Hoot Replay is controlled using the ``HootReplay`` class (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/HootReplay.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1_hoot_replay.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/hoot_replay/index.html>`__) and supports playing back device status signals and custom user signals. Configs and control requests are ignored during replay.
 
 Hoot Replay uses a different vendordep (see :doc:`Installing Phoenix 6 </docs/installation/installation-frc>`) that replaces :doc:`/docs/canivore/canivore-hardware-attached` with Hoot Replay. Note that only one Phoenix 6 vendordep may be used in the ``vendordeps`` folder at a time.
 
@@ -78,7 +78,7 @@ It is important that the hoot log is loaded before any devices are constructed o
 Controlling Replay
 ------------------
 
-After Hoot Replay has started, there are several APIs that can be used to manage playback.
+During Hoot Replay, the simulated robot will automatically enable and run through all the maneuvers recorded in the hoot log. There are also several APIs that can be used to manage playback.
 
 - ``HootReplay.pause()`` temporarily pauses playback
 - ``HootReplay.play()`` resumes playback from the current point in the file
@@ -193,3 +193,225 @@ All custom signal getters return a ``HootReplay.SignalData<T>`` (`Java <https://
             # now run regular vision processing on the vision data
             if is_camera_pose_valid(cam_pose):
                drivetrain.add_vision_measurement(cam_pose, vision_data.timestamp)
+
+Adjusting Code Architecture
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Replaying custom signals typically requires changes to the architecture of the robot's subsystems or other hardware classes. As an example, we will look at changes to a ``Vision`` class.
+
+When working with vision, we typically fetch raw/unfiltered camera/pose data (the "inputs") from the vision library (such as a list of targets) and then perform some additional processing and filtering on that data to get our final vision pose estimate (the "output").
+
+The goal is to **replay the "inputs"** so Hoot Replay can test changes to the additional data processing and filtering. Another way to think about it is we only want to replay data that is unaffected by code logic and let the program determine all the new outputs.
+
+The simplest way to make the code easily replayed is to consolidate all input fetches into a single ``fetchInputs()`` function, save the results to class member variables, and log the data using ``SignalLogger``. From there, a single periodic function would be responsible for calling that function and performing all data processing to get the outputs.
+
+For example, if the only data we pull from our vision library is the raw vision pose estimate and its timestamp:
+
+.. tab-set::
+
+   .. tab-item:: Java
+      :sync: java
+
+      .. code-block:: java
+
+         public class Vision {
+            private final Camera camera = new Camera(...);
+            /* vision inputs */
+            private PoseEstimate cameraPoseEst = new PoseEstimate();
+
+            // ...
+
+            private void fetchInputs() {
+               // fetch and log inputs
+               cameraPoseEst = camera.getPoseEstimate();
+
+               final var poseArr = new double[3] {
+                  cameraPoseEst.pose.getX(),
+                  cameraPoseEst.pose.getY(),
+                  cameraPoseEst.pose.getRotation().getDegrees()
+               };
+               SignalLogger.writeDoubleArray("CameraPoseEst/pose", poseArr);
+               SignalLogger.writeDouble("CameraPoseEst/timestamp", cameraPoseEst.timestamp);
+            }
+
+            public void periodic() {
+               fetchInputs();
+
+               // process inputs here...
+            }
+         }
+
+   .. tab-item:: C++
+      :sync: cpp
+
+      .. code-block:: cpp
+
+         class Vision {
+         private:
+            Camera camera{...};
+            /* vision inputs */
+            PoseEstimate cameraPoseEst{};
+
+            // ...
+
+            void FetchInputs()
+            {
+               // fetch and log inputs
+               cameraPoseEst = camera.GetPoseEstimate();
+
+               std::array<double, 3> const poseArr{
+                  cameraPoseEst.pose.X().value(),
+                  cameraPoseEst.pose.Y().value(),
+                  cameraPoseEst.pose.Rotation().Degrees().value()
+               };
+               SignalLogger::WriteDoubleArray("CameraPoseEst/pose", poseArr);
+               SignalLogger::WriteValue("CameraPoseEst/timestamp", cameraPoseEst.timestamp);
+            }
+
+         public:
+            void Periodic()
+            {
+               FetchInputs();
+
+               // process inputs here...
+            }
+         };
+
+   .. tab-item:: Python
+      :sync: python
+
+      .. code-block:: python
+
+         class Vision:
+            def __init__(self):
+               self._camera = Camera(...)
+               # vision inputs
+               self._camera_pose_est = PoseEstimate()
+
+               # ...
+
+            def _fetch_inputs(self):
+               # fetch and log inputs
+               self._camera_pose_est = camera.getPoseEstimate()
+
+               pose_arr = [
+                  self._camera_pose_est.pose.x,
+                  self._camera_pose_est.pose.y,
+                  self._camera_pose_est.pose.rotation().degrees()
+               ]
+               SignalLogger.write_double_array("CameraPoseEst/pose", pose_arr)
+               SignalLogger.write_double("CameraPoseEst/timestamp", self._camera_pose_est.timestamp)
+
+            def periodic(self):
+               self._fetch_inputs()
+
+               # process inputs here...
+
+This makes it easy to implement a ``fetchInputsReplay()`` function, which we can call when ``Utils.isReplay()`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/Utils.html#isReplay()>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/namespacectre_1_1phoenix6_1_1utils.html#a58f5bd75a0588e8fcd671edc0bbab816>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/utils/index.html#phoenix6.utils.is_replay>`__) returns true. This function would do the reverse of the regular ``fetchInputs()``, pulling out the data from ``HootReplay`` and saving it to the class member variables.
+
+For example, the previous ``Vision`` example would now have:
+
+.. tab-set::
+
+   .. tab-item:: Java
+      :sync: java
+
+      .. code-block:: java
+
+         private void fetchInputsReplay() {
+            // pull out inputs from the log
+            final var cameraPoseEst_pose = HootReplay.getDoubleArray("CameraPoseEst/pose");
+            final var cameraPoseEst_timestamp = HootReplay.getDouble("CameraPoseEst/timestamp");
+
+            if (
+               cameraPoseEst_pose.status.isOK() &&
+               cameraPoseEst_timestamp.status.isOK()
+            ) {
+               cameraPoseEst = new PoseEstimate();
+               cameraPoseEst.pose = new Pose2d(
+                  cameraPoseEst_pose.value[0],
+                  cameraPoseEst_pose.value[1],
+                  Rotation2d.fromDegrees(cameraPoseEst_pose.value[2])
+               );
+               cameraPoseEst.timestamp = cameraPoseEst_timestamp.value;
+            }
+         }
+
+         public void periodic() {
+            if (Utils.isReplay()) {
+               fetchInputsReplay();
+            } else {
+               fetchInputs();
+            }
+
+            // process inputs here...
+         }
+
+   .. tab-item:: C++
+      :sync: cpp
+
+      .. code-block:: cpp
+
+         private:
+            void FetchInputsReplay()
+            {
+               // pull out inputs from the log
+               auto const cameraPoseEst_pose = HootReplay::GetDoubleArray("CameraPoseEst/pose");
+               auto const cameraPoseEst_timestamp =
+                  HootReplay::GetValue<units::second_t>("CameraPoseEst/timestamp");
+
+               if (
+                  cameraPoseEst_pose.status.IsOK() &&
+                  cameraPoseEst_timestamp.status.IsOK()
+               ) {
+                  cameraPoseEst = PoseEstimate{};
+                  cameraPoseEst.pose = frc::Pose2d{
+                     cameraPoseEst_pose.value[0] * 1_m,
+                     cameraPoseEst_pose.value[1] * 1_m,
+                     frc::Rotation2d{cameraPoseEst_pose.value[2] * 1_deg}
+                  };
+                  cameraPoseEst.timestamp = cameraPoseEst_timestamp.value;
+               }
+            }
+
+         public:
+            void Periodic()
+            {
+               if (utils::IsReplay()) {
+                  FetchInputsReplay();
+               } else {
+                  FetchInputs();
+               }
+
+               // process inputs here...
+            }
+
+   .. tab-item:: Python
+      :sync: python
+
+      .. code-block:: python
+
+         def _fetch_inputs_replay(self):
+            # pull out inputs from the log
+            self._camera_pose_est_pose = HootReplay.get_double_array("CameraPoseEst/pose")
+            self._camera_pose_est_timestamp = HootReplay.get_double("CameraPoseEst/timestamp")
+
+            if (
+               self._camera_pose_est_pose.status.is_ok()
+               and self._camera_pose_est_timestamp.status.is_ok()
+            ):
+               self._camera_pose_est = PoseEstimate()
+               self._camera_pose_est.pose = [
+                  self._camera_pose_est_pose.value[0],
+                  self._camera_pose_est_pose.value[1],
+                  Rotation2d.fromDegrees(self._camera_pose_est_pose.value[2])
+               ]
+               self._camera_pose_est.timestamp = self._camera_pose_est_timestamp.value
+
+         def periodic(self):
+            if Utils.is_replay():
+               self._fetch_inputs_replay()
+            else:
+               self._fetch_inputs()
+
+            # process inputs here...
