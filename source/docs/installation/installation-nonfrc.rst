@@ -155,13 +155,19 @@ Simulation vs Hardware
 
       Users may notice the robot program is using simulated devices by default. This is the default behavior if the host platform supports simulation (see :ref:`requirements <docs/installation/requirements:system requirements>` for a full list of supported platforms).
 
-      In order for the robot program to communicate with physical devices (on platforms that support both simulation and hardware), the ``CTR_TARGET`` environment variable must be set. Examples of this are shown below.
+      In order for the robot program to communicate with physical devices (on platforms that support both simulation and hardware), the ``CTR_TARGET`` environment variable must be set. Possible values of ``CTR_TARGET`` are:
+
+      - ``Hardware`` (see :doc:`/docs/canivore/canivore-hardware-attached`)
+      - ``Simulation`` (see :doc:`/docs/api-reference/simulation/simulation-intro`)
+      - ``Replay`` (see :ref:`docs/yearly-changes/yearly-changelog:hoot replay`)
+
+      Examples of setting ``CTR_TARGET`` are shown below.
 
       .. tab-set::
 
          .. tab-item:: Windows
 
-            .. code-block:: bash
+            .. code-block:: ps1
 
                $env:CTR_TARGET="Hardware" # Set the environment variable, which will persist for the duration of this powershell instance.
 
