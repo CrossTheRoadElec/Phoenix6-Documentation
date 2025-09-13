@@ -49,6 +49,9 @@ There are three major components to the Phoenix 6 API:
 - :doc:`signal-logging`
    - Information on the signal logging API used for capturing signal traffic on the bus.
 
+- :doc:`hoot-replay`
+   - Highlights playing back captured signals from a hoot log to test robot program changes.
+
 - :doc:`faults`
    - Documents how faults are used to indicate device hardware status.
 
@@ -70,6 +73,7 @@ There are three major components to the Phoenix 6 API:
    control-requests
    status-signals
    signal-logging
+   hoot-replay
    faults
    enabling-actuators
    actuator-limits
