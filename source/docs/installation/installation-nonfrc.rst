@@ -159,7 +159,7 @@ Simulation vs Hardware
 
       - ``Hardware`` (see :doc:`/docs/canivore/canivore-hardware-attached`)
       - ``Simulation`` (see :doc:`/docs/api-reference/simulation/simulation-intro`)
-      - ``Replay`` (see :ref:`docs/yearly-changes/yearly-changelog:hoot replay`)
+      - ``Replay`` (see :doc:`/docs/api-reference/api-usage/hoot-replay`)
 
       Examples of setting ``CTR_TARGET`` are shown below.
 

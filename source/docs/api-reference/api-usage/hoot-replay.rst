@@ -194,8 +194,8 @@ All custom signal getters return a ``HootReplay.SignalData<T>`` (`Java <https://
             if is_camera_pose_valid(cam_pose):
                drivetrain.add_vision_measurement(cam_pose, vision_data.timestamp)
 
-Adjusting Code Architecture
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Adjusting Robot Code Architecture
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Replaying custom signals typically requires changes to the architecture of the robot's subsystems or other hardware classes. As an example, we will look at changes to a ``Vision`` class.
 
