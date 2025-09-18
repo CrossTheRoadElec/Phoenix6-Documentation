@@ -133,9 +133,9 @@ Additionally, after pausing or stopping Hoot Replay, playback can advance by a f
 Replaying Custom Signals
 ------------------------
 
-Users can also fetch custom signals written to the loaded hoot log by utilizing the ``get*()`` functions. An example application of this is replaying your vision data to test changes in the drivetrain pose estimator.
+Users can also fetch custom signals written to the loaded hoot log by utilizing the ``get*()`` functions. An example application of this is replaying vision data to test changes in the drivetrain pose estimator.
 
-All custom signal getters return a ``HootReplay.SignalData<T>`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/HootReplay.SignalData.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/structctre_1_1phoenix6_1_1_hoot_replay_1_1_signal_data.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/hoot_replay/index.html#phoenix6.hoot_replay.HootReplay.SignalData>`__) containing information about the signal, including its timestamp and any logged units. The success of fetching the custom signal can be validated by checking the ``status`` field.
+All custom signal getters return a ``HootReplay.SignalData`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/HootReplay.SignalData.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/structctre_1_1phoenix6_1_1_hoot_replay_1_1_signal_data.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/hoot_replay/index.html#phoenix6.hoot_replay.HootReplay.SignalData>`__) object containing information about the signal, including its timestamp and any logged units. The success of fetching the custom signal can be validated by checking the ``status`` field.
 
 .. tab-set::
 
@@ -197,15 +197,15 @@ All custom signal getters return a ``HootReplay.SignalData<T>`` (`Java <https://
 Adjusting Robot Code Architecture
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Replaying custom signals typically requires changes to the architecture of the robot's subsystems or other hardware classes. As an example, we will look at changes to a ``Vision`` class.
+Replaying custom signals typically requires changes to the architecture of the robot's subsystems or other hardware classes. As an example, consider changes to a ``Vision`` class.
 
-When working with vision, we typically fetch raw/unfiltered camera/pose data (the "inputs") from the vision library (such as a list of targets) and then perform some additional processing and filtering on that data to get our final vision pose estimate (the "output").
+When working with vision, a robot program will typically fetch raw/unfiltered camera/pose data (the "inputs") from the vision library (such as a list of targets). Then, it will perform some additional processing and filtering on that data to get the final vision pose estimate (the "output").
 
-The goal is to **replay the "inputs"** so Hoot Replay can test changes to the additional data processing and filtering. Another way to think about it is we only want to replay data that is unaffected by code logic and let the program determine all the new outputs.
+The goal is to **replay the "inputs"** so the replayed program can test changes to the subsequent data processing and filtering. This means the robot program should only replay data that is **unaffected by code logic**, letting the program determine all the new outputs.
 
 The simplest way to make the code easily replayed is to consolidate all input fetches into a single ``fetchInputs()`` function, save the results to class member variables, and log the data using ``SignalLogger``. From there, a single periodic function would be responsible for calling that function and performing all data processing to get the outputs.
 
-For example, if the only data we pull from our vision library is the raw vision pose estimate and its timestamp:
+For example, if the only data pulled from the vision library is the raw vision pose estimate and its timestamp:
 
 .. tab-set::
 
@@ -307,7 +307,7 @@ For example, if the only data we pull from our vision library is the raw vision 
 
                # process inputs here...
 
-This makes it easy to implement a ``fetchInputsReplay()`` function, which we can call when ``Utils.isReplay()`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/Utils.html#isReplay()>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/namespacectre_1_1phoenix6_1_1utils.html#a58f5bd75a0588e8fcd671edc0bbab816>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/utils/index.html#phoenix6.utils.is_replay>`__) returns true. This function would do the reverse of the regular ``fetchInputs()``, pulling out the data from ``HootReplay`` and saving it to the class member variables.
+This makes it easy to implement a ``fetchInputsReplay()`` function, which can be called when ``Utils.isReplay()`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/Utils.html#isReplay()>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/namespacectre_1_1phoenix6_1_1utils.html#a58f5bd75a0588e8fcd671edc0bbab816>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/utils/index.html#phoenix6.utils.is_replay>`__) returns true. This function would do the reverse of the regular ``fetchInputs()``, pulling out the data from ``HootReplay`` and saving it to the class member variables.
 
 For example, the previous ``Vision`` example would now have:
 
