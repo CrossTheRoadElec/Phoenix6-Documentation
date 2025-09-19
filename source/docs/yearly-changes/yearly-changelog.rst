@@ -69,7 +69,7 @@ Support for the `2025 WPILib Java units <https://docs.wpilib.org/en/stable/docs/
 Hoot Replay
 ^^^^^^^^^^^
 
-Hoot Replay is a new feature that allows users to playback their hoot logs in their robot program. This allows them to view and interact with their devices in simulation using measurements from real world IO.
+:doc:`Hoot Replay </docs/api-reference/api-usage/hoot-replay>` is a new feature that allows users to playback their hoot logs in their robot program. This allows them to view and interact with their devices in simulation using measurements from real world IO.
 
 .. important:: Hoot Replay requires the hoot log to have a Pro-licensed device. Currently, only one hoot log may be replayed at a time.
 
