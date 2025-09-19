@@ -54,3 +54,32 @@ The plot can be manipulated in a variety of ways:
 - :kbd:`Shift` + :kbd:`Scroll` over a signal's Y-axis to vertically stretch that signal
 - :kbd:`Shift` + :kbd:`Scroll` over the plot to vertically stretch all visible signals' Y-axis
 - :kbd:`Ctrl` + :kbd:`Drag` to pan across all signals' Y-axis
+
+Additional Customizations
+-------------------------
+
+.. image:: images/tuner-plot-topbar.png
+   :alt: Topbar of tuner, highlighting play, tracking, etc
+   :width: 650
+
+The topbar of plotter contains a variety of options used for controlling data collection.
+
+- **Play**: Play/Pauses the plotter. Points are **not** collected when the plotter is paused.
+- **Horizontal Tracking**: Whether the horizontal axis should be locked to the most recent point. This automatically turns off when pan operations occur. Users can click this checkbox to keep their current Y-axis min/max but resume seeking at the beginning.
+- **Timespan**: How long points should be kept before being discarded. Increasing this value will result in increased memory usage.
+- **Update Rate**: How often to fetch points from the diagnostic server. Update rates larger than 100ms may result in lost points and lower update rates will result in increased CPU utilization.
+- **Export**: Export currently visible signals to CSV.
+- **Clear Point**: Remove all points and reset the plot back to its default state.
+- **Reset Zoom**: Keep current points but reset horizontal and vertical zoom to its defaults
+
+.. image:: images/tuner-plot-options.png
+   :alt: Extra signal customization options at the bottom of Tuner
+   :width: 650
+
+A plot customization tab is available at the bottom of the device view. This tab allows users to group signals together (create a group with the :kbd:`Plus` icon, and then drag signals over the group name), customize the color of the signal, explicitly set min/max, etc.
+
+Additionally, statistics for a signal can be viewed under :guilabel:`Statistics`.
+
+.. image:: images/tuner-plot-statistics.png
+   :alt: Tuner plot statistics
+   :width: 650

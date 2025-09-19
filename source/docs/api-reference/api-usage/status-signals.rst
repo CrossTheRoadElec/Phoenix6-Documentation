@@ -83,7 +83,7 @@ The ``StatusCode`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java
 Refreshing the Signal Value
 ---------------------------
 
-The device ``StatusSignal`` getters implicitly refresh the cached signal values. However, if the user application caches the ``StatusSignal`` object, the ``refresh()`` method must be called to fetch fresh data. Multiple signals can be refreshed in one call using ``BaseStatusSignal.refreshAll()`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/BaseStatusSignal.html#refreshAll(com.ctre.phoenix6.BaseStatusSignal...)>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1_base_status_signal.html#a3fda545562d4d373238c21f674133bba>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/index.html#phoenix6.BaseStatusSignal.refresh_all>`__).
+The device ``StatusSignal`` getters implicitly refresh the cached signal values. However, if the user application caches the ``StatusSignal`` object, the ``refresh()`` method must be called to fetch fresh data. Multiple signals can be refreshed in one call using ``BaseStatusSignal.refreshAll()`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/BaseStatusSignal.html#refreshAll(com.ctre.phoenix6.BaseStatusSignal...)>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1_base_status_signal.html#a3fda545562d4d373238c21f674133bba>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/index.html#phoenix6.BaseStatusSignal.refresh_all>`__), which can improve performance compared to individual refreshes.
 
 .. tip:: The ``refresh()`` method can be method-chained. As a result, you can call ``refresh()`` and ``getValue()`` on one line.
 
@@ -98,6 +98,9 @@ The device ``StatusSignal`` getters implicitly refresh the cached signal values.
          supplyVoltageSignal.refresh();
          // refresh the position and velocity signals
          BaseStatusSignal.refreshAll(positionSignal, velocitySignal);
+         // refresh an array of differential signals
+         BaseStatusSignal[] signals = {diffPositionSignal, diffVelocitySignal};
+         BaseStatusSignal.refreshAll(signals);
 
    .. tab-item:: C++
       :sync: C++
@@ -108,6 +111,9 @@ The device ``StatusSignal`` getters implicitly refresh the cached signal values.
          supplyVoltageSignal.Refresh();
          // refresh the position and velocity signals
          BaseStatusSignal::RefreshAll(positionSignal, velocitySignal);
+         // refresh a std::array or std::vector of differential signals
+         std::vector<BaseStatusSignal*> signals{&diffPositionSignal, &diffVelocitySignal};
+         BaseStatusSignal::RefreshAll(signals);
 
    .. tab-item:: Python
       :sync: python
@@ -118,6 +124,9 @@ The device ``StatusSignal`` getters implicitly refresh the cached signal values.
          supply_voltage_signal.refresh()
          # refresh the position and velocity signals
          BaseStatusSignal.refresh_all(position_signal, velocity_signal)
+         # refresh a list of differential signals
+         signals = [diff_position_signal, diff_velocity_signal]
+         BaseStatusSignal.refresh_all(signals)
 
 Waiting for Signal Updates
 --------------------------
@@ -172,6 +181,9 @@ All signals can have their update frequency configured via the ``setUpdateFreque
          supplyVoltageSignal.setUpdateFrequency(0);
          // speed up position and velocity reporting to 200 Hz
          BaseStatusSignal.setUpdateFrequencyForAll(200, positionSignal, velocitySignal);
+         // speed up array of differential signals to 100 Hz
+         BaseStatusSignal[] signals = {diffPositionSignal, diffVelocitySignal};
+         BaseStatusSignal.setUpdateFrequencyForAll(100, signals);
 
    .. tab-item:: C++
       :sync: C++
@@ -182,6 +194,9 @@ All signals can have their update frequency configured via the ``setUpdateFreque
          supplyVoltageSignal.SetUpdateFrequency(0_Hz);
          // speed up position and velocity reporting to 200 Hz
          BaseStatusSignal::SetUpdateFrequencyForAll(200_Hz, positionSignal, velocitySignal);
+         // speed up std::array or std::vector of differential signals to 100 Hz
+         std::vector<BaseStatusSignal*> signals{&diffPositionSignal, &diffVelocitySignal};
+         BaseStatusSignal::SetUpdateFrequencyForAll(100_Hz, signals);
 
    .. tab-item:: Python
       :sync: python
@@ -192,6 +207,9 @@ All signals can have their update frequency configured via the ``setUpdateFreque
          supply_voltage_signal.set_update_frequency(0)
          # speed up position and velocity reporting to 200 Hz
          BaseStatusSignal.set_update_frequency_for_all(200, position_signal, velocity_signal)
+         # speed up list of differential signals to 100 Hz
+         signals = [diff_position_signal, diff_velocity_signal]
+         BaseStatusSignal.set_update_frequency_for_all(100, signals)
 
 When different update frequencies are specified for signals that share a status frame, the highest update frequency of all the relevant signals will be applied to the entire frame. Users can get a signal's applied update frequency using the ``getAppliedUpdateFrequency()`` method.
 
@@ -234,6 +252,39 @@ When optimizing the bus utilization for devices, all status signals that have no
          self.pigeon.optimize_bus_utilization()
          hardware.ParentDevice.optimize_bus_utilization_for_all(self.left_motor, self.right_motor, self.cancoder)
 
+Resetting All to Default
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+The update frequencies of all status signals for a device can be reset to the defaults by calling ``resetSignalFrequencies()`` on the device (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/hardware/ParentDevice.html#resetSignalFrequencies()>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1hardware_1_1_parent_device.html#a8ea503a5c5d3dcea0160274768efcf20>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/hardware/parent_device/index.html#phoenix6.hardware.parent_device.ParentDevice.reset_signal_frequencies>`__). Additionally, multiple devices can be reset at once using ``ParentDevice.resetSignalFrequenciesForAll()`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/hardware/ParentDevice.html#resetSignalFrequenciesForAll(com.ctre.phoenix6.hardware.ParentDevice...)>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1hardware_1_1_parent_device.html#a87917c789784d31fd5e38c725408c8a9>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/hardware/parent_device/index.html#phoenix6.hardware.parent_device.ParentDevice.reset_signal_frequencies_for_all>`__).
+
+Since devices typically maintain their configured status signal update frequencies until they are power cycled, this can be useful to restore everything to the defaults before reconfiguring update frequencies.
+
+.. tab-set::
+
+   .. tab-item:: Java
+      :sync: Java
+
+      .. code-block:: java
+
+         m_pigeon.resetSignalFrequencies();
+         ParentDevice.resetSignalFrequenciesForAll(m_leftMotor, m_rightMotor, m_cancoder);
+
+   .. tab-item:: C++
+      :sync: C++
+
+      .. code-block:: cpp
+
+         m_pigeon.ResetSignalFrequencies();
+         hardware::ParentDevice::ResetSignalFrequenciesForAll(m_leftMotor, m_rightMotor, m_cancoder);
+
+   .. tab-item:: Python
+      :sync: python
+
+      .. code-block:: python
+
+         self.pigeon.reset_signal_frequencies()
+         hardware.ParentDevice.reset_signal_frequencies_for_all(self.left_motor, self.right_motor, self.cancoder)
+
 Timestamps
 ----------
 
@@ -273,6 +324,9 @@ Check the API documentation for information on whether a status signal supports 
          var pigeon2YawSignal = m_pigeon2.getYaw();
 
          BaseStatusSignal.waitForAll(0.020, talonFXPositionSignal, cancoderPositionSignal, pigeon2YawSignal);
+         // can also send down an array of signals
+         BaseStatusSignal[] signals = {talonFXPositionSignal, cancoderPositionSignal, pigeon2YawSignal};
+         BaseStatusSignal.waitForAll(0.020, signals);
 
    .. tab-item:: C++
       :sync: C++
@@ -284,6 +338,9 @@ Check the API documentation for information on whether a status signal supports 
          auto& pigeon2YawSignal = m_pigeon2.GetYaw();
 
          BaseStatusSignal::WaitForAll(20_ms, talonFXPositionSignal, cancoderPositionSignal, pigeon2YawSignal);
+         // can also send down a std::array or std::vector of signal pointers
+         std::vector<BaseStatusSignal*> signals{&talonFXPositionSignal, &cancoderPositionSignal, &pigeon2YawSignal};
+         BaseStatusSignal::WaitForAll(20_ms, signals);
 
    .. tab-item:: Python
       :sync: python
@@ -295,6 +352,9 @@ Check the API documentation for information on whether a status signal supports 
          pigeon2_yaw_signal = self.pigeon2.get_yaw()
 
          BaseStatusSignal.wait_for_all(0.020, talonfx_position_signal, cancoder_position_signal, pigeon2_yaw_signal)
+         # can also send down a list of signals
+         signals = [talonfx_position_signal, cancoder_position_signal, pigeon2_yaw_signal]
+         BaseStatusSignal.wait_for_all(0.020, signals)
 
 Latency Compensation
 --------------------
