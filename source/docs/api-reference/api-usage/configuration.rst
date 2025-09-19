@@ -35,6 +35,67 @@ There are device-specific ``Configuration`` classes that group configuration dat
 
          talonfx_configs = configs.TalonFXConfiguration()
 
+Modifying Configurations
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Configuration objects are mutable, so they can be saved in a member variable and reused. Additionally, configuration objects support modification using method chaining. This can be useful for constructing them as a class member variable or at compile time. In Java, this can also be used to provide unit types.
+
+.. tab-set::
+
+   .. tab-item:: Java
+      :sync: Java
+
+      .. code-block:: Java
+
+         final TalonFXConfiguration talonFXConfigs = new TalonFXConfiguration()
+            .withMotorOutput(
+               new MotorOutputConfigs()
+                  .withInverted(InvertedValue.Clockwise_Positive)
+                  .withNeutralMode(NeutralModeValue.Brake)
+            )
+            .withCurrentLimits(
+               new CurrentLimitsConfigs()
+                  .withStatorCurrentLimit(Amps.of(120))
+                  .withStatorCurrentLimitEnable(true)
+            );
+
+   .. tab-item:: C++
+      :sync: C++
+
+      .. code-block:: c++
+
+         static constexpr configs::TalonFXConfiguration talonFXConfigs =
+            configs::TalonFXConfiguration{}
+               .WithMotorOutput(
+                  configs::MotorOutputConfigs{}
+                     .WithInverted(signals::InvertedValue::Clockwise_Positive)
+                     .WithNeutralMode(signals::NeutralModeValue::Brake)
+               )
+               .WithCurrentLimits(
+                  configs::CurrentLimitsConfigs{}
+                     .WithStatorCurrentLimit(120_A)
+                     .WithStatorCurrentLimitEnable(true)
+               );
+
+   .. tab-item:: Python
+      :sync: python
+
+      .. code-block:: python
+
+         self._talon_fx_configs = (
+            configs.TalonFXConfiguration()
+            .with_motor_output(
+               configs.MotorOutputConfigs()
+               .with_inverted(signals.InvertedValue.CLOCKWISE_POSITIVE)
+               .with_neutral_mode(signals.NeutralModeValue.BRAKE)
+            )
+            .with_current_limits(
+               configs.CurrentLimitsConfigs()
+               .with_stator_current_limit(120.0)
+               .with_stator_current_limit_enable(True)
+            )
+         )
+
 Future Proofing Configs
 ^^^^^^^^^^^^^^^^^^^^^^^
 
