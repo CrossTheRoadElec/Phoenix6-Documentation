@@ -40,6 +40,8 @@ Modifying Configurations
 
 Configuration objects are mutable, so they can be saved in a member variable and reused. Additionally, configuration objects support modification using method chaining. This can be useful for constructing them as a class member variable or at compile time. In Java, this can also be used to provide unit types.
 
+Configuration and config group objects can also be cloned, making it easy to share common configs across device configurations.
+
 .. tab-set::
 
    .. tab-item:: Java
@@ -47,10 +49,9 @@ Configuration objects are mutable, so they can be saved in a member variable and
 
       .. code-block:: Java
 
-         final TalonFXConfiguration talonFXConfigs = new TalonFXConfiguration()
+         final TalonFXConfiguration commonConfigs = new TalonFXConfiguration()
             .withMotorOutput(
                new MotorOutputConfigs()
-                  .withInverted(InvertedValue.Clockwise_Positive)
                   .withNeutralMode(NeutralModeValue.Brake)
             )
             .withCurrentLimits(
@@ -59,16 +60,22 @@ Configuration objects are mutable, so they can be saved in a member variable and
                   .withStatorCurrentLimitEnable(true)
             );
 
+         /* create a copy with a different invert */
+         final TalonFXConfiguration leaderConfigs = commonConfigs.clone()
+            .withMotorOutput(
+               commonConfigs.MotorOutput.clone()
+                  .withInverted(InvertedValue.Clockwise_Positive)
+            );
+
    .. tab-item:: C++
       :sync: C++
 
       .. code-block:: c++
 
-         static constexpr configs::TalonFXConfiguration talonFXConfigs =
+         static constexpr configs::TalonFXConfiguration commonConfigs =
             configs::TalonFXConfiguration{}
                .WithMotorOutput(
                   configs::MotorOutputConfigs{}
-                     .WithInverted(signals::InvertedValue::Clockwise_Positive)
                      .WithNeutralMode(signals::NeutralModeValue::Brake)
                )
                .WithCurrentLimits(
@@ -77,22 +84,38 @@ Configuration objects are mutable, so they can be saved in a member variable and
                      .WithStatorCurrentLimitEnable(true)
                );
 
+         /* create a copy with a different invert */
+         configs::TalonFXConfiguration leaderConfigs =
+            configs::TalonFXConfiguration{commonConfigs}
+               .WithMotorOutput(
+                  configs::MotorOutputConfigs{commonConfigs.MotorOutput}
+                     .WithInverted(signals::InvertedValue::Clockwise_Positive)
+               );
+
    .. tab-item:: Python
       :sync: python
 
       .. code-block:: python
 
-         self._talon_fx_configs = (
+         self._common_configs = (
             configs.TalonFXConfiguration()
             .with_motor_output(
                configs.MotorOutputConfigs()
-               .with_inverted(signals.InvertedValue.CLOCKWISE_POSITIVE)
                .with_neutral_mode(signals.NeutralModeValue.BRAKE)
             )
             .with_current_limits(
                configs.CurrentLimitsConfigs()
                .with_stator_current_limit(120.0)
                .with_stator_current_limit_enable(True)
+            )
+         )
+
+         # create a copy with a different invert
+         self._leader_configs = (
+            copy.deepcopy(self._common_configs)
+            .with_motor_output(
+               copy.deepcopy(self._common_configs.motor_output)
+               .with_inverted(signals.InvertedValue.CLOCKWISE_POSITIVE)
             )
          )
 
