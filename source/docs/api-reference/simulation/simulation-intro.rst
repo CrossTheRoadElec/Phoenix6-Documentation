@@ -40,6 +40,8 @@ Each supported device has a device-specific ``SimState`` object that can be used
 
 .. note:: Phoenix 6 utilizes the `Java units library <https://docs.wpilib.org/en/stable/docs/software/basic-programming/java-units.html>`__ and `C++ units library <https://docs.wpilib.org/en/stable/docs/software/basic-programming/cpp-units.html>`__ when applicable.
 
+In general, simulation logic should **only** interact with the ``SimState`` class and the physics simulator (such as WPILib's ``DCMotorSim``), and the rest of the robot code should **never** interact with those simulation classes. This clear separation between simulation and hardware logic ensures that simulation most accurately reflects the behavior of the real robot hardware.
+
 Orientation
 ^^^^^^^^^^^
 
@@ -125,6 +127,8 @@ All ``SimState`` objects contain multiple inputs to manipulate the state of the 
          self.talon_fx_sim.set_supply_voltage(12.0)
 
 Some device ``SimState`` objects also contain outputs that can be used in simulation physics calculations. For example, the ``TalonFXSimState`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/sim/TalonFXSimState.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1sim_1_1_talon_f_x_sim_state.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/sim/talon_fx_sim_state/index.html>`__) object has a motor voltage output that can be used to calculate position and velocity:
+
+.. important:: For all motor controllers, the ``RawRotorPosition`` and ``RotorVelocity`` values must be set for simulated PID and current limits to behave correctly. Additionally, simulated PID more closely matches hardware when updating the ``SimState`` more frequently, such as using a WPILib ``Notifier``.
 
 .. tab-set::
 
@@ -260,7 +264,7 @@ In unit tests, it may be useful to increase the update rate of status signals to
 
       .. code-block:: cpp
 
-         if (IsSimulation()) {
+         if (utils::IsSimulation()) {
             // set update rate to 1ms for unit tests
             m_velocitySignal.SetUpdateFrequency(1000_Hz);
          }

@@ -393,20 +393,20 @@ For example, the previous ``Vision`` example would now have:
 
          def _fetch_inputs_replay(self):
             # pull out inputs from the log
-            self._camera_pose_est_pose = HootReplay.get_double_array("CameraPoseEst/pose")
-            self._camera_pose_est_timestamp = HootReplay.get_double("CameraPoseEst/timestamp")
+            camera_pose_est_pose = HootReplay.get_double_array("CameraPoseEst/pose")
+            camera_pose_est_timestamp = HootReplay.get_double("CameraPoseEst/timestamp")
 
             if (
-               self._camera_pose_est_pose.status.is_ok()
-               and self._camera_pose_est_timestamp.status.is_ok()
+               camera_pose_est_pose.status.is_ok()
+               and camera_pose_est_timestamp.status.is_ok()
             ):
                self._camera_pose_est = PoseEstimate()
                self._camera_pose_est.pose = [
-                  self._camera_pose_est_pose.value[0],
-                  self._camera_pose_est_pose.value[1],
-                  Rotation2d.fromDegrees(self._camera_pose_est_pose.value[2])
+                  camera_pose_est_pose.value[0],
+                  camera_pose_est_pose.value[1],
+                  Rotation2d.fromDegrees(camera_pose_est_pose.value[2])
                ]
-               self._camera_pose_est.timestamp = self._camera_pose_est_timestamp.value
+               self._camera_pose_est.timestamp = camera_pose_est_timestamp.value
 
          def periodic(self):
             if Utils.is_replay():
