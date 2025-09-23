@@ -62,13 +62,11 @@ Phoenix 6 supports a plethora of languages and operating systems. The table foun
       +--------------------------------------------+-----------------------+----------------------------------------------------------+---------------------------------------------------------------------------------+
       | Targets                                    | Supported Languages   | Supports :doc:`CANivore </docs/canivore/canivore-intro>` | Supports :doc:`High-Fidelity Simulation </docs/api-reference/simulation/index>` |
       +============================================+=======================+==========================================================+=================================================================================+
-      | Windows 10/11 x86-64                       | C#, Python            | Yes                                                      | Yes (Python only)                                                               |
+      | Windows 10/11 x86-64                       | C#, Python            | Yes                                                      | Yes                                                                             |
       +--------------------------------------------+-----------------------+----------------------------------------------------------+---------------------------------------------------------------------------------+
-      | Linux x86-64 (desktop) [1]_ and ARM64 [2]_ | C++, Python           | Yes                                                      | Yes (Python only)                                                               |
+      | Linux x86-64 (desktop) [1]_ and ARM64 [2]_ | C++, C#, Python       | Yes                                                      | Yes (C# and Python only)                                                        |
       +--------------------------------------------+-----------------------+----------------------------------------------------------+---------------------------------------------------------------------------------+
-      | Linux ARM32 [2]_                           | C++, Python           | Yes                                                      | No                                                                              |
-      +--------------------------------------------+-----------------------+----------------------------------------------------------+---------------------------------------------------------------------------------+
-      | macOS (Simulation Only)                    | Python                | No                                                       | Yes                                                                             |
+      | macOS (Simulation Only)                    | C#, Python            | No                                                       | Yes                                                                             |
       +--------------------------------------------+-----------------------+----------------------------------------------------------+---------------------------------------------------------------------------------+
 
 .. [1] Supported Linux x86-64 (desktop) targets:
@@ -76,9 +74,9 @@ Phoenix 6 supports a plethora of languages and operating systems. The table foun
    - Ubuntu 22.04 or newer
    - Debian Bullseye or newer
 
-.. [2] Supported Linux ARM32 and ARM64 targets:
+.. [2] Supported Linux ARM64 targets:
 
    - Raspberry Pi
-   - NVIDIA Jetson
-   - Ubuntu 20.04 or newer
+   - NVIDIA Jetson (Jetpack 6 or newer)
+   - Ubuntu 22.04 or newer
    - Debian Bullseye or newer
