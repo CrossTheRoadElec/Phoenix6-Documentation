@@ -21,21 +21,30 @@ The device object provides getters for all available signals. Each getter return
 
       .. code-block:: java
 
+         // fetch with refresh
          var supplyVoltageSignal = m_device.getSupplyVoltage();
+         // fetch WITHOUT refresh
+         var supplyVoltageSignal = m_device.getSupplyVoltage(false);
 
    .. tab-item:: C++
       :sync: C++
 
       .. code-block:: cpp
 
+         // fetch with refresh
          auto& supplyVoltageSignal = m_device.GetSupplyVoltage();
+         // fetch WITHOUT refresh
+         auto& supplyVoltageSignal = m_device.GetSupplyVoltage(false);
 
    .. tab-item:: Python
       :sync: python
 
       .. code-block:: python
 
+         # fetch with refresh
          supply_voltage_signal = self.device.get_supply_voltage()
+         # fetch WITHOUT refresh
+         supply_voltage_signal = self.device.get_supply_voltage(False)
 
 The value of the signal can be retrieved from the ``StatusSignal`` by calling ``getValue()``.
 
@@ -83,7 +92,7 @@ The ``StatusCode`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java
 Refreshing the Signal Value
 ---------------------------
 
-The device ``StatusSignal`` getters implicitly refresh the cached signal values. However, if the user application caches the ``StatusSignal`` object, the ``refresh()`` method must be called to fetch fresh data. Multiple signals can be refreshed in one call using ``BaseStatusSignal.refreshAll()`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/BaseStatusSignal.html#refreshAll(com.ctre.phoenix6.BaseStatusSignal...)>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1_base_status_signal.html#a3fda545562d4d373238c21f674133bba>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/index.html#phoenix6.BaseStatusSignal.refresh_all>`__), which can improve performance compared to individual refreshes.
+The device ``StatusSignal`` getters implicitly refresh the cached signal values by default. However, if the user application caches the ``StatusSignal`` object or passes in ``false`` to the device signal getters, the ``refresh()`` method must be called to fetch fresh data. Multiple signals can be refreshed in one call using ``BaseStatusSignal.refreshAll()`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/BaseStatusSignal.html#refreshAll(com.ctre.phoenix6.BaseStatusSignal...)>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1_base_status_signal.html#a3fda545562d4d373238c21f674133bba>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/index.html#phoenix6.BaseStatusSignal.refresh_all>`__), which can improve performance compared to individual refreshes.
 
 .. tip:: The ``refresh()`` method can be method-chained. As a result, you can call ``refresh()`` and ``getValue()`` on one line.
 
@@ -98,7 +107,7 @@ The device ``StatusSignal`` getters implicitly refresh the cached signal values.
          supplyVoltageSignal.refresh();
          // refresh the position and velocity signals
          BaseStatusSignal.refreshAll(positionSignal, velocitySignal);
-         // refresh an array of differential signals
+         // refresh an array or List of differential signals
          BaseStatusSignal[] signals = {diffPositionSignal, diffVelocitySignal};
          BaseStatusSignal.refreshAll(signals);
 
@@ -111,7 +120,7 @@ The device ``StatusSignal`` getters implicitly refresh the cached signal values.
          supplyVoltageSignal.Refresh();
          // refresh the position and velocity signals
          BaseStatusSignal::RefreshAll(positionSignal, velocitySignal);
-         // refresh a std::array or std::vector of differential signals
+         // refresh a std::span of differential signals
          std::vector<BaseStatusSignal*> signals{&diffPositionSignal, &diffVelocitySignal};
          BaseStatusSignal::RefreshAll(signals);
 
@@ -181,7 +190,7 @@ All signals can have their update frequency configured via the ``setUpdateFreque
          supplyVoltageSignal.setUpdateFrequency(0);
          // speed up position and velocity reporting to 200 Hz
          BaseStatusSignal.setUpdateFrequencyForAll(200, positionSignal, velocitySignal);
-         // speed up array of differential signals to 100 Hz
+         // speed up array or List of differential signals to 100 Hz
          BaseStatusSignal[] signals = {diffPositionSignal, diffVelocitySignal};
          BaseStatusSignal.setUpdateFrequencyForAll(100, signals);
 
@@ -194,7 +203,7 @@ All signals can have their update frequency configured via the ``setUpdateFreque
          supplyVoltageSignal.SetUpdateFrequency(0_Hz);
          // speed up position and velocity reporting to 200 Hz
          BaseStatusSignal::SetUpdateFrequencyForAll(200_Hz, positionSignal, velocitySignal);
-         // speed up std::array or std::vector of differential signals to 100 Hz
+         // speed up std::span of differential signals to 100 Hz
          std::vector<BaseStatusSignal*> signals{&diffPositionSignal, &diffVelocitySignal};
          BaseStatusSignal::SetUpdateFrequencyForAll(100_Hz, signals);
 
@@ -319,12 +328,12 @@ Check the API documentation for information on whether a status signal supports 
 
       .. code-block:: java
 
-         var talonFXPositionSignal = m_talonFX.getPosition();
-         var cancoderPositionSignal = m_cancoder.getPosition();
-         var pigeon2YawSignal = m_pigeon2.getYaw();
+         var talonFXPositionSignal = m_talonFX.getPosition(false);
+         var cancoderPositionSignal = m_cancoder.getPosition(false);
+         var pigeon2YawSignal = m_pigeon2.getYaw(false);
 
          BaseStatusSignal.waitForAll(0.020, talonFXPositionSignal, cancoderPositionSignal, pigeon2YawSignal);
-         // can also send down an array of signals
+         // can also send down an array or List of signals
          BaseStatusSignal[] signals = {talonFXPositionSignal, cancoderPositionSignal, pigeon2YawSignal};
          BaseStatusSignal.waitForAll(0.020, signals);
 
@@ -333,12 +342,12 @@ Check the API documentation for information on whether a status signal supports 
 
       .. code-block:: cpp
 
-         auto& talonFXPositionSignal = m_talonFX.GetPosition();
-         auto& cancoderPositionSignal = m_cancoder.GetPosition();
-         auto& pigeon2YawSignal = m_pigeon2.GetYaw();
+         auto& talonFXPositionSignal = m_talonFX.GetPosition(false);
+         auto& cancoderPositionSignal = m_cancoder.GetPosition(false);
+         auto& pigeon2YawSignal = m_pigeon2.GetYaw(false);
 
          BaseStatusSignal::WaitForAll(20_ms, talonFXPositionSignal, cancoderPositionSignal, pigeon2YawSignal);
-         // can also send down a std::array or std::vector of signal pointers
+         // can also send down a std::span of signal pointers
          std::vector<BaseStatusSignal*> signals{&talonFXPositionSignal, &cancoderPositionSignal, &pigeon2YawSignal};
          BaseStatusSignal::WaitForAll(20_ms, signals);
 
@@ -347,9 +356,9 @@ Check the API documentation for information on whether a status signal supports 
 
       .. code-block:: python
 
-         talonfx_position_signal = self.talonfx.get_position()
-         cancoder_position_signal = self.cancoder.get_position()
-         pigeon2_yaw_signal = self.pigeon2.get_yaw()
+         talonfx_position_signal = self.talonfx.get_position(False)
+         cancoder_position_signal = self.cancoder.get_position(False)
+         pigeon2_yaw_signal = self.pigeon2.get_yaw(False)
 
          BaseStatusSignal.wait_for_all(0.020, talonfx_position_signal, cancoder_position_signal, pigeon2_yaw_signal)
          # can also send down a list of signals
@@ -385,6 +394,70 @@ Users can perform latency compensation using ``BaseStatusSignal.getLatencyCompen
       .. code-block:: python
 
          compensated_turns = BaseStatusSignal.get_latency_compensated_value(self.motor.get_position(), self.motor.get_velocity())
+
+``StatusSignalCollection``
+--------------------------
+
+The ``StatusSignalCollection`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/StatusSignalCollection.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1_status_signal_collection.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/index.html#phoenix6.StatusSignalCollection>`__) class provides a lightweight wrapper around a list of status signals on a common network. This simplifies the proces of refreshing or waiting on multiple status signals.
+
+.. tab-set::
+
+   .. tab-item:: Java
+      :sync: Java
+
+      .. code-block:: java
+
+         final StatusSignalCollection signals = new StatusSignalCollection();
+
+         // register all the signals we want to refresh (on the same network)
+         signals.addSignals(
+            m_talonFX.getPosition(false),
+            m_cancoder.getPosition(false),
+            m_pigeon2.getYaw(false)
+         );
+         // set all the signals to a 200 Hz update frequency
+         signals.setUpdateFrequencyForAll(Hertz.of(200));
+
+         // now wait on all the signals in the collection
+         signals.waitForAll(0.010);
+
+   .. tab-item:: C++
+      :sync: C++
+
+      .. code-block:: cpp
+
+         StatusSignalCollection signals{};
+
+         // register all the signals we want to refresh (on the same network)
+         signals.AddSignals(
+            m_talonFX.GetPosition(false),
+            m_cancoder.GetPosition(false),
+            m_pigeon2.GetYaw(false)
+         );
+         // set all the signals to a 200 Hz update frequency
+         signals.SetUpdateFrequencyForAll(200_Hz);
+
+         // now wait on all the signals in the collection
+         signals.WaitForAll(10_ms);
+
+   .. tab-item:: Python
+      :sync: python
+
+      .. code-block:: python
+
+         self.signals = StatusSignalCollection()
+
+         # register all the signals we want to refresh (on the same network)
+         self.signals.add_signals(
+            self.talonfx.get_position(False),
+            self.cancoder.get_position(False),
+            self.pigeon2.get_yaw(False)
+         )
+         # set all the signals to a 200 Hz update frequency
+         self.signals.set_update_frequency_for_all(200.0)
+
+         # now wait on all the signals in the collection
+         self.signals.wait_for_all(0.010)
 
 ``SignalMeasurement``
 ---------------------

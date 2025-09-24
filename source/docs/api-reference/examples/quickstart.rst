@@ -70,8 +70,8 @@ In a traditional robot drivetrain, there are two motors attached to each horizon
             m_rightLeader.getConfigurator().apply(currentConfigs);
 
             // Ensure our followers are following their respective leader
-            m_leftFollower.setControl(new Follower(m_leftLeader.getDeviceID(), false));
-            m_rightFollower.setControl(new Follower(m_rightLeader.getDeviceID(), false));
+            m_leftFollower.setControl(new Follower(m_leftLeader.getDeviceID(), MotorAlignmentValue.Aligned));
+            m_rightFollower.setControl(new Follower(m_rightLeader.getDeviceID(), MotorAlignmentValue.Aligned));
          }
 
    .. tab-item:: C++ (Source)
@@ -136,8 +136,8 @@ Full Example
                m_rightLeader.getConfigurator().apply(currentConfigs);
 
                // Ensure our followers are following their respective leader
-               m_leftFollower.setControl(new Follower(m_leftLeader.getDeviceID(), false));
-               m_rightFollower.setControl(new Follower(m_rightLeader.getDeviceID(), false));
+               m_leftFollower.setControl(new Follower(m_leftLeader.getDeviceID(), MotorAlignmentValue.Aligned));
+               m_rightFollower.setControl(new Follower(m_rightLeader.getDeviceID(), MotorAlignmentValue.Aligned));
             }
 
             @Override

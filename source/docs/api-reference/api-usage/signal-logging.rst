@@ -14,7 +14,12 @@ The Phoenix 6 signal logger provides the following advantages over alternatives:
 - **Custom user signals** can be logged alongside the automatically captured status signals on the **same timebase**.
 - The **highly efficient** ``hoot`` file format minimizes the **size** of the log files and the **CPU usage** of the logger.
 
-The signal logging API is available through static functions in the ``SignalLogger`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/SignalLogger.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1_signal_logger.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/signal_logger/index.html#phoenix6.signal_logger.SignalLogger>`__) class. Signal logging is **enabled by default** whenever it detects an FRC match is currently being played. Users can disable this behavior with ``SignalLogger.enableAutoLogging(false)`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/SignalLogger.html#enableAutoLogging(boolean)>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1_signal_logger.html#ae9261bb623fbc9cb4040fedeedc5c91e>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/signal_logger/index.html#phoenix6.signal_logger.SignalLogger.enable_auto_logging>`__).
+The signal logging API is available through static functions in the ``SignalLogger`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/SignalLogger.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1_signal_logger.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/signal_logger/index.html#phoenix6.signal_logger.SignalLogger>`__) class. Signal logging is **enabled by default** on a roboRIO 1 with a USB flash drive or a roboRIO 2, where logging is started by any of the following (whichever occurs first):
+
+- The robot is enabled.
+- It has been at least 5 seconds since program startup (allowing for calls to ``setPath``), and the Driver Station is connected to the robot.
+
+Users can disable this behavior with ``SignalLogger.enableAutoLogging(false)`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/SignalLogger.html#enableAutoLogging(boolean)>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1_signal_logger.html#ae9261bb623fbc9cb4040fedeedc5c91e>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/signal_logger/index.html#phoenix6.signal_logger.SignalLogger.enable_auto_logging>`__).
 
 .. tip:: Device status signals can also be viewed live in the :doc:`Tuner X Plotting page </docs/tuner/plotting>`.
 
@@ -48,12 +53,12 @@ The below example sets the logging path to a ``ctre-logs`` folder on the first U
 
          SignalLogger.set_path("/media/sda1/ctre-logs/")
 
-.. note:: Each CAN bus gets its own dedicated log file.
+.. note:: Each CAN bus gets its own dedicated log file. All logs will be placed in a subfolder named after the date and time of the start of the program.
 
 Start/Stop Logging
 ------------------
 
-The signal logger can be started and stopped using the ``Start/Stop`` functions.
+The signal logger can be started and stopped using the ``start()`` and ``stop()`` functions (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/SignalLogger.html#start()>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1_signal_logger.html#aed8772a03e7d8ec65d5a950d86495f7e>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/signal_logger/index.html#phoenix6.signal_logger.SignalLogger.start>`__).
 
 .. tab-set::
 
@@ -88,6 +93,8 @@ Users can write custom signals to the currently opened logs by utilizing the ``w
 
 The integer and floating-point ``write*()`` functions can optionally be supplied a units string to log alongside the data. Additionally, all ``write*()`` functions support an optional latency parameter that is subtracted from the current time to get the latency-adjusted timestamp of the signal. This can be useful for logging high-latency data, such as vision measurements.
 
+.. tip:: In a WPILib robot project, custom data types can be logged using Struct and Protobuf.
+
 .. tab-set::
 
    .. tab-item:: Java
@@ -95,39 +102,74 @@ The integer and floating-point ``write*()`` functions can optionally be supplied
 
       .. code-block:: java
 
-         // Log the odometry pose as a double array
-         SignalLogger.writeDoubleArray("odometry", new double[] {pose.getX(), pose.getY(), pose.getRotation().getDegrees()});
+         // Log the odometry pose
+         SignalLogger.writeStruct("odometry", Pose2d.struct, pose);
          // Log the odometry period with units of "seconds"
          SignalLogger.writeDouble("odom period", state.OdometryPeriod, "seconds");
          // Log the camera pose with calculated latency
-         SignalLogger.writeDoubleArray("camera pose", new double[] {camPose.getX(), camPose.getY(), camPose.getRotation().getDegrees()},
-            "", Timer.getFPGATimestamp() - camRes.getTimestampSeconds());
+         SignalLogger.writeStruct(
+            "camera pose", Pose2d.struct, camPose,
+            Timer.getTimestamp() - camRes.getTimestampSeconds()
+         );
 
    .. tab-item:: C++
       :sync: cpp
 
       .. code-block:: cpp
 
-         // Log the odometry pose as a double array
-         SignalLogger::WriteDoubleArray("odometry", std::array<double, 3>{pose.X().value(), pose.Y().value(), pose.Rotation().Degrees().value()});
+         // Log the odometry pose
+         SignalLogger::WriteStruct<frc::Pose2d>("odometry", pose);
          // Log the odometry period with units of "seconds"
          SignalLogger::WriteDouble("odom period", state.OdometryPeriod, "seconds");
          // Log the camera pose with calculated latency
-         SignalLogger::WriteDoubleArray("camera pose", std::array<double, 3>{camPose.X().value(), camPose.Y().value(), camPose.Rotation().Degrees().value()},
-            "", frc::Timer::GetFPGATimestamp() - camRes.GetTimestamp());
+         SignalLogger::WriteStruct<frc::Pose2d>(
+            "camera pose", camPose,
+            frc::Timer::GetTimestamp() - camRes.GetTimestamp()
+         );
 
    .. tab-item:: Python
       :sync: python
 
       .. code-block:: python
 
-         # Log the odometry pose as a double array
-         SignalLogger.write_double_array("odometry", [pose.X(), pose.Y(), pose.rotation().degrees()])
+         # Log the odometry pose
+         SignalLogger.write_struct("odometry", Pose2d, pose)
          # Log the odometry period with units of "seconds"
          SignalLogger.write_double("odom period", state.odometry_period, "seconds")
          # Log the camera pose with calculated latency
-         SignalLogger.write_double_array("camera pose", [cam_pose.X(), cam_pose.Y(), cam_pose.rotation().degrees()],
-            "", wpilib.Timer.getFPGATimestamp() - cam_res.getTimestamp())
+         SignalLogger.write_struct(
+            "camera pose", Pose2d, cam_pose,
+            Timer.getTimestamp() - cam_res.getTimestamp()
+         )
+
+WPILib Java Epilogue Integration
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+In a WPILib Java robot project, the ``HootEpilogueBackend`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/HootEpilogueBackend.html>`__) can be used to integrate the Phoenix 6 signal logger with `Epilogue <https://docs.wpilib.org/en/stable/docs/software/telemetry/robot-telemetry-with-annotations.html>`__. This makes it easy to register custom signals for logging using Java annotations.
+
+.. code-block:: java
+
+   @Logged
+   public class Robot extends TimedRobot {
+      public Robot() {
+         Epilogue.configure(config -> {
+            // Log to hoot using the Phoenix 6 SignalLogger as well as
+            // to the dashboard using NetworkTables
+            config.backend = EpilogueBackend.multi(
+               new HootEpilogueBackend(),
+               new NTEpilogueBackend(NetworkTableInstance.getDefault())
+            );
+
+            if (Utils.isSimulation()) {
+               // Re-throw any errors that occur in simulation
+               config.errorHandler = ErrorHandler.crashOnError();
+            }
+
+            // ...
+         });
+         Epilogue.bind(this);
+      }
+   }
 
 Free Signals
 ------------

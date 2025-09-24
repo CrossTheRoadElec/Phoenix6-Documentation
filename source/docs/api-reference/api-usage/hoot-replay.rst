@@ -86,7 +86,7 @@ During Hoot Replay, the simulated robot will automatically enable and run throug
 - ``HootReplay.restart()`` restarts playback from the start of the file
 - ``HootReplay.setSpeed(speed)`` changes the speed of playback by a scalar
 
-The status of Hoot Replay can be checked using ``HootReplay.isFileLoaded()`` and ``HootReplay.isPlaying()``. Threads can also wait for Hoot Replay to start using ``HootReplay.waitForPlaying(timeout)``.
+The status of Hoot Replay can be checked using ``HootReplay.isFileLoaded()``, ``HootReplay.isPlaying()``, and ``HootReplay.isFinished()``. Threads can also wait for Hoot Replay to start using ``HootReplay.waitForPlaying(timeout)``.
 
 .. tip:: ``HootReplay.isPlaying()`` and ``HootReplay.waitForPlaying(timeout)`` immediately return true when running on the robot or in regular simulation.
 
