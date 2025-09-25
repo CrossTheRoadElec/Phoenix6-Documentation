@@ -80,3 +80,4 @@ Usage of these classes is available in the following articles in this section.
    swerve-builder-api
    swerve-requests
    swerve-simulation
+   using-swerve-api

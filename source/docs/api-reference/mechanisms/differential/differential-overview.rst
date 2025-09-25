@@ -16,7 +16,7 @@ A differential mechanism has two axes of motion, where the position along each a
 
   - This is the **Difference axis**: rotation is determined by half the difference of the two motors' positions.
 
-.. todo:: 1323 differential wrist image here, with arrows indicating axes
+.. TODO: 1323 differential wrist image here, with arrows indicating axes
 
 As an example, a differential drivetrain has a few motors on each side of the robot. Driving both sides of the robot in the "forward" direction causes the robot to move forward. However, driving the left side "forward" and the right side "reverse" causes the robot to turn right.
 
