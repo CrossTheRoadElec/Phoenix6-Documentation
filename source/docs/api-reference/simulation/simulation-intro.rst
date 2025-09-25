@@ -88,10 +88,10 @@ This orientation represents the **mechanical** linkage between the device and th
          right_talon_fx_sim = self.right_talon_fx.sim_state
 
          # left drivetrain motors are typically CCW+
-         left_talon_fx_sim.orientation = sim.ChassisReference.CounterClockwise_Positive
+         left_talon_fx_sim.orientation = sim.ChassisReference.COUNTER_CLOCKWISE_POSITIVE
 
          # right drivetrain motors are typically CW+
-         right_talon_fx_sim.orientation = sim.ChassisReference.Clockwise_Positive
+         right_talon_fx_sim.orientation = sim.ChassisReference.CLOCKWISE_POSITIVE
 
 Inputs and Outputs
 ^^^^^^^^^^^^^^^^^^
@@ -145,6 +145,12 @@ Some device ``SimState`` objects also contain outputs that can be used in simula
             DCMotor.getKrakenX60Foc(1)
          );
 
+         public void simulationInit() {
+            var talonFXSim = m_talonFX.getSimState();
+            talonFXSim.Orientation = ChassisReference.CounterClockwise_Positive;
+            talonFXSim.setMotorType(TalonFXSimState.MotorType.KrakenX60);
+         }
+
          public void simulationPeriodic() {
             var talonFXSim = m_talonFX.getSimState();
 
@@ -181,6 +187,13 @@ Some device ``SimState`` objects also contain outputs that can be used in simula
             frc::DCMotor::KrakenX60FOC(1)
          };
 
+         void SimulationInit()
+         {
+            auto& talonFXSim = m_talonFX.GetSimState();
+            talonFXSim.Orientation = sim::ChassisReference::CounterClockwise_Positive;
+            talonFXSim.SetMotorType(sim::TalonFXSimState::MotorType::KrakenX60);
+         }
+
          void SimulationPeriodic()
          {
             auto& talonFXSim = m_talonFX.GetSimState();
@@ -214,11 +227,16 @@ Some device ``SimState`` objects also contain outputs that can be used in simula
             gearbox = DCMotor.krakenX60FOC(1)
             self.motor_sim_model = DCMotorSim(LinearSystemId.DCMotorSystem(gearbox, 0.001, GEAR_RATIO), gearbox)
 
+         def simulationInit(self):
+            talon_fx_sim = self.talon_fx.sim_state
+            talon_fx_sim.orientation = sim.ChassisReference.COUNTER_CLOCKWISE_POSITIVE
+            talon_fx_sim.set_motor_type(sim.TalonFXSimState.MotorType.KRAKEN_X60)
+
          def simulationPeriodic(self):
             talon_fx_sim = self.talon_fx.sim_state
 
             # set the supply voltage of the TalonFX
-            talon_fx_sim.set_supply_voltage(RobotControllergetBatteryVoltage())
+            talon_fx_sim.set_supply_voltage(RobotController.getBatteryVoltage())
 
             # get the motor voltage of the TalonFX
             motor_voltage = talon_fx_sim.motor_voltage
