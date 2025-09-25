@@ -227,11 +227,11 @@ Signal update frequencies are automatically reapplied by the robot program on de
 Optimizing Bus Utilization
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-For users that wish to disable every unused status signal for their devices to reduce bus utilization, device objects have an ``optimizeBusUtilization()`` method (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/hardware/ParentDevice.html#optimizeBusUtilization()>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1hardware_1_1_parent_device.html#a83aca78ca935a431324fb7575cfa625a>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/hardware/parent_device/index.html#phoenix6.hardware.parent_device.ParentDevice.optimize_bus_utilization>`__). Additionally, multiple devices can be optimized at once using ``ParentDevice.optimizeBusUtilizationForAll()`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/hardware/ParentDevice.html#optimizeBusUtilizationForAll(com.ctre.phoenix6.hardware.ParentDevice...)>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1hardware_1_1_parent_device.html#a8a7a1b29451dd1b45c18b986f79c51d3>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/hardware/parent_device/index.html#phoenix6.hardware.parent_device.ParentDevice.optimize_bus_utilization_for_all>`__).
+For users that wish to disable or slow down every unused status signal for their devices to reduce bus utilization, device objects have an ``optimizeBusUtilization()`` method (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/hardware/ParentDevice.html#optimizeBusUtilization()>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1hardware_1_1_parent_device.html#a83aca78ca935a431324fb7575cfa625a>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/hardware/parent_device/index.html#phoenix6.hardware.parent_device.ParentDevice.optimize_bus_utilization>`__). Additionally, multiple devices can be optimized at once using ``ParentDevice.optimizeBusUtilizationForAll()`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/hardware/ParentDevice.html#optimizeBusUtilizationForAll(com.ctre.phoenix6.hardware.ParentDevice...)>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1hardware_1_1_parent_device.html#a8a7a1b29451dd1b45c18b986f79c51d3>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/hardware/parent_device/index.html#phoenix6.hardware.parent_device.ParentDevice.optimize_bus_utilization_for_all>`__).
 
-When optimizing the bus utilization for devices, all status signals that have not been given an update frequency using ``setUpdateFrequency()`` will be disabled. This results in an opt-in model for status signals, maximizing the reduction in bus utilization.
+When optimizing the bus utilization for devices, all status signals that have not been given an update frequency using ``setUpdateFrequency()`` will be disabled or slowed down. This results in an opt-in model for status signals, maximizing the reduction in bus utilization.
 
-.. tip:: Instead of disabling all unused status signals, an update frequency can be specified instead to keep them enabled at a slower update rate (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/hardware/ParentDevice.html#optimizeBusUtilizationForAll(double,com.ctre.phoenix6.hardware.ParentDevice...)>`__, `c++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1hardware_1_1_parent_device.html#a8e6cd768e43b16719df126a27c484e16>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/hardware/parent_device/index.html#phoenix6.hardware.parent_device.ParentDevice.optimize_bus_utilization_for_all>`__). This is useful when using :doc:`/docs/api-reference/api-usage/signal-logging`.
+.. tip:: The update frequency of optimized signals can be specified (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/hardware/ParentDevice.html#optimizeBusUtilizationForAll(double,com.ctre.phoenix6.hardware.ParentDevice...)>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1hardware_1_1_parent_device.html#a8e6cd768e43b16719df126a27c484e16>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/hardware/parent_device/index.html#phoenix6.hardware.parent_device.ParentDevice.optimize_bus_utilization_for_all>`__), where 0 Hz completely disables the signals. The default update frequency is 4 Hz, ensuring that all signals are available when using :doc:`/docs/api-reference/api-usage/signal-logging`.
 
 .. warning:: When using followers, the leader motor must keep the ``DutyCycle``, ``MotorVoltage``, and ``TorqueCurrent`` status signals enabled. Additionally, remote sensors must keep related status signals enabled (such as position and velocity).
 
@@ -379,21 +379,27 @@ Users can perform latency compensation using ``BaseStatusSignal.getLatencyCompen
 
       .. code-block:: java
 
-         double compensatedTurns = BaseStatusSignal.getLatencyCompensatedValue(m_motor.getPosition(), m_motor.getVelocity());
+         double compensatedTurns = BaseStatusSignal.getLatencyCompensatedValue(
+            m_motor.getPosition(), m_motor.getVelocity()
+         );
 
    .. tab-item:: C++
       :sync: C++
 
       .. code-block:: cpp
 
-         auto compensatedTurns = BaseStatusSignal::GetLatencyCompensatedValue(m_motor.GetPosition(), m_motor.GetVelocity());
+         auto compensatedTurns = BaseStatusSignal::GetLatencyCompensatedValue(
+            m_motor.GetPosition(), m_motor.GetVelocity()
+         );
 
    .. tab-item:: Python
       :sync: python
 
       .. code-block:: python
 
-         compensated_turns = BaseStatusSignal.get_latency_compensated_value(self.motor.get_position(), self.motor.get_velocity())
+         compensated_turns = BaseStatusSignal.get_latency_compensated_value(
+            self.motor.get_position(), self.motor.get_velocity()
+         )
 
 ``StatusSignalCollection``
 --------------------------

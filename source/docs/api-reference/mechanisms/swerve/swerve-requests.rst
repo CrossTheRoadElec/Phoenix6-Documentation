@@ -1,7 +1,7 @@
 Swerve Requests
 ===============
 
-Controlling the drivetrain is done using ``setControl(SwerveRequest)`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/swerve/SwerveDrivetrain.html#setControl(com.ctre.phoenix6.swerve.SwerveRequest)>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1swerve_1_1_swerve_drivetrain.html#a6ec080fd2f6ce56ad0ade8845e64929e>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/swerve/swerve_drivetrain/index.html#phoenix6.swerve.swerve_drivetrain.SwerveDrivetrain.set_control>`__) which takes a given ``SwerveRequest`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/swerve/SwerveRequest.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1swerve_1_1requests_1_1_swerve_request.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/swerve/requests/index.html#phoenix6.swerve.requests.SwerveRequest>`__). There are multiple pre-defined ``SwerveRequest`` implementations that cover the majority of use cases. In some advanced scenarios, users can also define their own.
+Controlling the drivetrain is done by calling ``setControl(SwerveRequest)`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/swerve/SwerveDrivetrain.html#setControl(com.ctre.phoenix6.swerve.SwerveRequest)>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1swerve_1_1_swerve_drivetrain.html#a6ec080fd2f6ce56ad0ade8845e64929e>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/swerve/swerve_drivetrain/index.html#phoenix6.swerve.swerve_drivetrain.SwerveDrivetrain.set_control>`__) periodically, which takes a given ``SwerveRequest`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/swerve/SwerveRequest.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1swerve_1_1requests_1_1_swerve_request.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/swerve/requests/index.html#phoenix6.swerve.requests.SwerveRequest>`__). There are multiple pre-defined ``SwerveRequest`` implementations that cover the majority of use cases. In some advanced scenarios, users can also define their own.
 
 Applying a Request
 ------------------
@@ -315,7 +315,7 @@ To maximize performance and minimize duplicate code, most custom swerve requests
 
          ctre::phoenix::StatusCode Apply(
             swerve::requests::SwerveRequest::ControlParameters const &parameters,
-            std::vector<std::unique_ptr<swerve::impl::SwerveModuleImpl>> const &modulesToApply
+            std::span<std::unique_ptr<swerve::impl::SwerveModuleImpl> const> modulesToApply
          ) override {
             swerve::Rotation2d angleToFace = TargetDirection;
             if (ForwardPerspective == swerve::requests::ForwardPerspectiveValue::OperatorPerspective) {
@@ -428,7 +428,7 @@ Note, however, that this can **negatively impact performance** of the robot, bot
 
             ctre::phoenix::StatusCode Apply(
                swerve::requests::SwerveRequest::ControlParameters const &parameters,
-               std::vector<std::unique_ptr<swerve::impl::SwerveModuleImpl>> const &modulesToApply
+               std::span<std::unique_ptr<swerve::impl::SwerveModuleImpl> const> modulesToApply
             ) override {
                auto moduleRequest = impl::SwerveModuleImpl::ModuleRequest{}
                   .WithUpdatePeriod(parameters.updatePeriod);
@@ -498,7 +498,7 @@ As a result, ``SwerveModule`` also has ``apply(ControlRequest drive, ControlRequ
 
          ctre::phoenix::StatusCode Apply(
             SwerveRequest::ControlParameters const &parameters,
-            std::vector<std::unique_ptr<impl::SwerveModuleImpl>> const &modulesToApply
+            std::span<std::unique_ptr<impl::SwerveModuleImpl> const> modulesToApply
          ) override {
             for (size_t i = 0; i < modulesToApply.size(); ++i) {
                /* directly apply the control requests to the drive and steer motors */
