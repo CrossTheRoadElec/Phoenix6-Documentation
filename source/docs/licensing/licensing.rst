@@ -3,7 +3,7 @@ Device Licensing
 
 .. note:: Users utilizing season pass must attach a team number before continuing. See :ref:`docs/licensing/team-licensing:attaching a team number to season pass` for more information.
 
-All :ref:`Phoenix 6 supported devices <docs/installation/requirements:Supported Devices>` support device licensing, 
+All :ref:`Phoenix 6 supported devices <docs/installation/requirements:Supported Devices>` support device licensing.
 
 Additionally, CANivore is supported for licensing. When a CANivore is licensed, all devices on that bus are **Pro** enabled without additional activation.
 
