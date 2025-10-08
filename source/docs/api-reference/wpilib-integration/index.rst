@@ -8,6 +8,7 @@ Phoenix 6 API used as part of `WPILib robot projects <https://docs.wpilib.org>`_
 .. toctree::
    :maxdepth: 3
 
+   epilogue-integration.rst
    motorcontroller-integration
    sysid-integration/index
    unit-testing
