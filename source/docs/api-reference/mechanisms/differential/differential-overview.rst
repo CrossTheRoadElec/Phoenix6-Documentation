@@ -1,7 +1,7 @@
 Differential Overview
 =====================
 
-Phoenix 6 has two robust differential mechanism APIs taking advantage of the motor controllers' onboard differential controls. These APIs greatly simplify the setup and usage of common differential mechanisms, ranging from a differential wrist to a two-gearbox elevator without mechanical linkage.
+Phoenix 6 has two robust differential mechanism APIs taking advantage of the motor controllers' onboard differential controls. These APIs greatly simplify the setup and usage of common differential mechanisms, ranging from a `differential wrist <https://youtu.be/tJ4rwWNeLlE>`__ to a two-gearbox elevator without mechanical linkage.
 
 What is a Differential Mechanism?
 ---------------------------------
