@@ -39,6 +39,18 @@ The Phoenix 6 software framework allows you to control and configure your `CTR E
 
       A list of current known issues is available here.
 
+   .. grid-item-card:: :octicon:`dependabot` Swerve Generator
+      :link: docs/tuner/tuner-swerve/index
+      :link-type: doc
+
+      Functional swerve in under 30 minutes.
+
+   .. grid-item-card:: :octicon:`move-to-top` Elevator Generator
+      :link: docs/tuner/tuner-elev/index
+      :link-type: doc
+
+      Generate an elevator subsystem into your robot project.
+
 .. grid:: 1 2 3 3
    :gutter: 3
 
