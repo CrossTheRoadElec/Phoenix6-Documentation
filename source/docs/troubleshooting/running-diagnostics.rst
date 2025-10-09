@@ -37,3 +37,5 @@ When the program runs, it will print text to the console similar to the below
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Alternatively, users can :ref:`run a temporary diagnostic server <docs/tuner/connecting:temporary diagnostics (frc)>` in Tuner X. The temporary diagnostic server will only run until the next reboot of the target system.
+
+.. note:: Temporary diagnostic server can be deployed on :reF:`supported non-FRC platforms <docs/installation/requirements:System Requirements>`. However, devices will only enumerate if the CAN bus interface is ``can0``.
