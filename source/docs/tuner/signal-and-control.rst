@@ -7,7 +7,7 @@ Multiple devices can be controlled and plotted simultaneously using the :guilabe
    :alt: Picture of bounding box around signal and control icon in left-hand tuner flyout
    :width: 400
 
-The :guilabel:`Signal & Control` interface can be incredibly useful when tuning subsystems with multiple motors. 
+The :guilabel:`Signal & Control` interface can be incredibly useful when tuning subsystems with multiple motors.
 
 .. image:: images/tuner-multi-device.png
    :width: 600

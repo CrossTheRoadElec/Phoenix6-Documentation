@@ -96,7 +96,7 @@ We've added a couple new utility functions, specifically for interacting with st
 - Added ``StatusSignal::IsNear(target, tolerance)`` utility function that checks whether the signal is near a target value given tolerance.
 - Added ``StatusSignalCollection``, a lightweight ``List<BaseStatusSignal>`` wrapper that provides ``waitForAll``/``refreshAll``/etc. This can be used to register status signals from multiple classes for a single ``refreshAll`` call.
 
-Enhancements to Error Reporting 
+Enhancements to Error Reporting
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Some changes have been made to the API to improve error reporting.
