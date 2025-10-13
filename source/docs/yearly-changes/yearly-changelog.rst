@@ -20,7 +20,7 @@ Breaking Changes
 - The ``new <Device>(int id, String canbus)`` constructors are now deprecated and will be removed in 2027. Use the ``new <Device>(int id, CANBus canbus)`` constructors instead. This change is intended to prepare users for 2027, where an explicit CAN bus declaration is necessary.
 - The minimum supported C++ version is now C++ 20, and the minimum Linux requirement is Ubuntu 22.04 / Debian Bullseye. Linux ARM32 is no longer supported.
 - C++: Improved robot project compilation times. This results in the following breaking changes: The ``ctre/phoenix6/configs/Configs.hpp`` header has been split into separate files. In generated swerve projects, ``TunerConstants.h`` must now explicitly include the motor controllers and encoder used.
-- ``DifferentialMechanism`` and ``SimpleDifferentialMechanism`` have been reworked to more closely align with the swerve API.
+- ``DifferentialMechanism`` and ``SimpleDifferentialMechanism`` have been reworked to more closely align with the swerve API. The behavior of the difference axis has also been adjusted.
 
 Signal Logger Improvements & Behavior Changes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -91,9 +91,16 @@ This can be useful to log the new outputs after making changes to program logic.
 Investments in Differential
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Our differential API has seen a variety of changes and feature additions that should enhance and expand the capabilities of teams building differential systems (such as Differential Wrists or Elevators). ``SimpleDifferentialMechanism`` and ``DifferentialMechanism`` have been reworked to more closely align with swerve. Both APIs now take a ``DifferentialMotorConstants`` object on construction, internally construct and configure the motor controllers (with initial configs objects), and provide useful APIs such as ``getAveragePosition()`` and ``setPosition(avg, diff)``. Support has been added for ``MotionMagicExpo`` and ``MotionMagicVelocity`` on the average axis, and configs have been added to control the behavior of continuous wrapping and gear ratios on the difference axis.
+Our differential API has seen a variety of changes and feature additions that should enhance and expand the capabilities of teams building differential systems (such as Differential Wrists or Elevators). ``SimpleDifferentialMechanism`` and ``DifferentialMechanism`` have been reworked to more closely align with swerve. Both APIs now take a ``DifferentialMotorConstants`` object on construction, internally construct and configure the motor controllers (with initial configs objects), and provide useful APIs such as ``getAveragePosition()`` and ``setPosition(avg, diff)``. Support has also been added for ``MotionMagicExpo`` and ``MotionMagicVelocity`` on the average axis.
+
+Additionally, configs have been added to control the behavior of continuous wrapping and gear ratios on the difference axis. This also comes with a **breaking change** in behavior on the differential axis: the **full differential output** is now added/subtracted from each motor, and the difference axis uses **half the difference** in position/velocity between the two motors. This effectively means that PID gains do not change, but setpoints on the difference axis must be halved.
 
 User documentation for the differential API can be found :doc:`here </docs/api-reference/mechanisms/differential/differential-overview>`. We highly recommend users read over the `full changelog <https://api.ctr-electronics.com/changelog>`__ for a full list changes to the differential API.
+
+Improvements to Swerve
+^^^^^^^^^^^^^^^^^^^^^^
+
+Swerve has seen a number of enhancements. We've added a ``LinearPath`` API that generates a linear path between two poses with constant velocity and acceleration limits. A ``WheelForceCalculator`` has also been added that calculates the wheel force feedforwards to apply for the given target robot accelerations or change in ``ChassisSpeeds``, based on the robot mass and MOI.
 
 Additional Language Support for C#
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -105,18 +112,13 @@ C# has received some much needed updates that bring it to feature parity with th
 
 Check out the :ref:`installation instructions <docs/installation/installation-nonfrc:API Installation>` on installing the nuget.
 
-Improvements to Swerve
-^^^^^^^^^^^^^^^^^^^^^^
-
-Swerve has seen a number of enhancements. We've added a ``LinearPath`` API that generates a linear path between two poses with constant velocity and acceleration limits. A ``WheelForceCalculator`` has also been added that calculates the wheel force feedforwards to apply for the given target robot accelerations or change in ChassisSpeeds, based on the robot mass and MOI.
-
 Additional Utility Functions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 We've added a couple new utility functions, specifically for interacting with status signals.
 
 - Added ``StatusSignal::IsNear(target, tolerance)`` utility function that checks whether the signal is near a target value given tolerance.
-- Added ``StatusSignalCollection``, a lightweight ``List<BaseStatusSignal>`` wrapper that provides ``waitForAll``/``refreshAll``/etc. This can be used to register status signals from multiple classes for a single ``refreshAll`` call.
+- Added ``StatusSignalCollection``, a lightweight ``List<BaseStatusSignal>`` wrapper that provides ``waitForAll``/``refreshAll``/etc. This can be used to easily register status signals from multiple classes for a single ``refreshAll`` call.
 - Java: Added ``List<BaseStatusSignal>`` overloads to ``waitForAll``/``refreshAll``/etc.
 - C++: Replaced the ``std::vector`` and ``std::array`` overloads with a ``std::span`` overload for APIs such as ``WaitForAll``/``RefreshAll``/``OptimizeBusUtilization``/etc.
 
@@ -136,11 +138,10 @@ Improvements to follower have been made, specifically in regards to when the lea
 - Follower and DifferentialFollower now follow ``MotorVoltage`` instead of ``DutyCycle`` when the leader is running a voltage control output type.
 - Follower now follows the leader's coast/brake.
 
-Additionally, :ref:`docs/api-reference/device-specific/talonfx/motion-magic:dynamic motion magic® expo` control requests have been added.
+Additionally, :ref:`docs/api-reference/device-specific/talonfx/motion-magic:dynamic motion magic® expo` control requests have been added. Furthermore, the ``GravityArmPositionOffset`` config has also been added to offset the position used for arm kG calculations (within (-0.25, 0.25) rot).
 
 .. dropdown:: Miscellaneous Changes
 
-   - Added ``GravityArmPositionOffset`` to offset the position for arm kG calculations (within (-0.25, 0.25) rot).
    - Added support for simple gain scheduling in position PID closed-loop control based on closed-loop error. For more information, see the API documentation of ``ClosedLoopGeneralConfigs::GainSchedErrorThreshold``, ``ClosedLoopGeneralConfigs::GainSchedKpBehavior``, and ``SlotConfigs::GainSchedBehavior``.
    - Added ``MotionMagicAtTarget`` status signal, which returns whether the motion profile has completed (equivalent to checking that ``MotionMagicIsRunning``, the ``ClosedLoopReference`` is the final target, and the ``ClosedLoopReferenceSlope`` is 0).
 
@@ -148,6 +149,8 @@ Kraken X44
 ^^^^^^^^^^
 
 Improvements to FOC have been made to improve peak performance.
+
+Additionally, Kraken X44 simulation support has been added via ``TalonFXSimState::SetMotorType``.
 
 Talon FXS
 ^^^^^^^^^
