@@ -15,11 +15,11 @@ The Phoenix 6 software framework allows you to control and configure your `CTR E
 .. grid:: 1 2 2 2
    :gutter: 3
 
-   .. grid-item-card:: New for 2025
+   .. grid-item-card:: New for 2026
       :link: docs/yearly-changes/yearly-changelog
       :link-type: doc
 
-      What's new in Phoenix 6 for 2025.
+      What's new in Phoenix 6 for 2026.
 
    .. grid-item-card:: Migration Guide
       :link: docs/migration/migration-guide/index
