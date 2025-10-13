@@ -37,7 +37,10 @@ The behavior of the signal logger auto-start functionality has also been changed
 
 Additionally, ``OptimizeBusUtilization()`` now defaults to setting optimized signals to 4 Hz instead of 0 Hz, preserving data for hoot logs. Users can still get the old behavior by explicitly passing in 0 Hz.
 
-Finally, logs from the same robot program instance / FRC match will now be grouped into a subdirectory named after the match and the date/time of the start of the match.
+.. dropdown:: Miscellaneous Changes
+
+   - Logs from the same robot program instance / FRC match will now be grouped into a subdirectory named after the match and the date/time of the start of the match.
+   - The list of :ref:`docs/api-reference/api-usage/signal-logging:free signals` (including custom user signals) is no longer limited to WPILOG export and can now be exported to MCAP.
 
 Hoot Replay Improvements
 ^^^^^^^^^^^^^^^^^^^^^^^^
