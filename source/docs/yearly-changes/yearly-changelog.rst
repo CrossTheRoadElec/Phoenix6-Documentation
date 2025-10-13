@@ -64,7 +64,7 @@ Hoot replay has been enhanced to enable use cases beyond just status signal play
       val -> cameraPoseEst.timestamp = val.value
    );
 
-We highly recommend reading over the `improved hoot replay </docs/api-reference/api-usage/hoot-replay>` documentation for understanding how to integrate hoot replay into your robot program.
+We highly recommend reading over the :doc:`improved hoot replay </docs/api-reference/api-usage/hoot-replay>` documentation for understanding how to integrate hoot replay into your robot program.
 
 Additional Language Support for C#
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
