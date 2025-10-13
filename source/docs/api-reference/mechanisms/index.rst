@@ -41,5 +41,5 @@ As an example, to generate an example ``Elevator`` subsystem for a Java robot pr
 
 .. code-block:: bash
 
-   ./corvus json elevator Elevator.json
-   ./corvus elevator java -i Elevator.json -o src/main/java/frc/robot/subsystems/Elevator.java
+   ./corvus json elevator "Elevator.json"
+   ./corvus elevator java -i "Elevator.json" -o "src/main/java/frc/robot/subsystems/Elevator.java"
