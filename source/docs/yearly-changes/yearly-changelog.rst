@@ -105,6 +105,8 @@ Improvements to Swerve
 
 Swerve has seen a number of enhancements. We've added a ``LinearPath`` API that generates a linear path between two poses with constant velocity and acceleration limits. A ``WheelForceCalculator`` has also been added that calculates the wheel force feedforwards to apply for the given target robot accelerations or change in ``ChassisSpeeds``, based on the robot mass and MOI.
 
+Additionally, the ``SeedFieldCentric(Rotation2d)`` overload has been added to reset the heading of the robot to the given operator-perspective heading. The generated swerve project Telemetry class has also been updated to log using the new WPILib Struct and Struct array ``SignalLogger`` support.
+
 Additional Language Support for C#
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
