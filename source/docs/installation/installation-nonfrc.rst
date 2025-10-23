@@ -91,17 +91,17 @@ On non-FRC Linux systems, the ``canivore-usb`` kernel module must be installed t
 
    .. tab-item:: Raspberry Pi
 
-      1. Install the Raspberry Pi kernel headers.
+      1. Update APT and install the Raspberry Pi kernel headers.
 
       .. code-block:: bash
 
+         sudo apt update
          sudo apt install raspberrypi-kernel-headers
 
-      2. Update APT and install ``canivore-usb``
+      2. Install ``canivore-usb``.
 
       .. code-block::
 
-         sudo apt update
          sudo apt install canivore-usb -y
 
    .. tab-item:: Other Distributions
