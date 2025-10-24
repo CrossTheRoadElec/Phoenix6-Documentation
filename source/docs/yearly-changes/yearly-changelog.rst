@@ -18,7 +18,7 @@ Breaking Changes
 ^^^^^^^^^^^^^^^^
 
 - The ``new <Device>(int id, String canbus)`` constructors are now deprecated and will be removed in 2027. Use the ``new <Device>(int id, CANBus canbus)`` constructors instead. This change is intended to prepare users for 2027, where an explicit CAN bus declaration is necessary.
-- The minimum supported C++ version is now C++ 20, and the minimum Linux requirement is Ubuntu 22.04 / Debian Bullseye. Linux ARM32 is no longer supported.
+- The minimum supported C++ version is now C++ 20, and the minimum Linux requirement is Ubuntu 22.04 / Debian Bookworm. Linux ARM32 is no longer supported.
 - C++: Improved robot project compilation times. This results in the following breaking changes: The ``ctre/phoenix6/configs/Configs.hpp`` header has been split into separate files. In generated swerve projects, ``TunerConstants.h`` must now explicitly include the motor controllers and encoder used.
 - ``DifferentialMechanism`` and ``SimpleDifferentialMechanism`` have been reworked to more closely align with the swerve API. The behavior of the difference axis has also been adjusted.
 
