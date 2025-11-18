@@ -1,7 +1,7 @@
 Profile Page
 ============
 
-The profile page gets the user access to account management and is where :ref:`team numbers are assigned to a season pass`. This can be accessed by clicking the profile icon in the left-side menu.
+The profile page gets the user access to account management and is where :ref:`team numbers are assigned to a season pass <docs/licensing/team-licensing:Attaching a Team Number to Season Pass>`. This can be accessed by clicking the profile icon in the left-side menu.
 
 .. image:: images/highlighting-profile-page-icon.png
    :alt: Picture pointing at profile page icon in Phoenix Tuner
