@@ -93,7 +93,7 @@ Users can write custom signals to the currently opened logs by utilizing the ``w
 
 The integer and floating-point ``write*()`` functions can optionally be supplied a units string to log alongside the data. Additionally, all ``write*()`` functions support an optional latency parameter that is subtracted from the current time to get the latency-adjusted timestamp of the signal. This can be useful for logging high-latency data, such as vision measurements.
 
-.. tip:: In a WPILib robot project, custom data types can be logged using Struct and Protobuf.
+.. tip:: In a WPILib robot project, custom data types can be logged using Struct and Protobuf. Additionally, Java robot projects can take advantage of :doc:`Epilogue integration </docs/api-reference/wpilib-integration/epilogue-integration>`.
 
 .. tab-set::
 
@@ -141,11 +141,6 @@ The integer and floating-point ``write*()`` functions can optionally be supplied
             "camera pose", Pose2d, cam_pose,
             Timer.getTimestamp() - cam_res.getTimestamp()
          )
-
-WPILib Java Epilogue Integration
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Signal Logger provides a custom backend that allows easy integration into WPILib Epilogue. See :doc:`here </docs/api-reference/wpilib-integration/epilogue-integration>` for more information.
 
 Free Signals
 ------------

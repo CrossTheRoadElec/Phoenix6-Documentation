@@ -182,6 +182,15 @@ All custom signal getters return a ``HootReplay.SignalData`` (`Java <https://api
             if is_camera_pose_valid(camera_pose):
                drivetrain.add_vision_measurement(camera_pose, vision_data.timestamp)
 
+Additionally, the Signal Logger is supported in Hoot Replay with the following behavior:
+
+- Signal Logger is always enabled during replay. As a result, ``SignalLogger::Start()`` and ``SignalLogger::Stop()`` are ignored.
+- The replayed log will always be written to a ``replay_<date>_<time>/`` subfolder next to the original log.
+- All custom signals written during replay will be automatically placed under ``hoot_replay/`` in the log.
+- The replayed log also contains all status signals and custom signals from the original log, excluding those starting with ``hoot_replay/``.
+
+This can be useful to log the new outputs after making changes to program logic.
+
 Adjusting Robot Code Architecture
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

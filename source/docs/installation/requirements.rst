@@ -72,11 +72,11 @@ Phoenix 6 supports a plethora of languages and operating systems. The table foun
 .. [1] Supported Linux x86-64 (desktop) targets:
 
    - Ubuntu 22.04 or newer
-   - Debian Bullseye or newer
+   - Debian Bookworm or newer
 
 .. [2] Supported Linux ARM64 targets:
 
    - Raspberry Pi
    - NVIDIA Jetson (Jetpack 6 or newer)
    - Ubuntu 22.04 or newer
-   - Debian Bullseye or newer
+   - Debian Bookworm or newer
