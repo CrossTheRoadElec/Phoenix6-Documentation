@@ -406,7 +406,7 @@ Users can perform latency compensation using ``BaseStatusSignal.getLatencyCompen
 ``StatusSignalCollection``
 --------------------------
 
-The ``StatusSignalCollection`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/StatusSignalCollection.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1_status_signal_collection.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/index.html#phoenix6.StatusSignalCollection>`__) class provides a lightweight wrapper around a list of status signals on a common network. This simplifies the proces of refreshing or waiting on multiple status signals.
+The ``StatusSignalCollection`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/StatusSignalCollection.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1_status_signal_collection.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/index.html#phoenix6.StatusSignalCollection>`__) class provides a lightweight wrapper around a list of status signals on a common network. This simplifies the process of refreshing or waiting on multiple status signals.
 
 .. tab-set::
 
