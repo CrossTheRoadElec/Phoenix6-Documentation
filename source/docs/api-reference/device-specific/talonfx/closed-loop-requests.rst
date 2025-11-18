@@ -58,6 +58,8 @@ Since the arm :math:`K_g` uses the angle of the arm relative to horizontal, the 
 
 When using an absolute sensor, such as a CANcoder, the sensor offset must be configured such that a position of 0 represents the arm being held horizontally forward. From there, the ``RotorToSensor`` ratio must be configured to the ratio between the absolute sensor and the Talon FX rotor.
 
+Some arm mechanisms have a center of gravity that is offset from the zero position. The ``GravityArmPositionOffset`` config can be adjusted to account for this offset within ±0.25 rotations.
+
 Static Feedforward Sign
 -----------------------
 

@@ -9,5 +9,6 @@ Phoenix 6 API used as part of `WPILib robot projects <https://docs.wpilib.org>`_
    :maxdepth: 3
 
    motorcontroller-integration
+   epilogue-integration
    sysid-integration/index
    unit-testing

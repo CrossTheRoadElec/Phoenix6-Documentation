@@ -14,7 +14,7 @@ Installing Phoenix 6
       :link: /docs/installation/installation-nonfrc
       :link-type: doc
 
-      Click here to learn about installing the Phoenix 6 library outside of FRC. This explains including our apt-get repository and applicable binaries.
+      Click here to learn about installing the Phoenix 6 library outside of FRC. This explains including our APT repository and applicable binaries.
 
 .. mimictoc::
    :maxdepth: 1

@@ -7,4 +7,5 @@ Tuner offers additional, miscellaneous functionality in the form of tool pages.
    :maxdepth: 1
 
    tools/log-extractor
+   tools/log-analysis
    tools/chrp-converter

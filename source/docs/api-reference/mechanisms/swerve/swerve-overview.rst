@@ -47,7 +47,7 @@ Utilizing the swerve API requires that the robot drivetrain is composed of suppo
 
 .. note:: All drive motor controllers must be of the same type, and all steer motor controllers must be of the same type. However, the drive and steer motor controllers can be different types from each other. For example, you can utilize 4 Talon FXS connected to a Minion for steer and 4 Kraken X60 for drive.
 
-Overview on the API
+Overview of the API
 -------------------
 
 Simple usage is comprised of 5 core APIs:
@@ -80,3 +80,4 @@ Usage of these classes is available in the following articles in this section.
    swerve-builder-api
    swerve-requests
    swerve-simulation
+   using-swerve-api
