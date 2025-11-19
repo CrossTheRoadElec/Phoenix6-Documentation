@@ -3,7 +3,7 @@ TalonFX Remote Sensors
 
 The TalonFX supports various remote sensors. Remote sensors allow onboard closed-loop functionality at rates faster than a traditional robot processor (~1Khz) by reading the remote sensor directly from the CAN bus. This allows supported motor controllers to execute closed-loop modes with sensor values sourced by supported sensors.
 
-A list of supported remote sensors can be found in the API docs (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/signals/FeedbackSensorSourceValue.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1signals_1_1_feedback_sensor_source_value.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/configs/config_groups/index.html#phoenix6.configs.config_groups.FeedbackConfigs.feedback_sensor_source>`__).
+A list of supported remote sensors can be found in the API docs (`Java <https://api.ctr-electronics.com/phoenix6/latest/java/com/ctre/phoenix6/signals/FeedbackSensorSourceValue.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/latest/cpp/classctre_1_1phoenix6_1_1signals_1_1_feedback_sensor_source_value.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/latest/python/autoapi/phoenix6/configs/config_groups/index.html#phoenix6.configs.config_groups.FeedbackConfigs.feedback_sensor_source>`__).
 
 Remote sensors can be configured using :ref:`Tuner X <docs/tuner/configs:tuner configs>` or via code. This document highlights how to configure a remote sensor in a robot program.
 
