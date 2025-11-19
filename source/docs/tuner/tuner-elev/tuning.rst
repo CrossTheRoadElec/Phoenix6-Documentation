@@ -38,4 +38,4 @@ Gains can be configured in the first column. While default gains have been calcu
    :alt: Picture with a bounding box around the gains section in Tuning
    :width: 600
 
-The control request used to command the elevator is ``MotionMagicVoltage`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/controls/MotionMagicVoltage.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1controls_1_1_motion_magic_voltage.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/>`__), which allows the user to directly control velocity and acceleration for smooth travel.
+The control request used to command the elevator is ``MotionMagicVoltage`` (`Java <https://api.ctr-electronics.com/phoenix6/latest/java/com/ctre/phoenix6/controls/MotionMagicVoltage.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/latest/cpp/classctre_1_1phoenix6_1_1controls_1_1_motion_magic_voltage.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/latest/python/>`__), which allows the user to directly control velocity and acceleration for smooth travel.

@@ -9,14 +9,14 @@ Hoot Replay allows users to playback hoot logs in their robot program. This allo
 
 Compared to other replay frameworks, Hoot Replay offers **automatic** status signal playback without any code changes. However, replaying custom logged signals still requires modifications to the robot's subsystems.
 
-Hoot Replay is controlled using the ``HootReplay`` class (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/HootReplay.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1_hoot_replay.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/hoot_replay/index.html>`__) and supports playing back device status signals and custom user signals. Configs and control requests are ignored during replay.
+Hoot Replay is controlled using the ``HootReplay`` class (`Java <https://api.ctr-electronics.com/phoenix6/latest/java/com/ctre/phoenix6/HootReplay.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/latest/cpp/classctre_1_1phoenix6_1_1_hoot_replay.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/latest/python/autoapi/phoenix6/hoot_replay/index.html>`__) and supports playing back device status signals and custom user signals. Configs and control requests are ignored during replay.
 
 Hoot Replay uses a different vendordep (see :doc:`Installing Phoenix 6 </docs/installation/installation-frc>`) that replaces :doc:`/docs/canivore/canivore-hardware-attached` with Hoot Replay. Note that only one Phoenix 6 vendordep may be used in the ``vendordeps`` folder at a time.
 
 Starting Hoot Replay
 --------------------
 
-At the start of the robot program, the desired hoot log can be loaded using ``HootReplay.loadFile(fileName)`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/HootReplay.html#loadFile(java.lang.String)>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1_hoot_replay.html#aac1bd9893a003e04886b41a2d33d5d4e>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/hoot_replay/index.html#phoenix6.hoot_replay.HootReplay.load_file>`__). Hoot Replay will start automatically after the log has been loaded.
+At the start of the robot program, the desired hoot log can be loaded using ``HootReplay.loadFile(fileName)`` (`Java <https://api.ctr-electronics.com/phoenix6/latest/java/com/ctre/phoenix6/HootReplay.html#loadFile(java.lang.String)>`__, `C++ <https://api.ctr-electronics.com/phoenix6/latest/cpp/classctre_1_1phoenix6_1_1_hoot_replay.html#aac1bd9893a003e04886b41a2d33d5d4e>`__, `Python <https://api.ctr-electronics.com/phoenix6/latest/python/autoapi/phoenix6/hoot_replay/index.html#phoenix6.hoot_replay.HootReplay.load_file>`__). Hoot Replay will start automatically after the log has been loaded.
 
 .. tab-set::
 
@@ -41,7 +41,7 @@ At the start of the robot program, the desired hoot log can be loaded using ``Ho
 
          HootReplay.load_file("./logs/example.hoot")
 
-It is important that the hoot log is loaded before any devices are constructed or configured. To make this process easier, the ``CANBus(canbus, fileName)`` constructor (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/CANBus.html#%3Cinit%3E(java.lang.String,java.lang.String)>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1_c_a_n_bus.html#a01fe881b60a1e7137380188960e133fa>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/canbus/index.html#phoenix6.canbus.CANBus>`__) can instead be used to load the hoot log.
+It is important that the hoot log is loaded before any devices are constructed or configured. To make this process easier, the ``CANBus(canbus, fileName)`` constructor (`Java <https://api.ctr-electronics.com/phoenix6/latest/java/com/ctre/phoenix6/CANBus.html#%3Cinit%3E(java.lang.String,java.lang.String)>`__, `C++ <https://api.ctr-electronics.com/phoenix6/latest/cpp/classctre_1_1phoenix6_1_1_c_a_n_bus.html#a01fe881b60a1e7137380188960e133fa>`__, `Python <https://api.ctr-electronics.com/phoenix6/latest/python/autoapi/phoenix6/canbus/index.html#phoenix6.canbus.CANBus>`__) can instead be used to load the hoot log.
 
 .. tab-set::
 
@@ -135,7 +135,7 @@ Replaying Custom Signals
 
 Users can also fetch custom signals written to the loaded hoot log by utilizing the ``get*()`` functions. An example application of this is replaying vision data to test changes in the drivetrain pose estimator.
 
-All custom signal getters return a ``HootReplay.SignalData`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/HootReplay.SignalData.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/structctre_1_1phoenix6_1_1_hoot_replay_1_1_signal_data.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/hoot_replay/index.html#phoenix6.hoot_replay.HootReplay.SignalData>`__) object containing information about the signal, including its timestamp and any logged units. The success of fetching the custom signal can be validated by checking the ``status`` field.
+All custom signal getters return a ``StatusSignal.SignalMeasurement`` (`Java <https://api.ctr-electronics.com/phoenix6/latest/java/com/ctre/phoenix6/StatusSignal.SignalMeasurement.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/latest/cpp/structctre_1_1phoenix6_1_1_signal_measurement.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/latest/python/autoapi/phoenix6/status_signal/index.html#phoenix6.status_signal.HootReplay.SignalMeasurement>`__) object containing information about the signal, including its timestamp and any logged units. The success of fetching the custom signal can be validated by checking the ``status`` field.
 
 .. tab-set::
 
@@ -200,7 +200,7 @@ When working with vision, a robot program will typically fetch raw/unfiltered ca
 
 The goal is to **replay the "inputs"** so the replayed program can test changes to the subsequent data processing and filtering. This means the robot program should only replay data that is **unaffected by code logic**, letting the program determine all the new outputs.
 
-The simplest way to make the code easily replayed is to consolidate all input fetches into a single ``fetchInputs()`` function and save the results to class member variables. From there, a single periodic function would be responsible for calling that function when ``Utils.isReplay()`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/Utils.html#isReplay()>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/namespacectre_1_1phoenix6_1_1utils.html#a58f5bd75a0588e8fcd671edc0bbab816>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/utils/index.html#phoenix6.utils.is_replay>`__) returns ``false``, as well as performing all data processing to get the outputs.
+The simplest way to make the code easily replayed is to consolidate all input fetches into a single ``fetchInputs()`` function and save the results to class member variables. From there, a single periodic function would be responsible for calling that function when ``Utils.isReplay()`` (`Java <https://api.ctr-electronics.com/phoenix6/latest/java/com/ctre/phoenix6/Utils.html#isReplay()>`__, `C++ <https://api.ctr-electronics.com/phoenix6/latest/cpp/namespacectre_1_1phoenix6_1_1utils.html#a58f5bd75a0588e8fcd671edc0bbab816>`__, `Python <https://api.ctr-electronics.com/phoenix6/latest/python/autoapi/phoenix6/utils/index.html#phoenix6.utils.is_replay>`__) returns ``false``, as well as performing all data processing to get the outputs.
 
 For example, if the only data pulled from the vision library is the raw vision pose estimate and its timestamp:
 
@@ -288,7 +288,7 @@ At this point, there are two methods to set up Hoot Replay of the inputs.
 
    .. tab-item:: Automatic (``HootAutoReplay``)
 
-      The inputs can be registered to a ``HootAutoReplay`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/HootAutoReplay.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1_hoot_auto_replay.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/hoot_replay/index.html#phoenix6.hoot_auto_replay.HootAutoReplay>`__) instance using getter and setter lambdas. The periodic function then calls ``update()`` on the ``HootAutoReplay`` instance to write the inputs to the hoot log on the real robot (or :doc:`simulation </docs/api-reference/simulation/simulation-intro>`) and fetch the inputs from the log during Hoot Replay.
+      The inputs can be registered to a ``HootAutoReplay`` (`Java <https://api.ctr-electronics.com/phoenix6/latest/java/com/ctre/phoenix6/HootAutoReplay.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/latest/cpp/classctre_1_1phoenix6_1_1_hoot_auto_replay.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/latest/python/autoapi/phoenix6/hoot_replay/index.html#phoenix6.hoot_auto_replay.HootAutoReplay>`__) instance using getter and setter lambdas. The periodic function then calls ``update()`` on the ``HootAutoReplay`` instance to write the inputs to the hoot log on the real robot (or :doc:`simulation </docs/api-reference/simulation/simulation-intro>`) and fetch the inputs from the log during Hoot Replay.
 
       .. tip:: In a WPILib robot program, ``HootAutoReplay`` also supports replaying ``Timer.getTimestamp()`` and joystick inputs. These can be registered using ``withTimestampReplay()`` and ``withJoystickReplay()``, respectively. See the API documentation for more information.
 
