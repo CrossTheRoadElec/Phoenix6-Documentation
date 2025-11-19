@@ -135,7 +135,7 @@ Replaying Custom Signals
 
 Users can also fetch custom signals written to the loaded hoot log by utilizing the ``get*()`` functions. An example application of this is replaying vision data to test changes in the drivetrain pose estimator.
 
-All custom signal getters return a ``HootReplay.SignalData`` (`Java <https://api.ctr-electronics.com/phoenix6/latest/java/com/ctre/phoenix6/HootReplay.SignalData.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/latest/cpp/structctre_1_1phoenix6_1_1_hoot_replay_1_1_signal_data.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/latest/python/autoapi/phoenix6/hoot_replay/index.html#phoenix6.hoot_replay.HootReplay.SignalData>`__) object containing information about the signal, including its timestamp and any logged units. The success of fetching the custom signal can be validated by checking the ``status`` field.
+All custom signal getters return a ``StatusSignal.SignalMeasurement`` (`Java <https://api.ctr-electronics.com/phoenix6/latest/java/com/ctre/phoenix6/StatusSignal.SignalMeasurement.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/latest/cpp/structctre_1_1phoenix6_1_1_signal_measurement.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/latest/python/autoapi/phoenix6/status_signal/index.html#phoenix6.status_signal.HootReplay.SignalMeasurement>`__) object containing information about the signal, including its timestamp and any logged units. The success of fetching the custom signal can be validated by checking the ``status`` field.
 
 .. tab-set::
 
