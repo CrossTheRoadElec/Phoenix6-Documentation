@@ -15,8 +15,8 @@ In the below example, note that devices are initialized with two arguments. Thes
       .. code-block:: java
 
          // initialize devices on the rio can bus
-         final TalonFX m_leftLeader = new TalonFX(0, "rio");
-         final TalonFX m_rightLeader = new TalonFX(1, "rio");
+         final TalonFX m_leftLeader = new TalonFX(0, CANBus.roboRIO());
+         final TalonFX m_rightLeader = new TalonFX(1, CANBus.roboRIO());
 
          // users should reuse control requests when possible
          final DutyCycleOut m_leftRequest = new DutyCycleOut(0.0);
@@ -41,8 +41,8 @@ In the below example, note that devices are initialized with two arguments. Thes
       .. code-block:: cpp
 
          // initialize devices on the rio can bus
-         hardware::TalonFX m_leftLeader{0, "rio"};
-         hardware::TalonFX m_rightLeader{1, "rio"};
+         hardware::TalonFX m_leftLeader{0, CANBus.roboRIO()};
+         hardware::TalonFX m_rightLeader{1, CANBus.roboRIO()};
 
          // users should reuse control requests when possible
          controls::DutyCycleOut m_leftRequest{0.0};
@@ -67,8 +67,8 @@ In the below example, note that devices are initialized with two arguments. Thes
       .. code-block:: python
 
          # initialize devices on the rio can bus
-         self.left_leader = hardware.TalonFX(0, "rio")
-         self.right_leader = hardware.TalonFX(1, "rio")
+         self.left_leader = hardware.TalonFX(0, CANBus.roboRIO())
+         self.right_leader = hardware.TalonFX(1, CANBus.roboRIO())
 
          # users should reuse control requests when possible
          self.left_request = controls.DutyCycleOut(0.0)

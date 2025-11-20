@@ -18,7 +18,7 @@ The ``TalonFX`` motor controller constructor (`Java <https://api.ctr-electronics
       .. code-block:: java
 
          public class Robot extends TimedRobot {
-            private static final String kCANBus = "canivore";
+            private static final CANBus kCANBus = new CANBus("canivore");
 
             private final TalonFX m_leftLeader = new TalonFX(0, kCANBus);
             private final TalonFX m_rightLeader = new TalonFX(1, kCANBus);
@@ -33,7 +33,7 @@ The ``TalonFX`` motor controller constructor (`Java <https://api.ctr-electronics
 
          class Robot : public frc::TimedRobot {
          private:
-            static constexpr char const *kCANBus{"canivore"};
+            static constexpr ctre::phoenix6::CANBus kCANBus{"canivore"};
 
             ctre::phoenix6::hardware::TalonFX m_leftLeader{0, kCANBus};
             ctre::phoenix6::hardware::TalonFX m_rightLeader{1, kCANBus};
@@ -111,7 +111,7 @@ Full Example
       .. code-block:: java
 
          public class Robot extends TimedRobot {
-            private static final String kCANBus = "canivore";
+            private static final CANBus kCANBus = new CANBus("canivore");
 
             private final TalonFX m_leftLeader = new TalonFX(0, kCANBus);
             private final TalonFX m_rightLeader = new TalonFX(1, kCANBus);
@@ -202,7 +202,7 @@ Full Example
       .. code-block:: cpp
 
          private:
-            static constexpr char const *kCANBus{"canivore"};
+            static constexpr ctre::phoenix6::CANBus kCANBus{"canivore"};
 
             ctre::phoenix6::hardware::TalonFX m_leftLeader{0, kCANBus};
             ctre::phoenix6::hardware::TalonFX m_rightLeader{1, kCANBus};

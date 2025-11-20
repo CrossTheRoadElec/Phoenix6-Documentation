@@ -250,7 +250,8 @@ Once the gains are configured, the Dynamic Motion Magic® request can be sent to
 
          # create a Dynamic Motion Magic request, voltage output
          # default velocity of 80 rps, acceleration of 400 rot/s^2, and jerk of 4000 rot/s^3
-         self.request = controls.DynamicMotionMagicVoltage(0, 80, 400, 4000)
+         self.request = controls.DynamicMotionMagicVoltage(0, 80, 400)
+         self.request.jerk = 4000
 
          if self.joy.getAButton():
             # while the joystick A button is held, use a slower profile

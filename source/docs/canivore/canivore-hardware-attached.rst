@@ -19,21 +19,24 @@ To utilize hardware-attached simulation, ensure the CANivore is connected direct
 
       .. code-block:: Java
 
-         TalonFX m_motor = new TalonFX(0, "mycanivore");
+         CANBus m_canbus = new CANbus("mycanivore");
+         TalonFX m_motor = new TalonFX(0, m_canbus);
 
    .. tab-item:: C++
       :sync: C++
 
       .. code-block:: cpp
 
-         hardware::TalonFX m_motor{0, "mycanivore"};
+         static constexpr ctre::phoenix6::CANBus m_canbus{"mycanivore"};
+         ctre::phoenix6::hardware::TalonFX m_motor{0, m_canbus};
 
    .. tab-item:: Python
       :sync: Python
 
       .. code-block:: python
 
-         self.motor = hardware.TalonFX(0, "mycanivore")
+         self.canbus = CANBus("mycanivore")
+         self.motor = hardware.TalonFX(0, self.canbus)
 
 .. tab-set::
 
