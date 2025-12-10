@@ -265,16 +265,17 @@ Status Light Reference
                     for (var j = 0; j < ledGrpElems[i].children.length; j++) {
                         var time = ledGrps[i]['vars'][j]['time'];
                         var blinks = ledGrps[i]['vars'][j]['blinks'];
+                        const oncount = ledGrps[i]['consts'][j]['oncount'];
                         ledGrps[i]['vars'][j]['time'] = time + 10;
                         if (ledGrps[i]['vars'][j]['state']) {
                             if (time > ledGrps[i]['consts'][j]['offtime']) {
                                 ++blinks;
-                                if (blinks > ledGrps[i]['consts'][j]['oncount']) {
+                                if (blinks > oncount) {
                                     blinks = 0;
                                 }
                                 ledGrps[i]['vars'][j]['blinks'] = blinks;
 
-                                if (blinks < ledGrps[i]['consts'][j]['oncount']) {
+                                if (oncount <= 1 || blinks < oncount) {
                                     ledGrpElems[i].children[j].style.background = ledGrps[i]['consts'][j]['oncolor'];
                                 } else {
                                     ledGrpElems[i].children[j].style.background = ledGrps[i]['consts'][j]['offcolor'];
