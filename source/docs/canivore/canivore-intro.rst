@@ -192,23 +192,23 @@ Status Light Reference
                 <td><div class='ledGroup'><div class='led' ontime='300' offtime='300' oncolor='red' offcolor='black' oncount='2'></div></div></td>
                 <td>Red Double-Blink</td>
                 <td>No CAN communication. CAN termination is disabled.</td>
-                <td>Ensure good connections between CANH and CANL (Yellow and Green), all connected devices support CAN FD, and the bus is properly terminated with two 120-ohm resistors, one on each end.</td>
+                <td>Ensure good connections on CANH and CANL (Yellow and Green), all connected devices support CAN FD, and the bus is properly terminated with two 120-Ω resistors, one on each end.</td>
             </tr>
             <tr>
                 <td><div class='ledGroup'><div class='led' ontime='250' offtime='50' oncolor='red' offcolor='black' oncount='1'></div></div></td>
                 <td>Red Fast-Strobe</td>
                 <td>No CAN communication. CAN termination is enabled.</td>
-                <td>Ensure good connections between CANH and CANL (Yellow and Green), all connected devices support CAN FD, and the bus is properly terminated with a 120-ohm resistor on the other end.</td>
+                <td>Ensure good connections on CANH and CANL (Yellow and Green), all connected devices support CAN FD, and the bus is properly terminated with a 120-Ω resistor on the other end.</td>
             </tr>
             <tr>
                 <td><div class='ledGroup'><div class='led' ontime='300' offtime='300' oncolor='orange' offcolor='black' oncount='2'></div></div></td>
                 <td>Orange Double-Blink</td>
-                <td colspan="2">Reserved for CAN 2.0b legacy mode. CAN termination is disabled.</td>
+                <td colspan="2">Reserved for CAN 2.0B legacy mode. CAN termination is disabled.</td>
             </tr>
             <tr>
                 <td><div class='ledGroup'><div class='led' ontime='250' offtime='50' oncolor='orange' offcolor='black' oncount='1'></div></div></td>
                 <td>Orange Fast-Strobe</td>
-                <td colspan="2">Reserved for CAN 2.0b legacy mode. CAN termination is enabled.</td>
+                <td colspan="2">Reserved for CAN 2.0B legacy mode. CAN termination is enabled.</td>
             </tr>
             <tr>
                 <td><div class='ledGroup'><div class='led' ontime='300' offtime='300' oncolor='green' offcolor='black' oncount='2'></div></div></td>
@@ -266,6 +266,7 @@ Status Light Reference
                         var time = ledGrps[i]['vars'][j]['time'];
                         var blinks = ledGrps[i]['vars'][j]['blinks'];
                         const oncount = ledGrps[i]['consts'][j]['oncount'];
+
                         ledGrps[i]['vars'][j]['time'] = time + 10;
                         if (ledGrps[i]['vars'][j]['state']) {
                             if (time > ledGrps[i]['consts'][j]['offtime']) {
