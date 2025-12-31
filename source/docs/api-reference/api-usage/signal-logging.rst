@@ -199,6 +199,7 @@ Any log that contains a :doc:`pro-licensed </docs/licensing/licensing>` device w
          - Fault_DriveDisabledHallSensor
          - Fault_MotorTempSensorMissing
          - Fault_MotorTempSensorTooHot
+         - Fault_MotorArrangementNotSelected
 
       .. tab-item:: CANcoder
 
