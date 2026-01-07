@@ -51,7 +51,7 @@ Using Motion Magic® in API
 
 Motion Magic® is currently supported for all base :ref:`control output types <docs/api-reference/device-specific/talonfx/talonfx-control-intro:control output types>`. The units of the output are determined by the control output type.
 
-The Motion Magic® jerk, acceleration, and cruise velocity can be :doc:`configured in code </docs/api-reference/api-usage/configuration>` using a ``MotionMagicConfigs`` (`Java <https://api.ctr-electronics.com/phoenix6/latest/java/com/ctre/phoenix6/configs/MotionMagicConfigs.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/latest/cpp/classctre_1_1phoenix6_1_1configs_1_1_motion_magic_configs.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/latest/python/autoapi/phoenix6/configs/config_groups/index.html#phoenix6.configs.config_groups.MotionMagicConfigs>`__) object.
+The Motion Magic® jerk, acceleration, and cruise velocity can be :doc:`configured in code </docs/api-reference/api-usage/configuration>` using a ``MotionMagicConfigs`` (`Java <https://api.ctr-electronics.com/phoenix6/stable/java/com/ctre/phoenix6/configs/MotionMagicConfigs.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/stable/cpp/classctre_1_1phoenix6_1_1configs_1_1_motion_magic_configs.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/stable/python/autoapi/phoenix6/configs/config_groups/index.html#phoenix6.configs.config_groups.MotionMagicConfigs>`__) object.
 
 In Motion Magic®, the gains should be configured as follows:
 
@@ -293,7 +293,7 @@ Using Motion Magic® Velocity in API
 
 Motion Magic® Velocity is currently supported for all base :ref:`control output types <docs/api-reference/device-specific/talonfx/talonfx-control-intro:control output types>`. The units of the output are determined by the control output type.
 
-The Motion Magic® Velocity jerk and acceleration can be :doc:`configured in code </docs/api-reference/api-usage/configuration>` using a ``MotionMagicConfigs`` (`Java <https://api.ctr-electronics.com/phoenix6/latest/java/com/ctre/phoenix6/configs/MotionMagicConfigs.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/latest/cpp/classctre_1_1phoenix6_1_1configs_1_1_motion_magic_configs.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/latest/python/autoapi/phoenix6/configs/config_groups/index.html#phoenix6.configs.config_groups.MotionMagicConfigs>`__) object.
+The Motion Magic® Velocity jerk and acceleration can be :doc:`configured in code </docs/api-reference/api-usage/configuration>` using a ``MotionMagicConfigs`` (`Java <https://api.ctr-electronics.com/phoenix6/stable/java/com/ctre/phoenix6/configs/MotionMagicConfigs.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/stable/cpp/classctre_1_1phoenix6_1_1configs_1_1_motion_magic_configs.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/stable/python/autoapi/phoenix6/configs/config_groups/index.html#phoenix6.configs.config_groups.MotionMagicConfigs>`__) object.
 
 In Motion Magic® Velocity, the gains should be configured as follows:
 
@@ -472,7 +472,7 @@ Using Motion Magic® Expo in API
 
 Motion Magic® Expo is currently supported for all base :ref:`control output types <docs/api-reference/device-specific/talonfx/talonfx-control-intro:control output types>`. The units of the output are determined by the control output type.
 
-The Motion Magic® Expo kV, kA, and cruise velocity can be :doc:`configured in code </docs/api-reference/api-usage/configuration>` using a ``MotionMagicConfigs`` (`Java <https://api.ctr-electronics.com/phoenix6/latest/java/com/ctre/phoenix6/configs/MotionMagicConfigs.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/latest/cpp/classctre_1_1phoenix6_1_1configs_1_1_motion_magic_configs.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/latest/python/autoapi/phoenix6/configs/config_groups/index.html#phoenix6.configs.config_groups.MotionMagicConfigs>`__) object.
+The Motion Magic® Expo kV, kA, and cruise velocity can be :doc:`configured in code </docs/api-reference/api-usage/configuration>` using a ``MotionMagicConfigs`` (`Java <https://api.ctr-electronics.com/phoenix6/stable/java/com/ctre/phoenix6/configs/MotionMagicConfigs.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/stable/cpp/classctre_1_1phoenix6_1_1configs_1_1_motion_magic_configs.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/stable/python/autoapi/phoenix6/configs/config_groups/index.html#phoenix6.configs.config_groups.MotionMagicConfigs>`__) object.
 
 .. important:: Unlike the gain slots, the MotionMagicExpo_kV and MotionMagicExpo_kA configs are always in output units of Volts.
 

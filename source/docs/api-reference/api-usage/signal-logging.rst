@@ -14,19 +14,19 @@ The Phoenix 6 signal logger provides the following advantages over alternatives:
 - **Custom user signals** can be logged alongside the automatically captured status signals on the **same timebase**.
 - The **highly efficient** ``hoot`` file format minimizes the **size** of the log files and the **CPU usage** of the logger.
 
-The signal logging API is available through static functions in the ``SignalLogger`` (`Java <https://api.ctr-electronics.com/phoenix6/latest/java/com/ctre/phoenix6/SignalLogger.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/latest/cpp/classctre_1_1phoenix6_1_1_signal_logger.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/latest/python/autoapi/phoenix6/signal_logger/index.html#phoenix6.signal_logger.SignalLogger>`__) class. Signal logging is **enabled by default** on a roboRIO 1 with a USB flash drive or a roboRIO 2, where logging is started by any of the following (whichever occurs first):
+The signal logging API is available through static functions in the ``SignalLogger`` (`Java <https://api.ctr-electronics.com/phoenix6/stable/java/com/ctre/phoenix6/SignalLogger.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/stable/cpp/classctre_1_1phoenix6_1_1_signal_logger.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/stable/python/autoapi/phoenix6/signal_logger/index.html#phoenix6.signal_logger.SignalLogger>`__) class. Signal logging is **enabled by default** on a roboRIO 1 with a USB flash drive or a roboRIO 2, where logging is started by any of the following (whichever occurs first):
 
 - The robot is enabled.
 - It has been at least 5 seconds since program startup (allowing for calls to ``setPath``), and the Driver Station is connected to the robot.
 
-Users can disable this behavior with ``SignalLogger.enableAutoLogging(false)`` (`Java <https://api.ctr-electronics.com/phoenix6/latest/java/com/ctre/phoenix6/SignalLogger.html#enableAutoLogging(boolean)>`__, `C++ <https://api.ctr-electronics.com/phoenix6/latest/cpp/classctre_1_1phoenix6_1_1_signal_logger.html#ae9261bb623fbc9cb4040fedeedc5c91e>`__, `Python <https://api.ctr-electronics.com/phoenix6/latest/python/autoapi/phoenix6/signal_logger/index.html#phoenix6.signal_logger.SignalLogger.enable_auto_logging>`__).
+Users can disable this behavior with ``SignalLogger.enableAutoLogging(false)`` (`Java <https://api.ctr-electronics.com/phoenix6/stable/java/com/ctre/phoenix6/SignalLogger.html#enableAutoLogging(boolean)>`__, `C++ <https://api.ctr-electronics.com/phoenix6/stable/cpp/classctre_1_1phoenix6_1_1_signal_logger.html#ae9261bb623fbc9cb4040fedeedc5c91e>`__, `Python <https://api.ctr-electronics.com/phoenix6/stable/python/autoapi/phoenix6/signal_logger/index.html#phoenix6.signal_logger.SignalLogger.enable_auto_logging>`__).
 
 .. tip:: Device status signals can also be viewed live in the :doc:`Tuner X Plotting page </docs/tuner/plotting>`.
 
 Setting Log Path
 ----------------
 
-The logging directory can optionally be changed using ``SignalLogger.setPath()`` (`Java <https://api.ctr-electronics.com/phoenix6/latest/java/com/ctre/phoenix6/SignalLogger.html#setPath(java.lang.String)>`__, `C++ <https://api.ctr-electronics.com/phoenix6/latest/cpp/classctre_1_1phoenix6_1_1_signal_logger.html#a5178de40e2d9e4d49d646f8d5f54d0f7>`__, `Python <https://api.ctr-electronics.com/phoenix6/latest/python/autoapi/phoenix6/signal_logger/index.html#phoenix6.signal_logger.SignalLogger.set_path>`__). If the specified directory does not exist, ``SignalLogger.setPath()`` will return an error code. Setting the path while logging will restart the log.
+The logging directory can optionally be changed using ``SignalLogger.setPath()`` (`Java <https://api.ctr-electronics.com/phoenix6/stable/java/com/ctre/phoenix6/SignalLogger.html#setPath(java.lang.String)>`__, `C++ <https://api.ctr-electronics.com/phoenix6/stable/cpp/classctre_1_1phoenix6_1_1_signal_logger.html#a5178de40e2d9e4d49d646f8d5f54d0f7>`__, `Python <https://api.ctr-electronics.com/phoenix6/stable/python/autoapi/phoenix6/signal_logger/index.html#phoenix6.signal_logger.SignalLogger.set_path>`__). If the specified directory does not exist, ``SignalLogger.setPath()`` will return an error code. Setting the path while logging will restart the log.
 
 The below example sets the logging path to a ``ctre-logs`` folder on the first USB drive found.
 
@@ -58,7 +58,7 @@ The below example sets the logging path to a ``ctre-logs`` folder on the first U
 Start/Stop Logging
 ------------------
 
-The signal logger can be started and stopped using the ``start()`` and ``stop()`` functions (`Java <https://api.ctr-electronics.com/phoenix6/latest/java/com/ctre/phoenix6/SignalLogger.html#start()>`__, `C++ <https://api.ctr-electronics.com/phoenix6/latest/cpp/classctre_1_1phoenix6_1_1_signal_logger.html#aed8772a03e7d8ec65d5a950d86495f7e>`__, `Python <https://api.ctr-electronics.com/phoenix6/latest/python/autoapi/phoenix6/signal_logger/index.html#phoenix6.signal_logger.SignalLogger.start>`__).
+The signal logger can be started and stopped using the ``start()`` and ``stop()`` functions (`Java <https://api.ctr-electronics.com/phoenix6/stable/java/com/ctre/phoenix6/SignalLogger.html#start()>`__, `C++ <https://api.ctr-electronics.com/phoenix6/stable/cpp/classctre_1_1phoenix6_1_1_signal_logger.html#aed8772a03e7d8ec65d5a950d86495f7e>`__, `Python <https://api.ctr-electronics.com/phoenix6/stable/python/autoapi/phoenix6/signal_logger/index.html#phoenix6.signal_logger.SignalLogger.start>`__).
 
 .. tab-set::
 

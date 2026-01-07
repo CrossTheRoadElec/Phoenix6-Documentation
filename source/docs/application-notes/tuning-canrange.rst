@@ -10,7 +10,7 @@ Signal Strength Tuning
 
 The first step to detection tuning is to verify that your distance measurement is a valid measurement.
 This is accomplished by looking at the signal strength, with higher values indicating more confident distance measurements.
-By default (as of 2025), we specify a minimum signal strength of 2500 to classify a distance measurement as "valid" for the purpose of our "isDetected" signal.
+By default, we specify a minimum signal strength of 2500 to classify a distance measurement as "valid" for the purpose of our "isDetected" signal.
 
 Scenarios
 +++++++++

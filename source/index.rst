@@ -5,8 +5,6 @@ Welcome to the Phoenix 6 documentation. Individuals looking for `Phoenix 5` docu
 
 The Phoenix 6 software framework allows you to control and configure your `CTR Electronics <https://store.ctr-electronics.com/>`__ Phoenix 6 Devices. Phoenix 6 represents a complete rewrite of the software framework over the existing Phoenix 5 framework. With Phoenix 6, users have access to many new features that expand the control the user has over their devices.
 
-.. important:: Users looking for beta documentation for the Phoenix 6 API can find it on the `latest version of this site <https://v6.docs.ctr-electronics.com/en/latest/>`__.
-
 .. card:: CTR Electronics Blog
    :link: https://store.ctr-electronics.com/blogs/news
 
@@ -167,10 +165,10 @@ Useful Categories
    :caption: API docs
    :hidden:
 
-   Java API Docs <https://api.ctr-electronics.com/phoenix6/latest/java/>
-   C++ API Docs <https://api.ctr-electronics.com/phoenix6/latest/cpp/>
-   Python API Docs <https://api.ctr-electronics.com/phoenix6/latest/python/>
-   C# API Docs <https://api.ctr-electronics.com/phoenix6/latest/csharp/>
+   Java API Docs <https://api.ctr-electronics.com/phoenix6/stable/java/>
+   C++ API Docs <https://api.ctr-electronics.com/phoenix6/stable/cpp/>
+   Python API Docs <https://api.ctr-electronics.com/phoenix6/stable/python/>
+   C# API Docs <https://api.ctr-electronics.com/phoenix6/stable/csharp/>
 
 .. toctree::
    :maxdepth: 1

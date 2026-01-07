@@ -60,7 +60,7 @@ The state of the forward or reverse limit switch can be retrieved from the API v
 Control Request Limits
 ----------------------
 
-Many :doc:`control requests </docs/api-reference/api-usage/control-requests>` support overriding the limit switch values using ``LimitForwardMotion`` and ``LimitReverseMotion`` parameters (`Java <https://api.ctr-electronics.com/phoenix6/latest/java/com/ctre/phoenix6/controls/DutyCycleOut.html#LimitForwardMotion>`__, `C++ <https://api.ctr-electronics.com/phoenix6/latest/cpp/classctre_1_1phoenix6_1_1controls_1_1_duty_cycle_out.html#a2696bd6c0631110656541208a3f40dac>`__, `Python <https://api.ctr-electronics.com/phoenix6/latest/python/autoapi/phoenix6/controls/duty_cycle_out/index.html#phoenix6.controls.duty_cycle_out.DutyCycleOut.limit_forward_motion>`__). These allow users to use other limit switch sensors connected to the robot controller.
+Many :doc:`control requests </docs/api-reference/api-usage/control-requests>` support overriding the limit switch values using ``LimitForwardMotion`` and ``LimitReverseMotion`` parameters (`Java <https://api.ctr-electronics.com/phoenix6/stable/java/com/ctre/phoenix6/controls/DutyCycleOut.html#LimitForwardMotion>`__, `C++ <https://api.ctr-electronics.com/phoenix6/stable/cpp/classctre_1_1phoenix6_1_1controls_1_1_duty_cycle_out.html#a2696bd6c0631110656541208a3f40dac>`__, `Python <https://api.ctr-electronics.com/phoenix6/stable/python/autoapi/phoenix6/controls/duty_cycle_out/index.html#phoenix6.controls.duty_cycle_out.DutyCycleOut.limit_forward_motion>`__). These allow users to use other limit switch sensors connected to the robot controller.
 
 .. tab-set::
 
@@ -118,7 +118,7 @@ Remote Limit Switches
 Supported devices (TalonFX, CANifier, CANcoder, CANdi™, CANrange) can be utilized as a remote limit switch, disabling actuator outputs when triggers.
 
 - When utilizing a CANcoder as a remote limit, the limit will trigger when the magnet strength changes from BAD (red) to ADEQUATE (orange) or GOOD (green).
-- When utilizing a CANrange as a remote limit, the limit will trigger when the proximity detect is tripped following the ``ProximityParamsConfigs`` (`Java <https://api.ctr-electronics.com/phoenix6/latest/java/com/ctre/phoenix6/configs/ProximityParamsConfigs.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/latest/cpp/classctre_1_1phoenix6_1_1configs_1_1_proximity_params_configs.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/latest/python/autoapi/phoenix6/configs/config_groups/index.html#phoenix6.configs.config_groups.ProximityParamsConfigs>`__).
+- When utilizing a CANrange as a remote limit, the limit will trigger when the proximity detect is tripped following the ``ProximityParamsConfigs`` (`Java <https://api.ctr-electronics.com/phoenix6/stable/java/com/ctre/phoenix6/configs/ProximityParamsConfigs.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/stable/cpp/classctre_1_1phoenix6_1_1configs_1_1_proximity_params_configs.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/stable/python/autoapi/phoenix6/configs/config_groups/index.html#phoenix6.configs.config_groups.ProximityParamsConfigs>`__).
 - When utilizing a CANdi™ as a remote limit, the limit will trigger when the ``S1Closed`` or ``S2Closed`` signal is true.
 
 The remote limit switch can be selected using the ``LimitSource`` and ``LimitRemoteSensorID`` configs.

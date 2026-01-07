@@ -1,7 +1,7 @@
 CANivore API
 ============
 
-All device constructors have an overload that takes a ``CANBus`` object (`Java <https://api.ctr-electronics.com/phoenix6/latest/java/com/ctre/phoenix6/CANBus.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/latest/cpp/classctre_1_1phoenix6_1_1_c_a_n_bus.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/latest/python/autoapi/phoenix6/canbus/index.html>`__). The native roboRIO CAN bus can be constructed using ``CANBus.roboRIO()``. Otherwise, the ``CANBus`` constructor takes a string identifier. This identifier can be ``*`` to select the first available CANivore, or it can be a CANivore's name or serial number. On non-FRC Linux systems, this string can also be a SocketCAN interface.
+All device constructors have an overload that takes a ``CANBus`` object (`Java <https://api.ctr-electronics.com/phoenix6/stable/java/com/ctre/phoenix6/CANBus.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/stable/cpp/classctre_1_1phoenix6_1_1_c_a_n_bus.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/stable/python/autoapi/phoenix6/canbus/index.html>`__). The native roboRIO CAN bus can be constructed using ``CANBus.roboRIO()``. Otherwise, the ``CANBus`` constructor takes a string identifier. This identifier can be ``*`` to select the first available CANivore, or it can be a CANivore's name or serial number. On non-FRC Linux systems, this string can also be a SocketCAN interface.
 
 .. note:: If there are multiple CANivores with the same name, the system will use the first CANivore found.
 
