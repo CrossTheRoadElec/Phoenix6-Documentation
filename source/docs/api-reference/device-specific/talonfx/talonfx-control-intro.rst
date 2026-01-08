@@ -32,7 +32,7 @@ Field Oriented Control
 
 .. important:: This feature requires the device to be :doc:`Pro licensed </docs/licensing/licensing>`.
 
-Field Oriented Control (FOC) is a commutation mode that increases peak power by ~15%. All control modes that optionally support FOC have an ``EnableFOC`` field (`Java <https://api.ctr-electronics.com/phoenix6/latest/java/com/ctre/phoenix6/controls/DutyCycleOut.html#EnableFOC>`__, `C++ <https://api.ctr-electronics.com/phoenix6/latest/cpp/classctre_1_1phoenix6_1_1controls_1_1_duty_cycle_out.html#aeef226602dc68cf690681c98001a5f94>`__, `Python <https://api.ctr-electronics.com/phoenix6/latest/python/autoapi/phoenix6/controls/duty_cycle_out/index.html#phoenix6.controls.duty_cycle_out.DutyCycleOut.enable_foc>`__). There are also control types that require FOC, such as TorqueCurrentFOC.
+Field Oriented Control (FOC) is a commutation mode that increases peak power by ~15%. All control modes that optionally support FOC have an ``EnableFOC`` field (`Java <https://api.ctr-electronics.com/phoenix6/stable/java/com/ctre/phoenix6/controls/DutyCycleOut.html#EnableFOC>`__, `C++ <https://api.ctr-electronics.com/phoenix6/stable/cpp/classctre_1_1phoenix6_1_1controls_1_1_duty_cycle_out.html#aeef226602dc68cf690681c98001a5f94>`__, `Python <https://api.ctr-electronics.com/phoenix6/stable/python/autoapi/phoenix6/controls/duty_cycle_out/index.html#phoenix6.controls.duty_cycle_out.DutyCycleOut.enable_foc>`__). There are also control types that require FOC, such as TorqueCurrentFOC.
 
 Behavior While Unlicensed
 ^^^^^^^^^^^^^^^^^^^^^^^^^

@@ -11,8 +11,8 @@ The swerve project creator and :doc:`swerve API </docs/tuner/tuner-swerve/index>
 
 * Requires Phoenix 6 software released for the current release year of Tuner X.
 
-  * Firmware version of devices should match the API year (25.X firmware corresponds to 2025 API/Tuner)
-  * Ensure Tuner X shows server version (located at the bottom of Tuner X) that matches the Tuner X major version (2025 Tuner X requires 2025 server version)
+  * Firmware version of devices should match the API year (26.X firmware corresponds to 2026 API/Tuner)
+  * Ensure Tuner X shows server version (located at the bottom of Tuner X) that matches the Tuner X major version (2026 Tuner X requires 2026 server version)
 
 * Temporary diagnostic server (or an existing robot project for that year of software) must be running and Tuner should be connected to the robot.
 
@@ -55,12 +55,12 @@ Users can utilize the below checklist to ensure their robot is ready for project
 
           <input type="checkbox"/>
 
-   * - **REQUIRED:** Is all firmware up-to-date? (25.X)
+   * - **REQUIRED:** Is all firmware up-to-date? (26.X)
      - .. raw:: html
 
           <input type="checkbox"/>
 
-   * - **REQUIRED:** Is the current year (2025) of diagnostics running?
+   * - **REQUIRED:** Is the current year (2026) of diagnostics running?
      - .. raw:: html
 
           <input type="checkbox"/>

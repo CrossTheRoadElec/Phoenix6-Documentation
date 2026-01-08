@@ -6,7 +6,7 @@ The below example showcases controlling a four-motor drivetrain.
 Declaring Motor Controllers
 ---------------------------
 
-The ``TalonFX`` motor controller constructor (`Java <https://api.ctr-electronics.com/phoenix6/latest/java/com/ctre/phoenix6/hardware/TalonFX.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/latest/cpp/classctre_1_1phoenix6_1_1hardware_1_1_talon_f_x.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/latest/python/autoapi/phoenix6/hardware/talon_fx/index.html>`__) requires a **device ID** (int) and an optional **CAN bus** (string).
+The ``TalonFX`` motor controller constructor (`Java <https://api.ctr-electronics.com/phoenix6/stable/java/com/ctre/phoenix6/hardware/TalonFX.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/stable/cpp/classctre_1_1phoenix6_1_1hardware_1_1_talon_f_x.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/stable/python/autoapi/phoenix6/hardware/talon_fx/index.html>`__) requires a **device ID** (int) and an optional **CAN bus** (string).
 
 .. note:: The name of the native roboRIO CAN bus is ``rio``. This is also the default CAN bus on the roboRIO when none is specified.
 

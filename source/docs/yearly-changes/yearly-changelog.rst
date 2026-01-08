@@ -5,9 +5,9 @@ New for 2026
 
 Engineering never stops, and neither do we. At CTR Electronics, we are constantly analyzing and reflecting on our software, documentation and hardware integration. This past year, we've made immense investments in our differential stack, data analysis with Tuner, data logging and replay pipeline and much more. We are proud to present our new for 2026 changelog!
 
-Firmware for the beta 2026 release of Phoenix 6 can be found by selecting "2026" in the firmware selection menu.
+Firmware for the 2026 release of Phoenix 6 can be found by selecting "2026" in the firmware selection menu.
 
-The API vendordep for beta 2026 is available under ``https://maven.ctr-electronics.com/release/com/ctre/phoenix6/latest/Phoenix6-frc2026-beta-latest.json``.
+The API vendordep for 2026 is available under ``https://maven.ctr-electronics.com/release/com/ctre/phoenix6/latest/Phoenix6-frc2026-latest.json``.
 
 Users will need to update both firmware and API to make use of these features.
 
