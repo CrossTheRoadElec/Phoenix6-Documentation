@@ -1,8 +1,6 @@
 New for 2026
 ============
 
-.. warning:: Currently CANivore functionality is unavailable on roboRIO image 2026.1.0. We are working with NI to resolve this as soon as possible.
-
 Engineering never stops, and neither do we. At CTR Electronics, we are constantly analyzing and reflecting on our software, documentation and hardware integration. This past year, we've made immense investments in our differential stack, data analysis with Tuner, data logging and replay pipeline and much more. We are proud to present our new for 2026 changelog!
 
 Firmware for the 2026 release of Phoenix 6 can be found by selecting "2026" in the firmware selection menu.
