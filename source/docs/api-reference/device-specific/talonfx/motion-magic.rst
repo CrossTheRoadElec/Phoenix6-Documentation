@@ -51,7 +51,7 @@ Using Motion Magic® in API
 
 Motion Magic® is currently supported for all base :ref:`control output types <docs/api-reference/device-specific/talonfx/talonfx-control-intro:control output types>`. The units of the output are determined by the control output type.
 
-The Motion Magic® jerk, acceleration, and cruise velocity can be :doc:`configured in code </docs/api-reference/api-usage/configuration>` using a ``MotionMagicConfigs`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/configs/MotionMagicConfigs.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1configs_1_1_motion_magic_configs.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/configs/config_groups/index.html#phoenix6.configs.config_groups.MotionMagicConfigs>`__) object.
+The Motion Magic® jerk, acceleration, and cruise velocity can be :doc:`configured in code </docs/api-reference/api-usage/configuration>` using a ``MotionMagicConfigs`` (`Java <https://api.ctr-electronics.com/phoenix6/stable/java/com/ctre/phoenix6/configs/MotionMagicConfigs.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/stable/cpp/classctre_1_1phoenix6_1_1configs_1_1_motion_magic_configs.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/stable/python/autoapi/phoenix6/configs/config_groups/index.html#phoenix6.configs.config_groups.MotionMagicConfigs>`__) object.
 
 In Motion Magic®, the gains should be configured as follows:
 
@@ -200,7 +200,7 @@ Once the gains are configured, the Dynamic Motion Magic® request can be sent to
          // create a Dynamic Motion Magic request, voltage output
          // default velocity of 80 rps, acceleration of 400 rot/s^2, and jerk of 4000 rot/s^3
          final DynamicMotionMagicVoltage m_request =
-            new DynamicMotionMagicVoltage(0, 80, 400, 4000);
+            new DynamicMotionMagicVoltage(0, 80, 400).withJerk(4000);
 
          if (m_joy.getAButton()) {
             // while the joystick A button is held, use a slower profile
@@ -224,8 +224,9 @@ Once the gains are configured, the Dynamic Motion Magic® request can be sent to
 
          // create a Dynamic Motion Magic request, voltage output
          // default velocity of 80 rps, acceleration of 400 rot/s^2, and jerk of 4000 rot/s^3
-         controls::DynamicMotionMagicVoltage m_request{
-            0_tr, 80_tps, 400_tr_per_s_sq, 4000_tr_per_s_cu};
+         controls::DynamicMotionMagicVoltage m_request =
+            controls::DynamicMotionMagicVoltage{0_tr, 80_tps, 400_tr_per_s_sq}
+               .WithJerk(4000_tr_per_s_cu);
 
          if (m_joy.GetAButton()) {
             // while the joystick A button is held, use a slower profile
@@ -292,7 +293,7 @@ Using Motion Magic® Velocity in API
 
 Motion Magic® Velocity is currently supported for all base :ref:`control output types <docs/api-reference/device-specific/talonfx/talonfx-control-intro:control output types>`. The units of the output are determined by the control output type.
 
-The Motion Magic® Velocity jerk and acceleration can be :doc:`configured in code </docs/api-reference/api-usage/configuration>` using a ``MotionMagicConfigs`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/configs/MotionMagicConfigs.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1configs_1_1_motion_magic_configs.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/configs/config_groups/index.html#phoenix6.configs.config_groups.MotionMagicConfigs>`__) object.
+The Motion Magic® Velocity jerk and acceleration can be :doc:`configured in code </docs/api-reference/api-usage/configuration>` using a ``MotionMagicConfigs`` (`Java <https://api.ctr-electronics.com/phoenix6/stable/java/com/ctre/phoenix6/configs/MotionMagicConfigs.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/stable/cpp/classctre_1_1phoenix6_1_1configs_1_1_motion_magic_configs.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/stable/python/autoapi/phoenix6/configs/config_groups/index.html#phoenix6.configs.config_groups.MotionMagicConfigs>`__) object.
 
 In Motion Magic® Velocity, the gains should be configured as follows:
 
@@ -471,7 +472,7 @@ Using Motion Magic® Expo in API
 
 Motion Magic® Expo is currently supported for all base :ref:`control output types <docs/api-reference/device-specific/talonfx/talonfx-control-intro:control output types>`. The units of the output are determined by the control output type.
 
-The Motion Magic® Expo kV, kA, and cruise velocity can be :doc:`configured in code </docs/api-reference/api-usage/configuration>` using a ``MotionMagicConfigs`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/configs/MotionMagicConfigs.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1configs_1_1_motion_magic_configs.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/configs/config_groups/index.html#phoenix6.configs.config_groups.MotionMagicConfigs>`__) object.
+The Motion Magic® Expo kV, kA, and cruise velocity can be :doc:`configured in code </docs/api-reference/api-usage/configuration>` using a ``MotionMagicConfigs`` (`Java <https://api.ctr-electronics.com/phoenix6/stable/java/com/ctre/phoenix6/configs/MotionMagicConfigs.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/stable/cpp/classctre_1_1phoenix6_1_1configs_1_1_motion_magic_configs.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/stable/python/autoapi/phoenix6/configs/config_groups/index.html#phoenix6.configs.config_groups.MotionMagicConfigs>`__) object.
 
 .. important:: Unlike the gain slots, the MotionMagicExpo_kV and MotionMagicExpo_kA configs are always in output units of Volts.
 
@@ -597,6 +598,90 @@ Once the gains are configured, the Motion Magic® Expo request can be sent to th
 
          # create a Motion Magic Expo request, voltage output
          self.request = controls.MotionMagicExpoVoltage(0)
+
+         # set target position to 100 rotations
+         self.talonfx.set_control(self.request.with_position(100))
+
+Dynamic Motion Magic® Expo
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. important:: This feature requires the device to be :doc:`Pro licensed </docs/licensing/licensing>` and on a :doc:`CANivore </docs/canivore/canivore-intro>`. When unlicensed, the TalonFX will disable control output and trip the UnlicensedFeatureInUse fault.
+
+When using a Pro-licensed Talon FX connected to a CANivore, Dynamic Motion Magic® Expo can be used, allowing for the cruise velocity, Expo kV, and Expo kA to be modified directly in the control request during motion. This can be used to set up different values for forward vs reverse or to speed up and slow down the profile on the fly.
+
+The gain slots are configured in the same way as a regular Motion Magic® Expo request. However, the cruise velocity, Expo kV, and Expo kA parameters are set up in the control request, **not** the Motion Magic® config group.
+
+Once the gains are configured, the Dynamic Motion Magic® Expo request can be sent to the TalonFX. The control request object has an optional feedforward term that can be used to add an arbitrary value to the output, which can be useful to account for the effects of gravity.
+
+.. tab-set::
+
+   .. tab-item:: Java
+      :sync: Java
+
+      .. code-block:: java
+
+         // create a Dynamic Motion Magic Expo request, voltage output
+         // default Expo kV of 0.12 V/rps and kA of 0.1 V/(rot/s^2), unlimited cruise velocity
+         final DynamicMotionMagicExpoVoltage m_request =
+            new DynamicMotionMagicExpoVoltage(0, 0.12, 0.1);
+
+         if (m_joy.getAButton()) {
+            // while the joystick A button is held, use a slower profile
+            // cap the cruise velocity and weaken acceleration (larger kA)
+            m_request.Velocity = 40; // rps
+            m_request.kA = 0.2; // V/(rot/s^2)
+         } else {
+            // otherwise use a faster profile
+            m_request.Velocity = 0; // rps, 0 is unlimited
+            m_request.kA = 0.1; // V/(rot/s^2)
+         }
+
+         // set target position to 100 rotations
+         m_talonFX.setControl(m_request.withPosition(100));
+
+   .. tab-item:: C++
+      :sync: C++
+
+      .. code-block:: cpp
+
+         // create a Dynamic Motion Magic Expo request, voltage output
+         // default Expo kV of 0.12 V/rps and kA of 0.1 V/(rot/s^2), unlimited cruise velocity
+         controls::DynamicMotionMagicExpoVoltage m_request{
+            0_tr, 0.12_V/1_tr_per_s, 0.1_V/1_tr_per_s_sq
+         };
+
+         if (m_joy.GetAButton()) {
+            // while the joystick A button is held, use a slower profile
+            // cap the cruise velocity and weaken acceleration (larger kA)
+            m_request.Velocity = 40_tps;
+            m_request.kA = 0.2_V/1_tr_per_s_sq;
+         } else {
+            // otherwise use a faster profile
+            m_request.Velocity = 0_tps; // 0 is unlimited
+            m_request.kA = 0.1_V/1_tr_per_s_sq;
+         }
+
+         // set target position to 100 rotations
+         m_talonFX.SetControl(m_request.WithPosition(100_tr));
+
+   .. tab-item:: Python
+      :sync: python
+
+      .. code-block:: python
+
+         # create a Dynamic Motion Magic Expo request, voltage output
+         # default Expo kV of 0.12 V/rps and kA of 0.1 V/(rot/s^2), unlimited cruise velocity
+         self.request = controls.DynamicMotionMagicExpoVoltage(0, 0.12, 0.1)
+
+         if self.joy.getAButton():
+            # while the joystick A button is held, use a slower profile
+            # cap the cruise velocity and weaken acceleration (larger kA)
+            self.request.velocity = 40 # rps
+            self.request.k_a = 0.2 # V/(rot/s^2)
+         else:
+            # otherwise use a faster profile
+            self.request.velocity = 0 # rps, 0 is unlimited
+            self.request.k_a = 0.1 # V/(rot/s^2)
 
          # set target position to 100 rotations
          self.talonfx.set_control(self.request.with_position(100))

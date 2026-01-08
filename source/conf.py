@@ -21,7 +21,7 @@ sys.path.insert(0, os.path.abspath("."))
 # -- Project information -----------------------------------------------------
 
 project = "Phoenix 6"
-copyright = "2025, CTR Electronics"
+copyright = "2026, CTR Electronics"
 author = "CTR Electronics"
 
 # The short X.Y version
@@ -59,12 +59,6 @@ extensions = [
 
 if on_rtd:
     extensions = extensions + ["sphinx_build_compatibility.extension"]
-
-local_extensions = [
-    "_extensions.rtd_html_zip",
-]
-
-extensions += local_extensions
 
 images_config = {
     "override_image_directive": True,

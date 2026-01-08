@@ -100,7 +100,7 @@ Real-Time High-Fidelity :doc:`Signal Logger </docs/api-reference/api-usage/signa
 - Support for :ref:`custom user signals <docs/api-reference/api-usage/signal-logging:writing custom signals>` alongside auto-captured data.
 - Efficient ``hoot`` logging format minimizes disk space and CPU usage.
 - :doc:`Export to multiple formats </docs/tuner/tools/log-extractor>` including WPILOG and MCAP.
-- Free users can export a :ref:`limited set of signals <docs/api-reference/api-usage/signal-logging:free signals>` to WPILOG.
+- Free users can export a :ref:`limited set of signals <docs/api-reference/api-usage/signal-logging:free signals>`.
 
 :doc:`Replay Hoot Logs </docs/api-reference/api-usage/hoot-replay>`
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -131,7 +131,7 @@ A full comparison of features between the free Phoenix 6 API and Phoenix Pro is 
 +-------------------------------------------------------------------------------------------------------------------------------+-----------------+-----------------------+----------------------+----------------------------+
 | System Timestamps                                                                                                             | .. centered:: x | .. centered:: x       | .. centered:: x      | .. centered:: x            |
 +-------------------------------------------------------------------------------------------------------------------------------+-----------------+-----------------------+----------------------+----------------------------+
-| :ref:`Limited Signal Logger WPILOG Export <docs/api-reference/api-usage/signal-logging:free signals>`                         | .. centered:: x | .. centered:: x       | .. centered:: x      | .. centered:: x            |
+| :ref:`Limited Signal Logger Export <docs/api-reference/api-usage/signal-logging:free signals>`                                | .. centered:: x | .. centered:: x       | .. centered:: x      | .. centered:: x            |
 +-------------------------------------------------------------------------------------------------------------------------------+-----------------+-----------------------+----------------------+----------------------------+
 | :doc:`Explicit Control Requests </docs/api-reference/api-usage/control-requests>`                                             | .. centered:: x | .. centered:: x       | .. centered:: x      | .. centered:: x            |
 +-------------------------------------------------------------------------------------------------------------------------------+-----------------+-----------------------+----------------------+----------------------------+
@@ -160,8 +160,6 @@ A full comparison of features between the free Phoenix 6 API and Phoenix Pro is 
 | :ref:`Sync CANcoder + Talon FX <synccancoder>`                                                                                |                 | .. centered:: x       |                      | .. centered:: x            |
 +-------------------------------------------------------------------------------------------------------------------------------+-----------------+-----------------------+----------------------+----------------------------+
 | :doc:`Full Signal Logger Export </docs/tuner/tools/log-extractor>`                                                            |                 | .. centered:: x       |                      | .. centered:: x            |
-+-------------------------------------------------------------------------------------------------------------------------------+-----------------+-----------------------+----------------------+----------------------------+
-| Signal Logger `MCAP <https://mcap.dev/>`__ Export                                                                             |                 | .. centered:: x       |                      | .. centered:: x            |
 +-------------------------------------------------------------------------------------------------------------------------------+-----------------+-----------------------+----------------------+----------------------------+
 | :doc:`Hoot Log Replay </docs/api-reference/api-usage/hoot-replay>`                                                            |                 | .. centered:: x       |                      | .. centered:: x            |
 +-------------------------------------------------------------------------------------------------------------------------------+-----------------+-----------------------+----------------------+----------------------------+

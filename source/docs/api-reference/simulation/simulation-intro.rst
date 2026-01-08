@@ -45,7 +45,7 @@ In general, simulation logic should **only** interact with the ``SimState`` clas
 Orientation
 ^^^^^^^^^^^
 
-The ``SimState`` API ignores typical device invert settings, as the user may change invert for any reason (such as flipping which direction is forward for a drivebase). As a result, for some devices, the ``SimState`` object supports specifying the orientation of the device relative to the robot chassis (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/sim/TalonFXSimState.html#Orientation>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1sim_1_1_talon_f_x_sim_state.html#ac3cce344719d64c98216286399936d6e>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/sim/talon_fx_sim_state/index.html#phoenix6.sim.talon_fx_sim_state.TalonFXSimState.orientation>`__).
+The ``SimState`` API ignores typical device invert settings, as the user may change invert for any reason (such as flipping which direction is forward for a drivebase). As a result, for some devices, the ``SimState`` object supports specifying the orientation of the device relative to the robot chassis (`Java <https://api.ctr-electronics.com/phoenix6/stable/java/com/ctre/phoenix6/sim/TalonFXSimState.html#Orientation>`__, `C++ <https://api.ctr-electronics.com/phoenix6/stable/cpp/classctre_1_1phoenix6_1_1sim_1_1_talon_f_x_sim_state.html#ac3cce344719d64c98216286399936d6e>`__, `Python <https://api.ctr-electronics.com/phoenix6/stable/python/autoapi/phoenix6/sim/talon_fx_sim_state/index.html#phoenix6.sim.talon_fx_sim_state.TalonFXSimState.orientation>`__).
 
 This orientation represents the **mechanical** linkage between the device and the robot chassis. It **should not be changed with runtime invert**, as runtime invert specifies the *logical* orientation of the device. Rather, the orientation should **only be modified when the mechanical linkage itself changes**, such as when switching between two gearboxes inverted from each other.
 
@@ -88,10 +88,10 @@ This orientation represents the **mechanical** linkage between the device and th
          right_talon_fx_sim = self.right_talon_fx.sim_state
 
          # left drivetrain motors are typically CCW+
-         left_talon_fx_sim.orientation = sim.ChassisReference.CounterClockwise_Positive
+         left_talon_fx_sim.orientation = sim.ChassisReference.COUNTER_CLOCKWISE_POSITIVE
 
          # right drivetrain motors are typically CW+
-         right_talon_fx_sim.orientation = sim.ChassisReference.Clockwise_Positive
+         right_talon_fx_sim.orientation = sim.ChassisReference.CLOCKWISE_POSITIVE
 
 Inputs and Outputs
 ^^^^^^^^^^^^^^^^^^
@@ -126,7 +126,7 @@ All ``SimState`` objects contain multiple inputs to manipulate the state of the 
          # set the supply voltage of the TalonFX to 12 V
          self.talon_fx_sim.set_supply_voltage(12.0)
 
-Some device ``SimState`` objects also contain outputs that can be used in simulation physics calculations. For example, the ``TalonFXSimState`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/sim/TalonFXSimState.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1sim_1_1_talon_f_x_sim_state.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/sim/talon_fx_sim_state/index.html>`__) object has a motor voltage output that can be used to calculate position and velocity:
+Some device ``SimState`` objects also contain outputs that can be used in simulation physics calculations. For example, the ``TalonFXSimState`` (`Java <https://api.ctr-electronics.com/phoenix6/stable/java/com/ctre/phoenix6/sim/TalonFXSimState.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/stable/cpp/classctre_1_1phoenix6_1_1sim_1_1_talon_f_x_sim_state.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/stable/python/autoapi/phoenix6/sim/talon_fx_sim_state/index.html>`__) object has a motor voltage output that can be used to calculate position and velocity:
 
 .. important:: For all motor controllers, the ``RawRotorPosition`` and ``RotorVelocity`` values must be set for simulated PID and current limits to behave correctly. Additionally, simulated PID more closely matches hardware when updating the ``SimState`` more frequently, such as using a WPILib ``Notifier``.
 
@@ -144,6 +144,12 @@ Some device ``SimState`` objects also contain outputs that can be used in simula
             )
             DCMotor.getKrakenX60Foc(1)
          );
+
+         public void simulationInit() {
+            var talonFXSim = m_talonFX.getSimState();
+            talonFXSim.Orientation = ChassisReference.CounterClockwise_Positive;
+            talonFXSim.setMotorType(TalonFXSimState.MotorType.KrakenX60);
+         }
 
          public void simulationPeriodic() {
             var talonFXSim = m_talonFX.getSimState();
@@ -181,6 +187,13 @@ Some device ``SimState`` objects also contain outputs that can be used in simula
             frc::DCMotor::KrakenX60FOC(1)
          };
 
+         void SimulationInit()
+         {
+            auto& talonFXSim = m_talonFX.GetSimState();
+            talonFXSim.Orientation = sim::ChassisReference::CounterClockwise_Positive;
+            talonFXSim.SetMotorType(sim::TalonFXSimState::MotorType::KrakenX60);
+         }
+
          void SimulationPeriodic()
          {
             auto& talonFXSim = m_talonFX.GetSimState();
@@ -214,11 +227,16 @@ Some device ``SimState`` objects also contain outputs that can be used in simula
             gearbox = DCMotor.krakenX60FOC(1)
             self.motor_sim_model = DCMotorSim(LinearSystemId.DCMotorSystem(gearbox, 0.001, GEAR_RATIO), gearbox)
 
+         def simulationInit(self):
+            talon_fx_sim = self.talon_fx.sim_state
+            talon_fx_sim.orientation = sim.ChassisReference.COUNTER_CLOCKWISE_POSITIVE
+            talon_fx_sim.set_motor_type(sim.TalonFXSimState.MotorType.KRAKEN_X60)
+
          def simulationPeriodic(self):
             talon_fx_sim = self.talon_fx.sim_state
 
             # set the supply voltage of the TalonFX
-            talon_fx_sim.set_supply_voltage(RobotControllergetBatteryVoltage())
+            talon_fx_sim.set_supply_voltage(RobotController.getBatteryVoltage())
 
             # get the motor voltage of the TalonFX
             motor_voltage = talon_fx_sim.motor_voltage
@@ -245,7 +263,7 @@ High Fidelity CAN Bus Simulation
 
 As a part of high-fidelity simulation, the influence of the CAN bus is simulated at a level similar to what happens on a real robot. This means that the timing behavior of control and status signals in simulation will align to the same framing intervals seen on a real CAN bus. In simulation, this may appear as a delay between setting a signal and getting its real value, or between setting its real value and getting it in API.
 
-In unit tests, it may be useful to increase the update rate of status signals to avoid erroneous failures and minimize delays. The update rate can be modified for simulation by wrapping the :ref:`signal update frequency <docs/api-reference/api-usage/status-signals:changing update frequency>` in a ``Utils.isSimulation()`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/Utils.html#isSimulation()>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/namespacectre_1_1phoenix6_1_1utils.html#a4d309e0125a0f686b3fe1a8c064a1f65>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/utils/index.html#phoenix6.utils.is_simulation>`__) condition.
+In unit tests, it may be useful to increase the update rate of status signals to avoid erroneous failures and minimize delays. The update rate can be modified for simulation by wrapping the :ref:`signal update frequency <docs/api-reference/api-usage/status-signals:changing update frequency>` in a ``Utils.isSimulation()`` (`Java <https://api.ctr-electronics.com/phoenix6/stable/java/com/ctre/phoenix6/Utils.html#isSimulation()>`__, `C++ <https://api.ctr-electronics.com/phoenix6/stable/cpp/namespacectre_1_1phoenix6_1_1utils.html#a4d309e0125a0f686b3fe1a8c064a1f65>`__, `Python <https://api.ctr-electronics.com/phoenix6/stable/python/autoapi/phoenix6/utils/index.html#phoenix6.utils.is_simulation>`__) condition.
 
 .. tab-set::
 

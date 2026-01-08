@@ -1,12 +1,12 @@
 Swerve Requests
 ===============
 
-Controlling the drivetrain is done using ``setControl(SwerveRequest)`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/swerve/SwerveDrivetrain.html#setControl(com.ctre.phoenix6.swerve.SwerveRequest)>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1swerve_1_1_swerve_drivetrain.html#a6ec080fd2f6ce56ad0ade8845e64929e>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/swerve/swerve_drivetrain/index.html#phoenix6.swerve.swerve_drivetrain.SwerveDrivetrain.set_control>`__) which takes a given ``SwerveRequest`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/swerve/SwerveRequest.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1swerve_1_1requests_1_1_swerve_request.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/swerve/requests/index.html#phoenix6.swerve.requests.SwerveRequest>`__). There are multiple pre-defined ``SwerveRequest`` implementations that cover the majority of use cases. In some advanced scenarios, users can also define their own.
+Controlling the drivetrain is done by calling ``setControl(SwerveRequest)`` (`Java <https://api.ctr-electronics.com/phoenix6/stable/java/com/ctre/phoenix6/swerve/SwerveDrivetrain.html#setControl(com.ctre.phoenix6.swerve.SwerveRequest)>`__, `C++ <https://api.ctr-electronics.com/phoenix6/stable/cpp/classctre_1_1phoenix6_1_1swerve_1_1_swerve_drivetrain.html#a6ec080fd2f6ce56ad0ade8845e64929e>`__, `Python <https://api.ctr-electronics.com/phoenix6/stable/python/autoapi/phoenix6/swerve/swerve_drivetrain/index.html#phoenix6.swerve.swerve_drivetrain.SwerveDrivetrain.set_control>`__) periodically, which takes a given ``SwerveRequest`` (`Java <https://api.ctr-electronics.com/phoenix6/stable/java/com/ctre/phoenix6/swerve/SwerveRequest.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/stable/cpp/classctre_1_1phoenix6_1_1swerve_1_1requests_1_1_swerve_request.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/stable/python/autoapi/phoenix6/swerve/requests/index.html#phoenix6.swerve.requests.SwerveRequest>`__). There are multiple pre-defined ``SwerveRequest`` implementations that cover the majority of use cases. In some advanced scenarios, users can also define their own.
 
 Applying a Request
 ------------------
 
-Requests are instantiated once and then mutated using various ``withX`` functions. In the example below, a ``FieldCentric`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/swerve/SwerveRequest.FieldCentric.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1swerve_1_1requests_1_1_field_centric.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/swerve/requests/index.html#phoenix6.swerve.requests.FieldCentric>`__) request is created and given values from a joystick.
+Requests are instantiated once and then mutated using various ``withX`` functions. In the example below, a ``FieldCentric`` (`Java <https://api.ctr-electronics.com/phoenix6/stable/java/com/ctre/phoenix6/swerve/SwerveRequest.FieldCentric.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/stable/cpp/classctre_1_1phoenix6_1_1swerve_1_1requests_1_1_field_centric.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/stable/python/autoapi/phoenix6/swerve/requests/index.html#phoenix6.swerve.requests.FieldCentric>`__) request is created and given values from a joystick.
 
 .. tab-set::
 
@@ -21,7 +21,7 @@ Requests are instantiated once and then mutated using various ``withX`` function
          private final SwerveRequest.FieldCentric m_driveRequest = new SwerveRequest.FieldCentric()
             .withDeadband(MaxSpeed * 0.1).withRotationalDeadband(MaxAngularRate * 0.1) // Add a 10% deadband
             .withDriveRequestType(DriveRequestType.OpenLoopVoltage)
-            .withSteerRequestType(SteerRequestType.MotionMagicExpo);
+            .withSteerRequestType(SteerRequestType.Position);
 
          private final XboxController m_joystick = new XboxController(0);
          public final TunerSwerveDrivetrain drivetrain = TunerConstants.createDrivetrain();
@@ -49,7 +49,7 @@ Requests are instantiated once and then mutated using various ``withX`` function
             swerve::requests::FieldCentric m_driveRequest = swerve::requests::FieldCentric{}
                .WithDeadband(MaxSpeed * 0.1).WithRotationalDeadband(MaxAngularRate * 0.1) // Add a 10% deadband
                .WithDriveRequestType(swerve::DriveRequestType::OpenLoopVoltage)
-               .WithSteerRequestType(swerve::SteerRequestType::MotionMagicExpo);
+               .WithSteerRequestType(swerve::SteerRequestType::Position);
 
             frc::XboxController m_joystick{0};
 
@@ -89,7 +89,7 @@ Requests are instantiated once and then mutated using various ``withX`` function
                swerve.SwerveModule.DriveRequestType.OPEN_LOOP_VOLTAGE
             )
             .with_steer_request_type(
-               swerve.SwerveModule.SteerRequestType.MOTION_MAGIC_EXPO
+               swerve.SwerveModule.SteerRequestType.POSITION
             )
          )
 
@@ -130,7 +130,7 @@ When using the command-based ``CommandSwerveDrivetrain`` generated by Tuner X, t
          private final SwerveRequest.FieldCentric m_driveRequest = new SwerveRequest.FieldCentric()
             .withDeadband(MaxSpeed * 0.1).withRotationalDeadband(MaxAngularRate * 0.1) // Add a 10% deadband
             .withDriveRequestType(DriveRequestType.OpenLoopVoltage)
-            .withSteerRequestType(SteerRequestType.MotionMagicExpo);
+            .withSteerRequestType(SteerRequestType.Position);
 
          private final CommandXboxController m_joystick = new CommandXboxController(0);
          public final CommandSwerveDrivetrain drivetrain = TunerConstants.createDrivetrain();
@@ -167,7 +167,7 @@ When using the command-based ``CommandSwerveDrivetrain`` generated by Tuner X, t
             swerve::requests::FieldCentric m_driveRequest = swerve::requests::FieldCentric{}
                .WithDeadband(MaxSpeed * 0.1).WithRotationalDeadband(MaxAngularRate * 0.1) // Add a 10% deadband
                .WithDriveRequestType(swerve::DriveRequestType::OpenLoopVoltage)
-               .WithSteerRequestType(swerve::SteerRequestType::MotionMagicExpo);
+               .WithSteerRequestType(swerve::SteerRequestType::Position);
 
             frc::XboxController m_joystick{0};
 
@@ -218,7 +218,7 @@ When using the command-based ``CommandSwerveDrivetrain`` generated by Tuner X, t
                swerve.SwerveModule.DriveRequestType.OPEN_LOOP_VOLTAGE
             )
             .with_steer_request_type(
-               swerve.SwerveModule.SteerRequestType.MOTION_MAGIC_EXPO
+               swerve.SwerveModule.SteerRequestType.POSITION
             )
          )
 
@@ -266,7 +266,7 @@ In a custom swerve request, the control logic lives in the ``apply(...)`` method
 Swerve Requests with Composition
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To maximize performance and minimize duplicate code, most custom swerve requests should be built on top of existing ones. For example, the built-in ``FieldCentricFacingAngle`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/swerve/SwerveRequest.FieldCentricFacingAngle.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1swerve_1_1requests_1_1_field_centric_facing_angle.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/swerve/requests/index.html#phoenix6.swerve.requests.FieldCentricFacingAngle>`__) request uses a regular ``FieldCentric`` request under the hood, as demonstrated below.
+To maximize performance and minimize duplicate code, most custom swerve requests should be built on top of existing ones. For example, the built-in ``FieldCentricFacingAngle`` (`Java <https://api.ctr-electronics.com/phoenix6/stable/java/com/ctre/phoenix6/swerve/SwerveRequest.FieldCentricFacingAngle.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/stable/cpp/classctre_1_1phoenix6_1_1swerve_1_1requests_1_1_field_centric_facing_angle.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/stable/python/autoapi/phoenix6/swerve/requests/index.html#phoenix6.swerve.requests.FieldCentricFacingAngle>`__) request uses a regular ``FieldCentric`` request under the hood, as demonstrated below.
 
 .. tab-set::
 
@@ -315,7 +315,7 @@ To maximize performance and minimize duplicate code, most custom swerve requests
 
          ctre::phoenix::StatusCode Apply(
             swerve::requests::SwerveRequest::ControlParameters const &parameters,
-            std::vector<std::unique_ptr<swerve::impl::SwerveModuleImpl>> const &modulesToApply
+            std::span<std::unique_ptr<swerve::impl::SwerveModuleImpl> const> modulesToApply
          ) override {
             swerve::Rotation2d angleToFace = TargetDirection;
             if (ForwardPerspective == swerve::requests::ForwardPerspectiveValue::OperatorPerspective) {
@@ -391,9 +391,9 @@ To maximize performance and minimize duplicate code, most custom swerve requests
 Swerve Requests with Module Targets
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In a few cases, none of the existing swerve request implementations may be suitable for the desired request. For example, there is no built-in swerve request that directly accepts an array of ``SwerveModuleState`` instances. In that situation, the custom swerve request can call ``apply(SwerveModule.ModuleRequest)`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/swerve/SwerveModule.html#apply(com.ctre.phoenix6.swerve.SwerveModule.ModuleRequest)>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1swerve_1_1_swerve_module.html#a0854ceb97e3de9bbdb21f5690533bf49>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/swerve/swerve_module/index.html#phoenix6.swerve.swerve_module.SwerveModule.apply>`__) on each ``SwerveModule`` instance provided to the ``apply(...)`` method.
+In a few cases, none of the existing swerve request implementations may be suitable for the desired request. For example, there is no built-in swerve request that directly accepts an array of ``SwerveModuleState`` instances. In that situation, the custom swerve request can call ``apply(SwerveModule.ModuleRequest)`` (`Java <https://api.ctr-electronics.com/phoenix6/stable/java/com/ctre/phoenix6/swerve/SwerveModule.html#apply(com.ctre.phoenix6.swerve.SwerveModule.ModuleRequest)>`__, `C++ <https://api.ctr-electronics.com/phoenix6/stable/cpp/classctre_1_1phoenix6_1_1swerve_1_1_swerve_module.html#a0854ceb97e3de9bbdb21f5690533bf49>`__, `Python <https://api.ctr-electronics.com/phoenix6/stable/python/autoapi/phoenix6/swerve/swerve_module/index.html#phoenix6.swerve.swerve_module.SwerveModule.apply>`__) on each ``SwerveModule`` instance provided to the ``apply(...)`` method.
 
-Note, however, that this can **negatively impact performance** of the robot, both in terms of loop times and control accuracy, compared to reusing the built-in requests. As a result, we recommend converting to supported types, such as ``ChassisSpeeds``, and reusing existing swerve requests, such as ``ApplyFieldSpeeds`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/swerve/SwerveRequest.ApplyFieldSpeeds.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1swerve_1_1requests_1_1_apply_field_speeds.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/swerve/requests/index.html#phoenix6.swerve.requests.ApplyFieldSpeeds>`__), whenever possible.
+Note, however, that this can **negatively impact performance** of the robot, both in terms of loop times and control accuracy, compared to reusing the built-in requests. As a result, we recommend converting to supported types, such as ``ChassisSpeeds``, and reusing existing swerve requests, such as ``ApplyFieldSpeeds`` (`Java <https://api.ctr-electronics.com/phoenix6/stable/java/com/ctre/phoenix6/swerve/SwerveRequest.ApplyFieldSpeeds.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/stable/cpp/classctre_1_1phoenix6_1_1swerve_1_1requests_1_1_apply_field_speeds.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/stable/python/autoapi/phoenix6/swerve/requests/index.html#phoenix6.swerve.requests.ApplyFieldSpeeds>`__), whenever possible.
 
 .. warning:: We recommend against using a custom swerve request for the WPILib ``SwerveControllerCommand``, as it does not follow modern WPILib best practices. Instead, the command can be `reimplemented as a command factory <https://www.chiefdelphi.com/t/example-of-wpilib-swervecontrollercommand-following-trajectory-with-ctre-generated-commandswervedrivetrain/502566/2>`__ using ``ApplyFieldSpeeds`` to maximize performance.
 
@@ -428,7 +428,7 @@ Note, however, that this can **negatively impact performance** of the robot, bot
 
             ctre::phoenix::StatusCode Apply(
                swerve::requests::SwerveRequest::ControlParameters const &parameters,
-               std::vector<std::unique_ptr<swerve::impl::SwerveModuleImpl>> const &modulesToApply
+               std::span<std::unique_ptr<swerve::impl::SwerveModuleImpl> const> modulesToApply
             ) override {
                auto moduleRequest = impl::SwerveModuleImpl::ModuleRequest{}
                   .WithUpdatePeriod(parameters.updatePeriod);
@@ -468,7 +468,7 @@ Swerve Requests with Direct Control
 
 Swerve modules by default have some built-in control optimizations and support a limited set of control types. However, for something like the built-in SysId swerve requests, such high-level control may not be desirable.
 
-As a result, ``SwerveModule`` also has ``apply(ControlRequest drive, ControlRequest steer)`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/swerve/SwerveModule.html#apply(com.ctre.phoenix6.controls.ControlRequest,com.ctre.phoenix6.controls.ControlRequest)>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1swerve_1_1_swerve_module.html#a9934b2dbfab94111fc821eb26fe65238>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/swerve/swerve_module/index.html#phoenix6.swerve.swerve_module.SwerveModule.apply>`__) to directly apply control requests to the drive and steer motors. For example, the built-in ``SysIdSwerveSteerGains`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/swerve/SwerveRequest.SysIdSwerveSteerGains.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1swerve_1_1requests_1_1_sys_id_swerve_steer_gains.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/autoapi/phoenix6/swerve/requests/index.html#phoenix6.swerve.requests.SysIdSwerveSteerGains>`__) request directly applies a ``CoastOut`` to the drive motor and a ``VoltageOut`` to the steer motor.
+As a result, ``SwerveModule`` also has ``apply(ControlRequest drive, ControlRequest steer)`` (`Java <https://api.ctr-electronics.com/phoenix6/stable/java/com/ctre/phoenix6/swerve/SwerveModule.html#apply(com.ctre.phoenix6.controls.ControlRequest,com.ctre.phoenix6.controls.ControlRequest)>`__, `C++ <https://api.ctr-electronics.com/phoenix6/stable/cpp/classctre_1_1phoenix6_1_1swerve_1_1_swerve_module.html#a9934b2dbfab94111fc821eb26fe65238>`__, `Python <https://api.ctr-electronics.com/phoenix6/stable/python/autoapi/phoenix6/swerve/swerve_module/index.html#phoenix6.swerve.swerve_module.SwerveModule.apply>`__) to directly apply control requests to the drive and steer motors. For example, the built-in ``SysIdSwerveSteerGains`` (`Java <https://api.ctr-electronics.com/phoenix6/stable/java/com/ctre/phoenix6/swerve/SwerveRequest.SysIdSwerveSteerGains.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/stable/cpp/classctre_1_1phoenix6_1_1swerve_1_1requests_1_1_sys_id_swerve_steer_gains.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/stable/python/autoapi/phoenix6/swerve/requests/index.html#phoenix6.swerve.requests.SysIdSwerveSteerGains>`__) request directly applies a ``CoastOut`` to the drive motor and a ``VoltageOut`` to the steer motor.
 
 .. important:: We recommend **against** using this strategy in competition code, as it does not benefit from the built-in control optimizations.
 
@@ -498,7 +498,7 @@ As a result, ``SwerveModule`` also has ``apply(ControlRequest drive, ControlRequ
 
          ctre::phoenix::StatusCode Apply(
             SwerveRequest::ControlParameters const &parameters,
-            std::vector<std::unique_ptr<impl::SwerveModuleImpl>> const &modulesToApply
+            std::span<std::unique_ptr<impl::SwerveModuleImpl> const> modulesToApply
          ) override {
             for (size_t i = 0; i < modulesToApply.size(); ++i) {
                /* directly apply the control requests to the drive and steer motors */
