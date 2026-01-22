@@ -141,7 +141,7 @@ Some device ``SimState`` objects also contain outputs that can be used in simula
          private final DCMotorSim m_motorSimModel = new DCMotorSim(
             LinearSystemId.createDCMotorSystem(
                DCMotor.getKrakenX60Foc(1), 0.001, kGearRatio
-            )
+            ),
             DCMotor.getKrakenX60Foc(1)
          );
 
