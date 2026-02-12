@@ -63,5 +63,3 @@ Installing Phoenix 6 (FRC)
       2. LabVIEW under "Tools -> FIRST Robotics Tools -> Download CTRE Phoenix Libs".
 
       After the libraries are downloaded, hard deploy (run as startup) a LabVIEW program and restart the roboRIO.
-
-      .. note:: Currently only Phoenix 5 is supported in LabVIEW. A Phoenix 6 LabVIEW alpha is in development, teams that are interested in this may contact us directly at support@ctr-electronics.com.
