@@ -31,6 +31,8 @@ Status Light Reference
    :width: 30%
    :alt: Pigeon 2 led location
 
+.. important:: If the status lights do not exactly match any of the blink codes below, the device may be alternating between multiple blink codes (most commonly between good and bad CAN).
+
 .. raw:: html
 
     <style>
