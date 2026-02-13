@@ -96,7 +96,7 @@ Real-Time High-Fidelity :doc:`Signal Logger </docs/api-reference/api-usage/signa
 - Log all status signals from every device with timestamps from CAN.
 - Data captured as it arrives at the full update rate of the status signals.
 - Improved sensitivity and accuracy of system identification with `WPILib SysId <https://docs.wpilib.org/en/stable/docs/software/pathplanning/system-identification/introduction.html>`__.
-- Automatically starts logging during an FRC match.
+- Automatically starts logging on a roboRIO 1 with a USB flash drive or a roboRIO 2.
 - Support for :ref:`custom user signals <docs/api-reference/api-usage/signal-logging:writing custom signals>` alongside auto-captured data.
 - Efficient ``hoot`` logging format minimizes disk space and CPU usage.
 - :doc:`Export to multiple formats </docs/tuner/tools/log-extractor>` including WPILOG and MCAP.
