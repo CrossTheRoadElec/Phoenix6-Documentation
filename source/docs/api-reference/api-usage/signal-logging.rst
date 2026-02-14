@@ -10,7 +10,6 @@ The Phoenix 6 signal logger provides the following advantages over alternatives:
 - **All status signals** are captured **automatically** with their **timestamps from CAN**.
 - Status signals are captured **as they arrive** at their configured update frequency.
 - Logging is **not affected** by the timing of the main robot loop or Java GC, significantly improving the sensitivity and accuracy of system identification.
-- Signal logging is **started automatically** during an **FRC match** by default.
 - **Custom user signals** can be logged alongside the automatically captured status signals on the **same timebase**.
 - The **highly efficient** ``hoot`` file format minimizes the **size** of the log files and the **CPU usage** of the logger.
 

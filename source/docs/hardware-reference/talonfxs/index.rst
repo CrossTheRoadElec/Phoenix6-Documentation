@@ -24,6 +24,11 @@ Supported Motors
 - Third-party NEO Vortex with Solo Adapter
 - Most 3rd party brushed motors
 
+Status Light Reference
+----------------------
+
+.. important:: If the status lights do not exactly match any of the blink codes below, the device may be alternating between multiple blink codes (most commonly between good and bad CAN).
+
 .. raw:: html
 
     <style>

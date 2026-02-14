@@ -107,6 +107,8 @@ Status Light Reference
    :width: 60%
    :alt: Status LEDs located in central part of the motor
 
+.. important:: If the status lights do not exactly match any of the blink codes below, the device may be alternating between multiple blink codes (most commonly between good and bad CAN).
+
 .. raw:: html
 
     <style>

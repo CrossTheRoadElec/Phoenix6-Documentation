@@ -20,6 +20,8 @@ The CANcoder is the next evolution in the line of CTRE magnetic encoder products
 Status Light Reference
 ----------------------
 
+.. important:: If the status lights do not exactly match any of the blink codes below, the device may be alternating between multiple blink codes (most commonly between good and bad CAN).
+
 .. note:: Users wishing to test magnet placement must wait 8 seconds after boot for the LEDs to blink the magnet placement status.
 
 .. raw:: html
