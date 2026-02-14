@@ -11,6 +11,11 @@ The CTR Electronics' CANdle® branded device makes it easy to control individual
 
       CAD and purchase instructions.
 
+Status Light Reference
+----------------------
+
+.. important:: If the status lights do not exactly match any of the blink codes below, the device may be alternating between multiple blink codes (most commonly between good and bad CAN).
+
 .. raw:: html
 
     <style>

@@ -11,6 +11,11 @@ The CTR Electronics' CANdi™ branded device seamlessly integrates digital signa
 
       CAD and purchase instructions.
 
+Status Light Reference
+----------------------
+
+.. important:: If the status lights do not exactly match any of the blink codes below, the device may be alternating between multiple blink codes (most commonly between good and bad CAN).
+
 .. raw:: html
 
     <style>
