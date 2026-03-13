@@ -15,3 +15,4 @@ Under the :guilabel:`Mechanisms` page in Tuner X is the Swerve Project Generator
    configuring-your-modules
    validating-drivetrain
    generating-running-project
+   next-steps
