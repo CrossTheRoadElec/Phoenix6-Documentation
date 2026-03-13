@@ -72,7 +72,7 @@ Full Example
          :lineno-start: 1
 
    .. tab-item:: C++ (Source)
-      :sync: C++ Header
+      :sync: C++ Source
 
       .. rli:: https://raw.githubusercontent.com/CrossTheRoadElec/Phoenix6-Examples/refs/heads/main/cpp/SwerveWithPathPlanner/src/main/cpp/generated/TunerConstants.cpp
          :language: cpp
