@@ -17,7 +17,6 @@ Current limits are an important part of battery management. The following repres
          :language: java
          :lines: 52-65
          :linenos:
-         :lineno-start: 1
 
    .. tab-item:: C++
       :sync: C++
@@ -26,7 +25,6 @@ Current limits are an important part of battery management. The following repres
          :language: cpp
          :lines: 47-60
          :linenos:
-         :lineno-start: 1
 
    .. tab-item:: Python
       :sync: python
@@ -35,4 +33,3 @@ Current limits are an important part of battery management. The following repres
          :language: python
          :lines: 58-70
          :linenos:
-         :lineno-start: 1
