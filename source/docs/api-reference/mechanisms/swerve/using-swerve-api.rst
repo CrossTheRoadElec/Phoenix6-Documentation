@@ -374,16 +374,16 @@ The state of the drivetrain can also be telemeterized inline with odometry updat
                "DriveState/Speeds", ChassisSpeeds, state.speeds
             )
             SignalLogger.write_struct_array(
-                  "DriveState/ModuleStates", SwerveModuleState, state.module_states
+               "DriveState/ModuleStates", SwerveModuleState, state.module_states
             )
             SignalLogger.write_struct_array(
-                  "DriveState/ModuleTargets", SwerveModuleState, state.module_targets
+               "DriveState/ModuleTargets", SwerveModuleState, state.module_targets
             )
             SignalLogger.write_struct_array(
-                  "DriveState/ModulePositions", SwerveModulePosition, state.module_positions
+               "DriveState/ModulePositions", SwerveModulePosition, state.module_positions
             )
             SignalLogger.write_double(
-                  "DriveState/OdometryPeriod", state.odometry_period, "seconds"
+               "DriveState/OdometryPeriod", state.odometry_period, "seconds"
             )
 
 .. TODO: Vision pose integration, Methods of control using vision
