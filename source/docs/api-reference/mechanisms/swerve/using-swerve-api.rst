@@ -329,6 +329,7 @@ The state of the drivetrain can also be telemeterized inline with odometry updat
             SignalLogger.writeStructArray("DriveState/ModuleTargets", SwerveModuleState.struct, state.ModuleTargets);
             SignalLogger.writeStructArray("DriveState/ModulePositions", SwerveModulePosition.struct, state.ModulePositions);
             SignalLogger.writeDouble("DriveState/OdometryPeriod", state.OdometryPeriod, "seconds");
+            SignalLogger.writeInteger("DriveState/FailedDaqs", state.FailedDaqs);
          }
 
    .. tab-item:: C++
@@ -352,6 +353,7 @@ The state of the drivetrain can also be telemeterized inline with odometry updat
             SignalLogger::WriteStructArray<frc::SwerveModuleState>("DriveState/ModuleTargets", state.ModuleTargets);
             SignalLogger::WriteStructArray<frc::SwerveModulePosition>("DriveState/ModulePositions", state.ModulePositions);
             SignalLogger::WriteValue("DriveState/OdometryPeriod", state.OdometryPeriod);
+            SignalLogger::WriteInteger("DriveState/FailedDaqs", state.FailedDaqs);
          }
 
    .. tab-item:: Python
@@ -385,5 +387,6 @@ The state of the drivetrain can also be telemeterized inline with odometry updat
             SignalLogger.write_double(
                "DriveState/OdometryPeriod", state.odometry_period, "seconds"
             )
+            SignalLogger.write_integer("DriveState/FailedDaqs", state.failed_daqs)
 
 .. TODO: Vision pose integration, Methods of control using vision
