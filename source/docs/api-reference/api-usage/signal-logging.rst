@@ -178,6 +178,8 @@ Any log that contains a :doc:`pro-licensed </docs/licensing/licensing>` device w
          - Fault_RemoteSensorDataInvalid
          - Fault_StaticBrakeDisabled
          - Fault_BridgeBrownout
+         - Fault_RotorFault1
+         - Fault_RotorFault2
 
       .. tab-item:: Talon FXS
 
@@ -209,6 +211,9 @@ Any log that contains a :doc:`pro-licensed </docs/licensing/licensing>` device w
 
          - Yaw
          - AngularVelocityZWorld
+         - NoMotionEnabled
+         - NoMotionCount
+         - UpTime
 
       .. tab-item:: CANrange
 
