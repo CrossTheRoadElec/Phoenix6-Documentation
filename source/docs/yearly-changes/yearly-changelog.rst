@@ -32,7 +32,7 @@ Signal logger has had quite a few changes over the off-season. Signal Logger now
 
 The behavior of the signal logger auto-start functionality has also been changed in response to user feedback to make the experience consistent between at-home testing and events. Signal Logging auto start is **only enabled** on the roboRIO 1 if a flash drive is present, and otherwise enabled by default on the roboRIO 2. Signal logging is started by any of the following (whichever occurs first):
 
-- The robot is enabled
+- It has been at least 1 second since program startup (allowing for calls to ``setPath``), and the robot is enabled.
 - It has been at least 5 seconds since program startup (allowing for calls to ``setPath``), and the Driver Station is connected to the robot.
 
 Additionally, ``OptimizeBusUtilization()`` now defaults to setting optimized signals to 4 Hz instead of 0 Hz, preserving data for hoot logs. Users can still get the old behavior by explicitly passing in 0 Hz.
