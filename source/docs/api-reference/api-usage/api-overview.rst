@@ -6,8 +6,10 @@ The Phoenix 6 API resides in the ``com.ctre.phoenix6`` package in Java, the ``ct
 - ``configs`` - classes related to device :doc:`configuration </docs/api-reference/api-usage/configuration>`
 - ``controls`` - classes related to device :doc:`control </docs/api-reference/api-usage/control-requests>`
 - ``hardware`` - the device hardware classes, such as ``TalonFX``
+- ``mechanisms`` - advanced multi-device :doc:`mechanisms </docs/api-reference/mechanisms/index>`, such as ``DifferentialMechanism``
 - ``signals`` - enumeration types for device :doc:`signals </docs/api-reference/api-usage/status-signals>`
 - ``sim`` - classes related to device :doc:`simulation </docs/api-reference/simulation/simulation-intro>`
+- ``swerve`` - classes related to the Phoenix 6 :doc:`Swerve API </docs/api-reference/mechanisms/swerve/swerve-overview>`
 
 C++ IntelliSense
 ^^^^^^^^^^^^^^^^

@@ -19,21 +19,24 @@ To utilize hardware-attached simulation, ensure the CANivore is connected direct
 
       .. code-block:: Java
 
-         TalonFX m_motor = new TalonFX(0, "mycanivore");
+         CANBus kCANBus = new CANbus("mycanivore");
+         TalonFX m_motor = new TalonFX(0, kCANBus);
 
    .. tab-item:: C++
       :sync: C++
 
       .. code-block:: cpp
 
-         hardware::TalonFX m_motor{0, "mycanivore"};
+         static constexpr ctre::phoenix6::CANBus kCANBus{"mycanivore"};
+         ctre::phoenix6::hardware::TalonFX m_motor{0, kCANBus};
 
    .. tab-item:: Python
       :sync: Python
 
       .. code-block:: python
 
-         self.motor = hardware.TalonFX(0, "mycanivore")
+         self.canbus = CANBus("mycanivore")
+         self.motor = hardware.TalonFX(0, self.canbus)
 
 .. tab-set::
 
@@ -66,12 +69,22 @@ To utilize hardware-attached simulation, ensure the CANivore is connected direct
 
       In order for the robot program to communicate with physical devices (on platforms that support both simulation and hardware), the ``CTR_TARGET`` environment variable must be set. Examples of this are shown below.
 
-      .. code-block:: bash
+      .. tab-set::
 
-         export CTR_TARGET=Hardware # Export the environment variable so it's persistent in the shell
+         .. tab-item:: Windows
 
-      Or
+            .. code-block:: ps1
 
-      .. code-block:: bash
+               $env:CTR_TARGET="Hardware" # Set the environment variable, which will persist for the duration of this powershell instance.
 
-         CTR_TARGET=Hardware python3 application.py # Set the environment variable only for the python call
+         .. tab-item:: Linux
+
+            .. code-block:: bash
+
+               export CTR_TARGET=Hardware # Export the environment variable so it's persistent in the shell
+
+            Or
+
+            .. code-block:: bash
+
+               CTR_TARGET=Hardware python3 application.py # Set the environment variable only for the python call

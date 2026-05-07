@@ -1,7 +1,7 @@
 General API Usage
 =================
 
-This section serves to provide general API usage for the Phoenix 6 API. For full details, please visit the API docs (`Java <https://api.ctr-electronics.com/phoenix6/release/java/>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/>`__, `Python <https://api.ctr-electronics.com/phoenix6/release/python/>`__).
+This section serves to provide general API usage for the Phoenix 6 API. For full details, please visit the API docs (`Java <https://api.ctr-electronics.com/phoenix6/stable/java/>`__, `C++ <https://api.ctr-electronics.com/phoenix6/stable/cpp/>`__, `Python <https://api.ctr-electronics.com/phoenix6/stable/python/>`__).
 
 .. important:: While Phoenix 6 and Phoenix 5 devices may exist on the same CAN bus and same robot project, each robot project **must** use the API tied to the device firmware version.
    This means Phoenix 5 devices **must** use the Phoenix 5 API, and Phoenix 6 devices **must** use the Phoenix 6 API.
@@ -49,6 +49,9 @@ There are three major components to the Phoenix 6 API:
 - :doc:`signal-logging`
    - Information on the signal logging API used for capturing signal traffic on the bus.
 
+- :doc:`hoot-replay`
+   - Highlights playing back captured signals from a hoot log to test robot program changes.
+
 - :doc:`faults`
    - Documents how faults are used to indicate device hardware status.
 
@@ -70,6 +73,7 @@ There are three major components to the Phoenix 6 API:
    control-requests
    status-signals
    signal-logging
+   hoot-replay
    faults
    enabling-actuators
    actuator-limits

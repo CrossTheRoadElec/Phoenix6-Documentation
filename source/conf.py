@@ -21,7 +21,7 @@ sys.path.insert(0, os.path.abspath("."))
 # -- Project information -----------------------------------------------------
 
 project = "Phoenix 6"
-copyright = "2025, CTR Electronics"
+copyright = "2026, CTR Electronics"
 author = "CTR Electronics"
 
 # The short X.Y version
@@ -62,9 +62,7 @@ if on_rtd:
 
 local_extensions = [
     "_extensions.controls_js_sim",
-    "_extensions.rtd_html_zip",
 ]
-
 extensions += local_extensions
 
 images_config = {
@@ -95,6 +93,9 @@ else:
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = []
+
+# List of extra files to include with the build
+html_extra_path = ["robots.txt"]
 
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = None
@@ -227,7 +228,9 @@ linkcheck_retries = 3
 linkcheck_workers = 1
 
 # Specify a standard user agent, as Sphinx default is blocked on some sites
-user_agent = "Mozilla/5.0 (X11; Linux x86_64; rv:25.0) Gecko/20100101 Firefox/25.0"
+user_agent = (
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:134.0) Gecko/20100101 Firefox/134.0"
+)
 
 # Autosection labels prefix document path and filename
 # Helps handle label collisions throughout the documentation
@@ -237,6 +240,7 @@ autosectionlabel_prefix_document = True
 linkcheck_ignore = [
     r".*canable.io.*",
     r".*vexrobotics.com.*",
+    r".*chiefdelphi.com.*",
 ]
 
 # Set redirects location

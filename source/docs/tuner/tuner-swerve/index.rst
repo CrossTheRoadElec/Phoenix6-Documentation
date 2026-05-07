@@ -1,7 +1,7 @@
 Swerve Project Generator
 ========================
 
-.. important:: Swerve functionality is only available for FRC users.
+.. important:: Full swerve project generation is only available for FRC users. However, non-FRC users can still generate the constants file.
 
 Under the :guilabel:`Mechanisms` page in Tuner X is the Swerve Project Generator. This utility guides the user through configuring their modules, verifying their drivetrain, encoder inverts, drivetrain inverts and more.
 
@@ -15,3 +15,4 @@ Under the :guilabel:`Mechanisms` page in Tuner X is the Swerve Project Generator
    configuring-your-modules
    validating-drivetrain
    generating-running-project
+   next-steps

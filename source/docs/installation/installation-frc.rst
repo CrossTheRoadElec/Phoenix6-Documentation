@@ -32,16 +32,16 @@ Installing Phoenix 6 (FRC)
 
             Paste the following URL in WPILib VS Code :guilabel:`Install new libraries (online)`:
 
-            - ``https://maven.ctr-electronics.com/release/com/ctre/phoenix6/latest/Phoenix6-frc2025-latest.json``
+            - ``https://maven.ctr-electronics.com/release/com/ctre/phoenix6/latest/Phoenix6-frc2026-latest.json``
 
             Additionally, v5 can safely installed alongside it by installing the v5 vendordep.
 
-            - ``https://maven.ctr-electronics.com/release/com/ctre/phoenix/Phoenix5-frc2025-latest.json``
+            - ``https://maven.ctr-electronics.com/release/com/ctre/phoenix/Phoenix5-frc2026-latest.json``
 
             Alternatively, the Hoot Replay version of the vendordep can be installed, as well as the v5 Replay-compatible vendordep:
 
-            - ``https://maven.ctr-electronics.com/release/com/ctre/phoenix6/latest/Phoenix6-replay-frc2025-latest.json``
-            - ``https://maven.ctr-electronics.com/release/com/ctre/phoenix/Phoenix5-replay-frc2025-latest.json``
+            - ``https://maven.ctr-electronics.com/release/com/ctre/phoenix6/latest/Phoenix6-replay-frc2026-latest.json``
+            - ``https://maven.ctr-electronics.com/release/com/ctre/phoenix/Phoenix5-replay-frc2026-latest.json``
 
             .. important:: Users utilizing only v5 devices still need the v6 vendordep added to their robot project.
 
@@ -63,5 +63,3 @@ Installing Phoenix 6 (FRC)
       2. LabVIEW under "Tools -> FIRST Robotics Tools -> Download CTRE Phoenix Libs".
 
       After the libraries are downloaded, hard deploy (run as startup) a LabVIEW program and restart the roboRIO.
-
-      .. note:: Currently only Phoenix 5 is supported in LabVIEW. A Phoenix 6 LabVIEW alpha is in development, teams that are interested in this may contact us directly at support@ctr-electronics.com.

@@ -5,16 +5,19 @@ Welcome to the Phoenix 6 documentation. Individuals looking for `Phoenix 5` docu
 
 The Phoenix 6 software framework allows you to control and configure your `CTR Electronics <https://store.ctr-electronics.com/>`__ Phoenix 6 Devices. Phoenix 6 represents a complete rewrite of the software framework over the existing Phoenix 5 framework. With Phoenix 6, users have access to many new features that expand the control the user has over their devices.
 
-.. important:: Users looking for beta documentation for the Phoenix 6 API can find it on the `latest version of this site <https://v6.docs.ctr-electronics.com/en/latest/>`__.
+.. card:: CTR Electronics Blog
+   :link: https://store.ctr-electronics.com/blogs/news
+
+   For news and updates about your CTR Electronics device, please check out our `blog <https://store.ctr-electronics.com/blogs/news/>`__.
 
 .. grid:: 1 2 2 2
    :gutter: 3
 
-   .. grid-item-card:: New for 2025
+   .. grid-item-card:: New for 2026
       :link: docs/yearly-changes/yearly-changelog
       :link-type: doc
 
-      What's new in Phoenix 6 for 2025.
+      What's new in Phoenix 6 for 2026.
 
    .. grid-item-card:: Migration Guide
       :link: docs/migration/migration-guide/index
@@ -33,6 +36,26 @@ The Phoenix 6 software framework allows you to control and configure your `CTR E
       :link-type: url
 
       A list of current known issues is available here.
+
+Code Generators
+---------------
+
+.. grid:: 1 2 2 2
+
+   .. grid-item-card:: :octicon:`dependabot` Swerve Generator
+      :link: docs/tuner/tuner-swerve/index
+      :link-type: doc
+
+      Functional swerve in under 30 minutes.
+
+   .. grid-item-card:: :octicon:`move-to-top` Elevator Generator
+      :link: docs/tuner/tuner-elev/index
+      :link-type: doc
+
+      Generate an elevator subsystem into your robot project.
+
+Useful Categories
+-----------------
 
 .. grid:: 1 2 3 3
    :gutter: 3
@@ -108,6 +131,7 @@ The Phoenix 6 software framework allows you to control and configure your `CTR E
 
    docs/hardware-reference/cancoder/index
    docs/hardware-reference/candi/index
+   docs/hardware-reference/candle/index
    docs/hardware-reference/canrange/index
    docs/hardware-reference/pigeon2/index
    docs/hardware-reference/talonfx/index
@@ -141,10 +165,10 @@ The Phoenix 6 software framework allows you to control and configure your `CTR E
    :caption: API docs
    :hidden:
 
-   Java API Docs <https://api.ctr-electronics.com/phoenix6/release/java/>
-   C++ API Docs <https://api.ctr-electronics.com/phoenix6/release/cpp/>
-   Python API Docs <https://api.ctr-electronics.com/phoenix6/release/python/>
-   C# API Docs <https://api.ctr-electronics.com/phoenix6/release/csharp/>
+   Java API Docs <https://api.ctr-electronics.com/phoenix6/stable/java/>
+   C++ API Docs <https://api.ctr-electronics.com/phoenix6/stable/cpp/>
+   Python API Docs <https://api.ctr-electronics.com/phoenix6/stable/python/>
+   C# API Docs <https://api.ctr-electronics.com/phoenix6/stable/csharp/>
 
 .. toctree::
    :maxdepth: 1

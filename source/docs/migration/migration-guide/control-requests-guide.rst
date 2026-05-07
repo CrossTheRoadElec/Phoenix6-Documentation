@@ -133,7 +133,7 @@ Follower Motors
 
                // robot init, set m_follower to follow m_leader
                // m_follower should NOT oppose leader
-               m_follower.setControl(new Follower(m_leader.getDeviceID(), false));
+               m_follower.setControl(new Follower(m_leader.getDeviceID(), MotorAlignmentValue.Aligned));
                // set m_strictFollower to strict-follow m_leader
                // strict followers ignore the leader's invert and use their own
                m_strictFollower.setControl(new StrictFollower(m_leader.getDeviceID()));

@@ -24,6 +24,11 @@ Supported Motors
 - Third-party NEO Vortex with Solo Adapter
 - Most 3rd party brushed motors
 
+Status Light Reference
+----------------------
+
+.. important:: If the status lights do not exactly match any of the blink codes below, the device may be alternating between multiple blink codes (most commonly between good and bad CAN).
+
 .. raw:: html
 
     <style>
@@ -166,7 +171,7 @@ Supported Motors
                                           <div class='led' ontime='300' offtime='300' oncolor='orange' offcolor='red'></div></div></td>
                 <td>Alternate Red/Orange</td>
                 <td>Damaged Hardware.</td>
-                <td>Contact CTRE.</td>
+                <td>Use Tuner X Self Test to confirm the LEDs and that the hardware fault is set, then contact CTRE</td>
             </tr>
             <tr>
                 <td><div class='ledGroup'><div class='led' ontime='0' offtime='0' oncolor='black' offcolor='black'></div>

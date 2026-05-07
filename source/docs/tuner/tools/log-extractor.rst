@@ -1,7 +1,9 @@
 Extracting Signal Logs
 ======================
 
-.. tip:: Information on how to use the signal logger API can be found in the :ref:`corresponding API article <docs/api-reference/api-usage/signal-logging:signal logging>`. Tuner offers in-app functionality to retrieve, manage, and convert ``hoot`` logs to compatible formats.
+.. tip:: Information on how to use the signal logger API can be found in the :ref:`corresponding API article <docs/api-reference/api-usage/signal-logging:signal logging>`.
+
+Tuner X offers in-app functionality to retrieve, manage, and convert ``hoot`` logs to compatible formats.
 
 .. image:: images/log-extractor-overview.png
    :width: 70%
@@ -32,7 +34,7 @@ In the below picture, regex is used to select only the ``MotorVoltage``, ``Posit
    :width: 70%
    :alt: Picture highlighting the signal filters section of the log convert tab
 
-.. important:: If the ``hoot`` log does not contain any Pro-licensed devices, a :ref:`limited set of signals <docs/api-reference/api-usage/signal-logging:free signals>` may be exported for free using the :guilabel:`AdvantageScope (wpilog)` option.
+.. important:: If the ``hoot`` log does not contain any Pro-licensed devices, a :ref:`limited set of signals <docs/api-reference/api-usage/signal-logging:free signals>` may be exported for free.
 
 Converting
 ----------

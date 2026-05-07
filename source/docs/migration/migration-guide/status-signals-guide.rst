@@ -1,7 +1,7 @@
 Status Signals
 ==============
 
-Phoenix 6 expands the functionality of status signals with the introduction of the ``StatusSignal`` (`Java <https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/StatusSignal.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/release/cpp/classctre_1_1phoenix6_1_1_status_signal.html>`__).
+Phoenix 6 expands the functionality of status signals with the introduction of the ``StatusSignal`` (`Java <https://api.ctr-electronics.com/phoenix6/stable/java/com/ctre/phoenix6/StatusSignal.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/stable/cpp/classctre_1_1phoenix6_1_1_status_signal.html>`__).
 
 .. note:: For more information about status signals in Phoenix 6, see :doc:`/docs/api-reference/api-usage/status-signals`.
 
