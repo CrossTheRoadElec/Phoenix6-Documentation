@@ -5,18 +5,18 @@ class FlywheelPlant{
         // Constants related to plant model
         // Flywheel
 
-        let mass = 0.55; //shooter wheel mass in Kg
-        let radius = 0.0762; //3 inch radius, converted to meters
+        let mass = 0.55; // shooter wheel mass in Kg
+        let radius = 0.0762; // 3 inch radius, converted to meters
 
         // Gearbox
-        let GEARBOX_RATIO = 1.0/1.0; // output over input - 1:1 direct-drive gear ratio
+        this.GEARBOX_RATIO = 1.0/1.0; // output over input - 1:1 direct-drive gear ratio
 
         // Kraken FOC Torque-Constant
         let Kt = 0.01981; // Nm/A torque constant -  Taken from Kraken Motor Performance Analysis Report
 
         // TODO: better comment and descriptive variable naming
         // Constants from the blog post equations
-        this.C1 = 2 * Kt / (mass * radius * radius * GEARBOX_RATIO);
+        this.C1 = 2 * Kt / (mass * radius * radius * this.GEARBOX_RATIO);
         this.C3 = 2 / (mass * radius * radius);
 
         this.systemNoise = false;
@@ -37,9 +37,9 @@ class FlywheelPlant{
     restrict(inAmps, supplyV) {
         // restrict output current based on supply voltage and back EMF
         let Rc = 0.0252; // Coil & Wiring Resistance in Ohms
-        let maxRps = 100.0; // Max motor velocity in RPS
+        let maxRps = 96.4; // Max motor velocity in RPS
 
-        let bemf = this.getCurrentSpeedRPS() * supplyV / maxRps;
+        let bemf = this.getCurrentSpeedRPS() / this.GEARBOX_RATIO * supplyV / maxRps;
         let maxCurrent = (supplyV - bemf) / Rc;
         let minCurrent = (-supplyV - bemf) / Rc;
         if (inAmps > maxCurrent) {
@@ -47,22 +47,22 @@ class FlywheelPlant{
         } else if (inAmps < minCurrent) {
             inAmps = minCurrent;
         }
-        
+
         return inAmps;
     }
 
     update(t, inAmps) {
-        //Simulate friction - both constand and drag-related
+        // Simulate friction - both constand and drag-related
         let extTrq = 0.05; // 0.05 Nm of static friction
         extTrq += 0.0005*this.speedPrev; // 0.0005 Nm of friction every RPM it speeds up
 
-        //Increase friction when not moving to simulate static friction
+        // Increase friction when not moving to simulate static friction
         if (this.speedPrev == 0) {
             extTrq = 0.15;
         }
 
-        // Simulate system noise
-        if (this.systemNoise && inAmps > 0) {
+        // Simulate system noise only if control input is outside 2.5 amps
+        if (this.systemNoise && inAmps > 2.5) {
             // apply system noise
             inAmps += this.gaussianNoise();
         }

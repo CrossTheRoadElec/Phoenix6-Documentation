@@ -27,7 +27,7 @@ class VerticalArmSim extends BaseSim {
     this.accumulatedError = 0.0;
     this.previousError = 0.0;
 
-    this.validPrevious = false
+    this.validPrevious = false;
 
     //User-configured feedback
     this.kP = 0.0;
