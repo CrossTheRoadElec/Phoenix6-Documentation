@@ -20,8 +20,8 @@ class FlywheelPlant{
         this.C3 = 2 / (mass * radius * radius);
 
         this.systemNoise = false;
-        // Simulate 4 amp std dev system noise at the loop update frequency
-        this.gaussianNoise = gaussian(0, 4);
+        // Simulate 2 A std dev system noise at the loop update frequency
+        this.gaussianNoise = gaussian(0, 2);
     }
 
     init(Ts) {

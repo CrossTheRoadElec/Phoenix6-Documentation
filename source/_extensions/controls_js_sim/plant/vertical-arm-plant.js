@@ -13,7 +13,7 @@ class VerticalArmPlant {
 
         // Kraken FOC Torque-Constant
         let Kt = 0.01981; // Nm/A torque constant -  Taken from Kraken Motor Performance Analysis Report
-        this.kGAmps = 25;
+        this.kGAmps = 21;
 
         // TODO: better comment and descriptive variable naming
         // Constants from the blog post equations
@@ -21,8 +21,8 @@ class VerticalArmPlant {
         this.C3 = 3 / (mass * length * length);
 
         this.systemNoise = false;
-        // Simulate 4 A std dev system noise at sim loop update frequency
-        this.gaussianNoise = gaussian(0, 4);
+        // Simulate 2 A std dev system noise at sim loop update frequency
+        this.gaussianNoise = gaussian(0, 2);
     }
     init() {
         this.speed = 0;
