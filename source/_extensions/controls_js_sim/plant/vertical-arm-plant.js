@@ -3,19 +3,13 @@ class VerticalArmPlant {
         this.TimestepS = TimestepS;
 
         // Constants related to plant model
-        // Vertical Ram
-
-        // motor: 1x Kraken x60
-        // gearing: 50:1
-        // efficiency: 100
-        // arm length: 1 meter
-        // arm mass: 5 kg
+        // Vertical Arm
 
         let mass = 5; // Arm mass in kg
         let length = 1; // 1 meter length, converted to meters
 
         // Gearbox
-        this.GEARBOX_RATIO = 1.0 / 50.0;
+        this.GEARBOX_RATIO = 1.0 / 35.0; // output over input - 1:35 reduction gear ratio
 
         // Kraken FOC Torque-Constant
         let Kt = 0.01981; // Nm/A torque constant -  Taken from Kraken Motor Performance Analysis Report
@@ -55,12 +49,12 @@ class VerticalArmPlant {
 
     update(inAmps) {
         // Simulate friction - both static and dynamic
-        let extTrq = 3.6; // 3.6 Nm of static friction (very sticky arm)
+        let extTrq = 2.5; // 2 Nm of static friction (very sticky arm)
         extTrq += 0.0005 * this.speedPrev; // 0.0005 Nm of friction for every RPM it's spinning
 
         // Increase friction when not moving to simulate static friction
         if (this.speedPrev == 0) {
-            extTrq = 5;
+            extTrq = 2.6;
         }
 
         // Simulate system noise only if control input is outside 3 amps

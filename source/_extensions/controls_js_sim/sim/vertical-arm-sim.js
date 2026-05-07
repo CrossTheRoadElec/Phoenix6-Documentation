@@ -76,15 +76,15 @@ class VerticalArmSim extends BaseSim {
 
     this.curSimTimeS = this.timeS[this.iterationCount];
 
-    let measuredPositionRad = this.positionDelayLine.getSample();
+    let measuredPositionRev = this.positionDelayLine.getSample();
 
     if (this.validPrevious == false) {
-      measuredPositionRad = 0
+      measuredPositionRev = 0
     }
 
     // Update controller at controller freq
     if (this.timeSinceLastControllerIteration >= this.controllerTimestepS) {
-      this.inputAmps = this.updateController(this.currentSetpoint, measuredPositionRad);
+      this.inputAmps = this.updateController(this.currentSetpoint, measuredPositionRev);
       this.timeSinceLastControllerIteration = 0;
     } else {
       this.timeSinceLastControllerIteration = this.timeSinceLastControllerIteration + this.simulationTimestepS;

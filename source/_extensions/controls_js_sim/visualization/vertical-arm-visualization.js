@@ -34,7 +34,7 @@ class VerticalArmVisualization extends BaseVisualization {
   }
 
   angleFromArmCenter([x, y]) {
-    return -Math.atan2(y - this.armStartY, x - this.armStartX);
+    return -Math.atan2(y - this.armStartY, x - this.armStartX) / (2 * Math.PI);
   }
 
   handleMouseDown(event) {
@@ -159,7 +159,7 @@ class VerticalArmVisualization extends BaseVisualization {
 
     const setpointRad = this.setpoint * 2 * Math.PI;
     const positionRad = this.positionRad * 2 * Math.PI;
-    const controlEffortPlotScale = this.controlEffortVolts * 1.5/12 * armLenPx;
+    const controlEffortPlotScale = this.controlEffortVolts * 1.5/150 * armLenPx;
 
     const armEndX =
       this.armStartX + armLenPx * Math.cos(positionRad);

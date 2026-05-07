@@ -11,13 +11,13 @@ class TurretSim extends BaseSim {
     // User-configured setpoints
     this.currentSetpoint = 0.0;
 
-    this.plant = new TurretPlant(this.simulationTimestepS, true);
+    this.plant = new TurretPlant(this.simulationTimestepS);
 
     this.visualization = new TurretVisualization(
       this.visualizationDrawDiv,
       this.simulationTimestepS,
       () => this.iterationCount - 1,
-      setpoint => {}, // Cannot set setpoints for a profiled sim
+      setpoint => this.setSetpoint(setpoint),
       () => this.begin()
     );
     this.visualization.drawStatic();

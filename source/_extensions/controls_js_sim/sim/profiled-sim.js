@@ -11,7 +11,7 @@ class ProfiledSim extends BaseProfiledSim {
     // User-configured setpoints
     this.currentSetpoint = 0.0;
 
-    this.plant = new TurretPlant(this.simulationTimestepS, false);
+    this.plant = new TurretPlant(this.simulationTimestepS);
 
     this.visualization = new TurretVisualization(
       this.visualizationDrawDiv,

@@ -1,5 +1,5 @@
 class TurretPlant {
-    constructor(TimestepS, lowIntertia) {
+    constructor(TimestepS) {
         this.TimestepS = TimestepS;
 
         // Constants related to plant model
@@ -9,10 +9,7 @@ class TurretPlant {
         let radius = 0.2032; // 8 inch radius, converted to meters
 
         // Gearbox
-        this.GEARBOX_RATIO = 1.0 / 1.0;
-        if (lowIntertia) {
-            this.GEARBOX_RATIO = 1.0 / 20.0; // output over input - 1:20 reduction gear ratio
-        }
+        this.GEARBOX_RATIO = 1.0 / 20.0; // output over input - 1:20 reduction gear ratio
 
         // Kraken FOC Torque-Constant
         let Kt = 0.01981; // Nm/A torque constant -  Taken from Kraken Motor Performance Analysis Report
@@ -50,18 +47,18 @@ class TurretPlant {
 
     update(inAmps) {
         // Simulate friction - both static and dynamic
-        let extTrq = 0.05; // 0.05 Nm of static friction
+        let extTrq = 0.5; // 0.5 Nm of static friction
         extTrq += 0.0005*this.speed; // 0.0005 Nm of friction for every RPM it's spinning
 
         // Increase friction when not moving to simulate static friction
         if (this.speedPrev == 0) {
-            extTrq = 0.10;
+            extTrq = 0.6;
         }
 
         // Simulate system noise only if control input is outside 2.5 amps
         if (this.systemNoise && Math.abs(inAmps) > 2.5) {
             // apply system noise
-            inAmps += this.gaussianNoise() * inAmps;
+            inAmps += this.gaussianNoise();
         }
 
         // Simulate main Plant behavior
