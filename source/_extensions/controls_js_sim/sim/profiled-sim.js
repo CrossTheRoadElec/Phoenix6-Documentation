@@ -2,7 +2,7 @@ class ProfiledSim extends BaseProfiledSim {
   constructor(divIdPrefix) {
     super(divIdPrefix, "rot", -0.75, 0.75);
 
-    this.positionDelayLine = new DelayLine(3); //models sensor lag
+    this.positionDelayLine = new DelayLine(2); //models sensor lag
 
     this.simDurationS = 10.0;
     this.simulationTimestepS = 0.01;
@@ -77,7 +77,6 @@ class ProfiledSim extends BaseProfiledSim {
     this.error = 0.0;
 
     this.positionDelayLine = new DelayLine(2); //models sensor lag
-
   }
 
   iterateCustom() {
@@ -105,7 +104,7 @@ class ProfiledSim extends BaseProfiledSim {
 
     this.positionDelayLine.addSample(this.plant.getCurrentPosition());
 
-    this.procVarActualSignal.addSample(new Sample(this.curSimTimeS, this.plant.getCurrentPosition()));
+    this.procVarActualSignal.addSample(new Sample(this.curSimTimeS, measuredPosition));
     this.procVarDesiredSignal.addSample(new Sample(this.curSimTimeS, targets["Position"]));
     this.procVelocity.addSample(new Sample(this.curSimTimeS, targets["Velocity"]));
     this.measVelocity.addSample(new Sample(this.curSimTimeS, measuredVelocity));
@@ -113,7 +112,7 @@ class ProfiledSim extends BaseProfiledSim {
     this.measAcceleration.addSample(new Sample(this.curSimTimeS, measuredAcceleration));
     this.ampsSignal.addSample(new Sample(this.curSimTimeS, this.inputAmps));
 
-    this.visualization.setCurPos(this.plant.getCurrentPosition());
+    this.visualization.setCurPos(measuredPosition);
     this.visualization.setCurTime(this.curSimTimeS);
     this.visualization.setCurSetpoint(targets["Position"]);
     this.visualization.setCurControlEffort(this.inputAmps);

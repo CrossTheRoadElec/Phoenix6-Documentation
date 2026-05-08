@@ -2,6 +2,8 @@ class FlywheelSim extends BaseSim {
   constructor(div_id_prefix) {
     super(div_id_prefix, "RPS", 0, 100);
 
+    this.speed_delay_line = new DelayLine(3); //models sensor lag - this is minimal in Kraken firmware
+
     this.simDurationS = 10.0;
     this.simulationTimestepS = 0.005;
     this.controllerTimestepS = 0.005;
@@ -37,10 +39,7 @@ class FlywheelSim extends BaseSim {
     this.iterationCount = 0;
 
     this.speed_delay_line = new DelayLine(3); //models sensor lag - this is minimal in Kraken firmware
-
   }
-
-
 
   iterateCustom() {
 
@@ -65,8 +64,7 @@ class FlywheelSim extends BaseSim {
 
     this.speed_delay_line.addSample(this.plant.getCurrentSpeedRPS());
 
-
-    this.procVarActualSignal.addSample(new Sample(this.curSimTimeS, this.plant.getCurrentSpeedRPS()));
+    this.procVarActualSignal.addSample(new Sample(this.curSimTimeS, meas_speed));
     this.procVarDesiredSignal.addSample(new Sample(this.curSimTimeS, currentSetpoint));
     this.ampsSignal.addSample(new Sample(this.curSimTimeS, this.inputAmps));
 

@@ -2,7 +2,7 @@ class VerticalArmSim extends BaseSim {
   constructor(divIdPrefix) {
     super(divIdPrefix, "rot", -.75, .75);
 
-    this.positionDelayLine = new DelayLine(3); //models sensor lag
+    this.positionDelayLine = new DelayLine(2); //models sensor lag
 
     this.simDurationS = 5.0;
     this.simulationTimestepS = 0.005;
@@ -71,16 +71,11 @@ class VerticalArmSim extends BaseSim {
     this.positionDelayLine = new DelayLine(2); //models sensor lag
   }
 
-
   iterateCustom() {
 
     this.curSimTimeS = this.timeS[this.iterationCount];
 
     let measuredPositionRev = this.positionDelayLine.getSample();
-
-    if (this.validPrevious == false) {
-      measuredPositionRev = 0
-    }
 
     // Update controller at controller freq
     if (this.timeSinceLastControllerIteration >= this.controllerTimestepS) {
@@ -95,14 +90,14 @@ class VerticalArmSim extends BaseSim {
 
     this.positionDelayLine.addSample(this.plant.getCurrentPosition());
 
-    this.visualization.setCurPos(this.plant.getCurrentPosition());
+    this.procVarActualSignal.addSample(new Sample(this.curSimTimeS, measuredPositionRev));
+    this.procVarDesiredSignal.addSample(new Sample(this.curSimTimeS, this.currentSetpoint));
+    this.ampsSignal.addSample(new Sample(this.curSimTimeS, this.inputAmps));
+
+    this.visualization.setCurPos(measuredPositionRev);
     this.visualization.setCurTime(this.curSimTimeS);
     this.visualization.setCurSetpoint(this.currentSetpoint);
     this.visualization.setCurControlEffort(this.inputAmps);
-
-    this.procVarActualSignal.addSample(new Sample(this.curSimTimeS, this.plant.getCurrentPosition()));
-    this.procVarDesiredSignal.addSample(new Sample(this.curSimTimeS, this.currentSetpoint));
-    this.ampsSignal.addSample(new Sample(this.curSimTimeS, this.inputAmps));
 
     this.iterationCount++;
 

@@ -2,7 +2,7 @@ class TurretSim extends BaseSim {
   constructor(divIdPrefix) {
     super(divIdPrefix, "rot", -0.75, 0.75);
 
-    this.positionDelayLine = new DelayLine(3); //models sensor lag
+    this.positionDelayLine = new DelayLine(2); //models sensor lag
 
     this.simDurationS = 5.0;
     this.simulationTimestepS = 0.005;
@@ -68,7 +68,6 @@ class TurretSim extends BaseSim {
     this.iterationCount = 0;
 
     this.positionDelayLine = new DelayLine(2); //models sensor lag
-
   }
 
   iterateCustom() {
@@ -90,15 +89,14 @@ class TurretSim extends BaseSim {
 
     this.positionDelayLine.addSample(this.plant.getCurrentPosition());
 
-    this.procVarActualSignal.addSample(new Sample(this.curSimTimeS, this.plant.getCurrentPosition()));
+    this.procVarActualSignal.addSample(new Sample(this.curSimTimeS, measuredPosition));
     this.procVarDesiredSignal.addSample(new Sample(this.curSimTimeS, this.currentSetpoint));
     this.ampsSignal.addSample(new Sample(this.curSimTimeS, this.inputAmps));
 
-    this.visualization.setCurPos(this.plant.getCurrentPosition());
+    this.visualization.setCurPos(measuredPosition);
     this.visualization.setCurTime(this.curSimTimeS);
     this.visualization.setCurSetpoint(this.currentSetpoint);
     this.visualization.setCurControlEffort(this.inputAmps);
-
 
     this.iterationCount++;
 
