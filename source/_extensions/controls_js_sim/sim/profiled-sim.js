@@ -1,6 +1,6 @@
 class ProfiledSim extends BaseProfiledSim {
   constructor(divIdPrefix) {
-    super(divIdPrefix, "Rot", -0.75, 0.75);
+    super(divIdPrefix, "rot", -0.75, 0.75);
 
     this.positionDelayLine = new DelayLine(3); //models sensor lag
 
@@ -11,7 +11,7 @@ class ProfiledSim extends BaseProfiledSim {
     // User-configured setpoints
     this.currentSetpoint = 0.0;
 
-    this.plant = new TurretPlant(this.simulationTimestepS);
+    this.plant = new TurretPlant(this.simulationTimestepS, true);
 
     this.visualization = new TurretVisualization(
       this.visualizationDrawDiv,

@@ -1,6 +1,6 @@
 class VerticalArmSim extends BaseSim {
   constructor(divIdPrefix) {
-    super(divIdPrefix, "Rot", -.75, .75);
+    super(divIdPrefix, "rot", -.75, .75);
 
     this.positionDelayLine = new DelayLine(3); //models sensor lag
 

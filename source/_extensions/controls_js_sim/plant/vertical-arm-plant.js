@@ -50,7 +50,7 @@ class VerticalArmPlant {
     update(inAmps) {
         // Simulate friction - both static and dynamic
         let extTrq = 2.5; // 2 Nm of static friction (very sticky arm)
-        extTrq += 0.0005 * this.speedPrev; // 0.0005 Nm of friction for every RPM it's spinning
+        extTrq += 0.0005 * this.speedPrev; // 0.0005 Nm of friction for every rad/s it's spinning
 
         // Increase friction when not moving to simulate static friction
         if (this.speedPrev == 0) {

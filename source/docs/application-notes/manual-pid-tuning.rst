@@ -165,7 +165,7 @@ The following steps cover the general idea:
 6. Repeat steps 4 and 5 until increasing kD results in more oscillation, or until the system oscillates on its way to the setpoint. If oscillation on the way to setpoint is seen, decrease kD until it stops. Then reduce kP until any remaining overshoot stops. The goal is to maximize kP and kD to minimize the travel time.
 7. Verify gains work for other setpoints as well. Tune kP/kD as appropriate for most general cases.
 
-.. note:: Values of kP=2000, kD=150 demonstrate the "oscillates on its way to the setpoint" case for setpoints within 1 rotation.
+.. tip:: Values of kP=2000, kD=150 demonstrate the "oscillates on its way to the setpoint" case for setpoints within 1 rotation.
 
 .. dropdown:: "Why" for each step
 
@@ -219,7 +219,6 @@ The following steps cover the general idea:
 
    If my system normally expects setpoints within a rotation of my current position, then I'd prioritize the within-1-rotation situation for my PID controller. However, if my system normally expects setpoints closer to 20 rotations away from current position then I'd prioritize that situation. If I really needed both close and far away behavior, then I'd look at gain-scheduling based on the value of the error, using both Slots 0 and 1, with 0 for the within-1-rotation situation, and 1 for the outside-1-rotation situation.
 
-
 Arm Tuning with TorqueCurrentFOC
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -239,6 +238,8 @@ The steps:
 8. Increase kD until the overshoot stops happening.
 9. Repeat steps 7 and 8 until increasing kD results in more oscillation, or until the system oscillates on its way to the setpoint. If oscillation on the way to setpoint is seen, decrease kD until it stops. Then reduce kP until any remaining overshoot stops. The goal is to maximize kP and kD to minimize the travel time.
 10. Verify gains work for other setpoints as well. Tune kP/kD as appropriate for most general cases.
+
+.. tip:: Values of kP=5000, kD=800 demonstrate the "oscillates on its way to the setpoint" case for setpoints within 1 rotation.
 
 .. dropdown:: "Why" for each step
 
@@ -292,20 +293,22 @@ Profiled Tuning
 
 Profiled tuning can be treated much the same way as tuning a normal PID, but the introduction of a profile means much of the response can be calculated in advance with feed-forwards. This results in much of the work being done due to feed forward, with the feedback gains being used to account for any error in the system.
 
-In Phoenix 6, you can either generate your own profile and feed in the position and velocity setpoints, or use MotionMagic® and let the Talon generate the profile for you. In either case the Talon will have Velocity and/or Acceleration setpoints that it can use the kV and kA feedforward terms on, for more accurate profile following.
+In Phoenix 6, you can either generate your own profile and feed in the position and velocity setpoints, or use Motion Magic® and let the Talon generate the profile for you. In either case the Talon will have Velocity and/or Acceleration setpoints that it use for the kV and kA feedforward terms, resulting in more accurate profile following.
 
-Red is the position setpoint in rotations, blue is the velocity setpoint in rps, yellow is the acceleration setpoint in rot/s², purple is the current position, brown is the current velocity, orange is the current acceleration, and green is the torque current in amps. This particular mechanism has a 20:1 gear reduction, with the ``RotorToSensorRatio`` and ``SensorToMechanismRatio`` configs set up accordingly.
+Red is the position setpoint in rotations, blue is the velocity setpoint in rps, yellow is the acceleration setpoint in rot/s², purple is the current position, brown is the current velocity, orange is the current acceleration, and green is the torque current in amps. This particular mechanism has a 1:1 gear ratio with high inertia.
 
 The example below uses a pre-generated profile for the system to follow, and the general steps to tune it are below:
 
 1. Zero all PID gains.
 2. Set a setpoint relatively nearby (typically 0.1 mechanism rotations). This isn't relevant for the simulation, as the setpoint is determined by the pre-generated profile.
 3. Increase kS until the system starts moving, then back off to just before that movement.
-4. Increase kA until the measured position matches the profiled position at the beginning.
-5. Increase kV until the measured position matches the profiled position at the end.
+4. Increase kA until the slope of the measured velocity matches the slope of the profiled velocity at the beginning. In the simulation, you can also look at the measured and profiled acceleration.
+5. Increase kV until the measured velocity matches the profiled velocity towards the end of the "cruise" time (constant velocity setpoint). For many mechanisms, the kV can be left 0.
 6. Increase kP until you notice significant overshoot or oscillation (even during motion at cruise velocity).
 7. Increase kD until the overshoot/oscillation stops happening.
 8. Repeat steps 6 and 7 until increasing kD results in more oscillation, or until the system oscillates on its way to the setpoint. If oscillation on the way to setpoint is seen, decrease kD until it stops. Then reduce kP until any remaining overshoot stops. The goal is to maximize kP and kD to minimize the travel time.
+
+.. tip:: Values of kP=0, kD=6000 demonstrate the "oscillates on its way to the setpoint" case.
 
 .. dropdown:: "Why" for each step
 
@@ -313,10 +316,10 @@ The example below uses a pre-generated profile for the system to follow, and the
    2. A nearby setpoint ensures the system response should be relatively small to start with when tuning.
    3. The kS gain is meant to reduce the effect of friction, so the largest possible value that still prevents the system from moving will reduce the effect of friction in general.
    4. The kA gain effectively accounts for the inertia of the system. Since torqueCurrent is proportional to the torque applied at the rotor, kA is the coefficient used to scale the amperes applied to an acceleration the system will see. It is the backbone of the profile and doing most of the heavy lifting.
-   5. The kV gain controls the compensation due to drag in the system. If the mechanism sees a lot of drag, the end position will be far away, despite it tracking well at the beginning, so tuning kV to account for the drag compensates in that manner.
-   6. With the feed forwards taken care of, the feedback tuning comes into play, with kP being used to control how strongly the system minimizes error. However, in TorqueCurrentFOC modes there is no natural dampening force, so overshoot is expected at the beginning. Once that happens kD should be tuned.
-   7. The kD gain will effectively act as a kP on velocity, increasing it will increase the force bringing the system to the target velocity, so it should be increased until the system no longer oscillates.
-   8. Steps 6 and 7 are repeated until the gains reach the maximum they can be, indicating they're optimal for the system. These gains probably will not work in normal position closed loops, because it relies on a significant amount of feedforward to naturally dampen the system as physics would expect.
+   5. The kV gain controls the compensation due to drag in the system. If the mechanism sees a lot of drag, the measured velocity will gradually fall behind the setpoint, so tuning kV to account for the drag compensates in that manner. However, many position systems do not have significant drag and can use a kV of 0.
+   6. With the feed forwards taken care of, the feedback tuning comes into play, with kP being used to control how strongly the system minimizes error. However, in TorqueCurrentFOC modes there is no natural dampening force, so overshoot/oscillation is expected at the beginning. At that point, kD should be tuned.
+   7. The kD gain will effectively act as a kP on velocity. Increasing it will increase the force bringing the system to the target velocity, so it should be increased until the system no longer oscillates.
+   8. Steps 6 and 7 are repeated until the gains reach the maximum they can be, indicating they're optimal for the system. These gains probably will not work in normal position closed loops, as they rely on a significant amount of feedforward to naturally dampen the system as physics would expect.
 
 .. raw:: html
 
@@ -338,16 +341,18 @@ The example below uses a pre-generated profile for the system to follow, and the
 
    Following the guide, I have set all gains to 0.
 
-   I start with kS and set it to 1, and notice it doesn't move, increase it to 2, then 4 before it starts moving. Back off to 3, and 2.5 until it stops. I nudge it up to 2.6 and see it's still moving, so I move it back down to 2.5 and leave it there.
+   I start with kS and set it to 1, and notice it doesn't move, but it starts moving after increase it to 2. Back off to 1.5, and 1.25 until it stops. I nudge it up to 1.3 and see it's still moving, so I move it back down to 1.25 and leave it there.
 
-   Moving on to kA, I start with a kA of 1, and the system doesn't reach the necessary acceleration or velocity at all, so I increase it to 2, then 4, and 8, and 16 before I se it finally overshoot. I then start reducing kA to 12 and 10, then back up to 10.5 where I'm pretty much at the right acceleration.
+   Moving on to kA, I start with a kA of 1, and the system doesn't reach the necessary acceleration or velocity at all, so I increase it to 10, 20, 40, then 80 before I see it finally overshoot. I then start reducing kA to 60, then back up to 65 where I'm pretty much at the right acceleration.
 
-   I then start increasing kV to account for the friction due to drag. Starting with 1 creates a lot of overshoot, so I reduce it to 0.1 and still see some overshoot. Down to 0.05 and it's close, but still gaining a bit at the end. Finally 0.03 produces a good response to account for drag.
+   I then look at tuning kV to account for the friction due to drag. Looking at the graph, the velocity remains relatively consistent throughout the long motion, so I could use a kV of 0, but for the sake of the example I will increase kV. Starting with 1 creates some overshoot. Down to 0.5, then 0.2 and it's close, but still gaining a bit at the end. Finally 0.15 produces a good response to account for drag.
 
-   So now it's time to tune P. I start with a kP of 1, and notice there's barely a response. Increasing kP to 10 has a noticeable change, but it's still far too weak. Going up to 100 creates a noticeable oscillation, so kD should be increased to dampen it.
+   Now it's time to tune P. I start with a kP of 1, and notice there's barely a response. Increasing kP to 10, then 100 has a noticeable change and a slow oscillation, but it's still far too weak. Going up to 2000 creates a noticeable oscillation, so kD should be increased to dampen it.
 
-   Starting with a kD of 1, the oscillation is still present, so it increases to 10 where there's an impact but it's not enough. Doubling at this point to 20 looks much better, but it also looks like it can be further improved, so it doubles again to 40 where it looks sufficient to move back to kP.
+   Starting with a kD of 1, the oscillation is still present, so it increases to 10, then 100 where there's an impact but it's not enough. Doubling at this point to 200, then 400 looks much better, but it also looks like it can be further improved, so it doubles again to 800 where it looks sufficient to move back to kP.
 
-   Since kP is already at 100, we'll double to 200, then 400, then 800 before the oscillation at ~2 seconds appears significant. The end point looks good, though, so there's no more need to increase kP, as long as we can remove the oscillation with kD.
+   Since kP is already at 2000, we'll double to 4000, then 8000, then 16000 before the oscillation at ~2 seconds appears significant. The end point looks good, though, so there's no more need to increase kP, as long as we can remove the oscillation with kD.
 
-   So kD increases to 80, then 160, then 320. At 320 the profile looks to have hardly any overshoot or oscillation at all, and the end position is right on top of the target, so it looks sufficient for this mechanism.
+   So kD increases to 1600, then 3200, at which point there is some oscillation on the way to the target. Backing off to 2400, then 2000 looks to have hardly any overshoot or oscillation at all, and the end position is right on top of the target, so it looks sufficient for this mechanism.
+
+   This gives final gains of kS = 1.25 A, kV = 0.15 A/rps, kA = 65 A/(rot/s²), kP = 16000 A/rot, and kD = 2000 A/rps.
