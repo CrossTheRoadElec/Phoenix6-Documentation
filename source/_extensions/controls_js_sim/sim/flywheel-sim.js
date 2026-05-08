@@ -4,7 +4,7 @@ class FlywheelSim extends BaseSim {
 
     this.simDurationS = 10.0;
     this.simulationTimestepS = 0.005;
-    this.controllerTimestepS = 0.02;
+    this.controllerTimestepS = 0.005;
 
     // User-configured setpoints
     this.setpointVal = 50.0;

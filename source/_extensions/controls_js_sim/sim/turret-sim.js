@@ -6,7 +6,7 @@ class TurretSim extends BaseSim {
 
     this.simDurationS = 5.0;
     this.simulationTimestepS = 0.005;
-    this.controllerTimestepS = 0.02;
+    this.controllerTimestepS = 0.005;
 
     // User-configured setpoints
     this.currentSetpoint = 0.0;

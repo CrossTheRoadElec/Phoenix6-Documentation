@@ -20,8 +20,8 @@ class TurretPlant {
         this.C3 = 2 / (mass * radius * radius);
 
         this.systemNoise = false;
-        // Simulate 2 amp std dev system noise at the loop update frequency
-        this.gaussianNoise = gaussian(0, 2);
+        // Simulate 3 amp std dev system noise at the loop update frequency
+        this.gaussianNoise = gaussian(0, 3);
     }
     init() {
         this.speed = 0;
@@ -55,8 +55,8 @@ class TurretPlant {
             extTrq = 0.6;
         }
 
-        // Simulate system noise only if control input is outside 2.5 amps
-        if (this.systemNoise && Math.abs(inAmps) > 2.5) {
+        // Simulate system noise only if control input is outside 3 amps
+        if (this.systemNoise && Math.abs(inAmps) > 3) {
             // apply system noise
             inAmps += this.gaussianNoise();
         }

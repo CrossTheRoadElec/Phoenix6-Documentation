@@ -21,8 +21,8 @@ class VerticalArmPlant {
         this.C3 = 3 / (mass * length * length);
 
         this.systemNoise = false;
-        // Simulate 2 A std dev system noise at sim loop update frequency
-        this.gaussianNoise = gaussian(0, 2);
+        // Simulate 3 A std dev system noise at sim loop update frequency
+        this.gaussianNoise = gaussian(0, 3);
     }
     init() {
         this.speed = 0;

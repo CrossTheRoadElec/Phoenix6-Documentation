@@ -66,9 +66,9 @@ These general guidelines are great for understanding what is happening in a clos
 Flywheel Tuning with TorqueCurrentFOC
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Below is a list of steps and a simulator that provides the opportunity to try tuning a flywheel system using PID with TorqueControl. The Red line is the setpoint of the flywheel controller, purple is the current velocity, and the green line is the current of the motor in stator-amps.
+Below is a list of steps and a simulator that provides the opportunity to try tuning a flywheel system using PID with TorqueControl. The Red line is the setpoint of the flywheel controller, purple is the current velocity, and the green line is the torque current of the motor in amps.
 
-This particular flywheel has a maximum velocity of 100 rps.
+This particular flywheel has a maximum velocity of 100 rps and a 1:1 gear ratio.
 
 Tuning a flywheel is largely done with the following steps:
 
@@ -151,29 +151,29 @@ Turret Tuning with TorqueCurrentFOC
 
 Tuning a Turret is identical to any other position controller that has no gravity component.
 
-One key thing to note with any position-based torque controller is the reliance on the kD term. When tuning a position controller with voltage, it's often enough to rely on the natural dampening of the system to dampen the response, negating some of the need for kD. However when using torque as the control type, most of that natural dampening is gone, so kD is necessary for the system to stop itself in any reasonable amount of time.
+One key thing to note with any position-based torque controller is the reliance on the kD term. When tuning a position controller with voltage, it's often enough to rely on the natural dampening of the system to dampen the response with a weak enough kP, negating some of the need for kD. However when using torque as the control type, most of that natural dampening is gone, so kD is always necessary for the system to stop itself in any reasonable amount of time.
 
-Similarly to the velocity controller, below is a list of steps and simulator for turret tuning. Red is the setpoint in rotations, purple is the current position, green is the stator current in amps.
+Similar to the velocity controller, below is a list of steps and simulator for turret tuning. Red is the setpoint in rotations, purple is the current position, and green is the torque current in amps. This particular turret has a 20:1 gear reduction, with the ``RotorToSensorRatio`` and ``SensorToMechanismRatio`` configs set up accordingly.
 
 The following steps cover the general idea:
 
 1. Zero all PID gains.
-2. Set a setpoint relatively nearby (typically 0.1 mechanism rotations).
+2. Set a setpoint relatively nearby (such as 0.1 mechanism rotations).
 3. Increase kS until the turret starts moving, then back off to just before that movement.
 4. Increase kP until you notice significant overshoot.
 5. Increase kD until the overshoot stops happening.
-6. Repeat steps 4 and 5 until increasing kD results in more oscillation, or until the system oscillates on its way to the setpoint. If oscillation on the way to setpoint is seen, decrease kD until it stops. If overshoot in general is happening and kD is already at max, reduce kP until it stops.
+6. Repeat steps 4 and 5 until increasing kD results in more oscillation, or until the system oscillates on its way to the setpoint. If oscillation on the way to setpoint is seen, decrease kD until it stops. Then reduce kP until any remaining overshoot stops. The goal is to maximize kP and kD to minimize the travel time.
 7. Verify gains work for other setpoints as well. Tune kP/kD as appropriate for most general cases.
 
-.. note:: Values of kP=200, kD=15 demonstrate the "oscillates on its way to the setpoint" case for setpoints within 1 rotation.
+.. note:: Values of kP=2000, kD=150 demonstrate the "oscillates on its way to the setpoint" case for setpoints within 1 rotation.
 
 .. dropdown:: "Why" for each step
 
    1. We start with PID gains at 0 to isolate as many of the forces in play as possible, and iteratively get closer to the "ideal" gains.
    2. A nearby setpoint ensures the system response should be relatively small to start with when tuning.
    3. The kS gain is meant to reduce the effect of friction, so the largest possible value that still prevents the system from moving will reduce the effect of friction in general.
-   4. The kP gain will control how quickly the system gets to the setpoint, however in TorqueCurrentFOC modes there is no natural dampening force, so overshoot is expected at the beginning. Once that happens kD should be tuned.
-   5. The kD gain will effectively slow down the system as it reaches the setpoint, increasing it will increase the force slowing it down, so it should be increased until the system no longer overshoots.
+   4. The kP gain will control how quickly the system gets to the setpoint. However, in TorqueCurrentFOC modes there is no natural dampening force, so overshoot and oscillation is expected at the beginning. At that point, kD should be tuned.
+   5. The kD gain will effectively slow down the system as it reaches the setpoint. Increasing it will increase the force slowing it down, so it should be increased until the system no longer overshoots.
    6. In general, the system wants as high a kP gain as possible to decrease the time taken to get to the setpoint. This also requires a high kD gain to properly dampen the system. The limit of how high the kP/kD term can be is determined by the system latency, at which point the oscillation is impossible to avoid. The goal of repeating steps 4 and 5 is to find that limit.
    7. Always verify the gains work for the expected setpoints of the system, it's possible the general solution may not work under the expected operating range of the system. If that's the case, re-tune for the expected operating range using the generic gains as a basis.
 
@@ -197,29 +197,27 @@ The following steps cover the general idea:
 
    Following the guide, I start with all gains at 0 and set a setpoint of 0.1 rotations.
 
-   I start with a kS of 1 amp and notice it moves, so I cut it in half to 0.5, 0.25, 0.125 until it stops. Increasing to 0.13 gets the turret moving again, so I leave it at 0.125 amps.
+   I start with a kS of 1 amp and notice it still does not move, so I double it to 2 amps and notice it now moves. Then, I reduce it to 1.5, then 1.25 until it stops. Increasing to 1.3 gets the turret moving again, so I leave it at 1.25 amps.
 
-   I then set a kP of 1, and see significant overshoot, so I add a kD of 1. This is very overdamped system, but that's fine, as I'll start increasing kP again.
+   I then set a kP of 1, then 10 and see significant overshoot, so I add a kD of 1, then 10. This is very overdamped system, but that's fine, as I'll start increasing kP again.
 
-   I double kP to 2 and see no overshoot. Double again to 4, and I see a little overshoot. Double again to 8 and I see significant overshoot, indicating I should increase kD again. I double it to 2 and the overshoot becomes minimal, but then I double it again to 4 before it becomes significantly overdamped again.
+   I increase kP to 20 and see no overshoot. Increase again to 50, then 100, and I see a little overshoot. Increase again to 200 and I see significant overshoot, indicating I should increase kD again. I double it to 20 and the overshoot becomes minimal, but then I increase it again to 40 before it becomes significantly overdamped again.
 
-   Doubling kP again to 16 still looks fine, to 32 is still fine, 64 finally has significant overshoot. I double kD to 8 and that overshoot is gone.
+   Increasing kP again to 500 still looks fine, to 1000 is still fine, 2000 finally has significant overshoot. I increase kD to 60 and that overshoot is gone.
 
-   So I double kP again to 128, then to 256 where I notice it oscillates a bit. I try to stop this oscillation by increasing kD to 16, then to 32 where I notice it's always oscillating. This means I've reached the limit of the system, and need to back off on gains a bit.
+   So I increase kP again to 3000, where I notice it oscillates a bit. I try to stop this oscillation by increasing kD to 80, then to 100 where I notice it's always oscillating. This means I've reached the limit of the system, and need to back off on gains a bit.
 
-   I reduce kD back to 16 where I notice a bit of oscillation on its way to the setpoint, and start dialing back kP. I start with a kP of 200, where it's overdamped and oscillating on its way to the setpoint. So I reduce kD to 12.
+   I reduce kD back to 80 where I notice a bit of oscillation on its way to the setpoint, then 70, when that oscillation goes away, and start dialing back kP. I start with a kP of 2800, where it's overdamped and oscillating on its way to the setpoint, so I reduce kD to 65.
 
-   From here I continue to reduce kP to 180, then 150 where I notice the oscillation on its way to the setpoint again. Reduce kD again to 10, and decrease kP to 140, then 130 where I see oscillation on its way to setpoint again.
+   From here I continue to reduce kP to 2600, then 2500, then 2400, and the system response looks relatively good at this point. Now it's time to play with different setpoint. When I set a setpoint of 0.45, I notice significant overshoot that I should correct in PID.
 
-   Reduce kD even more to 9, and the system response looks relatively good at this point. Now it's time to play with different setpoint. Any setpoint within 1 rotation looks good, which is appropriate for a turret. However, let's say I'm not tuning a turret anymore, but some other position controller where a setpoint of, say, 20 is appropriate. When I set a setpoint of 20, I notice significant overshoot that I should correct in PID.
+   At this point, I know that my kD can't go much higher, otherwise I have oscillation on my way to the setpoint at smaller setpoints. So I try to stop the oscillation only with kP. Reducing it to 2200, 2000, then finally 1800 before the overshoot stops, but now it looks overdamped.
 
-   At this point, I know that my kD can't go much higher otherwise I have oscillation on my way to the setpoint at smaller setpoints. So I try to stop the oscillation only with kP. Reducing it to 120, 110, 100, then finally 90 before the overshoot stops. I check back with my 0.1 setpoint to make sure it's still good, but now it looks overdamped.
+   So I reduce kD to 60, and I have a bit of overshoot, so I reduce kP to 1700, then 1650 which looks good. Back to a setpoint of 0.1 and I still have some overdamped behavior, but it's minimal at this point and what I'd consider acceptable.
 
-   So I reduce kD to 8, and it looks good. Back to a setpoint of 20, I have a bit of overshoot, so I reduce kP to 80 which looks good. Back to setpoint of 0.1, I have a bit of overdamped behavior, so I increase kP up to 85. Setpoint of 20 still has a bit of overshoot, so I bring kD up to 8.5 which looks good.
+   This gives final gains of kS = 1.25 A, kP = 1650 A/rot, and kD = 60 A/rps.
 
-   Back to a setpoint of 0.1 and I still have some underdamped behavior, but it's minimal at this point and what I'd consider acceptable.
-
-   If my system normally expects setpoints within 1 rotation of my current position, then I'd prioritize the within-1-rotation situation for my PID controller, however if my system normally expects setpoints closer to 20 rotations away from current position then I'd prioritize that situation. If I really needed both close and far away behavior, then I'd look at gain-scheduling based on the value of the error, using both Slots 0 and 1, with 0 for the within-1-rotation situation, and 1 for the outside-1-rotation situation.
+   If my system normally expects setpoints within a rotation of my current position, then I'd prioritize the within-1-rotation situation for my PID controller, however if my system normally expects setpoints closer to 20 rotations away from current position then I'd prioritize that situation. If I really needed both close and far away behavior, then I'd look at gain-scheduling based on the value of the error, using both Slots 0 and 1, with 0 for the within-1-rotation situation, and 1 for the outside-1-rotation situation.
 
 
 Arm Tuning with TorqueCurrentFOC
@@ -227,27 +225,29 @@ Arm Tuning with TorqueCurrentFOC
 
 Tuning an Arm is very similar to tuning a turret, just with the addition of needing to account for gravity. As such, the process is nearly identical, except for a small section dedicated to dialing in the kG term.
 
+As with the previous examples, red is the setpoint in rotations, purple is the current position, and green is the torque current in amps. This particular arm has a 35:1 gear reduction, with the ``RotorToSensorRatio`` and ``SensorToMechanismRatio`` configs set up accordingly.
+
 The steps:
 
 1. Zero all PID gains.
 2. Increase kG and find the smallest possible kG that stops the arm from moving.
 3. Increase kG and find the largest possible kG that stops the arm from moving.
-4. Set kG to the middle of the two.
-5. Set a setpoint relatively nearby (typically 0.1 mechanism rotations).
-6. Increase kS until the arm starts moving, then back off to just before that movement.
+4. Set kG to the middle of the two values.
+5. Set kS to half the difference between the two values.
+6. Set a setpoint relatively nearby (typically 0.1 mechanism rotations).
 7. Increase kP until you notice significant overshoot.
 8. Increase kD until the overshoot stops happening.
-9. Repeat steps 7 and 8 until increasing kD results in more oscillation, or until the system oscillates on its way to the setpoint. If oscillation on the way to setpoint is seen, decrease kD until it stops. If overshoot in general is happening and kD is already at max, reduce kP until it stops.
+9. Repeat steps 7 and 8 until increasing kD results in more oscillation, or until the system oscillates on its way to the setpoint. If oscillation on the way to setpoint is seen, decrease kD until it stops. Then reduce kP until any remaining overshoot stops. The goal is to maximize kP and kD to minimize the travel time.
 10. Verify gains work for other setpoints as well. Tune kP/kD as appropriate for most general cases.
 
 .. dropdown:: "Why" for each step
 
    1. We start with PID gains at 0 to isolate as many of the forces in play as possible, and iteratively get closer to the "ideal" gains.
-   2. The kG gain is meant to counteract the force of gravity, however the force of friction is also at play in an arm. The lowest possible kG that prevents the system from moving is the lower bound of the gravity and friction component.
-   3. The highest possible kG that prevents the system from moving is the upper bound of the gravity and friction component.
-   4. Setting kG to the middle point of the lower and upper bounds is a good approximation for the true effect of gravity, removing the force of friction.
-   5. A nearby setpoint ensures the system response should be relatively small to start with when tuning.
-   6. The kS gain is meant to reduce the effect of friction, so the largest possible value that still prevents the system from moving will reduce the effect of friction in general.
+   2. The kG gain is meant to counteract the force of gravity; however, the force of friction is also at play in an arm. The lowest possible kG that prevents the system from moving is the lower bound of the gravity and friction component (kG - kS).
+   3. The highest possible kG that prevents the system from moving is the upper bound of the gravity and friction component (kG + kS).
+   4. Setting kG to the middle point of the lower and upper bounds is a good approximation for the true effect of gravity. ((kG + kS) + (kG - kS)) / 2 = kG.
+   5. Setting kS to half the difference of the lower and upper bounds is a good approximation for the true effect of friction. ((kG + kS) - (kG - kS)) / 2 = kS.
+   6. A nearby setpoint ensures the system response should be relatively small to start with when tuning.
    7. The kP gain will control how quickly the system gets to the setpoint, however in TorqueCurrentFOC modes there is no natural dampening force, so overshoot is expected at the beginning. Once that happens kD should be tuned.
    8. The kD gain will effectively slow down the system as it reaches the setpoint, increasing it will increase the force slowing it down, so it should be increased until the system no longer overshoots.
    9. In general, the system wants as high a kP gain as possible to decrease the time taken to get to the setpoint. This also requires a high kD gain to properly dampen the system. The limit of how high the kP/kD term can be is determined by the system latency, at which point the oscillation is impossible to avoid. The goal of repeating steps 7 and 8 is to find that limit.
@@ -290,6 +290,8 @@ Profiled tuning can be treated much the same way as tuning a normal PID, but the
 
 In Phoenix 6, you can either generate your own profile and feed in the position and velocity setpoints, or use MotionMagic® and let the Talon generate the profile for you. In either case the Talon will have Velocity and/or Acceleration setpoints that it can use the kV and kA feedforward terms on, for more accurate profile following.
 
+Red is the position setpoint in rotations, blue is the velocity setpoint in rps, yellow is the acceleration setpoint in rot/s², purple is the current position, brown is the current velocity, orange is the current acceleration, and green is the torque current in amps. This particular mechanism has a 20:1 gear reduction, with the ``RotorToSensorRatio`` and ``SensorToMechanismRatio`` configs set up accordingly.
+
 The example below uses a pre-generated profile for the system to follow, and the general steps to tune it are below:
 
 1. Zero all PID gains.
@@ -299,7 +301,7 @@ The example below uses a pre-generated profile for the system to follow, and the
 5. Increase kV until the measured position matches the profiled position at the end.
 6. Increase kP until you notice significant overshoot or oscillation (even during motion at cruise velocity).
 7. Increase kD until the overshoot/oscillation stops happening.
-8. Repeat steps 6 and 7 until increasing kD results in more oscillation, or until the system oscillates on its way to the setpoint. If oscillation on the way to setpoint is seen, decrease kD until it stops. If overshoot in general is happening and kD is already at max, reduce kP until it stops.
+8. Repeat steps 6 and 7 until increasing kD results in more oscillation, or until the system oscillates on its way to the setpoint. If oscillation on the way to setpoint is seen, decrease kD until it stops. Then reduce kP until any remaining overshoot stops. The goal is to maximize kP and kD to minimize the travel time.
 
 .. dropdown:: "Why" for each step
 
