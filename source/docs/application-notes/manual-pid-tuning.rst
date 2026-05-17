@@ -73,30 +73,28 @@ This particular flywheel has a maximum velocity of 100 rps and a 1:1 gear ratio.
 Tuning a flywheel is largely done with the following steps:
 
 1. Zero all PID gains.
-2. Set a high setpoint (typically 8/10th the maximum velocity).
-3. Increase kS until the wheel starts moving, then back off to just before that movement.
-4. Set kP to a very low number (typically 1 * ``RotorToSensorRatio`` * ``SensorToMechanismRatio`` is a good starting point).
-5. Adjust kV until flywheel achieves setpoint. Note that for some velocity systems, this may occur at kV = 0 (as is the case with swerve drive motors).
-6. Set a low setpoint (1/10th of the maximum velocity).
-7. Adjust kS until flywheel achieves setpoint.
-8. Set back to the high setpoint.
-9. Repeat steps 5-8 until the gains do not change.
-10. Increase kP until the flywheel oscillates, then back off to just before that oscillation.
-11. Verify gains hold for expected velocities.
+2. Set a low setpoint (typically 10% of the maximum velocity).
+3. Set kP to a very low number (typically 1 * ``RotorToSensorRatio`` * ``SensorToMechanismRatio`` is a good starting point).
+4. Adjust kS until flywheel achieves setpoint.
+5. Set a high setpoint (typically 80% of the maximum velocity).
+6. Adjust kV until flywheel achieves setpoint. Note that for some velocity systems, this may occur at kV = 0 (as is the case with swerve drive motors).
+7. Go back to the low setpoint.
+8. Repeat steps 4-7 until the gains do not change.
+9. Go back to the high setpoint. Increase kP until the flywheel oscillates, then back off to just before that oscillation.
+10. Verify gains hold for expected velocities.
 
 .. dropdown:: "Why" for each step
 
    1. We start with PID gains at 0 to isolate as many of the forces in play as possible, and iteratively get closer to the "ideal" gains.
-   2. There needs to be a setpoint for the parameters to take affect, and a higher setpoint sets up the following steps.
-   3. The kS gain is meant to reduce the effect of friction without it moving the mechanism on its own, so getting it as close to breaking friction without it actually breaking friction is ideal. However, this step alone only accounts for static friction, which is not ideal in a flywheel that typically experiences kinetic friction. This is managed in a later step.
-   4. A low kP will magnify the requirement for a good kS and kV. If this gain is too high, it will mask a "bad" kS and kV during the kS/kV tuning.
-   5. When the setpoint is high, the kV will dwarf the kS term in its effectiveness, so the kV term should be prioritized to achieve the setpoint.
-   6. Setting a low setpoint will prioritize the kS term during its tuning phase.
-   7. With the low setpoint, the kS term will dwarf the kV term, so kS can be tuned to correctly account for kinetic friction.
-   8. Going back to a high setpoint verifies the kV term is still correct.
-   9. Typically, after reducing kS the system will not achieve its high setpoint, so the kV term needs to increase. Similarly, increasing kV may cause the system to overshoot the low setpoint, requiring the kS to lower. This procedure continues until the kS/kV gains stabilize and stop changing, indicating the feed forwards are correct.
-   10. With proper kS/kV terms, the kP can be increased to quickly achieve the setpoint. The system wants as high a kP gain as possible to decrease the time taken to get to the setpoint. The limit of how high the kP term can be is determined by the system latency, at which point the oscillation is impossible to avoid.
-   11. Always verify the gains work for the setpoints you expect the system to be commanded, as it is possible the generic gains may not work under the operating range of the system. If that is the case, adjust the setpoints to be within the expected operating range and re-tune with them.
+   2. There needs to be a setpoint for the parameters to take affect, and a lower setpoint sets up the following steps.
+   3. A low kP will magnify the requirement for a good kS and kV. If this gain is too high, it will mask a "bad" kS and kV during the kS/kV tuning.
+   4. The kS gain is meant to reduce the effect of friction without it moving the mechanism on its own. However, tuning kS by simply finding the point at which the mechanism moves only accounts for static friction, which is not ideal in a flywheel that typically experiences kinetic friction. With the low setpoint, the kS term will dwarf the kV term, so kS can be tuned to correctly account for kinetic friction.
+   5. Setting a high setpoint will prioritize the kV term during its tuning phase.
+   6. With the high setpoint, the kV output will dwarf the kS term in its effectiveness, so the kV term should be prioritized to achieve the setpoint.
+   7. Going back to a low setpoint verifies the kS term is still correct.
+   8. Typically, after reducing kS the system will not achieve its high setpoint, so the kV term needs to increase. Similarly, increasing kV may cause the system to overshoot the low setpoint, requiring the kS to lower. This procedure continues until the kS/kV gains stabilize and stop changing, indicating the feed forwards are correct.
+   9. With proper kS/kV terms, the kP can be increased to quickly achieve the setpoint. The system wants as high a kP gain as possible to decrease the time taken to get to the setpoint. The limit of how high the kP term can be is determined by the system latency, at which point the oscillation is impossible to avoid.
+   10. Always verify the gains work for the setpoints you expect the system to be commanded, as it is possible the generic gains may not work under the operating range of the system. If that is the case, adjust the setpoints to be within the expected operating range and re-tune with them.
 
 The simulator below allows you to follow these steps to find the right gains.
 
@@ -120,31 +118,25 @@ The simulator below allows you to follow these steps to find the right gains.
 
 .. dropdown:: Tuning Process Example
 
-   Following the guide, I start with all gains set to 0, set a setpoint of 80 (100 rps maximum), and begin with playing with the kS parameter.
+   Following the guide, I start with all gains set to 0 and set a setpoint of 10 rps (100 rps maximum). The gear ratios are 1, so I set the kP to 1 amp output per rps error and notice that the wheel starts moving up to the setpoint, but it can't quite reach it, so I begin playing with the kS parameter.
 
-   Setting kS to 1 doesn't start spinning the wheel, so I double it to 2, which remains still. Doubling it to 4 still doesn't move, so I up it to 8 where it does start moving. Going back to 6 stops the wheel, and so does 7, so I leave the kS at 7 and move on to the next step.
+   Setting kS to 1 significantly undershoots, so I double it to 2, which still undershoots. Doubling it to 4 gets it pretty close, and 5 overshoots, so I leave the kS at 4 and move on to the next step.
 
-   The gear ratios are 1, so I set the kP to 1 amp output per rps error, and notice that the wheel starts moving up to the setpoint, but can't quite reach it. It stalls out at 65-70 rps. This means the drag is significant and preventing us from reaching the setpoint, necessitating a kV.
+   Now I set a setpoint of 80 rps and notice that the wheel stalls out at 65-70 rps. This means the drag is significant and preventing us from reaching the setpoint, necessitating a kV. I set kV to 1, and notice that it significantly overshoots. I halve it to 0.5, 0.25, then 0.125 before I notice it just barely makes it to the target. Increasing it to 0.13 is almost perfect, so I leave it at 0.13.
 
-   Now I set kV to 1, and notice that it significantly overshoots. I halve it to 0.5, 0.25, then 0.125 before I notice it just barely passes the target, so I leave it at 0.125 and move on to the low setpoint.
+   Then, I set the setpoint to 10 and notice that I'm overshooting. This means I need to decrease the kS gain. I try 3 and notice that it still overshoots. So I bring it down to 2.5, then up to 2.8 and see it's pretty much perfect.
 
-   Then, I set the setpoint to 10, and notice that I'm overshooting. This means I need to decrease the kS gain.
+   Going back to 80 rps, I'm now undershooting, so I increase kV to 0.14, then 0.15 before I'm happy with it.
 
-   I try 4 from before again, and notice that it overshoots. So I bring it down to 3 and see it's pretty much perfect.
+   Back down to 10 rps, I'm overshooting again, so I bring kS down to 2.6, at which point I'm happy with it reaching the target.
 
-   Going back to 80 rps, I'm now undershooting, so I increase kV to 0.13, then 0.14 before I'm happy with it.
+   Again up at 80 rps, I'm now generally happy with how close it's reaching the target, so I move on to increasing kP.
 
-   Back down to 10 rps, I'm overshooting again, so I bring kS down to 2 and see it undershoot. I take the halfway point and make it 2.5, then 2.6 before I'm happy with it reaching the target.
+   I first double kP to 2, then 5, 10, and 20, noticing that the time to target is decreasing with a larger kP. A kP of 20 results in a bit of overshoot that I don't like, so I decrease it to 18, 17, then 16 before it matches what I want, so I leave it at 16.
 
-   Again up at 80 rps, I'm now undershooting, so I increase kV to 0.15 before I'm happy with it.
+   This gives final gains of kS = 2.6 A, kV = 0.15 A/rps, and kP = 16 A/rps.
 
-   Now back down at 10 rps I'm generally happy with how close it's reaching the target, so I move on to increasing kP.
-
-   I first double kP to 2, then 4, 8, and 16, noticing that the time to target is decreasing with a larger kP. A kP of 16 results in a bit of overshoot that I don't like, so I decrease it to 12, then 9 before it matches what I want. I increase to 10 and still like the response, so I leave it at 10.
-
-   This gives final gains of kS = 2.6 A, kV = 0.15 A/rps, and kP = 10 A/rps.
-
-   And that's the flywheel tuned! This took 2-3 iterations of going between low setpoint and high setpoint, but sometimes you may need more depending on how difficult your system's dynamics are and if you need tighter tolerances. In this case I'm eyeballing the response and saying it's good enough, but in practice you should use the closed loop error Status Signal to verify the error is within the tolerance of your mechanism.
+   And that's the flywheel tuned! This took 3 iterations of going between low setpoint and high setpoint, but sometimes you may need more depending on how difficult your system's dynamics are and if you need tighter tolerances. In this case I'm eyeballing the response and saying it's good enough, but in practice you should use the closed loop error Status Signal to verify the error is within the tolerance of your mechanism.
 
 Turret Tuning with TorqueCurrentFOC
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
