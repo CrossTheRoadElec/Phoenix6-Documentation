@@ -1,5 +1,5 @@
-TalonFX
-=======
+TalonFX / TalonFXS
+==================
 
 .. toctree::
    :maxdepth: 1
@@ -9,4 +9,5 @@ TalonFX
    closed-loop-requests
    basic-pid-control
    motion-magic
+   manual-pid-tuning
    remote-sensors

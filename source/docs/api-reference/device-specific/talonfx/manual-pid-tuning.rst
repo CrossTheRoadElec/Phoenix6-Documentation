@@ -1,15 +1,13 @@
 .. raw:: html
 
-   <script src="../../_static/pid-tune.js"></script>
-   <link rel="stylesheet" type="text/css" href="../../_static/pid-tune.css" />
+   <script src="../../../../_static/pid-tune.js"></script>
+   <link rel="stylesheet" type="text/css" href="../../../../_static/pid-tune.css" />
 
 
-How to Manually Tune your PID Loops
-===================================
+Manually Tuning PID with TorqueCurrentFOC
+=========================================
 
-*Authored by Cory*
-
-There's plenty of tools available now that allow users to characterize their mechanism and find the ideal gains, however sometimes it's faster and easier to manually tune a mechanism. This guide covers how to tune the more popular Phoenix 6 PID loops manually.
+There are plenty of tools available that allow users to characterize their mechanism and find the ideal gains, such as the `WPILib System Identification tool <https://docs.wpilib.org/en/stable/docs/software/advanced-controls/system-identification/introduction.html>`__. However, many of these tools require an understanding of how to manually tune a mechanism, and manual tuning can sometimes be faster and easier. This guide covers how to tune Phoenix 6 PID control manually with a focus on TorqueCurrentFOC.
 
 General Information
 -------------------
@@ -18,55 +16,50 @@ Every closed loop controller has the following aspects consistent:
 
 1. Gains are canonical
 
-   - :math:`k_{P} = \frac{\mathrm{motor\_output}}{\mathrm{error}}`
-      - The amount of output to apply per unit of error in the system.
-
-   - :math:`k_{I} = \frac{\mathrm{motor\_output}}{\mathrm{error} \cdot \mathrm{sec}}`
-      - The amount of output to apply per unit of error for every second of that error.
-
-   - :math:`k_{D} = \frac{\mathrm{motor\_output}}{\frac{\mathrm{error}}{\mathrm{sec}}}=\frac{\mathrm{motor\_output} \cdot \mathrm{sec}}{\mathrm{error}}`
-      - The amount of output to apply per change in error over time.
-
-   - :math:`k_{S} = \mathrm{motor\_output}`
-      - A static or constant amount of output to apply typically used to overcome friction.
-
-   - :math:`k_{G} = \frac{\mathrm{motor\_output}}{\cos(\mathrm{angle})}` if mechanism is arm; :math:`k_{G} = \mathrm{motor\_output}` if mechanism is an elevator
+   - :math:`k_{G} = \frac{\mathrm{output}}{\cos(\mathrm{angle})}` for arm; :math:`k_{G} = \mathrm{output}` for elevator
       - The amount of output to apply to counteract the force of gravity.
 
-   - :math:`k_{V} = \frac{\mathrm{motor\_output}}{\mathrm{vel}}`
-      - The amount of output to apply per target velocity. In Voltage control modes this is a feed forward to counteract the back-emf of the motor. In Current control modes this is a feed forward to counteract the force of drag on the system.
+   - :math:`k_{S} = \mathrm{output}`
+      - A static or constant amount of output to apply, typically used to overcome friction.
 
-   - :math:`k_{A} = \frac{\mathrm{motor\_output}}{\mathrm{acc}}`
+   - :math:`k_{V} = \frac{\mathrm{output}}{\mathrm{vel}}`
+      - The amount of output to apply per target velocity. In Voltage control modes, this is primarily a feed forward to counteract the back-emf of the motor. In Torque control modes, this is a feed forward to counteract the force of drag (or viscous friction) on the system.
+
+   - :math:`k_{A} = \frac{\mathrm{output}}{\mathrm{accel}}`
       - The amount of output to apply per target acceleration. This is used to account for the inertia of a system.
+
+   - :math:`k_{P} = \frac{\mathrm{output}}{\mathrm{error}}`
+      - The amount of output to apply per unit of error in the system.
+
+   - :math:`k_{I} = \frac{\mathrm{output}}{\mathrm{error} \cdot \mathrm{s}}`
+      - The amount of output to apply per unit of error for every second of that error.
+
+   - :math:`k_{D} = \frac{\mathrm{output}}{\mathrm{error} / \mathrm{s}}=\frac{\mathrm{output} \cdot \mathrm{s}}{\mathrm{error}}`
+      - The amount of output to apply per unit of change in error over time.
 
 2. Motor output is dependent on control type
 
-   - Duty Cycle uses percent of supply voltage: :math:`\mathrm{motor\_output}=\mathrm{duty\_cycle}`
+   - See :ref:`docs/api-reference/device-specific/talonfx/talonfx-control-intro:control output types` and :ref:`docs/api-reference/device-specific/talonfx/closed-loop-requests:choosing output type`
 
-   - Voltage uses motor output voltage: :math:`\mathrm{motor\_output}=\mathrm{Volts}`
+3. Everything operates in mechanism units
 
-   - Torque Current uses stator amps: :math:`\mathrm{motor\_output}=\mathrm{Amps}`
-
-3. Everything operates in Mechanism units
-
-   - This generally multiplies the gains by the gear ratio
+   - This generally multiplies the gains by the gear reduction
 
    - A 100:1 reduction means a :math:`k_{P}=1` is 1 Volt output at 1 rotation error at the mechanism, or 1 Volt output at 100 rotations error at the motor.
 
+As a result, the first major aspect of manual PID tuning is finding a good start. Since every gain is canonical, users can back-calculate what value the gain should start at based on the error the mechanism sees and the desired motor voltage. For example, consider an arm mechanism that is currently 0.1 rotations away from its target. If 1 volt of output is enough to meaningfully move it, at 0.1 rotation error the arm can apply 1 Volt to slowly bring it to the setpoint. That results in a kP of :math:`k_{P}=\frac{\mathrm{Volts}}{\mathrm{error}}=\frac{1\mathrm{\ V}}{0.1\mathrm{\ rot}} = 10\mathrm{\ V/rot}`. This is a good starting point for the arm that results in a safe response for further tuning.
 
-This leads to the first major aspect of manual PID tuning - finding a good start. Since every gain is canonical, you can back-calculate what value the gain should start at based on the error you see and the desired motor voltage. Say I have an arm mechanism that is currently 0.1 rotations away from where I want it to be. I know that applying 1 volt of output is enough to move it, so at 0.1 rotation error I should apply 1 Volt to slowly bring it to the setpoint. That means my kP is :math:`k_{P}=\frac{\mathrm{Volts}}{\mathrm{error}}=\frac{1}{0.1}=10`. This is a good starting point for my mechanism and I can see a safe response that matches what I would do manually.
-
-Similar math can be done for every other gain constant to find a good starting point.
+A similar process can be used for every other gain constant to find good starting points.
 
 Specific Response Tuning
 ------------------------
 
-These general guidelines are great for understanding what is happening in a closed loop controller and how to forward-calculate what a reasonable starting point is. However, the specific mechanism you are tuning is going to affect how to find the ideal gains and what gains you should be using in the first place.
+The specific mechanism being tuned is going to affect the starting points for the gains and the process of finding the ideal gains.
 
 Flywheel Tuning with TorqueCurrentFOC
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Below is a list of steps and a simulator that provides the opportunity to try tuning a flywheel system using PID with TorqueControl. The Red line is the setpoint of the flywheel controller, purple is the current velocity, and the green line is the torque current of the motor in amps.
+Below is a list of steps and a simulator that provides the opportunity to try tuning a flywheel system using PID with TorqueCurrentFOC. The Red line is the setpoint of the flywheel controller, purple is the current velocity, and the green line is the torque current of the motor in amps.
 
 This particular flywheel has a maximum velocity of 100 rps and a 1:1 gear ratio.
 
@@ -85,7 +78,7 @@ Tuning a flywheel is largely done with the following steps:
 
 .. dropdown:: "Why" for each step
 
-   1. We start with PID gains at 0 to isolate as many of the forces in play as possible, and iteratively get closer to the "ideal" gains.
+   1. Starting with PID gains at 0 isolates as many of the forces in play as possible to iteratively get closer to the "ideal" gains.
    2. There needs to be a setpoint for the parameters to take affect, and a lower setpoint sets up the following steps.
    3. A low kP will magnify the requirement for a good kS and kV. If this gain is too high, it will mask a "bad" kS and kV during the kS/kV tuning.
    4. The kS gain is meant to reduce the effect of friction without it moving the mechanism on its own. However, tuning kS by simply finding the point at which the mechanism moves only accounts for static friction, which is not ideal in a flywheel that typically experiences kinetic friction. With the low setpoint, the kS term will dwarf the kV term, so kS can be tuned to correctly account for kinetic friction.
@@ -161,7 +154,7 @@ The following steps cover the general idea:
 
 .. dropdown:: "Why" for each step
 
-   1. We start with PID gains at 0 to isolate as many of the forces in play as possible, and iteratively get closer to the "ideal" gains.
+   1. Starting with PID gains at 0 isolates as many of the forces in play as possible to iteratively get closer to the "ideal" gains.
    2. A nearby setpoint ensures the system response should be relatively small to start with when tuning.
    3. The kS gain is meant to reduce the effect of friction, so the largest possible value that still prevents the system from moving will reduce the effect of friction in general.
    4. The kP gain will control how quickly the system gets to the setpoint. However, in TorqueCurrentFOC modes there is no natural dampening force, so overshoot and oscillation is expected at the beginning. At that point, kD should be tuned.
@@ -235,7 +228,7 @@ The steps:
 
 .. dropdown:: "Why" for each step
 
-   1. We start with PID gains at 0 to isolate as many of the forces in play as possible, and iteratively get closer to the "ideal" gains.
+   1. Starting with PID gains at 0 isolates as many of the forces in play as possible to iteratively get closer to the "ideal" gains.
    2. The kG gain is meant to counteract the force of gravity; however, the force of friction is also at play in an arm. The lowest possible kG that prevents the system from moving is the lower bound of the gravity and friction component (kG - kS).
    3. The highest possible kG that prevents the system from moving is the upper bound of the gravity and friction component (kG + kS).
    4. Setting kG to the middle point of the upper and lower bounds is a good approximation for the true effect of gravity. ((kG + kS) + (kG - kS)) / 2 = kG.
@@ -272,7 +265,7 @@ The steps:
 
    From here, I set a setpoint of 0.1, and now it's time for kP/kD tuning. I bring kP up to 1, 2, 4, 8, and 16 before I get significant overshoot, where I dial kD in to 1, 2, 4, and 8 before that overshoot is gone. kP keeps increasing to 32 and 64, then kD goes up to 16 and 32, then kP up to 128, 250, and 500, then kD to 64 and 128 before it's back to kP. I go up to 1000 and 2000 where I notice a bit of oscillation, and I may be near the limit at this point. kD increases to 250, then kP to 4000 and 8000, then kD to 500 and I get oscillation on the way to the target.
 
-   At this point, we have reached the limit of kD, so I bring it down to 400 then 300 before I'm happy with it.
+   At this point, I have reached the limit of kD, so I bring it down to 400 then 300 before I'm happy with it.
 
    I check with a setpoint of 0.6 and notice there is severe overshoot, but I cannot increase kD any further, so I reduce kP to 4000, then 3700 at which point I am happy with the behavior. I check with other setpoints of -0.1 and 0.4 and confirm the movement looks good, so the PID tuning is done.
 
@@ -304,10 +297,10 @@ The example below uses a pre-generated profile for the system to follow, and the
 
 .. dropdown:: "Why" for each step
 
-   1. We start with PID gains at 0 to isolate as many of the forces in play as possible, and iteratively get closer to the "ideal" gains.
+   1. Starting with PID gains at 0 isolates as many of the forces in play as possible to iteratively get closer to the "ideal" gains.
    2. A nearby setpoint ensures the system response should be relatively small to start with when tuning.
    3. The kS gain is meant to reduce the effect of friction, so the largest possible value that still prevents the system from moving will reduce the effect of friction in general.
-   4. The kA gain effectively accounts for the inertia of the system. Since torqueCurrent is proportional to the torque applied at the rotor, kA is the coefficient used to scale the amperes applied to an acceleration the system will see. It is the backbone of the profile and doing most of the heavy lifting.
+   4. The kA gain effectively accounts for the inertia of the system. Since torque current is proportional to the torque applied at the rotor, kA is the coefficient used to scale the amperes applied to an acceleration the system will see. It is the backbone of the profile and doing most of the heavy lifting.
    5. The kV gain controls the compensation due to drag in the system. If the mechanism sees a lot of drag, the measured velocity will gradually fall behind the setpoint, so tuning kV to account for the drag compensates in that manner. However, many position systems do not have significant drag and can use a kV of 0.
    6. With the feed forwards taken care of, the feedback tuning comes into play, with kP being used to control how strongly the system minimizes error. However, in TorqueCurrentFOC modes there is no natural dampening force, so overshoot/oscillation is expected at the beginning. At that point, kD should be tuned.
    7. The kD gain will effectively act as a kP on velocity. Increasing it will increase the force bringing the system to the target velocity, so it should be increased until the system no longer oscillates.
@@ -341,9 +334,9 @@ The example below uses a pre-generated profile for the system to follow, and the
 
    Now it's time to tune P. I start with a kP of 1, and notice there's barely a response. Increasing kP to 10, then 100 has a noticeable change and a slow oscillation, but it's still far too weak. Going up to 2000 creates a noticeable oscillation, so kD should be increased to dampen it.
 
-   Starting with a kD of 1, the oscillation is still present, so it increases to 10, then 100 where there's an impact but it's not enough. Doubling at this point to 200, then 400 looks much better, but it also looks like it can be further improved, so it doubles again to 800 where it looks sufficient to move back to kP.
+   Starting with a kD of 1, the oscillation is still present, so I increase it to 10, then 100 where there's an impact but it's not enough. Doubling at this point to 200, then 400 looks much better, but it also looks like it can be further improved, so it doubles again to 800 where it looks sufficient to move back to kP.
 
-   Since kP is already at 2000, we'll double to 4000, then 8000, then 16000 before the oscillation at ~2 seconds appears significant. The end point looks good, though, so there's no more need to increase kP, as long as we can remove the oscillation with kD.
+   Since kP is already at 2000, I'll double to 4000, then 8000, then 16000 before the oscillation at ~2 seconds appears significant. The end point looks good, though, so there's no more need to increase kP, as long as I can remove the oscillation with kD.
 
    So kD increases to 1600, then 3200, at which point there is some oscillation on the way to the target. Backing off to 2400, then 2000 looks to have hardly any overshoot or oscillation at all, and the end position is right on top of the target, so it looks sufficient for this mechanism.
 
