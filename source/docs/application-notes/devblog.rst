@@ -8,8 +8,6 @@ Welcome to the development blog. Here, we will highlight various features of CTR
 - :doc:`canbus-latency-and-frequency`
 - :doc:`tuner-evolution`
 - :doc:`update-frequency-impact`
-- :doc:`manual-pid-tuning`
-- :doc:`tuning-canrange`
 
 .. toctree::
    :maxdepth: 1
@@ -18,5 +16,3 @@ Welcome to the development blog. Here, we will highlight various features of CTR
    canbus-latency-and-frequency
    tuner-evolution
    update-frequency-impact
-   manual-pid-tuning
-   tuning-canrange

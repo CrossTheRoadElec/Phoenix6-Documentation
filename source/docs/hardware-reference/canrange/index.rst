@@ -205,3 +205,9 @@ The rate at which the LED is blinking can be used as a rough indicator of measur
             }
         }, 100);
     </script>
+
+.. toctree::
+   :maxdepth: 1
+   :hidden:
+
+   tuning-canrange

@@ -1,14 +1,14 @@
-Introduction to TalonFX Control
-===============================
+Introduction to Control Types
+=============================
 
-The TalonFX has a variety of open-loop and closed-loop control requests and supports Field Oriented Control.
+Phoenix 6 motor controllers support a variety of :doc:`open-loop </docs/api-reference/device-specific/talonfx/open-loop-requests>` and :doc:`closed-loop </docs/api-reference/device-specific/talonfx/closed-loop-requests>` control requests. Additionally, the TalonFX supports :ref:`Field Oriented Control (FOC) <docs/api-reference/device-specific/talonfx/talonfx-control-intro:field oriented control>`.
 
 Control Output Types
 --------------------
 
-The TalonFX currently supports three base control output types: DutyCycle, Voltage, and TorqueCurrentFOC.
+The TalonFXS currently supports two base control output types: DutyCycle and Voltage. The TalonFX additionally supports TorqueCurrentFOC.
 
-.. note:: There are various configuration options available that influence the onboard control (for example, see :doc:`/docs/hardware-reference/talonfx/improving-performance-with-current-limits`).
+.. note:: There are various configuration options available that influence the onboard control. For example, see :doc:`/docs/hardware-reference/talonfx/improving-performance-with-current-limits`.
 
 DutyCycle
 ^^^^^^^^^
@@ -23,14 +23,14 @@ A Voltage control request directly controls the output voltage of the motor. The
 TorqueCurrentFOC
 ^^^^^^^^^^^^^^^^
 
-.. important:: This feature requires the device to be :doc:`Pro licensed </docs/licensing/licensing>`.
+.. important:: This feature requires the device to be :doc:`Pro licensed </docs/licensing/licensing>`. Additionally, the Talon FXS does not support TorqueCurrentFOC at this time.
 
 A TorqueCurrentFOC control request uses Field Oriented Control to directly control the output torque current of the motor. Unlike the other control output types, where output roughly controls the velocity of the motor, a TorqueCurrentFOC request **directly controls the acceleration** of the motor.
 
 Field Oriented Control
 ----------------------
 
-.. important:: This feature requires the device to be :doc:`Pro licensed </docs/licensing/licensing>`.
+.. important:: This feature requires the device to be :doc:`Pro licensed </docs/licensing/licensing>`. Additionally, the Talon FXS does not support FOC at this time.
 
 Field Oriented Control (FOC) is a commutation mode that increases peak power by ~15%. All control modes that optionally support FOC have an ``EnableFOC`` field (`Java <https://api.ctr-electronics.com/phoenix6/stable/java/com/ctre/phoenix6/controls/DutyCycleOut.html#EnableFOC>`__, `C++ <https://api.ctr-electronics.com/phoenix6/stable/cpp/classctre_1_1phoenix6_1_1controls_1_1_duty_cycle_out.html#aeef226602dc68cf690681c98001a5f94>`__, `Python <https://api.ctr-electronics.com/phoenix6/stable/python/autoapi/phoenix6/controls/duty_cycle_out/index.html#phoenix6.controls.duty_cycle_out.DutyCycleOut.enable_foc>`__). There are also control types that require FOC, such as TorqueCurrentFOC.
 
