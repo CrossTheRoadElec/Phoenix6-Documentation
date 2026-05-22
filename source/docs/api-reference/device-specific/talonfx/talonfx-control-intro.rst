@@ -1,7 +1,7 @@
 Introduction to Control Types
 =============================
 
-Phoenix 6 motor controllers have a variety of open-loop and closed-loop control requests, and the TalonFX supports Field Oriented Control.
+Phoenix 6 motor controllers support a variety of :doc:`open-loop </docs/api-reference/device-specific/talonfx/open-loop-requests>` and :doc:`closed-loop </docs/api-reference/device-specific/talonfx/closed-loop-requests>` control requests. Additionally, the TalonFX supports :ref:`Field Oriented Control (FOC) <docs/api-reference/device-specific/talonfx/talonfx-control-intro:field oriented control>`.
 
 Control Output Types
 --------------------
