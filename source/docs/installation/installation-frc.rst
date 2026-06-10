@@ -9,10 +9,10 @@ Installing Phoenix 6 (FRC)
 
          .. tab-item:: Offline
 
-            1. Download the `Phoenix Framework Installer <https://github.com/CrossTheRoadElec/Phoenix-Releases/releases>`__
+            1. Download the `Phoenix Offline Installer <https://github.com/CrossTheRoadElec/Phoenix-Releases/releases>`__
             2. Navigate through the installer, ensuring applicable options are selected
 
-            .. image:: images/framework-installer.png
+            .. image:: images/offline-installer.png
                :width: 70%
                :alt: Showing the installation screen root
 
@@ -20,30 +20,21 @@ Installing Phoenix 6 (FRC)
 
          .. tab-item:: Online
 
-            Users can install Phoenix without an installer using WPILib's `Install New Libraries <https://docs.wpilib.org/en/stable/docs/software/vscode-overview/3rd-party-libraries.html#libraries>`__ functionality in VS Code. This requires the user to have an installation of WPILib on their machine.
+            Users can install Phoenix without an installer using WPILib's `Vendor Dependencies <https://docs.wpilib.org/en/stable/docs/software/vscode-overview/3rd-party-libraries.html#installing-libraries>`__ functionality in VS Code. This requires the user to have an installation of WPILib on their machine.
 
-            To begin, open WPILib VS Code and click on the WPILib icon in the top right.
+            To begin, open WPILib VS Code and click on the WPILib icon in the left sidebar.
 
-            .. image:: images/wpilib-icon-location.png
-               :width: 250
-               :alt: WPILib icon is located in the top right of VS Code
+            .. image:: images/wpilib-vendordep-location.png
+               :width: 450
+               :alt: WPILib icon is located in the left sidebar of VS Code
 
-            Then type :guilabel:`Manage Vendor Libraries` and click on the menu option that appears. Click :guilabel:`Install new libraries (online)` and a textbox should appear. Follow the remaining instructions below on pasting the correct link into the textbox.
+            Then under the :guilabel:`Available Dependencies` dropdown, find :guilabel:`CTRE-Phoenix (v6)` and click :guilabel:`Install` to add the vendordep to the robot project. The vendordep can also be updated from this page by pressing the :guilabel:`To Latest` button.
 
-            Paste the following URL in WPILib VS Code :guilabel:`Install new libraries (online)`:
-
-            - ``https://maven.ctr-electronics.com/release/com/ctre/phoenix6/latest/Phoenix6-frc2026-latest.json``
-
-            Additionally, v5 can safely installed alongside it by installing the v5 vendordep.
-
-            - ``https://maven.ctr-electronics.com/release/com/ctre/phoenix/Phoenix5-frc2026-latest.json``
-
-            Alternatively, the Hoot Replay version of the vendordep can be installed, as well as the v5 Replay-compatible vendordep:
-
-            - ``https://maven.ctr-electronics.com/release/com/ctre/phoenix6/latest/Phoenix6-replay-frc2026-latest.json``
-            - ``https://maven.ctr-electronics.com/release/com/ctre/phoenix/Phoenix5-replay-frc2026-latest.json``
+            Additionally, v5 can safely installed alongside it by installing the :guilabel:`CTRE-Phoenix (v5)` vendordep.
 
             .. important:: Users utilizing only v5 devices still need the v6 vendordep added to their robot project.
+
+            Alternatively, the Hoot Replay version of the vendordep can be installed using :guilabel:`CTRE-Phoenix Replay (v6)`, as well as the v5 Replay-compatible vendordep using :guilabel:`CTRE-Phoenix (v5) Replay Compatibility`.
 
    .. tab-item:: Python
 
@@ -51,7 +42,7 @@ Installing Phoenix 6 (FRC)
 
       .. code-block:: bash
 
-         py -3 -m pip install phoenix6
+         python3 -m pip install phoenix6
 
    .. tab-item:: LabVIEW
 
