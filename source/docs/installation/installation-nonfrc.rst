@@ -125,7 +125,7 @@ API Installation
 
       .. code-block:: bash
 
-         py -3 -m pip install phoenix6
+         python3 -m pip install phoenix6
 
       .. tip:: To get a robot application up and running quickly, check out our `non-FRC Python example <https://github.com/CrossTheRoadElec/Python-NonFRC-Example>`__.
 
@@ -159,9 +159,9 @@ Simulation vs Hardware
    .. tab-item:: Python
       :sync: python
 
-      Users may notice the robot program is using simulated devices by default. This is the default behavior if the host platform supports simulation (see :ref:`requirements <docs/installation/requirements:system requirements>` for a full list of supported platforms).
+      Starting in Phoenix 6 26.3.0, the default behavior is to run using hardware devices if WPILib/robotpy is not present and the host platform supports it (see :ref:`requirements <docs/installation/requirements:system requirements>` for a full list of supported platforms).
 
-      In order for the robot program to communicate with physical devices (on platforms that support both simulation and hardware), the ``CTR_TARGET`` environment variable must be set. Possible values of ``CTR_TARGET`` are:
+      On platforms that support both simulation and hardware, the robot program can switch between communicating with physical devices and with simulated devices using the ``CTR_TARGET`` environment variable. Possible values of ``CTR_TARGET`` are:
 
       - ``Hardware`` (see :doc:`/docs/canivore/canivore-hardware-attached`)
       - ``Simulation`` (see :doc:`/docs/api-reference/simulation/simulation-intro`)
