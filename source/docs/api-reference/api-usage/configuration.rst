@@ -35,6 +35,8 @@ There are device-specific ``Configuration`` classes that group configuration dat
 
          talonfx_configs = configs.TalonFXConfiguration()
 
+.. tip:: The device ``Configuration`` objects document all available configuration parameters in the documentation of each public member variable, making it easy to find specific configs (`example <https://api.ctr-electronics.com/phoenix6/stable/java/com/ctre/phoenix6/configs/TalonFXConfiguration.html#MotorOutput>`__).
+
 Modifying Configurations
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
