@@ -46,29 +46,26 @@ Velocity Measurement Period/Window
 
 In Phoenix 6, the velocity rolling average window in Talon FX and CANcoder has been replaced with a Kalman filter, resulting in a less noisy velocity signal with a minimal impact on latency (~1 ms). As a result, the velocity measurement period/window configs are no longer necessary in Phoenix 6 and have been removed.
 
+On the Talon FX, users can optionally configure the ``VelocityFilterTimeConstant`` config (`Java <https://api.ctr-electronics.com/phoenix6/stable/java/com/ctre/phoenix6/configs/FeedbackConfigs.html#VelocityFilterTimeConstant>`__, `C++ <https://api.ctr-electronics.com/phoenix6/stable/cpp/classctre_1_1phoenix6_1_1configs_1_1_feedback_configs.html#abf831ae1b2bffeff5fa1430a0592cf4f>`__) to apply stronger filtering to the velocity signal. However, note that stronger filtering may negatively impact velocity PID control.
+
+Allowable Closed-Loop Error
+---------------------------
+
+To check if a motor controller is within a given range of the target setpoint, call ``isNear`` (`Java <https://api.ctr-electronics.com/phoenix6/stable/java/com/ctre/phoenix6/StatusSignal.html#isNear(double,double)>`__, `C++ <https://api.ctr-electronics.com/phoenix6/stable/cpp/classctre_1_1phoenix6_1_1_status_signal.html#af89eed766fc2c3663a70ccf5a4f4a52a>`__) on the ``Position`` or ``ClosedLoopError`` status signal object.
+
+Allowable closed-loop error, which zeroed motor output when close to the setpoint, has been replaced by the more flexible ``GainSchedErrorThreshold`` and ``GainSchedKpBehavior`` configs (`Java <https://api.ctr-electronics.com/phoenix6/stable/java/com/ctre/phoenix6/configs/ClosedLoopGeneralConfigs.html#GainSchedErrorThreshold>`__, `C++ <https://api.ctr-electronics.com/phoenix6/stable/cpp/classctre_1_1phoenix6_1_1configs_1_1_closed_loop_general_configs.html#aea102e7b81107e87c75b6ec34f35817a>`__) and the per-slot ``GainSchedBehavior`` config (`Java <https://api.ctr-electronics.com/phoenix6/stable/java/com/ctre/phoenix6/configs/Slot0Configs.html#GainSchedBehavior>`__, `C++ <https://api.ctr-electronics.com/phoenix6/stable/cpp/classctre_1_1phoenix6_1_1configs_1_1_slot0_configs.html#ad8cbdc5d88c0fefb0cf06d36e0f1951c>`__). Users can set the ``GainSchedBehavior`` to ``ZeroOutput`` to get similar behavior to allowable closed-loop error, improved to allow kG and custom FeedForward output while within the threshold.
+
 Integral Zone and Max Integral Accumulator
 ------------------------------------------
 
 Phoenix 6 automatically prevents integral windup in closed-loop controls. As a result, the Integral Zone and Max Integral Accumulator configs are no longer necessary and have been removed.
 
+Users can optionally use the new ``GainSched*`` configs mentioned above to mimic the behavior of Integral Zone by setting up a secondary PID slot with a stronger kI gain and setting the ``GainSchedBehavior`` of the primary PID slot to ``UseSlot*``.
+
 CANcoder Sensor Coefficient and Units
 -------------------------------------
 
 In Phoenix 6, CANcoder does not support setting a custom sensor coefficient, unit string, and sensor time base. Instead, the CANcoder uses canonical units of rotations and rotations per second using the `C++ units library <https://docs.wpilib.org/en/stable/docs/software/basic-programming/cpp-units.html>`__.
-
-Features to Be Implemented
---------------------------
-
-The following Phoenix 5 features are not implemented in the current release of Phoenix 6 but are planned to be implemented in the future.
-
-.. list-table::
-   :header-rows: 1
-
-   * - Feature
-     - Status
-
-   * - CANdle Support
-     - Normal priority
 
 Features Omitted
 ----------------
@@ -80,5 +77,3 @@ Feedback is welcome at feedback@ctr-electronics.com.
 - Motion Profile Executor
 
   - Control requests have been improved to cover many of the use cases of the Motion Profile Executor.
-
-- Allowable Closed-Loop Error

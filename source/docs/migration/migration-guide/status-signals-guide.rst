@@ -8,130 +8,136 @@ Phoenix 6 expands the functionality of status signals with the introduction of t
 Using Status Signals
 --------------------
 
-.. list-table::
-   :width: 100%
-   :widths: 1 99
+.. table::
+   :class: longtable
 
-   * - .. centered:: v5
-     - .. tab-set::
+   .. list-table::
+      :width: 100%
+      :widths: 5 95
 
-         .. tab-item:: Java
-            :sync: Java
+      * - .. centered:: v5
+        - .. tab-set::
 
-            .. code-block:: java
+            .. tab-item:: Java
+               :sync: Java
 
-               // get latest TalonFX selected sensor position
-               // units are encoder ticks
-               int sensorPos = m_talonFX.getSelectedSensorPosition();
+               .. code-block:: java
 
-               // latency is unknown
-               // cannot synchronously wait for new data
+                  // get latest TalonFX selected sensor position
+                  // units are encoder ticks
+                  int sensorPos = m_talonFX.getSelectedSensorPosition();
 
-         .. tab-item:: C++
-            :sync: C++
+                  // latency is unknown
+                  // cannot synchronously wait for new data
 
-            .. code-block:: cpp
+            .. tab-item:: C++
+               :sync: C++
 
-               // get latest TalonFX selected sensor position
-               // units are encoder ticks
-               int sensorPos = m_talonFX.GetSelectedSensorPosition();
+               .. code-block:: cpp
 
-               // latency is unknown
-               // cannot synchronously wait for new data
+                  // get latest TalonFX selected sensor position
+                  // units are encoder ticks
+                  int sensorPos = m_talonFX.GetSelectedSensorPosition();
 
-   * - .. centered:: v6
-     - .. tab-set::
+                  // latency is unknown
+                  // cannot synchronously wait for new data
 
-         .. tab-item:: Java
-            :sync: Java
+      * - .. centered:: v6
+        - .. tab-set::
 
-            .. code-block:: java
+            .. tab-item:: Java
+               :sync: Java
 
-               // acquire a refreshed TalonFX rotor position signal
-               var rotorPosSignal = m_talonFX.getRotorPosition();
+               .. code-block:: java
 
-               // because we are calling getRotorPosition() every loop,
-               // we do not need to call refresh()
-               //rotorPosSignal.refresh();
+                  // acquire a refreshed TalonFX rotor position signal
+                  var rotorPosSignal = m_talonFX.getRotorPosition();
 
-               // retrieve position value that we just refreshed
-               // units are rotations, uses the units library
-               var rotorPos = rotorPosSignal.getValue();
-               // the units library can be bypassed using getValueAsDouble()
-               double rotorPosRotations = rotorPosSignal.getValueAsDouble();
+                  // because we are calling getRotorPosition() every loop,
+                  // we do not need to call refresh()
+                  //rotorPosSignal.refresh();
 
-               // get latency of the signal
-               var rotorPosLatency = rotorPosSignal.getTimestamp().getLatency();
+                  // retrieve position value that we just refreshed
+                  // units are rotations, uses the units library
+                  var rotorPos = rotorPosSignal.getValue();
+                  // the units library can be bypassed using getValueAsDouble()
+                  double rotorPosRotations = rotorPosSignal.getValueAsDouble();
 
-               // synchronously wait 20 ms for new data
-               rotorPosSignal.waitForUpdate(0.020);
+                  // get latency of the signal
+                  var rotorPosLatency = rotorPosSignal.getTimestamp().getLatency();
 
-         .. tab-item:: C++
-            :sync: C++
+                  // synchronously wait 20 ms for new data
+                  rotorPosSignal.waitForUpdate(0.020);
 
-            .. code-block:: cpp
+            .. tab-item:: C++
+               :sync: C++
 
-               // acquire a refreshed TalonFX rotor position signal
-               auto& rotorPosSignal = m_talonFX.GetRotorPosition();
+               .. code-block:: cpp
 
-               // because we are calling GetRotorPosition() every loop,
-               // we do not need to call Refresh()
-               //rotorPosSignal.Refresh();
+                  // acquire a refreshed TalonFX rotor position signal
+                  auto& rotorPosSignal = m_talonFX.GetRotorPosition();
 
-               // retrieve position value that we just refreshed
-               // units are rotations, uses the units library
-               auto rotorPos = rotorPosSignal.GetValue();
+                  // because we are calling GetRotorPosition() every loop,
+                  // we do not need to call Refresh()
+                  //rotorPosSignal.Refresh();
 
-               // get latency of the signal
-               auto rotorPosLatency = rotorPosSignal.GetTimestamp().GetLatency();
+                  // retrieve position value that we just refreshed
+                  // units are rotations, uses the units library
+                  auto rotorPos = rotorPosSignal.GetValue();
 
-               // synchronously wait 20 ms for new data
-               rotorPosSignal.WaitForUpdate(20_ms);
+                  // get latency of the signal
+                  auto rotorPosLatency = rotorPosSignal.GetTimestamp().GetLatency();
+
+                  // synchronously wait 20 ms for new data
+                  rotorPosSignal.WaitForUpdate(20_ms);
 
 Changing Update Frequency (Status Frame Period)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. list-table::
-   :width: 100%
-   :widths: 1 99
+.. table::
+   :class: longtable
 
-   * - .. centered:: v5
-     - .. tab-set::
+   .. list-table::
+      :width: 100%
+      :widths: 5 95
 
-         .. tab-item:: Java
-            :sync: Java
+      * - .. centered:: v5
+        - .. tab-set::
 
-            .. code-block:: java
+            .. tab-item:: Java
+               :sync: Java
 
-               // slow down the Status 2 frame (selected sensor data) to 5 Hz (200ms)
-               m_talonFX.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 200);
+               .. code-block:: java
 
-         .. tab-item:: C++
-            :sync: C++
+                  // slow down the Status 2 frame (selected sensor data) to 5 Hz (200ms)
+                  m_talonFX.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 200);
 
-            .. code-block:: cpp
+            .. tab-item:: C++
+               :sync: C++
 
-               // slow down the Status 2 frame (selected sensor data) to 5 Hz (200ms)
-               m_talonFX.SetStatusFramePeriod(StatusFrameEnhanced::Status_2_Feedback0, 200);
+               .. code-block:: cpp
 
-   * - .. centered:: v6
-     - .. tab-set::
+                  // slow down the Status 2 frame (selected sensor data) to 5 Hz (200ms)
+                  m_talonFX.SetStatusFramePeriod(StatusFrameEnhanced::Status_2_Feedback0, 200);
 
-         .. tab-item:: Java
-            :sync: Java
+      * - .. centered:: v6
+        - .. tab-set::
 
-            .. code-block:: java
+            .. tab-item:: Java
+               :sync: Java
 
-               // slow down the position signal to 5 Hz
-               m_talonFX.getPosition().setUpdateFrequency(5);
+               .. code-block:: java
 
-         .. tab-item:: C++
-            :sync: C++
+                  // slow down the position signal to 5 Hz
+                  m_talonFX.getPosition().setUpdateFrequency(5);
 
-            .. code-block:: cpp
+            .. tab-item:: C++
+               :sync: C++
 
-               // slow down the position signal to 5 Hz
-               m_talonFX.GetPosition().SetUpdateFrequency(5_Hz);
+               .. code-block:: cpp
+
+                  // slow down the position signal to 5 Hz
+                  m_talonFX.GetPosition().SetUpdateFrequency(5_Hz);
 
 .. note:: When different update frequencies are specified for signals that share a status frame, the highest update frequency of all the relevant signals will be applied to the entire frame. Users can get a signal's applied update frequency using the ``getAppliedUpdateFrequency()`` method.
 

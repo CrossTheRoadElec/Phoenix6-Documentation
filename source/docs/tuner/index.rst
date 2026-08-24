@@ -1,9 +1,6 @@
 Phoenix Tuner X
 ===============
 
-What is Phoenix Tuner X?
-------------------------
-
 Phoenix Tuner X is the companion application allowing you to update, configure, analyze, and control your devices. Phoenix Tuner X can be installed from the `Microsoft Store <https://apps.microsoft.com/detail/9NVV4PWDW27Z>`__, the `Google Play Store <https://play.google.com/store/apps/details?id=com.ctre.phoenix_tuner>`__, and the `Apple App Store <https://apps.apple.com/us/app/phoenix-tuner-x/id6502530040>`__. On Windows machines, Phoenix Tuner X can also be installed using the `Phoenix Offline Installer <https://github.com/CrossTheRoadElec/Phoenix-Releases/releases>`__.
 
 Phoenix Tuner X supports Windows 11, Android (9.0+), macOS (14.0+), and iOS (15.0+).
