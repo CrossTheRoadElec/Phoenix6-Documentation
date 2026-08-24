@@ -8,174 +8,183 @@ Phoenix 6 simplifies the configuration process through the use of device-specifi
 Applying Configs
 ----------------
 
-.. list-table::
-   :width: 100%
-   :widths: 1 99
+.. table::
+   :class: longtable
 
-   * - .. centered:: v5
-     - .. tab-set::
+   .. list-table::
+      :width: 100%
+      :widths: 5 95
 
-         .. tab-item:: Java
-            :sync: Java
+      * - .. centered:: v5
+        - .. tab-set::
 
-            .. code-block:: Java
+            .. tab-item:: Java
+               :sync: Java
 
-               // set slot 0 gains
-               // 50 ms timeout on each config call
-               m_motor.config_kF(0, 0.05, 50);
-               m_motor.config_kP(0, 0.046, 50);
-               m_motor.config_kI(0, 0.0002, 50);
-               m_motor.config_kD(0, 0.42, 50);
+               .. code-block:: Java
 
-         .. tab-item:: C++
-            :sync: C++
+                  // set slot 0 gains
+                  // 50 ms timeout on each config call
+                  m_motor.config_kF(0, 0.05, 50);
+                  m_motor.config_kP(0, 0.046, 50);
+                  m_motor.config_kI(0, 0.0002, 50);
+                  m_motor.config_kD(0, 0.42, 50);
 
-            .. code-block:: cpp
+            .. tab-item:: C++
+               :sync: C++
 
-               // set slot 0 gains
-               // 50 ms timeout on each config call
-               m_motor.Config_kF(0, 0.05, 50);
-               m_motor.Config_kP(0, 0.046, 50);
-               m_motor.Config_kI(0, 0.0002, 50);
-               m_motor.Config_kD(0, 0.42, 50);
+               .. code-block:: cpp
 
-   * - .. centered:: v6
-     - .. tab-set::
+                  // set slot 0 gains
+                  // 50 ms timeout on each config call
+                  m_motor.Config_kF(0, 0.05, 50);
+                  m_motor.Config_kP(0, 0.046, 50);
+                  m_motor.Config_kI(0, 0.0002, 50);
+                  m_motor.Config_kD(0, 0.42, 50);
 
-         .. tab-item:: Java
-            :sync: Java
+      * - .. centered:: v6
+        - .. tab-set::
 
-            .. code-block:: java
+            .. tab-item:: Java
+               :sync: Java
 
-               var talonFXConfigs = new TalonFXConfiguration();
+               .. code-block:: java
 
-               // set slot 0 gains and leave every other config factory-default
-               var slot0Configs = talonFXConfigs.Slot0;
-               slot0Configs.kV = 0.12;
-               slot0Configs.kP = 0.11;
-               slot0Configs.kI = 0.5;
-               slot0Configs.kD = 0.001;
+                  var talonFXConfigs = new TalonFXConfiguration();
 
-               // apply all configs, 50 ms total timeout
-               m_talonFX.getConfigurator().apply(talonFXConfigs, 0.050);
+                  // set slot 0 gains and leave every other config factory-default
+                  var slot0Configs = talonFXConfigs.Slot0;
+                  slot0Configs.kV = 0.12;
+                  slot0Configs.kP = 0.11;
+                  slot0Configs.kI = 0.5;
+                  slot0Configs.kD = 0.001;
 
-         .. tab-item:: C++
-            :sync: C++
+                  // apply all configs, 50 ms total timeout
+                  m_talonFX.getConfigurator().apply(talonFXConfigs, 0.050);
 
-            .. code-block:: cpp
+            .. tab-item:: C++
+               :sync: C++
 
-               configs::TalonFXConfiguration talonFXConfigs{};
+               .. code-block:: cpp
 
-               // set slot 0 gains and leave every other config factory-default
-               configs::Slot0Configs& slot0Configs = talonFXConfigs.Slot0;
-               slot0Configs.kV = 0.12;
-               slot0Configs.kP = 0.11;
-               slot0Configs.kI = 0.5;
-               slot0Configs.kD = 0.001;
+                  configs::TalonFXConfiguration talonFXConfigs{};
 
-               // apply all configs, 50 ms total timeout
-               m_talonFX.GetConfigurator().Apply(talonFXConfigs, 50_ms);
+                  // set slot 0 gains and leave every other config factory-default
+                  configs::Slot0Configs& slot0Configs = talonFXConfigs.Slot0;
+                  slot0Configs.kV = 0.12;
+                  slot0Configs.kP = 0.11;
+                  slot0Configs.kI = 0.5;
+                  slot0Configs.kD = 0.001;
+
+                  // apply all configs, 50 ms total timeout
+                  m_talonFX.GetConfigurator().Apply(talonFXConfigs, 50_ms);
 
 Factory Defaulting Configs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. list-table::
-   :width: 100%
-   :widths: 1 99
+.. table::
+   :class: longtable
 
-   * - .. centered:: v5
-     - .. tab-set::
+   .. list-table::
+      :width: 100%
+      :widths: 5 95
 
-         .. tab-item:: Java
-            :sync: Java
+      * - .. centered:: v5
+        - .. tab-set::
 
-            .. code-block:: Java
+            .. tab-item:: Java
+               :sync: Java
 
-               // user must remember to explicitly factory default if they configure devices in code
-               m_motor.configFactoryDefault();
+               .. code-block:: Java
 
-         .. tab-item:: C++
-            :sync: C++
+                  // user must remember to explicitly factory default if they configure devices in code
+                  m_motor.configFactoryDefault();
 
-            .. code-block:: cpp
+            .. tab-item:: C++
+               :sync: C++
 
-               // user must remember to explicitly factory default if they configure devices in code
-               m_motor.ConfigFactoryDefault();
+               .. code-block:: cpp
 
-   * - .. centered:: v6
-     - .. tab-set::
+                  // user must remember to explicitly factory default if they configure devices in code
+                  m_motor.ConfigFactoryDefault();
 
-         .. tab-item:: Java
-            :sync: Java
+      * - .. centered:: v6
+        - .. tab-set::
 
-            .. code-block:: Java
+            .. tab-item:: Java
+               :sync: Java
 
-               // Any unmodified configs in a configuration object are *automatically* factory-defaulted.
-               // As a result, factory-defaulting before applying configs is *unnecessary* when using a
-               // full device configuration object, such as TalonFXConfiguration.
+               .. code-block:: Java
 
-               // Users can perform a full factory default by passing a new device configuration object.
-               m_motor.getConfigurator().apply(new TalonFXConfiguration());
+                  // Any unmodified configs in a configuration object are *automatically* factory-defaulted.
+                  // As a result, factory-defaulting before applying configs is *unnecessary* when using a
+                  // full device configuration object, such as TalonFXConfiguration.
 
-         .. tab-item:: C++
-            :sync: C++
+                  // Users can perform a full factory default by passing a new device configuration object.
+                  m_motor.getConfigurator().apply(new TalonFXConfiguration());
 
-            .. code-block:: cpp
+            .. tab-item:: C++
+               :sync: C++
 
-               // Any unmodified configs in a configuration object are *automatically* factory-defaulted;
-               // As a result, factory-defaulting before applying configs is *unnecessary* when using a
-               // full device configuration object, such as TalonFXConfiguration.
+               .. code-block:: cpp
 
-               // Users can perform a full factory default by passing a new device configuration object.
-               m_motor.GetConfigurator().Apply(configs::TalonFXConfiguration{});
+                  // Any unmodified configs in a configuration object are *automatically* factory-defaulted;
+                  // As a result, factory-defaulting before applying configs is *unnecessary* when using a
+                  // full device configuration object, such as TalonFXConfiguration.
+
+                  // Users can perform a full factory default by passing a new device configuration object.
+                  m_motor.GetConfigurator().Apply(configs::TalonFXConfiguration{});
 
 Retrieving Configs
 ------------------
 
-.. list-table::
-   :width: 100%
-   :widths: 1 99
+.. table::
+   :class: longtable
 
-   * - .. centered:: v5
-     - .. tab-set::
+   .. list-table::
+      :width: 100%
+      :widths: 5 95
 
-         .. tab-item:: Java
-            :sync: Java
+      * - .. centered:: v5
+        - .. tab-set::
 
-            .. code-block:: Java
+            .. tab-item:: Java
+               :sync: Java
 
-               // a limited number of configs have configGet* methods;
-               // for example, you can get the supply current limits
-               var supplyCurLim = new SupplyCurrentLimitConfiguration();
-               m_motor.configGetSupplyCurrentLimit(supplyCurLim);
+               .. code-block:: Java
 
-         .. tab-item:: C++
-            :sync: C++
+                  // a limited number of configs have configGet* methods;
+                  // for example, you can get the supply current limits
+                  var supplyCurLim = new SupplyCurrentLimitConfiguration();
+                  m_motor.configGetSupplyCurrentLimit(supplyCurLim);
 
-            .. code-block:: cpp
+            .. tab-item:: C++
+               :sync: C++
 
-               // a limited number of configs have ConfigGet* methods;
-               // for example, you can get the supply current limits
-               SupplyCurrentLimitConfiguration supplyCurLim{};
-               m_motor.ConfigGetSupplyCurrentLimit(supplyCurLim);
+               .. code-block:: cpp
 
-   * - .. centered:: v6
-     - .. tab-set::
+                  // a limited number of configs have ConfigGet* methods;
+                  // for example, you can get the supply current limits
+                  SupplyCurrentLimitConfiguration supplyCurLim{};
+                  m_motor.ConfigGetSupplyCurrentLimit(supplyCurLim);
 
-         .. tab-item:: Java
-            :sync: Java
+      * - .. centered:: v6
+        - .. tab-set::
 
-            .. code-block:: Java
+            .. tab-item:: Java
+               :sync: Java
 
-               var fx_cfg = new TalonFXConfiguration();
-               // fetch *all* configs currently applied to the device
-               m_motor.getConfigurator().refresh(fx_cfg);
+               .. code-block:: Java
 
-         .. tab-item:: C++
-            :sync: C++
+                  var fx_cfg = new TalonFXConfiguration();
+                  // fetch *all* configs currently applied to the device
+                  m_motor.getConfigurator().refresh(fx_cfg);
 
-            .. code-block:: cpp
+            .. tab-item:: C++
+               :sync: C++
 
-               configs::TalonFXConfiguration fx_cfg{};
-               // fetch *all* configs currently applied to the device
-               m_motor.GetConfigurator().Refresh(fx_cfg);
+               .. code-block:: cpp
+
+                  configs::TalonFXConfiguration fx_cfg{};
+                  // fetch *all* configs currently applied to the device
+                  m_motor.GetConfigurator().Refresh(fx_cfg);

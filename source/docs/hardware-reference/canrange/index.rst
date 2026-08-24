@@ -15,6 +15,12 @@ CANrange is a CAN-enabled Time-of-Flight distance measurement sensor. This produ
       :link: https://ctre.download/files/user-manual/CANrange%20User's%20Guide.pdf
       :link-type: url
 
+.. toctree::
+   :maxdepth: 1
+   :hidden:
+
+   tuning-canrange
+
 Status Light Reference
 ----------------------
 
@@ -205,9 +211,3 @@ The rate at which the LED is blinking can be used as a rough indicator of measur
             }
         }, 100);
     </script>
-
-.. toctree::
-   :maxdepth: 1
-   :hidden:
-
-   tuning-canrange

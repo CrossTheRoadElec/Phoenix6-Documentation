@@ -37,6 +37,95 @@ The Phoenix 6 software framework allows you to control and configure your `CTR E
 
       A list of current known issues is available here.
 
+.. toctree::
+   :maxdepth: 2
+   :caption: Getting Started
+   :hidden:
+
+   docs/installation/requirements
+   docs/installation/installation
+   docs/yearly-changes/yearly-changelog
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Migration
+   :hidden:
+
+   docs/migration/new-to-phoenix
+   docs/migration/migration-guide/index
+   docs/migration/canbus-utilization
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Phoenix Tuner
+   :hidden:
+
+   docs/tuner/index
+   docs/licensing/what-is-licensing
+   docs/licensing/licensing
+   docs/licensing/team-licensing
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Hardware Reference
+   :hidden:
+
+   docs/hardware-reference/cancoder/index
+   docs/hardware-reference/candi/index
+   docs/hardware-reference/candle/index
+   docs/hardware-reference/canrange/index
+   docs/hardware-reference/pigeon2/index
+   docs/hardware-reference/talonfx/index
+   docs/hardware-reference/talonfxs/index
+
+.. toctree::
+   :maxdepth: 2
+   :caption: API Reference
+   :hidden:
+
+   docs/api-reference/api-usage/index
+   docs/api-reference/device-specific/index
+   docs/api-reference/mechanisms/index
+   docs/api-reference/simulation/index
+   docs/api-reference/wpilib-integration/index
+   docs/api-reference/examples/index
+
+.. toctree::
+   :maxdepth: 2
+   :caption: CANivore
+   :hidden:
+
+   docs/canivore/canivore-intro
+   docs/canivore/canivore-setup
+   docs/canivore/canivore-api
+   docs/canivore/canivore-hardware-attached
+   docs/canivore/canivore-config
+
+.. toctree::
+   :maxdepth: 2
+   :caption: API docs
+   :hidden:
+
+   Java API Docs <https://api.ctr-electronics.com/phoenix6/stable/java/>
+   C++ API Docs <https://api.ctr-electronics.com/phoenix6/stable/cpp/>
+   Python API Docs <https://api.ctr-electronics.com/phoenix6/stable/python/>
+   C# API Docs <https://api.ctr-electronics.com/phoenix6/stable/csharp/>
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Application Notes
+   :hidden:
+
+   docs/application-notes/devblog
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Support
+   :hidden:
+
+   docs/troubleshooting/index
+   docs/support
+
 Code Generators
 ---------------
 
@@ -95,92 +184,3 @@ Useful Categories
       :link-type: doc
 
       Common troubleshooting for hardware or software problems.
-
-.. toctree::
-   :maxdepth: 1
-   :caption: Getting Started
-   :hidden:
-
-   docs/installation/requirements
-   docs/installation/installation
-   docs/yearly-changes/yearly-changelog
-
-.. toctree::
-   :maxdepth: 1
-   :caption: Migration
-   :hidden:
-
-   docs/migration/new-to-phoenix
-   docs/migration/migration-guide/index
-   docs/migration/canbus-utilization
-
-.. toctree::
-   :maxdepth: 1
-   :caption: Phoenix Tuner
-   :hidden:
-
-   docs/tuner/index
-   docs/licensing/what-is-licensing
-   docs/licensing/licensing
-   docs/licensing/team-licensing
-
-.. toctree::
-   :maxdepth: 1
-   :caption: Hardware Reference
-   :hidden:
-
-   docs/hardware-reference/cancoder/index
-   docs/hardware-reference/candi/index
-   docs/hardware-reference/candle/index
-   docs/hardware-reference/canrange/index
-   docs/hardware-reference/pigeon2/index
-   docs/hardware-reference/talonfx/index
-   docs/hardware-reference/talonfxs/index
-
-.. toctree::
-   :maxdepth: 1
-   :hidden:
-   :caption: API Reference
-
-   docs/api-reference/api-usage/index
-   docs/api-reference/device-specific/index
-   docs/api-reference/mechanisms/index
-   docs/api-reference/simulation/index
-   docs/api-reference/wpilib-integration/index
-   docs/api-reference/examples/index
-
-.. toctree::
-   :maxdepth: 1
-   :caption: CANivore
-   :hidden:
-
-   docs/canivore/canivore-intro
-   docs/canivore/canivore-setup
-   docs/canivore/canivore-api
-   docs/canivore/canivore-hardware-attached
-   docs/canivore/canivore-config
-
-.. toctree::
-   :maxdepth: 1
-   :caption: API docs
-   :hidden:
-
-   Java API Docs <https://api.ctr-electronics.com/phoenix6/stable/java/>
-   C++ API Docs <https://api.ctr-electronics.com/phoenix6/stable/cpp/>
-   Python API Docs <https://api.ctr-electronics.com/phoenix6/stable/python/>
-   C# API Docs <https://api.ctr-electronics.com/phoenix6/stable/csharp/>
-
-.. toctree::
-   :maxdepth: 1
-   :caption: Application Notes
-   :hidden:
-
-   docs/application-notes/devblog
-
-.. toctree::
-   :maxdepth: 1
-   :caption: Support
-   :hidden:
-
-   docs/troubleshooting/index
-   docs/support

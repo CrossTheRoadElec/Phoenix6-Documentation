@@ -8,213 +8,222 @@ Phoenix 6 provides an extensive list of flexible control modes through the use o
 Using Control Requests
 ----------------------
 
-.. list-table::
-   :width: 100%
-   :widths: 1 99
+.. table::
+   :class: longtable
 
-   * - .. centered:: v5
-     - .. tab-set::
+   .. list-table::
+      :width: 100%
+      :widths: 5 95
 
-         .. tab-item:: Java
-            :sync: Java
+      * - .. centered:: v5
+        - .. tab-set::
 
-            .. code-block:: java
+            .. tab-item:: Java
+               :sync: Java
 
-               // robot init, set voltage compensation to 12 V
-               m_motor.configVoltageComSaturation(12);
-               m_motor.enableVoltageCompensation(true);
+               .. code-block:: java
 
-               // main robot code, command 12 V output
-               m_motor.set(ControlMode.PercentOutput, 1.0);
+                  // robot init, set voltage compensation to 12 V
+                  m_motor.configVoltageComSaturation(12);
+                  m_motor.enableVoltageCompensation(true);
 
-         .. tab-item:: C++
-            :sync: C++
+                  // main robot code, command 12 V output
+                  m_motor.set(ControlMode.PercentOutput, 1.0);
 
-            .. code-block:: cpp
+            .. tab-item:: C++
+               :sync: C++
 
-               // robot init, set voltage compensation to 12 V
-               m_motor.ConfigVoltageComSaturation(12);
-               m_motor.EnableVoltageCompensation(true);
+               .. code-block:: cpp
 
-               // main robot code, command 12 V output
-               m_motor.Set(ControlMode::PercentOutput, 1.0);
+                  // robot init, set voltage compensation to 12 V
+                  m_motor.ConfigVoltageComSaturation(12);
+                  m_motor.EnableVoltageCompensation(true);
 
-   * - .. centered:: v6
-     - .. tab-set::
+                  // main robot code, command 12 V output
+                  m_motor.Set(ControlMode::PercentOutput, 1.0);
 
-         .. tab-item:: Java
-            :sync: Java
+      * - .. centered:: v6
+        - .. tab-set::
 
-            .. code-block:: java
+            .. tab-item:: Java
+               :sync: Java
 
-               // class member variable
-               final VoltageOut m_request = new VoltageOut(0);
+               .. code-block:: java
 
-               // main robot code, command 12 V output
-               m_motor.setControl(m_request.withOutput(12.0));
-               // the control request `with` methods also accept unit types
-               m_motor.setControl(m_request.withOutput(Volts.of(12.0)));
+                  // class member variable
+                  final VoltageOut m_request = new VoltageOut(0);
 
-         .. tab-item:: C++
-            :sync: C++
+                  // main robot code, command 12 V output
+                  m_motor.setControl(m_request.withOutput(12.0));
+                  // the control request `with` methods also accept unit types
+                  m_motor.setControl(m_request.withOutput(Volts.of(12.0)));
 
-            .. code-block:: cpp
+            .. tab-item:: C++
+               :sync: C++
 
-               // class member variable
-               controls::VoltageOut m_request{0_V};
+               .. code-block:: cpp
 
-               // main robot code, command 12 V output
-               m_motor.SetControl(m_request.WithOutput(12_V));
+                  // class member variable
+                  controls::VoltageOut m_request{0_V};
+
+                  // main robot code, command 12 V output
+                  m_motor.SetControl(m_request.WithOutput(12_V));
 
 Follower Motors
 ^^^^^^^^^^^^^^^
 
-.. list-table::
-   :width: 100%
-   :widths: 1 99
+.. table::
+   :class: longtable
 
-   * - .. centered:: v5
-     - .. tab-set::
+   .. list-table::
+      :width: 100%
+      :widths: 5 95
 
-         .. tab-item:: Java
-            :sync: Java
+      * - .. centered:: v5
+        - .. tab-set::
 
-            .. code-block:: java
+            .. tab-item:: Java
+               :sync: Java
 
-               // robot init, set m_follower to follow m_leader
-               m_follower.follow(m_leader);
-               // m_follower should NOT oppose m_leader
-               m_follower.setInverted(TalonFXInvertType.FollowMaster);
-               // set m_strictFollower to follow m_leader
-               m_strictFollower.follow(m_leader);
-               // set m_strictFollower to ignore m_leader invert and use its own
-               m_strictFollower.setInverted(TalonFXInvertType.CounterClockwise);
+               .. code-block:: java
 
-               // main robot code, command 100% output for m_leader
-               m_leader.set(ControlMode.PercentOutput, 1.0);
-               // - m_follower and m_strictFollower will also run at 100% output
-               // - m_follower will follow m_leader's invert, while m_strictFollower
-               //   ignores it and uses its own
-               // NOTE: if set(), neutralOutput(), or disable() is ever called on
-               //       the followers, they will stop following
+                  // robot init, set m_follower to follow m_leader
+                  m_follower.follow(m_leader);
+                  // m_follower should NOT oppose m_leader
+                  m_follower.setInverted(TalonFXInvertType.FollowMaster);
+                  // set m_strictFollower to follow m_leader
+                  m_strictFollower.follow(m_leader);
+                  // set m_strictFollower to ignore m_leader invert and use its own
+                  m_strictFollower.setInverted(TalonFXInvertType.CounterClockwise);
 
-         .. tab-item:: C++
-            :sync: C++
+                  // main robot code, command 100% output for m_leader
+                  m_leader.set(ControlMode.PercentOutput, 1.0);
+                  // - m_follower and m_strictFollower will also run at 100% output
+                  // - m_follower will follow m_leader's invert, while m_strictFollower
+                  //   ignores it and uses its own
+                  // NOTE: if set(), neutralOutput(), or disable() is ever called on
+                  //       the followers, they will stop following
 
-            .. code-block:: cpp
+            .. tab-item:: C++
+               :sync: C++
 
-               // robot init, set m_follower to follow m_leader
-               m_follower.Follow(m_leader);
-               // m_follower should NOT oppose m_leader
-               m_follower.SetInverted(TalonFXInvertType::FollowMaster);
-               // set m_strictFollower to follow m_leader
-               m_strictFollower.Follow(m_leader);
-               // set m_strictFollower to ignore m_leader invert and use its own
-               m_strictFollower.SetInverted(TalonFXInvertType::CounterClockwise);
+               .. code-block:: cpp
 
-               // main robot code, command 100% output for m_leader
-               m_leader.Set(ControlMode::PercentOutput, 1.0);
-               // - m_follower and m_strictFollower will also run at 100% output
-               // - m_follower will follow m_leader's invert, while m_strictFollower
-               //   ignores it and uses its own
-               // NOTE: if Set(), NeutralOutput(), or Disable() is ever called on
-               //       the followers, they will stop following
+                  // robot init, set m_follower to follow m_leader
+                  m_follower.Follow(m_leader);
+                  // m_follower should NOT oppose m_leader
+                  m_follower.SetInverted(TalonFXInvertType::FollowMaster);
+                  // set m_strictFollower to follow m_leader
+                  m_strictFollower.Follow(m_leader);
+                  // set m_strictFollower to ignore m_leader invert and use its own
+                  m_strictFollower.SetInverted(TalonFXInvertType::CounterClockwise);
 
-   * - .. centered:: v6
-     - .. tab-set::
+                  // main robot code, command 100% output for m_leader
+                  m_leader.Set(ControlMode::PercentOutput, 1.0);
+                  // - m_follower and m_strictFollower will also run at 100% output
+                  // - m_follower will follow m_leader's invert, while m_strictFollower
+                  //   ignores it and uses its own
+                  // NOTE: if Set(), NeutralOutput(), or Disable() is ever called on
+                  //       the followers, they will stop following
 
-         .. tab-item:: Java
-            :sync: Java
+      * - .. centered:: v6
+        - .. tab-set::
 
-            .. code-block:: java
+            .. tab-item:: Java
+               :sync: Java
 
-               // class member variables
-               final DutyCycleOut m_request = new DutyCycleOut(0);
+               .. code-block:: java
 
-               // robot init, set m_follower to follow m_leader
-               // m_follower should NOT oppose leader
-               m_follower.setControl(new Follower(m_leader.getDeviceID(), MotorAlignmentValue.Aligned));
-               // set m_strictFollower to strict-follow m_leader
-               // strict followers ignore the leader's invert and use their own
-               m_strictFollower.setControl(new StrictFollower(m_leader.getDeviceID()));
+                  // class member variables
+                  final DutyCycleOut m_request = new DutyCycleOut(0);
 
-               // main robot code, command 100% output for m_leader
-               m_motor.setControl(m_request.withOutput(1.0));
-               // - m_follower and m_strictFollower will also run at 100% output
-               // - m_follower will follow m_leader's invert, while m_strictFollower
-               //   ignores it and uses its own
+                  // robot init, set m_follower to follow m_leader
+                  // m_follower should NOT oppose leader
+                  m_follower.setControl(new Follower(m_leader.getDeviceID(), MotorAlignmentValue.Aligned));
+                  // set m_strictFollower to strict-follow m_leader
+                  // strict followers ignore the leader's invert and use their own
+                  m_strictFollower.setControl(new StrictFollower(m_leader.getDeviceID()));
 
-         .. tab-item:: C++
-            :sync: C++
+                  // main robot code, command 100% output for m_leader
+                  m_motor.setControl(m_request.withOutput(1.0));
+                  // - m_follower and m_strictFollower will also run at 100% output
+                  // - m_follower will follow m_leader's invert, while m_strictFollower
+                  //   ignores it and uses its own
 
-            .. code-block:: cpp
+            .. tab-item:: C++
+               :sync: C++
 
-               // class member variables
-               controls::DutyCycleOut m_request{0};
+               .. code-block:: cpp
 
-               // robot init, set m_follower to follow m_leader
-               // m_follower should NOT oppose leader
-               m_follower.SetControl(controls::Follower{m_leader.GetDeviceID(), false});
-               // set m_strictFollower to strict-follow m_leader
-               // strict followers ignore the leader's invert and use their own
-               m_strictFollower.SetControl(controls::StrictFollower{m_leader.GetDeviceID()});
+                  // class member variables
+                  controls::DutyCycleOut m_request{0};
 
-               // main robot code, command 100% output for m_leader
-               m_motor.SetControl(m_request.WithOutput(1.0));
-               // - m_follower and m_strictFollower will also run at 100% output
-               // - m_follower will follow m_leader's invert, while m_strictFollower
-               //   ignores it and uses its own
+                  // robot init, set m_follower to follow m_leader
+                  // m_follower should NOT oppose leader
+                  m_follower.SetControl(controls::Follower{m_leader.GetDeviceID(), false});
+                  // set m_strictFollower to strict-follow m_leader
+                  // strict followers ignore the leader's invert and use their own
+                  m_strictFollower.SetControl(controls::StrictFollower{m_leader.GetDeviceID()});
+
+                  // main robot code, command 100% output for m_leader
+                  m_motor.SetControl(m_request.WithOutput(1.0));
+                  // - m_follower and m_strictFollower will also run at 100% output
+                  // - m_follower will follow m_leader's invert, while m_strictFollower
+                  //   ignores it and uses its own
 
 Changing Update Frequency (Control Frame Period)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. list-table::
-   :width: 100%
-   :widths: 1 99
+.. table::
+   :class: longtable
 
-   * - .. centered:: v5
-     - .. tab-set::
+   .. list-table::
+      :width: 100%
+      :widths: 5 95
 
-         .. tab-item:: Java
-            :sync: Java
+      * - .. centered:: v5
+        - .. tab-set::
 
-            .. code-block:: java
+            .. tab-item:: Java
+               :sync: Java
 
-               // slow down the Control 3 frame (general control) to 50 Hz (20ms)
-               m_talonFX.setControlFramePeriod(ControlFrame.Control_3_General, 20);
+               .. code-block:: java
 
-         .. tab-item:: C++
-            :sync: C++
+                  // slow down the Control 3 frame (general control) to 50 Hz (20ms)
+                  m_talonFX.setControlFramePeriod(ControlFrame.Control_3_General, 20);
 
-            .. code-block:: cpp
+            .. tab-item:: C++
+               :sync: C++
 
-               // slow down the Control 3 frame (general control) to 50 Hz (20ms)
-               m_talonFX.SetControlFramePeriod(ControlFrame::Control_3_General, 20);
+               .. code-block:: cpp
 
-   * - .. centered:: v6
-     - .. tab-set::
+                  // slow down the Control 3 frame (general control) to 50 Hz (20ms)
+                  m_talonFX.SetControlFramePeriod(ControlFrame::Control_3_General, 20);
 
-         .. tab-item:: Java
-            :sync: Java
+      * - .. centered:: v6
+        - .. tab-set::
 
-            .. code-block:: java
+            .. tab-item:: Java
+               :sync: Java
 
-               // class member variables
-               final DutyCycleOut m_request = new DutyCycleOut(0);
+               .. code-block:: java
 
-               // slow down the control request to 50 Hz
-               m_request.UpdateFreqHz = 50;
+                  // class member variables
+                  final DutyCycleOut m_request = new DutyCycleOut(0);
 
-         .. tab-item:: C++
-            :sync: C++
+                  // slow down the control request to 50 Hz
+                  m_request.UpdateFreqHz = 50;
 
-            .. code-block:: cpp
+            .. tab-item:: C++
+               :sync: C++
 
-               // class member variables
-               controls::DutyCycleOut m_request{0};
+               .. code-block:: cpp
 
-               // slow down the control request to 50 Hz
-               m_request.UpdateFreqHz = 50_Hz;
+                  // class member variables
+                  controls::DutyCycleOut m_request{0};
+
+                  // slow down the control request to 50 Hz
+                  m_request.UpdateFreqHz = 50_Hz;
 
 .. tip:: ``UpdateFreqHz`` can be set to 0 Hz to synchronously one-shot the control request. In this case, users must ensure the control request is sent periodically in their robot code. Therefore, we recommend users call ``setControl`` no slower than 20 Hz (50 ms) when the control is one-shot.
 
