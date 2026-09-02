@@ -8,7 +8,7 @@ Setup
 Prerequisites
 -------------
 
-The elevator generator and generated project make a few assumption. To determine if the elevator generator is the best fit for your mechanism, consult the following checklist.
+The elevator generator and generated project make a few assumptions. To determine if the elevator generator is the best fit for your mechanism, consult the following checklist.
 
 - The elevator is a single or two gearbox mechanism.
 - All gearboxes on the elevator consist of the same gearing.
