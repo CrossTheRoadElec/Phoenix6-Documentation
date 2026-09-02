@@ -130,30 +130,33 @@ The remote limit switch can be selected using the ``LimitSource`` and ``LimitRem
 
       .. code-block:: java
 
-         var limitConfigs = new HardwareLimitSwitchConfigs();
-         limitConfigs.ForwardLimitSource = ForwardLimitSourceValue.RemoteCANcoder;
-         limitConfigs.ForwardLimitRemoteSensorID = m_cancoder.getDeviceID();
+         var configs = new TalonFXConfiguration();
+         configs.HardwareLimitSwitch.ForwardLimitSource = ForwardLimitSourceValue.RemoteCANcoder;
+         configs.HardwareLimitSwitch.ForwardLimitRemoteSensorID = m_cancoder.getDeviceID();
+         // set up other configs here
 
-         m_motor.getConfigurator().apply(limitConfigs);
+         m_motor.getConfigurator().apply(configs);
 
    .. tab-item:: C++
       :sync: cpp
 
       .. code-block:: cpp
 
-         configs::HardwareLimitSwitchConfigs limitConfigs{};
-         limitConfigs.ForwardLimitSource = signals::ForwardLimitSourceValue::RemoteCANcoder;
-         limitConfigs.ForwardLimitRemoteSensorID = m_cancoder.GetDeviceID();
+         configs::TalonFXConfiguration configs{};
+         configs.HardwareLimitSwitch.ForwardLimitSource = signals::ForwardLimitSourceValue::RemoteCANcoder;
+         configs.HardwareLimitSwitch.ForwardLimitRemoteSensorID = m_cancoder.GetDeviceID();
+         // set up other configs here
 
-         m_motor.GetConfigurator().Apply(limitConfigs);
+         m_motor.GetConfigurator().Apply(configs);
 
    .. tab-item:: Python
       :sync: python
 
       .. code-block:: python
 
-         limit_configs = configs.HardwareLimitSwitchConfigs()
-         limit_configs.forward_limit_source = signals.ForwardLimitSourceValue.REMOTE_CANCODER
-         limit_configs.forward_limit_remote_sensor_id = self.cancoder.device_id
+         configs = configs.TalonFXConfiguration()
+         configs.hardware_limit_switch.forward_limit_source = signals.ForwardLimitSourceValue.REMOTE_CANCODER
+         configs.hardware_limit_switch.forward_limit_remote_sensor_id = self.cancoder.device_id
+         # set up other configs here
 
-         self.motor.configurator.apply(limit_configs)
+         self.motor.configurator.apply(configs)

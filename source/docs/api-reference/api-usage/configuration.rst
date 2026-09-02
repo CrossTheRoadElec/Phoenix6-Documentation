@@ -203,7 +203,7 @@ To read configs stored in a device, use the ``refresh()`` method to update a ``C
 Applying Configs
 ^^^^^^^^^^^^^^^^
 
-Configs can be applied to a device by calling ``apply()`` on the ``Configurator`` with a ``Configuration`` object.
+Configs can be applied to a device by calling ``apply()`` on the ``Configurator`` with a ``Configuration`` object. During initialization, it is recommended that a full device ``Configuration`` object is applied instead of separate config groups to ensure that configs left unmodified by code are factory defaulted.
 
 .. warning:: ``apply()`` is a blocking API call that waits on the device to respond. Calling ``apply()`` periodically may slow down the execution time of the periodic function, as it will always wait up to ``DefaultTimeoutSeconds`` (`Java <https://api.ctr-electronics.com/phoenix6/stable/java/com/ctre/phoenix6/configs/ParentConfigurator.html#DefaultTimeoutSeconds>`__, `C++ <https://api.ctr-electronics.com/phoenix6/stable/cpp/classctre_1_1phoenix6_1_1configs_1_1_parent_configurator.html#aebb53abb6fdcbdf08d3b5e6803c75a81>`__, `Python <https://api.ctr-electronics.com/phoenix6/stable/python/autoapi/phoenix6/configs/talon_fx_configs/index.html#phoenix6.configs.talon_fx_configs.TalonFXConfigurator.apply>`__) for the response when no timeout parameter is specified.
 
@@ -215,11 +215,17 @@ Configs can be applied to a device by calling ``apply()`` on the ``Configurator`
       .. code-block:: Java
 
          var talonFXConfigurator = m_talonFX.getConfigurator();
-         var motorConfigs = new MotorOutputConfigs();
+         var motorConfigs = new TalonFXConfiguration();
 
-         // set invert to CW+ and apply config change
-         motorConfigs.Inverted = InvertedValue.Clockwise_Positive;
+         // set invert to CW+
+         motorConfigs.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
+         // apply all configs to the motor
          talonFXConfigurator.apply(motorConfigs);
+
+         // later in the match, change the neutral mode to Brake
+         motorConfigs.MotorOutput.NeutralMode = NeutralModeValue.Brake;
+         // apply only the MotorOutput configs, leaving all other configs untouched
+         talonFXConfigurator.apply(motorConfigs.MotorOutput);
 
    .. tab-item:: C++
       :sync: C++
@@ -227,11 +233,17 @@ Configs can be applied to a device by calling ``apply()`` on the ``Configurator`
       .. code-block:: c++
 
          auto& talonFXConfigurator = m_talonFX.GetConfigurator();
-         configs::MotorOutputConfigs motorConfigs{};
+         configs::TalonFXConfiguration motorConfigs{};
 
-         // set invert to CW+ and apply config change
-         motorConfigs.Inverted = signals::InvertedValue::Clockwise_Positive;
+         // set invert to CW+
+         motorConfigs.MotorOutput.Inverted = signals::InvertedValue::Clockwise_Positive;
+         // apply all configs to the motor
          talonFXConfigurator.Apply(motorConfigs);
+
+         // later in the match, change the neutral mode to Brake
+         motorConfigs.MotorOutput.NeutralMode = signals::NeutralModeValue::Brake;
+         // apply only the MotorOutput configs, leaving all other configs untouched
+         talonFXConfigurator.Apply(motorConfigs.MotorOutput);
 
    .. tab-item:: Python
       :sync: python
@@ -239,13 +251,19 @@ Configs can be applied to a device by calling ``apply()`` on the ``Configurator`
       .. code-block:: python
 
          talonfx_configurator = self.talonfx.configurator
-         motor_configs = configs.MotorOutputConfigs()
+         motor_configs = configs.TalonFXConfiguration()
 
-         # set invert to CW+ and apply config change
-         motor_configs.inverted = signals.InvertValue.CLOCKWISE_POSITIVE
+         # set invert to CW+
+         motor_configs.motor_output.inverted = signals.InvertValue.CLOCKWISE_POSITIVE
+         # apply all configs to the motor
          talonfx_configurator.apply(motor_configs)
 
-.. tip:: To modify a single configuration value without affecting the other configs, users can call ``refresh()`` after constructing the config object, or users can cache the config object and reuse it for future calls to ``apply()``.
+         # later in the match, change the neutral mode to Brake
+         motor_configs.motor_output.neutral_mode = signals.NeutralModeValue.BRAKE
+         # apply only the motor_output configs, leaving all other configs untouched
+         talonfx_configurator.apply(motor_configs.motor_output)
+
+.. tip:: To modify a single configuration value without affecting the other configs, users can call ``refresh()`` after constructing the config object, or users can cache the config object and reuse it for future calls to ``apply()``. Applying and refreshing a single config group can be faster in this scenario.
 
 Factory Default
 ~~~~~~~~~~~~~~~

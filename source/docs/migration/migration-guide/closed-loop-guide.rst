@@ -592,12 +592,12 @@ Using Closed-Loop Control
                   final VelocityVoltage m_velocity = new VelocityVoltage(0);
 
                   // robot init, set slot 0 gains
-                  var slot0Configs = new Slot0Configs();
-                  slot0Configs.kV = 0.12;
-                  slot0Configs.kP = 0.11;
-                  slot0Configs.kI = 0.48;
-                  slot0Configs.kD = 0.01;
-                  m_talonFX.getConfigurator().apply(slot0Configs, 0.050);
+                  var configs = new TalonFXConfiguration();
+                  configs.Slot0.kV = 0.12;
+                  configs.Slot0.kP = 0.11;
+                  configs.Slot0.kI = 0.48;
+                  configs.Slot0.kD = 0.01;
+                  m_talonFX.getConfigurator().apply(configs, 0.050);
 
                   // periodic, run velocity control with slot 0 configs,
                   // target velocity of 50 rps
@@ -613,12 +613,12 @@ Using Closed-Loop Control
                   controls::VelocityVoltage m_velocity{0_tps};
 
                   // robot init, set slot 0 gains
-                  configs::Slot0Configs slot0Configs{};
-                  slot0Configs.kV = 0.12;
-                  slot0Configs.kP = 0.11;
-                  slot0Configs.kI = 0.48;
-                  slot0Configs.kD = 0.01;
-                  m_talonFX.GetConfigurator().Apply(slot0Configs, 50_ms);
+                  configs::TalonFXConfiguration configs{};
+                  configs.Slot0.kV = 0.12;
+                  configs.Slot0.kP = 0.11;
+                  configs.Slot0.kI = 0.48;
+                  configs.Slot0.kD = 0.01;
+                  m_talonFX.GetConfigurator().Apply(configs, 50_ms);
 
                   // periodic, run velocity control with slot 0 configs,
                   // target velocity of 50 rps
@@ -788,13 +788,13 @@ Closed-loop control requests have been expanded to support motion profiles gener
          TrapezoidProfile.State m_setpoint = new TrapezoidProfile.State();
 
          // robot init, set slot 0 gains
-         var slot0Configs = new Slot0Configs();
-         slot0Configs.kS = 0.24; // add 0.24 V to overcome friction
-         slot0Configs.kV = 0.12; // apply 12 V for a target velocity of 100 rps
-         slot0Configs.kP = 4.8;
-         slot0Configs.kI = 0;
-         slot0Configs.kD = 0.1;
-         m_talonFX.getConfigurator().apply(Slot0Configs, 0.050);
+         var configs = new TalonFXConfiguration();
+         configs.Slot0.kS = 0.24; // add 0.24 V to overcome friction
+         configs.Slot0.kV = 0.12; // apply 12 V for a target velocity of 100 rps
+         configs.Slot0.kP = 4.8;
+         configs.Slot0.kI = 0;
+         configs.Slot0.kD = 0.1;
+         m_talonFX.getConfigurator().apply(configs, 0.050);
 
          // periodic, update the profile setpoint for 20 ms loop time
          m_setpoint = m_profile.calculate(0.020, m_setpoint, m_goal);
@@ -817,13 +817,13 @@ Closed-loop control requests have been expanded to support motion profiles gener
          frc::TrapezoidProfile<units::turns>::State m_setpoint{};
 
          // robot init, set slot 0 gains
-         configs::Slot0Configs slot0Configs{};
-         slot0Configs.kS = 0.24; // add 0.24 V to overcome friction
-         slot0Configs.kV = 0.12; // apply 12 V for a target velocity of 100 rps
-         slot0Configs.kP = 4.8;
-         slot0Configs.kI = 0;
-         slot0Configs.kD = 0.1;
-         m_talonFX.GetConfigurator().Apply(slot0Configs, 50_ms);
+         configs::TalonFXConfiguration configs{};
+         configs.Slot0.kS = 0.24; // add 0.24 V to overcome friction
+         configs.Slot0.kV = 0.12; // apply 12 V for a target velocity of 100 rps
+         configs.Slot0.kP = 4.8;
+         configs.Slot0.kI = 0;
+         configs.Slot0.kD = 0.1;
+         m_talonFX.GetConfigurator().Apply(configs, 50_ms);
 
          // periodic, update the profile setpoint for 20 ms loop time
          m_setpoint = m_profile.Calculate(20_ms, m_setpoint, m_goal);

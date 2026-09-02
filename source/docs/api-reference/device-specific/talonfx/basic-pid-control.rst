@@ -29,39 +29,39 @@ In a Position closed loop, the gains should be configured as follows:
 
       .. code-block:: java
 
+         var configs = new TalonFXConfiguration();
          // in init function, set slot 0 gains
-         var slot0Configs = new Slot0Configs();
-         slot0Configs.kP = 2.4; // An error of 1 rotation results in 2.4 V output
-         slot0Configs.kI = 0; // no output for integrated error
-         slot0Configs.kD = 0.1; // A velocity of 1 rps results in 0.1 V output
+         configs.Slot0.kP = 2.4; // An error of 1 rotation results in 2.4 V output
+         configs.Slot0.kI = 0; // no output for integrated error
+         configs.Slot0.kD = 0.1; // A velocity of 1 rps results in 0.1 V output
 
-         m_talonFX.getConfigurator().apply(slot0Configs);
+         m_talonFX.getConfigurator().apply(configs);
 
    .. tab-item:: C++
       :sync: C++
 
       .. code-block:: cpp
 
+         configs::TalonFXConfiguration configs{};
          // in init function, set slot 0 gains
-         configs::Slot0Configs slot0Configs{};
-         slot0Configs.kP = 2.4; // An error of 1 rotation results in 2.4 V output
-         slot0Configs.kI = 0; // no output for integrated error
-         slot0Configs.kD = 0.1; // A velocity of 1 rps results in 0.1 V output
+         configs.Slot0.kP = 2.4; // An error of 1 rotation results in 2.4 V output
+         configs.Slot0.kI = 0; // no output for integrated error
+         configs.Slot0.kD = 0.1; // A velocity of 1 rps results in 0.1 V output
 
-         m_talonFX.GetConfigurator().Apply(slot0Configs);
+         m_talonFX.GetConfigurator().Apply(configs);
 
    .. tab-item:: Python
       :sync: python
 
       .. code-block:: python
 
+         configs = configs.TalonFXConfiguration()
          # in init function, set slot 0 gains
-         slot0_configs = configs.Slot0Configs()
-         slot0_configs.k_p = 2.4 # An error of 1 rotation results in 2.4 V output
-         slot0_configs.k_i = 0 # no output for integrated error
-         slot0_configs.k_d = 0.1 # A velocity of 1 rps results in 0.1 V output
+         configs.slot0.k_p = 2.4 # An error of 1 rotation results in 2.4 V output
+         configs.slot0.k_i = 0 # no output for integrated error
+         configs.slot0.k_d = 0.1 # A velocity of 1 rps results in 0.1 V output
 
-         self.talonfx.configurator.apply(slot0_configs)
+         self.talonfx.configurator.apply(configs)
 
 Once the gains are configured, the Position closed loop control request can be sent to the TalonFX. The control request object has an optional feedforward term that can be used to add an arbitrary value to the output, which can be useful to account for the effects of gravity or friction.
 
@@ -124,44 +124,45 @@ In a Velocity closed loop, the gains should be configured as follows:
 
       .. code-block:: java
 
+         var configs = new TalonFXConfiguration();
          // in init function, set slot 0 gains
-         var slot0Configs = new Slot0Configs();
-         slot0Configs.kS = 0.1; // Add 0.1 V output to overcome static friction
-         slot0Configs.kV = 0.12; // A velocity target of 1 rps results in 0.12 V output
-         slot0Configs.kP = 0.11; // An error of 1 rps results in 0.11 V output
-         slot0Configs.kI = 0; // no output for integrated error
-         slot0Configs.kD = 0; // no output for error derivative
+         configs.Slot0.kS = 0.1; // Add 0.1 V output to overcome static friction
+         configs.Slot0.kV = 0.12; // A velocity target of 1 rps results in 0.12 V output
+         configs.Slot0.kP = 0.11; // An error of 1 rps results in 0.11 V output
+         configs.Slot0.kI = 0; // no output for integrated error
+         configs.Slot0.kD = 0; // no output for error derivative
 
-         m_talonFX.getConfigurator().apply(slot0Configs);
+         m_talonFX.getConfigurator().apply(configs);
 
    .. tab-item:: C++
       :sync: C++
 
       .. code-block:: cpp
 
+         configs::TalonFXConfiguration configs{};
          // in init function, set slot 0 gains
-         configs::Slot0Configs slot0Configs{};
-         slot0Configs.kS = 0.1; // Add 0.1 V output to overcome static friction
-         slot0Configs.kV = 0.12; // A velocity target of 1 rps results in 0.12 V output
-         slot0Configs.kP = 0.11; // An error of 1 rps results in 0.11 V output
-         slot0Configs.kI = 0; // no output for integrated error
-         slot0Configs.kD = 0; // no output for error derivative
+         configs.Slot0.kS = 0.1; // Add 0.1 V output to overcome static friction
+         configs.Slot0.kV = 0.12; // A velocity target of 1 rps results in 0.12 V output
+         configs.Slot0.kP = 0.11; // An error of 1 rps results in 0.11 V output
+         configs.Slot0.kI = 0; // no output for integrated error
+         configs.Slot0.kD = 0; // no output for error derivative
 
-         m_talonFX.GetConfigurator().Apply(slot0Configs);
+         m_talonFX.GetConfigurator().Apply(configs);
 
    .. tab-item:: Python
       :sync: python
 
       .. code-block:: python
 
-         slot0_configs = configs.Slot0Configs()
-         slot0_configs.k_s = 0.1 # Add 0.1 V output to overcome static friction
-         slot0_configs.k_v = 0.12 # A velocity target of 1 rps results in 0.12 V output
-         slot0_configs.k_p = 0.11 # An error of 1 rps results in 0.11 V output
-         slot0_configs.k_i = 0 # no output for integrated error
-         slot0_configs.k_d = 0 # no output for error derivative
+         configs = configs.TalonFXConfiguration()
+         # in init function, set slot 0 gains
+         configs.slot0.k_s = 0.1 # Add 0.1 V output to overcome static friction
+         configs.slot0.k_v = 0.12 # A velocity target of 1 rps results in 0.12 V output
+         configs.slot0.k_p = 0.11 # An error of 1 rps results in 0.11 V output
+         configs.slot0.k_i = 0 # no output for integrated error
+         configs.slot0.k_d = 0 # no output for error derivative
 
-         self.talonfx.configurator.apply(slot0_configs)
+         self.talonfx.configurator.apply(configs)
 
 Once the gains are configured, the Velocity closed loop control request can be sent to the TalonFX. The control request object has an optional feedforward term that can be used to add an arbitrary value to the output, which can be useful to account for the effects of gravity.
 
@@ -228,45 +229,45 @@ The Position and Velocity closed-loop requests can be used to run a `motion prof
 
             .. code-block:: java
 
+               var configs = new TalonFXConfiguration();
                // in init function, set slot 0 gains
-               var slot0Configs = new Slot0Configs();
-               slot0Configs.kS = 0.25; // Add 0.25 V output to overcome static friction
-               slot0Configs.kV = 0.12; // A velocity target of 1 rps results in 0.12 V output
-               slot0Configs.kP = 4.8; // A position error of 2.5 rotations results in 12 V output
-               slot0Configs.kI = 0; // no output for integrated error
-               slot0Configs.kD = 0.1; // A velocity error of 1 rps results in 0.1 V output
+               configs.Slot0.kS = 0.25; // Add 0.25 V output to overcome static friction
+               configs.Slot0.kV = 0.12; // A velocity target of 1 rps results in 0.12 V output
+               configs.Slot0.kP = 4.8; // A position error of 2.5 rotations results in 12 V output
+               configs.Slot0.kI = 0; // no output for integrated error
+               configs.Slot0.kD = 0.1; // A velocity error of 1 rps results in 0.1 V output
 
-               m_talonFX.getConfigurator().apply(slot0Configs);
+               m_talonFX.getConfigurator().apply(configs);
 
          .. tab-item:: C++
             :sync: C++
 
             .. code-block:: cpp
 
+               configs::TalonFXConfiguration configs{};
                // in init function, set slot 0 gains
-               configs::Slot0Configs slot0Configs{};
-               slot0Configs.kS = 0.25; // Add 0.25 V output to overcome static friction
-               slot0Configs.kV = 0.12; // A velocity target of 1 rps results in 0.12 V output
-               slot0Configs.kP = 4.8; // A position error of 2.5 rotations results in 12 V output
-               slot0Configs.kI = 0; // no output for integrated error
-               slot0Configs.kD = 0.1; // A velocity error of 1 rps results in 0.1 V output
+               configs.Slot0.kS = 0.25; // Add 0.25 V output to overcome static friction
+               configs.Slot0.kV = 0.12; // A velocity target of 1 rps results in 0.12 V output
+               configs.Slot0.kP = 4.8; // A position error of 2.5 rotations results in 12 V output
+               configs.Slot0.kI = 0; // no output for integrated error
+               configs.Slot0.kD = 0.1; // A velocity error of 1 rps results in 0.1 V output
 
-               m_talonFX.GetConfigurator().Apply(slot0Configs);
+               m_talonFX.GetConfigurator().Apply(configs);
 
          .. tab-item:: Python
             :sync: python
 
             .. code-block:: python
 
+               configs = configs.TalonFXConfiguration()
                # in init function, set slot 0 gains
-               slot0_configs = configs.Slot0Configs()
-               slot0_configs.k_s = 0.25 # Add 0.25 V output to overcome static friction
-               slot0_configs.k_v = 0.12 # A velocity target of 1 rps results in 0.12 V output
-               slot0_configs.k_p = 4.8 # A position error of 2.5 rotations results in 12 V output
-               slot0_configs.k_i = 0 # no output for integrated error
-               slot0_configs.k_d = 0.1 # A velocity error of 1 rps results in 0.1 V output
+               configs.slot0.k_s = 0.25 # Add 0.25 V output to overcome static friction
+               configs.slot0.k_v = 0.12 # A velocity target of 1 rps results in 0.12 V output
+               configs.slot0.k_p = 4.8 # A position error of 2.5 rotations results in 12 V output
+               configs.slot0.k_i = 0 # no output for integrated error
+               configs.slot0.k_d = 0.1 # A velocity error of 1 rps results in 0.1 V output
 
-               self.talonfx.configurator.apply(slot0_configs)
+               self.talonfx.configurator.apply(configs)
 
       Once the gains are configured, the Position closed-loop control request can be sent to the TalonFX. The Velocity parameter is used to specify the current setpoint velocity of the motion profile.
 
@@ -363,32 +364,32 @@ The Position and Velocity closed-loop requests can be used to run a `motion prof
 
             .. code-block:: java
 
+               var configs = new TalonFXConfiguration();
                // in init function, set slot 0 gains
-               var slot0Configs = new Slot0Configs();
-               slot0Configs.kS = 0.25; // Add 0.25 V output to overcome static friction
-               slot0Configs.kV = 0.12; // A velocity target of 1 rps results in 0.12 V output
-               slot0Configs.kA = 0.01; // An acceleration of 1 rps/s requires 0.01 V output
-               slot0Configs.kP = 0.11; // An error of 1 rps results in 0.11 V output
-               slot0Configs.kI = 0; // no output for integrated error
-               slot0Configs.kD = 0; // no output for error derivative
+               configs.Slot0.kS = 0.25; // Add 0.25 V output to overcome static friction
+               configs.Slot0.kV = 0.12; // A velocity target of 1 rps results in 0.12 V output
+               configs.Slot0.kA = 0.01; // An acceleration of 1 rps/s requires 0.01 V output
+               configs.Slot0.kP = 0.11; // An error of 1 rps results in 0.11 V output
+               configs.Slot0.kI = 0; // no output for integrated error
+               configs.Slot0.kD = 0; // no output for error derivative
 
-               m_talonFX.getConfigurator().apply(slot0Configs);
+               m_talonFX.getConfigurator().apply(configs);
 
          .. tab-item:: C++
             :sync: C++
 
             .. code-block:: cpp
 
+               configs::TalonFXConfiguration configs{};
                // in init function, set slot 0 gains
-               configs::Slot0Configs slot0Configs{};
-               slot0Configs.kS = 0.25; // Add 0.25 V output to overcome static friction
-               slot0Configs.kV = 0.12; // A velocity target of 1 rps results in 0.12 V output
-               slot0Configs.kA = 0.01; // An acceleration of 1 rps/s requires 0.01 V output
-               slot0Configs.kP = 0.11; // An error of 1 rps results in 0.11 V output
-               slot0Configs.kI = 0; // no output for integrated error
-               slot0Configs.kD = 0; // no output for error derivative
+               configs.Slot0.kS = 0.25; // Add 0.25 V output to overcome static friction
+               configs.Slot0.kV = 0.12; // A velocity target of 1 rps results in 0.12 V output
+               configs.Slot0.kA = 0.01; // An acceleration of 1 rps/s requires 0.01 V output
+               configs.Slot0.kP = 0.11; // An error of 1 rps results in 0.11 V output
+               configs.Slot0.kI = 0; // no output for integrated error
+               configs.Slot0.kD = 0; // no output for error derivative
 
-               m_talonFX.GetConfigurator().Apply(slot0Configs);
+               m_talonFX.GetConfigurator().Apply(configs);
 
          .. tab-item:: Python
             :sync: python
