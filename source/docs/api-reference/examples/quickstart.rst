@@ -59,15 +59,15 @@ In a traditional robot drivetrain, there are two motors attached to each horizon
 
          public Robot() {
             // start with factory-default configs
-            var currentConfigs = new MotorOutputConfigs();
+            var configs = new TalonFXConfiguration();
 
             // The left motor is CCW+
-            currentConfigs.Inverted = InvertedValue.CounterClockwise_Positive;
-            m_leftLeader.getConfigurator().apply(currentConfigs);
+            configs.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
+            m_leftLeader.getConfigurator().apply(configs);
 
             // The right motor is CW+
-            currentConfigs.Inverted = InvertedValue.Clockwise_Positive;
-            m_rightLeader.getConfigurator().apply(currentConfigs);
+            configs.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
+            m_rightLeader.getConfigurator().apply(configs);
 
             // Ensure our followers are following their respective leader
             m_leftFollower.setControl(new Follower(m_leftLeader.getDeviceID(), MotorAlignmentValue.Aligned));
@@ -85,15 +85,15 @@ In a traditional robot drivetrain, there are two motors attached to each horizon
 
          Robot::Robot() {
             // start with factory-default configs
-            configs::MotorOutputConfigs currentConfigs{};
+            configs::TalonFXConfiguration configs{};
 
             // The left motor is CCW+
-            currentConfigs.Inverted = signals::InvertedValue::CounterClockwise_Positive;
-            m_leftLeader.GetConfigurator().Apply(currentConfigs);
+            configs.MotorOutput.Inverted = signals::InvertedValue::CounterClockwise_Positive;
+            m_leftLeader.GetConfigurator().Apply(configs);
 
             // The right motor is CW+
-            currentConfigs.Inverted = signals::InvertedValue::Clockwise_Positive;
-            m_rightLeader.GetConfigurator().Apply(currentConfigs);
+            configs.MotorOutput.Inverted = signals::InvertedValue::Clockwise_Positive;
+            m_rightLeader.GetConfigurator().Apply(configs);
 
             // Ensure the followers are following their respective leader
             m_leftFollower.SetControl(controls::Follower{m_leftLeader.GetDeviceID(), false});
@@ -125,15 +125,15 @@ Full Example
 
             public Robot() {
                // start with factory-default configs
-               var currentConfigs = new MotorOutputConfigs();
+               var configs = new TalonFXConfiguration();
 
                // The left motor is CCW+
-               currentConfigs.Inverted = InvertedValue.CounterClockwise_Positive;
-               m_leftLeader.getConfigurator().apply(currentConfigs);
+               configs.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
+               m_leftLeader.getConfigurator().apply(configs);
 
                // The right motor is CW+
-               currentConfigs.Inverted = InvertedValue.Clockwise_Positive;
-               m_rightLeader.getConfigurator().apply(currentConfigs);
+               configs.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
+               m_rightLeader.getConfigurator().apply(configs);
 
                // Ensure our followers are following their respective leader
                m_leftFollower.setControl(new Follower(m_leftLeader.getDeviceID(), MotorAlignmentValue.Aligned));
@@ -167,15 +167,15 @@ Full Example
 
          Robot::Robot() {
             // start with factory-default configs
-            configs::MotorOutputConfigs currentConfigs{};
+            configs::TalonFXConfiguration configs{};
 
             // The left motor is CCW+
-            currentConfigs.Inverted = signals::InvertedValue::CounterClockwise_Positive;
-            m_leftLeader.GetConfigurator().Apply(currentConfigs);
+            configs.MotorOutput.Inverted = signals::InvertedValue::CounterClockwise_Positive;
+            m_leftLeader.GetConfigurator().Apply(configs);
 
             // The right motor is CW+
-            currentConfigs.Inverted = signals::InvertedValue::Clockwise_Positive;
-            m_rightLeader.GetConfigurator().Apply(currentConfigs);
+            configs.MotorOutput.Inverted = signals::InvertedValue::Clockwise_Positive;
+            m_rightLeader.GetConfigurator().Apply(configs);
 
             // Ensure the followers are following their respective leader
             m_leftFollower.SetControl(controls::Follower{m_leftLeader.GetDeviceID(), false});

@@ -176,13 +176,14 @@ Current limits must be **enabled** and **configured**. This can be done in :doc:
       .. code-block:: java
 
          var talonFXConfigurator = m_talonFX.getConfigurator();
-         var limitConfigs = new CurrentLimitsConfigs();
+         var configs = new TalonFXConfiguration();
 
          // enable stator current limit
-         limitConfigs.StatorCurrentLimit = 120;
-         limitConfigs.StatorCurrentLimitEnable = true;
+         configs.CurrentLimits.StatorCurrentLimit = 120;
+         configs.CurrentLimits.StatorCurrentLimitEnable = true;
+         // set up other configs here
 
-         talonFXConfigurator.apply(limitConfigs);
+         talonFXConfigurator.apply(configs);
 
    .. tab-item:: C++
       :sync: C++
@@ -190,13 +191,14 @@ Current limits must be **enabled** and **configured**. This can be done in :doc:
       .. code-block:: c++
 
          auto& talonFXConfigurator = m_talonFX.GetConfigurator();
-         configs::CurrentLimitsConfigs limitConfigs{};
+         configs::TalonFXConfiguration configs{};
 
          // enable stator current limit
-         limitConfigs.StatorCurrentLimit = 120;
-         limitConfigs.StatorCurrentLimitEnable = true;
+         configs.CurrentLimits.StatorCurrentLimit = 120;
+         configs.CurrentLimits.StatorCurrentLimitEnable = true;
+         // set up other configs here
 
-         talonFXConfigurator.Apply(limitConfigs);
+         talonFXConfigurator.Apply(configs);
 
    .. tab-item:: Python
       :sync: python
@@ -204,10 +206,11 @@ Current limits must be **enabled** and **configured**. This can be done in :doc:
       .. code-block:: python
 
          talonfx_configurator = self.talonfx.configurator
-         limit_configs = configs.CurrentLimitsConfigs()
+         configs = configs.TalonFXConfiguration()
 
          # enable stator current limit
-         limit_configs.stator_current_limit = 120
-         limit_configs.stator_current_limit_enable = true
+         configs.current_limits.stator_current_limit = 120
+         configs.current_limits.stator_current_limit_enable = true
+         # set up other configs here
 
-         talonfx_configurator.apply(limit_configs)
+         talonfx_configurator.apply(configs)
