@@ -36,6 +36,13 @@ Installing Phoenix 6 (FRC)
 
             Alternatively, the Hoot Replay version of the vendordep can be installed using :guilabel:`CTRE-Phoenix Replay (v6)`, as well as the v5 Replay-compatible vendordep using :guilabel:`CTRE-Phoenix (v5) Replay Compatibility`.
 
+            The vendordeps are also available at the following links:
+
+            - Phoenix 6: https://maven.ctr-electronics.com/release/com/ctre/phoenix6/latest/Phoenix6-frc2026-latest.json
+            - Phoenix 5: https://maven.ctr-electronics.com/release/com/ctre/phoenix/Phoenix5-frc2026-latest.json
+            - Phoenix 6 Replay: https://maven.ctr-electronics.com/release/com/ctre/phoenix6/latest/Phoenix6-replay-frc2026-latest.json
+            - Phoniex 5 Replay Compatibility: https://maven.ctr-electronics.com/release/com/ctre/phoenix/Phoenix5-replay-frc2026-latest.json
+
    .. tab-item:: Python
 
       First, make sure to `install RobotPy <https://docs.wpilib.org/en/stable/docs/zero-to-robot/step-2/python-setup.html>`__. From there, installation of Phoenix 6 is available through `PyPI <https://pypi.org/project/phoenix6/>`__.
