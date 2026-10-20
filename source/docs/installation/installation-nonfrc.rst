@@ -21,7 +21,7 @@ Linux systems require some extra steps to install Phoenix 6 and CANivore.
 APT Repository Installation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The Phoenix 6 C++ API, CANivore kernel module, and other utilities are distributed through our APT repository. Begin with adding the repository to your APT sources.
+The Phoenix 6 C++ API, CANivore kernel module, and other utilities are distributed through our APT repository. The repository must be added to your APT sources.
 
 .. code-block:: bash
 
@@ -31,54 +31,7 @@ The Phoenix 6 C++ API, CANivore kernel module, and other utilities are distribut
 
 .. note:: ``<year>`` should be replaced with the year of Phoenix 6 software for which you have purchased licenses.
 
-Open ``/etc/apt/sources.list.d/ctr${YEAR}.list`` with an editor of your choice.
-
-.. code-block:: bash
-
-   sudo nano /etc/apt/sources.list.d/ctr${YEAR}.list
-
-In the ``tools`` entry, replace ``stable`` with the distribution you want to use.
-
-.. code-block:: bash
-
-   # APT repo for CTR tools, including canivore-usb
-   deb [signed-by=/usr/share/keyrings/ctr-pubkey.gpg] https://deb.ctr-electronics.com/tools stable main
-
-For example. Raspberry Pi would look like:
-
-.. code-block:: bash
-
-   # APT repo for CTR tools, including canivore-usb
-   deb [signed-by=/usr/share/keyrings/ctr-pubkey.gpg] https://deb.ctr-electronics.com/tools raspberrypi main
-
-Available distributions can be found in the dropdown below.
-
-.. _canivore-modifying-list-dist:
-
-.. dropdown:: Modifying ``.list`` Distribution
-
-   .. list-table::
-      :header-rows: 1
-      :align: left
-      :width: 100%
-
-      * - System
-
-        - ``<dist>``
-
-      * - Raspberry Pi
-
-        - raspberrypi
-
-      * - NVIDIA Jetson
-
-        - jetson
-
-      * - Other Linux systems (default)
-
-        - stable
-
-.. warning:: Do not modify the distribution of the ``libs/<year>`` entry in the ``.list`` file.
+.. warning:: Users who previously modified the ``.list`` distribution to use ``raspberrypi`` or ``jetson`` should switch to the ``stable`` distribution moving forward.
 
 CANivore Installation
 ^^^^^^^^^^^^^^^^^^^^^
@@ -96,7 +49,7 @@ On non-FRC Linux systems, the ``canivore-usb`` kernel module must be installed t
       .. code-block:: bash
 
          sudo apt update
-         sudo apt install raspberrypi-kernel-headers
+         sudo apt install linux-headers-rpi-v8 # previously raspberrypi-kernel-headers
 
       2. Install ``canivore-usb``.
 
