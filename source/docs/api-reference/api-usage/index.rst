@@ -28,11 +28,11 @@ There are three major components to the Phoenix 6 API:
 
       Signals represent **data retrieved** from a device. This can be velocity, position, yaw, pitch, roll, temperature, etc.
 
-.. card:: TalonFX Quickstart
+.. card:: Talon FX® Quickstart
    :link-type: doc
    :link: /docs/api-reference/device-specific/talonfx/open-loop-requests
 
-   Quickstart on controlling a TalonFX with open loop control requests and a Joystick.
+   Quickstart on controlling a Talon FX® with open loop control requests and a Joystick.
 
 - :doc:`api-overview`
    - Details a high level overview of what makes up the Phoenix 6 API.
@@ -41,7 +41,7 @@ There are three major components to the Phoenix 6 API:
    - Describes configuring device configs via code.
 
 - :doc:`control-requests`
-   - Highlights using control requests to control the output of actuators such as the TalonFX.
+   - Highlights using control requests to control the output of actuators such as the Talon FX®.
 
 - :doc:`status-signals`
    - Details using status signals to retrieve sensor data from devices.

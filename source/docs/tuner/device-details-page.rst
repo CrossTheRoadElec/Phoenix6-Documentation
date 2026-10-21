@@ -11,7 +11,7 @@ The **Device Details** page can be accessed by clicking on the device card (or c
 - Control
 - Self Tests
 - Plotting
-- Pigeon 2 Mount Calibration
+- Pigeon® 2.0 Mount Calibration
 
 Blinking
 --------

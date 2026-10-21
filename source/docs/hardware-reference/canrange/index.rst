@@ -1,7 +1,7 @@
-CANrange
-========
+CANrange®
+=========
 
-CANrange is a CAN-enabled Time-of-Flight distance measurement sensor. This product uses laser measurements to calculate precise distance to a surface parallel to the sensor. Users can also configure the CANrange to act as a limit switch or beam break sensor in the :ref:`Device Configs <docs/tuner/configs:tuner configs>`.
+The CTR Electronics CANrange® is a CAN-enabled Time-of-Flight distance measurement sensor. This product uses laser measurements to calculate precise distance to a surface parallel to the sensor. Users can also configure the CANrange® to act as a limit switch or beam break sensor in the :ref:`Device Configs <docs/tuner/configs:tuner configs>`.
 
 .. grid:: 2
 
@@ -92,20 +92,20 @@ Status Light Reference
                 <td><div class='ledGroup'><div class='led' ontime='300' offtime='300' oncolor='red' offcolor='black'></div>
                                           <div class='led' ontime='300' offtime='300' oncolor='black' offcolor='red'></div></div></td>
                 <td>Blinking Alternating Red</td>
-                <td>CANrange does not have valid CAN.</td>
+                <td>CANrange® does not have valid CAN.</td>
                 <td>Ensure good connections between CANH and CANL (Yellow and Green) & robot controller is on.</td>
             </tr>
             <tr>
                 <td><div class='ledGroup'><div class='led' ontime='300' offtime='300' oncolor='orange' offcolor='black'></div>
                                           <div class='led' ontime='300' offtime='300' oncolor='black' offcolor='orange'></div></div></td>
                 <td>Blinking Alternating Orange</td>
-                <td colspan="2">CANrange has a good CAN connection. Measured distance is not within detection threshold.</td>
+                <td colspan="2">CANrange® has a good CAN connection. Measured distance is not within detection threshold.</td>
             </tr>
             <tr>
                 <td><div class='ledGroup'><div class='led' ontime='300' offtime='300' oncolor='green' offcolor='black'></div>
                                           <div class='led' ontime='300' offtime='300' oncolor='black' offcolor='green'></div></div></td>
                 <td>Blinking Alternating Green</td>
-                <td colspan="2">CANrange has a good CAN connection. Measured distance is within detection threshold.</td>
+                <td colspan="2">CANrange® has a good CAN connection. Measured distance is within detection threshold.</td>
             </tr>
             <tr>
                 <td><div class='ledGroup'><div class='led' ontime='300' offtime='300' oncolor='red' offcolor='orange'></div>
@@ -118,14 +118,14 @@ Status Light Reference
                 <td><div class='ledGroup'><div class='led' ontime='0' offtime='0' oncolor='black' offcolor='black'></div>
                                           <div class='led' ontime='300' offtime='300' oncolor='green' offcolor='orange'></div></div></td>
                 <td>Single LED alternates Green/Orange</td>
-                <td>CANrange in bootloader.</td>
+                <td>CANrange® in bootloader.</td>
                 <td>Field-upgrade device in Tuner X.</td>
             </tr>
         </table>
     </div>
 
 
-The rate at which the LED is blinking can be used as a rough indicator of measured distance. For example, the below LED shows that the detected distance is close to the CANrange.
+The rate at which the LED is blinking can be used as a rough indicator of measured distance. For example, the below LED shows that the detected distance is close to the CANrange®.
 
 .. raw:: html
 

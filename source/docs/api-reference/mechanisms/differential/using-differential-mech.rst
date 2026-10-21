@@ -15,7 +15,7 @@ The differential mechanism can be controlled by calling ``setControl`` with one 
    .. tab-item:: ``DifferentialMechanism``
       :sync: differential
 
-      The full ``DifferentialMechanism`` (requires `Phoenix Pro <https://store.ctr-electronics.com/products/phoenix-pro/>`__ and `CANivore <https://store.ctr-electronics.com/products/canivore>`__) accepts two separate control requests. The first is run on the Average axis, while the second is run on the Difference axis. Both control requests must use the same :ref:`control output type <docs/api-reference/device-specific/talonfx/talonfx-control-intro:control output types>`. All control output types are supported, as are all parameters within the two provided control requests. However, note that Motion Magic® is not supported on the Difference axis.
+      The full ``DifferentialMechanism`` (requires `Phoenix Pro <https://store.ctr-electronics.com/products/phoenix-pro/>`__ and `CANivore® <https://store.ctr-electronics.com/products/canivore>`__) accepts two separate control requests. The first is run on the Average axis, while the second is run on the Difference axis. Both control requests must use the same :ref:`control output type <docs/api-reference/device-specific/talonfx/talonfx-control-intro:control output types>`. All control output types are supported, as are all parameters within the two provided control requests. However, note that Motion Magic® is not supported on the Difference axis.
 
       .. note:: Common parameters such as ``UseTimesync`` only need to be set on the Average axis control request.
 

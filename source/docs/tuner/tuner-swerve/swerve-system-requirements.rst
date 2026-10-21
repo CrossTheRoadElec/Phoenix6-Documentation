@@ -3,11 +3,11 @@ Swerve Requirements
 
 The swerve project creator and :doc:`swerve API </docs/tuner/tuner-swerve/index>` have several limitations. These limitations are in place to maximize performance and improve maintainability.
 
-* Only Phoenix 6 supported hardware (e.g. Talon FX, Talon FXS, CANcoder, CANdi™, Pigeon 2.0).
+* Only Phoenix 6 supported hardware (e.g. Talon FX®, Talon FXS®, CANcoder®, CANdi®, Pigeon® 2.0).
 
-  * 8 Talon FX or Talon FXS (4 steer, 4 drive)
-  * 4 CANcoder (4 steer) **OR** 4 Talon FXS + PWM encoder **OR** 4 CANdi™
-  * 1 Pigeon 2.0
+  * 8 Talon FX® or Talon FXS® (4 steer, 4 drive)
+  * 4 CANcoder® (4 steer) **OR** 4 Talon FXS® + PWM encoder **OR** 4 CANdi®
+  * 1 Pigeon® 2.0
 
 * Requires Phoenix 6 software released for the current release year of Tuner X.
 
@@ -40,7 +40,7 @@ Users can utilize the below checklist to ensure their robot is ready for project
      - Done?
    * - **REQUIRED:** Is there the minimum number of devices?
 
-       (8 Talon FX/FXS, 4 CANcoder/CANdi™/Talon FXS + PWM encoder, 1 Pigeon 2.0)
+       (8 Talon FX®/Talon FXS®, 4 CANcoder®/CANdi®/Talon FXS® + PWM encoder, 1 Pigeon® 2.0)
      - .. raw:: html
 
            <input type="checkbox"/>
@@ -67,13 +67,13 @@ Users can utilize the below checklist to ensure their robot is ready for project
 
    * - **Recommended:** Have devices been renamed?
 
-       (e.g. "TalonFX (Device ID 1)" -> "FL Steer Motor")
+       (e.g. "Talon FX (Device ID 1)" -> "FL Steer Motor")
 
      - .. raw:: html
 
           <input type="checkbox"/>
 
-   * - **Recommended:** Are the devices on a CANivore?
+   * - **Recommended:** Are the devices on a CANivore®?
      - .. raw:: html
 
           <input type="checkbox"/>

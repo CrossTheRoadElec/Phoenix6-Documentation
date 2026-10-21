@@ -6,23 +6,24 @@ jobs:
   build-pdf:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-python@v4
+    - uses: actions/checkout@v6
+    - uses: actions/setup-python@v6
       with:
-        python-version: 3.11
-        cache: 'pip'
-    - name: Install Python Dependencies
+        python-version: 3.12
+    - name: Install uv
+      uses: astral-sh/setup-uv@v10.3.0
+    - name: Install Dependencies
       run: |
-        pip install -r source/requirements.txt
+        uv sync
     - name: Install LaTeX
       run: |
         sudo apt -y update
         sudo apt install -y imagemagick texlive-latex-recommended texlive-fonts-recommended texlive-latex-extra latexmk texlive-lang-greek texlive-luatex texlive-xetex texlive-fonts-extra dvipng librsvg2-bin
     - name: Build PDF
       run: |
-        make latexpdf
+        uv run make latexpdf
     - name: Archive PDF
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: phoenix6-docs-pdf
         path: build/latex/phoenix6.pdf
@@ -31,23 +32,24 @@ jobs:
   build-html:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-python@v4
+    - uses: actions/checkout@v6
+    - uses: actions/setup-python@v6
       with:
-        python-version: 3.11
-        cache: 'pip'
-    - name: Install Python Dependencies
+        python-version: 3.12
+    - name: Install uv
+      uses: astral-sh/setup-uv@v10.3.0
+    - name: Install Dependencies
       run: |
-        pip install -r source/requirements.txt
+        uv sync
     - name: Install librsvg2
       run: |
         sudo apt -y update
         sudo apt install -y librsvg2-bin
     - name: Build HTML
       run: |
-        make html
+        uv run make html
     - name: Archive HTML
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: phoenix6-docs-html
         path: build/html/
@@ -56,54 +58,57 @@ jobs:
   check-links:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
       with:
         fetch-depth: 0
-    - uses: actions/setup-python@v4
+    - uses: actions/setup-python@v6
       with:
-        python-version: 3.11
-        cache: 'pip'
+        python-version: 3.12
+    - name: Install uv
+      uses: astral-sh/setup-uv@v10.3.0
     - name: Install Dependencies
       run: |
-        pip install -r source/requirements.txt
+        uv sync
     - name: Check Links
       run: |
-        make linkcheck
+        uv run make linkcheck
         
   check-linting:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-python@v4
+    - uses: actions/checkout@v6
+    - uses: actions/setup-python@v6
       with:
-        python-version: 3.11
-        cache: 'pip'
+        python-version: 3.12
+    - name: Install uv
+      uses: astral-sh/setup-uv@v10.3.0
     - name: Install Dependencies
       run: |
-        pip install -r source/requirements.txt
+        uv sync
     - name: Check Lint
       run: |
-        make lint
+        uv run make lint
 
   check-image-size:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-python@v4
+    - uses: actions/checkout@v6
+    - uses: actions/setup-python@v6
       with:
-        python-version: 3.11
-        cache: 'pip'
+        python-version: 3.12
+    - name: Install uv
+      uses: astral-sh/setup-uv@v10.3.0
     - name: Install Dependencies
       run: |
-        pip install -r source/requirements.txt
+        uv sync
     - name: Check Image Size
       run: |
-        make sizecheck
+        uv run make sizecheck
 
   check-spelling:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: misspell
         uses: reviewdog/action-misspell@v1
         with:
@@ -113,20 +118,21 @@ jobs:
   check-redirects:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Checkout main
       run: |
         git fetch origin main --depth=1
-    - uses: actions/setup-python@v4
+    - uses: actions/setup-python@v6
       with:
-        python-version: 3.11
-        cache: 'pip'
+        python-version: 3.12
+    - name: Install uv
+      uses: astral-sh/setup-uv@v10.3.0
     - name: Install Dependencies
       run: |
-        pip install -r source/requirements.txt
+        uv sync
     - name: Check redirects
       run: |
-        make rediraffecheckdiff
+        uv run make rediraffecheckdiff
     - name: Check redirects format
       run: |
         [[ $(<source/redirects.txt) == $(git show origin/main:source/redirects.txt)* ]] || { echo "Error: redirects.txt can only be appended to. Lines cannot be modified or deleted."; exit 1; }
@@ -134,13 +140,37 @@ jobs:
   check-formatting:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-python@v4
+    - uses: actions/checkout@v6
+    - uses: actions/setup-python@v6
       with:
-        python-version: 3.11
-        cache: 'pip'
-    - uses: psf/black@stable
+        python-version: 3.12
+    - name: Install uv
+      uses: astral-sh/setup-uv@v10.3.0
+    - name: Install Dependencies
+      run: |
+        uv sync
+    - name: Format
+      run: |
+        uv run black --check .
+
+  check-dependencies:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v6
+    - uses: actions/setup-python@v6
       with:
-        options: "--check"
-        src: "."
-        version: "~= 24.10"
+        python-version: 3.12
+    - name: Install uv
+      uses: astral-sh/setup-uv@v10.3.0
+    - name: Check lockfile
+      run: |
+        uv lock --check
+    - name: Export requirements
+      run: |
+        uv export --frozen --no-dev --no-editable --no-hashes -o source/requirements.txt
+    - name: Check for changes
+      run: |
+        if ! git diff --exit-code source/requirements.txt; then
+          echo "Error: source/requirements.txt is out of date. Please run 'uv export --frozen --no-dev --no-editable --no-hashes -o source/requirements.txt' and commit the changes."
+          exit 1
+        fi

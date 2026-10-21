@@ -22,7 +22,7 @@ As an example, a differential drivetrain has a few motors on each side of the ro
 
 Another example is a two-gearbox elevator without mechanical linkage between the two sides. If the two sides of the elevator are not driven together, the elevator carriage twists, potentially breaking if the twist is too extreme. As a result, the elevator can be treated as a differential mechanism that always targets a difference of 0.
 
-In a more advanced setup, a remote sensor can be used on the Difference axis as an absolute sensor source. For example, a differential drivetrain can use the yaw of a Pigeon 2 to target an absolute heading.
+In a more advanced setup, a remote sensor can be used on the Difference axis as an absolute sensor source. For example, a differential drivetrain can use the yaw of a Pigeon® 2.0 to target an absolute heading.
 
 Differential Leader and Follower
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -32,14 +32,14 @@ In a differential mechanism, one of the motor controllers is selected as the "di
 - The **leader** is responsible for running all closed-loop calculations and applies ``Average + Difference`` to its output.
 - The **follower** reports its position and velocity to the leader and applies ``Average - Difference`` to its output.
 
-The selection of the leader and follower motor controllers is **only important** when using a **remote sensor** on the difference axis. For example, consider a differential drivetrain using the yaw of a Pigeon 2.
+The selection of the leader and follower motor controllers is **only important** when using a **remote sensor** on the difference axis. For example, consider a differential drivetrain using the yaw of a Pigeon® 2.0.
 
-The Pigeon 2 is counter-clockwise positive, so the robot should rotate counter-clockwise (left) from a positive output on the Difference axis. This occurs when the right side drives forward (positive) and the left side drives reverse (negative). As a result, the right motor controller should be selected as the leader.
+The Pigeon® 2.0 is counter-clockwise positive, so the robot should rotate counter-clockwise (left) from a positive output on the Difference axis. This occurs when the right side drives forward (positive) and the left side drives reverse (negative). As a result, the right motor controller should be selected as the leader.
 
 Hardware Requirements
 ---------------------
 
-All differential mechanism APIs require at least 2 Talon FX or Talon FXS motor controllers, one on each side of the mechanism. Optionally, a remote CANcoder, CANdi, or Pigeon 2 can be used on the Difference axis as an absolute sensor source.
+All differential mechanism APIs require at least 2 Talon FX® or Talon FXS® motor controllers, one on each side of the mechanism. Optionally, a remote CANcoder®, CANdi®, or Pigeon® 2.0 can be used on the Difference axis as an absolute sensor source.
 
 .. note:: Both motor controllers must be of the same type.
 
@@ -50,7 +50,7 @@ There are two differential mechanism APIs:
 
 - ``DifferentialMechanism`` (`Java <https://api.ctr-electronics.com/phoenix6/stable/java/com/ctre/phoenix6/mechanisms/DifferentialMechanism.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/stable/cpp/classctre_1_1phoenix6_1_1mechanisms_1_1_differential_mechanism.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/stable/python/autoapi/phoenix6/mechanisms/differential_mechanism/index.html>`__)
 
-  - Requires `Phoenix Pro <https://store.ctr-electronics.com/products/phoenix-pro/>`__ and `CANivore <https://store.ctr-electronics.com/products/canivore>`__.
+  - Requires `Phoenix Pro <https://store.ctr-electronics.com/products/phoenix-pro/>`__ and `CANivore® <https://store.ctr-electronics.com/products/canivore>`__.
   - Full functionality, including full support for feedforwards and custom motion profiles.
   - Difference axis supports open-loop control and position/velocity closed-loop control.
   - Supports all control output type.

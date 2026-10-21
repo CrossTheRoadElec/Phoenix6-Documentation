@@ -2,7 +2,7 @@ Factors that Impact Odometry
 ============================
 *Authored by Cory*
 
-Often we've been asked what the impact higher frequencies, time synchronization, and synchronous API have on critical robot features, such as drivetrain odometry. This devblog will go into detail on the theoretical and practical impact they have.
+Often we've been asked what the impact higher frequencies, Timesync®, and synchronous API have on critical robot features, such as drivetrain odometry. This devblog will go into detail on the theoretical and practical impact they have.
 
 .. note:: This doesn't cover **all** the factors that impact odometry, but it includes some of the major ones that contribute significantly to odometry error.
 
@@ -22,10 +22,10 @@ https://www.desmos.com/calculator/vdgebi9s4t
 |     Discretization error at 50 Hz                                                |     Discretization error at 250 Hz                                               |
 +----------------------------------------------------------------------------------+----------------------------------------------------------------------------------+
 
-Synchronous API and Time Synchronization
-----------------------------------------
+Synchronous API and Timesync®
+-----------------------------
 
-Synchronous API and Time Synchronization will further improve the performance of odometry. The two do this by reducing the overall latency of the signals and reducing the random distribution of latency involved in each signal. Further explanation of this is available in the :ref:`Time Synchronization <docs/api-reference/api-usage/status-signals:canivore timesync>`.
+Synchronous API and Timesync® will further improve the performance of odometry. The two do this by reducing the overall latency of the signals and reducing the random distribution of latency involved in each signal. Further explanation of this is available in the :ref:`Timesync® <docs/api-reference/api-usage/status-signals:timesync®>` documentation.
 
 Latency reduces the accuracy of the data being used in the odometry, and with lower accuracy going into the odometry, the result will be less accurate as well (`garbage in, garbage out <https://en.wikipedia.org/wiki/Garbage_in,_garbage_out>`_ concept).
 
@@ -54,8 +54,8 @@ As we performed the maneuvers, we logged the pose of the robot as reported by th
 .. note:: The Limelight pose measurements are not latency-compensated, so they will lag behind the odometry pose. The focus of this experiment is to see the difference in pose between the two methods while the robot is relatively still, so that this lag due to latency is not a factor.
 
 The same maneuver was teleop-driven under the following circumstances, with the results below:
- - CANivore CAN bus at 250 Hz (top left, measured at 45% CAN bus utilization)
- - CANivore CAN bus at 50 Hz (top right, measured at 16% CAN bus utilization)
+ - CANivore® CAN bus at 250 Hz (top left, measured at 45% CAN bus utilization)
+ - CANivore® CAN bus at 50 Hz (top right, measured at 16% CAN bus utilization)
  - RIO CAN bus at 250 Hz (bottom left, measured at 88% CAN bus utilization)
  - RIO CAN bus at 50 Hz (bottom right, measured at 45% CAN bus utilization)
 
@@ -71,7 +71,7 @@ Final States
 |  .. figure:: /docs/application-notes/images/frequency-impact/CANivore-250hz.png  |  .. figure:: /docs/application-notes/images/frequency-impact/CANivore-50hz.png   |
 |     :width: 90%                                                                  |     :width: 90%                                                                  |
 |                                                                                  |                                                                                  |
-|     CANivore 250 Hz end position                                                 |     CANivore 50 Hz end position                                                  |
+|     CANivore® 250 Hz end position                                                |     CANivore® 50 Hz end position                                                 |
 +----------------------------------------------------------------------------------+----------------------------------------------------------------------------------+
 |  .. figure:: /docs/application-notes/images/frequency-impact/RIO-250hz.png       |  .. figure:: /docs/application-notes/images/frequency-impact/RIO-50hz.png        |
 |    :width: 90%                                                                   |     :width: 90%                                                                  |
@@ -79,47 +79,47 @@ Final States
 |    RIO 250 Hz end position                                                       |     RIO 50 Hz end position                                                       |
 +----------------------------------------------------------------------------------+----------------------------------------------------------------------------------+
 
-As can be seen, going from the RIO bus to the CANivore bus, or from 50 Hz to 250 Hz improves the accuracy of the odometry, and by a noticeable amount. Based on this, utilizing faster update frequencies and time synchronization from the CANivore should result in more accurate odometry, even for the "short" movements as shown in the gif.
+As can be seen, going from the RIO bus to the CANivore® bus, or from 50 Hz to 250 Hz improves the accuracy of the odometry, and by a noticeable amount. Based on this, utilizing faster update frequencies and Timesync® from the CANivore® should result in more accurate odometry, even for the "short" movements as shown in the gif.
 
 Data on the pose location is available for download: :download:`OdometryData.xlsx </docs/application-notes/data/frequency-impact/OdometryData.xlsx>`.
 
 After-Test Data
 ---------------
-Roughly 2 weeks after this initial data was collected and the blog post written, we went back and re-verified the data for the CANivore 250 Hz and RIO 250 Hz cases to further test the impact of time synchronization. These tests were ran in autonomous a total of 20 times (10 for CANivore, 10 for RIO), measuring the error of the odometry against the Limelight data.
+Roughly 2 weeks after this initial data was collected and the blog post written, we went back and re-verified the data for the CANivore® 250 Hz and RIO 250 Hz cases to further test the impact of Timesync®. These tests were ran in autonomous a total of 20 times (10 for CANivore®, 10 for RIO), measuring the error of the odometry against the Limelight data.
 
 The results are below:
 
-+-------+----------+
-|  RIO  | CANivore |
-+-------+----------+
-| 0.52  |   0.14   |
-+-------+----------+
-| 0.33  |   0.28   |
-+-------+----------+
-| 0.47  |   0.56   |
-+-------+----------+
-| 0.23  |   0.22   |
-+-------+----------+
-| 0.51  |   0.32   |
-+-------+----------+
-| 0.23  |   0.18   |
-+-------+----------+
-| 0.22  |   0.30   |
-+-------+----------+
-| 0.59  |   0.26   |
-+-------+----------+
-| 0.15  |   0.33   |
-+-------+----------+
-| 0.11  |   0.25   |
-+-------+----------+
++-------+-----------+
+|  RIO  | CANivore® |
++-------+-----------+
+| 0.52  |   0.14    |
++-------+-----------+
+| 0.33  |   0.28    |
++-------+-----------+
+| 0.47  |   0.56    |
++-------+-----------+
+| 0.23  |   0.22    |
++-------+-----------+
+| 0.51  |   0.32    |
++-------+-----------+
+| 0.23  |   0.18    |
++-------+-----------+
+| 0.22  |   0.30    |
++-------+-----------+
+| 0.59  |   0.26    |
++-------+-----------+
+| 0.15  |   0.33    |
++-------+-----------+
+| 0.11  |   0.25    |
++-------+-----------+
 
 This resulted in the following average and standard deviation of error:
 
-+-----------+-------+----------+
-|           |  RIO  | CANivore |
-+-----------+-------+----------+
-| Average   | 0.336 |  0.284   |
-+-----------+-------+----------+
-| Standard  | 0.173 |  0.114   |
-| Deviation |       |          |
-+-----------+-------+----------+
++-----------+-------+-----------+
+|           |  RIO  | CANivore® |
++-----------+-------+-----------+
+| Average   | 0.336 |  0.284    |
++-----------+-------+-----------+
+| Standard  | 0.173 |  0.114    |
+| Deviation |       |           |
++-----------+-------+-----------+

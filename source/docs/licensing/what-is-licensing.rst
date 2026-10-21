@@ -29,11 +29,11 @@ Types of Licenses
 
       This may be preferred for systems with a small number of devices that need to utilize Pro features, or when used in a benchtop application.
 
-   .. grid-item-card:: CANivore Bus
+   .. grid-item-card:: CANivore® Bus
       :link: /docs/licensing/licensing
       :link-type: doc
 
-      This license is activated and installed onto the CANivore, and enables Phoenix Pro features for every CAN-connected device. This means that every compatible device that is attached to a licensed CANivore via CAN bus will be able to use Phoenix Pro features.
+      This license is activated and installed onto the CANivore®, and enables Phoenix Pro features for every CAN-connected device. This means that every compatible device that is attached to a licensed CANivore® via CAN bus will be able to use Phoenix Pro features.
 
       This license type is advantageous if there are a large number of devices and eliminates the need to license additional devices in the event of a replacement.
 

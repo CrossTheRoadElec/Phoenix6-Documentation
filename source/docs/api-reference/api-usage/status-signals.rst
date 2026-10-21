@@ -177,7 +177,7 @@ Changing Update Frequency
 
 All signals can have their update frequency configured via the ``setUpdateFrequency()`` method. Additionally, the update frequency of multiple signals can be specified at once using ``BaseStatusSignal.setUpdateFrequencyForAll()`` (`Java <https://api.ctr-electronics.com/phoenix6/stable/java/com/ctre/phoenix6/BaseStatusSignal.html#setUpdateFrequencyForAll(double,com.ctre.phoenix6.BaseStatusSignal...)>`__, `C++ <https://api.ctr-electronics.com/phoenix6/stable/cpp/classctre_1_1phoenix6_1_1_base_status_signal.html#a30db5fe5fbf36e7271eb9d11c9e402d9>`__, `Python <https://api.ctr-electronics.com/phoenix6/stable/python/autoapi/phoenix6/index.html#phoenix6.BaseStatusSignal.set_update_frequency_for_all>`__).
 
-.. warning:: Increasing signal frequency will also increase CAN bus utilization, which can cause indeterminate behavior at high utilization rates (>90%). This is less of a concern when using CANivore, which uses the higher-bandwidth `CAN FD <https://store.ctr-electronics.com/can-fd/>`__ bus.
+.. warning:: Increasing signal frequency will also increase CAN bus utilization, which can cause indeterminate behavior at high utilization rates (>90%). This is less of a concern when using CANivore®, which uses the higher-bandwidth `CAN FD <https://store.ctr-electronics.com/can-fd/>`__ bus.
 
 .. tab-set::
 
@@ -301,27 +301,27 @@ StatusSignals can have multiple timestamps associated from them, as there are of
 
 ``getAllTimestamps()`` can also be used to return all timestamps associated with a given ``StatusSignal``, which returns a collection of ``Timestamp`` (`Java <https://api.ctr-electronics.com/phoenix6/stable/java/com/ctre/phoenix6/Timestamp.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/stable/cpp/classctre_1_1phoenix6_1_1_timestamp.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/stable/python/autoapi/phoenix6/timestamp/index.html#module-phoenix6.timestamp>`__) objects. The ``Timestamp`` objects can be used to perform latency compensation math.
 
-CANivore Timesync
------------------
+Timesync®
+---------
 
-.. important:: CANivore Timesync requires the devices or the CANivore to be :doc:`Pro licensed </docs/licensing/licensing>`.
+.. important:: Timesync® requires the devices or the CANivore® to be :doc:`Pro licensed </docs/licensing/licensing>`.
 
-When using `CANivore <https://store.ctr-electronics.com/canivore/>`__, the attached CAN devices will automatically synchronize their time bases. This allows devices to sample and publish their signals in a synchronized manner.
+When using `CANivore® <https://store.ctr-electronics.com/canivore/>`__, the attached CAN devices will automatically enable Timesync® and synchronize their time bases. This allows devices to sample and publish their signals in a synchronized manner.
 
 Users can synchronously wait for these signals to update using ``BaseStatusSignal.waitForAll()`` (`Java <https://api.ctr-electronics.com/phoenix6/stable/java/com/ctre/phoenix6/BaseStatusSignal.html#waitForAll(double,com.ctre.phoenix6.BaseStatusSignal...)>`__, `C++ <https://api.ctr-electronics.com/phoenix6/stable/cpp/classctre_1_1phoenix6_1_1_base_status_signal.html#a8cf8f0d56648b459e891df2cbbbaa3a0>`__, `Python <https://api.ctr-electronics.com/phoenix6/stable/python/autoapi/phoenix6/index.html#phoenix6.BaseStatusSignal.wait_for_all>`__).
 
 .. tip:: ``waitForAll()`` with a timeout of zero matches the behavior of ``refreshAll()``, performing a non-blocking refresh on all signals passed in.
 
-Because the devices are synchronized, time-critical signals are sampled and published on the same schedule. This combined with the ``waitForAll()`` routine means applications can considerably reduce the latency of the timesync signals. This is particularly useful for multi-device mechanisms, such as swerve odometry.
+Because the devices are synchronized, time-critical signals are sampled and published on the same schedule. This combined with the ``waitForAll()`` routine means applications can considerably reduce the latency of the Timesync® enabled signals. This is particularly useful for multi-device mechanisms, such as swerve odometry.
 
 .. note:: When using a non-zero timeout, the signals passed into ``waitForAll()`` should have the same update frequency for synchronous data acquisition. This can be done by calling ``setUpdateFrequency()`` or by referring to the API documentation.
 
-The diagram below demonstrates the benefits of using timesync to synchronously acquire signals from multiple devices.
+The diagram below demonstrates the benefits of using Timesync® to synchronously acquire signals from multiple devices.
 
 .. image:: images/timesync-diagram.png
-   :alt: Diagram of timesync operation
+   :alt: Diagram of Timesync operation
 
-Check the API documentation for information on whether a status signal supports CANivore Timesync.
+Check the API documentation for information on whether a status signal supports Timesync®.
 
 .. tab-set::
 

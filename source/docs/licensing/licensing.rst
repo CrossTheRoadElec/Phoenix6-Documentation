@@ -5,7 +5,7 @@ Device Licensing
 
 All :ref:`Phoenix 6 supported devices <docs/installation/requirements:Supported Devices>` support device licensing.
 
-Additionally, CANivore is supported for licensing. When a CANivore is licensed, all devices on that bus are **Pro** enabled without additional activation.
+Additionally, CANivore® is supported for licensing. When a CANivore® is licensed, all devices on that bus are **Pro** enabled without additional activation.
 
 .. important:: All license activation and verification features are only available in **Phoenix Tuner X**. Phoenix Tuner v1 does not support licensing actions.
 
@@ -88,7 +88,7 @@ The below table can be used to determine your device license state for troublesh
 | Licensed             | .. image:: images/license_states/pro_licensed_logo_small.png        | Device is licensed for the current version of the Phoenix 6 API.            |
 |                      |    :width: 40%                                                      |                                                                             |
 +----------------------+---------------------------------------------------------------------+-----------------------------------------------------------------------------+
-| CANivore contains    | .. image:: images/license_states/license_logo_small_black.png       | CANivore contains at least one bus license, which it will use to            |
+| CANivore® contains   | .. image:: images/license_states/license_logo_small_black.png       | CANivore® contains at least one bus license, which it will use to           |
 | Licenses             |    :width: 40%                                                      | remote-license all compliant CAN devices.                                   |
 +----------------------+---------------------------------------------------------------------+-----------------------------------------------------------------------------+
 | Pro Licensing Error  | .. image:: images/license_states/pro_licensed_logo_small_error.png  | Device is licensed and there was an error communicating license state.      |

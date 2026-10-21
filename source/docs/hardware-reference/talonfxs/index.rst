@@ -1,9 +1,9 @@
-Talon FXS
-=========
+Talon FXS®
+==========
 
-Talon FXS is a versatile motor controller compatible with the CTRE software ecosystem. This standalone device seamlessly supports both brushless and brushed motors, offering unparalleled flexibility and performance.
+Talon FXS® is a versatile motor controller compatible with the CTRE software ecosystem. This standalone device seamlessly supports both brushless and brushed motors, offering unparalleled flexibility and performance.
 
-The Talon FXS supports the `CTR Electronics Minion <https://store.ctr-electronics.com/products/minion-brushless-motor>`__ and other third-party motors. Talon FXS also employs methods to reduce hall sensor velocity measurement noise and phase delay - a common problem with similar standalone motor controllers.
+The Talon FXS® supports the `CTR Electronics Minion® <https://store.ctr-electronics.com/products/minion-brushless-motor>`__ and other third-party motors. Talon FXS® also employs methods to reduce hall sensor velocity measurement noise and phase delay - a common problem with similar standalone motor controllers.
 
 Phoenix Pro users also benefit with “Advanced Hall Support” which can increase motor peak efficiency as high as an additional 2% percentage points and further reduce velocity measurement noise, making it ideal for velocity closed loop modes.
 
@@ -18,11 +18,16 @@ Phoenix Pro users also benefit with “Advanced Hall Support” which can increa
 Supported Motors
 ----------------
 
-- CTR Electronics Minion
+- CTR Electronics Minion®
 - Third-party NEO
 - Third-party NEO 550
 - Third-party NEO Vortex with Solo Adapter
 - Most 3rd party brushed motors
+
+Utilizing your Talon FXS®
+-------------------------
+
+- :doc:`/docs/hardware-reference/talonfx/improving-performance-with-current-limits`
 
 Status Light Reference
 ----------------------
@@ -98,22 +103,22 @@ Status Light Reference
                 <td><div class='ledGroup'><div class='led' ontime='300' offtime='300' oncolor='red' offcolor='black'></div>
                                           <div class='led' ontime='300' offtime='300' oncolor='black' offcolor='red'></div></div></td>
                 <td>Blinking Alternating Red</td>
-                <td>Talon FXS does not have a valid CAN/PWM signal.</td>
+                <td>Talon FXS® does not have a valid CAN/PWM signal.</td>
                 <td>Ensure good connections between CANH and CANL (Yellow and Green) & robot controller is on.</td>
             </tr>
             <tr>
                 <td><div class='ledGroup'><div class='led' ontime='300' offtime='300' oncolor='orange' offcolor='black'></div>
                                           <div class='led' ontime='300' offtime='300' oncolor='black' offcolor='orange'></div></div></td>
                 <td>Blinking Alternating Orange</td>
-                <td>TalonFXS detects CAN but does not see Phoenix running on the robot controller.</td>
+                <td>Talon FXS® detects CAN but does not see Phoenix running on the robot controller.</td>
                 <td>If Phoenix is running on the robot controller, ensure good connection between the controller and this device. Otherwise, deploy a robot program that uses Phoenix.</td>
             </tr>
             <tr>
                 <td><div class='ledGroup'><div class='led' ontime='300' offtime='300' oncolor='orange' offcolor='black'></div>
                                           <div class='led' ontime='300' offtime='300' oncolor='orange' offcolor='black'></div></div></td>
                 <td>Blinking Simultaneous Orange</td>
-                <td>Talon FXS has valid CAN signal and is disabled. Phoenix is running in robot controller <b>and</b> Talon FXS has good CAN connection to robot controller.</td>
-                <td>If robot is enabled, ensure a control request is being sent to the Talon FXS.</td>
+                <td>Talon FXS® has valid CAN signal and is disabled. Phoenix is running in robot controller <b>and</b> Talon FXS® has good CAN connection to robot controller.</td>
+                <td>If robot is enabled, ensure a control request is being sent to the Talon FXS®.</td>
             </tr>
             <tr>
                 <th colspan="4">Enabled Codes</th>
@@ -122,25 +127,25 @@ Status Light Reference
                 <td><div class='ledGroup'><div class='led' ontime='0' offtime='0' oncolor='orange' offcolor='orange'></div>
                                           <div class='led' ontime='0' offtime='0' oncolor='orange' offcolor='orange'></div></div></td>
                 <td>Both Solid Orange</td>
-                <td colspan="2">Talon FXS enabled with neutral output.</td>
+                <td colspan="2">Talon FXS® enabled with neutral output.</td>
             </tr>
             <tr>
                 <td><div class='ledGroup'><div class='led' ontime='300' offtime='300' oncolor='red' offcolor='black'></div>
                                           <div class='led' ontime='300' offtime='300' oncolor='red' offcolor='black'></div></div></td>
                 <td>Blinking Simultaneous Red</td>
-                <td colspan="2">Talon FXS driving in reverse. Rate of blink corresponds to duty cycle applied.</td>
+                <td colspan="2">Talon FXS® driving in reverse. Rate of blink corresponds to duty cycle applied.</td>
             </tr>
             <tr>
                 <td><div class='ledGroup'><div class='led' ontime='300' offtime='300' oncolor='green' offcolor='black'></div>
                                           <div class='led' ontime='300' offtime='300' oncolor='green' offcolor='black'></div></div></td>
                 <td>Blinking Simultaneous Green</td>
-                <td colspan="2">Talon FXS driving forward. Rate of blink corresponds to duty cycle applied.</td>
+                <td colspan="2">Talon FXS® driving forward. Rate of blink corresponds to duty cycle applied.</td>
             </tr>
             <tr>
                 <td><div class='ledGroup'><div class='led' ontime='100' offtime='400' oncolor='red' offcolor='black'></div>
                                           <div class='led' ontime='400' offtime='100' oncolor='black' offcolor='red'></div></div></td>
                 <td>Offset Alternating Red/Off</td>
-                <td colspan="2">Talon FXS limited (hard or soft limit). Direction of offset determines forward/reverse limit.</td>
+                <td colspan="2">Talon FXS® limited (hard or soft limit). Direction of offset determines forward/reverse limit.</td>
             </tr>
             <tr>
                 <th colspan="4">Special Codes</th>
@@ -149,22 +154,22 @@ Status Light Reference
                 <td><div class='ledGroup'><div class='led' ontime='400' offtime='100' oncolor='black' offcolor='orange'></div>
                                           <div class='led' ontime='100' offtime='400' oncolor='orange' offcolor='black'></div></div></td>
                 <td>Offset Orange/Off</td>
-                <td>Talon FXS in thermal cutoff or temperature measurement is missing.</td>
+                <td>Talon FXS® in thermal cutoff or temperature measurement is missing.</td>
                 <td>Please see <span style="font-weight: bold;">"Troubleshooting Fault LED"</span> for potential solutions.</td>
             </tr>
             <tr>
                 <td><div class='ledGroup'><div class='led' ontime='300' offtime='300' oncolor='red' offcolor='green'></div>
                                           <div class='led' ontime='300' offtime='300' oncolor='green' offcolor='red'></div></div></td>
                 <td>Alternate Red/Green</td>
-                <td>Talon FXS driven with Pro-only command while unlicensed.</td>
+                <td>Talon FXS® driven with Pro-only command while unlicensed.</td>
                 <td>Use non-Pro-only command, or license device for Pro.</td>
             </tr>
             <tr>
                 <td><div class='ledGroup'><div class='led' ontime='300' offtime='300' oncolor='green' offcolor='orange'></div>
                                           <div class='led' ontime='300' offtime='300' oncolor='orange' offcolor='green'></div></div></td>
                 <td>Alternate Orange/Green</td>
-                <td>Talon FXS driven with no motor selected in motor arrangement.</td>
-                <td>Configure the Talon FXS with the attached motor.</td>
+                <td>Talon FXS® driven with no motor selected in motor arrangement.</td>
+                <td>Configure the Talon FXS® with the attached motor.</td>
             </tr>
             <tr>
                 <td><div class='ledGroup'><div class='led' ontime='300' offtime='300' oncolor='red' offcolor='orange'></div>
@@ -177,7 +182,7 @@ Status Light Reference
                 <td><div class='ledGroup'><div class='led' ontime='0' offtime='0' oncolor='black' offcolor='black'></div>
                                           <div class='led' ontime='300' offtime='300' oncolor='green' offcolor='orange'></div></div></td>
                 <td>Single LED alternates Green/Orange</td>
-                <td>Talon FXS in bootloader.</td>
+                <td>Talon FXS® in bootloader.</td>
                 <td>Field-upgrade device in Tuner X.</td>
             </tr>
         </table>
@@ -255,15 +260,15 @@ Status Light Reference
 Troubleshooting Fault LED
 -------------------------
 
-A Talon FXS thermal fault, as indicated with an "Offset Orange/Off" blink code, can be triggered for a variety of reasons. The following list can be used to help identify the reason and a potential solution.
+A Talon FXS® thermal fault, as indicated with an "Offset Orange/Off" blink code, can be triggered for a variety of reasons. The following list can be used to help identify the reason and a potential solution.
 
 - Brushless Motor
 
   - JST is disconnected or damaged. Plug-in the motor JST cable into the JST port and ensure the cable is not damaged.
   - Motor arrangement is incorrect. Please select the correct motor in :ref:`configs <docs/tuner/configs:tuner configs>`.
-  - Talon FXS or motor has reached thermal cut-off. Allow time for the device to cool and consider configuring a :ref:`Stator Current limit <docs/hardware-reference/talonfx/improving-performance-with-current-limits:stator limits>`.
+  - Talon FXS® or motor has reached thermal cut-off. Allow time for the device to cool and consider configuring a :ref:`Stator Current limit <docs/hardware-reference/talonfx/improving-performance-with-current-limits:stator limits>`.
 
 - Brushed Motor
 
   - Motor arrangement is incorrect. Please select one of the brushed options in :ref:`configs <docs/tuner/configs:tuner configs>`.
-  - Talon FXS has reached thermal cut-off. Allow time for the device to cool and consider configuring a :ref:`Stator Current limit <docs/hardware-reference/talonfx/improving-performance-with-current-limits:stator and supply current limits>`.
+  - Talon FXS® has reached thermal cut-off. Allow time for the device to cool and consider configuring a :ref:`Stator Current limit <docs/hardware-reference/talonfx/improving-performance-with-current-limits:stator and supply current limits>`.

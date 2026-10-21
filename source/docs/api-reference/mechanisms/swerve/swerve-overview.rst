@@ -27,7 +27,7 @@ Phoenix 6 incorporates a high performance swerve API supported in Java, C++, and
   * Odometry is updated synchronously with the motor controllers.
   * Odometry is received as fast as possible using a separate thread.
   * Control is run inline with odometry updates.
-  * Combine with `Phoenix Pro <https://store.ctr-electronics.com/phoenix-pro/>`__ and a `CANivore <https://store.ctr-electronics.com/canivore/>`__ with :ref:`timesync <docs/api-reference/api-usage/status-signals:canivore timesync>` for improved performance.
+  * Combine with `Phoenix Pro <https://store.ctr-electronics.com/phoenix-pro/>`__ and a `CANivore® <https://store.ctr-electronics.com/canivore/>`__ with :ref:`Timesync® <docs/api-reference/api-usage/status-signals:timesync®>` for improved performance.
 
 .. tip:: Simulation boilerplate is automatically handled when generating a robot project using Tuner X.
 
@@ -36,16 +36,16 @@ Hardware Requirements
 
 Utilizing the swerve API requires that the robot drivetrain is composed of supported Phoenix 6 devices. At a minimum, these requirements are:
 
-- 4 Talon FX or Talon FXS drive motor controllers
-- 4 Talon FX or Talon FXS steer motor controllers
-- 1 Pigeon 2.0
+- 4 Talon FX® or Talon FXS® drive motor controllers
+- 4 Talon FX® or Talon FXS® steer motor controllers
+- 1 Pigeon® 2.0
 - 4 encoders (must all be one of the following)
 
-  - 4 CANcoders
-  - 4 PWM absolute encoders connected to at least 2 CANdi
-  - 4 PWM absolute encoders connected to their corresponding steer Talon FXS
+  - 4 CANcoder® devices
+  - 4 PWM absolute encoders connected to at least 2 CANdi® devices
+  - 4 PWM absolute encoders connected to their corresponding steer Talon FXS®
 
-.. note:: All drive motor controllers must be of the same type, and all steer motor controllers must be of the same type. However, the drive and steer motor controllers can be different types from each other. For example, you can utilize 4 Talon FXS connected to a Minion for steer and 4 Kraken X60 for drive.
+.. note:: All drive motor controllers must be of the same type, and all steer motor controllers must be of the same type. However, the drive and steer motor controllers can be different types from each other. For example, you can utilize 4 Talon FXS® connected to a Minion® for steer and 4 Kraken X60 for drive.
 
 Overview of the API
 -------------------
@@ -54,7 +54,7 @@ Simple usage is comprised of 5 core APIs:
 
 - ``SwerveDrivetrainConstants`` (`Java <https://api.ctr-electronics.com/phoenix6/stable/java/com/ctre/phoenix6/swerve/SwerveDrivetrainConstants.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/stable/cpp/structctre_1_1phoenix6_1_1swerve_1_1_swerve_drivetrain_constants.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/stable/python/autoapi/phoenix6/swerve/swerve_drivetrain_constants/index.html#phoenix6.swerve.swerve_drivetrain_constants.SwerveDrivetrainConstants>`__)
 
-  * This class handles characteristics of the robot that are not module specific. e.g. CAN bus, Pigeon 2 ID, whether FD is enabled or not.
+  * This class handles characteristics of the robot that are not module specific. e.g. CAN bus, Pigeon® 2.0 ID, whether FD is enabled or not.
 
 - ``SwerveModuleConstantsFactory`` (`Java <https://api.ctr-electronics.com/phoenix6/stable/java/com/ctre/phoenix6/swerve/SwerveModuleConstantsFactory.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/stable/cpp/structctre_1_1phoenix6_1_1swerve_1_1_swerve_module_constants_factory.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/stable/python/autoapi/phoenix6/swerve/swerve_module_constants/index.html#phoenix6.swerve.swerve_module_constants.SwerveModuleConstantsFactory>`__)
 

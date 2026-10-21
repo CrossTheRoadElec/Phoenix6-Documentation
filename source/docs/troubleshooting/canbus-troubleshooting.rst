@@ -57,7 +57,7 @@ Approach 1 (best)
 
 If you find a particular device where communication is not possible, scrutinize device's power and CAN connection to the system. Make the test setup so simple that the only failure mode possible is within the device itself.
 
-.. note:: Typically, there must be two 120-:math:`\Omega` termination resistors at each end of the bus. CTR Electronics integrates termination resistors into the PDP and the CANivore. The roboRIO also has an integrated termination resistor. During bring-up, if you keep your harness short (such as the CAN pigtail leads from a single TalonFX) then a single resistor is adequate for testing purposes.
+.. note:: Typically, there must be two 120-:math:`\Omega` termination resistors at each end of the bus. CTR Electronics integrates termination resistors into the PDP and the CANivore®. The roboRIO also has an integrated termination resistor. During bring-up, if you keep your harness short (such as the CAN pigtail leads from a single Talon FX®) then a single resistor is adequate for testing purposes.
 
 Approach 2 (easier)
 ^^^^^^^^^^^^^^^^^^^
@@ -77,8 +77,8 @@ Approach 2 (easier)
 
 If you find a particular device or section of devices where communication is not possible, then the CAN bus wiring needs to be re-inspected.  Remember to "flick" / "shake" / "jostle" the CAN wiring in various sections to attempt to reproduce red LED blips.  This is a sure sign of loose contact points.
 
-If you are able to detect and change device ID on your devices individually, begin piecing your CAN bus together. Start with either roboRIO <----> device <---> PDP, or CANivore <----> device <---> 120 :math:`\Omega` resistor, to ensure termination exists at both ends.  Then introduce the remaining devices until a failure is observed or until all devices are in-circuit.
+If you are able to detect and change device ID on your devices individually, begin piecing your CAN bus together. Start with either roboRIO <----> device <---> PDP, or CANivore® <----> device <---> 120 :math:`\Omega` resistor, to ensure termination exists at both ends.  Then introduce the remaining devices until a failure is observed or until all devices are in-circuit.
 
 If introducing a new device creates a failure symptom, scrutinize that device by replacing it, inspecting common wires, and inspecting power.
 
-At the end of this section, all devices should appear (notwithstanding the above notes) and device LEDs should not be red. TalonFX and Pigeon2 typically blink orange when they are healthy and not controlled, and CANcoder rapid-blinks brightly. PDP may be orange or green depending on its sticky faults.
+At the end of this section, all devices should appear (notwithstanding the above notes) and device LEDs should not be red. Talon FX® and Pigeon® 2.0 typically blink orange when they are healthy and not controlled, and CANcoder® rapid-blinks brightly. PDP may be orange or green depending on its sticky faults.

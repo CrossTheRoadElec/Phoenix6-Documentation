@@ -21,7 +21,7 @@ The first step is to select the encoder and motor controllers for the selected s
 Encoder Calibration
 -------------------
 
-Once a module's devices have been selected, an :guilabel:`Encoder Calibration` button will appear on the right-side of the screen. This will open a popup that guides the user through aligning their module and calibrating their CANcoder offsets.
+Once a module's devices have been selected, an :guilabel:`Encoder Calibration` button will appear on the right-side of the screen. This will open a popup that guides the user through aligning their module and calibrating their CANcoder® offsets.
 
 .. important:: It's extremely important for the modules to be aligned such that the bevel gear faces the **vertical center** of the robot. Failure to perform this step may lead the drive verification tests to fail.
 

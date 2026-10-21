@@ -1,7 +1,7 @@
 Remote Sensors
 ==============
 
-The TalonFX and TalonFXS support various remote sensors. Remote sensors allow onboard closed-loop functionality at rates faster than a traditional robot processor (~1Khz) by reading the remote sensor directly from the CAN bus. This allows supported motor controllers to execute closed-loop modes with sensor values sourced by supported sensors.
+The Talon FX® and Talon FXS® support various remote sensors. Remote sensors allow onboard closed-loop functionality at rates faster than a traditional robot processor (~1Khz) by reading the remote sensor directly from the CAN bus. This allows supported motor controllers to execute closed-loop modes with sensor values sourced by supported sensors.
 
 A list of supported remote sensors can be found in the API docs (`Java <https://api.ctr-electronics.com/phoenix6/stable/java/com/ctre/phoenix6/signals/FeedbackSensorSourceValue.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/stable/cpp/structctre_1_1phoenix6_1_1signals_1_1_feedback_sensor_source_value.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/stable/python/autoapi/phoenix6/configs/config_groups/index.html#phoenix6.configs.config_groups.FeedbackConfigs.feedback_sensor_source>`__).
 
@@ -10,7 +10,7 @@ Remote sensors can be configured using :ref:`Tuner X <docs/tuner/configs:tuner c
 ``RemoteCANcoder``
 ------------------
 
-A supported motor controller will update its position and velocity whenever the CANcoder publishes its information on the CAN bus.
+A supported motor controller will update its position and velocity whenever the CANcoder® publishes its information on the CAN bus.
 
 .. tab-set::
 
@@ -52,9 +52,9 @@ A supported motor controller will update its position and velocity whenever the 
 ``FusedCANcoder``
 -----------------
 
-.. important:: This feature requires the device to be :doc:`Pro licensed </docs/licensing/licensing>`. When unlicensed, the TalonFX will fall back to ``RemoteCANcoder`` and trip the UsingFusedCANcoderWhileUnlicensed fault.
+.. important:: This feature requires the device to be :doc:`Pro licensed </docs/licensing/licensing>`. When unlicensed, the Talon FX® and Talon FXS® will fall back to ``RemoteCANcoder`` and trip the UsingFusedCANcoderWhileUnlicensed fault.
 
-New in Phoenix 6 is a feedback sensor type called ``FusedCANcoder``. ``FusedCANcoder`` will fuse another CANcoder's information with the motor's internal rotor, which provides the best possible position and velocity for accuracy and bandwidth. This is useful in applications such as swerve azimuth.
+New in Phoenix 6 is a feedback sensor type called ``FusedCANcoder``. ``FusedCANcoder`` will fuse another CANcoder®'s information with the motor's internal rotor, which provides the best possible position and velocity for accuracy and bandwidth. This is useful in applications such as swerve azimuth.
 
 ``FusedCANcoder`` requires the configuration of several ``Feedback`` config group items, shown below.
 
@@ -143,9 +143,9 @@ Usage is the same as any :ref:`status signal <docs/api-reference/api-usage/statu
 
 .. important:: This feature requires the device to be :doc:`Pro licensed </docs/licensing/licensing>`. When unlicensed, the TalonFX will fall back to ``RemoteCANcoder`` and trip the UsingFusedCANcoderWhileUnlicensed fault.
 
-``SyncCANcoder`` allows users to synchronize the TalonFX's internal rotor sensor against the remote CANcoder, but continue to use the rotor sensor for all closed loop control. TalonFX will continue to monitor the remote CANcoder and report if its internal position differs significantly from the reported position or if the remote CANcoder disappears from the bus.
+``SyncCANcoder`` allows users to synchronize the Talon FX® or Talon FXS® internal rotor sensor against the remote CANcoder®, but continue to use the rotor sensor for all closed loop control. Talon FX® and Talon FXS® will continue to monitor the remote CANcoder® and report if its internal position differs significantly from the reported position or if the remote CANcoder® disappears from the bus.
 
-Users may want ``SyncCANcoder`` instead of ``FusedCANcoder`` if there is risk that the sensor can fail in a way that the sensor is still reporting "good" data, but the data does not match the mechanism, such as if the entire sensor mount assembly breaks off. Using ``SyncCANcoder`` over ``FusedCANcoder`` will not benefit from backlash compensation, as the CANcoder position is not continually fused in.
+Users may want ``SyncCANcoder`` instead of ``FusedCANcoder`` if there is risk that the sensor can fail in a way that the sensor is still reporting "good" data, but the data does not match the mechanism, such as if the entire sensor mount assembly breaks off. Using ``SyncCANcoder`` over ``FusedCANcoder`` will not benefit from backlash compensation, as the CANcoder® position is not continually fused in.
 
 ``SyncCANcoder`` requires the configuration of several ``Feedback`` config group items, shown below.
 
