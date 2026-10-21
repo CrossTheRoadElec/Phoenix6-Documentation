@@ -2,7 +2,7 @@
 
 Phoenix is the software framework used for all CTR Electronics devices. Phoenix 6 changes from Phoenix 5 by offering new control requests, improved units support, Timesync® (Pro) and more.
 
-Documentation for Phoenix 6 is available: https://pro.docs.ctr-electronics.com
+Documentation for Phoenix 6 is available at https://v6.docs.ctr-electronics.com/
 
 ## Contribution to Phoenix 6
 
