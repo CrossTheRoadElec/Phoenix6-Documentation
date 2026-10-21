@@ -5,16 +5,18 @@ description = ""
 authors = []
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.12"
 doc8 = "==1.1.2"
 docutils = "==0.20.1"
 furo = "==2024.8.6"
+jsmin = "==3.0.1"
 latex = "==0.7.0"
-packaging = "==24.1"
+packaging = "==26.3"
+roman-numerals-py = "==3.1.0" # temporarily fix roman-numerals-py to 3.1.0 so sphinx can build
 sphinx = "==8.2.3"
 sphinx-copybutton = "==0.5.2"
-sphinx-hoverxref = "==1.4.0"
-sphinx-notfound-page = "==1.0.2"
+sphinx-hoverxref = "==1.4.2"
+sphinx-notfound-page = "==1.1.0"
 sphinx_design = "==0.6.1"
 sphinxcontrib-htmlhelp = "==2.0.6"
 # sphinxcontrib-images = "==0.9.4" # not supported in sphinx 8
@@ -27,9 +29,9 @@ sphinxext-rediraffe = "==0.2.7"
 sphinxext-remoteliteralinclude = "==0.4.0"
 
 # Dependencies that often need to get updated
-urllib3 = "==2.5.0"
+urllib3 = "==2.8.0"
 jinja2 = "==3.1.6"
-requests = "==2.32.4"
+requests = "==2.34.2"
 
 sphinx-build-compatibility = {git = "https://github.com/readthedocs/sphinx-build-compatibility.git", rev = "main"}
 
