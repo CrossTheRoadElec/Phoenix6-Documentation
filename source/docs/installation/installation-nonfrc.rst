@@ -5,23 +5,23 @@ Installing Phoenix 6 (non-FRC)
 
 Phoenix 6 is fully supported outside of `FRC <https://en.wikipedia.org/wiki/FIRST_Robotics_Competition>`__ on :ref:`supported <docs/installation/requirements:system requirements>` systems with a USB to CAN adapter.
 
-.. note:: `CANivore <https://store.ctr-electronics.com/canivore/>`__ is the recommended USB to CAN adapter with support for `CAN FD <https://store.ctr-electronics.com/can-fd/>`__, name specification, and Windows (as host).
+.. note:: `CANivore® <https://store.ctr-electronics.com/canivore/>`__ is the recommended USB to CAN adapter with support for `CAN FD <https://store.ctr-electronics.com/can-fd/>`__, name specification, and Windows (as host).
 
-Installation is composed of a few primary pieces. Linux users may skip CANivore installation if they are using a generic USB-to-CAN adapter.
+Installation is composed of a few primary pieces. Linux users may skip CANivore® installation if they are using a generic USB-to-CAN adapter.
 
 1. :ref:`docs/installation/installation-nonfrc:apt repository installation` (Linux only)
-2. (Optional) :ref:`docs/installation/installation-nonfrc:canivore installation` (Linux only)
+2. (Optional) :ref:`docs/installation/installation-nonfrc:canivore® installation` (Linux only)
 3. :ref:`docs/installation/installation-nonfrc:api installation`
 
 Linux Setup
 -----------
 
-Linux systems require some extra steps to install Phoenix 6 and CANivore.
+Linux systems require some extra steps to install Phoenix 6 and CANivore®.
 
 APT Repository Installation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The Phoenix 6 C++ API, CANivore kernel module, and other utilities are distributed through our APT repository. The repository must be added to your APT sources.
+The Phoenix 6 C++ API, CANivore® kernel module, and other utilities are distributed through our APT repository. The repository must be added to your APT sources.
 
 .. code-block:: bash
 
@@ -33,10 +33,10 @@ The Phoenix 6 C++ API, CANivore kernel module, and other utilities are distribut
 
 .. warning:: Users who previously modified the ``.list`` distribution to use ``raspberrypi`` or ``jetson`` should switch to the ``stable`` distribution moving forward.
 
-CANivore Installation
-^^^^^^^^^^^^^^^^^^^^^
+CANivore® Installation
+^^^^^^^^^^^^^^^^^^^^^^
 
-On non-FRC Linux systems, the ``canivore-usb`` kernel module must be installed to add SocketCAN support for the CANivore. The kernel module is distributed through our APT repository.
+On non-FRC Linux systems, the ``canivore-usb`` kernel module must be installed to add SocketCAN support for the CANivore®. The kernel module is distributed through our APT repository.
 
 .. note:: **Custom bit rates and CAN 2.0 are not supported at this time.** The parameters passed into SocketCAN are not applied by the firmware.
 
@@ -164,7 +164,7 @@ Troubleshooting
 ``Bad return status on module...``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-This error can show up on Raspberry Pi or Jetson systems when using the incorrect tools distribution for APT. Refer to :ref:`Modifying list Distribution <canivore-modifying-list-dist>` to correct your ``.list`` file.
+This error can show up on Raspberry Pi or Jetson systems when using the incorrect tools distribution for APT. Refer to :ref:`docs/installation/installation-nonfrc:apt repository installation` to correct your ``.list`` file.
 
 Diagnostics is running but no CAN
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -205,6 +205,6 @@ We recommend that users use the standard language projects to use our library ou
 Alternative Support
 -------------------
 
-Some older devices such as the `TalonSRX <https://store.ctr-electronics.com/talon-srx/>`__ are not supported by Phoenix 6 and require usage of the `Phoenix 5 API <https://v5.docs.ctr-electronics.com/>`__.
+Some older devices such as the `Talon SRX <https://store.ctr-electronics.com/talon-srx/>`__ are not supported by Phoenix 6 and require usage of the `Phoenix 5 API <https://v5.docs.ctr-electronics.com/>`__.
 
 We also provide a hardware robot controller called the `HERO development board <https://store.ctr-electronics.com/hero-development-board/>`__. The HERO can be programmed in C# to utilize `compatible <https://v5.docs.ctr-electronics.com/en/stable/ch04_DoINeedThis.html#do-i-need-to-install-any-of-this>`__ **Phoenix 5** devices.

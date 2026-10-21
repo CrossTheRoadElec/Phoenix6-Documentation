@@ -45,7 +45,7 @@ In non-FRC applications, ``Unmanaged.feedEnable()`` **must be called periodicall
 
 This must also be called to control devices in Phoenix Tuner X.
 
-.. tip:: The Tuner X CANivore USB server automatically calls ``Unmanaged.feedEnable()`` when control is enabled.
+.. tip:: The Tuner X CANivore® USB server automatically calls ``Unmanaged.feedEnable()`` when control is enabled.
 
 FRC Lock
 --------

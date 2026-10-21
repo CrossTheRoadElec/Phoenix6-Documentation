@@ -17,7 +17,7 @@ API
 Breaking Changes
 ^^^^^^^^^^^^^^^^
 
-- The ``new <Device>(int id, String canbus)`` constructors are now deprecated and will be removed in 2027. Use the ``new <Device>(int id, CANBus canbus)`` constructors instead. This change is intended to prepare users for 2027, where an explicit CAN bus declaration is necessary.
+- The ``new <Device>(int id)`` and ``new <Device>(int id, String canbus)`` constructors are now deprecated and will be removed in 2027. Use the ``new <Device>(int id, CANBus canbus)`` constructors instead. This change is intended to prepare users for 2027, where an explicit CAN bus declaration is necessary.
 - The minimum supported C++ version is now C++ 20, and the minimum Linux requirement is Ubuntu 22.04 / Debian Bookworm. Linux ARM32 is no longer supported.
 - C++: Improved robot project compilation times. This results in the following breaking changes: The ``ctre/phoenix6/configs/Configs.hpp`` header has been split into separate files. In generated swerve projects, ``TunerConstants.h`` must now explicitly include the motor controllers and encoder used.
 - ``DifferentialMechanism`` and ``SimpleDifferentialMechanism`` have been reworked to more closely align with the swerve API. The behavior of the difference axis has also been adjusted.
@@ -137,8 +137,8 @@ Some changes have been made to the API to improve error reporting.
 - StatusSignal ``WaitForAll()`` and ``RefreshAll()`` now report errors for all the status signals involved that errored.
 - StatusSignal ``WaitForAll()`` and ``RefreshAll()`` now propagate an ``InvalidNetwork`` error to all the provided status signals.
 
-Talon FX Improvements
----------------------
+Talon FX® Improvements
+----------------------
 
 Improvements to follower have been made, specifically in regards to when the leader active request is Voltage-based.
 
@@ -159,13 +159,13 @@ Improvements to FOC have been made to improve peak performance.
 
 Additionally, Kraken X44 simulation support has been added via ``TalonFXSimState::SetMotorType``.
 
-Talon FXS
-^^^^^^^^^
+Talon FXS®
+^^^^^^^^^^
 
 .. image:: images/generic-bldc.png
    :alt: Picture of a generic sensored BLDC
 
-Our **non-FRC** customers can now utilize generic sensored (with hall effects) BLDC motors up to 24V on Talon FXS. This enables use cases for industrial motors in automation. Take a look at the ``Custom Brushless Motor`` configs for more information on how to configure this.
+Our **non-FRC** customers can now utilize generic sensored (with hall effects) BLDC motors up to 24V on Talon FXS®. This enables use cases for industrial motors in automation. Take a look at the ``Custom Brushless Motor`` configs for more information on how to configure this.
 
 Phoenix Tuner X
 ---------------
@@ -198,13 +198,13 @@ Hoot logs can now be directly plotted in Tuner. This feature is marked as beta a
 
 Feedback is welcome and can be submitted by sending us an `email <mailto:support@ctr-electronics.com>`__!
 
-CANdle Animations Preview
-^^^^^^^^^^^^^^^^^^^^^^^^^
+CANdle® Animations Preview
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. image:: images/tuner-candle-preview.png
    :alt: Picture of tuner animations tab
 
-The traditional control interface has been replaced with a CANdle animations tab, directly in Tuner. This allows you to have a real-time preview of the state of your LED strip and also includes generation functionality. The built-in generator will take your current CANdle animations and solid colors, and create a subsystem that you can implement in your robot program.
+The traditional control interface has been replaced with a CANdle® animations tab, directly in Tuner. This allows you to have a real-time preview of the state of your LED strip and also includes generation functionality. The built-in generator will take your current CANdle® animations and solid colors, and create a subsystem that you can implement in your robot program.
 
 Miscellaneous Improvements
 ^^^^^^^^^^^^^^^^^^^^^^^^^^

@@ -58,7 +58,7 @@ This 3 step check looks for the following:
 2. Is diagnostics (or a robot program with diagnostics) running?
 3. Are there any devices reported?
 
-To summarize, if a user is not seeing devices in Tuner but checks 1 and 2 are good, then the next recommendation is to check the LED status of the device. We have an extensive list of status LEDs that indicate if the device is detected on a CAN bus, or other problems. This list can be found on the corresponding device page in the docs. For example, look at the :ref:`CANcoder LED table <docs/hardware-reference/cancoder/index:status light reference>`.
+To summarize, if a user is not seeing devices in Tuner but checks 1 and 2 are good, then the next recommendation is to check the LED status of the device. We have an extensive list of status LEDs that indicate if the device is detected on a CAN bus, or other problems. This list can be found on the corresponding device page in the docs. For example, look at the :ref:`CANcoder® LED table <docs/hardware-reference/cancoder/index:status light reference>`.
 
 Redesigned device overview
 ^^^^^^^^^^^^^^^^^^^^^^^^^^

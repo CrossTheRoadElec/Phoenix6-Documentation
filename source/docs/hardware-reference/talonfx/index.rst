@@ -1,11 +1,11 @@
-Talon FX
-========
+Talon FX®
+=========
 
 .. tab-set::
 
    .. tab-item:: Kraken X60
 
-      The Kraken X60 powered by Talon FX is a brushless motor developed by `WestCoast Products <https://wcproducts.com/products/kraken>`__ that uses the latest BLDC motor control technology from CTR Electronics. The integrated Talon FX unlocks the full performance of the Kraken X60 BLDC motor while providing best-in-class motion control.
+      The Kraken X60 powered by Talon FX® is a brushless motor developed by `WestCoast Products <https://wcproducts.com/products/kraken>`__ that uses the latest BLDC motor control technology from CTR Electronics. The integrated Talon FX® unlocks the full performance of the Kraken X60 BLDC motor while providing best-in-class motion control.
 
       .. grid:: 2
 
@@ -23,7 +23,7 @@ Talon FX
 
    .. tab-item:: Kraken X44
 
-      The Kraken X44 powered by Talon FX is a compact brushless motor developed by `WestCoast Products <https://wcproducts.com/products/kraken>`__ that uses the latest BLDC motor control technology from CTR Electronics. The integrated Talon FX unlocks the full performance of the Kraken X44 BLDC motor while providing best-in-class motion control.
+      The Kraken X44 powered by Talon FX® is a compact brushless motor developed by `WestCoast Products <https://wcproducts.com/products/kraken>`__ that uses the latest BLDC motor control technology from CTR Electronics. The integrated Talon FX® unlocks the full performance of the Kraken X44 BLDC motor while providing best-in-class motion control.
 
       .. grid:: 2
 
@@ -41,7 +41,7 @@ Talon FX
 
    .. tab-item:: Falcon 500
 
-      The Falcon 500 powered by Talon FX is a brushless motor with an integrated motor controller and high-resolution encoder, custom designed specifically for the FIRST Robotics Competition, through a collaboration between Cross the Road Electronics and `VEX Robotics <https://www.vexrobotics.com/217-6515.html>`__.
+      The Falcon 500 powered by Talon FX® is a brushless motor with an integrated motor controller and high-resolution encoder, custom designed specifically for the FIRST Robotics Competition, through a collaboration between Cross the Road Electronics and `VEX Robotics <https://www.vexrobotics.com/217-6515.html>`__.
 
       .. grid:: 2
 
@@ -57,8 +57,8 @@ Talon FX
 
             Wiring and mount instructions in PDF format.
 
-Utilizing your TalonFX
-----------------------
+Utilizing your Talon FX®
+------------------------
 
 .. toctree::
    :maxdepth: 1
@@ -68,7 +68,7 @@ Utilizing your TalonFX
 Motor Orientation
 -----------------
 
-Talon FX supports Clockwise and Counter Clockwise inverts. Inverts are determined from the perspective of looking at the face of the motor.
+Talon FX® supports Clockwise and Counter Clockwise inverts. Inverts are determined from the perspective of looking at the face of the motor.
 
    .. grid:: 2
 
@@ -85,9 +85,9 @@ Talon FX supports Clockwise and Counter Clockwise inverts. Inverts are determine
 Actuator Limits
 ---------------
 
-CTR Electronics actuators, such as the Talon FX, support various kinds of hardware and software limits.
+CTR Electronics actuators, such as the Talon FX®, support various kinds of hardware and software limits.
 
-.. note:: The TalonFX + Kraken X60 does not support hardware limit switches. Instead, :ref:`control request limit <docs/api-reference/api-usage/actuator-limits:control request limits>` overrides can be used, or a CANcoder can be used as a :ref:`remote limit switch <docs/api-reference/api-usage/actuator-limits:remote limit switches>`.
+.. note:: The Talon FX® + Kraken X60 does not support hardware limit switches. Instead, :ref:`control request limit <docs/api-reference/api-usage/actuator-limits:control request limits>` overrides can be used, or a CANcoder® can be used as a :ref:`remote limit switch <docs/api-reference/api-usage/actuator-limits:remote limit switches>`.
 
 Documentation on retrieving and configuring limits can be found :doc:`here </docs/api-reference/api-usage/actuator-limits>`.
 
@@ -178,22 +178,22 @@ Status Light Reference
                 <td><div class='ledGroup'><div class='led' ontime='300' offtime='300' oncolor='red' offcolor='black'></div>
                                           <div class='led' ontime='300' offtime='300' oncolor='black' offcolor='red'></div></div></td>
                 <td>Blinking Alternating Red</td>
-                <td>Talon FX does not have a valid CAN/PWM signal.</td>
+                <td>Talon FX® does not have a valid CAN/PWM signal.</td>
                 <td>Ensure good connections between CANH and CANL (Yellow and Green) & robot controller is on.</td>
             </tr>
             <tr>
                 <td><div class='ledGroup'><div class='led' ontime='300' offtime='300' oncolor='orange' offcolor='black'></div>
                                           <div class='led' ontime='300' offtime='300' oncolor='black' offcolor='orange'></div></div></td>
                 <td>Blinking Alternating Orange</td>
-                <td>TalonFX detects CAN but does not see Phoenix running on the robot controller.</td>
+                <td>Talon FX® detects CAN but does not see Phoenix running on the robot controller.</td>
                 <td>If Phoenix is running on the robot controller, ensure good connection between the controller and this device. Otherwise, deploy a robot program that uses Phoenix.</td>
             </tr>
             <tr>
                 <td><div class='ledGroup'><div class='led' ontime='300' offtime='300' oncolor='orange' offcolor='black'></div>
                                           <div class='led' ontime='300' offtime='300' oncolor='orange' offcolor='black'></div></div></td>
                 <td>Blinking Simultaneous Orange</td>
-                <td>Talon FX has valid CAN signal and is disabled. Phoenix is running in robot controller <b>and</b> Talon FX has good CAN connection to robot controller.</td>
-                <td>If robot is enabled, ensure a control request is being sent to the Talon FX.</td>
+                <td>Talon FX® has valid CAN signal and is disabled. Phoenix is running in robot controller <b>and</b> Talon FX® has good CAN connection to robot controller.</td>
+                <td>If robot is enabled, ensure a control request is being sent to the Talon FX®.</td>
             </tr>
             <tr>
                 <th colspan="4">Enabled Codes</th>
@@ -202,25 +202,25 @@ Status Light Reference
                 <td><div class='ledGroup'><div class='led' ontime='0' offtime='0' oncolor='orange' offcolor='orange'></div>
                                           <div class='led' ontime='0' offtime='0' oncolor='orange' offcolor='orange'></div></div></td>
                 <td>Both Solid Orange</td>
-                <td colspan="2">Talon FX enabled with neutral output.</td>
+                <td colspan="2">Talon FX® enabled with neutral output.</td>
             </tr>
             <tr>
                 <td><div class='ledGroup'><div class='led' ontime='300' offtime='300' oncolor='red' offcolor='black'></div>
                                           <div class='led' ontime='300' offtime='300' oncolor='red' offcolor='black'></div></div></td>
                 <td>Blinking Simultaneous Red</td>
-                <td colspan="2">Talon FX driving in reverse. Rate of blink corresponds to duty cycle applied.</td>
+                <td colspan="2">Talon FX® driving in reverse. Rate of blink corresponds to duty cycle applied.</td>
             </tr>
             <tr>
                 <td><div class='ledGroup'><div class='led' ontime='300' offtime='300' oncolor='green' offcolor='black'></div>
                                           <div class='led' ontime='300' offtime='300' oncolor='green' offcolor='black'></div></div></td>
                 <td>Blinking Simultaneous Green</td>
-                <td colspan="2">Talon FX driving forward. Rate of blink corresponds to duty cycle applied.</td>
+                <td colspan="2">Talon FX® driving forward. Rate of blink corresponds to duty cycle applied.</td>
             </tr>
             <tr>
                 <td><div class='ledGroup'><div class='led' ontime='100' offtime='400' oncolor='red' offcolor='black'></div>
                                           <div class='led' ontime='400' offtime='100' oncolor='black' offcolor='red'></div></div></td>
                 <td>Offset Alternating Red/Off</td>
-                <td colspan="2">Talon FX limited (hard or soft limit). Direction of offset determines forward/reverse limit.</td>
+                <td colspan="2">Talon FX® limited (hard or soft limit). Direction of offset determines forward/reverse limit.</td>
             </tr>
             <tr>
                 <th colspan="4">Special Codes</th>
@@ -229,14 +229,14 @@ Status Light Reference
                 <td><div class='ledGroup'><div class='led' ontime='400' offtime='100' oncolor='black' offcolor='orange'></div>
                                           <div class='led' ontime='100' offtime='400' oncolor='orange' offcolor='black'></div></div></td>
                 <td>Offset Orange/Off</td>
-                <td>Talon FX in thermal cutoff.</td>
-                <td>Allow Talon FX to cool. Consider configuring Stator Current Limits to reduce heat generation.</td>
+                <td>Talon FX® in thermal cutoff.</td>
+                <td>Allow Talon FX® to cool. Consider configuring Stator Current Limits to reduce heat generation.</td>
             </tr>
             <tr>
                 <td><div class='ledGroup'><div class='led' ontime='300' offtime='300' oncolor='red' offcolor='green'></div>
                                           <div class='led' ontime='300' offtime='300' oncolor='green' offcolor='red'></div></div></td>
                 <td>Alternate Red/Green</td>
-                <td>Talon FX driven with Pro-only command while unlicensed.</td>
+                <td>Talon FX® driven with Pro-only command while unlicensed.</td>
                 <td>Use non-Pro-only command, or license device for Pro.</td>
             </tr>
             <tr>
@@ -250,7 +250,7 @@ Status Light Reference
                 <td><div class='ledGroup'><div class='led' ontime='0' offtime='0' oncolor='black' offcolor='black'></div>
                                           <div class='led' ontime='300' offtime='300' oncolor='green' offcolor='orange'></div></div></td>
                 <td>Single LED alternates Green/Orange</td>
-                <td>Talon FX in bootloader.</td>
+                <td>Talon FX® in bootloader.</td>
                 <td>Field-upgrade device in Tuner X.</td>
             </tr>
         </table>

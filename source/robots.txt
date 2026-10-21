@@ -1,4 +1,5 @@
 User-agent: *
+Disallow: /en/2025/
 Disallow: /en/2024/
 Disallow: /en/2023-v6/
 Disallow: /en/2023-pro/

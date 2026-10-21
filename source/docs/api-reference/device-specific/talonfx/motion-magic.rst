@@ -1,7 +1,7 @@
 Motion Magic® Controls
 ======================
 
-In addition to basic PID control, the Talon FX also supports onboard motion profiling using Motion Magic® controls.
+In addition to basic PID control, the Talon FX® and Talon FXS® also support onboard motion profiling using Motion Magic® controls.
 
 .. note:: For more information on feedback and feedforward gains, see :doc:`/docs/api-reference/device-specific/talonfx/closed-loop-requests`.
 
@@ -142,7 +142,7 @@ In Motion Magic®, the gains should be configured as follows:
 
 .. tip:: Motion Magic® supports modifying cruise velocity, acceleration, and jerk on the fly (requires firmware version 24.0.6.0 or newer).
 
-Once the gains are configured, the Motion Magic® request can be sent to the TalonFX. The control request object has an optional feedforward term that can be used to add an arbitrary value to the output, which can be useful to account for the effects of gravity.
+Once the gains are configured, the Motion Magic® request can be sent to the motor controller. The control request object has an optional feedforward term that can be used to add an arbitrary value to the output, which can be useful to account for the effects of gravity.
 
 .. tab-set::
 
@@ -182,13 +182,13 @@ Once the gains are configured, the Motion Magic® request can be sent to the Tal
 Dynamic Motion Magic®
 ^^^^^^^^^^^^^^^^^^^^^
 
-.. important:: This feature requires the device to be :doc:`Pro licensed </docs/licensing/licensing>` and on a :doc:`CANivore </docs/canivore/canivore-intro>`. When unlicensed, the TalonFX will disable control output and trip the UnlicensedFeatureInUse fault.
+.. important:: This feature requires the device to be :doc:`Pro licensed </docs/licensing/licensing>` and on a :doc:`CANivore® </docs/canivore/canivore-intro>`. When unlicensed, the motor controller will disable control output and trip the UnlicensedFeatureInUse fault.
 
-When using a Pro-licensed Talon FX connected to a CANivore, Dynamic Motion Magic® can be used, allowing for the cruise velocity, acceleration, and jerk to be modified directly in the control request during motion. This can be used to set up different values for acceleration vs deceleration or to speed up and slow down the profile on the fly.
+When using a Pro-licensed Talon FX® or Talon FXS® connected to a CANivore®, Dynamic Motion Magic® can be used, allowing for the cruise velocity, acceleration, and jerk to be modified directly in the control request during motion. This can be used to set up different values for acceleration vs deceleration or to speed up and slow down the profile on the fly.
 
 The gain slots are configured in the same way as a regular Motion Magic® request. However, the cruise velocity, acceleration, and jerk parameters are set up in the control request, **not** the Motion Magic® config group.
 
-Once the gains are configured, the Dynamic Motion Magic® request can be sent to the TalonFX. The control request object has an optional feedforward term that can be used to add an arbitrary value to the output, which can be useful to account for the effects of gravity.
+Once the gains are configured, the Dynamic Motion Magic® request can be sent to the motor controller. The control request object has an optional feedforward term that can be used to add an arbitrary value to the output, which can be useful to account for the effects of gravity.
 
 .. tab-set::
 
@@ -269,7 +269,7 @@ Once the gains are configured, the Dynamic Motion Magic® request can be sent to
 Motion Magic® Velocity
 ----------------------
 
-The Talon FX also supports onboard velocity motion profiling using Motion Magic® Velocity. When using Motion Magic® Velocity, the motor will ramp to a target velocity using a trapezoidal acceleration profile that honors the specified acceleration and optional jerk.
+The Talon FX® and Talon FXS® also support onboard velocity motion profiling using Motion Magic® Velocity. When using Motion Magic® Velocity, the motor will ramp to a target velocity using a trapezoidal acceleration profile that honors the specified acceleration and optional jerk.
 
 The benefits of this control mode over "simple" PID velocity closed-looping are:
 
@@ -381,7 +381,7 @@ In Motion Magic® Velocity, the gains should be configured as follows:
 
 .. tip:: Motion Magic® Velocity supports modifying acceleration and jerk on the fly (requires firmware version 24.0.6.0 or newer).
 
-Once the gains are configured, the Motion Magic® Velocity request can be sent to the TalonFX.
+Once the gains are configured, the Motion Magic® Velocity request can be sent to the motor controller.
 
 The Motion Magic® Velocity request has an Acceleration parameter that can be used to override the profile acceleration during motion. If the Acceleration parameter is left 0, the acceleration config will be used instead.
 
@@ -565,7 +565,7 @@ In Motion Magic® Expo, the gains should be configured as follows:
 
 .. tip:: Motion Magic® Expo supports modifying cruise velocity, kV, and kA on the fly.
 
-Once the gains are configured, the Motion Magic® Expo request can be sent to the TalonFX. The control request object has an optional feedforward term that can be used to add an arbitrary value to the output, which can be useful to account for the effects of gravity.
+Once the gains are configured, the Motion Magic® Expo request can be sent to the motor controller. The control request object has an optional feedforward term that can be used to add an arbitrary value to the output, which can be useful to account for the effects of gravity.
 
 .. tab-set::
 
@@ -605,13 +605,13 @@ Once the gains are configured, the Motion Magic® Expo request can be sent to th
 Dynamic Motion Magic® Expo
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. important:: This feature requires the device to be :doc:`Pro licensed </docs/licensing/licensing>` and on a :doc:`CANivore </docs/canivore/canivore-intro>`. When unlicensed, the TalonFX will disable control output and trip the UnlicensedFeatureInUse fault.
+.. important:: This feature requires the device to be :doc:`Pro licensed </docs/licensing/licensing>` and on a :doc:`CANivore® </docs/canivore/canivore-intro>`. When unlicensed, the motor controller will disable control output and trip the UnlicensedFeatureInUse fault.
 
-When using a Pro-licensed Talon FX connected to a CANivore, Dynamic Motion Magic® Expo can be used, allowing for the cruise velocity, Expo kV, and Expo kA to be modified directly in the control request during motion. This can be used to set up different values for forward vs reverse or to speed up and slow down the profile on the fly.
+When using a Pro-licensed Talon FX® or Talon FXS® connected to a CANivore®, Dynamic Motion Magic® Expo can be used, allowing for the cruise velocity, Expo kV, and Expo kA to be modified directly in the control request during motion. This can be used to set up different values for forward vs reverse or to speed up and slow down the profile on the fly.
 
 The gain slots are configured in the same way as a regular Motion Magic® Expo request. However, the cruise velocity, Expo kV, and Expo kA parameters are set up in the control request, **not** the Motion Magic® config group.
 
-Once the gains are configured, the Dynamic Motion Magic® Expo request can be sent to the TalonFX. The control request object has an optional feedforward term that can be used to add an arbitrary value to the output, which can be useful to account for the effects of gravity.
+Once the gains are configured, the Dynamic Motion Magic® Expo request can be sent to the motor controller. The control request object has an optional feedforward term that can be used to add an arbitrary value to the output, which can be useful to account for the effects of gravity.
 
 .. tab-set::
 

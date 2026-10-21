@@ -50,7 +50,7 @@ Q: The left or right-side of the drivetrain rotates in the wrong direction!
 
 .. note:: If **both** sides are rotating in the incorrect direction, simply select :guilabel:`No` in the prompt that appears at the end of the test.
 
-**Answer:** Go back to the configuration page and reperform CANcoder calibration. Ensure that the bevel gear of the robot is facing toward the vertical center of the robot and that the module is centered (either with a locking pin or ruler).
+**Answer:** Go back to the configuration page and reperform encoder calibration. Ensure that the bevel gear of the robot is facing toward the vertical center of the robot and that the module is centered (either with a locking pin or ruler).
 
 Q: The robot wheels did not move!
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

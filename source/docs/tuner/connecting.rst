@@ -16,7 +16,7 @@ By clicking the arrow, you can change between presets such as:
 
 - :guilabel:`Driver Station` -- Retrieves the robot IP from the FRC Driver Station if launched
 - :guilabel:`roboRIO USB` -- Defaults to ``172.22.11.2`` which is the roboRIO IP when connected via USB
-- :guilabel:`localhost` -- Use for simulation or hardware-attached CANivore.
+- :guilabel:`localhost` -- Use for simulation or hardware-attached CANivore®.
 
 Alternatively, the user can manually enter the robot IP into the textbox.
 

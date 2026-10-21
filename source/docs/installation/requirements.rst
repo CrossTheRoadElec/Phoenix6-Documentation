@@ -8,13 +8,13 @@ Supported Devices
 
 Phoenix 6 supports the following devices:
 
-- `CANcoder <https://store.ctr-electronics.com/cancoder/>`__
-- `CANdi™ <https://store.ctr-electronics.com/products/candi>`__
+- `CANcoder® <https://store.ctr-electronics.com/cancoder/>`__
+- `CANdi® <https://store.ctr-electronics.com/products/candi>`__
 - `CANdle® <https://store.ctr-electronics.com/products/candle>`__
-- `CANrange <https://store.ctr-electronics.com/products/canrange>`__
-- `Pigeon 2.0 <https://store.ctr-electronics.com/pigeon-2/>`__
-- Talon FX (`Falcon 500 <https://store.ctr-electronics.com/falcon-500-powered-by-talon-fx/>`__, `Kraken X60 <https://store.ctr-electronics.com/kraken-x60/>`__, `Kraken X44 <https://store.ctr-electronics.com/products/kraken-x44>`__)
-- `Talon FXS <https://store.ctr-electronics.com/products/talon-fxs>`__
+- `CANrange® <https://store.ctr-electronics.com/products/canrange>`__
+- `Pigeon® 2.0 <https://store.ctr-electronics.com/pigeon-2/>`__
+- Talon FX® (`Falcon 500 <https://store.ctr-electronics.com/falcon-500-powered-by-talon-fx/>`__, `Kraken X60 <https://store.ctr-electronics.com/kraken-x60/>`__, `Kraken X44 <https://store.ctr-electronics.com/products/kraken-x44>`__)
+- `Talon FXS® <https://store.ctr-electronics.com/products/talon-fxs>`__
 
 CAN Bus Requirements
 --------------------
@@ -27,12 +27,12 @@ Phoenix 6 devices are supported on the below CAN bus adapters.
       :sync: FRC
 
       - roboRIO
-      - `CANivore <https://store.ctr-electronics.com/canivore/>`__
+      - `CANivore® <https://store.ctr-electronics.com/canivore/>`__
 
    .. tab-item:: non-FRC
       :sync: non-FRC
 
-      On Linux systems, any SocketCAN capable adapter will work, but the `CANivore <https://store.ctr-electronics.com/canivore/>`__ is highly recommended. CANivore offers :ref:`additional functionality <docs/migration/new-to-phoenix:feature breakdown>` over other SocketCAN adapters. On Windows systems, you will need a CANivore to communicate with hardware.
+      On Linux systems, any SocketCAN capable adapter will work, but the `CANivore® <https://store.ctr-electronics.com/canivore/>`__ is highly recommended. CANivore® offers :ref:`additional functionality <docs/migration/new-to-phoenix:feature breakdown>` over other SocketCAN adapters. On Windows systems, you will need a CANivore® to communicate with hardware.
 
 System Requirements
 -------------------
@@ -44,30 +44,30 @@ Phoenix 6 supports a plethora of languages and operating systems. The table foun
    .. tab-item:: FRC
       :sync: FRC
 
-      +--------------------------------------------+-----------------------+----------------------------------------------------------+---------------------------------------------------------------------------------+
-      | Targets                                    | Supported Languages   | Supports :doc:`CANivore </docs/canivore/canivore-intro>` | Supports :doc:`High-Fidelity Simulation </docs/api-reference/simulation/index>` |
-      +============================================+=======================+==========================================================+=================================================================================+
-      | NI roboRIO                                 | Java, C++, Python     | Yes                                                      | n/a                                                                             |
-      +--------------------------------------------+-----------------------+----------------------------------------------------------+---------------------------------------------------------------------------------+
-      | Windows 10/11 x86-64                       | Java, C++, Python     | Yes                                                      | Yes                                                                             |
-      +--------------------------------------------+-----------------------+----------------------------------------------------------+---------------------------------------------------------------------------------+
-      | Linux x86-64 (desktop) [1]_ and ARM64 [2]_ | Java, C++, Python     | Yes                                                      | Yes                                                                             |
-      +--------------------------------------------+-----------------------+----------------------------------------------------------+---------------------------------------------------------------------------------+
-      | macOS                                      | Java, C++, Python     | No                                                       | Yes                                                                             |
-      +--------------------------------------------+-----------------------+----------------------------------------------------------+---------------------------------------------------------------------------------+
+      +--------------------------------------------+-----------------------+-----------------------------------------------------------+---------------------------------------------------------------------------------+
+      | Targets                                    | Supported Languages   | Supports :doc:`CANivore® </docs/canivore/canivore-intro>` | Supports :doc:`High-Fidelity Simulation </docs/api-reference/simulation/index>` |
+      +============================================+=======================+===========================================================+=================================================================================+
+      | NI roboRIO                                 | Java, C++, Python     | Yes                                                       | n/a                                                                             |
+      +--------------------------------------------+-----------------------+-----------------------------------------------------------+---------------------------------------------------------------------------------+
+      | Windows 10/11 x86-64                       | Java, C++, Python     | Yes                                                       | Yes                                                                             |
+      +--------------------------------------------+-----------------------+-----------------------------------------------------------+---------------------------------------------------------------------------------+
+      | Linux x86-64 (desktop) [1]_ and ARM64 [2]_ | Java, C++, Python     | Yes                                                       | Yes                                                                             |
+      +--------------------------------------------+-----------------------+-----------------------------------------------------------+---------------------------------------------------------------------------------+
+      | macOS                                      | Java, C++, Python     | No                                                        | Yes                                                                             |
+      +--------------------------------------------+-----------------------+-----------------------------------------------------------+---------------------------------------------------------------------------------+
 
    .. tab-item:: non-FRC
       :sync: non-FRC
 
-      +--------------------------------------------+-----------------------+----------------------------------------------------------+---------------------------------------------------------------------------------+
-      | Targets                                    | Supported Languages   | Supports :doc:`CANivore </docs/canivore/canivore-intro>` | Supports :doc:`High-Fidelity Simulation </docs/api-reference/simulation/index>` |
-      +============================================+=======================+==========================================================+=================================================================================+
-      | Windows 10/11 x86-64                       | C#, Python            | Yes                                                      | Yes                                                                             |
-      +--------------------------------------------+-----------------------+----------------------------------------------------------+---------------------------------------------------------------------------------+
-      | Linux x86-64 (desktop) [1]_ and ARM64 [2]_ | C++, C#, Python       | Yes                                                      | Yes (C# and Python only)                                                        |
-      +--------------------------------------------+-----------------------+----------------------------------------------------------+---------------------------------------------------------------------------------+
-      | macOS (Simulation Only)                    | C#, Python            | No                                                       | Yes                                                                             |
-      +--------------------------------------------+-----------------------+----------------------------------------------------------+---------------------------------------------------------------------------------+
+      +--------------------------------------------+-----------------------+-----------------------------------------------------------+---------------------------------------------------------------------------------+
+      | Targets                                    | Supported Languages   | Supports :doc:`CANivore® </docs/canivore/canivore-intro>` | Supports :doc:`High-Fidelity Simulation </docs/api-reference/simulation/index>` |
+      +============================================+=======================+===========================================================+=================================================================================+
+      | Windows 10/11 x86-64                       | C#, Python            | Yes                                                       | Yes                                                                             |
+      +--------------------------------------------+-----------------------+-----------------------------------------------------------+---------------------------------------------------------------------------------+
+      | Linux x86-64 (desktop) [1]_ and ARM64 [2]_ | C++, C#, Python       | Yes                                                       | Yes (C# and Python only)                                                        |
+      +--------------------------------------------+-----------------------+-----------------------------------------------------------+---------------------------------------------------------------------------------+
+      | macOS (Simulation Only)                    | C#, Python            | No                                                        | Yes                                                                             |
+      +--------------------------------------------+-----------------------+-----------------------------------------------------------+---------------------------------------------------------------------------------+
 
 .. [1] Supported Linux x86-64 (desktop) targets:
 

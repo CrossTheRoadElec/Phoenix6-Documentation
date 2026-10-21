@@ -37,7 +37,7 @@ As a result, torque-based control output types offer more stable and reproducibl
 Gain Slots
 ----------
 
-It may be useful to switch between presets of gains in a motor controller, so the TalonFX supports multiple gain slots. All closed-loop control requests have a member variable ``Slot`` that can be assigned an integer ID to select the set of gains used by the closed-loop. The gain slots can be :doc:`configured in code </docs/api-reference/api-usage/configuration>` using ``Slot*Configs`` (`Java <https://api.ctr-electronics.com/phoenix6/stable/java/com/ctre/phoenix6/configs/Slot0Configs.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/stable/cpp/classctre_1_1phoenix6_1_1configs_1_1_slot0_configs.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/stable/python/autoapi/phoenix6/configs/config_groups/index.html#phoenix6.configs.config_groups.Slot0Configs>`__) objects.
+It may be useful to switch between presets of gains in a motor controller, so the Talon FX® and Talon FXS® support multiple gain slots. All closed-loop control requests have a member variable ``Slot`` that can be assigned an integer ID to select the set of gains used by the closed-loop. The gain slots can be :doc:`configured in code </docs/api-reference/api-usage/configuration>` using ``Slot*Configs`` (`Java <https://api.ctr-electronics.com/phoenix6/stable/java/com/ctre/phoenix6/configs/Slot0Configs.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/stable/cpp/classctre_1_1phoenix6_1_1configs_1_1_slot0_configs.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/stable/python/autoapi/phoenix6/configs/config_groups/index.html#phoenix6.configs.config_groups.Slot0Configs>`__) objects.
 
 Gravity Feedforward
 -------------------
@@ -54,9 +54,9 @@ Arm/Cosine
 
 For systems with an angular gravity component, such as an arm, the output of :math:`K_g` is dependent on the cosine of the angle between the arm and horizontal. The value of :math:`K_g` can be found by determining the output necessary to hold the arm horizontally forward.
 
-Since the arm :math:`K_g` uses the angle of the arm relative to horizontal, the Talon FX often requires an absolute sensor whose position is 1:1 with the arm, and the sensor offset and ratios must be configured.
+Since the arm :math:`K_g` uses the angle of the arm relative to horizontal, the Talon FX® and Talon FXS® often require an absolute sensor whose position is 1:1 with the arm, and the sensor offset and ratios must be configured.
 
-When using an absolute sensor, such as a CANcoder, the sensor offset must be configured such that a position of 0 represents the arm being held horizontally forward. From there, the ``RotorToSensor`` ratio must be configured to the ratio between the absolute sensor and the Talon FX rotor.
+When using an absolute sensor, such as a CANcoder®, the sensor offset must be configured such that a position of 0 represents the arm being held horizontally forward. From there, the ``RotorToSensor`` ratio must be configured to the ratio between the absolute sensor and the Talon FX® or Talon FXS® rotor.
 
 Some arm mechanisms have a center of gravity that is offset from the zero position. The ``GravityArmPositionOffset`` config can be adjusted to account for this offset within ±0.25 rotations.
 

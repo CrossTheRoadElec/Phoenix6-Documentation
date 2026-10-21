@@ -18,35 +18,37 @@ In Phoenix 6, Neutral mode is now available in API as a config (`Java <https://a
 Nominal Output
 --------------
 
-The Talon FX forward and reverse Nominal Output configs have been removed in Phoenix 6.
+The Talon FX® forward and reverse Nominal Output configs have been removed in Phoenix 6.
 
 The typical use case of the nominal output configs is to overcome friction in closed-loop control modes, which can now be achieved using the ``kS`` feedforward parameter (`Java <https://api.ctr-electronics.com/phoenix6/stable/java/com/ctre/phoenix6/configs/Slot0Configs.html#kS>`__, `C++ <https://api.ctr-electronics.com/phoenix6/stable/cpp/classctre_1_1phoenix6_1_1configs_1_1_slot0_configs.html#a00d6ee0ad9827e7ab3ac086c4093c5b5>`__).
 
 Sensor Phase
 ------------
 
-The Talon FX ``setSensorPhase()`` method has been removed in Phoenix 6.
+The Talon FX® ``setSensorPhase()`` method has been removed in Phoenix 6.
 
-- The Talon FX integrated sensor is always in phase, so the method does nothing in Phoenix 5.
+- The Talon FX® integrated sensor is always in phase, so the method does nothing in Phoenix 5.
 
-- When using a remote sensor, you can invert the remote sensor to bring it in phase with the Talon FX.
+- When using a remote sensor, you can invert the remote sensor to bring it in phase with the Talon FX®.
+
+- When using an external sensor connected to a Talon FXS®, the sensor phase can be changed using a config (`Java <https://api.ctr-electronics.com/phoenix6/stable/java/com/ctre/phoenix6/configs/ExternalFeedbackConfigs.html#SensorPhase>`__, `C++ <https://api.ctr-electronics.com/phoenix6/stable/cpp/classctre_1_1phoenix6_1_1configs_1_1_external_feedback_configs.html#acae8f69643075caf0df26be1e55dab2c>`__).
 
 Sensor Initialization Strategy
 ------------------------------
 
-The Talon FX and CANcoder sensors are always initialized to their absolute position in Phoenix 6.
+The Talon FX® and CANcoder® sensors are always initialized to their absolute position in Phoenix 6.
 
 Clear Position on Limit
 -----------------------
 
-In Phoenix 5, users could configure the TalonFX to clear its sensor position (i.e. set to 0) when a limit switch is triggered. In Phoenix 6, this feature has been improved to allow users to specify the applied sensor position when a limit switch is triggered. This can be configured using the ``*LimitAutosetPositionValue`` configs (`Java <https://api.ctr-electronics.com/phoenix6/stable/java/com/ctre/phoenix6/configs/HardwareLimitSwitchConfigs.html#ForwardLimitAutosetPositionValue>`__, `C++ <https://api.ctr-electronics.com/phoenix6/stable/cpp/classctre_1_1phoenix6_1_1configs_1_1_hardware_limit_switch_configs.html#a33f21915d1147448ea89cb96829476a1>`__).
+In Phoenix 5, users could configure the Talon FX® to clear its sensor position (i.e. set to 0) when a limit switch is triggered. In Phoenix 6, this feature has been improved to allow users to specify the applied sensor position when a limit switch is triggered. This can be configured using the ``*LimitAutosetPositionValue`` configs (`Java <https://api.ctr-electronics.com/phoenix6/stable/java/com/ctre/phoenix6/configs/HardwareLimitSwitchConfigs.html#ForwardLimitAutosetPositionValue>`__, `C++ <https://api.ctr-electronics.com/phoenix6/stable/cpp/classctre_1_1phoenix6_1_1configs_1_1_hardware_limit_switch_configs.html#a33f21915d1147448ea89cb96829476a1>`__).
 
 Velocity Measurement Period/Window
 ----------------------------------
 
-In Phoenix 6, the velocity rolling average window in Talon FX and CANcoder has been replaced with a Kalman filter, resulting in a less noisy velocity signal with a minimal impact on latency (~1 ms). As a result, the velocity measurement period/window configs are no longer necessary in Phoenix 6 and have been removed.
+In Phoenix 6, the velocity rolling average window in Talon FX® and CANcoder® has been replaced with a Kalman filter, resulting in a less noisy velocity signal with a minimal impact on latency (~1 ms). As a result, the velocity measurement period/window configs are no longer necessary in Phoenix 6 and have been removed.
 
-On the Talon FX, users can optionally configure the ``VelocityFilterTimeConstant`` config (`Java <https://api.ctr-electronics.com/phoenix6/stable/java/com/ctre/phoenix6/configs/FeedbackConfigs.html#VelocityFilterTimeConstant>`__, `C++ <https://api.ctr-electronics.com/phoenix6/stable/cpp/classctre_1_1phoenix6_1_1configs_1_1_feedback_configs.html#abf831ae1b2bffeff5fa1430a0592cf4f>`__) to apply stronger filtering to the velocity signal. However, note that stronger filtering may negatively impact velocity PID control.
+On the Talon FX®, users can optionally configure the ``VelocityFilterTimeConstant`` config (`Java <https://api.ctr-electronics.com/phoenix6/stable/java/com/ctre/phoenix6/configs/FeedbackConfigs.html#VelocityFilterTimeConstant>`__, `C++ <https://api.ctr-electronics.com/phoenix6/stable/cpp/classctre_1_1phoenix6_1_1configs_1_1_feedback_configs.html#abf831ae1b2bffeff5fa1430a0592cf4f>`__) to apply stronger filtering to the velocity signal. However, note that stronger filtering may negatively impact velocity PID control.
 
 Allowable Closed-Loop Error
 ---------------------------
@@ -62,10 +64,10 @@ Phoenix 6 automatically prevents integral windup in closed-loop controls. As a r
 
 Users can optionally use the new ``GainSched*`` configs mentioned above to mimic the behavior of Integral Zone by setting up a secondary PID slot with a stronger kI gain and setting the ``GainSchedBehavior`` of the primary PID slot to ``UseSlot*``.
 
-CANcoder Sensor Coefficient and Units
--------------------------------------
+CANcoder® Sensor Coefficient and Units
+--------------------------------------
 
-In Phoenix 6, CANcoder does not support setting a custom sensor coefficient, unit string, and sensor time base. Instead, the CANcoder uses canonical units of rotations and rotations per second using the `C++ units library <https://docs.wpilib.org/en/stable/docs/software/basic-programming/cpp-units.html>`__.
+In Phoenix 6, CANcoder® does not support setting a custom sensor coefficient, unit string, and sensor time base. Instead, the CANcoder® uses canonical units of rotations and rotations per second using the `C++ units library <https://docs.wpilib.org/en/stable/docs/software/basic-programming/cpp-units.html>`__.
 
 Features Omitted
 ----------------
