@@ -13,7 +13,7 @@ This section serves as a "cheat sheet" of commonly-used functions in Phoenix 5 a
    - Using status signals to retrieve sensor data from devices
 
 - :doc:`control-requests-guide`
-   - Using control requests to control the functionality of actuators, such as the TalonFX
+   - Using control requests to control the functionality of actuators, such as the Talon FX®
 
 - :doc:`closed-loop-guide`
    - Configuring and using closed-loop control requests

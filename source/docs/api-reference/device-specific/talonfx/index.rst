@@ -1,5 +1,5 @@
-TalonFX / TalonFXS
-==================
+Talon FX® / Talon FXS®
+======================
 
 .. toctree::
    :maxdepth: 1

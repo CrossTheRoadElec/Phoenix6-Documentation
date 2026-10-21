@@ -4,7 +4,7 @@ Log Analysis (Beta)
 Hoot logs can be directly viewed and analyzed in Tuner using the built-in Log Analysis tool. This tool can be found by navigating to :guilabel:`Tools` -> :guilabel:`Log Analysis (Beta)` tab. Users can take advantage of our high-performance :doc:`plotter </docs/tuner/plotting>` to analyze their logs for trends.
 
 .. image:: images/log-analysis-overview.png
-   :alt: Image highlighting the Log analysis page in Tuner, showing the TalonFX velocity signal
+   :alt: Image highlighting the Log analysis page in Tuner, showing the Talon FX velocity signal
    :width: 600
 
 Loading Logs

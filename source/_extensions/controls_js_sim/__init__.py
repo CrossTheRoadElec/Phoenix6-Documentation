@@ -77,8 +77,7 @@ def merge_and_minify():
                 output_content += jsmin(source_content)
             else:
                 # Verbose, no minify, and add debug markers.
-                output_content += dedent(
-                    f"""
+                output_content += dedent(f"""
 
 
                     //*******************************************************
@@ -87,8 +86,7 @@ def merge_and_minify():
                     //*******************************************************
                     //*******************************************************
 
-                    """
-                )
+                    """)
                 output_content += source_content
             output_content += "\n"
 

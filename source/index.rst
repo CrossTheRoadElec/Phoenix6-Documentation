@@ -92,7 +92,7 @@ The Phoenix 6 software framework allows you to control and configure your `CTR E
 
 .. toctree::
    :maxdepth: 2
-   :caption: CANivore
+   :caption: CANivore®
    :hidden:
 
    docs/canivore/canivore-intro

@@ -1,9 +1,9 @@
-Pigeon 2.0
-==========
+Pigeon® 2.0
+===========
 
-Pigeon 2.0 is the next evolution in the family of Pigeon IMUs.
+Pigeon® 2.0 is the next evolution in the family of Pigeon® IMUs.
 
-With no on-boot calibration or temperature calibration required and dramatic improvement to drift, the Pigeon is the easiest IMU to use yet.
+With no on-boot calibration or temperature calibration required and dramatic improvement to drift, the Pigeon® 2.0 is the easiest IMU to use yet.
 
 .. toctree::
    :maxdepth: 1
@@ -99,27 +99,27 @@ Status Light Reference
                 <td><div class='ledGroup'><div class='led' ontime='300' offtime='300' oncolor='red' offcolor='black'></div>
                                           <div class='led' ontime='300' offtime='300' oncolor='black' offcolor='red'></div></div></td>
                 <td>Blinking Alternating Red</td>
-                <td>Pigeon 2 does not have valid CAN.</td>
+                <td>Pigeon® 2.0 does not have valid CAN.</td>
                 <td>Ensure good connections between CANH and CANL (Yellow and Green) & robot controller is on.</td>
             </tr>
             <tr>
                 <td><div class='ledGroup'><div class='led' ontime='300' offtime='300' oncolor='orange' offcolor='black'></div>
                                           <div class='led' ontime='300' offtime='300' oncolor='black' offcolor='orange'></div></div></td>
                 <td>Blinking Alternating Orange</td>
-                <td>Pigeon 2 detects CAN but does not see Phoenix running on the robot controller.</td>
+                <td>Pigeon® 2.0 detects CAN but does not see Phoenix running on the robot controller.</td>
                 <td>If Phoenix is running on the robot controller, ensure good connection between the controller and this device. Otherwise, deploy a robot program that uses Phoenix.</td>
             </tr>
             <tr>
                 <td><div class='ledGroup'><div class='led' ontime='300' offtime='300' oncolor='orange' offcolor='black'></div>
                                           <div class='led' ontime='300' offtime='300' oncolor='orange' offcolor='black'></div></div></td>
                 <td>Blinking Simultaneous Orange</td>
-                <td colspan="2">Pigeon 2 detects CAN and sees the robot is disabled. Phoenix is running in robot controller <b>and</b> Pigeon 2 has good CAN connection to robot controller.</td>
+                <td colspan="2">Pigeon® 2.0 detects CAN and sees the robot is disabled. Phoenix is running in robot controller <b>and</b> Pigeon® 2.0 has good CAN connection to robot controller.</td>
             </tr>
             <tr>
                 <td><div class='ledGroup'><div class='led' ontime='300' offtime='300' oncolor='green' offcolor='black'></div>
                                           <div class='led' ontime='300' offtime='300' oncolor='black' offcolor='green'></div></div></td>
                 <td>Blinking Alternating Green</td>
-                <td colspan="2">Pigeon 2 detects CAN and sees the robot is enabled.</td>
+                <td colspan="2">Pigeon® 2.0 detects CAN and sees the robot is enabled.</td>
             </tr>
             <tr>
                 <td><div class='ledGroup'><div class='led' ontime='300' offtime='300' oncolor='red' offcolor='orange'></div>
@@ -132,7 +132,7 @@ Status Light Reference
                 <td><div class='ledGroup'><div class='led' ontime='0' offtime='0' oncolor='black' offcolor='black'></div>
                                           <div class='led' ontime='300' offtime='300' oncolor='green' offcolor='orange'></div></div></td>
                 <td>Single LED alternates Green/Orange</td>
-                <td>Pigeon 2 in bootloader.</td>
+                <td>Pigeon® 2.0 in bootloader.</td>
                 <td>Field-upgrade device in Tuner X.</td>
             </tr>
         </table>
@@ -211,7 +211,7 @@ Status Light Reference
 Mount Calibration
 -----------------
 
-It's recommended to perform a mount calibration when placement of the Pigeon 2.0 has been finalized. This can be done via the :doc:`Calibration page </docs/tuner/pigeon-cal>` in Tuner X.
+It is recommended to perform a mount calibration when placement of the Pigeon® 2.0 has been finalized. This can be done via the :doc:`Calibration page </docs/tuner/pigeon-cal>` in Tuner X.
 
 .. image:: images/mount-calibration.png
    :width: 70%

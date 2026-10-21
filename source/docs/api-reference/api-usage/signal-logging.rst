@@ -163,7 +163,7 @@ Any log that contains a :doc:`pro-licensed </docs/licensing/licensing>` device w
 
    .. tab-set::
 
-      .. tab-item:: Talon FX
+      .. tab-item:: Talon FX®
 
          - SupplyCurrent
          - StatorCurrent
@@ -181,7 +181,7 @@ Any log that contains a :doc:`pro-licensed </docs/licensing/licensing>` device w
          - Fault_RotorFault1
          - Fault_RotorFault2
 
-      .. tab-item:: Talon FXS
+      .. tab-item:: Talon FXS®
 
          - SupplyCurrent
          - StatorCurrent
@@ -202,12 +202,12 @@ Any log that contains a :doc:`pro-licensed </docs/licensing/licensing>` device w
          - Fault_MotorTempSensorTooHot
          - Fault_MotorArrangementNotSelected
 
-      .. tab-item:: CANcoder
+      .. tab-item:: CANcoder®
 
          - Position
          - Velocity
 
-      .. tab-item:: Pigeon 2.0
+      .. tab-item:: Pigeon® 2.0
 
          - Yaw
          - AngularVelocityZWorld
@@ -215,13 +215,13 @@ Any log that contains a :doc:`pro-licensed </docs/licensing/licensing>` device w
          - NoMotionCount
          - UpTime
 
-      .. tab-item:: CANrange
+      .. tab-item:: CANrange®
 
          - DistanceMeters
          - ProximityDetected
          - SignalStrength
 
-      .. tab-item:: CANdi™
+      .. tab-item:: CANdi®
 
          - Pin1State
          - Pin2State

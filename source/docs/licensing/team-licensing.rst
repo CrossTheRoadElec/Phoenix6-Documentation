@@ -17,9 +17,9 @@ Season Pass licenses enable Pro features when the licensed device is:
 
 * Used on a roboRIO configured for the team number assigned to the Season Pass
 
-  * Season Pass licensing will work on the roboRIO regardless of whether the device is on the native CAN Bus or a CANivore Bus.
+  * Season Pass licensing will work on the roboRIO regardless of whether the device is on the native CAN bus or a CANivore® bus.
 
-* Used for Hardware Attached Simulation (a CANivore connected to PC) with a WPILib robot project
+* Used for Hardware Attached Simulation (a CANivore® connected to PC) with a WPILib robot project
 * Used on a roboRIO configured for one of the reserved "Off-Season Demo" team numbers (currently team numbers 9970 - 9999)
 
 Attaching a Team Number to Season Pass

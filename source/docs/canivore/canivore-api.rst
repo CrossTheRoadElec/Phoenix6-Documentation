@@ -1,14 +1,14 @@
-CANivore API
-============
+CANivore® API
+=============
 
-All device constructors have an overload that takes a ``CANBus`` object (`Java <https://api.ctr-electronics.com/phoenix6/stable/java/com/ctre/phoenix6/CANBus.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/stable/cpp/classctre_1_1phoenix6_1_1_c_a_n_bus.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/stable/python/autoapi/phoenix6/canbus/index.html>`__). The native roboRIO CAN bus can be constructed using ``CANBus.roboRIO()``. Otherwise, the ``CANBus`` constructor takes a string identifier. This identifier can be ``*`` to select the first available CANivore, or it can be a CANivore's name or serial number. On non-FRC Linux systems, this string can also be a SocketCAN interface.
+All device constructors have an overload that takes a ``CANBus`` object (`Java <https://api.ctr-electronics.com/phoenix6/stable/java/com/ctre/phoenix6/CANBus.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/stable/cpp/classctre_1_1phoenix6_1_1_c_a_n_bus.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/stable/python/autoapi/phoenix6/canbus/index.html>`__). The native roboRIO CAN bus can be constructed using ``CANBus.roboRIO()``. Otherwise, the ``CANBus`` constructor takes a string identifier. This identifier can be ``*`` to select the first available CANivore®, or it can be the CANivore® name or serial number. On non-FRC Linux systems, this string can also be a SocketCAN interface.
 
-.. note:: If there are multiple CANivores with the same name, the system will use the first CANivore found.
+.. note:: If there are multiple CANivore® devices with the same name, the system will use the first CANivore® found.
 
 If no CAN bus string is passed into the constructor, or the CAN bus string is empty, the behavior is platform-dependent:
 
 - roboRIO: use the roboRIO native CAN bus
-- Windows: use the first CANivore found
+- Windows: use the first CANivore® found
 - non-FRC Linux: use SocketCAN interface ``can0``
 
 .. tab-set::
@@ -100,10 +100,10 @@ The ``CANBus`` API can also be used to retrieve information about any given CAN 
          if bus_util > 0.8:
             print("CAN bus utilization is greater than 80%!")
 
-CANivore Status Prints
-----------------------
+CANivore® Status Prints
+-----------------------
 
-When working with CANivore CAN buses in a robot program, Phoenix prints some messages to report the state of the CANivore connection. These messages can be useful to debug connection issues (bad USB vs bad CAN) or report bugs to CTR Electronics.
+When working with CANivore® CAN buses in a robot program, Phoenix prints some messages to report the state of the CANivore® connection. These messages can be useful to debug connection issues (bad USB vs bad CAN) or report bugs to CTR Electronics.
 
 
 .. list-table:: Connection Messages
@@ -113,22 +113,22 @@ When working with CANivore CAN buses in a robot program, Phoenix prints some mes
    * - Message
      - Connection Status
    * - CANbus Failed to Connect
-     - Could not connect to a CANivore with the given name or serial number
+     - Could not connect to a CANivore® with the given name or serial number
    * - CANbus Connected
-     - Successfully found and connected to the CANivore with the given name or serial number
+     - Successfully found and connected to the CANivore® with the given name or serial number
    * - CANbus Disconnected
-     - Detected that a CANivore USB device has been disconnected
+     - Detected that a CANivore® USB device has been disconnected
 
-.. list-table:: CANivore Bring-up Messages (Linux only)
+.. list-table:: CANivore® Bring-up Messages (Linux only)
    :widths: 50 80
    :header-rows: 1
 
    * - Message
      - Bring-up Status
    * - CANbus Failed Bring-up
-     - Found and connected to the CANivore, but could not configure the device or start the network
+     - Found and connected to the CANivore®, but could not configure the device or start the network
    * - CANbus Successfully Started
-     - Successfully configured the CANivore and started the network
+     - Successfully configured the CANivore® and started the network
 
 .. list-table:: Network State Messages
    :widths: 50 80

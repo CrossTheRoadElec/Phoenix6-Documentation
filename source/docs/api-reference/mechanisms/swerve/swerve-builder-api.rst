@@ -8,11 +8,11 @@ To simplify the API surface, both `builder <https://en.wikipedia.org/wiki/Builde
 Defining Drivetrain Characteristics
 -----------------------------------
 
-Drivetrain, in this instance, refers to the ``SwerveDrivetrainConstants`` class (`Java <https://api.ctr-electronics.com/phoenix6/stable/java/com/ctre/phoenix6/swerve/SwerveDrivetrainConstants.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/stable/cpp/structctre_1_1phoenix6_1_1swerve_1_1_swerve_drivetrain_constants.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/stable/python/autoapi/phoenix6/swerve/swerve_drivetrain_constants/index.html#phoenix6.swerve.swerve_drivetrain_constants.SwerveDrivetrainConstants>`__). This class defines characteristics that are not tied to the swerve modules, such as the CAN bus or Pigeon 2 device ID.
+Drivetrain, in this instance, refers to the ``SwerveDrivetrainConstants`` class (`Java <https://api.ctr-electronics.com/phoenix6/stable/java/com/ctre/phoenix6/swerve/SwerveDrivetrainConstants.html>`__, `C++ <https://api.ctr-electronics.com/phoenix6/stable/cpp/structctre_1_1phoenix6_1_1swerve_1_1_swerve_drivetrain_constants.html>`__, `Python <https://api.ctr-electronics.com/phoenix6/stable/python/autoapi/phoenix6/swerve/swerve_drivetrain_constants/index.html#phoenix6.swerve.swerve_drivetrain_constants.SwerveDrivetrainConstants>`__). This class defines characteristics that are not tied to the swerve modules, such as the CAN bus or Pigeon® 2.0 device ID.
 
 .. note:: All devices in the swerve drivetrain must be on the same CAN bus.
 
-Users can optionally provide a configuration object to apply custom configs to the Pigeon 2, such as mount orientation. Leaving the configuration object ``null`` will skip applying configs to the Pigeon 2.
+Users can optionally provide a configuration object to apply custom configs to the Pigeon® 2.0, such as mount orientation. Leaving the configuration object ``null`` will skip applying configs to the Pigeon® 2.0.
 
 Defining Module Characteristics
 -------------------------------

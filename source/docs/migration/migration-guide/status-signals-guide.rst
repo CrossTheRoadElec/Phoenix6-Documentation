@@ -165,8 +165,8 @@ General Signals
    * - ``FirmwareVersion``
      - ``Version``
 
-Talon FX Signals
-^^^^^^^^^^^^^^^^
+Talon FX® Signals
+^^^^^^^^^^^^^^^^^
 
 .. list-table::
    :header-rows: 1
@@ -197,8 +197,8 @@ Talon FX Signals
    * - ``IsFwdLimitSwitchClosed`` |~| / ``IsRevLimitSwitchClosed`` (true/false)
      - ``GetForwardLimit`` |~| / ``GetReverseLimit`` (Open/Closed)
 
-CANcoder Signals
-^^^^^^^^^^^^^^^^
+CANcoder® Signals
+^^^^^^^^^^^^^^^^^
 
 .. list-table::
    :header-rows: 1
@@ -210,10 +210,10 @@ CANcoder Signals
    * - ``MagnetFieldStrength``
      - ``MagnetHealth``
 
-Pigeon 2 Signals
-^^^^^^^^^^^^^^^^
+Pigeon® 2.0 Signals
+^^^^^^^^^^^^^^^^^^^
 
-.. note:: Many Pigeon 2 signal getters in Phoenix 5 fill an array, such as ``YawPitchRoll``. In Phoenix 6, these signals have been broken up into their individual components, such as ``Yaw``, ``Pitch``, and ``Roll``.
+.. note:: Many Pigeon® 2.0 signal getters in Phoenix 5 fill an array, such as ``YawPitchRoll``. In Phoenix 6, these signals have been broken up into their individual components, such as ``Yaw``, ``Pitch``, and ``Roll``.
 
 .. list-table::
    :header-rows: 1

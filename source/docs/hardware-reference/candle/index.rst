@@ -1,7 +1,7 @@
 CANdle®
 =======
 
-The CTR Electronics' CANdle® branded device makes it easy to control individually addressable LEDs over CAN. Combined with being a 5V high-efficiency DC voltage regulator, the CANdle® is a versatile addition to any robot.
+The CTR Electronics CANdle® makes it easy to control individually addressable LEDs over CAN. Combined with being a 5V high-efficiency DC voltage regulator, the CANdle® is a versatile addition to any robot.
 
 .. grid:: 2
 
@@ -188,4 +188,4 @@ Status Light Reference
         }, 10);
     </script>
 
-[1] CANdle can be directly controlled using a WS2812B-compliant pulse train from other devices, such as an Arduino. See the `User's Guide <https://ctre.download/files/user-manual/CANdle%20User's%20Guide.pdf>`__ for more information.
+[1] CANdle® can be directly controlled using a WS2812B-compliant pulse train from other devices, such as an Arduino. See the `User's Guide <https://ctre.download/files/user-manual/CANdle%20User's%20Guide.pdf>`__ for more information.
