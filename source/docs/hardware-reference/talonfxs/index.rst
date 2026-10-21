@@ -27,7 +27,10 @@ Supported Motors
 Utilizing your Talon FXS®
 -------------------------
 
-- :doc:`/docs/hardware-reference/talonfx/improving-performance-with-current-limits`
+.. mimictoc::
+   :maxdepth: 1
+
+   ../talonfx/improving-performance-with-current-limits
 
 Status Light Reference
 ----------------------

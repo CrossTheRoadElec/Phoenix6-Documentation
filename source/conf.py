@@ -45,7 +45,6 @@ on_rtd = os.environ.get("READTHEDOCS") == "True"
 # ones.
 extensions = [
     "notfound.extension",
-    #    "sphinxcontrib.images",
     "sphinxcontrib.jquery",
     "sphinxext.mimictoc",
     "sphinxext.opengraph",
